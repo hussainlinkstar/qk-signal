@@ -6,6 +6,7 @@ import {
   isMockPreviewToken,
   isMockUserPath,
 } from "@/lib/mockPreviewAuth";
+import { tryMockStubProxy } from "@/lib/mockStubBridge";
 
 const backendUrl = process.env.BACKEND_URL ?? "http://localhost:8000";
 const backendApiPrefix = "/api/v1";
@@ -108,9 +109,6 @@ export async function proxyRequest(request: NextRequest, path: string, options: 
     }
   }
 
-  const targetUrl = new URL(normalizedPath.replace(/^\//, ""), base);
-  targetUrl.search = request.nextUrl.search;
-
   const headers = new Headers(request.headers);
   const originalHost = request.headers.get("host");
   headers.delete("host");
@@ -135,6 +133,25 @@ export async function proxyRequest(request: NextRequest, path: string, options: 
 
   const body =
     request.method === "GET" || request.method === "HEAD" ? undefined : await request.arrayBuffer();
+
+  if (isMockPreviewEnabled()) {
+    const bodyText =
+      body && body.byteLength > 0 ? new TextDecoder().decode(body) : null;
+    const mocked = await tryMockStubProxy({
+      method: request.method,
+      apiPath: normalizedPath,
+      search: request.nextUrl.search,
+      headers,
+      bodyText,
+    });
+    if (mocked) {
+      return mocked;
+    }
+  }
+
+  const targetUrl = new URL(normalizedPath.replace(/^\//, ""), base);
+  targetUrl.search = request.nextUrl.search;
+
   const init: RequestInit = {
     method: request.method,
     headers,

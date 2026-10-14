@@ -53,6 +53,12 @@ const nextConfig = {
     optimizePackageImports: ["lucide-react"],
   },
 
+  // Keep visual stub + fixtures in the serverless trace so MOCK_PREVIEW can
+  // answer /api/v1/* on Vercel without a separate backend process.
+  outputFileTracingIncludes: {
+    "/*": ["./e2e/visual/**/*"],
+  },
+
   // ---------------------------------------------------------------------------
   // The public marketing surface moved to the Website V2 site. These paths are
   // retired here; the edge redirects them as well, and this is the in-app

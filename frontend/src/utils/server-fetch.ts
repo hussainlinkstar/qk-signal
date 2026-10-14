@@ -6,6 +6,7 @@ import {
   isMockPreviewToken,
   isMockUserPath,
 } from "@/lib/mockPreviewAuth";
+import { tryMockStubProxy } from "@/lib/mockStubBridge";
 
 const API_PREFIX = "/api/v1";
 const DEFAULT_TIMEOUT_MS = getTimeoutFromEnv("PROXY_SHORT_TIMEOUT_MS", 5000);
@@ -145,6 +146,27 @@ export async function serverFetch(path: string, options: ServerFetchOptions = {}
     ...init,
     headers: await buildServerHeaders(headers),
   };
+
+  if (isMockPreviewEnabled()) {
+    const headerMap: Record<string, string> = {};
+    new Headers(requestInit.headers).forEach((value, key) => {
+      headerMap[key] = value;
+    });
+    const mocked = await tryMockStubProxy({
+      method: typeof requestInit.method === "string" ? requestInit.method : "GET",
+      apiPath: path,
+      search: "",
+      headers: headerMap,
+      bodyText: typeof requestInit.body === "string" ? requestInit.body : null,
+    });
+    if (mocked) {
+      if (mocked.status === 401 && redirectOnUnauthorized) {
+        redirect(SESSION_EXPIRED_REDIRECT_PATH);
+      }
+      return mocked;
+    }
+  }
+
   const targets = buildFetchTargets(path);
   const primaryTarget = targets[0];
   let lastError: unknown = null;

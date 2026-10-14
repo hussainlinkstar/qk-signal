@@ -7,6 +7,8 @@
 //     auto-opens for a non-trial user)
 import http from "node:http";
 import { readFileSync } from "node:fs";
+import path from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const NOW = "2026-09-29T12:00:00.000Z";
 
@@ -1601,8 +1603,8 @@ const wid = (req) => {
   return lastSeenWs;
 };
 
-http
-  .createServer((req, res) => {
+/** Node HTTP listener used by local `node e2e/visual/stub-backend.mjs`. */
+export function stubRequestListener(req, res) {
     const url = new URL(req.url, "http://x");
     const p = url.pathname;
     const id = wid(req);
@@ -2287,7 +2289,74 @@ http
     if (status === 404) console.log(`stub miss: ${req.method} ${p}`);
     res.writeHead(status, { "content-type": "application/json" });
     res.end(JSON.stringify(body));
-  })
-  .listen(Number(process.env.PORT || 8000), "0.0.0.0", () =>
-    console.log(`stub backend on :${process.env.PORT || 8000}`)
-  );
+}
+
+/**
+ * In-process stub for Vercel MOCK_PREVIEW (no separate BACKEND_URL process).
+ * @param {string} requestUrl pathname + search, e.g. /api/v1/audits/2
+ * @param {{ method?: string, headers?: Record<string, string>, body?: string | Buffer | null }} [init]
+ * @returns {Promise<{ status: number, body: string }>}
+ */
+export function handleStubFetch(requestUrl, init = {}) {
+  const method = init.method || "GET";
+  const headerIn = init.headers || {};
+  const headers = {};
+  for (const [key, value] of Object.entries(headerIn)) {
+    headers[String(key).toLowerCase()] = Array.isArray(value) ? value.join(",") : String(value);
+  }
+  const bodyBuf =
+    init.body == null || init.body === ""
+      ? null
+      : Buffer.isBuffer(init.body)
+        ? init.body
+        : Buffer.from(String(init.body));
+
+  return new Promise((resolve) => {
+    let settled = false;
+    const finish = (status, body) => {
+      if (settled) return;
+      settled = true;
+      resolve({ status, body: body == null ? "" : String(body) });
+    };
+
+    const req = {
+      method,
+      url: requestUrl.startsWith("http")
+        ? `${new URL(requestUrl).pathname}${new URL(requestUrl).search}`
+        : requestUrl,
+      headers,
+      on(event, cb) {
+        if (event === "data") {
+          queueMicrotask(() => {
+            if (bodyBuf) cb(bodyBuf);
+          });
+        } else if (event === "end") {
+          queueMicrotask(() => cb());
+        }
+      },
+    };
+
+    const res = {
+      writeHead(status) {
+        this._status = status;
+      },
+      end(data) {
+        finish(this._status ?? 200, data);
+      },
+    };
+
+    stubRequestListener(req, res);
+  });
+}
+
+const entryPath = process.argv[1] ? path.resolve(process.argv[1]) : "";
+const isDirectRun =
+  Boolean(entryPath) && import.meta.url === pathToFileURL(entryPath).href;
+
+if (isDirectRun) {
+  http
+    .createServer(stubRequestListener)
+    .listen(Number(process.env.PORT || 8000), "0.0.0.0", () =>
+      console.log(`stub backend on :${process.env.PORT || 8000}`)
+    );
+}
