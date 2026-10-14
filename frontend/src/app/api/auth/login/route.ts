@@ -52,7 +52,7 @@ export async function POST(request: NextRequest) {
 
   const accessToken = buildMockPreviewJwt();
   const refreshToken = buildMockPreviewJwt({ type: "refresh", remember_me: true });
-  const response = NextResponse.json({ authenticated: true });
+  const response = NextResponse.json({ authenticated: true, workspace_id: 1 });
   applyAuthCookies(response, accessToken, refreshToken);
   return response;
 }

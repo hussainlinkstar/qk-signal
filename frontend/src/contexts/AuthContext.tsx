@@ -11,6 +11,7 @@ import React, {
   useState,
 } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import { setActiveWorkspaceId } from "@/components/app/WorkspaceSwitcher";
 import authService, { type LoginCredentials, type UserProfile } from "@/services/auth.service";
 import { TokenManager } from "@/utils/token-manager";
 
@@ -96,6 +97,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = useCallback(async (credentials: LoginCredentials) => {
     const payload = await authService.login(credentials);
+    // Mock preview: always land on jake Workspace (3 scored projects), not empty Beta.
+    if (
+      process.env.NEXT_PUBLIC_MOCK_PREVIEW === "1" ||
+      process.env.NEXT_PUBLIC_MOCK_PREVIEW === "true"
+    ) {
+      setActiveWorkspaceId(1);
+    }
     if (payload.user) {
       setUser(payload.user);
       return;

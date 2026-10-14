@@ -1619,12 +1619,26 @@ const reportLibraryFixture = () => {
 // The app's onboarding fetch does not send X-Workspace-Id, so key onboarding
 // state off the last workspace header seen on requests that do carry it
 // (workspaces/current, projects), matching a session-scoped backend.
+// Local Node stub keeps sticky lastSeenWs across requests; handleStubFetch
+// (Vercel) resets it per call so an empty WS2 cannot leak into headerless GETs.
 let lastSeenWs = 1;
+
+const isMockPreviewRuntime = () =>
+  process.env.MOCK_PREVIEW === "1" || process.env.MOCK_PREVIEW === "true";
+
+/** Demo preview only needs the scored workspace (3 projects). */
+const stubWorkspaces = () => (isMockPreviewRuntime() ? workspaces.filter((w) => w.id === 1) : workspaces);
 
 const wid = (req) => {
   const raw = req.headers["x-workspace-id"];
   const id = parseInt(Array.isArray(raw) ? raw[0] : (raw ?? "0"), 10);
   if (projectsByWorkspace[id] !== undefined) {
+    // Mock preview always serves the 3-project workspace so Vercel demos never
+    // land on empty Beta Workspace ("Set up your first project").
+    if (isMockPreviewRuntime()) {
+      lastSeenWs = 1;
+      return 1;
+    }
     lastSeenWs = id;
     return id;
   }
@@ -1678,10 +1692,10 @@ export function stubRequestListener(req, res) {
         dismissed_at: ob.dismissed,
         updated_at: NOW,
       });
-    } else if (p === "/api/v1/auth/passkeys/list") ok([{ id: "pk-1", name: "Laptop" }]);
-    else if (p === "/api/v1/workspaces") ok(workspaces);
+    }     else if (p === "/api/v1/auth/passkeys/list") ok([{ id: "pk-1", name: "Laptop" }]);
+    else if (p === "/api/v1/workspaces") ok(stubWorkspaces());
     else if (p === "/api/v1/workspaces/current") ok(workspaces.find((w) => w.id === id));
-    else if (p === "/api/v1/workspaces/current/projects") ok(projectsByWorkspace[id]);
+    else if (p === "/api/v1/workspaces/current/projects") ok(projectsByWorkspace[id] ?? []);
     // Team badge counts in the settings tab strip come from this list; the
     // design draws one owner row (Team 1, Client Access 0).
     else if (p === "/api/v1/workspaces/current/members")
@@ -2326,6 +2340,9 @@ export function stubRequestListener(req, res) {
  * @returns {Promise<{ status: number, body: string }>}
  */
 export function handleStubFetch(requestUrl, init = {}) {
+  // Fresh default per serverless invocation (module state can stay warm on Vercel).
+  lastSeenWs = 1;
+
   const method = init.method || "GET";
   const headerIn = init.headers || {};
   const headers = {};
