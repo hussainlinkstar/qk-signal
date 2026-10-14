@@ -1,0 +1,20 @@
+{% extends "base_email.html" %}
+{% set is_transactional = true %}
+{% set preheader = "Verify your email to activate your workspace access." %}
+{% set eyebrow = "Account Security" %}
+{% set title = "Verify your email address" %}
+{% set lead = "Confirm your work email to activate access, secure your account, and keep product notifications flowing to the right inbox." %}
+{% set cta_label = "Verify Email" %}
+{% set cta_url = verification_url %}
+{% set fallback_url = verification_url %}
+{% block content %}
+<tr><td class="body">
+    <p class="copy">Hi {{ recipient_name }},</p>
+    <p class="copy">Use the button above to verify your email address. This verification link is time-limited for security.</p>
+    <div class="panel">
+        <p class="panel-title">Before you continue</p>
+        <div class="detail-row"><span class="detail-label">What happens next:</span> your workspace unlocks and future billing or audit notifications can be delivered reliably.</div>
+        <div class="detail-row"><span class="detail-label">If this was not you:</span> you can ignore this email and no action will be taken.</div>
+    </div>
+</td></tr>
+{% endblock %}

@@ -1,0 +1,107 @@
+{
+  "meta": {
+    "language_name": "Română",
+    "language_name_map": {
+      "en": "English",
+      "es": "Spanish",
+      "fr": "French",
+      "de": "German",
+      "it": "Italian",
+      "ro": "Romanian",
+      "nl": "Dutch",
+      "pt": "Portuguese",
+      "pl": "Polish",
+      "sv": "Swedish",
+      "ja": "Japanese",
+      "zh": "Chinese"
+    }
+  },
+  "pdf": {
+    "ai_disclaimer": "Notă: acest raport include analiză automată bazată pe AI. Se recomandă verificare umană înainte de aplicarea modificărilor tehnice.",
+    "cover_subtitle": "Evaluare a vizibilității AI și a pregătirii pentru căutare",
+    "generated_on": "Generat",
+    "executive_summary": "Rezumat executiv",
+    "highlights": "Puncte cheie",
+    "score_breakdown": "Defalcare scoruri",
+    "key_recommendations": "Recomandări cheie",
+    "competitor_analysis": "Analiză competitori",
+    "competitor_section_enabled": "Secțiunea de benchmark pentru competitori este activată pentru acest export.",
+    "battle_report": "Raport comparativ",
+    "head_to_head_comparison": "Comparație directă ({index}/{total})",
+    "strategic_highlights": "Puncte strategice cheie",
+    "no_analysis_summary": "Nu există un rezumat de analiză disponibil.",
+    "no_summary_available": "Nu există un rezumat disponibil.",
+    "left_site": "Site stânga",
+    "right_site": "Site dreapta",
+    "score": "Scor",
+    "technical_report": "Raport tehnic",
+    "executive_report": "Raport executiv",
+    "comparative_report": "Raport comparativ"
+  },
+  "email": {
+    "common": {
+      "notification": "Notificare",
+      "unsubscribe_blurb": "Primești acest email deoarece ai un cont la {brand_name}. Îți poți gestiona preferințele de notificare sau te poți dezabona oricând.",
+      "fallback_hint": "Dacă butonul nu funcționează, deschide",
+      "support_hint": "Pentru asistență, contactează",
+      "aio_label": "Scor AIO",
+      "seo_label": "Scor SEO",
+      "metric_label_seo_score": "Scor SEO",
+      "metric_label_aio_score": "Scor AIO",
+      "metric_label_unknown": "Scor de vizibilitate",
+      "score_delta_up": "Plus {points} puncte față de {period}",
+      "score_delta_up_one": "Plus {points} punct față de {period}",
+      "score_delta_down": "Minus {points} puncte față de {period}",
+      "score_delta_down_one": "Minus {points} punct față de {period}",
+      "score_delta_flat": "Fără modificări față de {period}",
+      "score_delta_period": "luna trecută",
+      "rank_delta_up": "În creștere de la #{previous}",
+      "rank_delta_down": "În scădere de la #{previous}",
+      "rank_delta_flat": "Fără modificări"
+    },
+    "audit_completed": {
+      "subject": "Audit finalizat pentru {target_host}",
+      "preheader": "Ultimul tău audit este finalizat și gata de revizuire.",
+      "eyebrow": "Audit finalizat",
+      "title": "Auditul tău este gata",
+      "lead": "Am finalizat procesarea ultimului tău audit. Mai jos găsești rezumatul scorurilor, iar raportul complet te așteaptă în dashboard.",
+      "cta_label": "Deschide raportul de audit",
+      "target_label": "Țintă",
+      "body": "Folosește raportul complet pentru a prioritiza îmbunătățirile tehnice, de conținut și de answerability dintr-un singur loc."
+    },
+    "consensus_ready": {
+      "subject": "Consens multi-model pregătit pentru {target_host}",
+      "preheader": "Raportul tău de consens multi-model este gata.",
+      "eyebrow": "Consens pregătit",
+      "title": "Auditul tău de consens este gata",
+      "lead": "Rularea multi-model s-a încheiat cu succes. Compară concluziile aliniate și rezumatul scorurilor din raport.",
+      "cta_label": "Revizuiește consensul",
+      "models_included": "Modele incluse",
+      "model_set_label": "Set de modele",
+      "target_label": "Țintă"
+    },
+    "progress_report": {
+      "subject": "Raport de progres pentru {project_name} - {report_month_label}",
+      "eyebrow": "Raport de progres",
+      "title": "Actualizare lunară de performanță pentru {project_name}",
+      "lead": "Ultimul snapshot de trend este gata, cu evoluția lunară a scorurilor, victoriile cheie și problemele care încă blochează progresul.",
+      "cta_label": "Deschide centrul de rapoarte",
+      "preheader": "Scorurile și progresul lunar pentru {project_name} sunt gata.",
+      "intro": "Raportul pentru {report_month_label} pentru {project_name}{domain_suffix} este gata. Folosește-l ca dovadă orientată către client pentru progresul acestui proiect.",
+      "audits_captured_label": "Audituri incluse",
+      "top_improvements": "Cele mai importante îmbunătățiri",
+      "remaining_issues": "Probleme rămase",
+      "no_remaining_issues": "Nu au fost extrase acțiuni prioritare nerezolvate din ultimul audit."
+    },
+    "competitive_digest": {
+      "subject": "Digest competitiv {report_period} pentru {project_name}",
+      "preheader": "Actualizare benchmark competitiv pentru {project_name}.",
+      "eyebrow": "Digest competitiv",
+      "title": "Actualizare benchmark pentru {project_name}",
+      "lead": "{workspace_name} are acum un snapshot competitiv actualizat pentru {competitor_count} competitori urmăriți.",
+      "cta_label": "Deschide dashboardul competitiv",
+      "highlights": "Puncte cheie",
+      "updated_at": "Actualizat la"
+    }
+  }
+}

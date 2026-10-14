@@ -1,0 +1,39 @@
+# Mock-preview stack (frontend + visual stub backend). Free tier / sleep OK.
+# After Blueprint deploy, open https://<web-service>.onrender.com/mock-signin
+previewsEnabled: false
+
+services:
+  - type: web
+    name: qk-signal-stub
+    runtime: node
+    plan: free
+    rootDir: frontend
+    buildCommand: "true"
+    startCommand: node e2e/visual/stub-backend.mjs
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+
+  - type: web
+    name: qk-signal-web
+    runtime: node
+    plan: free
+    rootDir: frontend
+    buildCommand: npm ci --no-audit --no-fund && npm run build:mock
+    startCommand: node scripts/next-with-env.mjs start -- -p $PORT
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: NEXT_DIST_DIR
+        value: ".next-build"
+      - key: MOCK_PREVIEW
+        value: "1"
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
+      - key: BACKEND_URL
+        fromService:
+          name: qk-signal-stub
+          type: web
+          envVarKey: RENDER_EXTERNAL_URL
+      - key: JWT_SECRET
+        generateValue: true

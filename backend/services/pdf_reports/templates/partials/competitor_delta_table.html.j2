@@ -1,0 +1,38 @@
+{% set leaderboard = sections["battlefield_leaderboard"] %}
+{% set delta_items = sections["delta_analysis"]["items"] %}
+<div class="card-grid">
+    <article class="panel-card full last">
+        <table class="report-table">
+            <thead>
+                <tr>
+                    {% for column in leaderboard.columns %}
+                    <th{% if column.type == 'number' %} class="numeric"{% endif %}>{{ l(column.label) }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in leaderboard.rows %}
+                <tr{% if row.is_target %} class="target-row"{% endif %}>
+                    <td class="numeric">{{ row.rank if row.rank is not none else "-" }}</td>
+                    <td>{{ row.name | bi }}</td>
+                    <td class="numeric">{{ row.geo_visibility if row.geo_visibility is not none else "-" }}</td>
+                    <td class="numeric">{{ row.aeo_score if row.aeo_score is not none else "-" }}</td>
+                    <td class="numeric">{{ row.entity_strength if row.entity_strength is not none else "-" }}</td>
+                    <td class="numeric">{{ row.overall_score if row.overall_score is not none else "-" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </article>
+</div>
+{% if delta_items %}
+<div class="card-grid">
+    {% for item in delta_items %}
+    <article class="metric-card two-up{% if loop.last %} last{% endif %}">
+        <div class="metric-label">{{ l(item.label) }}</div>
+        <div class="metric-value tone-{{ item.tone }}">{{ item.display_value }}</div>
+        <div class="metric-subtext">{{ l(item.stance) }}</div>
+    </article>
+    {% endfor %}
+</div>
+{% endif %}

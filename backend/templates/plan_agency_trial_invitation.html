@@ -1,0 +1,29 @@
+{% extends "base_email.html" %}
+{% set is_transactional = true %}
+{% set preheader = "Activate your agency trial and unlock audits, reporting, and white-label delivery." %}
+{% set eyebrow = "Agency Trial" %}
+{% set title = "Agency Trial Invitation" %}
+{% set lead = "Start a 14-day agency trial with scan capacity and full access to the shared Qiko Signal platform experience." %}
+{% set cta_label = "Start Your Free Trial" %}
+{% set cta_url = register_url %}
+{% set fallback_url = register_url %}
+{% block content %}
+<tr><td class="body">
+    <p class="copy">Hi {{ recipient_name }},</p>
+    <p class="copy">
+        {% if inviter_name %}
+        {{ inviter_name }} invited you to try <strong>{{ brand_name }}</strong>, the AI and search visibility audit platform built for agencies.
+        {% else %}
+        You have been invited to try <strong>{{ brand_name }}</strong>, the AI and search visibility audit platform built for agencies.
+        {% endif %}
+    </p>
+    <div class="panel">
+        <p class="panel-title">What is included</p>
+        <div class="detail-row"><span class="detail-label">{{ trial_audit_limit or 5 }} comprehensive scans:</span> benchmark your AIO and SEO scores with competitor context.</div>
+        <div class="detail-row"><span class="detail-label">White-label reports:</span> generate branded PDF deliverables for internal reviews and client handoff.</div>
+        <div class="detail-row"><span class="detail-label">Trial access:</span> {{ trial_duration_days or 14 }} days of full platform access after activation.</div>
+        <div class="detail-row"><span class="detail-label">Invitation expires:</span> {{ invitation_expires_at or "See invitation details in the app." }}</div>
+    </div>
+    <p class="copy">Use the button above to create your account and redeem the invitation before it expires.</p>
+</td></tr>
+{% endblock %}

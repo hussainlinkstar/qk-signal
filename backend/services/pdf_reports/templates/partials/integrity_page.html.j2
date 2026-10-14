@@ -1,0 +1,75 @@
+{% set page = integrity_page if integrity_page is defined and integrity_page else {
+    "title": "Integrity & Confidence Certificate",
+    "summary": "Grounding and review metadata were not available for this export context.",
+    "certificate_items": [],
+    "blocked_buckets": [],
+    "review_notes": [],
+    "financial_disclosure": {
+        "enabled": false,
+        "items": [],
+    },
+} %}
+<section class="report-section">
+    {% set page_exists = integrity_page is defined and integrity_page %}
+    {% if report_kind in ['standard', 'aio', 'seo', 'executive'] %}
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l('Evidence') }}</h2></div>
+    <p class="section-copy">{{ l('The details below come from this audit. If a check was not recorded, this report marks it as unavailable instead of assuming a result.') }}</p>
+    <div class="subsection-label">{{ l(page.title) }}</div>
+    {% if not page_exists %}
+    <p class="section-copy">{{ page.summary | bi }}</p>
+    {% endif %}
+    {% if not page.certificate_items and not page.blocked_buckets and not page.review_notes %}
+    <p class="section-copy">{{ l('No review details were included with this audit.') }}</p>
+    {% endif %}
+    {% else %}
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ page.title }}</h2></div>
+    <p class="section-copy">{{ page.summary }}</p>
+    {% endif %}
+
+    {% if page.certificate_items %}
+    <div class="trust-grid" style="margin-top: 5mm;">
+        {% for item in page.certificate_items %}
+        <article class="panel-card four-up{% if loop.index % 4 == 0 or loop.last %} last{% endif %}">
+            <div class="metric-label">{{ l(item.label) }}</div>
+            <div class="trust-value">{{ item.value }}</div>
+        </article>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if page.blocked_buckets %}
+    <div class="subsection-label">{{ l("Blocked Claim Buckets") }}</div>
+    <div class="list-stack">
+        {% for bucket in page.blocked_buckets %}
+        <article class="list-row">
+            <div class="row-meta">{{ l(bucket.track_label) }}</div>
+            <div class="row-title">{{ l(bucket.category_label) }}</div>
+            <div class="row-copy">{{ bucket.count }} blocked claim{% if bucket.count != 1 %}s{% endif %}</div>
+        </article>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if page.review_notes %}
+    <div class="subsection-label">{{ l("Review Notes") }}</div>
+    <div class="list-stack">
+        {% for note in page.review_notes %}
+        <article class="list-row">
+            <div class="row-copy">{{ note | bi }}</div>
+        </article>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if page.financial_disclosure.enabled %}
+    <div class="subsection-label">{{ l("Financial Disclosure") }}</div>
+    <div class="trust-grid">
+        {% for item in page.financial_disclosure["items"] %}
+        <article class="panel-card three-up{% if loop.index % 3 == 0 or loop.last %} last{% endif %}">
+            <div class="metric-label">{{ l(item.label) }}</div>
+            <div class="trust-value">{{ item.value }}</div>
+        </article>
+        {% endfor %}
+    </div>
+    {% endif %}
+</section>

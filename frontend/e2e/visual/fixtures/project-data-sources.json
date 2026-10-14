@@ -1,0 +1,46 @@
+{
+  "9": [
+    {
+      "id": null,
+      "project_id": 9,
+      "provider": "google",
+      "source_type": "google_search_console",
+      "binding_mode": "workspace",
+      "source_id": null,
+      "source_label": null,
+      "is_active": false,
+      "oauth_connection_id": null,
+      "project_oauth_connection_id": null,
+      "workspace_provider_connected": false,
+      "updated_at": null
+    },
+    {
+      "id": 31,
+      "project_id": 9,
+      "provider": "google",
+      "source_type": "google_analytics_4",
+      "binding_mode": "client_magic_link",
+      "source_id": "properties/441992037",
+      "source_label": "Northwind Hotels - GA4",
+      "is_active": true,
+      "oauth_connection_id": null,
+      "project_oauth_connection_id": 7,
+      "workspace_provider_connected": false,
+      "updated_at": "2026-09-25T10:00:00.000Z"
+    },
+    {
+      "id": null,
+      "project_id": 9,
+      "provider": "bing",
+      "source_type": "bing_webmaster",
+      "binding_mode": "workspace",
+      "source_id": null,
+      "source_label": null,
+      "is_active": false,
+      "oauth_connection_id": null,
+      "project_oauth_connection_id": null,
+      "workspace_provider_connected": false,
+      "updated_at": null
+    }
+  ]
+}

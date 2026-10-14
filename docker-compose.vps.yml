@@ -1,0 +1,713 @@
+# SEC-05: Container runtime least privilege & network segmentation
+#
+# Network topology:
+#   proxy-net: caddy <-> frontend <-> backend  (HTTP proxy chain)
+#   app-net:   backend <-> workers <-> ai-service <-> db, redis  (application tier)
+#
+# Backend bridges both networks. Frontend/Caddy cannot reach db/redis/workers.
+
+# Compose project name (renamed thothgraph -> qiko-signal). Volumes are declared external below
+# with their original names so the rename reuses the SAME data (zero data movement).
+name: qiko-signal
+
+# Healthcheck overrides: the shared backend Dockerfile HEALTHCHECK probes
+# :8000 (correct only for the backend HTTP service). ai-service listens on
+# :8001 and workers expose no HTTP server, so they inherit a check that always
+# fails. These anchors give each tier a correct liveness probe.
+x-ai-service-healthcheck: &ai-service-healthcheck
+  test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8001/health', timeout=2)"]
+  interval: 30s
+  timeout: 5s
+  start_period: 15s
+  retries: 3
+
+x-worker-healthcheck: &worker-healthcheck
+  test: ["CMD-SHELL", "python -c \"import os,redis; redis.from_url(os.getenv('REDIS_URL','redis://redis:6379')).ping()\" || exit 1"]
+  interval: 30s
+  timeout: 5s
+  start_period: 15s
+  retries: 3
+
+services:
+  backend:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-backend.sh"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:size=100M
+    volumes:
+      - generated_storage:/home/appuser/generated_storage
+      # GA4 Data API credentials. Read-only, and kept out of the image so the
+      # key is never baked into a layer.
+      - ./secrets/ga4-service-account.json:/run/secrets/ga4-service-account.json:ro
+    env_file:
+      - ./.env
+      - ./backend/.env
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}@db:5432/${POSTGRES_DB:-dbname}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - AI_SERVICE_URL=http://ai-service:8001
+      # Required, with no default, deliberately. ENVIRONMENT also arrives via
+      # env_file, but normalize_runtime_environment() in backend/core/config.py
+      # turns an absent OR empty value into "development", which makes
+      # _validate_deployed_secrets() return early and silently skip the whole
+      # startup secrets guard. A deployment that is missing this line would run
+      # unguarded with no signal at all, so `:?` fails the compose command
+      # instead. Same pattern as POSTGRES_PASSWORD above. One declaration is
+      # enough: compose interpolates the whole file, so every service is gated.
+      - ENVIRONMENT=${ENVIRONMENT:?ENVIRONMENT must be set; an empty or missing value disables the startup secrets guard}
+      - RUN_MIGRATIONS=1
+      - LOCAL_STORAGE_ROOT=${LOCAL_STORAGE_ROOT:-/home/appuser/generated_storage}
+      - PYTHONDONTWRITEBYTECODE=1
+      - LOG_LEVEL=WARNING
+      - SERVICE_CREDENTIAL_ROLE=api_server
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      ai-service:
+        condition: service_started
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/api/v1/system-status', timeout=2)"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    networks:
+      - proxy-net
+      - app-net
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "1.0"
+
+  audit-worker:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-worker.sh"
+    healthcheck: *worker-healthcheck
+    stop_grace_period: 30s
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:size=100M
+    env_file:
+      - ./.env
+      - ./backend/.env
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}@db:5432/${POSTGRES_DB:-dbname}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - AI_SERVICE_URL=http://ai-service:8001
+      - RUN_MIGRATIONS=0
+      - PYTHONDONTWRITEBYTECODE=1
+      - LOG_LEVEL=WARNING
+      - SERVICE_CREDENTIAL_ROLE=audit_worker
+      - MAX_CONCURRENT_AUDITS=${MAX_CONCURRENT_AUDITS:-4}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - app-net
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+          cpus: "1.5"
+
+  external-webhook-worker:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-external-webhook-worker.sh"
+    healthcheck: *worker-healthcheck
+    stop_grace_period: 30s
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:size=50M
+    env_file:
+      - ./.env
+      - ./backend/.env
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}@db:5432/${POSTGRES_DB:-dbname}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - RUN_MIGRATIONS=0
+      - PYTHONDONTWRITEBYTECODE=1
+      - LOG_LEVEL=WARNING
+      - SERVICE_CREDENTIAL_ROLE=external_webhook_worker
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - app-net
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.5"
+
+  email-worker:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-email-worker.sh"
+    healthcheck: *worker-healthcheck
+    stop_grace_period: 30s
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:size=50M
+    env_file:
+      - ./.env
+      - ./backend/.env
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}@db:5432/${POSTGRES_DB:-dbname}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - RUN_MIGRATIONS=0
+      - PYTHONDONTWRITEBYTECODE=1
+      - LOG_LEVEL=WARNING
+      - SERVICE_CREDENTIAL_ROLE=email_worker
+    depends_on:
+      db:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - app-net
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.5"
+
+  billing-webhook-worker:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-billing-webhook-worker.sh"
+    healthcheck: *worker-healthcheck
+    stop_grace_period: 30s
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:size=50M
+    env_file:
+      - ./.env
+      - ./backend/.env
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}@db:5432/${POSTGRES_DB:-dbname}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - RUN_MIGRATIONS=0
+      - PYTHONDONTWRITEBYTECODE=1
+      - LOG_LEVEL=WARNING
+      - SERVICE_CREDENTIAL_ROLE=billing_webhook_worker
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - app-net
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.5"
+
+  pdf-worker:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-pdf-worker.sh"
+    healthcheck: *worker-healthcheck
+    stop_grace_period: 30s
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:size=200M
+    volumes:
+      - generated_storage:/home/appuser/generated_storage
+    env_file:
+      - ./.env
+      - ./backend/.env
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}@db:5432/${POSTGRES_DB:-dbname}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - AI_SERVICE_URL=http://ai-service:8001
+      - RUN_MIGRATIONS=0
+      - LOCAL_STORAGE_ROOT=${LOCAL_STORAGE_ROOT:-/home/appuser/generated_storage}
+      - PYTHONDONTWRITEBYTECODE=1
+      - LOG_LEVEL=WARNING
+      - SERVICE_CREDENTIAL_ROLE=pdf_worker
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - app-net
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "1.0"
+
+  monitoring-worker:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-monitoring-worker.sh"
+    healthcheck: *worker-healthcheck
+    stop_grace_period: 30s
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:size=50M
+    volumes:
+      # This is the service that actually runs the GA4 sync.
+      - ./secrets/ga4-service-account.json:/run/secrets/ga4-service-account.json:ro
+    env_file:
+      - ./.env
+      - ./backend/.env
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}@db:5432/${POSTGRES_DB:-dbname}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - RUN_MIGRATIONS=0
+      - PYTHONDONTWRITEBYTECODE=1
+      - LOG_LEVEL=WARNING
+      - SERVICE_CREDENTIAL_ROLE=monitoring_worker
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - app-net
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.5"
+
+  visibility-worker:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-visibility-worker.sh"
+    healthcheck: *worker-healthcheck
+    stop_grace_period: 30s
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:size=50M
+    env_file:
+      - ./.env
+      - ./backend/.env
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}@db:5432/${POSTGRES_DB:-dbname}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - AI_SERVICE_URL=http://ai-service:8001
+      - RUN_MIGRATIONS=0
+      - PYTHONDONTWRITEBYTECODE=1
+      - LOG_LEVEL=WARNING
+      - SERVICE_CREDENTIAL_ROLE=visibility_worker
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      ai-service:
+        condition: service_started
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - app-net
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "1.0"
+
+  performance-worker:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-performance-worker.sh"
+    healthcheck: *worker-healthcheck
+    stop_grace_period: 30s
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:size=50M
+    env_file:
+      - ./.env
+      - ./backend/.env
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}@db:5432/${POSTGRES_DB:-dbname}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - RUN_MIGRATIONS=0
+      - PYTHONDONTWRITEBYTECODE=1
+      - LOG_LEVEL=WARNING
+      - SERVICE_CREDENTIAL_ROLE=performance_worker
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - app-net
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.5"
+
+  cron-sweeper:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-cron-sweeper.sh"
+    healthcheck: *worker-healthcheck
+    stop_grace_period: 30s
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:size=50M
+    env_file:
+      - ./.env
+      - ./backend/.env
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}@db:5432/${POSTGRES_DB:-dbname}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - RUN_MIGRATIONS=0
+      - PYTHONDONTWRITEBYTECODE=1
+      - LOG_LEVEL=WARNING
+      - SERVICE_CREDENTIAL_ROLE=cron_sweeper
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - app-net
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.5"
+
+  ai-service:
+    build: ./backend
+    command: uvicorn ai_service:app --host 0.0.0.0 --port 8001
+    healthcheck: *ai-service-healthcheck
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:size=100M
+    env_file:
+      - ./.env
+      - ./backend/.env
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+    environment:
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}@db:5432/${POSTGRES_DB:-dbname}
+      - AI_RETRY_COUNT=${AI_RETRY_COUNT:-3}
+      - AI_RETRY_BASE_DELAY=${AI_RETRY_BASE_DELAY:-0.5}
+      - AI_RETRY_MAX_DELAY=${AI_RETRY_MAX_DELAY:-4.0}
+      - AI_RETRY_COUNT_GOOGLE=${AI_RETRY_COUNT_GOOGLE:-3}
+      - AI_RETRY_COUNT_OPENAI=${AI_RETRY_COUNT_OPENAI:-3}
+      - AI_RETRY_COUNT_ANTHROPIC=${AI_RETRY_COUNT_ANTHROPIC:-3}
+      - PYTHONDONTWRITEBYTECODE=1
+      - LOG_LEVEL=WARNING
+      - SERVICE_CREDENTIAL_ROLE=ai_service
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - app-net
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "1.0"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_BASE_PATH: ${NEXT_PUBLIC_BASE_PATH:-}
+        NEXT_PUBLIC_ASSET_PREFIX: ${NEXT_PUBLIC_ASSET_PREFIX:-}
+        # NEXT_PUBLIC_* is inlined at build time, so passing it only through
+        # env_file leaves the browser bundle with the fallback. See the Dockerfile.
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-}
+        NEXT_PUBLIC_API_BASE_URL: ${NEXT_PUBLIC_API_BASE_URL:-}
+        NEXT_PUBLIC_BACKEND_PUBLIC_URL: ${NEXT_PUBLIC_BACKEND_PUBLIC_URL:-}
+        NEXT_PUBLIC_GTM_ID: ${NEXT_PUBLIC_GTM_ID:-}
+        NEXT_PUBLIC_GA4_MEASUREMENT_ID: ${NEXT_PUBLIC_GA4_MEASUREMENT_ID:-}
+        NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION: ${NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION:-}
+        NEXT_PUBLIC_BING_SITE_VERIFICATION: ${NEXT_PUBLIC_BING_SITE_VERIFICATION:-}
+        NEXT_PUBLIC_SENTRY_DSN: ${NEXT_PUBLIC_SENTRY_DSN:-}
+        NEXT_PUBLIC_SENTRY_ENABLED: ${NEXT_PUBLIC_SENTRY_ENABLED:-}
+        NEXT_PUBLIC_SENTRY_ENVIRONMENT: ${NEXT_PUBLIC_SENTRY_ENVIRONMENT:-}
+        NEXT_PUBLIC_SENTRY_RELEASE: ${NEXT_PUBLIC_SENTRY_RELEASE:-}
+        NEXT_PUBLIC_SENTRY_TRACES_SAMPLE_RATE: ${NEXT_PUBLIC_SENTRY_TRACES_SAMPLE_RATE:-}
+        NEXT_PUBLIC_SENTRY_REPLAYS_SESSION_SAMPLE_RATE: ${NEXT_PUBLIC_SENTRY_REPLAYS_SESSION_SAMPLE_RATE:-}
+        NEXT_PUBLIC_SENTRY_REPLAYS_ON_ERROR_SAMPLE_RATE: ${NEXT_PUBLIC_SENTRY_REPLAYS_ON_ERROR_SAMPLE_RATE:-}
+        NEXT_PUBLIC_SUPPORT_EMAIL: ${NEXT_PUBLIC_SUPPORT_EMAIL:-}
+        NEXT_PUBLIC_CONTACT_EMAIL: ${NEXT_PUBLIC_CONTACT_EMAIL:-}
+        # Arabic is offered, decided by Razvan (SIGV2-1060), so this defaults on
+        # rather than requiring a value on every box. Without it the language
+        # switcher never renders and Arabic is reachable only by hand-setting a
+        # cookie, which is the state preprod was found in.
+        NEXT_PUBLIC_ENABLE_RTL: ${NEXT_PUBLIC_ENABLE_RTL:-true}
+        NEXT_PUBLIC_BILLING_EMAIL: ${NEXT_PUBLIC_BILLING_EMAIL:-}
+        NEXT_PUBLIC_PRIVACY_EMAIL: ${NEXT_PUBLIC_PRIVACY_EMAIL:-}
+        NEXT_PUBLIC_CONTACT_WEBMAIL_PROVIDER: ${NEXT_PUBLIC_CONTACT_WEBMAIL_PROVIDER:-}
+        NEXT_PUBLIC_QIKO_SITE_URL: ${NEXT_PUBLIC_QIKO_SITE_URL:-}
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:size=50M
+      - /app/.next-build/cache:size=100M
+    env_file:
+      - ./.env
+    environment:
+      - BACKEND_URL=${BACKEND_URL:-http://backend:8000}
+      - PROXY_TIMEOUT_MS=${PROXY_TIMEOUT_MS:-90000}
+      - PROXY_SHORT_TIMEOUT_MS=${PROXY_SHORT_TIMEOUT_MS:-15000}
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:3000/signal || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 15s
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    networks:
+      - proxy-net
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+          cpus: "0.5"
+
+  caddy:
+    image: caddy:2.8
+    # No host port binding — Traefik handles external 80/443
+    read_only: true
+    cap_drop: [ALL]
+    cap_add: [NET_BIND_SERVICE]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:size=10M
+    labels:
+      - "traefik.enable=true"
+      # Qiko Signal — the app is served here (built with basePath /signal).
+      # Cloudflare proxies qiko.ai/signal/* to this origin host.
+      - "traefik.http.routers.signal.rule=Host(`signal-origin.qiko.ai`)"
+      - "traefik.http.routers.signal.entrypoints=websecure"
+      - "traefik.http.routers.signal.tls.certresolver=letsencrypt"
+      - "traefik.http.services.signal.loadbalancer.server.port=80"
+      # thothgraph.com (+ www) → 301 to qiko.ai/signal (full cutover, no app at root)
+      - "traefik.http.routers.thothgraph-legacy.rule=Host(`thothgraph.com`) || Host(`www.thothgraph.com`)"
+      - "traefik.http.routers.thothgraph-legacy.entrypoints=websecure"
+      - "traefik.http.routers.thothgraph-legacy.tls.certresolver=letsencrypt"
+      - "traefik.http.routers.thothgraph-legacy.service=signal"
+      - "traefik.http.middlewares.thothgraph-to-signal.redirectregex.regex=^https?://(www\\.)?thothgraph\\.com/?(.*)"
+      - "traefik.http.middlewares.thothgraph-to-signal.redirectregex.replacement=https://qiko.ai/signal/$${2}"
+      - "traefik.http.middlewares.thothgraph-to-signal.redirectregex.permanent=true"
+      - "traefik.http.routers.thothgraph-legacy.middlewares=thothgraph-to-signal"
+    environment:
+      - DOMAIN=${DOMAIN}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:2019/config/ > /dev/null 2>&1"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    depends_on:
+      - frontend
+    restart: unless-stopped
+    networks:
+      - proxy-net
+      - web
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: "0.25"
+
+  db:
+    image: postgres:18
+    cap_drop: [ALL]
+    cap_add: [CHOWN, DAC_OVERRIDE, FOWNER, SETGID, SETUID]
+    security_opt: [no-new-privileges:true]
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-user}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}
+      - POSTGRES_DB=${POSTGRES_DB:-dbname}
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-user} -d ${POSTGRES_DB:-dbname}"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    networks:
+      - app-net
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+          cpus: "1.0"
+
+  redis:
+    image: redis:8
+    read_only: true
+    cap_drop: [ALL]
+    cap_add: [SETGID, SETUID, SETPCAP]
+    security_opt: [no-new-privileges:true]
+    tmpfs:
+      - /tmp:size=10M
+      - /data:size=50M
+    command: >-
+      sh -c '
+      if [ -n "$$REDIS_PASSWORD" ]; then
+        exec redis-server --requirepass "$$REDIS_PASSWORD"
+      else
+        exec redis-server
+      fi'
+    environment:
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
+    restart: unless-stopped
+    healthcheck:
+      test: >-
+        sh -c '
+        if [ -n "$$REDIS_PASSWORD" ]; then
+          redis-cli -a "$$REDIS_PASSWORD" --no-auth-warning ping
+        else
+          redis-cli ping
+        fi'
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    networks:
+      - app-net
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+          cpus: "0.25"
+
+networks:
+  proxy-net:
+    driver: bridge
+  app-net:
+    driver: bridge
+  web:
+    external: true
+
+volumes:
+  postgres_data:
+    external: true
+    name: thothgraph_postgres_data
+  generated_storage:
+    external: true
+    name: thothgraph_generated_storage
+  caddy_data:
+    external: true
+    name: thothgraph_caddy_data
+  caddy_config:
+    external: true
+    name: thothgraph_caddy_config

@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Qiko Signal auto-deploy every minute
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=60s
+AccuracySec=15s
+Unit=qiko-deploy.service
+
+[Install]
+WantedBy=timers.target

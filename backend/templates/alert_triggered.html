@@ -1,0 +1,19 @@
+{% extends "base_email.html" %}
+{% set preheader = "One of your monitoring alerts has been triggered." %}
+{% set eyebrow = "Monitoring" %}
+{% set title = "Alert triggered" %}
+{% set lead = "A workspace alert crossed its configured threshold and needs review." %}
+{% set cta_label = "Open Project" %}
+{% set cta_url = dashboard_url %}
+{% set fallback_url = dashboard_url %}
+{% block content %}
+<tr><td class="body">
+    <div class="panel warning">
+        <p class="panel-title danger">Alert details</p>
+        <div class="detail-row danger"><span class="detail-label">Project:</span> {{ project_name }}</div>
+        {% if metric_name_display %}<div class="detail-row danger"><span class="detail-label">Metric:</span> {{ metric_name_display }}</div>{% endif %}
+        {% if condition_display and threshold is not none %}<div class="detail-row danger"><span class="detail-label">Threshold:</span> {{ condition_display }} {{ threshold }}</div>{% endif %}
+        <div class="detail-row danger"><span class="detail-label">Triggered message:</span> {{ message }}</div>
+    </div>
+</td></tr>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base_email.html" %}
+{% set preheader = "Your subscription plan was updated." %}
+{% set eyebrow = "Billing" %}
+{% set title = "Plan updated" %}
+{% set lead = "Your subscription configuration changed. Review the updated workspace entitlements and billing details in the dashboard." %}
+{% set cta_label = "Review Plan" %}
+{% set cta_url = manage_billing_url %}
+{% set fallback_url = manage_billing_url %}
+{% block content %}
+<tr><td class="body">
+    <p class="copy">Hi {{ recipient_name }},</p>
+    <div class="panel">
+        <p class="panel-title">Subscription change</p>
+        {% if previous_plan_display %}<div class="detail-row"><span class="detail-label">Previous plan:</span> {{ previous_plan_display }}</div>{% endif %}
+        {% if plan_name_display %}<div class="detail-row"><span class="detail-label">Current plan:</span> {{ plan_name_display }}</div>{% endif %}
+    </div>
+</td></tr>
+{% endblock %}

@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "language_name": "日本語",
+    "language_name_map": {
+      "en": "English",
+      "es": "Spanish",
+      "fr": "French",
+      "de": "German",
+      "it": "Italian",
+      "ro": "Romanian",
+      "nl": "Dutch",
+      "pt": "Portuguese",
+      "pl": "Polish",
+      "sv": "Swedish",
+      "ja": "Japanese",
+      "zh": "Chinese"
+    }
+  },
+  "pdf": {
+    "ai_disclaimer": "注意: このレポートには自動化されたAI分析が含まれます。技術的変更を適用する前に人による確認を推奨します。",
+    "generated_on": "生成日",
+    "executive_summary": "エグゼクティブサマリー",
+    "highlights": "ハイライト",
+    "score_breakdown": "スコア内訳",
+    "key_recommendations": "重要な推奨事項",
+    "competitor_analysis": "競合分析",
+    "competitor_section_enabled": "このエクスポートでは競合ベンチマークのセクションが有効です。",
+    "battle_report": "比較レポート",
+    "head_to_head_comparison": "直接比較 ({index}/{total})",
+    "strategic_highlights": "戦略的ハイライト",
+    "no_analysis_summary": "分析サマリーはありません。",
+    "no_summary_available": "サマリーはありません。",
+    "left_site": "左側サイト",
+    "right_site": "右側サイト",
+    "score": "スコア",
+    "technical_report": "テクニカルレポート",
+    "executive_report": "エグゼクティブレポート",
+    "comparative_report": "比較レポート"
+  },
+  "email": {
+    "common": {
+      "notification": "通知",
+      "unsubscribe_blurb": "{brand_name} のアカウントをお持ちのため、このメールを受信しています。通知設定の管理または配信停止はいつでも行えます。",
+      "fallback_hint": "ボタンが機能しない場合は、こちらを開いてください",
+      "support_hint": "サポートが必要な場合は次へご連絡ください",
+      "aio_label": "AIOスコア",
+      "seo_label": "SEOスコア",
+      "metric_label_seo_score": "SEOスコア",
+      "metric_label_aio_score": "AIOスコア",
+      "metric_label_unknown": "可視性スコア",
+      "score_delta_up": "{period}から{points}ポイント上昇",
+      "score_delta_up_one": "{period}から{points}ポイント上昇",
+      "score_delta_down": "{period}から{points}ポイント低下",
+      "score_delta_down_one": "{period}から{points}ポイント低下",
+      "score_delta_flat": "{period}から変化なし",
+      "score_delta_period": "先月",
+      "rank_delta_up": "第{previous}位から上昇",
+      "rank_delta_down": "第{previous}位から低下",
+      "rank_delta_flat": "変化なし"
+    },
+    "audit_completed": {
+      "subject": "{target_host} の監査が完了しました",
+      "preheader": "最新の監査が完了し、確認できる状態になりました。",
+      "eyebrow": "監査完了",
+      "title": "監査レポートの準備ができました",
+      "lead": "最新の監査処理が完了しました。以下にスコア概要を表示し、完全版レポートはダッシュボードで確認できます。",
+      "cta_label": "監査レポートを開く",
+      "target_label": "対象",
+      "body": "完全版レポートを使って、技術面・コンテンツ面・answerability の改善優先順位を一か所で整理できます。"
+    },
+    "consensus_ready": {
+      "subject": "{target_host} のマルチモデル合意レポートが準備できました",
+      "preheader": "マルチモデル合意レポートの準備ができました。",
+      "eyebrow": "合意レポート準備完了",
+      "title": "合意監査レポートの準備ができました",
+      "lead": "マルチモデル実行が正常に完了しました。整合した所見とスコア概要をレポートで比較できます。",
+      "cta_label": "合意内容を確認",
+      "models_included": "含まれるモデル",
+      "model_set_label": "モデルセット",
+      "target_label": "対象"
+    },
+    "progress_report": {
+      "subject": "{project_name} の {report_month_label} 進捗レポート",
+      "eyebrow": "進捗レポート",
+      "title": "{project_name} の月次パフォーマンス更新",
+      "lead": "最新のトレンドスナップショットが準備できました。前月比のスコア変動、主な改善点、進捗を妨げている残課題を確認できます。",
+      "cta_label": "レポートセンターを開く",
+      "preheader": "{project_name} のスコアと月次進捗が準備できました。",
+      "intro": "{project_name}{domain_suffix} の {report_month_label} レポートが準備できました。このプロジェクトの前進をクライアント向けに示す材料として利用できます。",
+      "audits_captured_label": "対象監査数",
+      "top_improvements": "主な改善点",
+      "remaining_issues": "残っている課題",
+      "no_remaining_issues": "最新の監査から未解決の優先アクションは抽出されませんでした。"
+    },
+    "competitive_digest": {
+      "subject": "{project_name} の {report_period} 競合ダイジェスト",
+      "preheader": "{project_name} の競合ベンチマーク更新です。",
+      "eyebrow": "競合ダイジェスト",
+      "title": "{project_name} のベンチマーク更新",
+      "lead": "{workspace_name} で、追跡中の {competitor_count} 社に対する最新の競合スナップショットが準備できました。",
+      "cta_label": "競合ダッシュボードを開く",
+      "highlights": "ハイライト",
+      "updated_at": "更新日時"
+    }
+  }
+}

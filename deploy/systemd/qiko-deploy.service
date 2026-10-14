@@ -1,0 +1,16 @@
+[Unit]
+Description=Qiko Signal smart auto-deploy (pull origin/production + rebuild changed services)
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/docker/qiko-signal
+Environment=HOME=/root
+# Live tracks `production`, never `main`. Development lands on `main` (which deploys nothing),
+# is promoted by PR into `preprod` (deploys preprod), and only a promotion into `production`
+# reaches live. Before this, the timer pulled `origin/main`, so anything merged to main went
+# straight to production within 60 seconds with no preprod gate at all.
+Environment=DEPLOY_BRANCH=production
+ExecStart=/bin/bash /opt/docker/qiko-signal/deploy.sh
+TimeoutStartSec=1800

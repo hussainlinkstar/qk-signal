@@ -1,0 +1,75 @@
+{% set seo = sections["seo_overview"]["score"] %}
+{% set interp = sections.get("strategic_interpretation", {}) %}
+{% set why_items = sections.get("why_this_score", {}).get("items", []) %}
+{% set focus_groups = sections.get("seo_focus", {}).get("groups", []) %}
+{% set blockers = sections.get("critical_blockers", {}).get("items", []) %}
+{% set action_items = sections.get("top_action_items", {}).get("items", []) %}
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Where you stand") }}</h2></div>
+    <p class="section-copy">{{ l("SEO is the score for this audit's traditional-search evidence. A dash means the audit did not provide an SEO score.") }}</p>
+    {% if interp.get("body") %}
+    <div class="subsection-label">{{ l("The short version") }}</div>
+    <p class="section-copy">{{ interp.body | bi }}</p>
+    {% endif %}
+    <div class="pillar-score-grid">
+        <div class="card-grid">
+            {% for card in scores.cards %}
+            <article class="metric-card two-up{% if loop.last %} last{% endif %}">
+                <div class="metric-label">{{ l(card.label) }}</div>
+                <div class="metric-value tone-{{ card.tone }}">{{ card.display_value }}</div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+    {% if why_items %}
+    <div class="subsection-label">{{ l("What is holding each one back") }}</div>
+    <div class="list-stack">
+        {% for panel in why_items %}
+        <article class="list-row">
+            <div class="row-title">{{ l(panel.label) }}{% if panel.score_display %} - {{ panel.score_display }}/100{% endif %}</div>
+            {% if panel.business_implication %}<div class="row-copy">{{ panel.business_implication | bi }}</div>{% endif %}
+            {% if panel.top_blockers %}<div class="row-copy"><strong>{{ l("Blockers") }}:</strong> {{ panel.top_blockers | join("; ") | bi }}</div>{% endif %}
+            {% if panel.missing_signals %}<div class="row-copy"><strong>{{ l("Missing signals") }}:</strong> {{ panel.missing_signals | join("; ") | bi }}</div>{% endif %}
+        </article>
+        {% endfor %}
+    </div>
+    {% endif %}
+</section>
+
+{% set actions_empty = "No SEO actions were recorded for this audit." %}
+{% include "partials/actions_section.html.j2" %}
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("SEO factors") }}</h2></div>
+    {% if focus_groups or blockers %}
+    {% for group in focus_groups %}
+    <div class="subsection-label">{{ l(group.label) }}</div>
+    <div class="list-stack">
+        {% for factor in group["items"] %}
+        <article class="list-row">
+            <div class="row-title">{{ l(factor.label) }}</div>
+            <div class="row-copy">{{ factor.display_value }}</div>
+        </article>
+        {% endfor %}
+    </div>
+    {% endfor %}
+    {% if blockers %}
+    <div class="subsection-label">{{ l("Issues found") }}</div>
+    <div class="list-stack">
+        {% for item in blockers %}
+        <article class="list-row">
+            <div class="row-title">{{ item.reason | bi }}</div>
+            <div class="row-copy">{{ item.impact_display }}</div>
+        </article>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% else %}
+    <p class="section-copy">{{ l("A breakdown of SEO factors was not included with this audit.") }}</p>
+    {% endif %}
+</section>
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Traffic") }}</h2></div>
+    <p class="section-copy">{{ l("Traffic data was not included with this audit.") }}</p>
+</section>

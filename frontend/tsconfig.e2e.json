@@ -1,0 +1,13 @@
+{
+  // Typecheck for the e2e harness: the app tsconfig excludes e2e/ and
+  // playwright.config.ts, and Playwright transpiles specs without checking,
+  // so nothing else ever sees a type error in them.
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noEmit": true,
+    "incremental": false,
+    "types": ["node"]
+  },
+  "include": ["e2e/**/*.ts", "playwright.config.ts"],
+  "exclude": ["node_modules"]
+}

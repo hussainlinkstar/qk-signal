@@ -1,0 +1,13 @@
+# Generated Playwright output. Prettier would otherwise flag an HTML report and
+# a JSON run marker that only exist after a local test run.
+playwright-report/
+test-results/
+
+# Local build output (gitignored; CI never sees it, but a local
+# `npm run build` before `npm run format:check` would).
+.next-build/
+.next-dev/
+# Next's default dist dir. Our scripts override it via NEXT_DIST_DIR, so this
+# only appears when `next` runs without that env (a bare `npx next dev`), but
+# when it does it fails the format check with 31 generated files.
+.next/

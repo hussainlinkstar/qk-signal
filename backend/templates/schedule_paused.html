@@ -1,0 +1,18 @@
+{% extends "base_email.html" %}
+{% set preheader = "A scheduled audit was paused because the current plan no longer supports it." %}
+{% set eyebrow = "Scheduling" %}
+{% set title = "Scheduled audit paused" %}
+{% set lead = "We paused one of your scheduled audits because the active plan no longer includes scheduled audit capability." %}
+{% set cta_label = "Review Plan" %}
+{% set cta_url = billing_url %}
+{% set fallback_url = billing_url %}
+{% block content %}
+<tr><td class="body">
+    <div class="panel warning">
+        <p class="panel-title danger">Schedule update</p>
+        <div class="detail-row danger"><span class="detail-label">Target:</span> {{ target_url }}</div>
+        {% if current_plan_display or plan_name_display %}<div class="detail-row danger"><span class="detail-label">Current plan:</span> {{ current_plan_display or plan_name_display }}</div>{% endif %}
+        <div class="detail-row danger"><span class="detail-label">Recommended action:</span> upgrade or adjust the schedule configuration before reactivating it.</div>
+    </div>
+</td></tr>
+{% endblock %}

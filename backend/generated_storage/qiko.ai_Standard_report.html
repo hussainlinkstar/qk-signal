@@ -1,0 +1,1512 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Visibility Report</title>
+    <style>
+    /* ── @page rules live here so Jinja2 can inject branding colours
+         into the :first page selector.
+
+         Header and footer are drawn by reportlab (chrome_overlay.py)
+         as a full-bleed overlay AFTER WeasyPrint renders the body.
+         The top/bottom margins reserve space for them; no @page
+         margin-box content is needed. ── */
+
+    @page {
+      size: A4;
+      margin: 18mm 14mm 18mm;
+    }
+
+    @page :first {
+      margin: 0;
+    }
+
+    @page {
+      size: A4;
+      margin: 16mm 11mm 14mm;
+    }
+
+    @page :first {
+      margin: 8mm 11mm 10mm;
+    }
+
+    /* ── Approved typefaces, vendored under services/pdf_reports/assets/.
+         @font-face must live in the document's own <style>: WeasyPrint 70
+         ignores @font-face rules in stylesheets passed to write_pdf().
+         Earlier stacks named Inter/Manrope, but neither was installed in
+         the worker image, so every PDF silently fell back to DejaVu. ── */
+    @font-face { font-family: "Satoshi"; src: url("file:///C:/projects/Qiko/qiko-signal/backend/services/pdf_reports/assets/fonts/satoshi-400.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Satoshi"; src: url("file:///C:/projects/Qiko/qiko-signal/backend/services/pdf_reports/assets/fonts/satoshi-500.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Satoshi"; src: url("file:///C:/projects/Qiko/qiko-signal/backend/services/pdf_reports/assets/fonts/satoshi-700.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Satoshi"; src: url("file:///C:/projects/Qiko/qiko-signal/backend/services/pdf_reports/assets/fonts/satoshi-900.woff2") format("woff2"); font-weight: 900; }
+    @font-face { font-family: "Inter"; src: url("file:///C:/projects/Qiko/qiko-signal/backend/services/pdf_reports/assets/fonts/inter-400.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Inter"; src: url("file:///C:/projects/Qiko/qiko-signal/backend/services/pdf_reports/assets/fonts/inter-500.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Inter"; src: url("file:///C:/projects/Qiko/qiko-signal/backend/services/pdf_reports/assets/fonts/inter-600.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Inter"; src: url("file:///C:/projects/Qiko/qiko-signal/backend/services/pdf_reports/assets/fonts/inter-700.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Roboto Mono"; src: url("file:///C:/projects/Qiko/qiko-signal/backend/services/pdf_reports/assets/fonts/roboto-mono-400.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Roboto Mono"; src: url("file:///C:/projects/Qiko/qiko-signal/backend/services/pdf_reports/assets/fonts/roboto-mono-500.woff2") format("woff2"); font-weight: 500; }
+    </style>
+<style>/* ─── @page rules live in <style> inside base_report.html.j2 so that
+       Jinja2 can inject branding colours into the :first page selector.
+       Do NOT add @page rules here, they will conflict. ─── */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--report-background);
+  color: var(--report-text);
+  font-family: "Inter", "Helvetica Neue", Arial, "DejaVu Sans", sans-serif;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+h1, h2, h3,
+.cover-title,
+.cover-brand-word,
+.cover-card-value,
+.section-title,
+.metric-value {
+  font-family: "Satoshi", "Inter", Arial, "DejaVu Sans", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.cover-kicker,
+.cover-card-label,
+.eyebrow {
+  font-family: "Roboto Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+body.is-cjk,
+body.is_cjk {
+  font-family: "Noto Sans CJK JP", "Noto Sans CJK SC", "Noto Sans", "DejaVu Sans", sans-serif;
+}
+
+/* Satoshi has no Arabic or CJK glyphs; keep the Noto stacks on display and
+   mono elements inside non-Latin reports or they would render as tofu. */
+body.is-cjk h1, body.is-cjk h2, body.is-cjk h3,
+body.is_cjk h1, body.is_cjk h2, body.is_cjk h3,
+body.is-cjk .cover-title, body.is_cjk .cover-title,
+body.is-cjk .cover-brand-word, body.is_cjk .cover-brand-word,
+body.is-cjk .cover-card-value, body.is_cjk .cover-card-value,
+body.is-cjk .section-title, body.is_cjk .section-title,
+body.is-cjk .metric-value, body.is_cjk .metric-value {
+  font-family: "Noto Sans CJK JP", "Noto Sans CJK SC", "Noto Sans", "DejaVu Sans", sans-serif;
+}
+
+body.is-rtl {
+  font-family: "Noto Naskh Arabic", "Noto Kufi Arabic", "Noto Sans", "DejaVu Sans", sans-serif;
+  direction: rtl;
+}
+
+body.is-rtl h1, body.is-rtl h2, body.is-rtl h3,
+body.is-rtl .cover-title,
+body.is-rtl .cover-brand-word,
+body.is-rtl .cover-card-value,
+body.is-rtl .section-title,
+body.is-rtl .metric-value {
+  font-family: "Noto Naskh Arabic", "Noto Kufi Arabic", "Noto Sans", "DejaVu Sans", sans-serif;
+  letter-spacing: normal;
+}
+
+/* Machine-readable values keep LTR ordering inside an RTL report:
+   URLs, numeric scores and dates must not be reordered by bidi mirroring. */
+body.is-rtl .cover-card-value {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: right;
+}
+
+/* Prose blocks may hold Arabic, English or mixed content: let each
+   paragraph's direction follow its own first strong character so terminal
+   punctuation lands at the correct end of mixed-direction text. */
+body.is-rtl p,
+body.is-rtl li,
+body.is-rtl td,
+body.is-rtl blockquote {
+  unicode-bidi: plaintext;
+}
+
+/* Chart internals are positioned data, not prose: SVG text anchoring
+   resolves differently under an inherited RTL direction, so pin charts to
+   LTR and keep axis chronology left-to-right. */
+body.is-rtl svg,
+body.is-rtl svg text {
+  direction: ltr;
+  unicode-bidi: normal;
+}
+
+/* letter-spacing inserts gaps between glyphs and breaks Arabic joining,
+   so tracking is removed for the whole RTL report. */
+body.is-rtl * {
+  letter-spacing: normal;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+table {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ─── Running header: dark bar with indigo→cyan brand gradient strip ─── */
+
+.running-header {
+  position: running(report-header);
+  display: block;
+  padding: 0;
+  width: 100%;
+}
+
+.header-accent-strip {
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent, #22D3EE));
+  height: 3px;
+  width: 100%;
+}
+
+.header-bar {
+  align-items: center;
+  background: var(--report-header-bg, #FFFFFF);
+  border-bottom: 1px solid var(--report-border);
+  display: flex;
+  justify-content: space-between;
+  padding: 2.5mm 0 2.5mm;
+  width: 100%;
+}
+
+.chrome-brand {
+  align-items: center;
+  display: flex;
+}
+
+.chrome-logo {
+  max-height: 7mm;
+  max-width: 38mm;
+  object-fit: contain;
+}
+
+.chrome-text {
+  color: var(--report-text);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.chrome-meta {
+  color: var(--report-header-text, #94A3B8);
+  display: flex;
+  font-size: 8px;
+  gap: 4mm;
+}
+
+/* ─── Running footer ─── */
+
+.running-footer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 3mm 0 0;
+  position: running(report-footer);
+  border-top: 0.5px solid var(--report-border);
+  color: var(--report-muted);
+  font-size: 7.5px;
+}
+
+.footer-copy {
+  max-width: 120mm;
+}
+
+.footer-page::after {
+  content: counter(page);
+}
+
+/* ─── Cover page: clean light surface with accent strip ─── */
+
+.report-cover {
+  background: linear-gradient(160deg, var(--report-cover-from), var(--report-cover-to));
+  color: var(--report-text);
+  min-height: 297mm;
+  padding: 0;
+  page-break-after: always;
+  position: relative;
+}
+
+.cover-accent-strip {
+  background: var(--report-cover-accent, linear-gradient(90deg, var(--brand-primary), var(--brand-accent, #22D3EE)));
+  height: 6px;
+  width: 100%;
+}
+
+.cover-upper {
+  background: var(--report-cover-to, #F6F7F9);
+  padding: 18mm 18mm 14mm;
+}
+
+.cover-body {
+  padding: 14mm 18mm 20mm;
+  position: relative;
+}
+
+.cover-grid-overlay {
+  background-image:
+    repeating-linear-gradient(90deg, rgba(12,15,22,0.06) 0, rgba(12,15,22,0.06) 0.3px, transparent 0.3px, transparent 40px),
+    repeating-linear-gradient(0deg, rgba(12,15,22,0.06) 0, rgba(12,15,22,0.06) 0.3px, transparent 0.3px, transparent 40px);
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.cover-brand {
+  align-items: center;
+  display: flex;
+  direction: ltr;
+  justify-content: space-between;
+}
+
+.cover-logo {
+  max-height: 18mm;
+  max-width: 82mm;
+  object-fit: contain;
+}
+
+.cover-brand-text {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.cover-kicker {
+  color: var(--report-muted);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  margin-top: 18mm;
+  text-transform: uppercase;
+}
+
+.cover-title {
+  font-size: 31px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  margin-top: 4mm;
+  max-width: 145mm;
+}
+
+.cover-subtitle {
+  color: var(--report-muted);
+  font-size: 12px;
+  margin-top: 5mm;
+  max-width: 125mm;
+}
+
+.cover-cards {
+  font-size: 0;
+  margin-top: 16mm;
+  position: relative;
+}
+
+.cover-card {
+  background: var(--report-card);
+  border: 1px solid var(--report-border);
+  border-radius: 10px;
+  display: inline-block;
+  font-size: 10px;
+  margin-right: 3%;
+  min-height: 27mm;
+  padding: 5mm;
+  vertical-align: top;
+  width: 31.33%;
+}
+
+.cover-card.last {
+  margin-right: 0;
+}
+
+.eyebrow {
+  color: var(--report-muted);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.cover-card .eyebrow {
+  color: var(--report-muted);
+}
+
+.cover-card-value {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-top: 3mm;
+  overflow-wrap: anywhere;
+}
+
+.cover-summary-band {
+  background: var(--report-card-alt);
+  border: 1px solid var(--report-border);
+  border-radius: 12px;
+  margin-top: 18mm;
+  padding: 7mm;
+  position: relative;
+}
+
+.cover-accent-line {
+  background: var(--report-cover-accent, linear-gradient(90deg, var(--brand-primary), var(--brand-accent, #22D3EE)));
+  border-radius: 2px;
+  height: 3px;
+  margin-top: 16mm;
+  width: 60px;
+}
+
+.report-cover-mvp {
+  background: #ffffff;
+  color: #0C0F16;
+}
+
+.report-cover-mvp .cover-upper {
+  background: #ffffff;
+  padding: 22mm 14mm 0;
+}
+
+.report-cover-mvp .cover-brand {
+  align-items: center;
+  display: flex;
+  gap: 9px;
+}
+
+.report-cover-mvp .cover-logo {
+  display: block;
+  height: 26px;
+  max-height: none;
+  max-width: none;
+  width: auto;
+}
+
+.report-cover-mvp .cover-brand-word {
+  color: #8A92A1;
+  font-size: 15pt;
+  font-weight: 500;
+}
+
+.report-cover-mvp .cover-brand-name {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.report-cover-mvp .cover-body {
+  padding: 34mm 14mm 18mm;
+}
+
+.report-cover-mvp .cover-kicker {
+  color: #9333EA;
+  font-size: 8pt;
+  letter-spacing: 0.14em;
+  margin-bottom: 10px;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+.report-cover-mvp .cover-title {
+  font-size: 30pt;
+  font-weight: 900;
+  line-height: 1.08;
+  margin: 0 0 8px;
+  max-width: 160mm;
+}
+
+.report-cover-mvp .cover-subtitle {
+  color: #565E6E;
+  direction: ltr;
+  font-size: 13pt;
+  font-weight: 400;
+  margin: 0 0 30mm;
+  overflow-wrap: anywhere;
+  unicode-bidi: isolate;
+}
+
+.report-cover-mvp .cover-cards {
+  display: flex;
+  gap: 12px;
+  margin: 0 0 26mm;
+  margin-top: 0;
+}
+
+.report-cover-mvp .cover-card {
+  background: #ffffff;
+  border: 1px solid #E8EAEE;
+  border-radius: 14px;
+  flex: 1;
+  margin-right: 0;
+  min-height: 0;
+  overflow: hidden;
+  padding: 18px 20px;
+  width: auto;
+}
+
+.report-cover-mvp .cover-card-aio {
+  border-left: 3px solid #9333EA;
+}
+
+.report-cover-mvp .cover-card-seo {
+  border-left: 3px solid #12A150;
+}
+
+.report-cover-mvp .cover-card.last {
+  margin-right: 0;
+}
+
+.report-cover-mvp .cover-card-label {
+  color: #8A92A1;
+  font-size: 7.5pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.report-cover-mvp .cover-card-value {
+  color: #0C0F16;
+  font-size: 34pt;
+  font-weight: 900;
+  line-height: 1;
+  margin: 8px 0 2px;
+}
+
+.report-cover-mvp .cover-card-value small {
+  color: #8A92A1;
+  font-size: 12pt;
+  font-weight: 600;
+}
+
+.report-cover-mvp .cover-card-delta {
+  color: #565E6E;
+  font-size: 9pt;
+}
+
+.report-cover-mvp .cover-meta {
+  border-top: 1px solid #E8EAEE;
+  color: #8A92A1;
+  font-size: 9pt;
+  margin-top: 0;
+  padding-top: 12px;
+}
+
+.report-cover-mvp .cover-meta div + div {
+  margin-top: 3px;
+}
+
+.report-cover-mvp .cover-meta span {
+  display: inline-block;
+  min-width: 27mm;
+}
+
+.report-cover-mvp .cover-meta strong {
+  color: #0C0F16;
+  font-weight: 600;
+}
+
+.report-page {
+  padding-top: 4mm;
+}
+
+/* ─── Section headers with accent line ─── */
+
+.report-section {
+  break-before: page;
+  page-break-before: always;
+}
+
+.section-header {
+  break-after: avoid-page;
+  margin-bottom: 6mm;
+  page-break-after: avoid;
+  padding-bottom: 3mm;
+}
+
+.section-accent-line {
+  background: var(--brand-primary);
+  border-radius: 1px;
+  height: 2px;
+  margin-bottom: 3mm;
+  width: 50px;
+}
+
+.section-title {
+  border-bottom: 1px solid var(--report-border);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  padding-bottom: 3mm;
+}
+
+.section-copy {
+  color: #475569;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+/* ─── Metric and panel cards ─── */
+
+.card-grid {
+  font-size: 0;
+}
+
+.metric-card,
+.panel-card {
+  background: var(--report-card);
+  break-inside: avoid;
+  border: 1px solid var(--report-border);
+  border-radius: 10px;
+  display: inline-block;
+  font-size: 10px;
+  margin-bottom: 4mm;
+  margin-right: 3%;
+  page-break-inside: avoid;
+  padding: 5mm;
+  vertical-align: top;
+}
+
+.metric-card.three-up,
+.panel-card.three-up {
+  width: 31.33%;
+}
+
+.metric-card.four-up,
+.panel-card.four-up {
+  width: 22.75%;
+}
+
+.metric-card.two-up,
+.panel-card.two-up {
+  width: 48.5%;
+}
+
+.metric-card.full,
+.panel-card.full {
+  display: block;
+  margin-right: 0;
+  width: 100%;
+}
+
+.metric-card.last,
+.panel-card.last {
+  margin-right: 0;
+}
+
+.metric-label {
+  color: var(--report-muted);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.metric-value {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-top: 3mm;
+}
+
+.tone-strong {
+  color: var(--report-success);
+}
+
+.tone-solid {
+  color: var(--brand-primary);
+}
+
+.tone-watch {
+  color: var(--report-warning);
+}
+
+.tone-critical {
+  color: var(--report-danger);
+}
+
+.tone-muted {
+  color: var(--report-muted);
+}
+
+.metric-subtext,
+.muted-copy {
+  color: var(--report-muted);
+  font-size: 9px;
+  line-height: 1.5;
+  margin-top: 2mm;
+}
+
+/* ─── List rows ─── */
+
+.list-stack {
+  display: block;
+}
+
+.list-row {
+  border-top: 1px solid var(--report-border);
+  break-inside: avoid;
+  page-break-inside: avoid;
+  padding: 4mm 0;
+}
+
+.list-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.action-row {
+  width: 100%;
+}
+
+.action-rank {
+  color: var(--brand-primary);
+  float: left;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-right: 4mm;
+  width: 8mm;
+}
+
+.action-body {
+  overflow: hidden;
+}
+
+.row-title {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.row-meta {
+  color: var(--report-muted);
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  margin-top: 1mm;
+  text-transform: uppercase;
+}
+
+.row-copy {
+  color: #475569;
+  margin-top: 2mm;
+}
+
+.section-note {
+  color: var(--report-muted);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 2mm;
+  text-transform: uppercase;
+}
+
+/* ─── Trust and integrity grids ─── */
+
+.trust-grid {
+  font-size: 0;
+}
+
+.trust-value {
+  color: var(--report-text);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-top: 2.5mm;
+}
+
+.subsection-label {
+  color: var(--report-muted);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-top: 4mm;
+  text-transform: uppercase;
+}
+
+.score-list {
+  margin-top: 2mm;
+  padding-left: 4mm;
+}
+
+.score-list-item {
+  color: #475569;
+  margin-top: 1.2mm;
+}
+
+/* ─── Badges and chips ─── */
+
+.badge {
+  border: 1px solid var(--report-border);
+  border-radius: 999px;
+  color: var(--report-muted);
+  display: inline-block;
+  font-size: 8px;
+  margin-right: 2mm;
+  margin-top: 2mm;
+  padding: 1.2mm 2.2mm;
+}
+
+/* ─── Tables: dark header row, alternating body ─── */
+
+.report-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.report-table th,
+.report-table td {
+  border-bottom: 1px solid var(--report-border);
+  padding: 3mm 2mm;
+  text-align: left;
+  vertical-align: top;
+}
+
+.report-table th {
+  background: var(--report-card-alt);
+  color: var(--report-muted);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.report-table td.numeric,
+.report-table th.numeric {
+  text-align: right;
+}
+
+.report-table tbody tr:nth-child(even) {
+  background: var(--report-card-alt);
+}
+
+.target-row {
+  background: var(--report-card-alt);
+}
+
+.delta-positive {
+  color: var(--report-danger);
+}
+
+.delta-negative {
+  color: var(--report-success);
+}
+
+.delta-flat {
+  color: var(--report-muted);
+}
+
+.chip-cloud {
+  font-size: 0;
+}
+
+.chip {
+  background: var(--report-card-alt);
+  border: 1px solid var(--report-border);
+  border-radius: 999px;
+  color: #334155;
+  display: inline-block;
+  font-size: 9px;
+  margin: 0 2mm 2mm 0;
+  padding: 1.5mm 3mm;
+}
+
+/* ─── Strategic intelligence grid items ─── */
+
+.grid-item {
+  border-left: 3px solid var(--brand-primary);
+  break-inside: avoid;
+  margin-bottom: 4mm;
+  page-break-inside: avoid;
+  padding-left: 4mm;
+}
+
+.grid-item:last-child {
+  margin-bottom: 0;
+}
+
+.grid-title {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.grid-copy {
+  color: #475569;
+  margin-top: 1.5mm;
+}
+
+/* ─── Chart containers ─── */
+
+.chart-container {
+  break-inside: avoid;
+  margin: 4mm 0;
+  page-break-inside: avoid;
+  text-align: center;
+}
+
+.chart-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+/* Check reports flow onto one or two pages instead of a page per section. */
+
+body.report-kind-standard .report-cover,
+body.report-kind-aio .report-cover,
+body.report-kind-seo .report-cover,
+body.report-kind-executive .report-cover {
+  min-height: 0;
+  break-after: auto;
+  page-break-after: auto;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-upper,
+body.report-kind-aio .report-cover-mvp .cover-upper,
+body.report-kind-seo .report-cover-mvp .cover-upper,
+body.report-kind-executive .report-cover-mvp .cover-upper {
+  padding: 4mm 0 2mm;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-body,
+body.report-kind-aio .report-cover-mvp .cover-body,
+body.report-kind-seo .report-cover-mvp .cover-body,
+body.report-kind-executive .report-cover-mvp .cover-body {
+  padding: 2mm 0 3mm;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-title,
+body.report-kind-aio .report-cover-mvp .cover-title,
+body.report-kind-seo .report-cover-mvp .cover-title,
+body.report-kind-executive .report-cover-mvp .cover-title {
+  font-size: 16px;
+  line-height: 1.15;
+  margin: 0 0 1mm;
+  max-width: none;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-kicker,
+body.report-kind-aio .report-cover-mvp .cover-kicker,
+body.report-kind-seo .report-cover-mvp .cover-kicker,
+body.report-kind-executive .report-cover-mvp .cover-kicker {
+  margin: 0 0 1mm;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-subtitle,
+body.report-kind-aio .report-cover-mvp .cover-subtitle,
+body.report-kind-seo .report-cover-mvp .cover-subtitle,
+body.report-kind-executive .report-cover-mvp .cover-subtitle {
+  font-size: 11px;
+  margin: 0;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-identity,
+body.report-kind-aio .report-cover-mvp .cover-identity,
+body.report-kind-seo .report-cover-mvp .cover-identity,
+body.report-kind-executive .report-cover-mvp .cover-identity {
+  align-items: center;
+  display: flex;
+  gap: 6mm;
+  justify-content: space-between;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-identity-copy,
+body.report-kind-aio .report-cover-mvp .cover-identity-copy,
+body.report-kind-seo .report-cover-mvp .cover-identity-copy,
+body.report-kind-executive .report-cover-mvp .cover-identity-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-cards,
+body.report-kind-aio .report-cover-mvp .cover-cards,
+body.report-kind-seo .report-cover-mvp .cover-cards,
+body.report-kind-executive .report-cover-mvp .cover-cards {
+  flex: none;
+  gap: 4mm;
+  margin: 0;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-card,
+body.report-kind-aio .report-cover-mvp .cover-card,
+body.report-kind-seo .report-cover-mvp .cover-card,
+body.report-kind-executive .report-cover-mvp .cover-card {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: center;
+  width: 28mm;
+}
+
+body.report-kind-standard .report-cover-mvp .score-ring,
+body.report-kind-aio .report-cover-mvp .score-ring,
+body.report-kind-seo .report-cover-mvp .score-ring,
+body.report-kind-executive .report-cover-mvp .score-ring {
+  display: block;
+  margin: 0 auto 1mm;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-card-label,
+body.report-kind-aio .report-cover-mvp .cover-card-label,
+body.report-kind-seo .report-cover-mvp .cover-card-label,
+body.report-kind-executive .report-cover-mvp .cover-card-label {
+  margin-top: 0;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-card-value,
+body.report-kind-aio .report-cover-mvp .cover-card-value,
+body.report-kind-seo .report-cover-mvp .cover-card-value,
+body.report-kind-executive .report-cover-mvp .cover-card-value {
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-meta,
+body.report-kind-aio .report-cover-mvp .cover-meta,
+body.report-kind-seo .report-cover-mvp .cover-meta,
+body.report-kind-executive .report-cover-mvp .cover-meta {
+  font-size: 8px;
+  margin-top: 2mm;
+  padding-top: 1.5mm;
+}
+
+body.report-kind-standard .report-section,
+body.report-kind-aio .report-section,
+body.report-kind-seo .report-section,
+body.report-kind-executive .report-section,
+body.report-kind-standard .toc-page,
+body.report-kind-aio .toc-page,
+body.report-kind-seo .toc-page {
+  break-before: auto;
+  margin-top: 2mm;
+  page-break-before: auto;
+}
+
+body.report-kind-standard .section-header,
+body.report-kind-aio .section-header,
+body.report-kind-seo .section-header,
+body.report-kind-executive .section-header {
+  margin-bottom: 2mm;
+  padding-bottom: 1mm;
+}
+
+body.report-kind-standard .section-title,
+body.report-kind-aio .section-title,
+body.report-kind-seo .section-title,
+body.report-kind-executive .section-title {
+  font-size: 11px;
+  padding-bottom: 0.6mm;
+}
+
+body.report-kind-standard .section-copy,
+body.report-kind-aio .section-copy,
+body.report-kind-seo .section-copy,
+body.report-kind-executive .section-copy,
+body.report-kind-standard .row-copy,
+body.report-kind-aio .row-copy,
+body.report-kind-seo .row-copy,
+body.report-kind-executive .row-copy {
+  font-size: 8px;
+  line-height: 1.3;
+}
+
+body.report-kind-standard .list-row,
+body.report-kind-aio .list-row,
+body.report-kind-seo .list-row,
+body.report-kind-executive .list-row {
+  padding: 1.2mm 0;
+}
+
+body.report-kind-standard .metric-value,
+body.report-kind-aio .metric-value,
+body.report-kind-seo .metric-value,
+body.report-kind-executive .metric-value {
+  font-size: 16px;
+}
+
+body.report-kind-standard .report-cover + .report-section,
+body.report-kind-aio .report-cover + .report-section,
+body.report-kind-seo .report-cover + .report-section,
+body.report-kind-executive .report-cover + .report-section {
+  break-before: auto;
+  page-break-before: auto;
+}
+
+body.report-kind-standard .card-grid,
+body.report-kind-aio .card-grid,
+body.report-kind-seo .card-grid,
+body.report-kind-executive .card-grid,
+body.report-kind-standard .list-stack,
+body.report-kind-aio .list-stack,
+body.report-kind-seo .list-stack,
+body.report-kind-executive .list-stack {
+  break-before: auto;
+  margin-top: 1.5mm;
+  page-break-before: auto;
+}
+
+body.report-kind-standard .card-grid > .metric-card:not(.two-up),
+body.report-kind-aio .card-grid > .metric-card:not(.two-up),
+body.report-kind-seo .card-grid > .metric-card:not(.two-up),
+body.report-kind-executive .card-grid > .metric-card:not(.two-up) {
+  box-sizing: border-box;
+  margin-bottom: 1.5mm;
+  margin-right: 1.5%;
+  padding: 2mm;
+  width: 31.5%;
+}
+
+body.report-kind-standard .metric-card,
+body.report-kind-aio .metric-card,
+body.report-kind-seo .metric-card,
+body.report-kind-executive .metric-card {
+  margin-bottom: 1.5mm;
+  padding: 2mm;
+}
+
+body.report-kind-standard .section-accent-line,
+body.report-kind-aio .section-accent-line,
+body.report-kind-seo .section-accent-line,
+body.report-kind-executive .section-accent-line {
+  margin-bottom: 1mm;
+}
+
+body.report-kind-standard .report-flow,
+body.report-kind-aio .report-flow,
+body.report-kind-seo .report-flow,
+body.report-kind-executive .report-flow {
+  column-count: 2;
+  column-gap: 5mm;
+}
+
+body.report-kind-standard .report-flow .report-section,
+body.report-kind-aio .report-flow .report-section,
+body.report-kind-seo .report-flow .report-section,
+body.report-kind-executive .report-flow .report-section {
+  margin-top: 1.5mm;
+}
+
+body.report-kind-standard .toc-entry,
+body.report-kind-aio .toc-entry,
+body.report-kind-seo .toc-entry {
+  break-inside: avoid;
+  padding: 0.3mm 0;
+  page-break-inside: avoid;
+}
+
+body.report-kind-standard .toc-desc,
+body.report-kind-aio .toc-desc,
+body.report-kind-seo .toc-desc,
+body.report-kind-standard .toc-primary .toc-label,
+body.report-kind-aio .toc-primary .toc-label,
+body.report-kind-seo .toc-primary .toc-label {
+  font-size: 8px;
+}
+
+/* ─── Table of Contents ─── */
+
+.toc-page {
+  break-before: page;
+  page-break-before: always;
+}
+
+.toc-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.toc-entry {
+  display: flex;
+  align-items: baseline;
+  gap: 3mm;
+  padding: 2.5mm 0;
+}
+
+.toc-num {
+  flex: none;
+  min-width: 7mm;
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--brand-primary);
+}
+
+.toc-desc {
+  font-size: 9pt;
+  color: var(--report-muted);
+}
+
+.toc-primary .toc-label {
+  font-size: 10pt;
+  font-weight: 600;
+  color: var(--report-text);
+}
+
+.toc-secondary {
+  padding-left: 6mm;
+}
+
+.toc-secondary .toc-label {
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--report-muted);
+}
+
+.toc-dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--report-border);
+  min-width: 10mm;
+}
+
+/* ─── Rationale / dependencies in action items ─── */
+
+.row-rationale {
+  font-size: 8pt;
+  color: var(--report-muted);
+  font-style: italic;
+  margin-top: 1mm;
+}
+
+.row-dependencies {
+  font-size: 8pt;
+  color: var(--report-muted);
+  margin-top: 1mm;
+}
+</style></head>
+<body class="report-shell report-type-standard report-kind-standard" style="
+      --brand-primary: #6366F1;
+      --brand-secondary: #1E293B;
+      --brand-accent: #22D3EE;
+      --brand-primary-text: #F8FAFC;
+      --brand-secondary-text: #F8FAFC;
+      --report-background: #FFFFFF;
+      --report-card: #FFFFFF;
+      --report-card-alt: #EFF1FB;
+      --report-border: #E8EAEE;
+      --report-text: #0C0F16;
+      --report-muted: #565E6E;
+      --report-success: #12A150;
+      --report-warning: #D9930B;
+      --report-danger: #E5484D;
+      --report-header-bg: #FFFFFF;
+      --report-header-text: #565E6E;
+      --report-cover-from: #FFFFFF;
+      --report-cover-to: #F6F7F9;
+      --report-cover-accent: linear-gradient(90deg, #6366F1, #1E293B);
+    ">
+<header class="running-header" aria-hidden="true">
+    <!-- Header chrome is drawn by reportlab (chrome_overlay.py) as a
+         full-bleed overlay.  This element is kept as a hidden placeholder
+         so existing CSS selectors don't break. -->
+</header>
+<footer class="running-footer" aria-hidden="true">
+    <!-- Footer chrome is drawn by reportlab (chrome_overlay.py). -->
+</footer>
+<section class="report-cover report-cover-mvp">
+    <div class="cover-upper">
+        <div class="cover-brand">
+            <img class="cover-logo" src="data:image/png;base64,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" alt="Qiko" />
+            <span class="cover-brand-word">Signal</span>
+        </div>
+    </div>
+    <div class="cover-body">
+        <div class="cover-identity">
+            <div class="cover-identity-copy">
+                <div class="cover-kicker">Visibility Report</div>
+                <h1 class="cover-title">
+How AI and search see your website                </h1>
+                <p class="cover-subtitle">qiko.ai</p>
+            </div>
+            <div class="cover-cards">
+                <div class="cover-card cover-card-aio">
+                    <svg class="score-ring" viewBox="0 0 64 64" width="58" height="58" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="score-ring-1" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#CBD5E1" />
+                                <stop offset="100%" stop-color="#94A3B8" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="32" cy="32" r="22" fill="none" stroke="#E6E9EE" stroke-width="5" />
+                        <circle cx="32" cy="32" r="22" fill="none" stroke="url(#score-ring-1)" stroke-width="5" stroke-linecap="round" stroke-dasharray="0.00 138.23" transform="rotate(-90 32 32)" />
+                        <text x="32" y="36" text-anchor="middle" font-size="13" font-weight="700" fill="#0C0F16">-</text>
+                    </svg>
+                    <div class="cover-card-label">AI visibility</div>
+                    <div class="cover-card-value">-<small>/100</small></div>
+                </div>
+                <div class="cover-card cover-card-seo last">
+                    <svg class="score-ring" viewBox="0 0 64 64" width="58" height="58" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="score-ring-2" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="#FDE68A" />
+                                <stop offset="100%" stop-color="#D97706" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="32" cy="32" r="22" fill="none" stroke="#E6E9EE" stroke-width="5" />
+                        <circle cx="32" cy="32" r="22" fill="none" stroke="url(#score-ring-2)" stroke-width="5" stroke-linecap="round" stroke-dasharray="94.55 138.23" transform="rotate(-90 32 32)" />
+                        <text x="32" y="36" text-anchor="middle" font-size="13" font-weight="700" fill="#0C0F16">68.4</text>
+                    </svg>
+                    <div class="cover-card-label">Search visibility</div>
+                    <div class="cover-card-value">68.4<small>/100</small></div>
+                </div>
+            </div>
+        </div>
+        <div class="cover-meta">
+            <div><span>Prepared for</span><strong>https://qiko.ai</strong></div>
+            <div><span>Scan completed</span><strong>October 12, 2026</strong></div>
+        </div>
+    </div>
+</section>
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">What this report measures</h2></div>
+    <p class="section-copy">People no longer only type into a search box. They ask an assistant. This report measures both routes to your website and tells you, in plain terms, where you are being found, where you are being trusted, and what to change first.</p>
+    <div class="card-grid">
+        <article class="metric-card">
+            <div class="metric-label">AI visibility</div>
+            <div class="row-copy">Whether assistants such as ChatGPT, Gemini, Claude and Perplexity mention you, describe you correctly, and recommend you when someone asks a question your business should answer. We test a fixed set of real questions across every engine we measure, then check whether you appear and whether the assistant cites you as its source.</div>
+        </article>
+        <article class="metric-card">
+            <div class="metric-label">Search visibility</div>
+            <div class="row-copy">Whether your pages rank in traditional search for the terms your customers use, and whether the technical health, content and authority behind those pages support those rankings.</div>
+        </article>
+        <article class="metric-card">
+            <div class="metric-label">How to read the scores</div>
+            <div class="row-copy">Both scores run from 0 to 100 and are built from measured signals, not opinion. A score is only useful next to its direction of travel. Where we have too little data to be confident, we say so rather than filling the gap with a number.</div>
+        </article>
+    </div>
+
+
+
+</section><div class="report-flow"><section class="report-section toc-page">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">Contents</h2></div>
+    <div class="toc-list">
+        <div class="toc-entry toc-primary">
+            <span class="toc-num">01</span>
+            <span class="toc-label">Where you stand</span>
+            <span class="toc-desc">the two scores, and what they mean for you</span>
+        </div>
+        <div class="toc-entry toc-primary">
+            <span class="toc-num">02</span>
+            <span class="toc-label">Actions</span>
+            <span class="toc-desc">your fixes, in priority order</span>
+        </div>
+        <div class="toc-entry toc-primary">
+            <span class="toc-num">03</span>
+            <span class="toc-label">Questions people ask AI</span>
+            <span class="toc-desc">the five question types we test</span>
+        </div>
+        <div class="toc-entry toc-primary">
+            <span class="toc-num">04</span>
+            <span class="toc-label">Trust signals</span>
+            <span class="toc-desc">visibility and reputation, measured separately</span>
+        </div>
+        <div class="toc-entry toc-primary">
+            <span class="toc-num">05</span>
+            <span class="toc-label">AI engines</span>
+            <span class="toc-desc">where you show up and where you are absent</span>
+        </div>
+        <div class="toc-entry toc-primary">
+            <span class="toc-num">06</span>
+            <span class="toc-label">SEO factors</span>
+            <span class="toc-desc">the five factors behind the number</span>
+        </div>
+        <div class="toc-entry toc-primary">
+            <span class="toc-num">07</span>
+            <span class="toc-label">Traffic</span>
+            <span class="toc-desc">traffic that assistants send you</span>
+        </div>
+        <div class="toc-entry toc-primary">
+            <span class="toc-num">08</span>
+            <span class="toc-label">Evidence</span>
+            <span class="toc-desc">evidence, coverage and confidence</span>
+        </div>
+    </div>
+</section>
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">Where you stand</h2></div>
+    <p class="section-copy">These scores come from the selected audit. A dash means that score was not recorded.</p>
+    <div class="subsection-label">The short version</div>
+    <p class="section-copy">AI visibility signals were captured, but a strategic interpretation was not available.</p>
+    <div class="pillar-score-grid">
+        <div class="card-grid">
+            <article class="metric-card two-up">
+                <div class="metric-label">AI visibility</div>
+                <div class="metric-value tone-muted">-</div>
+            </article>
+            <article class="metric-card two-up last">
+                <div class="metric-label">Search visibility</div>
+                <div class="metric-value tone-solid">68.4</div>
+            </article>
+        </div>
+    </div>
+    <div class="subsection-label">What is holding each one back</div>
+    <div class="list-stack">
+        <article class="list-row">
+            <div class="row-title">SEO - 68.4/100</div>
+<div class="row-copy">Core SEO foundations are present, but technical gaps are still limiting consistent visibility.</div><div class="row-copy"><strong>Blockers:</strong> Missing canonical URL; No mobile viewport meta; Missing meta description</div><div class="row-copy"><strong>Missing signals:</strong> Missing canonical URL; No mobile viewport meta</div>        </article>
+        <article class="list-row">
+            <div class="row-title">AIO</div>
+<div class="row-copy">Geographic authority signals are strong enough to support competitive local discovery. Machine-readable answer coverage is supporting stronger generative visibility.</div><div class="row-copy"><strong>Blockers:</strong> No schema or entity clarity signals detected; No AIO-relevant schema detected</div><div class="row-copy"><strong>Missing signals:</strong> No schema or entity clarity signals detected; No AIO-relevant schema detected</div>        </article>
+    </div>
+</section>
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">Actions</h2></div>
+    <p class="section-copy">No audit-backed actions were recorded for this report.</p>
+</section>
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">Questions people ask AI</h2></div>
+    <p class="section-copy">The text of each question is not stored by this audit. These are the answer-readiness measures it did record.</p>
+    <div class="list-stack">
+        <article class="list-row">
+            <div class="row-title">LLM Schema Readiness</div>
+            <div class="row-copy">0</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">Semantic Entity Density</div>
+            <div class="row-copy">0</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">Information Gain</div>
+            <div class="row-copy">0</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">Schema Health</div>
+            <div class="row-copy">-</div>
+        </article>
+    </div>
+</section>
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">Trust signals</h2></div>
+    <div class="list-stack">
+        <article class="list-row">
+            <div class="row-title">Audit mode</div>
+            <div class="row-copy">Website</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">Deterministic score engine</div>
+            <div class="row-copy">Deterministic Matrix</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">Score version</div>
+            <div class="row-copy">3.0</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">External data coverage</div>
+            <div class="row-copy">0%</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">Competitive confidence</div>
+            <div class="row-copy">Low</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">Narrative confidence</div>
+            <div class="row-copy">High</div>
+        </article>
+    </div>
+</section>
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">AI engines</h2></div>
+    <p class="section-copy">Engine-by-engine reporting is not part of this audit.</p>
+</section>
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">SEO factors</h2></div>
+    <div class="list-stack">
+        <article class="list-row">
+            <div class="row-title">Security Accessibility</div>
+            <div class="row-copy">40</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">Onpage Content</div>
+            <div class="row-copy">10</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">Core Web Vitals</div>
+            <div class="row-copy">0</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">Technical Seo</div>
+            <div class="row-copy">0</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">Eeat Trust</div>
+            <div class="row-copy">0</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">Missing canonical URL</div>
+            <div class="row-copy">-15 pts</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">No mobile viewport meta</div>
+            <div class="row-copy">-15 pts</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">Missing meta description</div>
+            <div class="row-copy">-15 pts</div>
+        </article>
+    </div>
+    <div class="subsection-label">Issues found</div>
+    <div class="list-stack">
+        <article class="list-row">
+            <div class="row-title">Missing canonical URL</div>
+            <div class="row-copy">-15 pts</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">No mobile viewport meta</div>
+            <div class="row-copy">-15 pts</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">Missing meta description</div>
+            <div class="row-copy">-15 pts</div>
+        </article>
+        <article class="list-row">
+            <div class="row-title">No H1 tag found</div>
+            <div class="row-copy">-10 pts</div>
+        </article>
+    </div>
+</section>
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">Traffic</h2></div>
+    <p class="section-copy">Traffic data was not included with this audit.</p>
+</section><section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">Evidence</h2></div>
+    <p class="section-copy">The details below come from this audit. If a check was not recorded, this report marks it as unavailable instead of assuming a result.</p>
+    <div class="subsection-label">Integrity &amp; Confidence Certificate</div>
+
+
+
+    <div class="subsection-label">Review Notes</div>
+    <div class="list-stack">
+        <article class="list-row">
+            <div class="row-copy">External analytics and search data were not connected for this audit.</div>
+        </article>
+    </div>
+
+</section></div></body>
+</html>

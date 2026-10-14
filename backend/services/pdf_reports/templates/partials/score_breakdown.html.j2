@@ -1,0 +1,28 @@
+{% set items = sections["score_breakdown"]["items"] %}
+{% if items %}
+<div class="list-stack">
+    {% for group in items %}
+    <article class="list-row">
+        <div class="row-title">{{ l(group.domain) }}</div>
+        <div class="card-grid">
+            {% for component in group.components %}
+            <article class="metric-card three-up{% if loop.index % 3 == 0 or loop.last %} last{% endif %}">
+                <div class="metric-label">{{ l(component.label) }}</div>
+                <div class="metric-value tone-{{ component.tone }}">{{ component.display_value }}</div>
+            </article>
+            {% endfor %}
+        </div>
+        {% if group.penalties %}
+        <div class="subsection-label">{{ l("Penalties") }}</div>
+        <ul class="score-list">
+            {% for penalty in group.penalties %}
+            <li class="score-list-item">{{ penalty.reason | bi }} ({{ penalty.impact_display }})</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </article>
+    {% endfor %}
+</div>
+{% else %}
+<p class="muted-copy">{{ l("No score component breakdown was captured.") }}</p>
+{% endif %}

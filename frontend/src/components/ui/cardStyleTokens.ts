@@ -1,0 +1,36 @@
+import { MICRO_LABEL_CLASS, TYPO_CARD_TITLE_CLASS } from "./typographyTokens";
+import { RADIUS_CARD_CLASS, RADIUS_CONTROL_CLASS } from "./radiusTokens";
+
+export const CARD_RADIUS_OUTER_CLASS = RADIUS_CARD_CLASS;
+export const CARD_RADIUS_SUBSECTION_CLASS = RADIUS_CARD_CLASS;
+export const CARD_CHIP_CLASS = RADIUS_CONTROL_CLASS;
+
+export const CARD_PADDING_PRIMARY_X_CLASS = "px-6";
+export const CARD_PADDING_PRIMARY_Y_CLASS = "py-6";
+export const CARD_PADDING_SECONDARY_X_CLASS = "px-6";
+export const CARD_PADDING_SECONDARY_Y_CLASS = "py-6";
+export const CARD_PADDING_COMPACT_X_CLASS = "px-5";
+export const CARD_PADDING_COMPACT_Y_CLASS = "py-5";
+
+export const CARD_CONTAINER_PRESETS = {
+  primary: `${CARD_RADIUS_OUTER_CLASS} ${CARD_PADDING_PRIMARY_X_CLASS} ${CARD_PADDING_PRIMARY_Y_CLASS}`,
+  secondary: `${CARD_RADIUS_OUTER_CLASS} ${CARD_PADDING_SECONDARY_X_CLASS} ${CARD_PADDING_SECONDARY_Y_CLASS}`,
+  compact: `${CARD_RADIUS_OUTER_CLASS} ${CARD_PADDING_COMPACT_X_CLASS} ${CARD_PADDING_COMPACT_Y_CLASS}`,
+} as const;
+
+export const CARD_SUBSECTION_PRESETS = {
+  standard: `${CARD_RADIUS_SUBSECTION_CLASS} p-4 md:px-[22px] md:py-5`,
+  compact: `${CARD_RADIUS_SUBSECTION_CLASS} p-3 md:p-4`,
+} as const;
+
+export const CARD_CONTAINER_CLASS = CARD_CONTAINER_PRESETS.primary;
+export const CARD_SUBSECTION_CLASS = CARD_SUBSECTION_PRESETS.standard;
+
+export const DASHBOARD_CARD_CLASS = "space-y-6";
+
+export const CARD_SUBSECTION_SURFACE_CLASS = `${CARD_SUBSECTION_CLASS} border border-(--border) bg-(--surface-subtle)`;
+export const CARD_SUBSECTION_INTENT_PRIMARY_CLASS = "border-primary/20 bg-primary/10";
+export const CARD_SUBSECTION_INTENT_WARNING_CLASS = "border-warning/20 bg-warning/10";
+
+export const CARD_TITLE_CLASS = TYPO_CARD_TITLE_CLASS;
+export const CARD_LABEL_CLASS = MICRO_LABEL_CLASS;

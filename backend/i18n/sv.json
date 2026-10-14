@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "language_name": "Svenska",
+    "language_name_map": {
+      "en": "English",
+      "es": "Spanish",
+      "fr": "French",
+      "de": "German",
+      "it": "Italian",
+      "ro": "Romanian",
+      "nl": "Dutch",
+      "pt": "Portuguese",
+      "pl": "Polish",
+      "sv": "Swedish",
+      "ja": "Japanese",
+      "zh": "Chinese"
+    }
+  },
+  "pdf": {
+    "ai_disclaimer": "Obs: den här rapporten innehåller automatiserad AI-analys. Mänsklig granskning rekommenderas innan tekniska ändringar genomförs.",
+    "generated_on": "Genererad",
+    "executive_summary": "Sammanfattning",
+    "highlights": "Höjdpunkter",
+    "score_breakdown": "Poängfördelning",
+    "key_recommendations": "Viktigaste rekommendationer",
+    "competitor_analysis": "Konkurrentanalys",
+    "competitor_section_enabled": "Sektionen för konkurrentbenchmarking är aktiverad för denna export.",
+    "battle_report": "Jämförelserapport",
+    "head_to_head_comparison": "Direkt jämförelse ({index}/{total})",
+    "strategic_highlights": "Strategiska höjdpunkter",
+    "no_analysis_summary": "Ingen analyssammanfattning tillgänglig.",
+    "no_summary_available": "Ingen sammanfattning tillgänglig.",
+    "left_site": "Vänster webbplats",
+    "right_site": "Höger webbplats",
+    "score": "Poäng",
+    "technical_report": "Teknisk rapport",
+    "executive_report": "Ledningsrapport",
+    "comparative_report": "Jämförelserapport"
+  },
+  "email": {
+    "common": {
+      "notification": "Avisering",
+      "unsubscribe_blurb": "Du får det här e-postmeddelandet eftersom du har ett konto hos {brand_name}. Du kan hantera dina aviseringsinställningar eller avsluta prenumerationen när som helst.",
+      "fallback_hint": "Om knappen inte fungerar, öppna",
+      "support_hint": "För hjälp, kontakta",
+      "aio_label": "AIO-poäng",
+      "seo_label": "SEO-poäng",
+      "metric_label_seo_score": "SEO-poäng",
+      "metric_label_aio_score": "AIO-poäng",
+      "metric_label_unknown": "Synlighetspoäng",
+      "score_delta_up": "Upp {points} poäng sedan {period}",
+      "score_delta_up_one": "Upp {points} poäng sedan {period}",
+      "score_delta_down": "Ner {points} poäng sedan {period}",
+      "score_delta_down_one": "Ner {points} poäng sedan {period}",
+      "score_delta_flat": "Ingen förändring sedan {period}",
+      "score_delta_period": "förra månaden",
+      "rank_delta_up": "Upp från #{previous}",
+      "rank_delta_down": "Ner från #{previous}",
+      "rank_delta_flat": "Ingen förändring"
+    },
+    "audit_completed": {
+      "subject": "Granskning slutförd för {target_host}",
+      "preheader": "Din senaste granskning är klar och redo att granskas.",
+      "eyebrow": "Granskning klar",
+      "title": "Din granskning är klar",
+      "lead": "Vi har slutfört behandlingen av din senaste granskning. Poängöversikten finns nedan och hela rapporten väntar i din dashboard.",
+      "cta_label": "Öppna granskningsrapport",
+      "target_label": "Mål",
+      "body": "Använd hela rapporten för att prioritera tekniska, innehållsmässiga och answerability-förbättringar från ett och samma ställe."
+    },
+    "consensus_ready": {
+      "subject": "Multi-modellkonsensus klar för {target_host}",
+      "preheader": "Din multi-modell-konsensusrapport är klar.",
+      "eyebrow": "Konsensus klar",
+      "title": "Din konsensusgranskning är klar",
+      "lead": "Körningen med flera modeller har slutförts. Jämför de samordnade resultaten och poängöversikten i rapporten.",
+      "cta_label": "Granska konsensus",
+      "models_included": "Inkluderade modeller",
+      "model_set_label": "Modelluppsättning",
+      "target_label": "Mål"
+    },
+    "progress_report": {
+      "subject": "Framstegsrapport för {project_name} för {report_month_label}",
+      "eyebrow": "Framstegsrapport",
+      "title": "Månatlig resultatuppdatering för {project_name}",
+      "lead": "Din senaste trendsnapshot är klar med månad-till-månad-rörelse, viktiga framsteg och nästa frågor som fortfarande blockerar utvecklingen.",
+      "cta_label": "Öppna rapportcenter",
+      "preheader": "Poängen och den månatliga utvecklingen för {project_name} är klara.",
+      "intro": "Rapporten för {report_month_label} för {project_name}{domain_suffix} är klar. Använd den som kundanpassat bevis på framsteg i projektet.",
+      "audits_captured_label": "Inkluderade granskningar",
+      "top_improvements": "Största förbättringar",
+      "remaining_issues": "Kvarstående frågor",
+      "no_remaining_issues": "Inga olösta prioriterade åtgärder extraherades från den senaste granskningen."
+    },
+    "competitive_digest": {
+      "subject": "Konkurrensdigest {report_period} för {project_name}",
+      "preheader": "Uppdatering av konkurrensbenchmark för {project_name}.",
+      "eyebrow": "Konkurrensdigest",
+      "title": "Benchmark-uppdatering för {project_name}",
+      "lead": "{workspace_name} har nu en uppdaterad konkurrenssnapshot för {competitor_count} spårade konkurrenter.",
+      "cta_label": "Öppna konkurrensdashboard",
+      "highlights": "Höjdpunkter",
+      "updated_at": "Uppdaterad"
+    }
+  }
+}

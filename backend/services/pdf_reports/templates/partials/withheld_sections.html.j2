@@ -1,0 +1,16 @@
+{% if withheld_sections %}
+<section class="report-section withheld-sections">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ labels.withheld_sections_title }}</h2></div>
+    <div class="list-stack">
+        {% for item in withheld_sections %}
+        <article class="list-row withheld-section">
+            <div class="row-title">{{ l(item.section_label) }}</div>
+            <div class="row-copy">{{ item.detail | bi }}</div>
+            {% if item.upgrade_hint %}
+            <div class="row-meta">{{ item.upgrade_hint }}</div>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}

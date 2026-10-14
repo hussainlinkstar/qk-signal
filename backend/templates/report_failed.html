@@ -1,0 +1,18 @@
+{% extends "base_email.html" %}
+{% set preheader = "A background report did not complete successfully." %}
+{% set eyebrow = "Operations" %}
+{% set title = "Report generation failed" %}
+{% set lead = "We could not complete one of your background report jobs. Review the dashboard and retry when ready." %}
+{% set cta_label = "Open Dashboard" %}
+{% set cta_url = dashboard_url %}
+{% set fallback_url = dashboard_url %}
+{% block content %}
+<tr><td class="body">
+    <div class="panel warning">
+        <p class="panel-title danger">Failure details</p>
+        {% if report_name %}<div class="detail-row danger"><span class="detail-label">Report:</span> {{ report_name }}</div>{% endif %}
+        <div class="detail-row danger"><span class="detail-label">Job:</span> {{ job_id }}</div>
+        {% if error_message %}<div class="detail-row danger"><span class="detail-label">Error:</span> {{ error_message }}</div>{% endif %}
+    </div>
+</td></tr>
+{% endblock %}

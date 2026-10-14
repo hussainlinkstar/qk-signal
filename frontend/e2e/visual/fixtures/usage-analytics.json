@@ -1,0 +1,37 @@
+{
+  "daily_usage": [
+    { "date": "2026-08-31", "scans_used": 1 },
+    { "date": "2026-09-02", "scans_used": 2 },
+    { "date": "2026-09-04", "scans_used": 1 },
+    { "date": "2026-09-08", "scans_used": 3 },
+    { "date": "2026-09-10", "scans_used": 2 },
+    { "date": "2026-09-12", "scans_used": 1 },
+    { "date": "2026-09-15", "scans_used": 2 },
+    { "date": "2026-09-17", "scans_used": 4 },
+    { "date": "2026-09-19", "scans_used": 1 },
+    { "date": "2026-09-22", "scans_used": 2 },
+    { "date": "2026-09-24", "scans_used": 3 },
+    { "date": "2026-09-26", "scans_used": 1 },
+    { "date": "2026-09-28", "scans_used": 2 }
+  ],
+  "scans_used": 25,
+  "scans_remaining": 175,
+  "scan_allowance": 200,
+  "reset_at": "2026-10-12T00:00:00.000Z",
+  "renewal_date": "2026-10-12",
+  "current_plan": "plan_executive",
+  "burn_rate_7d": 1.4,
+  "burn_rate_30d": 0.83,
+  "days_until_depletion": null,
+  "depletion_date": null,
+  "will_exhaust_before_renewal": false,
+  "projected_overage": 0,
+  "warning": {
+    "show_warning": false,
+    "remaining": 175,
+    "allowance": 200,
+    "pct_remaining": 0.875,
+    "unit": "scans"
+  },
+  "recommendation": null
+}

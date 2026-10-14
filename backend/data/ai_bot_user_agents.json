@@ -1,0 +1,132 @@
+{
+  "schema_version": "3",
+  "updated_at": "2026-10-09",
+  "bots": [
+    {
+      "name": "OAI-SearchBot",
+      "ua_contains": ["OAI-SearchBot"],
+      "rdns_suffixes": ["openai.com"],
+      "category": "ai_search"
+    },
+    {
+      "name": "GPTBot",
+      "ua_contains": ["GPTBot"],
+      "rdns_suffixes": ["openai.com"],
+      "category": "ai_training"
+    },
+    {
+      "name": "ChatGPT-User",
+      "ua_contains": ["ChatGPT-User"],
+      "rdns_suffixes": ["openai.com"],
+      "category": "ai_search"
+    },
+    {
+      "name": "CCBot",
+      "ua_contains": ["CCBot"],
+      "rdns_suffixes": ["commoncrawl.org"],
+      "category": "ai_training"
+    },
+    {
+      "name": "Google-Extended",
+      "ua_contains": ["Google-Extended"],
+      "rdns_suffixes": ["googlebot.com", "google.com"],
+      "category": "ai_training"
+    },
+    {
+      "name": "PerplexityBot",
+      "ua_contains": ["PerplexityBot"],
+      "rdns_suffixes": ["perplexity.ai"],
+      "category": "ai_search"
+    },
+    {
+      "name": "Claude-SearchBot",
+      "ua_contains": ["Claude-SearchBot"],
+      "rdns_suffixes": ["anthropic.com"],
+      "category": "ai_search"
+    },
+    {
+      "name": "Claude-User",
+      "ua_contains": ["Claude-User"],
+      "rdns_suffixes": ["anthropic.com"],
+      "category": "ai_search"
+    },
+    {
+      "name": "ClaudeBot",
+      "ua_contains": ["ClaudeBot"],
+      "rdns_suffixes": ["anthropic.com"],
+      "category": "ai_training"
+    },
+    {
+      "name": "Anthropic-ai",
+      "ua_contains": ["anthropic-ai"],
+      "rdns_suffixes": ["anthropic.com"],
+      "category": "ai_training"
+    },
+    {
+      "name": "Claude-Web",
+      "ua_contains": ["Claude-Web"],
+      "rdns_suffixes": ["anthropic.com"],
+      "category": "ai_search"
+    },
+    {
+      "name": "Applebot-Extended",
+      "ua_contains": ["Applebot-Extended"],
+      "rdns_suffixes": ["applebot.apple.com"],
+      "category": "assistant"
+    },
+    {
+      "name": "meta-externalagent",
+      "ua_contains": ["meta-externalagent"],
+      "rdns_suffixes": ["facebook.com", "meta.com"],
+      "category": "social_ai"
+    },
+    {
+      "name": "Bytespider",
+      "ua_contains": ["Bytespider"],
+      "rdns_suffixes": ["bytedance.com"],
+      "category": "ai_training"
+    },
+    {
+      "name": "Amazonbot",
+      "ua_contains": ["Amazonbot"],
+      "rdns_suffixes": ["crawl.amazonbot.amazon"],
+      "category": "assistant"
+    },
+    {
+      "name": "FacebookBot",
+      "ua_contains": ["FacebookBot"],
+      "rdns_suffixes": ["facebook.com", "fbsv.net"],
+      "category": "social_ai"
+    },
+    {
+      "name": "cohere-ai",
+      "ua_contains": ["cohere-ai"],
+      "rdns_suffixes": ["cohere.com"],
+      "category": "ai_training"
+    },
+    {
+      "name": "YouBot",
+      "ua_contains": ["YouBot"],
+      "rdns_suffixes": ["you.com"],
+      "category": "ai_search"
+    },
+    {
+      "name": "PetalBot",
+      "ua_contains": ["PetalBot"],
+      "rdns_suffixes": ["aspiegel.com"],
+      "category": "ai_search"
+    },
+    {
+      "name": "Diffbot",
+      "ua_contains": ["Diffbot"],
+      "rdns_suffixes": ["diffbot.com"],
+      "category": "ai_training"
+    },
+    {
+      "name": "Timesbot",
+      "ua_contains": ["Timesbot"],
+      "rdns_suffixes": [],
+      "category": "ai_training"
+    }
+  ]
+}

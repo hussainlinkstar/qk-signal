@@ -1,0 +1,35 @@
+{% extends "base_email.html" %}
+{% set preheader = "A system administration alert requires review." %}
+{% set eyebrow = "Admin Alert" %}
+{% set title = "System alert triggered" %}
+{% set lead = "One of your platform health rules fired. Review the alert payload and take corrective action if needed." %}
+{% set cta_label = "View Alerts Dashboard" %}
+{% set cta_url = dashboard_url ~ "/admin/alerts" %}
+{% set fallback_url = dashboard_url ~ "/admin/alerts" %}
+
+{% block content %}
+<tr>
+    <td class="body">
+        <div class="panel {% if severity == 'critical' %}warning{% endif %}">
+            <p class="panel-title {% if severity == 'critical' %}danger{% endif %}">
+                [{{ severity | upper }}] {{ rule_name }}
+            </p>
+            <div class="detail-row {% if severity == 'critical' %}danger{% endif %}">
+                <span class="detail-label">Metric:</span> <code>{{ metric_key }}</code>
+            </div>
+            <div class="detail-row {% if severity == 'critical' %}danger{% endif %}">
+                <span class="detail-label">Current value:</span> {{ current_value }}
+            </div>
+            <div class="detail-row {% if severity == 'critical' %}danger{% endif %}">
+                <span class="detail-label">Threshold:</span> {{ threshold_value }}
+            </div>
+            <div class="detail-row {% if severity == 'critical' %}danger{% endif %}">
+                <span class="detail-label">Message:</span> {{ message }}
+            </div>
+            <div class="detail-row {% if severity == 'critical' %}danger{% endif %}">
+                <span class="detail-label">Timestamp (UTC):</span> {{ timestamp }}
+            </div>
+        </div>
+    </td>
+</tr>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base_email.html" %}
+{% set preheader = "Your latest payment needs attention." %}
+{% set eyebrow = "Billing" %}
+{% set title = "Payment action required" %}
+{% set lead = "We could not complete the latest billing attempt for your workspace. Update billing details to avoid service interruption." %}
+{% set cta_label = "Review Billing" %}
+{% set cta_url = manage_billing_url %}
+{% set fallback_url = manage_billing_url %}
+{% block content %}
+<tr><td class="body">
+    <p class="copy">Hi {{ recipient_name }},</p>
+    <div class="panel warning">
+        <p class="panel-title danger">Action needed</p>
+        {% if formatted_amount %}<div class="detail-row danger"><span class="detail-label">Amount:</span> {{ formatted_amount }}</div>{% endif %}
+        <div class="detail-row danger"><span class="detail-label">Next step:</span> open billing, update payment details, and retry the invoice.</div>
+    </div>
+</td></tr>
+{% endblock %}

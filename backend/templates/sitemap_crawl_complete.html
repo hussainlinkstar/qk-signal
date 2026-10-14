@@ -1,0 +1,24 @@
+{% extends "base_email.html" %}
+
+{% set eyebrow = "Sitemap Crawl" %}
+{% set title = "Your sitemap crawl is complete" %}
+{% set lead = "The sitemap-level audit batch has finished and the aggregate report is ready." %}
+{% set cta_url = report_url or dashboard_url %}
+{% set cta_label = "View Crawl Report" %}
+
+{% block content %}
+<tr>
+    <td class="body">
+        <div class="panel">
+            <p class="panel-title">Run summary</p>
+            <div class="detail-row"><span class="detail-label">Project:</span> {{ project_name }}</div>
+            <div class="detail-row"><span class="detail-label">Sitemap:</span> {{ sitemap_url }}</div>
+            <div class="detail-row"><span class="detail-label">Total URLs:</span> {{ total_urls }}</div>
+            <div class="detail-row"><span class="detail-label">Completed:</span> {{ completed_urls }}</div>
+            <div class="detail-row"><span class="detail-label">Failed:</span> {{ failed_urls }}</div>
+        </div>
+
+        <p class="copy">Open the report to review aggregate AIO and SEO scores, score distribution, top issue categories, and worst-performing pages.</p>
+    </td>
+</tr>
+{% endblock %}

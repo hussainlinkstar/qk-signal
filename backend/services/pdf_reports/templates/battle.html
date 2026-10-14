@@ -1,0 +1,58 @@
+{% extends "base_report.html.j2" %}
+
+{% block cover_page %}
+<section class="report-cover">
+    <div class="cover-accent-strip"></div>
+    <div class="cover-upper">
+        <div class="cover-brand">
+            {% if branding.cover_logo_data_uri or branding.logo_data_uri %}
+            <img class="cover-logo" src="{{ branding.cover_logo_data_uri or branding.logo_data_uri }}" alt="{{ branding.agency_name or branding.report_title }}" />
+            {% else %}
+            <div class="cover-brand-text">{{ branding.agency_name or branding.report_title }}</div>
+            {% endif %}
+            <div class="cover-brand-text">{{ l("COMPETITORS") }}</div>
+        </div>
+    </div>
+    <div class="cover-body">
+        <div class="cover-grid-overlay"></div>
+        <div class="cover-accent-line"></div>
+        <div class="cover-kicker">{{ branding.report_title }}</div>
+        <h1 class="cover-title">{{ target.name | bi }}</h1>
+        <p class="cover-subtitle">{{ branding.report_subtitle }}</p>
+        <div class="cover-cards">
+            <div class="cover-card">
+                <div class="eyebrow">{{ l("Target") }}</div>
+                <div class="cover-card-value">{{ target.url or target.name }}</div>
+            </div>
+            <div class="cover-card">
+                <div class="eyebrow">{{ l("Overall Score") }}</div>
+                <div class="cover-card-value">{{ scores.overall if scores.overall is not none else "-" }}</div>
+            </div>
+            <div class="cover-card last">
+                <div class="eyebrow">{{ l("Strategic Conclusion") }}</div>
+                <div class="cover-card-value">{{ (narrative.market_dominance_blueprint or narrative.strategic_summary or narrative.neural_executive_summary or l("Competitive diagnostic ready.")) | bi }}</div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block context_page %}
+{% include "partials/context_page.html.j2" %}
+{% endblock %}
+
+{% block toc_page %}
+{% include "partials/toc_page.html.j2" %}
+{% endblock %}
+
+{% block analysis_body %}
+{% include "partials/battle_analysis.html.j2" %}
+{% endblock %}
+
+{% block withheld_sections %}
+{% include "partials/withheld_sections.html.j2" %}
+{% endblock %}
+
+{% block integrity_page %}
+{% include "partials/integrity_page.html.j2" %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base_email.html" %}
+{% set preheader = email_i18n.preheader or "Your free audit is ready, see how AI and search see your site" %}
+{% set eyebrow = email_i18n.eyebrow or "Guest Audit Complete" %}
+{% set title = email_i18n.title or "Your audit report is waiting" %}
+{% set lead = email_i18n.lead or ("You ran a free audit on " ~ target_name ~ ". Here are your scores.") %}
+{% set cta_label = email_i18n.cta_label or "Create Free Account to Save" %}
+{% set cta_url = signup_url %}
+{% set fallback_url = signup_url %}
+{% block content %}
+<tr><td class="body">
+    <table role="presentation" class="score-grid"><tr>
+        <td class="score-cell"><div class="score-card aio"><p class="score-label">{{ email_i18n.aio_label or "AIO score" }}</p><p class="score-value">{{ aio_score if aio_score is not none else "--" }}<small>/100</small></p></div></td>
+        <td class="score-cell score-cell-last"><div class="score-card seo"><p class="score-label">{{ email_i18n.seo_label or "SEO score" }}</p><p class="score-value">{{ seo_score if seo_score is not none else "--" }}<small>/100</small></p></div></td>
+    </tr></table>
+    <p class="copy">Overall Score: <strong>{{ overall_score }}/100</strong></p>
+    <p class="copy">Sign up now to claim this audit, unlock the full AIO breakdown, and track your progress over time.</p>
+</td></tr>
+{% endblock %}

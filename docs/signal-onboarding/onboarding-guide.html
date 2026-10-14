@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Qiko Signal - Onboarding Guide</title>
+<style>
+  /* ------------------------------------------------------------------
+     Visual system taken from the Qiko Signal PDF report source
+     (Qiko-Signal-MVP-TBR/report-examples/report-source.html) so this
+     guide prints as part of the same family as a real Signal report.
+     Fonts are embedded locally: Satoshi (display), Inter (body),
+     Roboto Mono (labels), the same trio the product uses.
+     ------------------------------------------------------------------ */
+
+  @font-face { font-family:'Satoshi'; src:url('assets/fonts/Satoshi-400.woff2') format('woff2'); font-weight:400; font-style:normal; }
+  @font-face { font-family:'Satoshi'; src:url('assets/fonts/Satoshi-500.woff2') format('woff2'); font-weight:500; font-style:normal; }
+  @font-face { font-family:'Satoshi'; src:url('assets/fonts/Satoshi-700.woff2') format('woff2'); font-weight:700; font-style:normal; }
+  @font-face { font-family:'Satoshi'; src:url('assets/fonts/Satoshi-900.woff2') format('woff2'); font-weight:900; font-style:normal; }
+
+  @font-face { font-family:'Inter'; src:url('assets/fonts/Inter-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; }
+  @font-face { font-family:'Inter'; src:url('assets/fonts/Inter-Medium.ttf') format('truetype'); font-weight:500; font-style:normal; }
+  @font-face { font-family:'Inter'; src:url('assets/fonts/Inter-SemiBold.ttf') format('truetype'); font-weight:600; font-style:normal; }
+  @font-face { font-family:'Inter'; src:url('assets/fonts/Inter-Bold.ttf') format('truetype'); font-weight:700; font-style:normal; }
+
+  @font-face { font-family:'Roboto Mono'; src:url('assets/fonts/RobotoMono-Regular.ttf') format('truetype'); font-weight:400; font-style:normal; }
+  @font-face { font-family:'Roboto Mono'; src:url('assets/fonts/RobotoMono-Medium.ttf') format('truetype'); font-weight:500; font-style:normal; }
+
+  :root{
+    --ink:#0C0F16; --paper:#F6F7F9; --panel:#FFFFFF;
+    --t-1:#0C0F16; --t-2:#565E6E; --t-3:#8A92A1;
+    --line:#E8EAEE; --line-2:#EEF0F3;
+    --blue:#2563EB; --purple:#9333EA; --cyan:#22D3EE;
+    --good:#12A150; --warn:#D9930B; --bad:#E5484D;
+    --good-s:#E6F5EC; --warn-s:#FBF2DF; --bad-s:#FCEBEB;
+  }
+
+  @page {
+    size: A4;
+    margin: 14mm 13mm 15mm 13mm;
+    @bottom-left {
+      content: "Qiko Signal - Onboarding guide";
+      font-family: 'Roboto Mono', monospace; font-size: 7pt;
+      letter-spacing: .08em; color: #8A92A1;
+    }
+    @bottom-right {
+      content: counter(page);
+      font-family: 'Roboto Mono', monospace; font-size: 7pt;
+      color: #8A92A1;
+    }
+  }
+  @page:first { @bottom-left { content: ""; } @bottom-right { content: ""; } }
+
+  * { box-sizing: border-box; }
+  body{
+    margin:0; background:#fff; color:var(--t-1);
+    font-family:'Inter','Helvetica Neue',Arial,sans-serif;
+    font-size:9.3pt; line-height:1.46;
+  }
+  h1,h2,h3,.disp{ font-family:'Satoshi','Inter',Arial,sans-serif; letter-spacing:-0.02em; }
+  .page{ page-break-after:always; }
+  .page:last-child{ page-break-after:auto; }
+  .mono{ font-family:'Roboto Mono','SFMono-Regular',Consolas,monospace; }
+
+  /* ---------- cover ---------- */
+  .cover{ padding-top:20mm; }
+  .brand{ display:flex; align-items:center; gap:9px; margin-bottom:30mm; }
+  .brand-logo{ height:26px; width:auto; display:block; }
+  .brand-sig{ font-family:'Satoshi','Inter',sans-serif; font-weight:500; font-size:15pt; color:var(--t-3); letter-spacing:-0.02em; }
+  .cover .eyebrow{
+    font-family:'Roboto Mono',monospace; font-size:8pt; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--purple); margin-bottom:10px;
+  }
+  .cover h1{ font-size:30pt; font-weight:900; margin:0 0 10px; line-height:1.08; }
+  .cover .dom{ font-size:13pt; color:var(--t-2); margin-bottom:22mm; max-width:140mm; }
+  .cover-scores{ display:flex; gap:12px; margin-bottom:22mm; }
+  .cover-score{
+    flex:1; border:1px solid var(--line); border-radius:14px; padding:16px 18px;
+  }
+  .cover-score.aio{ border-left:3px solid var(--purple); }
+  .cover-score.seo{ border-left:3px solid var(--good); }
+  .cover-score.steps{ border-left:3px solid var(--blue); }
+  .cover-score .cs-l{
+    font-family:'Roboto Mono',monospace; font-size:7.5pt; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--t-3);
+  }
+  .cover-score .cs-v{ font-weight:900; font-size:26pt; line-height:1; margin:8px 0 3px; }
+  .cover-score .cs-v small{ font-size:10pt; font-weight:600; color:var(--t-3); }
+  .cover-score .cs-d{ font-size:8.5pt; color:var(--t-2); }
+  .cover-meta{ border-top:1px solid var(--line); padding-top:12px; font-size:9pt; color:var(--t-3); }
+  .cover-meta b{ color:var(--t-1); font-weight:600; }
+  .cover-meta div{ margin-bottom:3px; }
+
+  /* ---------- generic section ---------- */
+  .sec-head{ display:flex; align-items:baseline; gap:10px; margin:0 0 4px; }
+  .sec-head h2{ font-size:14.5pt; font-weight:800; margin:0; }
+  .sec-head .num{
+    font-family:'Roboto Mono',monospace; font-size:8pt; color:var(--purple);
+    letter-spacing:.1em;
+  }
+  .sec-sub{ color:var(--t-2); font-size:9pt; margin:0 0 12px; max-width:160mm; }
+  .rule{ height:1px; background:var(--line); margin:0 0 13px; }
+
+  h3.block{ font-size:10.5pt; font-weight:700; margin:13px 0 5px; }
+  h3.block:first-child{ margin-top:0; }
+  p{ margin:0 0 7px; }
+  p:last-child{ margin-bottom:0; }
+  ul.plain{ margin:0 0 7px; padding-left:15px; }
+  ul.plain li{ margin-bottom:4px; }
+  ul.plain li:last-child{ margin-bottom:0; }
+
+  .card{ border:1px solid var(--line); border-radius:12px; padding:11px 14px; margin-bottom:9px; break-inside:avoid; }
+  .card h3{ font-size:10pt; font-weight:700; margin:0 0 4px; }
+  .card p{ margin:0 0 5px; color:var(--t-2); font-size:9pt; }
+  .card p:last-child{ margin-bottom:0; }
+
+  /* ---------- recommendation block ---------- */
+  .verdict{
+    border:1px solid rgba(147,51,234,.18); border-radius:14px; padding:11px 14px;
+    background:linear-gradient(100deg,rgba(37,99,235,.045),rgba(147,51,234,.045));
+    margin-bottom:9px; break-inside:avoid;
+  }
+  .verdict .v-l{
+    font-family:'Roboto Mono',monospace; font-size:7.5pt; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--purple); margin-bottom:5px;
+  }
+  .verdict p{ margin:0; font-size:9.3pt; line-height:1.5; }
+  .verdict p + p{ margin-top:6px; }
+
+  /* ---------- skip consequence / not-yet state ---------- */
+  .pending{
+    border:1px dashed var(--line); border-radius:12px; padding:11px 14px;
+    color:var(--t-2); font-size:9pt; background:var(--paper); margin-bottom:9px;
+    break-inside:avoid;
+  }
+  .pending b{ color:var(--t-1); font-weight:600; display:block; margin-bottom:3px; font-size:9.5pt; }
+  .pending p{ margin:0 0 5px; }
+  .pending p:last-child{ margin-bottom:0; }
+
+  /* ---------- confirmation block ---------- */
+  .confirm{
+    border:1px solid rgba(18,161,80,.22); border-radius:12px; padding:11px 14px;
+    background:var(--good-s); font-size:9pt; margin-bottom:9px; break-inside:avoid;
+  }
+  .confirm b{
+    display:block; margin-bottom:4px; font-size:7.5pt; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--good);
+    font-family:'Roboto Mono',monospace; font-weight:500;
+  }
+  .confirm p{ margin:0 0 5px; color:var(--t-1); }
+  .confirm p:last-child{ margin-bottom:0; }
+  .confirm ul{ margin:0; padding-left:15px; }
+  .confirm li{ margin-bottom:4px; }
+  .confirm li:last-child{ margin-bottom:0; }
+
+  /* ---------- two-column question cards ---------- */
+  .qgrid{ display:flex; gap:10px; margin-bottom:10px; break-inside:avoid; }
+  .qcard{ flex:1; border:1px solid var(--line); border-radius:12px; padding:11px 14px; }
+  .qcard .q{ font-size:10pt; font-weight:700; margin-bottom:2px; font-family:'Satoshi','Inter',sans-serif; }
+  .qcard .qs{ font-size:8.5pt; color:var(--t-3); margin-bottom:7px; }
+  .qcard .qn{ font-size:9pt; color:var(--t-2); margin:0; }
+
+  /* ---------- tables ---------- */
+  table.metrics{ width:100%; border-collapse:collapse; margin-bottom:10px; }
+  table.metrics th{
+    text-align:left; font-family:'Roboto Mono',monospace; font-size:7.5pt;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--t-3);
+    font-weight:400; padding:0 8px 7px 0; border-bottom:1px solid var(--line);
+  }
+  table.metrics td{ padding:7px 8px 7px 0; border-bottom:1px solid var(--line-2); vertical-align:top; font-size:9pt; }
+  table.metrics tr:last-child td{ border-bottom:none; }
+  table.metrics .m-name{ font-weight:600; }
+  table.metrics .m-desc{ font-size:8.5pt; color:var(--t-3); }
+  table.metrics .m-val{ font-weight:700; white-space:nowrap; text-align:right; font-family:'Roboto Mono',monospace; font-size:9pt; }
+  table.metrics td.c{ text-align:center; font-family:'Roboto Mono',monospace; font-size:9pt; }
+
+  .pill{
+    display:inline-block; font-family:'Roboto Mono',monospace; font-size:7pt;
+    letter-spacing:.05em; padding:2px 7px; border-radius:5px; white-space:nowrap;
+  }
+  .pill.good{ color:var(--good); background:var(--good-s); }
+  .pill.warn{ color:var(--warn); background:var(--warn-s); }
+  .pill.bad{ color:var(--bad); background:var(--bad-s); }
+  .pill.cat-chip{ color:var(--t-2); background:var(--line-2); }
+
+  /* ---------- engine chips ---------- */
+  .chips{ border:1px solid var(--line); border-radius:12px; padding:9px 11px; margin-bottom:10px; break-inside:avoid; }
+  .chips span{
+    display:inline-block; margin:2px 5px 2px 0; padding:4px 10px; border-radius:6px;
+    background:rgba(147,51,234,.10); color:var(--purple);
+    font-family:'Roboto Mono',monospace; font-size:8pt; letter-spacing:.04em;
+    text-transform:uppercase;
+  }
+
+  /* ---------- contents ---------- */
+  ol.toc{ list-style:none; margin:0; padding:0; counter-reset:toc; }
+  ol.toc li{
+    counter-increment:toc; display:flex; align-items:baseline; gap:10px;
+    padding:6px 0; border-bottom:1px solid var(--line-2); font-size:9.3pt;
+  }
+  ol.toc li::before{
+    content:counter(toc,decimal-leading-zero);
+    font-family:'Roboto Mono',monospace; font-size:8pt; color:var(--purple);
+  }
+  ol.toc li .t{ font-weight:600; }
+  ol.toc li .d{ color:var(--t-3); font-size:9pt; }
+
+  .stepline{
+    display:flex; gap:10px; padding:7px 0; border-top:1px solid var(--line-2); font-size:9pt;
+  }
+  .stepline:first-of-type{ border-top:none; }
+  .stepline .sl{ width:52mm; flex:none; color:var(--t-3); }
+  .stepline .sv{ flex:1; }
+
+  .footnote{ font-size:8.5pt; color:var(--t-3); margin-top:14px; line-height:1.5; }
+  .quote{ font-style:normal; color:var(--t-1); }
+</style>
+</head>
+<body>
+
+<!-- ============ 1. COVER ============ -->
+<section class="page cover">
+  <div class="brand">
+    <img class="brand-logo" src="assets/qiko-logo.png" alt="Qiko">
+    <span class="brand-sig">Signal</span>
+  </div>
+
+  <div class="eyebrow">Onboarding guide</div>
+  <h1>Setting up your first<br>project in Signal</h1>
+  <div class="dom">Five steps, in order, with the reasoning behind each one: what you are deciding, what we recommend, what it costs to skip, and how you know it worked.</div>
+
+  <div class="cover-scores">
+    <div class="cover-score steps">
+      <div class="cs-l">Setup steps</div>
+      <div class="cs-v">5</div>
+      <div class="cs-d">Two required, three optional</div>
+    </div>
+    <div class="cover-score aio">
+      <div class="cs-l">Your first scan</div>
+      <div class="cs-v">~2<small> min</small></div>
+      <div class="cs-d">At the default depth</div>
+    </div>
+    <div class="cover-score seo">
+      <div class="cs-l">What you end with</div>
+      <div class="cs-v">2<small> scores</small></div>
+      <div class="cs-d">AIO score and SEO score, plus a ranked fix list</div>
+    </div>
+  </div>
+
+  <div class="cover-meta">
+    <div><b>Who this is for:</b> the person who will own the Signal account day to day.</div>
+    <div><b>What you need before you start:</b> the domain you want measured, and access to your Google Analytics account if you want traffic figures.</div>
+    <div><b>How to use it:</b> work through steps 1 to 5 in the order shown. The in-app wizard follows the same order, so you can read a section and then do it.</div>
+  </div>
+</section>
+
+<!-- ============ 2. CONTENTS + BEFORE YOU START ============ -->
+<section class="page">
+  <div class="sec-head"><span class="num">00</span><h2>What this guide covers</h2></div>
+  <p class="sec-sub">The wizard has five steps. Two of them cannot be skipped, because without them there is nothing to measure. The other three are optional, and each one leaves a specific part of the product empty if you skip it.</p>
+  <div class="rule"></div>
+
+  <ol class="toc">
+    <li><span class="t">Before you start</span><span class="d">Account housekeeping, and what a scan actually is</span></li>
+    <li><span class="t">The domain to track</span><span class="d">Required. The site every score is tied to</span></li>
+    <li><span class="t">Market and reporting language</span><span class="d">Required. Where you compete, and the language reports are written in</span></li>
+    <li><span class="t">Competitors to track</span><span class="d">Optional. Up to 5. Plan dependent</span></li>
+    <li><span class="t">Connect Google Analytics</span><span class="d">Optional. How traffic figures become real numbers</span></li>
+    <li><span class="t">Your first scan</span><span class="d">Depth, runtime, and what lands on the dashboard</span></li>
+    <li><span class="t">Your first week</span><span class="d">Read, dismiss, fix, rescan, compare</span></li>
+    <li><span class="t">Reference</span><span class="d">Plans, depths and the engines measured</span></li>
+  </ol>
+
+  <h3 class="block">Before you start</h3>
+  <p>Three pieces of housekeeping sit outside the wizard. None of them takes long, and the first one matters more than it looks.</p>
+
+  <div class="card">
+    <h3>Verify your email</h3>
+    <p>Signal asks for this on the dashboard checklist because password recovery and notifications both depend on it. If you never verify, you can still use the product, but you cannot recover the account yourself and scan-completion notices have nowhere to go.</p>
+  </div>
+  <div class="card">
+    <h3>Name your workspace</h3>
+    <p>A workspace holds your projects. The default name is literally "Workspace", which is fine for one person and confusing for a team. Rename it in Settings before you invite anyone.</p>
+  </div>
+  <div class="card">
+    <h3>Understand the unit: one scan</h3>
+    <p>Everything in Signal is counted in scans. Starting a scan uses one, and that is true whether the scan succeeds, finishes with degraded results, or fails. A failure is not a free retry.</p>
+    <p>Your allowance is a rolling 30-day window, not a calendar month. The window resets when your oldest counted scan drops out of it, which is why the start-scan page shows "resets in N days" rather than a date at the start of the month.</p>
+  </div>
+
+  <div class="verdict">
+    <div class="v-l">Why this matters before step 1</div>
+    <p>On the free Starter plan the allowance is one scan per 30-day window. If you launch a scan before you have set the market and the language, you have spent that scan measuring a project that is not configured, and you wait out the window before you can measure it properly.</p>
+    <p>So: finish steps 1 and 2 first. Then scan.</p>
+  </div>
+</section>
+
+<!-- ============ 3. STEP 1 ============ -->
+<section class="page">
+  <div class="sec-head"><span class="num">01</span><h2>The domain to track</h2></div>
+  <p class="sec-sub">Step 1 of 5. Required. This is the site Signal audits against search and the answer engines.</p>
+  <div class="rule"></div>
+
+  <h3 class="block">The decision you are making</h3>
+  <p>You are choosing the single domain that this project represents. Every score, every fix and every comparison in the project is tied to it. A project tracks one domain, not a set of them.</p>
+  <p>The field wants a bare domain, for example <span class="mono">yourdomain.com</span>. You can paste a full URL: the scheme, the <span class="mono">www.</span> prefix and anything after the first slash are stripped for you, and the result is lowercased. What is not accepted is a brand name on its own, or anything without a dot in it, because that is not an address Signal can fetch.</p>
+
+  <div class="verdict">
+    <div class="v-l">What we recommend</div>
+    <p>Use the canonical public domain your customers actually reach, the one that does not redirect anywhere else. Not a staging host, not a marketing subdomain you are about to retire, not a deep landing-page path.</p>
+    <p>The reason is comparability. Scores are only ever compared with scores for the same target, so the domain you pick here is the identity your history accumulates against. Changing it later does not carry that history across.</p>
+  </div>
+
+  <div class="pending">
+    <b>If you skip it</b>
+    <p>You cannot. Continue stays blocked, and the field turns red, until the value looks like a domain. This is the one place in the wizard where there is no Skip.</p>
+  </div>
+
+  <div class="confirm">
+    <b>You know it worked when</b>
+    <p>Continue advances you to step 2, and the field keeps the cleaned-up version of what you typed rather than the raw paste.</p>
+    <p>Note that the project itself is not created yet. Signal creates it at the end of step 2, once it also knows your market and language, so there is no half-made project sitting in your workspace if you stop here. If you leave the project name blank, the domain becomes the name.</p>
+  </div>
+</section>
+
+<!-- ============ 4. STEP 2 ============ -->
+<section class="page">
+  <div class="sec-head"><span class="num">02</span><h2>Market and reporting language</h2></div>
+  <p class="sec-sub">Step 2 of 5. Required. Where your audience searches, and which language reports are written in.</p>
+  <div class="rule"></div>
+
+  <h3 class="block">The decision you are making</h3>
+  <div class="qgrid">
+    <div class="qcard">
+      <div class="q">Target market</div>
+      <div class="qs">A country, or Global</div>
+      <p class="qn">Choose from Global plus a full country list. Global is the honest answer when you genuinely do not have one market, and it records no target country rather than a made-up one.</p>
+    </div>
+    <div class="qcard">
+      <div class="q">Reporting language</div>
+      <div class="qs">English or Arabic</div>
+      <p class="qn">These are the two languages Signal produces reports in. An Arabic report is typeset right to left throughout, including the PDF.</p>
+    </div>
+  </div>
+
+  <h3 class="block">Why the market field earns more care than it looks</h3>
+  <p>The market is not a label on a dashboard. It travels into the audit itself: it is used when Signal works out who your competitors are, and it is written into the report as the market the site was assessed for.</p>
+  <p>That is also why the field is a proper list rather than free text. A plausible-looking value that is not a real country code once reached the analysis stage on a site whose homepage was missing its title and heading, and the model read that value as the brand name and recommended putting it in the page title. Picking from the list removes that whole class of mistake.</p>
+
+  <div class="verdict">
+    <div class="v-l">What we recommend</div>
+    <p>Pick the one country that most of your buyers are in, even if you also sell elsewhere. A specific market gives sharper competitor discovery than Global does.</p>
+    <p>Choose Global only if you really have no primary market. Do not pick a country you are hoping to expand into: the audit will assess you as if you already compete there.</p>
+    <p>For language, pick the language the people who will read the report speak. Both English and Arabic are fully supported, so this is a reader decision, not a capability decision.</p>
+  </div>
+
+  <div class="pending">
+    <b>If you skip it</b>
+    <p>You cannot skip the step, but you can leave the defaults. The defaults are Global and English, which is a legitimate configuration and not an error state. It simply means Signal has no country to narrow competitor discovery with.</p>
+  </div>
+
+  <div class="confirm">
+    <b>You know it worked when</b>
+    <p>Pressing Continue creates the project. The button shows a working state while that happens, then step 3 opens. From that moment the project exists in your workspace and appears on the dashboard, even if you abandon the rest of the wizard.</p>
+    <p>If creation fails, the values you typed are kept so you can retry without re-entering them. Both fields remain editable later in project Settings.</p>
+  </div>
+</section>
+
+<!-- ============ 5. STEP 3 ============ -->
+<section class="page">
+  <div class="sec-head"><span class="num">03</span><h2>Competitors to track</h2></div>
+  <p class="sec-sub">Step 3 of 5. Optional, up to 5. This is who Signal benchmarks you against.</p>
+  <div class="rule"></div>
+
+  <h3 class="block">The decision you are making</h3>
+  <p>You are naming the sites you want to be measured next to. Enter them as domains, one at a time. A brand name is not enough: Signal needs the address, because it has to fetch and measure the site. Duplicates are rejected, and the wizard stops you at five.</p>
+
+  <h3 class="block">Check your plan before you fill this in</h3>
+  <p>Competitor tracking is included from the <b>Specialist</b> plan upwards. On Starter and Standard it is not part of the plan, and the platform refuses to save a competitor with a message naming Specialist. In the wizard that appears as an error and the step does not advance.</p>
+
+  <div class="pending">
+    <b>On Starter or Standard</b>
+    <p>Leave this step empty and use Skip / Continue. Trying to add a competitor here will not work, and it is a plan boundary rather than a bug.</p>
+  </div>
+
+  <div class="verdict">
+    <div class="v-l">What we recommend</div>
+    <p>If your plan includes it, add three to five real, direct rivals: the sites a buyer would genuinely shortlist against you. Each one as its own domain.</p>
+    <p>Resist the urge to add the biggest names in your sector if you do not actually compete with them. A comparison against a brand operating at a different scale tells you very little you can act on, and it occupies one of only five slots.</p>
+    <p>You do not have to decide now. Competitors can be added, renamed and removed later from project Settings, and adding one does not require a new scan to take effect on the next one.</p>
+  </div>
+
+  <div class="pending">
+    <b>If you skip it</b>
+    <p>Competitor comparison stays empty until you add one. That is the product's own wording, and it is literal: the comparison surfaces have nothing to show, and the competitor-comparison stage of a scan has nothing to compare you against. Nothing else about your scan changes, and no score is penalised.</p>
+  </div>
+
+  <div class="confirm">
+    <b>You know it worked when</b>
+    <p>Each competitor appears immediately as a chip with a remove control next to it. After the wizard they show under project Settings, in the Tracked competitors section, and on the project's Competitors page.</p>
+  </div>
+</section>
+
+<!-- ============ 6. STEP 4 ============ -->
+<section class="page">
+  <div class="sec-head"><span class="num">04</span><h2>Connect Google Analytics</h2></div>
+  <p class="sec-sub">Step 4 of 5. Optional, but it is how traffic and channel mix get real numbers.</p>
+  <div class="rule"></div>
+
+  <h3 class="block">The decision you are making</h3>
+  <p>You are deciding whether Signal may read your analytics data. Everything else in Signal is measured from the outside: your pages, the search signals, the answer engines. Traffic is the one thing that can only come from you.</p>
+
+  <div class="card">
+    <h3>The privacy boundary, as the product states it</h3>
+    <p class="quote">"Signal reads only the traffic data you authorise. Nothing else in your account is touched, and you can disconnect any time."</p>
+  </div>
+
+  <h3 class="block">How the connection actually works</h3>
+  <p>Connect GA4 starts a real Google sign-in. You leave Signal, approve the access at Google, and come back. Because of that, a click on the button never by itself marks you as connected: when you return, Signal re-reads the connection state from its own records and only then shows Connected. If you abandon the Google screen, nothing is recorded.</p>
+  <p>If the environment you are using has no Google credentials configured at all, no Connect button is shown and the step says so plainly instead of offering something that cannot work.</p>
+
+  <div class="pending">
+    <b>The part that is easy to miss</b>
+    <p>Connecting Google is the first of two moves. The connection is held at workspace level, and the project still needs to be pointed at the specific analytics property that belongs to it. You do that in project Settings, under Connected data: choose the Google Analytics account and switch on Use this source.</p>
+    <p>Until a property is bound to the project, session figures correctly report that they come from Google Analytics and that no property is connected. The connection is real; the project just has not been told which property to read.</p>
+  </div>
+
+  <div class="verdict">
+    <div class="v-l">What we recommend</div>
+    <p>Connect it, and bind the property in the same sitting. The two-step shape is the single most common reason a customer believes analytics is connected while the traffic section stays empty.</p>
+    <p>If you do not own the analytics account, skip the step now rather than waiting on someone. Signal supports connecting it later, and project Settings also allows access shared by a client as the source instead of your own account.</p>
+  </div>
+
+  <div class="pending">
+    <b>If you skip it</b>
+    <p>The traffic section stays empty until you connect. Scores, fixes and answer-engine measurement are unaffected: none of them is derived from analytics.</p>
+  </div>
+
+  <div class="confirm">
+    <b>You know it worked when</b>
+    <ul>
+      <li>The wizard button reads Connected and is no longer clickable.</li>
+      <li>In project Settings, under Connected data, the Google Analytics row shows Connected with an account selected.</li>
+      <li>The project's traffic figures stop reporting that no property is connected.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 7. STEP 5 ============ -->
+<section class="page">
+  <div class="sec-head"><span class="num">05</span><h2>Your first scan</h2></div>
+  <p class="sec-sub">Step 5 of 5. The point of all of it: your first audit results.</p>
+  <div class="rule"></div>
+
+  <h3 class="block">What Finish actually does</h3>
+  <p>Run my first scan takes you to the start-scan page for the project you just created. It does not launch anything yet. That page is where you see your allowance, choose how thorough the scan should be, and press Start the audit. Nothing is spent until you do.</p>
+  <p>This is deliberate. The allowance is stated before you commit, not at the moment of refusal: your plan, your limit, how many scans are left, when the window resets, and the line "This scan uses 1 of your remaining scans."</p>
+
+  <h3 class="block">Choosing the depth</h3>
+  <p>Depth trades coverage for time. These are the product's own figures, shown in the same table you will see on the page. They are typical estimates rather than commitments, and a large site takes longer.</p>
+  <table class="metrics">
+    <thead><tr><th>Tier</th><th>What you get</th><th style="text-align:right">Typical time</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="m-name">Fast</td>
+        <td>Top pages only, core engines</td>
+        <td class="m-val">~5 min</td>
+      </tr>
+      <tr>
+        <td class="m-name">Smart</td>
+        <td>Key pages, all measured engines, competitor comparison</td>
+        <td class="m-val">~15 min</td>
+      </tr>
+      <tr>
+        <td class="m-name">Deep judgment</td>
+        <td>Whole site, all engines, per-prompt detail and agent review<div class="m-desc">Included from Specialist upwards. On other plans it is shown locked, with the plan that unlocks it named.</div></td>
+        <td class="m-val">~45 min</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="verdict">
+    <div class="v-l">What we recommend</div>
+    <p>Run Fast first. It is the default, it is available on every plan, and in a few minutes you have a baseline and a fix list. Spend the deeper tiers once you have worked through the obvious problems, so the extra detail is about things you have not already found.</p>
+    <p>If you are on Starter, with one scan per 30-day window, this is not a close call: Fast, and only after steps 1 and 2 are set correctly.</p>
+  </div>
+
+  <h3 class="block">What is measured, and what is not</h3>
+  <p>The answer engines Signal measures against are listed on the start-scan page. Every plan measures all of them; choosing a subset is the only part of that section that depends on your plan.</p>
+  <div class="chips">
+    <span>ChatGPT</span><span>Gemini</span><span>Perplexity</span><span>Claude</span><span>Grok</span><span>DeepSeek</span>
+  </div>
+  <p>There is no fixed number of prompts in a scan. Prompts are the questions you choose to track for the project, and your plan sets how many can be active at once. The product shows your own cap with how many you have used and how many remain, so you never have to guess it.</p>
+
+  <div class="pending">
+    <b>A new project starts with no prompts</b>
+    <p>That means the "Appearance in AI answers" figure has nothing to compute from after your first scan, and says so rather than showing a zero. Add prompts from the AIO detail page once you have your baseline, and that figure starts filling in.</p>
+  </div>
+</section>
+
+<!-- ============ 8. DURING AND AFTER THE SCAN ============ -->
+<section class="page">
+  <div class="sec-head"><span class="num">06</span><h2>While it runs, and what lands on the dashboard</h2></div>
+  <p class="sec-sub">Signal reports status per stage, not a percentage. Each stage shows its honest state word.</p>
+  <div class="rule"></div>
+
+  <h3 class="block">The five stages</h3>
+  <div class="stepline"><div class="sl">Crawl</div><div class="sv">Key pages fetched and rendered</div></div>
+  <div class="stepline"><div class="sl">Technical signals</div><div class="sv">Indexation, structured data, speed</div></div>
+  <div class="stepline"><div class="sl">Answer-engine measurement</div><div class="sv">Testing prompts across the measured engines</div></div>
+  <div class="stepline"><div class="sl">Competitor comparison</div><div class="sv">Against the competitors you track</div></div>
+  <div class="stepline"><div class="sl">Synthesis</div><div class="sv">New scores, deltas and the updated fix list</div></div>
+
+  <p style="margin-top:12px">Each row carries one of a small set of state words: queued, running, succeeded, degraded, failed or skipped. There is no progress bar, because a percentage would be invented. A stage that could not finish says which one it was, and the stages that completed before it are kept.</p>
+
+  <div class="card">
+    <h3>It is safe to leave the page</h3>
+    <p>The scan runs on Signal's side. Close the tab, come back later, and the page resumes where the scan actually is. The result lands on your dashboard either way.</p>
+  </div>
+
+  <h3 class="block">What you get when it succeeds</h3>
+  <div class="qgrid">
+    <div class="qcard">
+      <div class="q">AIO score</div>
+      <div class="qs">Out of 100</div>
+      <p class="qn">How clearly your website and business information can support AI answers.</p>
+    </div>
+    <div class="qcard">
+      <div class="q">SEO score</div>
+      <div class="qs">Out of 100</div>
+      <p class="qn">How ready your website is for Google, based on content and technical checks.</p>
+    </div>
+  </div>
+
+  <div class="confirm">
+    <b>You know it worked when</b>
+    <ul>
+      <li>The run page reads succeeded, and tells you how long the scan took.</li>
+      <li>It confirms one scan was used, so the allowance figure you saw before launching is reconciled.</li>
+      <li>Your AIO score and SEO score are shown. If this is the first scan for this target, Signal says there is nothing to compare yet rather than inventing a change. From the second scan on, it names the date of the previous one and reports what moved, one line per score, and says plainly when no score moved at all.</li>
+      <li>You are offered three next steps: open the AIO detail, open the SEO detail, or review the fix plan.</li>
+    </ul>
+  </div>
+
+  <div class="pending">
+    <b>If it fails</b>
+    <p>The scan still counted against your allowance. The run page names the stage that could not finish and keeps the stages that completed, so a retry is an informed decision rather than a blind one. Where the failure happened before the job was accepted, the message says explicitly that no scan was used.</p>
+  </div>
+</section>
+
+<!-- ============ 9. FIRST WEEK ============ -->
+<section class="page">
+  <div class="sec-head"><span class="num">07</span><h2>Your first week</h2></div>
+  <p class="sec-sub">One scan is a baseline, not an outcome. The value is in the loop: read, dismiss, fix, rescan, compare.</p>
+  <div class="rule"></div>
+
+  <h3 class="block">1. Read the action plan</h3>
+  <p>Every fix Signal found, ranked by impact per effort. The project dashboard shows the top three; the action plan page shows all of them, with filters by category and status.</p>
+  <p>The action plan page is included from the <b>Standard</b> plan upwards. On Starter it is shown locked with the plan that unlocks it named. The dashboard's own top-three preview currently unlocks one tier higher, on Specialist, so on Standard you reach the full plan from the project's Fixes page rather than from that card.</p>
+
+  <div class="card">
+    <h3>Why impact is a word, not a number</h3>
+    <p>Fixes carry a categorical impact rather than a point estimate. Signal publishes a figure only once there is enough completed history to say what a fix actually moved. A fix the audit did not rate says so, instead of showing a default dressed up as a measurement. Treat the ranking as an ordering, not an arithmetic promise.</p>
+  </div>
+
+  <h3 class="block">2. Dismiss what does not apply</h3>
+  <p>Dismissing is stronger than hiding. It tells the Advisor not to recommend the fix again: it is suppressed from future audits, not just removed from this list. Dismissal is keyed to the underlying problem, so the same fix coming back in different words is still recognised as one you dismissed.</p>
+  <div class="verdict">
+    <div class="v-l">What we recommend</div>
+    <p>Dismiss the handful of items that are genuinely wrong for your business, a deliberate choice rather than an oversight. Do not dismiss things you simply are not ready to do: that is what the status filters are for, and a dismissal is meant to be a lasting instruction.</p>
+  </div>
+
+  <h3 class="block">3. Mark done what you have actually fixed</h3>
+  <p>Marking a fix done records your claim and says so: Signal will confirm it on the next scan. After that scan the item reads one of three honest things: the latest check no longer finds this problem, or the latest check still sees this problem, or no check has confirmed it yet. That third state is why the loop needs a second scan to be worth anything.</p>
+
+  <h3 class="block">4. Rescan, then compare</h3>
+  <p>Use Rescan from the project dashboard. Check your remaining allowance first: on a plan with few scans, rescanning after every single change burns the window without producing a readable difference.</p>
+  <div class="verdict">
+    <div class="v-l">What we recommend</div>
+    <p>Batch your changes. Work through the fixes you intend to make, then rescan once. The comparison is between two points, so the fewer unrelated changes sit between them, the more clearly you can read which ones mattered.</p>
+    <p>Then read the comparison rather than the absolute scores. "Moved from 54 to 61" is information. "61" on its own is not.</p>
+  </div>
+
+  <div class="confirm">
+    <b>A working first week looks like this</b>
+    <ul>
+      <li>Project created, market and language set deliberately.</li>
+      <li>One baseline scan, succeeded, with both scores recorded.</li>
+      <li>The action plan read once end to end, with the items that do not apply dismissed.</li>
+      <li>A batch of fixes made and marked done.</li>
+      <li>A second scan, and a comparison you can point at.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 10. REFERENCE ============ -->
+<section class="page">
+  <div class="sec-head"><span class="num">08</span><h2>Reference</h2></div>
+  <p class="sec-sub">The plan boundaries that affect onboarding, and nothing else. Everything here comes from the platform's own entitlement configuration.</p>
+  <div class="rule"></div>
+
+  <h3 class="block">What each plan includes, for setup purposes</h3>
+  <table class="metrics">
+    <thead>
+      <tr><th>&nbsp;</th><th style="text-align:center">Starter</th><th style="text-align:center">Standard</th><th style="text-align:center">Specialist</th><th style="text-align:center">Executive</th></tr>
+    </thead>
+    <tbody>
+      <tr><td class="m-name">Scans per 30-day window</td><td class="c">1</td><td class="c">200</td><td class="c">800</td><td class="c">2,000</td></tr>
+      <tr><td class="m-name">Sites you can track</td><td class="c">1</td><td class="c">1</td><td class="c">10</td><td class="c">unlimited</td></tr>
+      <tr><td class="m-name">SEO, AEO and GEO modules</td><td class="c">yes</td><td class="c">yes</td><td class="c">yes</td><td class="c">yes</td></tr>
+      <tr><td class="m-name">Live engine tracking</td><td class="c">yes</td><td class="c">yes</td><td class="c">yes</td><td class="c">yes</td></tr>
+      <tr><td class="m-name">PDF audit reports</td><td class="c">yes</td><td class="c">yes</td><td class="c">yes</td><td class="c">yes</td></tr>
+      <tr><td class="m-name">Action plan</td><td class="c">no</td><td class="c">yes</td><td class="c">yes</td><td class="c">yes</td></tr>
+      <tr><td class="m-name">Competitor tracking</td><td class="c">no</td><td class="c">no</td><td class="c">yes</td><td class="c">yes</td></tr>
+      <tr><td class="m-name">Deep judgment depth</td><td class="c">no</td><td class="c">no</td><td class="c">yes</td><td class="c">yes</td></tr>
+      <tr><td class="m-name">Scheduled scans</td><td class="c">no</td><td class="c">no</td><td class="c">yes</td><td class="c">yes</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="block">The answer engines measured</h3>
+  <p>These are the engines named in the start-scan page's model selection. Every plan measures all of them.</p>
+  <div class="chips">
+    <span>ChatGPT</span><span>Gemini</span><span>Perplexity</span><span>Claude</span><span>Grok</span><span>DeepSeek</span>
+  </div>
+
+  <h3 class="block">Reports</h3>
+  <p>PDF audit reports are included on every plan. A report contains the sections your plan covers; where a section is withheld, the PDF marks it as withheld with the reason rather than dropping it silently. Reports are produced in the project's reporting language, including right-to-left typesetting for Arabic.</p>
+
+  <h3 class="block">Where to change what you set up</h3>
+  <div class="stepline"><div class="sl">Domain, market, language</div><div class="sv">Project Settings</div></div>
+  <div class="stepline"><div class="sl">Competitors</div><div class="sv">Project Settings, Tracked competitors</div></div>
+  <div class="stepline"><div class="sl">Google Analytics property</div><div class="sv">Project Settings, Connected data</div></div>
+  <div class="stepline"><div class="sl">Tracked prompts</div><div class="sv">The project's AIO detail page, Prompts</div></div>
+  <div class="stepline"><div class="sl">Workspace name, team</div><div class="sv">Workspace Settings</div></div>
+
+  <p class="footnote">Figures and behaviour in this guide describe Signal as built. Runtime figures are the platform's own estimates for each depth and will vary with the size of the site. Plan entitlements are read from the platform's entitlement configuration rather than from marketing material, so if a screen and this guide ever disagree, the screen is the one to trust and the discrepancy is worth reporting.</p>
+</section>
+
+</body>
+</html>

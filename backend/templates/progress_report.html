@@ -1,0 +1,62 @@
+{% extends "base_email.html" %}
+
+{% set eyebrow = email_i18n.eyebrow %}
+{% set title = email_i18n.title %}
+{% set lead = email_i18n.lead %}
+{% set cta_url = report_url %}
+{% set cta_label = email_i18n.cta_label %}
+{% set fallback_url = report_url %}
+{% set preheader = email_i18n.preheader %}
+
+{% block content %}
+<tr>
+    <td class="body">
+        <p class="copy">
+            {{ email_i18n.intro }}
+        </p>
+
+        <table role="presentation" class="score-grid">
+            <tr>
+                <td class="score-cell">
+                    <div class="score-card aio">
+                        <p class="score-label">{{ email_i18n.aio_label or "AIO score" }}</p>
+                        <p class="score-value">{{ current_scores.aio if current_scores.aio is not none else "--" }}<small>/100</small></p>
+                        {% if score_movement.aio %}<p class="score-desc">{{ score_movement.aio }}</p>{% endif %}
+                    </div>
+                </td>
+                <td class="score-cell score-cell-last">
+                    <div class="score-card seo">
+                        <p class="score-label">{{ email_i18n.seo_label or "SEO score" }}</p>
+                        <p class="score-value">{{ current_scores.seo if current_scores.seo is not none else "--" }}<small>/100</small></p>
+                        {% if score_movement.seo %}<p class="score-desc">{{ score_movement.seo }}</p>{% endif %}
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+        <p class="copy">{{ email_i18n.audits_captured_label }}: {{ current_scores.audit_count }}</p>
+
+        <div class="panel">
+            <p class="panel-title">{{ email_i18n.top_improvements }}</p>
+            <ul class="list">
+                {% for item in highlights %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="panel{% if remaining_issues %} warning{% endif %}">
+            <p class="panel-title">{{ email_i18n.remaining_issues }}</p>
+            {% if remaining_issues %}
+            <ul class="list danger">
+                {% for item in remaining_issues %}
+                <li>{{ item }}</li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p class="copy" style="margin-bottom:0;">{{ email_i18n.no_remaining_issues }}</p>
+            {% endif %}
+        </div>
+    </td>
+</tr>
+{% endblock %}

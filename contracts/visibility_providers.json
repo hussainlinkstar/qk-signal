@@ -1,0 +1,106 @@
+{
+  "$comment": [
+    "The backend's visibility provider vocabulary, committed so the frontend can be",
+    "tested against it (SIGV2-1163 follow-up: the frontend keyed Meta as `meta_ai`,",
+    "which the backend has never sent, so a real `meta` row missed the label map, the",
+    "logo map and the chart colour).",
+    "",
+    "The backend is the contract. This file is a copy of it, not a second source of",
+    "truth, and it is kept in step by a test on each side:",
+    "  - backend/tests/test_visibility_provider_contract.py asserts",
+    "    SUPPORTED_VISIBILITY_PROVIDERS, VISIBILITY_PROVIDER_LABELS,",
+    "    LIVE_MEASURABLE_PROVIDERS and the per-plan allowed_providers match this file,",
+    "    so adding a provider to the backend fails backend CI until it is recorded here.",
+    "  - frontend/src/types/monitoring.providerContract.test.ts asserts the frontend's",
+    "    VisibilityProvider key set, VISIBILITY_PROVIDER_LABELS and the trend chart's",
+    "    colour map cover exactly these keys, so recording a new provider here fails",
+    "    frontend CI until the frontend handles it.",
+    "Neither test can pass while the two sides disagree, which is the point.",
+    "",
+    "`labels` are the BACKEND's labels (the consumer engine each slot measures).",
+    "Since SIGV2-1161 the frontend's VISIBILITY_PROVIDER_LABELS shows these same",
+    "strings - the approved design uses consumer engine names only - so the",
+    "frontend contract test compares the label STRINGS as well as the keys.",
+    "",
+    "`providers` is the VOCABULARY: every key a measurement has ever been recorded",
+    "under. `offered` is the subset the product actually offers and measures, and",
+    "`withdrawn` records why a key is in one list but not the other (SIGV2-1215).",
+    "A withdrawn key keeps its label and its recorded rows, and no customer",
+    "surface on either side may render it.",
+    "",
+    "`plans` is VISIBILITY_PLAN_LIMITS: each plan's engine roster and its two sweep",
+    "cadences in seconds (the project's own domain, and its competitors, which are",
+    "separate dials since SIGV2-1208). Recorded here for SIGV2-1229, because copy",
+    "that states how often a number refreshes is a claim about that number's",
+    "freshness: the competitor gate still said \"updated daily\" after SIGV2-1208",
+    "moved the competitor sweep to weekly. A frontend test now derives the word",
+    "from these seconds instead of trusting a literal, so changing a cadence in the",
+    "backend fails the test that owns the sentence describing it.",
+    "`competitor_sweep_interval_seconds` is null on a plan that does not schedule",
+    "competitor measurement at all; those plans refresh competitors on demand only."
+  ],
+  "source": "backend/services/project_visibility_service.py",
+  "recordedOn": "2026-10-07",
+  "providers": ["google", "openai", "anthropic", "bing", "perplexity", "xai", "deepseek", "meta"],
+  "offered": ["google", "openai", "anthropic", "perplexity", "xai", "deepseek", "meta"],
+  "withdrawn": {
+    "bing": "Copilot was withdrawn from the product on 2026-09-28: no public consumer API for Copilot answers, so it was only ever measurable through the Bedrock proxy panel (SIGV2-1215)"
+  },
+  "labels": {
+    "google": "Gemini",
+    "openai": "ChatGPT",
+    "anthropic": "Claude",
+    "bing": "Copilot",
+    "perplexity": "Perplexity",
+    "xai": "Grok",
+    "deepseek": "DeepSeek",
+    "meta": "Llama"
+  },
+  "live_measurable": [
+    "google",
+    "openai",
+    "anthropic",
+    "perplexity",
+    "xai",
+    "deepseek",
+    "meta"
+  ],
+  "live_unavailable": {
+    "bing": "no public consumer API for Copilot answers on OpenRouter; measured via the Bedrock proxy panel"
+  },
+  "plans": {
+    "plan_starter": {
+      "allowed_providers": ["perplexity"],
+      "sweep_interval_seconds": 604800,
+      "competitor_sweep_interval_seconds": null
+    },
+    "plan_agency_trial": {
+      "allowed_providers": ["perplexity", "deepseek", "xai"],
+      "sweep_interval_seconds": 86400,
+      "competitor_sweep_interval_seconds": 604800
+    },
+    "plan_standard": {
+      "allowed_providers": ["perplexity", "deepseek", "xai"],
+      "sweep_interval_seconds": 86400,
+      "competitor_sweep_interval_seconds": null
+    },
+    "plan_specialist": {
+      "allowed_providers": ["perplexity", "deepseek", "xai", "openai"],
+      "sweep_interval_seconds": 172800,
+      "competitor_sweep_interval_seconds": 604800
+    },
+    "plan_executive": {
+      "allowed_providers": [
+        "perplexity",
+        "deepseek",
+        "xai",
+        "google",
+        "openai",
+        "anthropic",
+        "meta"
+      ],
+      "sweep_interval_seconds": 86400,
+      "competitor_sweep_interval_seconds": 604800
+    }
+  }
+}

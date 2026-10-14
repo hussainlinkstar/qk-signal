@@ -1,0 +1,17 @@
+{% extends "base_email.html" %}
+{% set preheader = "A background audit did not complete successfully." %}
+{% set eyebrow = "Operations" %}
+{% set title = "Background audit failed" %}
+{% set lead = "We could not complete one of your background audit jobs. Review the workspace to retry or inspect the failure details." %}
+{% set cta_label = "Open Dashboard" %}
+{% set cta_url = dashboard_url %}
+{% set fallback_url = dashboard_url %}
+{% block content %}
+<tr><td class="body">
+    <div class="panel warning">
+        <p class="panel-title danger">Failure details</p>
+        <div class="detail-row danger"><span class="detail-label">Target:</span> {{ target_url }}</div>
+        {% if error_message %}<div class="detail-row danger"><span class="detail-label">Error:</span> {{ error_message }}</div>{% endif %}
+    </div>
+</td></tr>
+{% endblock %}

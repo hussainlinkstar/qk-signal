@@ -1,0 +1,19 @@
+{% extends "base_email.html" %}
+{% set preheader = "A project reached its monthly scan cap." %}
+{% set eyebrow = "Project Budget" %}
+{% set title = "Project scan cap reached" %}
+{% set lead = "A project has reached its configured monthly scan cap. Additional manual audits and project-specific automations stay blocked until the cap resets or is increased." %}
+{% set cta_label = "Adjust Project Budget" %}
+{% set cta_url = settings_url %}
+{% set fallback_url = settings_url %}
+{% block content %}
+<tr><td class="body">
+    <div class="panel warning">
+        <p class="panel-title danger">Cap reached</p>
+        <div class="detail-row danger"><span class="detail-label">Workspace:</span> {{ workspace_name }}</div>
+        <div class="detail-row danger"><span class="detail-label">Project:</span> {{ project_name }}</div>
+        <div class="detail-row danger"><span class="detail-label">Used:</span> {{ consumed_scans }} / {{ monthly_limit_scans }} scans</div>
+        <div class="detail-row danger"><span class="detail-label">Impact:</span> new audits for this project are paused until the cap is raised or the cycle resets.</div>
+    </div>
+</td></tr>
+{% endblock %}

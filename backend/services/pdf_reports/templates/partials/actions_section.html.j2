@@ -1,0 +1,22 @@
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Actions") }}</h2></div>
+    {% if action_items %}
+    <div class="list-stack">
+        {% for item in action_items %}
+        <article class="list-row action-row">
+            <div class="action-rank">{{ loop.index }}</div>
+            <div class="action-body">
+                <div class="row-title">{{ item.title | bi }}</div>
+                <div class="row-meta">{{ l("Priority") }} {{ item.priority_display }} · {{ l(item.effort) }} {{ l("effort") }} · {{ l(item.category) }}</div>
+                <div class="row-copy">{{ (item.summary or item.action) | bi }}</div>
+                {% if item.rationale and item.rationale != (item.summary or item.action) %}<div class="row-rationale">{{ item.rationale | bi }}</div>{% endif %}
+                {% if item.affected_scores %}<div class="row-meta">{{ l("Affects:") }} {{ item.affected_scores | join(", ") }}</div>{% endif %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+    <p class="section-copy">{{ l("Actions are ranked by measured impact and estimated effort. We deliberately do not attach a predicted point gain to each item: we publish a figure only once we have enough completed work of the same kind to know what it actually moved.") }}</p>
+    {% else %}
+    <p class="section-copy">{{ l(actions_empty) }}</p>
+    {% endif %}
+</section>

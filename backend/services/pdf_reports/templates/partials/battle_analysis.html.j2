@@ -1,0 +1,98 @@
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("How you rank against competitors") }}</h2></div>
+    {% include "partials/competitor_delta_table.html.j2" %}
+    {% include "partials/score_radar_chart.html.j2" %}
+</section>
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("How your score changed") }}</h2></div>
+    <div class="list-stack">
+        {% for item in sections["delta_analysis"]["items"] %}
+        <article class="list-row">
+            <div class="row-title">{{ l(item.label) }}, {{ l(item.stance) }}</div>
+            <div class="row-meta tone-{{ item.tone }}">Delta {{ item.display_value }}</div>
+        </article>
+        {% else %}
+        <p class="muted-copy">{{ l("No delta analysis was captured for this competitive batch.") }}</p>
+        {% endfor %}
+    </div>
+</section>
+
+{% if sections["competitive_trend_timeline"]["enabled"] %}
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Score history") }}</h2></div>
+    {% if sections["competitive_trend_timeline"]["coverage_start"] and sections["competitive_trend_timeline"]["coverage_end"] %}
+    <div class="section-note">
+        Coverage {{ sections["competitive_trend_timeline"]["coverage_start"] }} to {{ sections["competitive_trend_timeline"]["coverage_end"] }}
+        {% if sections["competitive_trend_timeline"]["audit_count"] %} • {{ sections["competitive_trend_timeline"]["audit_count"] }} audits{% endif %}
+    </div>
+    {% endif %}
+    {% for item in sections["competitive_trend_timeline"]["competitors"] %}
+    <article class="panel-card full last">
+        <div class="metric-label">{{ item.name | bi }}</div>
+        <div class="card-grid">
+            <article class="metric-card three-up">
+                <div class="metric-label">{{ l(item.project_label) }} latest</div>
+                <div class="metric-value tone-muted">{{ item.project_latest_overall }}</div>
+                <div class="metric-subtext">Change {{ item.project_delta_overall }}</div>
+            </article>
+            <article class="metric-card three-up">
+                <div class="metric-label">{{ item.name | bi }} latest</div>
+                <div class="metric-value tone-critical">{{ item.competitor_latest_overall }}</div>
+                <div class="metric-subtext">Change {{ item.competitor_delta_overall }}</div>
+            </article>
+        </div>
+        <div class="list-stack">
+            <article class="list-row">
+                <div class="row-title">{{ l(item.project_label) }}</div>
+                <div class="row-copy">
+                    {% for point in item.project_points %}
+                    {{ point.date_label }}: O {{ point.overall_display }} / SEO {{ point.seo_display }} / GEO {{ point.geo_display }} / AEO {{ point.aeo_display }}{% if not loop.last %}<br />{% endif %}
+                    {% endfor %}
+                </div>
+            </article>
+            <article class="list-row">
+                <div class="row-title">{{ item.name | bi }}</div>
+                <div class="row-copy">
+                    {% for point in item.competitor_points %}
+                    {{ point.date_label }}: O {{ point.overall_display }} / SEO {{ point.seo_display }} / GEO {{ point.geo_display }} / AEO {{ point.aeo_display }}{% if not loop.last %}<br />{% endif %}
+                    {% endfor %}
+                </div>
+            </article>
+        </div>
+    </article>
+    {% endfor %}
+</section>
+{% endif %}
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Visibility vs technical readiness") }}</h2></div>
+    <article class="panel-card full last">
+        <div class="metric-label">{{ sections["competitive_position"]["headline"] | bi }}</div>
+        <p class="section-copy">{{ sections["competitive_position"]["body"] | bi }}</p>
+        {% if sections["competitive_position"]["evidence"] %}
+        <ul class="score-list">
+            {% for item in sections["competitive_position"]["evidence"] %}
+            <li class="score-list-item">{{ item | bi }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </article>
+</section>
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Share of voice") }}</h2></div>
+    <div class="chip-cloud">
+        {% for item in sections["entity_share_of_voice"]["items"] %}
+        <span class="chip">{{ item.name | bi }}</span>
+        {% else %}
+        <span class="muted-copy">{{ l("No entity footprint data was captured.") }}</span>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("The bottom line") }}</h2></div>
+    <div class="section-note">Confidence {{ sections["strategic_conclusion"]["confidence_label"] | bi }}</div>
+    <p class="section-copy">{{ sections["strategic_conclusion"]["body"] | bi }}</p>
+</section>

@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "language_name": "Deutsch",
+    "language_name_map": {
+      "en": "English",
+      "es": "Spanish",
+      "fr": "French",
+      "de": "German",
+      "it": "Italian",
+      "ro": "Romanian",
+      "nl": "Dutch",
+      "pt": "Portuguese",
+      "pl": "Polish",
+      "sv": "Swedish",
+      "ja": "Japanese",
+      "zh": "Chinese"
+    }
+  },
+  "pdf": {
+    "ai_disclaimer": "Hinweis: Dieser Bericht enthält automatisierte KI-Analysen. Vor technischen Änderungen wird eine menschliche Prüfung empfohlen.",
+    "generated_on": "Erstellt",
+    "executive_summary": "Management-Zusammenfassung",
+    "highlights": "Highlights",
+    "score_breakdown": "Score-Aufschlüsselung",
+    "key_recommendations": "Wichtige Empfehlungen",
+    "competitor_analysis": "Wettbewerbsanalyse",
+    "competitor_section_enabled": "Der Wettbewerbs-Benchmarking-Abschnitt ist für diesen Export aktiviert.",
+    "battle_report": "Vergleichsbericht",
+    "head_to_head_comparison": "Direktvergleich ({index}/{total})",
+    "strategic_highlights": "Strategische Highlights",
+    "no_analysis_summary": "Keine Analysezusammenfassung verfügbar.",
+    "no_summary_available": "Keine Zusammenfassung verfügbar.",
+    "left_site": "Linke Website",
+    "right_site": "Rechte Website",
+    "score": "Score",
+    "technical_report": "Technischer Bericht",
+    "executive_report": "Management-Bericht",
+    "comparative_report": "Vergleichsbericht"
+  },
+  "email": {
+    "common": {
+      "notification": "Benachrichtigung",
+      "unsubscribe_blurb": "Sie erhalten diese E-Mail, weil Sie ein Konto bei {brand_name} haben. Sie können Ihre Benachrichtigungseinstellungen verwalten oder sich jederzeit abmelden.",
+      "fallback_hint": "Wenn die Schaltfläche nicht funktioniert, öffnen Sie",
+      "support_hint": "Für Hilfe kontaktieren Sie",
+      "aio_label": "AIO-Score",
+      "seo_label": "SEO-Score",
+      "metric_label_seo_score": "SEO-Score",
+      "metric_label_aio_score": "AIO-Score",
+      "metric_label_unknown": "Sichtbarkeits-Score",
+      "score_delta_up": "{points} Punkte mehr seit {period}",
+      "score_delta_up_one": "{points} Punkt mehr seit {period}",
+      "score_delta_down": "{points} Punkte weniger seit {period}",
+      "score_delta_down_one": "{points} Punkt weniger seit {period}",
+      "score_delta_flat": "Keine Veränderung seit {period}",
+      "score_delta_period": "dem letzten Monat",
+      "rank_delta_up": "Aufgestiegen von #{previous}",
+      "rank_delta_down": "Abgestiegen von #{previous}",
+      "rank_delta_flat": "Keine Veränderung"
+    },
+    "audit_completed": {
+      "subject": "Audit abgeschlossen für {target_host}",
+      "preheader": "Ihr neuestes Audit ist abgeschlossen und bereit zur Ansicht.",
+      "eyebrow": "Audit abgeschlossen",
+      "title": "Ihr Audit ist bereit",
+      "lead": "Wir haben Ihr neuestes Audit verarbeitet. Die Score-Zusammenfassung sehen Sie unten, der vollständige Bericht wartet in Ihrem Dashboard.",
+      "cta_label": "Audit-Bericht öffnen",
+      "target_label": "Ziel",
+      "body": "Nutzen Sie den vollständigen Bericht, um technische, inhaltliche und Answerability-Verbesserungen an einem Ort zu priorisieren."
+    },
+    "consensus_ready": {
+      "subject": "Multi-Modell-Konsens bereit für {target_host}",
+      "preheader": "Ihr Multi-Modell-Konsensbericht ist bereit.",
+      "eyebrow": "Konsens bereit",
+      "title": "Ihr Konsens-Audit ist bereit",
+      "lead": "Der Multi-Modell-Lauf wurde erfolgreich abgeschlossen. Vergleichen Sie die abgestimmten Erkenntnisse und die Score-Zusammenfassung im Bericht.",
+      "cta_label": "Konsens prüfen",
+      "models_included": "Enthaltene Modelle",
+      "model_set_label": "Modell-Set",
+      "target_label": "Ziel"
+    },
+    "progress_report": {
+      "subject": "Fortschrittsbericht für {project_name} für {report_month_label}",
+      "eyebrow": "Fortschrittsbericht",
+      "title": "Monatliches Performance-Update für {project_name}",
+      "lead": "Ihr aktueller Trend-Snapshot ist bereit mit Monatsvergleich, wichtigsten Erfolgen und den nächsten Themen, die den Fortschritt noch blockieren.",
+      "cta_label": "Report Center öffnen",
+      "preheader": "Die Scores und der monatliche Fortschritt von {project_name} sind bereit.",
+      "intro": "Der Bericht für {report_month_label} zu {project_name}{domain_suffix} ist bereit. Nutzen Sie ihn als kundenfähigen Nachweis der Entwicklung dieses Projekts.",
+      "audits_captured_label": "Erfasste Audits",
+      "top_improvements": "Wichtigste Verbesserungen",
+      "remaining_issues": "Verbleibende Themen",
+      "no_remaining_issues": "Aus dem neuesten Audit wurden keine offenen prioritären Maßnahmen extrahiert."
+    },
+    "competitive_digest": {
+      "subject": "{project_name} {report_period} Wettbewerbs-Digest",
+      "preheader": "Wettbewerbs-Benchmark-Update für {project_name}.",
+      "eyebrow": "Wettbewerbs-Digest",
+      "title": "Benchmark-Update für {project_name}",
+      "lead": "{workspace_name} verfügt jetzt über einen aktualisierten Wettbewerbssnapshot für {competitor_count} verfolgte Wettbewerber.",
+      "cta_label": "Wettbewerbs-Dashboard öffnen",
+      "highlights": "Highlights",
+      "updated_at": "Aktualisiert am"
+    }
+  }
+}

@@ -1,0 +1,1149 @@
+/* ─── @page rules live in <style> inside base_report.html.j2 so that
+       Jinja2 can inject branding colours into the :first page selector.
+       Do NOT add @page rules here, they will conflict. ─── */
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--report-background);
+  color: var(--report-text);
+  font-family: "Inter", "Helvetica Neue", Arial, "DejaVu Sans", sans-serif;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+h1, h2, h3,
+.cover-title,
+.cover-brand-word,
+.cover-card-value,
+.section-title,
+.metric-value {
+  font-family: "Satoshi", "Inter", Arial, "DejaVu Sans", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.cover-kicker,
+.cover-card-label,
+.eyebrow {
+  font-family: "Roboto Mono", "SFMono-Regular", Consolas, monospace;
+}
+
+body.is-cjk,
+body.is_cjk {
+  font-family: "Noto Sans CJK JP", "Noto Sans CJK SC", "Noto Sans", "DejaVu Sans", sans-serif;
+}
+
+/* Satoshi has no Arabic or CJK glyphs; keep the Noto stacks on display and
+   mono elements inside non-Latin reports or they would render as tofu. */
+body.is-cjk h1, body.is-cjk h2, body.is-cjk h3,
+body.is_cjk h1, body.is_cjk h2, body.is_cjk h3,
+body.is-cjk .cover-title, body.is_cjk .cover-title,
+body.is-cjk .cover-brand-word, body.is_cjk .cover-brand-word,
+body.is-cjk .cover-card-value, body.is_cjk .cover-card-value,
+body.is-cjk .section-title, body.is_cjk .section-title,
+body.is-cjk .metric-value, body.is_cjk .metric-value {
+  font-family: "Noto Sans CJK JP", "Noto Sans CJK SC", "Noto Sans", "DejaVu Sans", sans-serif;
+}
+
+body.is-rtl {
+  font-family: "Noto Naskh Arabic", "Noto Kufi Arabic", "Noto Sans", "DejaVu Sans", sans-serif;
+  direction: rtl;
+}
+
+body.is-rtl h1, body.is-rtl h2, body.is-rtl h3,
+body.is-rtl .cover-title,
+body.is-rtl .cover-brand-word,
+body.is-rtl .cover-card-value,
+body.is-rtl .section-title,
+body.is-rtl .metric-value {
+  font-family: "Noto Naskh Arabic", "Noto Kufi Arabic", "Noto Sans", "DejaVu Sans", sans-serif;
+  letter-spacing: normal;
+}
+
+/* Machine-readable values keep LTR ordering inside an RTL report:
+   URLs, numeric scores and dates must not be reordered by bidi mirroring. */
+body.is-rtl .cover-card-value {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: right;
+}
+
+/* Prose blocks may hold Arabic, English or mixed content: let each
+   paragraph's direction follow its own first strong character so terminal
+   punctuation lands at the correct end of mixed-direction text. */
+body.is-rtl p,
+body.is-rtl li,
+body.is-rtl td,
+body.is-rtl blockquote {
+  unicode-bidi: plaintext;
+}
+
+/* Chart internals are positioned data, not prose: SVG text anchoring
+   resolves differently under an inherited RTL direction, so pin charts to
+   LTR and keep axis chronology left-to-right. */
+body.is-rtl svg,
+body.is-rtl svg text {
+  direction: ltr;
+  unicode-bidi: normal;
+}
+
+/* letter-spacing inserts gaps between glyphs and breaks Arabic joining,
+   so tracking is removed for the whole RTL report. */
+body.is-rtl * {
+  letter-spacing: normal;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+table {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ─── Running header: dark bar with indigo→cyan brand gradient strip ─── */
+
+.running-header {
+  position: running(report-header);
+  display: block;
+  padding: 0;
+  width: 100%;
+}
+
+.header-accent-strip {
+  background: linear-gradient(90deg, var(--brand-primary), var(--brand-accent, #22D3EE));
+  height: 3px;
+  width: 100%;
+}
+
+.header-bar {
+  align-items: center;
+  background: var(--report-header-bg, #FFFFFF);
+  border-bottom: 1px solid var(--report-border);
+  display: flex;
+  justify-content: space-between;
+  padding: 2.5mm 0 2.5mm;
+  width: 100%;
+}
+
+.chrome-brand {
+  align-items: center;
+  display: flex;
+}
+
+.chrome-logo {
+  max-height: 7mm;
+  max-width: 38mm;
+  object-fit: contain;
+}
+
+.chrome-text {
+  color: var(--report-text);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.chrome-meta {
+  color: var(--report-header-text, #94A3B8);
+  display: flex;
+  font-size: 8px;
+  gap: 4mm;
+}
+
+/* ─── Running footer ─── */
+
+.running-footer {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 3mm 0 0;
+  position: running(report-footer);
+  border-top: 0.5px solid var(--report-border);
+  color: var(--report-muted);
+  font-size: 7.5px;
+}
+
+.footer-copy {
+  max-width: 120mm;
+}
+
+.footer-page::after {
+  content: counter(page);
+}
+
+/* ─── Cover page: clean light surface with accent strip ─── */
+
+.report-cover {
+  background: linear-gradient(160deg, var(--report-cover-from), var(--report-cover-to));
+  color: var(--report-text);
+  min-height: 297mm;
+  padding: 0;
+  page-break-after: always;
+  position: relative;
+}
+
+.cover-accent-strip {
+  background: var(--report-cover-accent, linear-gradient(90deg, var(--brand-primary), var(--brand-accent, #22D3EE)));
+  height: 6px;
+  width: 100%;
+}
+
+.cover-upper {
+  background: var(--report-cover-to, #F6F7F9);
+  padding: 18mm 18mm 14mm;
+}
+
+.cover-body {
+  padding: 14mm 18mm 20mm;
+  position: relative;
+}
+
+.cover-grid-overlay {
+  background-image:
+    repeating-linear-gradient(90deg, rgba(12,15,22,0.06) 0, rgba(12,15,22,0.06) 0.3px, transparent 0.3px, transparent 40px),
+    repeating-linear-gradient(0deg, rgba(12,15,22,0.06) 0, rgba(12,15,22,0.06) 0.3px, transparent 0.3px, transparent 40px);
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.cover-brand {
+  align-items: center;
+  display: flex;
+  direction: ltr;
+  justify-content: space-between;
+}
+
+.cover-logo {
+  max-height: 18mm;
+  max-width: 82mm;
+  object-fit: contain;
+}
+
+.cover-brand-text {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.cover-kicker {
+  color: var(--report-muted);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  margin-top: 18mm;
+  text-transform: uppercase;
+}
+
+.cover-title {
+  font-size: 31px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+  margin-top: 4mm;
+  max-width: 145mm;
+}
+
+.cover-subtitle {
+  color: var(--report-muted);
+  font-size: 12px;
+  margin-top: 5mm;
+  max-width: 125mm;
+}
+
+.cover-cards {
+  font-size: 0;
+  margin-top: 16mm;
+  position: relative;
+}
+
+.cover-card {
+  background: var(--report-card);
+  border: 1px solid var(--report-border);
+  border-radius: 10px;
+  display: inline-block;
+  font-size: 10px;
+  margin-right: 3%;
+  min-height: 27mm;
+  padding: 5mm;
+  vertical-align: top;
+  width: 31.33%;
+}
+
+.cover-card.last {
+  margin-right: 0;
+}
+
+.eyebrow {
+  color: var(--report-muted);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.cover-card .eyebrow {
+  color: var(--report-muted);
+}
+
+.cover-card-value {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-top: 3mm;
+  overflow-wrap: anywhere;
+}
+
+.cover-summary-band {
+  background: var(--report-card-alt);
+  border: 1px solid var(--report-border);
+  border-radius: 12px;
+  margin-top: 18mm;
+  padding: 7mm;
+  position: relative;
+}
+
+.cover-accent-line {
+  background: var(--report-cover-accent, linear-gradient(90deg, var(--brand-primary), var(--brand-accent, #22D3EE)));
+  border-radius: 2px;
+  height: 3px;
+  margin-top: 16mm;
+  width: 60px;
+}
+
+.report-cover-mvp {
+  background: #ffffff;
+  color: #0C0F16;
+}
+
+.report-cover-mvp .cover-upper {
+  background: #ffffff;
+  padding: 22mm 14mm 0;
+}
+
+.report-cover-mvp .cover-brand {
+  align-items: center;
+  display: flex;
+  gap: 9px;
+}
+
+.report-cover-mvp .cover-logo {
+  display: block;
+  height: 26px;
+  max-height: none;
+  max-width: none;
+  width: auto;
+}
+
+.report-cover-mvp .cover-brand-word {
+  color: #8A92A1;
+  font-size: 15pt;
+  font-weight: 500;
+}
+
+.report-cover-mvp .cover-brand-name {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.report-cover-mvp .cover-body {
+  padding: 34mm 14mm 18mm;
+}
+
+.report-cover-mvp .cover-kicker {
+  color: #9333EA;
+  font-size: 8pt;
+  letter-spacing: 0.14em;
+  margin-bottom: 10px;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+.report-cover-mvp .cover-title {
+  font-size: 30pt;
+  font-weight: 900;
+  line-height: 1.08;
+  margin: 0 0 8px;
+  max-width: 160mm;
+}
+
+.report-cover-mvp .cover-subtitle {
+  color: #565E6E;
+  direction: ltr;
+  font-size: 13pt;
+  font-weight: 400;
+  margin: 0 0 30mm;
+  overflow-wrap: anywhere;
+  unicode-bidi: isolate;
+}
+
+.report-cover-mvp .cover-cards {
+  display: flex;
+  gap: 12px;
+  margin: 0 0 26mm;
+  margin-top: 0;
+}
+
+.report-cover-mvp .cover-card {
+  background: #ffffff;
+  border: 1px solid #E8EAEE;
+  border-radius: 14px;
+  flex: 1;
+  margin-right: 0;
+  min-height: 0;
+  overflow: hidden;
+  padding: 18px 20px;
+  width: auto;
+}
+
+.report-cover-mvp .cover-card-aio {
+  border-left: 3px solid #9333EA;
+}
+
+.report-cover-mvp .cover-card-seo {
+  border-left: 3px solid #12A150;
+}
+
+.report-cover-mvp .cover-card.last {
+  margin-right: 0;
+}
+
+.report-cover-mvp .cover-card-label {
+  color: #8A92A1;
+  font-size: 7.5pt;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.report-cover-mvp .cover-card-value {
+  color: #0C0F16;
+  font-size: 34pt;
+  font-weight: 900;
+  line-height: 1;
+  margin: 8px 0 2px;
+}
+
+.report-cover-mvp .cover-card-value small {
+  color: #8A92A1;
+  font-size: 12pt;
+  font-weight: 600;
+}
+
+.report-cover-mvp .cover-card-delta {
+  color: #565E6E;
+  font-size: 9pt;
+}
+
+.report-cover-mvp .cover-meta {
+  border-top: 1px solid #E8EAEE;
+  color: #8A92A1;
+  font-size: 9pt;
+  margin-top: 0;
+  padding-top: 12px;
+}
+
+.report-cover-mvp .cover-meta div + div {
+  margin-top: 3px;
+}
+
+.report-cover-mvp .cover-meta span {
+  display: inline-block;
+  min-width: 27mm;
+}
+
+.report-cover-mvp .cover-meta strong {
+  color: #0C0F16;
+  font-weight: 600;
+}
+
+.report-page {
+  padding-top: 4mm;
+}
+
+/* ─── Section headers with accent line ─── */
+
+.report-section {
+  break-before: page;
+  page-break-before: always;
+}
+
+.section-header {
+  break-after: avoid-page;
+  margin-bottom: 6mm;
+  page-break-after: avoid;
+  padding-bottom: 3mm;
+}
+
+.section-accent-line {
+  background: var(--brand-primary);
+  border-radius: 1px;
+  height: 2px;
+  margin-bottom: 3mm;
+  width: 50px;
+}
+
+.section-title {
+  border-bottom: 1px solid var(--report-border);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  padding-bottom: 3mm;
+}
+
+.section-copy {
+  color: #475569;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+/* ─── Metric and panel cards ─── */
+
+.card-grid {
+  font-size: 0;
+}
+
+.metric-card,
+.panel-card {
+  background: var(--report-card);
+  break-inside: avoid;
+  border: 1px solid var(--report-border);
+  border-radius: 10px;
+  display: inline-block;
+  font-size: 10px;
+  margin-bottom: 4mm;
+  margin-right: 3%;
+  page-break-inside: avoid;
+  padding: 5mm;
+  vertical-align: top;
+}
+
+.metric-card.three-up,
+.panel-card.three-up {
+  width: 31.33%;
+}
+
+.metric-card.four-up,
+.panel-card.four-up {
+  width: 22.75%;
+}
+
+.metric-card.two-up,
+.panel-card.two-up {
+  width: 48.5%;
+}
+
+.metric-card.full,
+.panel-card.full {
+  display: block;
+  margin-right: 0;
+  width: 100%;
+}
+
+.metric-card.last,
+.panel-card.last {
+  margin-right: 0;
+}
+
+.metric-label {
+  color: var(--report-muted);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.metric-value {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-top: 3mm;
+}
+
+.tone-strong {
+  color: var(--report-success);
+}
+
+.tone-solid {
+  color: var(--brand-primary);
+}
+
+.tone-watch {
+  color: var(--report-warning);
+}
+
+.tone-critical {
+  color: var(--report-danger);
+}
+
+.tone-muted {
+  color: var(--report-muted);
+}
+
+.metric-subtext,
+.muted-copy {
+  color: var(--report-muted);
+  font-size: 9px;
+  line-height: 1.5;
+  margin-top: 2mm;
+}
+
+/* ─── List rows ─── */
+
+.list-stack {
+  display: block;
+}
+
+.list-row {
+  border-top: 1px solid var(--report-border);
+  break-inside: avoid;
+  page-break-inside: avoid;
+  padding: 4mm 0;
+}
+
+.list-row:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.action-row {
+  width: 100%;
+}
+
+.action-rank {
+  color: var(--brand-primary);
+  float: left;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-right: 4mm;
+  width: 8mm;
+}
+
+.action-body {
+  overflow: hidden;
+}
+
+.row-title {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.row-meta {
+  color: var(--report-muted);
+  font-size: 8px;
+  letter-spacing: 0.08em;
+  margin-top: 1mm;
+  text-transform: uppercase;
+}
+
+.row-copy {
+  color: #475569;
+  margin-top: 2mm;
+}
+
+.section-note {
+  color: var(--report-muted);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 2mm;
+  text-transform: uppercase;
+}
+
+/* ─── Trust and integrity grids ─── */
+
+.trust-grid {
+  font-size: 0;
+}
+
+.trust-value {
+  color: var(--report-text);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.35;
+  margin-top: 2.5mm;
+}
+
+.subsection-label {
+  color: var(--report-muted);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-top: 4mm;
+  text-transform: uppercase;
+}
+
+.score-list {
+  margin-top: 2mm;
+  padding-left: 4mm;
+}
+
+.score-list-item {
+  color: #475569;
+  margin-top: 1.2mm;
+}
+
+/* ─── Badges and chips ─── */
+
+.badge {
+  border: 1px solid var(--report-border);
+  border-radius: 999px;
+  color: var(--report-muted);
+  display: inline-block;
+  font-size: 8px;
+  margin-right: 2mm;
+  margin-top: 2mm;
+  padding: 1.2mm 2.2mm;
+}
+
+/* ─── Tables: dark header row, alternating body ─── */
+
+.report-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.report-table th,
+.report-table td {
+  border-bottom: 1px solid var(--report-border);
+  padding: 3mm 2mm;
+  text-align: left;
+  vertical-align: top;
+}
+
+.report-table th {
+  background: var(--report-card-alt);
+  color: var(--report-muted);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.report-table td.numeric,
+.report-table th.numeric {
+  text-align: right;
+}
+
+.report-table tbody tr:nth-child(even) {
+  background: var(--report-card-alt);
+}
+
+.target-row {
+  background: var(--report-card-alt);
+}
+
+.delta-positive {
+  color: var(--report-danger);
+}
+
+.delta-negative {
+  color: var(--report-success);
+}
+
+.delta-flat {
+  color: var(--report-muted);
+}
+
+.chip-cloud {
+  font-size: 0;
+}
+
+.chip {
+  background: var(--report-card-alt);
+  border: 1px solid var(--report-border);
+  border-radius: 999px;
+  color: #334155;
+  display: inline-block;
+  font-size: 9px;
+  margin: 0 2mm 2mm 0;
+  padding: 1.5mm 3mm;
+}
+
+/* ─── Strategic intelligence grid items ─── */
+
+.grid-item {
+  border-left: 3px solid var(--brand-primary);
+  break-inside: avoid;
+  margin-bottom: 4mm;
+  page-break-inside: avoid;
+  padding-left: 4mm;
+}
+
+.grid-item:last-child {
+  margin-bottom: 0;
+}
+
+.grid-title {
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.grid-copy {
+  color: #475569;
+  margin-top: 1.5mm;
+}
+
+/* ─── Chart containers ─── */
+
+.chart-container {
+  break-inside: avoid;
+  margin: 4mm 0;
+  page-break-inside: avoid;
+  text-align: center;
+}
+
+.chart-image {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+/* Check reports flow onto one or two pages instead of a page per section. */
+
+body.report-kind-standard .report-cover,
+body.report-kind-aio .report-cover,
+body.report-kind-seo .report-cover,
+body.report-kind-executive .report-cover {
+  min-height: 0;
+  break-after: auto;
+  page-break-after: auto;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-upper,
+body.report-kind-aio .report-cover-mvp .cover-upper,
+body.report-kind-seo .report-cover-mvp .cover-upper,
+body.report-kind-executive .report-cover-mvp .cover-upper {
+  padding: 4mm 0 2mm;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-body,
+body.report-kind-aio .report-cover-mvp .cover-body,
+body.report-kind-seo .report-cover-mvp .cover-body,
+body.report-kind-executive .report-cover-mvp .cover-body {
+  padding: 2mm 0 3mm;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-title,
+body.report-kind-aio .report-cover-mvp .cover-title,
+body.report-kind-seo .report-cover-mvp .cover-title,
+body.report-kind-executive .report-cover-mvp .cover-title {
+  font-size: 16px;
+  line-height: 1.15;
+  margin: 0 0 1mm;
+  max-width: none;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-kicker,
+body.report-kind-aio .report-cover-mvp .cover-kicker,
+body.report-kind-seo .report-cover-mvp .cover-kicker,
+body.report-kind-executive .report-cover-mvp .cover-kicker {
+  margin: 0 0 1mm;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-subtitle,
+body.report-kind-aio .report-cover-mvp .cover-subtitle,
+body.report-kind-seo .report-cover-mvp .cover-subtitle,
+body.report-kind-executive .report-cover-mvp .cover-subtitle {
+  font-size: 11px;
+  margin: 0;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-identity,
+body.report-kind-aio .report-cover-mvp .cover-identity,
+body.report-kind-seo .report-cover-mvp .cover-identity,
+body.report-kind-executive .report-cover-mvp .cover-identity {
+  align-items: center;
+  display: flex;
+  gap: 6mm;
+  justify-content: space-between;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-identity-copy,
+body.report-kind-aio .report-cover-mvp .cover-identity-copy,
+body.report-kind-seo .report-cover-mvp .cover-identity-copy,
+body.report-kind-executive .report-cover-mvp .cover-identity-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-cards,
+body.report-kind-aio .report-cover-mvp .cover-cards,
+body.report-kind-seo .report-cover-mvp .cover-cards,
+body.report-kind-executive .report-cover-mvp .cover-cards {
+  flex: none;
+  gap: 4mm;
+  margin: 0;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-card,
+body.report-kind-aio .report-cover-mvp .cover-card,
+body.report-kind-seo .report-cover-mvp .cover-card,
+body.report-kind-executive .report-cover-mvp .cover-card {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  text-align: center;
+  width: 28mm;
+}
+
+body.report-kind-standard .report-cover-mvp .score-ring,
+body.report-kind-aio .report-cover-mvp .score-ring,
+body.report-kind-seo .report-cover-mvp .score-ring,
+body.report-kind-executive .report-cover-mvp .score-ring {
+  display: block;
+  margin: 0 auto 1mm;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-card-label,
+body.report-kind-aio .report-cover-mvp .cover-card-label,
+body.report-kind-seo .report-cover-mvp .cover-card-label,
+body.report-kind-executive .report-cover-mvp .cover-card-label {
+  margin-top: 0;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-card-value,
+body.report-kind-aio .report-cover-mvp .cover-card-value,
+body.report-kind-seo .report-cover-mvp .cover-card-value,
+body.report-kind-executive .report-cover-mvp .cover-card-value {
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+body.report-kind-standard .report-cover-mvp .cover-meta,
+body.report-kind-aio .report-cover-mvp .cover-meta,
+body.report-kind-seo .report-cover-mvp .cover-meta,
+body.report-kind-executive .report-cover-mvp .cover-meta {
+  font-size: 8px;
+  margin-top: 2mm;
+  padding-top: 1.5mm;
+}
+
+body.report-kind-standard .report-section,
+body.report-kind-aio .report-section,
+body.report-kind-seo .report-section,
+body.report-kind-executive .report-section,
+body.report-kind-standard .toc-page,
+body.report-kind-aio .toc-page,
+body.report-kind-seo .toc-page {
+  break-before: auto;
+  margin-top: 2mm;
+  page-break-before: auto;
+}
+
+body.report-kind-standard .section-header,
+body.report-kind-aio .section-header,
+body.report-kind-seo .section-header,
+body.report-kind-executive .section-header {
+  margin-bottom: 2mm;
+  padding-bottom: 1mm;
+}
+
+body.report-kind-standard .section-title,
+body.report-kind-aio .section-title,
+body.report-kind-seo .section-title,
+body.report-kind-executive .section-title {
+  font-size: 11px;
+  padding-bottom: 0.6mm;
+}
+
+body.report-kind-standard .section-copy,
+body.report-kind-aio .section-copy,
+body.report-kind-seo .section-copy,
+body.report-kind-executive .section-copy,
+body.report-kind-standard .row-copy,
+body.report-kind-aio .row-copy,
+body.report-kind-seo .row-copy,
+body.report-kind-executive .row-copy {
+  font-size: 8px;
+  line-height: 1.3;
+}
+
+body.report-kind-standard .list-row,
+body.report-kind-aio .list-row,
+body.report-kind-seo .list-row,
+body.report-kind-executive .list-row {
+  padding: 1.2mm 0;
+}
+
+body.report-kind-standard .metric-value,
+body.report-kind-aio .metric-value,
+body.report-kind-seo .metric-value,
+body.report-kind-executive .metric-value {
+  font-size: 16px;
+}
+
+body.report-kind-standard .report-cover + .report-section,
+body.report-kind-aio .report-cover + .report-section,
+body.report-kind-seo .report-cover + .report-section,
+body.report-kind-executive .report-cover + .report-section {
+  break-before: auto;
+  page-break-before: auto;
+}
+
+body.report-kind-standard .card-grid,
+body.report-kind-aio .card-grid,
+body.report-kind-seo .card-grid,
+body.report-kind-executive .card-grid,
+body.report-kind-standard .list-stack,
+body.report-kind-aio .list-stack,
+body.report-kind-seo .list-stack,
+body.report-kind-executive .list-stack {
+  break-before: auto;
+  margin-top: 1.5mm;
+  page-break-before: auto;
+}
+
+body.report-kind-standard .card-grid > .metric-card:not(.two-up),
+body.report-kind-aio .card-grid > .metric-card:not(.two-up),
+body.report-kind-seo .card-grid > .metric-card:not(.two-up),
+body.report-kind-executive .card-grid > .metric-card:not(.two-up) {
+  box-sizing: border-box;
+  margin-bottom: 1.5mm;
+  margin-right: 1.5%;
+  padding: 2mm;
+  width: 31.5%;
+}
+
+body.report-kind-standard .metric-card,
+body.report-kind-aio .metric-card,
+body.report-kind-seo .metric-card,
+body.report-kind-executive .metric-card {
+  margin-bottom: 1.5mm;
+  padding: 2mm;
+}
+
+body.report-kind-standard .section-accent-line,
+body.report-kind-aio .section-accent-line,
+body.report-kind-seo .section-accent-line,
+body.report-kind-executive .section-accent-line {
+  margin-bottom: 1mm;
+}
+
+body.report-kind-standard .report-flow,
+body.report-kind-aio .report-flow,
+body.report-kind-seo .report-flow,
+body.report-kind-executive .report-flow {
+  column-count: 2;
+  column-gap: 5mm;
+}
+
+body.report-kind-standard .report-flow .report-section,
+body.report-kind-aio .report-flow .report-section,
+body.report-kind-seo .report-flow .report-section,
+body.report-kind-executive .report-flow .report-section {
+  margin-top: 1.5mm;
+}
+
+body.report-kind-standard .toc-entry,
+body.report-kind-aio .toc-entry,
+body.report-kind-seo .toc-entry {
+  break-inside: avoid;
+  padding: 0.3mm 0;
+  page-break-inside: avoid;
+}
+
+body.report-kind-standard .toc-desc,
+body.report-kind-aio .toc-desc,
+body.report-kind-seo .toc-desc,
+body.report-kind-standard .toc-primary .toc-label,
+body.report-kind-aio .toc-primary .toc-label,
+body.report-kind-seo .toc-primary .toc-label {
+  font-size: 8px;
+}
+
+/* ─── Table of Contents ─── */
+
+.toc-page {
+  break-before: page;
+  page-break-before: always;
+}
+
+.toc-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.toc-entry {
+  display: flex;
+  align-items: baseline;
+  gap: 3mm;
+  padding: 2.5mm 0;
+}
+
+.toc-num {
+  flex: none;
+  min-width: 7mm;
+  font-size: 8pt;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--brand-primary);
+}
+
+.toc-desc {
+  font-size: 9pt;
+  color: var(--report-muted);
+}
+
+.toc-primary .toc-label {
+  font-size: 10pt;
+  font-weight: 600;
+  color: var(--report-text);
+}
+
+.toc-secondary {
+  padding-left: 6mm;
+}
+
+.toc-secondary .toc-label {
+  font-size: 9pt;
+  font-weight: 400;
+  color: var(--report-muted);
+}
+
+.toc-dots {
+  flex: 1;
+  border-bottom: 1px dotted var(--report-border);
+  min-width: 10mm;
+}
+
+/* ─── Rationale / dependencies in action items ─── */
+
+.row-rationale {
+  font-size: 8pt;
+  color: var(--report-muted);
+  font-style: italic;
+  margin-top: 1mm;
+}
+
+.row-dependencies {
+  font-size: 8pt;
+  color: var(--report-muted);
+  margin-top: 1mm;
+}

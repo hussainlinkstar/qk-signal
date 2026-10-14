@@ -1,0 +1,25 @@
+{% extends "base_email.html" %}
+
+{% set eyebrow = "Annotation Reply" %}
+{% set title = "Your report thread has a new reply" %}
+{% set lead = "Someone replied to an annotation thread on " ~ project_name ~ ", so the audit conversation can continue in context." %}
+{% set cta_url = report_url %}
+{% set cta_label = "Open Annotation Thread" %}
+{% set fallback_url = report_url %}
+{% set preheader = "A reply was added to your report annotation on " ~ project_name ~ "." %}
+
+{% block content %}
+<tr>
+    <td class="body">
+        <p class="copy">
+            <strong>{{ annotation_author or "A teammate" }}</strong> replied on
+            <strong>{{ project_name }}</strong>{% if domain_url %} ({{ domain_url }}){% endif %}.
+        </p>
+
+        <div class="panel">
+            <p class="panel-title">Reply preview</p>
+            <p class="copy" style="margin-bottom:0;">{{ annotation_content }}</p>
+        </div>
+    </td>
+</tr>
+{% endblock %}

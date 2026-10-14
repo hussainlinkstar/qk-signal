@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "language_name": "Nederlands",
+    "language_name_map": {
+      "en": "English",
+      "es": "Spanish",
+      "fr": "French",
+      "de": "German",
+      "it": "Italian",
+      "ro": "Romanian",
+      "nl": "Dutch",
+      "pt": "Portuguese",
+      "pl": "Polish",
+      "sv": "Swedish",
+      "ja": "Japanese",
+      "zh": "Chinese"
+    }
+  },
+  "pdf": {
+    "ai_disclaimer": "Opmerking: dit rapport bevat geautomatiseerde AI-analyse. Menselijke controle wordt aanbevolen voordat technische wijzigingen worden doorgevoerd.",
+    "generated_on": "Gegenereerd",
+    "executive_summary": "Managementsamenvatting",
+    "highlights": "Hoofdpunten",
+    "score_breakdown": "Score-uitsplitsing",
+    "key_recommendations": "Belangrijkste aanbevelingen",
+    "competitor_analysis": "Concurrentieanalyse",
+    "competitor_section_enabled": "De benchmarksectie voor concurrenten is ingeschakeld voor deze export.",
+    "battle_report": "Vergelijkingsrapport",
+    "head_to_head_comparison": "Directe vergelijking ({index}/{total})",
+    "strategic_highlights": "Strategische highlights",
+    "no_analysis_summary": "Geen analysesamenvatting beschikbaar.",
+    "no_summary_available": "Geen samenvatting beschikbaar.",
+    "left_site": "Linker site",
+    "right_site": "Rechter site",
+    "score": "Score",
+    "technical_report": "Technisch rapport",
+    "executive_report": "Managementrapport",
+    "comparative_report": "Vergelijkingsrapport"
+  },
+  "email": {
+    "common": {
+      "notification": "Melding",
+      "unsubscribe_blurb": "Je ontvangt deze e-mail omdat je een account hebt bij {brand_name}. Je kunt je meldingsvoorkeuren beheren of je op elk moment afmelden.",
+      "fallback_hint": "Als de knop niet werkt, open dan",
+      "support_hint": "Neem voor hulp contact op met",
+      "aio_label": "AIO-score",
+      "seo_label": "SEO-score",
+      "metric_label_seo_score": "SEO-score",
+      "metric_label_aio_score": "AIO-score",
+      "metric_label_unknown": "Zichtbaarheidsscore",
+      "score_delta_up": "{points} punten omhoog sinds {period}",
+      "score_delta_up_one": "{points} punt omhoog sinds {period}",
+      "score_delta_down": "{points} punten omlaag sinds {period}",
+      "score_delta_down_one": "{points} punt omlaag sinds {period}",
+      "score_delta_flat": "Geen verandering sinds {period}",
+      "score_delta_period": "vorige maand",
+      "rank_delta_up": "Omhoog vanaf #{previous}",
+      "rank_delta_down": "Omlaag vanaf #{previous}",
+      "rank_delta_flat": "Geen verandering"
+    },
+    "audit_completed": {
+      "subject": "Audit voltooid voor {target_host}",
+      "preheader": "Je nieuwste audit is voltooid en klaar om te bekijken.",
+      "eyebrow": "Audit voltooid",
+      "title": "Je audit is klaar",
+      "lead": "We hebben je nieuwste audit verwerkt. De score-samenvatting staat hieronder en het volledige rapport wacht in je dashboard.",
+      "cta_label": "Auditrapport openen",
+      "target_label": "Doel",
+      "body": "Gebruik het volledige rapport om technische, content- en answerability-verbeteringen vanuit één plek te prioriteren."
+    },
+    "consensus_ready": {
+      "subject": "Multi-model consensus klaar voor {target_host}",
+      "preheader": "Je multi-model consensusrapport is klaar.",
+      "eyebrow": "Consensus klaar",
+      "title": "Je consensus-audit is klaar",
+      "lead": "De multi-model run is succesvol afgerond. Vergelijk de afgestemde bevindingen en de score-samenvatting in het rapport.",
+      "cta_label": "Consensus bekijken",
+      "models_included": "Inbegrepen modellen",
+      "model_set_label": "Modelset",
+      "target_label": "Doel"
+    },
+    "progress_report": {
+      "subject": "Voortgangsrapport van {project_name} voor {report_month_label}",
+      "eyebrow": "Voortgangsrapport",
+      "title": "Maandelijkse performance-update voor {project_name}",
+      "lead": "Je nieuwste trendsnapshot is klaar met maand-op-maand scorebeweging, belangrijke successen en de volgende punten die de voortgang nog blokkeren.",
+      "cta_label": "Rapportencentrum openen",
+      "preheader": "De scores en maandelijkse voortgang van {project_name} zijn klaar.",
+      "intro": "Het rapport van {report_month_label} voor {project_name}{domain_suffix} is klaar. Gebruik het als klantgerichte onderbouwing van de voortgang van dit project.",
+      "audits_captured_label": "Opgenomen audits",
+      "top_improvements": "Belangrijkste verbeteringen",
+      "remaining_issues": "Openstaande punten",
+      "no_remaining_issues": "Er zijn geen openstaande prioritaire acties uit de nieuwste audit gehaald."
+    },
+    "competitive_digest": {
+      "subject": "Concurrentiedigest {report_period} van {project_name}",
+      "preheader": "Concurrentiebenchmark-update voor {project_name}.",
+      "eyebrow": "Concurrentiedigest",
+      "title": "Benchmark-update voor {project_name}",
+      "lead": "{workspace_name} heeft nu een vernieuwde concurrentiesnapshot voor {competitor_count} gevolgde concurrenten.",
+      "cta_label": "Concurrentiedashboard openen",
+      "highlights": "Hoofdpunten",
+      "updated_at": "Bijgewerkt op"
+    }
+  }
+}

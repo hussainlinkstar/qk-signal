@@ -1,0 +1,109 @@
+{% set aio = sections["aio_result"] %}
+{% set interp = sections.get("strategic_interpretation", {}) %}
+{% set why_items = sections.get("why_this_score", {}).get("items", []) %}
+{% set answer_checks = sections.get("aeo_readiness_dashboard", {}).get("metrics", []) %}
+{% set trust_signals = sections.get("geo_metrics", {}).get("items", []) %}
+{% set trust_items = sections.get("trust_banner", {}).get("items", []) %}
+{% set action_items = sections.get("top_action_items", {}).get("items", []) %}
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Where you stand") }}</h2></div>
+    <p class="section-copy">{{ l("AIO is the score for this audit's AI-answer evidence. A dash means the audit did not provide an AIO score.") }}</p>
+    {% if interp.get("body") %}
+    <div class="subsection-label">{{ l("The short version") }}</div>
+    <p class="section-copy">{{ interp.body | bi }}</p>
+    {% endif %}
+    <div class="pillar-score-grid">
+        <div class="card-grid">
+            {% for card in scores.cards %}
+            <article class="metric-card two-up{% if loop.last %} last{% endif %}">
+                <div class="metric-label">{{ l(card.label) }}</div>
+                <div class="metric-value tone-{{ card.tone }}">{{ card.display_value }}</div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+    {% if aio.scope_label %}
+    <p class="section-copy">{{ aio.scope_label | bi }}</p>
+    {% endif %}
+    {% if aio.summary %}
+    <p class="section-copy">{{ aio.summary | bi }}</p>
+    {% endif %}
+    {% if why_items %}
+    <div class="subsection-label">{{ l("What is holding each one back") }}</div>
+    <div class="list-stack">
+        {% for panel in why_items %}
+        <article class="list-row">
+            <div class="row-title">{{ l(panel.label) }}{% if panel.score_display %} - {{ panel.score_display }}/100{% endif %}</div>
+            {% if panel.business_implication %}<div class="row-copy">{{ panel.business_implication | bi }}</div>{% endif %}
+            {% if panel.top_blockers %}<div class="row-copy"><strong>{{ l("Blockers") }}:</strong> {{ panel.top_blockers | join("; ") | bi }}</div>{% endif %}
+            {% if panel.missing_signals %}<div class="row-copy"><strong>{{ l("Missing signals") }}:</strong> {{ panel.missing_signals | join("; ") | bi }}</div>{% endif %}
+        </article>
+        {% endfor %}
+    </div>
+    {% endif %}
+</section>
+
+{% set actions_empty = "No AIO actions were recorded for this audit." %}
+{% include "partials/actions_section.html.j2" %}
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Questions people ask AI") }}</h2></div>
+    {% set recorded_checks = answer_checks | selectattr("value", "ne", none) | list %}
+    {% if recorded_checks %}
+    <p class="section-copy">{{ l("The text of each question is not stored by this audit. These are the answer-readiness measures it did record.") }}</p>
+    <div class="list-stack">
+        {% for metric in recorded_checks %}
+        <article class="list-row">
+            <div class="row-title">{{ l(metric.label) }}</div>
+            <div class="row-copy">{{ metric.display_value }}</div>
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="section-copy">{{ l("The text of each question is not stored by this audit, and no answer-readiness measures were recorded.") }}</p>
+    {% endif %}
+</section>
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Trust signals") }}</h2></div>
+    {% if trust_signals or trust_items %}
+    <div class="list-stack">
+        {% for signal in trust_signals %}
+        <article class="list-row">
+            <div class="row-title">{{ l(signal.label) }}</div>
+            <div class="row-copy">{{ signal.display_value }}</div>
+        </article>
+        {% endfor %}
+        {% for item in trust_items %}
+        <article class="list-row">
+            <div class="row-title">{{ l(item.label) }}</div>
+            <div class="row-copy">{{ item.value | bi }}</div>
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="section-copy">{{ l("Trust-signal measurements were not included with this audit.") }}</p>
+    {% endif %}
+</section>
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("AI engines") }}</h2></div>
+    {% set engine_rows = sections.get("ai_engines", {}).get("items", []) %}
+    {% if engine_rows %}
+    <div class="list-stack">
+        {% for item in engine_rows %}
+        <article class="list-row">
+            <div class="row-title">{{ item.label }}</div>
+            <div class="row-copy">{% if item.status == "measured" %}{{ item.score_display }}{% else %}{{ l(item.status_label) }}{% endif %}</div>
+        </article>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="section-copy">{{ l("Engine-by-engine reporting is not part of this audit.") }}</p>
+    {% endif %}
+</section>
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Traffic") }}</h2></div>
+    <p class="section-copy">{{ l("Traffic data was not included with this audit.") }}</p>
+</section>

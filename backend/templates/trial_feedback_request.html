@@ -1,0 +1,35 @@
+{% extends "base_email.html" %}
+{% set preheader = "Tell us what worked, what did not, and what should improve after your trial." %}
+{% set eyebrow = "Trial Feedback" %}
+{% set title = "How was your trial?" %}
+{% set lead = "We use trial feedback to shape the next wave of product improvements, onboarding, and roadmap priorities." %}
+{% set cta_label = "Share Feedback" %}
+{% set cta_url = feedback_url %}
+{% set fallback_url = feedback_url %}
+{% block content %}
+<tr><td class="body">
+    <p class="copy">Hi {{ recipient_name }},</p>
+    <p class="copy">
+        {% if admin_name %}
+        {{ admin_name }} would appreciate your feedback on the {{ brand_name }} trial experience.
+        {% else %}
+        We would appreciate your feedback on the {{ brand_name }} trial experience.
+        {% endif %}
+    </p>
+    <p class="copy">
+        {% if trial_ended_at %}
+        Your trial wrapped on {{ trial_ended_at }}.
+        {% else %}
+        Your trial period has now wrapped.
+        {% endif %}
+        If you can spare two minutes, tell us what helped, what felt missing, and what would make the platform more useful for your team.
+    </p>
+    <div class="panel">
+        <p class="panel-title">What we want to learn</p>
+        <div class="detail-row"><span class="detail-label">What worked:</span> onboarding, audits, reporting, or anything that delivered value quickly.</div>
+        <div class="detail-row"><span class="detail-label">What blocked you:</span> missing workflows, unclear UX, pricing friction, or gaps in output quality.</div>
+        <div class="detail-row"><span class="detail-label">What to improve:</span> the most important change that would make you come back, expand usage, or recommend the product.</div>
+    </div>
+    <p class="copy">The button above opens a secure feedback page tied to your unique link.</p>
+</td></tr>
+{% endblock %}

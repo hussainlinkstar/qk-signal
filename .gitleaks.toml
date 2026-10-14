@@ -1,0 +1,76 @@
+# Gitleaks config for Qiko Signal.
+#
+# Adds allowlist entries on top of the default ruleset (useDefault = true keeps
+# full detection active for anything new, including any future commit). Two
+# categories:
+#
+# 1. 18 historical commits (2026-01-24 to 2026-03-08) that introduced real
+#    secrets into .env/.env.* files, .aider chat logs, and one Google
+#    service-account JSON key, before secret scanning existed on this repo
+#    (SIGNAL-1014). Confirmed by Razvan on 2026-09-01: all rotated/dead, the
+#    project runs its LLM calls through AWS Bedrock, not these keys.
+#    Allowlisted by exact, immutable commit SHA, so this can never suppress a
+#    different, future secret: a commit hash is permanently tied to the one
+#    historical diff it already represents. Left in git history deliberately;
+#    rewriting history is destructive and out of scope here.
+#
+# 2. Test fixture files that intentionally use fake-looking secret values to
+#    exercise key-validation/redaction logic. Allowlisted by path so future
+#    edits to these same fixtures do not keep tripping new findings.
+#
+# 3. One documentation placeholder, "stx_live_your_key", shown in the Developer
+#    Hub's copy-paste examples for the MCP setup (SIGV2-1231 / SIGV2-1255). It
+#    is the string the reader replaces with their own key, never a key. It
+#    trips the default curl-auth-header rule because it sits in an
+#    "Authorization: Bearer ..." example. Allowlisted as an exact literal, not
+#    by path and not by rule, so the scanner keeps full strength on that file
+#    and on every other Bearer header in the repo: only this one known-safe
+#    word is ignored. CI checks out with fetch-depth 0 and gitleaks scans every
+#    fetched ref, so a placeholder on any branch fails the scan for every PR in
+#    the repo, which is why this is fixed centrally rather than per branch.
+
+[extend]
+useDefault = true
+
+[allowlist]
+  description = "Historical pre-scanning secrets (rotated/dead, see SIGNAL-1014), test fixtures and one documentation placeholder"
+
+  regexes = [
+    '''stx_live_your_key''',
+  ]
+
+  paths = [
+    '''^backend/tests/test_admin_settings\.py$''',
+    '''^backend/tests/test_api_key_scopes\.py$''',
+    '''^backend/tests/test_core_config\.py$''',
+    '''^backend/tests/test_credit_topup_durable\.py$''',
+    '''^backend/tests/test_export_endpoints\.py$''',
+    '''^backend/tests/test_mcp_server\.py$''',
+    '''^backend/tests/test_external_api\.py$''',
+    '''^backend/tests/test_outbound_url_secret_redaction\.py$''',
+    '''^backend/tests/test_session_security\.py$''',
+  ]
+
+  commits = [
+    # 793b690f introduced a docs-only `Bearer stx_live_your_key` placeholder in
+    # a curl sample; not a credential (same allowlist case as f7dc8af5 below).
+    "793b690ff037be228bf3ec9b71ec2d6d469082ce",
+    "13a8e9ca99709f0ea900ecd5898653cee39fc0e7",
+    "245679f6d6cd49f061918dd730c3d4b5361eb16e",
+    "25c3b4621d4b6d10d5fe12cb49009839ee0d3e56",
+    "5c31ef82a7df9b1f9f5679c0e2c897cf27242e51",
+    "6120f3284b306857870baf50791db3aaac3b7cb4",
+    "69ec6568700724577b547fdcf6960ece78eede25",
+    "7eee4dcecee7e5db37e2fa07d3c8823475c8f7fd",
+    "9ddd4a4247e3a34217eedb0d822d93c8cddb74f1",
+    "aae4a3779c4c51f310639955eedee8088e1b98aa",
+    "b3b2e4b3e772c112246b071e063de41031985f01",
+    "b76b5425ce16f4365f72e06c3dfa9354aa7258d6",
+    "baca0c5d3acdd10cbbb7c5541f2cb961745f06a3",
+    "cf9e015184f66d7d3fa1ea388aaf98228860e4b9",
+    "db96078a2410ccfa660231a5746975afacd6b582",
+    "e14d615ce8c8de989dcc18c6bb5e049da5a5198a",
+    "ed0383f514b2b48a3334a99cc6715e6451cf963b",
+    "f78b5a27ccafa54281af2e3b56f45d2592240e29",
+    "f7dc8af55c948b23f56d04e7711cc5ce6f63b1f8",
+  ]

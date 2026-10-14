@@ -1,0 +1,2365 @@
+@layer theme, base, components, utilities;
+/* Scan only the application source. Tailwind's automatic detection derives its
+   boundaries from .gitignore, and our ignore rules live in the repository root
+   with `frontend/`-prefixed paths. The Docker dev container mounts only
+   `frontend/` as /app, so inside it there is no .git and those rules are
+   invisible: Tailwind then scanned .next-build, test-results and the visual
+   baselines, and extracted class names out of binary content. That is where
+   `shadow-[0_24px_<bytes>]` and `has-[:focus-vc<bytes>]` came from, and why the
+   CSS parse error only ever appeared in the container. Declaring the source
+   explicitly makes the boundary independent of which ignore file happens to be
+   reachable. */
+@import "tailwindcss" source(none);
+@source "../**/*.{ts,tsx}";
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: transparent;
+  }
+
+  .qcs {
+    --bg: #06080f;
+    --panel-a: #0d1526;
+    --panel-b: #0a1120;
+    --card-a: #0c1422;
+    --card-b: #0a1018;
+    --line: #1d2942;
+    --line-soft: #18223a;
+    --line-btn: #283349;
+    --ink: #e8eef6;
+    --muted: #aeb9c9;
+    --muted-2: #9aa6b8;
+    --muted-3: #7f93a8;
+    --faint: #6b7689;
+    --cyan: #22d3ee;
+    --blue: #4f8ff7;
+    --violet: #6e73f2;
+    --purple: #a855f7;
+    --green: #34d399;
+    --eye: #7fdce6;
+    --grad: linear-gradient(115deg, #22d3ee, #4f8ff7 55%, #6e73f2);
+    --sans: var(--font-geist), -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    --mono: var(--font-roboto-mono, "Roboto Mono"), ui-monospace, "SF Mono", Menlo, monospace;
+
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .qcs * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .qcs a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .qcs section {
+    scroll-margin-top: 88px;
+  }
+
+  @media (max-width: 780px) {
+    .qcs .steps::-webkit-scrollbar {
+      height: 5px;
+    }
+
+    .qcs .steps::-webkit-scrollbar-thumb {
+      background: #233048;
+      border-radius: 3px;
+    }
+
+    .qcs .steps::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  }
+}
+@plugin '@tailwindcss/forms';
+@import "tw-animate-css";
+
+@layer base {
+  :root {
+    --font-display: var(--font-satoshi), "Inter", ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+    /* SIGV2-1217: the colour of the global keyboard focus outline. This is
+       the dark brand theme (marketing, auth, portal), so the ring is the
+       light indigo: oklch(0.55 0.25 270) on the near-black --background
+       measures under 3:1, indigo-300 measures about 7:1. */
+    --focus-ring: #a5b4fc;
+    /* Brand colors aligned 1:1 to live qiko.ai (Next.js theme) */
+    --indigo: oklch(0.55 0.25 270);
+    --indigo-light: oklch(0.65 0.22 270);
+    --cyan: oklch(0.75 0.15 195);
+    --primary: oklch(0.55 0.25 270);
+    --primary-hover: oklch(0.65 0.22 270);
+    --primary-foreground: oklch(0.98 0.005 270);
+    --secondary: oklch(0.22 0.04 250);
+    --secondary-foreground: oklch(0.85 0.02 250);
+    --accent: oklch(0.75 0.15 195);
+    --accent-foreground: oklch(0.12 0.03 250);
+    --sky-300: oklch(0.75 0.15 195);
+
+    --background: oklch(0.12 0.03 250);
+    --surface: oklch(0.22 0.04 250);
+    --surface-subtle: rgba(255, 255, 255, 0.03);
+    --surface-elevated: oklch(0.26 0.045 250);
+    --foreground: oklch(0.95 0.01 250);
+    --text: oklch(0.95 0.01 250);
+    --text-muted: oklch(0.65 0.02 250);
+    --text-soft: oklch(0.78 0.015 250);
+    --faint: #475569;
+    --border: oklch(0.3 0.03 250 / 0.4);
+    --border-strong: oklch(0.38 0.04 250 / 0.55);
+    --border-hover: oklch(0.42 0.06 270 / 0.55);
+    --ring: oklch(0.55 0.25 270);
+
+    --success: #22c55e;
+    --warning: #d97706;
+    --danger: #ef4444;
+    --info: #0ea5e9;
+
+    --chart-1: #6366f1;
+    --chart-2: #818cf8;
+    --chart-3: #22d3ee;
+    --chart-4: #f59e0b;
+    --chart-5: #ef4444;
+    --chart-6: #06b6d4;
+    --chart-grid: rgba(148, 163, 184, 0.12);
+    --chart-axis: rgba(148, 163, 184, 0.8);
+    --chart-tooltip-bg: oklch(0.16 0.035 250 / 0.97);
+    --chart-tooltip-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+
+    --shadow-xs: 0 4px 12px rgba(0, 0, 0, 0.2);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.35), 0 1px 2px rgba(0, 0, 0, 0.25);
+    --shadow-md: 0 24px 56px rgba(0, 0, 0, 0.38);
+    --shadow-lg: 0 36px 80px rgba(0, 0, 0, 0.5);
+    --shadow-primary: 0 10px 24px rgba(99, 102, 241, 0.12);
+    --shadow-accent-glow: 0 0 20px rgba(34, 211, 238, 0.15);
+    --shadow-surface-elevated: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+    --shadow-focus: 0 0 0 2px var(--background), 0 0 0 5px var(--ring);
+    --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+
+    --r-sm: 6px;
+    --r-md: 10px;
+    --r-lg: 16px;
+    --radius-ui: 10px;
+
+    --overlay-backdrop: oklch(0.1 0.03 250 / 0.72);
+    --gate-veil: var(--overlay-backdrop);
+    --selection: rgba(99, 102, 241, 0.2);
+
+    --background-deep: oklch(0.09 0.025 250);
+    --accent-warm: #818cf8;
+    --text-bright: #f8fafc;
+    --text-secondary: #6f809b;
+    --border-light: #e2e8f0;
+    --link: #3b82f6;
+
+    --color-primary: var(--primary);
+    --color-accent: var(--accent);
+    --card: oklch(0.16 0.035 250 / 0.6);
+    --card-foreground: oklch(0.95 0.01 250);
+    --input: oklch(0.25 0.03 250 / 0.6);
+    --muted: oklch(0.25 0.03 250);
+    --muted-foreground: var(--text-muted);
+    --color-error-light: #fecaca;
+    --color-error-default: var(--danger);
+    --popover: var(--card);
+    --popover-foreground: var(--card-foreground);
+    --destructive: var(--danger);
+    --destructive-foreground: #ffffff;
+    --radius: var(--radius-ui);
+
+    --z-sticky: 10;
+    --z-sidebar: 20;
+    --z-dropdown: 30;
+    --z-topbar: 40;
+    --z-popover: 50;
+    --z-modal: 60;
+    --z-toast: 70;
+    --z-widget: 80;
+    --z-mobile-menu: 90;
+
+    --duration-fast: 150ms;
+    --duration-normal: 200ms;
+    --duration-slow: 300ms;
+
+    /* Marketing hero & CTA glow */
+    --hero-glow: rgba(59, 130, 246, 0.08);
+    --cta-glow-start: rgba(99, 102, 241, 0.06);
+    --cta-glow-end: rgba(59, 130, 246, 0.04);
+  }
+
+  /* Signal-light design system - scoped to the authenticated dashboard/admin app only.
+     Source of truth: /Users/user/signal-MVP/signal.css. Do not let these tokens leak
+     into marketing/auth/portal, which keep the dark brand theme above. */
+  [data-signal-theme] {
+    color-scheme: light;
+    --t-3: #5f6876;
+    --good: #116149;
+    --warn: #8a5a00;
+    --bad: #b4232a;
+    background: var(--paper);
+    color: var(--t-1);
+
+    /* Variable bridge: existing dashboard/admin markup uses the legacy CSS
+       custom properties below (var(--background), text-[--accent],
+       border-[--border], etc.). Re-pointing them inside this scope to the
+       signal.css :root tokens (the single source of truth) re-themes that
+       markup to signal-light without touching every page. */
+    --background: var(--paper);
+    --background-deep: var(--paper);
+    --foreground: var(--t-1);
+
+    /* Chart and shadow tokens. The :root values are tuned for the dark brand
+       theme (near-black tooltip, 12% slate grid, black shadows at 20-50%), so
+       they have to be re-pointed here too or they leak into the light app: the
+       chart tooltips rendered near-black with near-black text, and
+       --shadow-inset is a white 2% inset that is invisible on white. */
+    --chart-grid: var(--line-2);
+    --chart-axis: var(--t-3);
+    --chart-tooltip-bg: var(--panel);
+    --chart-tooltip-shadow: 0 18px 44px -18px rgba(12, 15, 22, 0.34);
+    --shadow-xs: 0 1px 2px rgba(12, 15, 22, 0.06);
+    --shadow-sm: 0 1px 3px rgba(12, 15, 22, 0.09);
+    --shadow-md: 0 12px 28px -12px rgba(12, 15, 22, 0.18);
+    --shadow-lg: 0 18px 44px -18px rgba(12, 15, 22, 0.34);
+    --shadow-inset: none;
+    --text: var(--t-1);
+    --text-bright: var(--t-1);
+    --text-muted: var(--t-3);
+    --text-secondary: var(--t-3);
+    --text-soft: var(--t-2);
+    --muted-foreground: var(--t-3);
+    --muted: var(--line-2);
+    --faint: var(--t-3);
+    --surface: var(--panel);
+    --surface-subtle: rgba(12, 15, 22, 0.03);
+    --surface-elevated: var(--panel);
+    --sidebar: var(--panel);
+    --card: var(--panel);
+    --card-foreground: var(--t-1);
+    --input: var(--panel);
+    --border: var(--line);
+    --border-hover: var(--line-2);
+    --border-strong: var(--t-3);
+    --border-light: var(--line);
+    --primary: var(--ink);
+    --primary-hover: #000000;
+    --primary-foreground: #ffffff;
+    --secondary: var(--line-2);
+    --secondary-foreground: var(--t-1);
+    --accent: var(--purple);
+    --accent-foreground: #ffffff;
+    --accent-warm: var(--warn);
+    --success: var(--good);
+    --warning: var(--warn);
+    --danger: var(--bad);
+    --info: var(--blue);
+    --link: var(--blue);
+    --ring: var(--blue);
+    --sky-300: var(--cyan);
+    --overlay-backdrop: rgba(12, 15, 22, 0.42);
+    --selection: rgba(147, 51, 234, 0.16);
+    --shadow-focus: 0 0 0 2px var(--paper), 0 0 0 5px var(--blue);
+  }
+
+  html,
+  body,
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-hover) transparent;
+  }
+
+  *::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: var(--border-hover);
+    border-radius: var(--radius-ui, 8px);
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+  }
+
+  html {
+    color-scheme: dark;
+    background: var(--background);
+  }
+
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+  }
+
+  *,
+  ::before,
+  ::after {
+    border-color: transparent;
+  }
+
+  :is(a, button, input, select, textarea, [role="button"]):focus {
+    outline: none;
+  }
+
+  /* SIGV2-1217: a keyboard focus indicator that can actually be seen.
+     This rule used to read `outline: 2px solid transparent`, which is
+     Tailwind v3's `outline-none` (v4 calls it `outline-hidden`) applied to
+     every interactive element in the product at once. Its purpose is to keep
+     a focus ring present in forced-colors mode while a COMPONENT draws its
+     own visible one; as a global default it means any element that draws
+     nothing of its own shows nothing at all on a keyboard tab. 628 of the
+     713 interactive elements in src/ are in exactly that position, so this
+     was a WCAG 2.4.7 failure across almost the whole app.
+
+     The approved design has a global focus treatment of its own (signal.css
+     line 101: `box-shadow: 0 0 0 3px var(--ring)` on every focusable
+     element); it was simply never ported. It is reproduced here as an
+     OUTLINE, not a box-shadow, for two reasons. A base-layer box-shadow is
+     replaced outright by any `shadow-*` utility, because utilities are a
+     later cascade layer, so six interactive elements carrying a resting
+     shadow would have silently kept no indicator. And `outline` cannot
+     collide with a component's own ring: the 83 elements that draw their own
+     already pair it with `focus-visible:outline-hidden` or override
+     `focus-visible:outline-*` themselves, so none of them gets two rings.
+     Verified by e2e/visual/focus-treatment.visual.spec.ts.
+
+     The colour is the solid approved brand indigo rather than the design's
+     `--ring` (rgba(79,70,229,.28)), which measures about 1.3:1 against
+     --panel and would be a focus ring you have to look for. Same deliberate,
+     recorded deviation as SIGV2-1033 made for --t-3. `outline-offset` keeps
+     the ring outside the control, on the parent surface, so it never has to
+     contrast with the control's own fill. */
+  :is(a, button, input, select, textarea, [role="button"]):focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  /* In forced-colors mode the author colour is ignored anyway; name the
+     system keyword so the ring follows the user's chosen highlight. */
+  @media (forced-colors: active) {
+    :is(a, button, input, select, textarea, [role="button"]):focus-visible {
+      outline-color: Highlight;
+    }
+  }
+
+  /* Autofill overrides */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--foreground);
+    -webkit-box-shadow: 0 0 0px 1000px var(--surface) inset;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  select,
+  select option,
+  select optgroup {
+    background-color: var(--surface);
+    color: var(--foreground);
+  }
+
+  option {
+    padding: 0 2px 1px;
+  }
+
+  select:disabled {
+    opacity: 0.7;
+  }
+
+  button {
+    @apply font-medium transition-colors duration-200;
+  }
+}
+
+/* On /api-reference the Scalar stylesheet registers @layer scalar-base after
+   our utilities layer, so its :where(.scalar-app) * reset outranks the layered
+   button rule above. In v3 globals emitted unlayered and beat it. Unlayered
+   here reproduces that precedence inside .scalar-app without outranking
+   font-* utilities elsewhere. */
+.scalar-app button {
+  font-weight: 500;
+}
+
+@custom-variant dark (&:is(.dark *));
+/* Token colours resolve through real CSS custom properties so runtime tenant
+   branding keeps working; the /N modifier emits color-mix() while the plain
+   utility emits the bare var(--token, fallback). */
+@theme inline {
+  --color-background: var(--background, #0d1b2a);
+  --color-foreground: var(--foreground, #ffffff);
+  --color-ring: var(--ring, #6366f1);
+  --color-brand: var(--brand-primary, #6366f1);
+  --color-brand-hover: var(--brand-hover, #818cf8);
+  --color-brand-sky: var(--sky-300, #22d3ee);
+  --color-brand-seo: var(--brand-seo, #60a5fa);
+  --color-brand-aeo: var(--brand-aeo, #2dd4bf);
+  --color-brand-geo: var(--brand-geo, #c084fc);
+  --color-text-primary: var(--text, #ffffff);
+  --color-text-muted: var(--text-muted, #94a3b8);
+  --color-text-soft: var(--text-soft, #cbd5e1);
+  --color-primary: var(--primary, #6366f1);
+  --color-primary-hover: var(--primary-hover, #818cf8);
+  --color-primary-foreground: var(--primary-foreground, #ffffff);
+  --color-secondary: var(--secondary, #0f172a);
+  --color-secondary-foreground: var(--secondary-foreground, #ffffff);
+  --color-accent: var(--accent, #22d3ee);
+  --color-accent-foreground: var(--accent-foreground, #ffffff);
+  --color-success: var(--success, #22c55e);
+  --color-warning: var(--warning, #d97706);
+  --color-danger: var(--danger, #ef4444);
+  --color-info: var(--info, #0ea5e9);
+  --color-surface: var(--surface, #0a121e);
+  --color-surface-subtle: var(--surface-subtle, rgba(255, 255, 255, 0.03));
+  --color-surface-elevated: var(--surface-elevated, #1a212e);
+  --color-surface-border: var(--border, #1e293b);
+  --color-surface-strong: var(--border-hover, #2d3e55);
+  --color-card: var(--card, #1a212e);
+  --color-card-foreground: var(--card-foreground, #ffffff);
+  --color-popover: var(--popover, #1a212e);
+  --color-popover-foreground: var(--popover-foreground, #ffffff);
+  --color-muted: var(--muted, #1e293b);
+  --color-muted-foreground: var(--muted-foreground, #94a3b8);
+  --color-input: var(--input, #1e293b);
+  --color-destructive: var(--destructive, #ef4444);
+  --color-destructive-foreground: var(--destructive-foreground, #ffffff);
+  --color-chart-1: var(--chart-1, #6366f1);
+  --color-chart-2: var(--chart-2, #818cf8);
+  --color-chart-3: var(--chart-3, #22d3ee);
+  --color-chart-4: var(--chart-4, #f59e0b);
+  --color-chart-5: var(--chart-5, #ef4444);
+  --color-chart-6: var(--chart-6, #06b6d4);
+}
+
+@theme inline {
+  --color-thoth-accent: #22d3ee;
+  --color-thoth-brass: #6366f1;
+  --color-thoth-logic: #818cf8;
+  --color-thoth-background: #0d1b2a;
+  --color-thoth-surface: #0a121e;
+  --color-thoth-secondary: #1a212e;
+  --color-thoth-border: #1e293b;
+
+  --color-thoth-text-primary: #ffffff;
+  --color-thoth-text-secondary: #94a3b8;
+  --color-thoth-text-muted: #475569;
+
+  --background-image-thoth-synergy: linear-gradient(135deg, var(--primary) 0%, var(--sky-300) 100%);
+  --background-image-surface-sheen: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--surface) 92%, white 8%) 0%,
+    var(--surface) 100%
+  );
+
+  --font-sans: var(--font-sans), Inter, sans-serif;
+  --font-display: var(--font-display), Satoshi, Inter, sans-serif;
+  --font-mono: var(--mono), ui-monospace, monospace;
+
+  --radius: var(--radius-ui, 2px);
+  --radius-sm: var(--r-sm, 4px);
+  --radius-md: var(--r-md, 2px);
+  --radius-lg: var(--r-lg, 4px);
+  --radius-xl: var(--signal-radius-xl, 20px);
+  --radius-4xl: 2rem;
+  --radius-full: 9999px;
+
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-brand: var(--shadow-primary);
+  --shadow-accent-glow: var(--shadow-accent-glow);
+  --shadow-surface-elevated: var(--shadow-surface-elevated);
+
+  --z-index-sticky: var(--z-sticky);
+  --z-index-sidebar: var(--z-sidebar);
+  --z-index-dropdown: var(--z-dropdown);
+  --z-index-topbar: var(--z-topbar);
+  --z-index-popover: var(--z-popover);
+  --z-index-modal: var(--z-modal);
+  --z-index-toast: var(--z-toast);
+  --z-index-widget: var(--z-widget);
+  --z-index-mobile-menu: var(--z-mobile-menu);
+
+  --transition-duration-fast: var(--duration-fast);
+  --transition-duration-normal: var(--duration-normal);
+  --transition-duration-slow: var(--duration-slow);
+}
+/*
+ * Pinned at Tailwind v3.4 default values for visual parity during the CSS purge:
+ * the v4 default palette changed these hexes, and the legacy CSS plus the forms
+ * plugin resolve them as literals. Revisit once signal-mvp.css and
+ * coming-soon.css are deleted and the v4 palette can be adopted deliberately.
+ *
+ * Phase 4 item: primitives use cx() (plain concat) for parity with v3's
+ * emitted-order cascade. Once the legacy CSS is deleted, switch to
+ * cn()/tailwind-merge so caller overrides win by call-site order, and re-run
+ * the visual-drift gate to prove it.
+ */
+@theme {
+  /* v3 font-size utilities emitted fixed line-heights; v4 emits ratios that
+     scale with any overriding font-size. Pin the v3 values. */
+  --text-xs--line-height: 1rem;
+  --text-sm--line-height: 1.25rem;
+  --text-base--line-height: 1.5rem;
+  --text-lg--line-height: 1.75rem;
+  --text-xl--line-height: 1.75rem;
+  --text-2xl--line-height: 2rem;
+  --text-3xl--line-height: 2.25rem;
+  --text-4xl--line-height: 2.5rem;
+  --color-black: #000;
+  --color-white: #fff;
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+  --color-slate-950: #020617;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f3f4f6;
+  --color-gray-200: #e5e7eb;
+  --color-gray-300: #d1d5db;
+  --color-gray-400: #9ca3af;
+  --color-gray-500: #6b7280;
+  --color-gray-600: #4b5563;
+  --color-gray-700: #374151;
+  --color-gray-800: #1f2937;
+  --color-gray-900: #111827;
+  --color-gray-950: #030712;
+  --color-zinc-50: #fafafa;
+  --color-zinc-100: #f4f4f5;
+  --color-zinc-200: #e4e4e7;
+  --color-zinc-300: #d4d4d8;
+  --color-zinc-400: #a1a1aa;
+  --color-zinc-500: #71717a;
+  --color-zinc-600: #52525b;
+  --color-zinc-700: #3f3f46;
+  --color-zinc-800: #27272a;
+  --color-zinc-900: #18181b;
+  --color-zinc-950: #09090b;
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f5f5f5;
+  --color-neutral-200: #e5e5e5;
+  --color-neutral-300: #d4d4d4;
+  --color-neutral-400: #a3a3a3;
+  --color-neutral-500: #737373;
+  --color-neutral-600: #525252;
+  --color-neutral-700: #404040;
+  --color-neutral-800: #262626;
+  --color-neutral-900: #171717;
+  --color-neutral-950: #0a0a0a;
+  --color-stone-50: #fafaf9;
+  --color-stone-100: #f5f5f4;
+  --color-stone-200: #e7e5e4;
+  --color-stone-300: #d6d3d1;
+  --color-stone-400: #a8a29e;
+  --color-stone-500: #78716c;
+  --color-stone-600: #57534e;
+  --color-stone-700: #44403c;
+  --color-stone-800: #292524;
+  --color-stone-900: #1c1917;
+  --color-stone-950: #0c0a09;
+  --color-red-50: #fef2f2;
+  --color-red-100: #fee2e2;
+  --color-red-200: #fecaca;
+  --color-red-300: #fca5a5;
+  --color-red-400: #f87171;
+  --color-red-500: #ef4444;
+  --color-red-600: #dc2626;
+  --color-red-700: #b91c1c;
+  --color-red-800: #991b1b;
+  --color-red-900: #7f1d1d;
+  --color-red-950: #450a0a;
+  --color-orange-50: #fff7ed;
+  --color-orange-100: #ffedd5;
+  --color-orange-200: #fed7aa;
+  --color-orange-300: #fdba74;
+  --color-orange-400: #fb923c;
+  --color-orange-500: #f97316;
+  --color-orange-600: #ea580c;
+  --color-orange-700: #c2410c;
+  --color-orange-800: #9a3412;
+  --color-orange-900: #7c2d12;
+  --color-orange-950: #431407;
+  --color-amber-50: #fffbeb;
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-300: #fcd34d;
+  --color-amber-400: #fbbf24;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  --color-amber-700: #b45309;
+  --color-amber-800: #92400e;
+  --color-amber-900: #78350f;
+  --color-amber-950: #451a03;
+  --color-yellow-50: #fefce8;
+  --color-yellow-100: #fef9c3;
+  --color-yellow-200: #fef08a;
+  --color-yellow-300: #fde047;
+  --color-yellow-400: #facc15;
+  --color-yellow-500: #eab308;
+  --color-yellow-600: #ca8a04;
+  --color-yellow-700: #a16207;
+  --color-yellow-800: #854d0e;
+  --color-yellow-900: #713f12;
+  --color-yellow-950: #422006;
+  --color-lime-50: #f7fee7;
+  --color-lime-100: #ecfccb;
+  --color-lime-200: #d9f99d;
+  --color-lime-300: #bef264;
+  --color-lime-400: #a3e635;
+  --color-lime-500: #84cc16;
+  --color-lime-600: #65a30d;
+  --color-lime-700: #4d7c0f;
+  --color-lime-800: #3f6212;
+  --color-lime-900: #365314;
+  --color-lime-950: #1a2e05;
+  --color-green-50: #f0fdf4;
+  --color-green-100: #dcfce7;
+  --color-green-200: #bbf7d0;
+  --color-green-300: #86efac;
+  --color-green-400: #4ade80;
+  --color-green-500: #22c55e;
+  --color-green-600: #16a34a;
+  --color-green-700: #15803d;
+  --color-green-800: #166534;
+  --color-green-900: #14532d;
+  --color-green-950: #052e16;
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-200: #a7f3d0;
+  --color-emerald-300: #6ee7b7;
+  --color-emerald-400: #34d399;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+  --color-emerald-700: #047857;
+  --color-emerald-800: #065f46;
+  --color-emerald-900: #064e3b;
+  --color-emerald-950: #022c22;
+  --color-teal-50: #f0fdfa;
+  --color-teal-100: #ccfbf1;
+  --color-teal-200: #99f6e4;
+  --color-teal-300: #5eead4;
+  --color-teal-400: #2dd4bf;
+  --color-teal-500: #14b8a6;
+  --color-teal-600: #0d9488;
+  --color-teal-700: #0f766e;
+  --color-teal-800: #115e59;
+  --color-teal-900: #134e4a;
+  --color-teal-950: #042f2e;
+  --color-cyan-50: #ecfeff;
+  --color-cyan-100: #cffafe;
+  --color-cyan-200: #a5f3fc;
+  --color-cyan-300: #67e8f9;
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+  --color-cyan-700: #0e7490;
+  --color-cyan-800: #155e75;
+  --color-cyan-900: #164e63;
+  --color-cyan-950: #083344;
+  --color-sky-50: #f0f9ff;
+  --color-sky-100: #e0f2fe;
+  --color-sky-200: #bae6fd;
+  --color-sky-300: #7dd3fc;
+  --color-sky-400: #38bdf8;
+  --color-sky-500: #0ea5e9;
+  --color-sky-600: #0284c7;
+  --color-sky-700: #0369a1;
+  --color-sky-800: #075985;
+  --color-sky-900: #0c4a6e;
+  --color-sky-950: #082f49;
+  --color-blue-50: #eff6ff;
+  --color-blue-100: #dbeafe;
+  --color-blue-200: #bfdbfe;
+  --color-blue-300: #93c5fd;
+  --color-blue-400: #60a5fa;
+  --color-blue-500: #3b82f6;
+  --color-blue-600: #2563eb;
+  --color-blue-700: #1d4ed8;
+  --color-blue-800: #1e40af;
+  --color-blue-900: #1e3a8a;
+  --color-blue-950: #172554;
+  --color-indigo-50: #eef2ff;
+  --color-indigo-100: #e0e7ff;
+  --color-indigo-200: #c7d2fe;
+  --color-indigo-300: #a5b4fc;
+  --color-indigo-400: #818cf8;
+  --color-indigo-500: #6366f1;
+  --color-indigo-600: #4f46e5;
+  --color-indigo-700: #4338ca;
+  --color-indigo-800: #3730a3;
+  --color-indigo-900: #312e81;
+  --color-indigo-950: #1e1b4b;
+  --color-violet-50: #f5f3ff;
+  --color-violet-100: #ede9fe;
+  --color-violet-200: #ddd6fe;
+  --color-violet-300: #c4b5fd;
+  --color-violet-400: #a78bfa;
+  --color-violet-500: #8b5cf6;
+  --color-violet-600: #7c3aed;
+  --color-violet-700: #6d28d9;
+  --color-violet-800: #5b21b6;
+  --color-violet-900: #4c1d95;
+  --color-violet-950: #2e1065;
+  --color-purple-50: #faf5ff;
+  --color-purple-100: #f3e8ff;
+  --color-purple-200: #e9d5ff;
+  --color-purple-300: #d8b4fe;
+  --color-purple-400: #c084fc;
+  --color-purple-500: #a855f7;
+  --color-purple-600: #9333ea;
+  --color-purple-700: #7e22ce;
+  --color-purple-800: #6b21a8;
+  --color-purple-900: #581c87;
+  --color-purple-950: #3b0764;
+  --color-fuchsia-50: #fdf4ff;
+  --color-fuchsia-100: #fae8ff;
+  --color-fuchsia-200: #f5d0fe;
+  --color-fuchsia-300: #f0abfc;
+  --color-fuchsia-400: #e879f9;
+  --color-fuchsia-500: #d946ef;
+  --color-fuchsia-600: #c026d3;
+  --color-fuchsia-700: #a21caf;
+  --color-fuchsia-800: #86198f;
+  --color-fuchsia-900: #701a75;
+  --color-fuchsia-950: #4a044e;
+  --color-pink-50: #fdf2f8;
+  --color-pink-100: #fce7f3;
+  --color-pink-200: #fbcfe8;
+  --color-pink-300: #f9a8d4;
+  --color-pink-400: #f472b6;
+  --color-pink-500: #ec4899;
+  --color-pink-600: #db2777;
+  --color-pink-700: #be185d;
+  --color-pink-800: #9d174d;
+  --color-pink-900: #831843;
+  --color-pink-950: #500724;
+  --color-rose-50: #fff1f2;
+  --color-rose-100: #ffe4e6;
+  --color-rose-200: #fecdd3;
+  --color-rose-300: #fda4af;
+  --color-rose-400: #fb7185;
+  --color-rose-500: #f43f5e;
+  --color-rose-600: #e11d48;
+  --color-rose-700: #be123c;
+  --color-rose-800: #9f1239;
+  --color-rose-900: #881337;
+  --color-rose-950: #4c0519;
+}
+
+@utility alert-danger {
+  /* Alpha modifiers cannot be applied to the var()-backed `danger` color, so
+     the tinted error surface is mixed from tokens here instead of danger/N
+     utilities, which compile to nothing. */
+  border-color: color-mix(in srgb, var(--danger) 35%, transparent);
+  background-color: color-mix(in srgb, var(--danger) 8%, var(--surface));
+  color: var(--danger);
+}
+
+@utility button-icon {
+  @apply h-10 w-10 p-0;
+
+  & > svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
+
+@utility text-micro-interactive {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+@utility surface-card {
+  background: #0a0f1a;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--r-lg);
+}
+
+@utility surface-card-strong {
+  background: #0a0f1a;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--r-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+@utility surface-panel {
+  background: var(--surface-subtle);
+  border: 1px solid var(--border);
+  @apply transition-[border-color,background-color] duration-normal;
+}
+
+@utility section-kicker {
+  color: var(--text-muted);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+@utility volatility-page-root {
+  /* Hide SSR content shell once the client component renders real content */
+  &:has(> #main-content) > .volatility-ssr-shell {
+    display: none;
+  }
+}
+
+@utility volatility-ssr-shell {
+  /* Hide SSR content shell once the client component renders real content */
+  .volatility-page-root:has(> #main-content) > & {
+    display: none;
+  }
+}
+
+@utility marketing-shell {
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+
+  @media (min-width: 768px) {
+    padding-inline: 2.5rem;
+  }
+}
+
+@utility marketing-shell-fluid {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
+
+  @media (min-width: 1280px) {
+    padding-inline: 3rem;
+  }
+}
+
+@utility marketing-top-space {
+  padding-top: 8rem;
+
+  @media (min-width: 768px) {
+    padding-top: 9rem;
+  }
+}
+
+@utility marketing-main {
+  min-height: 100vh;
+  background-color: var(--background);
+  font-family: var(--font-sans);
+  color: var(--foreground);
+}
+
+@utility dashboard-page-shell {
+  @apply mx-auto w-full px-4 pb-20 pt-4 md:px-6;
+}
+
+@utility scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility signal-canvas {
+  /* signal.css `body{background:#F2F4FB}`: the flat canvas behind the
+     floating app card. Used by every Signal surface's ancestors so nothing
+     darker peeks through coverage gaps. Single source: --signal-canvas. */
+  background-color: var(--signal-canvas);
+}
+
+@utility app-surface-gradient {
+  /* Matches app.qiko.ai: indigo glow top-right + cyan glow bottom-left */
+  background-image:
+    radial-gradient(circle at top right, rgba(99, 102, 241, 0.08), transparent 36%),
+    radial-gradient(circle at bottom left, rgba(34, 211, 238, 0.05), transparent 30%);
+}
+
+@utility glass-surface {
+  background: var(--glass-surface-background, #0a0f1a);
+  border: 1px solid var(--glass-surface-border, rgba(255, 255, 255, 0.05));
+}
+
+@utility glass-accent {
+  @apply border;
+  border-color: color-mix(in srgb, var(--primary) 25%, transparent);
+  background: color-mix(in srgb, var(--primary) 7%, var(--card));
+}
+
+.thoth-toast {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) 24px;
+  align-items: center;
+  column-gap: 9px;
+  row-gap: 8px;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 14px;
+  background: var(--ink);
+  color: var(--panel);
+  /* SIGV2-1222: the 1px edge is the animated gradient ring drawn by
+     `[data-signal-alert]::before`; this stays as the fallback colour for a
+     browser without `mask-composite`. Tone still reaches the glyph through
+     --toast-indicator, never through the edge alone (SIGV2-1171). */
+  --al-edge: color-mix(in srgb, var(--panel) 12%, var(--ink));
+  --al-edge-hi: color-mix(in srgb, var(--panel) 42%, var(--ink));
+  border: 1px solid var(--al-edge);
+  border-radius: 10px;
+  box-shadow: 0 16px 40px -14px color-mix(in srgb, var(--ink) 40%, transparent);
+  font-family: var(--font-sans), "Inter", sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: normal;
+  text-align: center;
+
+  &[data-sonner-toast][data-styled="false"] {
+    width: 100%;
+  }
+
+  & [data-icon] {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin: 0;
+  }
+
+  & [data-title] {
+    font: inherit;
+    color: var(--panel);
+    overflow-wrap: anywhere;
+  }
+
+  & [data-description] {
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.5;
+    letter-spacing: normal;
+    text-transform: none;
+    color: color-mix(in srgb, var(--panel) 76%, var(--ink));
+    overflow-wrap: anywhere;
+  }
+
+  &[data-sonner-toast] [data-close-button] {
+    grid-column: 3;
+    grid-row: 1;
+    position: relative;
+    inset: auto;
+    transform: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: color-mix(in srgb, var(--panel) 65%, var(--ink));
+    cursor: pointer;
+    transition:
+      background-color 0.15s,
+      color 0.15s;
+  }
+
+  & [data-close-button]::after {
+    content: "";
+    position: absolute;
+    inset: -10px;
+  }
+
+  & [data-close-button]:hover {
+    background: color-mix(in srgb, var(--panel) 10%, var(--ink));
+    color: var(--panel);
+  }
+
+  & [data-close-button]:focus-visible,
+  & [data-button]:focus-visible {
+    outline: 2px solid var(--panel);
+    outline-offset: 2px;
+  }
+
+  & [data-close-button] svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2;
+  }
+
+  & [data-button] {
+    grid-column: 2;
+    justify-self: center;
+    min-height: 32px;
+    padding: 0 12px;
+    border-radius: 8px;
+    border: 1px solid color-mix(in srgb, var(--panel) 25%, var(--ink));
+    background: color-mix(in srgb, var(--panel) 8%, var(--ink));
+    color: var(--panel);
+    font: inherit;
+    cursor: pointer;
+  }
+
+  & [data-button]:hover {
+    background: color-mix(in srgb, var(--panel) 16%, var(--ink));
+  }
+}
+
+.thoth-toast-panel {
+  & > [data-content] {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+    gap: 3px;
+  }
+}
+
+/* The toast glyph: one of the four `.alert` shapes (SIGV2-1171). Colour still
+   names the tone via --toast-indicator, but the shape is what carries it, so
+   the icon is the svg itself, sized in layout.tsx, stroked in currentColor. */
+.thoth-toast-icon {
+  display: block;
+  color: var(--toast-indicator, var(--panel));
+}
+
+/* SIGV2-1222: each tone's edge pair. The glyph colour above is unchanged, so
+   the edge is an addition to the tone and never a substitute for it. */
+.thoth-toast-success {
+  --toast-indicator: #34d399;
+  --al-edge: color-mix(in srgb, #34d399 35%, var(--ink));
+  --al-edge-hi: color-mix(in srgb, #34d399 90%, var(--ink));
+}
+
+.thoth-toast-error {
+  --toast-indicator: #f87171;
+  --al-edge: color-mix(in srgb, #f87171 35%, var(--ink));
+  --al-edge-hi: color-mix(in srgb, #f87171 90%, var(--ink));
+}
+
+.thoth-toast-warning {
+  --toast-indicator: #fbbf24;
+  --al-edge: color-mix(in srgb, #fbbf24 35%, var(--ink));
+  --al-edge-hi: color-mix(in srgb, #fbbf24 90%, var(--ink));
+}
+
+.thoth-toast-info {
+  --toast-indicator: #60a5fa;
+  --al-edge: color-mix(in srgb, #60a5fa 35%, var(--ink));
+  --al-edge-hi: color-mix(in srgb, #60a5fa 90%, var(--ink));
+}
+
+.thoth-toast-loading .thoth-toast-icon {
+  color: var(--panel);
+}
+
+/* ---------------------------------------------------------------------------
+   Shared status cards adapted from Alert 06 - Animated Gradient Alert on
+   shadcnspace.com (Free License, Copyright (c) 2026 Shadcn Space).
+   Signal tokens, persistent status semantics and reduced-motion support are
+   shared by the gradient fill, glyph badge and animated edge.
+   --------------------------------------------------------------------------- */
+@keyframes signal-alert-edge {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+[data-signal-alert] {
+  --al-edge: var(--line);
+  --al-edge-hi: var(--line-2);
+  --al-fill: var(--panel);
+  --al-icon-fill: var(--line-2);
+  background-color: var(--panel);
+  background-image: linear-gradient(to bottom, var(--al-fill), transparent 80%);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 5%);
+  position: relative;
+  /* `isolation` makes the alert its own stacking context, which is what lets
+     the ring sit at `z-index: -1`: above this element's own background and
+     border, below every descendant, and never behind an ancestor's fill. */
+  isolation: isolate;
+  /* The fallback for a browser without `mask-composite`: a plain tone border,
+     exactly what these surfaces carried before this ticket. */
+  border: 1px solid var(--al-edge);
+}
+
+[data-signal-alert="info"] {
+  --al-fill: var(--blue-s);
+  --al-icon-fill: color-mix(in srgb, var(--blue) 15%, transparent);
+  --al-edge: color-mix(in srgb, var(--blue) 30%, transparent);
+  --al-edge-hi: color-mix(in srgb, var(--blue) 80%, transparent);
+}
+
+[data-signal-alert="success"] {
+  --al-fill: var(--good-s);
+  --al-icon-fill: color-mix(in srgb, var(--good) 15%, transparent);
+  --al-edge: color-mix(in srgb, var(--good) 30%, transparent);
+  --al-edge-hi: color-mix(in srgb, var(--good) 80%, transparent);
+}
+
+[data-signal-alert="warning"] {
+  --al-fill: var(--warn-s);
+  --al-icon-fill: color-mix(in srgb, var(--warn) 15%, transparent);
+  --al-edge: color-mix(in srgb, var(--warn) 35%, transparent);
+  --al-edge-hi: color-mix(in srgb, var(--warn) 85%, transparent);
+}
+
+[data-signal-alert="danger"] {
+  --al-fill: var(--bad-s);
+  --al-icon-fill: color-mix(in srgb, var(--bad) 15%, transparent);
+  --al-edge: color-mix(in srgb, var(--bad) 30%, transparent);
+  --al-edge-hi: color-mix(in srgb, var(--bad) 80%, transparent);
+}
+
+@supports ((mask-composite: exclude) or (-webkit-mask-composite: xor)) {
+  [data-signal-alert],
+  .thoth-toast {
+    border-color: transparent;
+    isolation: isolate;
+  }
+
+  /* The ring. `inset: -1px` reaches the border box (an absolutely positioned
+     child is laid out against the padding box), `padding: 1px` plus the
+     content-box/border-box mask pair cuts the middle out, and what is left
+     is exactly the 1px edge. Nothing inside the panel is repainted, so the
+     fill stays the byte-identical colour it was. */
+  [data-signal-alert]::before,
+  .thoth-toast::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 1px;
+    background-image: linear-gradient(
+      90deg,
+      var(--al-edge) 0%,
+      var(--al-edge-hi) 25%,
+      var(--al-edge) 50%,
+      var(--al-edge-hi) 75%,
+      var(--al-edge) 100%
+    );
+    background-size: 200% 100%;
+    background-position: 0 0;
+    background-repeat: repeat;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+    animation: signal-alert-edge 6s linear infinite;
+  }
+
+  /* In RTL the sweep travels the other way, so it reads as moving with the
+     text. Frozen, both directions rest on the same declared position, so the
+     two reference renders stay comparable. */
+  [dir="rtl"] [data-signal-alert]::before,
+  [dir="rtl"] .thoth-toast::before {
+    animation-direction: reverse;
+  }
+}
+
+@utility backdrop-surface {
+  @apply bg-(--overlay-backdrop) backdrop-blur-[2px];
+}
+
+/* Approved signal.css `.gate` wash for plan-lock overlays: --gate-veil plus the
+   gate's blur(3px). Custom utilities emit after the builtin bg-/backdrop-blur-
+   classes and after backdrop-surface above, so this wins wherever both classes
+   land on the same element (e.g. Modal's overlay, which always carries
+   backdrop-surface). */
+@utility gate-veil {
+  @apply bg-(--gate-veil) backdrop-blur-[3px];
+}
+
+@utility shadow-glow {
+  box-shadow: var(--shadow-accent-glow);
+}
+
+@utility break-inside-avoid {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+@utility page-break-before {
+  break-before: page;
+  page-break-before: always;
+}
+
+@utility page-break-after {
+  break-after: page;
+  page-break-after: always;
+}
+
+@utility executive-report-print {
+  max-width: 210mm;
+  margin-inline: auto;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+}
+
+@utility no-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@utility scrollbar-thin {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--border-hover);
+    border-radius: var(--radius-ui, 8px);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+  }
+}
+
+@utility custom-scrollbar {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--border-hover);
+    border-radius: var(--radius-ui, 8px);
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--muted-foreground);
+  }
+}
+
+@utility score-glow {
+  text-shadow: 0 0 14px var(--score-glow-color, transparent);
+}
+
+@utility synapse-loader-network {
+  position: relative;
+  width: 5.75rem;
+  height: 4.5rem;
+  flex: none;
+}
+
+@utility synapse-loader-node {
+  position: absolute;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle at 35% 35%,
+    rgb(255 255 255 / 0.95),
+    rgb(255 200 180 / 0.85) 38%,
+    rgb(255 77 45 / 0.82) 70%
+  );
+  animation: synapse-node-pulse 2.8s ease-in-out infinite;
+  animation-delay: var(--synapse-delay, 0ms);
+}
+
+@utility synapse-loader-link {
+  position: absolute;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 9999px;
+  background: linear-gradient(
+    90deg,
+    rgb(255 77 45 / 0.1),
+    rgb(20 184 166 / 0.48),
+    rgb(255 77 45 / 0.1)
+  );
+  opacity: 0.7;
+  transform-origin: left center;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.95), transparent);
+    animation: synapse-signal 1.8s linear infinite;
+    animation-delay: var(--synapse-delay, 0ms);
+  }
+}
+
+/* Signal-light token override: signal-mvp.css defines these on :root without a layer,
+   so its values win over the layered [data-signal-theme] block above. Re-declare them
+   unlayered here so the accessible light-theme values always apply inside
+   [data-signal-theme] regions such as the SignalAppShell dashboard. */
+[data-signal-theme] {
+  --ink: #0c0f16;
+  --paper: #f6f7f9;
+  --panel: #ffffff;
+  --t-1: var(--ink);
+  --t-2: #565e6e;
+  /* Deliberate, recorded deviation (SIGV2-1033): approved --t-3 is #8a92a1,
+     which measures 2.92:1 on --paper and 3.13:1 on --panel, below WCAG AA
+     4.5 for text. #5f6876 measures 5.25/5.63. Do not "fix" back. */
+  --t-3: #5f6876;
+  --line: #e8eaee;
+  --blue: #2563eb;
+  --purple: #9333ea;
+  --blue-s: color-mix(in srgb, var(--blue) 8%, var(--panel));
+  --purple-s: color-mix(in srgb, var(--purple) 10%, var(--panel));
+  --grad: linear-gradient(100deg, var(--blue), var(--purple));
+  --primary: var(--ink);
+  --primary-hover: #000000;
+  --brand-primary: var(--purple);
+  --brand-hover: var(--primary-hover);
+  --brand-seo: var(--blue);
+  --brand-aeo: var(--purple);
+  --brand-geo: #14b088;
+  --font-display: var(--font-satoshi), var(--font-sans);
+  --disp: var(--font-satoshi), var(--font-sans);
+  --r: 16px;
+  --r-sm: 8px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --radius-ui: var(--r-sm);
+  --signal-radius-xl: var(--r);
+  --chart-1: var(--purple);
+  --chart-2: var(--blue);
+  --chart-3: #14b088;
+  --chart-4: #e0a020;
+  --chart-5: #e0565c;
+  --chart-6: #0099ff;
+  --chart-tooltip-radius: var(--r);
+  --chart-tooltip-shadow: 0 12px 28px -12px rgba(38, 45, 51, 0.18);
+  --selection: color-mix(in srgb, var(--purple) 12%, transparent);
+  --shadow-primary: 0 8px 20px -8px color-mix(in srgb, var(--purple) 35%, transparent);
+  /* Deliberate, recorded deviations (SIGV2-1033): the approved status text
+     colours --good #12a150, --warn #d9930b and --bad #e5484d measure
+     2.99-3.40:1 on their soft fills and 2.41-3.65 on --paper, below WCAG AA
+     4.5 for text. The values below pass; the soft fills and borders keep the
+     approved values so tinted surfaces render exactly as designed. */
+  --good: #116149;
+  --warn: #8a5a00;
+  --bad: #b4232a;
+  /* Hoisted from signal-mvp.css :root (its only definition site) so utilities
+     referencing them keep resolving after that file is deleted. Values are the
+     resolved literals, unchanged. */
+  --line-2: #eef0f3;
+  --good-s: #e6f5ec;
+  --warn-s: #fbf2df;
+  --bad-s: #fcebeb;
+  --body-font: "Inter", ui-sans-serif, system-ui, sans-serif, "Inter", system-ui, sans-serif;
+  --popover: var(--panel);
+  --popover-foreground: var(--t-1);
+  --destructive: var(--bad);
+  --destructive-foreground: #ffffff;
+  /* Literals from signal-mvp.css scoped rules, hoisted so the utility sweep
+     carries no per-screen hardcoded colours. Values unchanged. */
+  --line-btn-hover: #d7dae0;
+  /* SIGV2-1035 project overview: literals from the approved Signal Overview
+     mock (signal.css .fix-*, .tgt-tag and the gSEO gradient), hoisted so route
+     markup carries no per-screen hardcoded colours. Values unchanged. */
+  --brand: #4f46e5;
+  --purple-deep: #7c3aed;
+  --fix-num: #b7bdca;
+  --panel-soft: #f7f8fc;
+  --amber: #f59e0b;
+  --amber-hi: #fbbf24;
+  --btn-pill: #5b5bd6;
+  --score-target-bg: #1b2434;
+  --modal-shadow: 0 40px 90px -30px rgba(12, 15, 22, 0.5);
+  --ring: rgba(79, 70, 229, 0.28);
+  /* SIGV2-1217: the light app's focus outline. Solid --brand, so the ring
+     measures 6.9:1 on --panel and 6.4:1 on --paper. --ring itself stays what
+     the approved design says it is and keeps its own uses (.input-shell,
+     .field-focus-ring, signal-button), all of which sit on a light ground
+     where a 28% wash still reads. */
+  --focus-ring: var(--brand);
+  --glass-surface-background: var(--panel);
+  --glass-surface-border: var(--line);
+  --disabled-opacity: 0.45;
+  --purple-a5: rgba(147, 51, 234, 0.05);
+  --purple-a10: rgba(147, 51, 234, 0.1);
+  --purple-a12: rgba(147, 51, 234, 0.12);
+  --blue-a3: rgba(37, 99, 235, 0.03);
+  --veil: rgba(246, 247, 249, 0.82);
+  /* Approved signal.css `.gate`/`.lockgate` veil: a light translucent wash
+     over blurred locked content, not the dark scrim modals use. */
+  --gate-veil: rgba(246, 247, 249, 0.55);
+  --ink-s7: rgba(12, 15, 22, 0.07);
+  --ink-sh: rgba(12, 15, 22, 0.35);
+}
+[data-signal-theme] .signal-button-primary {
+  --primary: var(--ink);
+  --primary-foreground: var(--panel);
+  --primary-hover: #000000;
+}
+
+[data-signal-theme] .signal-button-ghost {
+  --border: transparent;
+  --border-hover: transparent;
+  --surface-subtle: transparent;
+  --foreground: var(--t-2);
+  --muted: var(--line-2);
+}
+
+[data-signal-theme] .signal-button-outline {
+  --border: var(--line);
+  --border-hover: var(--line-btn-hover);
+  --surface-subtle: var(--panel);
+  --foreground: var(--t-1);
+  --muted: var(--paper);
+}
+
+[data-signal-theme] [data-signal-card] {
+  box-shadow: none;
+}
+
+[data-signal-auth] {
+  color-scheme: light;
+  --body-font: var(--font-sans), "Inter", system-ui, sans-serif;
+  --primary: var(--auth-primary);
+  --auth-gradient: linear-gradient(100deg, var(--auth-primary), var(--auth-secondary));
+  --primary-hover: color-mix(in srgb, var(--auth-primary) 90%, var(--ink));
+  --radius-ui: var(--r-md);
+  --shadow-inset: none;
+}
+
+html:has([data-signal-auth]),
+body:has([data-signal-auth]) {
+  background: var(--signal-canvas);
+  color-scheme: light;
+}
+
+body:has([data-signal-auth]) > .qiko-grid,
+body:has([data-signal-auth]) > .qiko-orbs {
+  display: none;
+}
+
+body:has([data-signal-auth]) [data-consent-label] {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+/* When a status page (the app 404) renders inside the (app) layout, the
+   approved design is the signal shell alone — the shared AppTopBar must not
+   stack above it. */
+.app-shell:has([data-signal-status-shell]) [data-app-topbar] {
+  display: none;
+}
+/* The Signal tree paints the MVP's flat #F2F4FB canvas itself; the qiko-core
+   dark surface + radial glows must not sit underneath it (short pages, status
+   shells, dvh/viewport gaps). SIGV2-1037. */
+.app-shell:has([data-signal-theme]),
+.app-shell:has([data-signal-status-shell]),
+body:has(> .app-shell [data-signal-theme]),
+body:has(> .app-shell [data-signal-status-shell]),
+body:has(> [data-signal-status-shell]),
+html:has(> body > .app-shell [data-signal-theme]),
+html:has(> body > .app-shell [data-signal-status-shell]),
+html:has(> body > [data-signal-status-shell]) {
+  background-color: var(--signal-canvas);
+  background-image: none;
+}
+/* Same surfaces: the qiko-core decorative layer (fixed violet / cyan orbs and
+   an indigo grid, z-index:-1) bleeds into the flat canvas around the floating
+   card. QikoBackdrop omits it on the Signal routes; this is the backstop for
+   Signal surfaces reached at paths the component cannot classify (e.g. a
+   status shell rendered by notFound() under a non-/dashboard URL). */
+body:has(> .app-shell [data-signal-theme]) > .qiko-grid,
+body:has(> .app-shell [data-signal-theme]) > .qiko-orbs,
+body:has(> .app-shell [data-signal-status-shell]) > .qiko-grid,
+body:has(> .app-shell [data-signal-status-shell]) > .qiko-orbs,
+body:has(> [data-signal-status-shell]) > .qiko-grid,
+body:has(> [data-signal-status-shell]) > .qiko-orbs {
+  display: none;
+}
+
+/* signal.css:899-912 skeleton loaders, verbatim. The approved loading
+   treatment is a shimmer over quiet placeholders shaped like the content,
+   never a centred spinner. SIGV2-1037. */
+.skel {
+  position: relative;
+  overflow: hidden;
+  background: var(--line-2);
+  border-radius: 6px;
+}
+.skel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.75), transparent);
+  animation: skel-shimmer 1.4s infinite;
+}
+html[dir="rtl"] .skel::after {
+  animation-name: skel-shimmer-rtl;
+}
+@keyframes skel-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes skel-shimmer-rtl {
+  to {
+    transform: translateX(-100%);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skel::after {
+    animation: none;
+    content: none;
+  }
+}
+
+/* signal.css keyframes, verbatim: live status dots pulse, export spinners
+   rotate at .8s, toasts slide in over .2s. Offline/disconnected dots never
+   get .signal-pulse-dot, matching the mock's `animation: none !important`
+   on `.pill-off`. */
+@keyframes pulse2 {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+@keyframes epspin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes toastin {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.signal-pulse-dot {
+  animation: pulse2 2s infinite;
+}
+.signal-export-spin {
+  animation: epspin 0.8s linear infinite;
+}
+.thoth-toast {
+  animation: toastin 0.2s ease;
+}
+/* SIGV2-1222: the gradient edge joins the list this rule already stops. The
+   ring on both tiers rests on its declared `0 0` position when motion is
+   reduced, which is what makes two visual runs byte-identical instead of two
+   frames of the same sweep. */
+@media (prefers-reduced-motion: reduce) {
+  .signal-pulse-dot,
+  .signal-export-spin,
+  .thoth-toast,
+  [data-signal-alert]::before,
+  .thoth-toast::before {
+    animation: none;
+  }
+}
+.skel-line {
+  height: 12px;
+  margin-bottom: 9px;
+}
+.skel-line.w60 {
+  width: 60%;
+}
+.skel-line.w80 {
+  width: 80%;
+}
+.skel-line.w40 {
+  width: 40%;
+}
+.skel-card {
+  height: 120px;
+  border-radius: var(--r-md);
+}
+.skel-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  flex: none;
+}
+.skel-chart {
+  height: 160px;
+  border-radius: var(--r-sm);
+}
+.dt-skelrow {
+  display: flex;
+  gap: 14px;
+  padding: 12px 14px;
+}
+/* signal-mvp.css :root block, hoisted verbatim before that file's deletion.
+   Inside [data-signal-theme] the block above wins on proximity, exactly as it
+   did while signal-mvp.css was unlayered last; everywhere else these :root
+   values are what resolved at runtime. */
+:root {
+  --ink: #0c0f16;
+  --paper: #f6f7f9;
+  --panel: #ffffff;
+  --t-1: #0c0f16;
+  --t-2: #565e6e;
+  --t-3: #8a92a1;
+  --line: #e8eaee;
+  --line-2: #eef0f3;
+  --blue: #2563eb;
+  --purple: #9333ea;
+  --cyan: #22d3ee;
+  --slate: #64748b;
+  --blue-s: #e8effd;
+  --purple-s: #f1e7fc;
+  --grad: linear-gradient(100deg, #2563eb, #9333ea);
+  --good: #12a150;
+  --warn: #d9930b;
+  --bad: #e5484d;
+  --good-s: #e6f5ec;
+  --warn-s: #fbf2df;
+  --bad-s: #fcebeb;
+  --r: 16px;
+  --mono: var(--font-roboto-mono, "Roboto Mono"), "Roboto Mono", ui-monospace, monospace;
+  --disp: var(--font-satoshi), var(--font-sans), "Inter", sans-serif;
+  --body-font: var(--font-sans), "Inter", system-ui, sans-serif;
+  /* signal.css `body{background:#F2F4FB}` - the single source for the flat
+     canvas behind the floating app card (signal-canvas utility, SignalAppShell
+     inline style and the ancestor :has() overrides all reference this). */
+  --signal-canvas: #f2f4fb;
+}
+
+body {
+  --mono: var(--font-roboto-mono, "Roboto Mono"), "Roboto Mono", ui-monospace, monospace;
+}
+
+/* Dashboard shell - app.qiko.ai (Vite) palette: bg #050810, sidebar #0a0f1a, card 0.22, primary 0.65/275.
+   Unlayered, after the [data-signal-theme] override above, matching the v3
+   source order where it beat that override. */
+.app-shell {
+  --background: #050810;
+  --surface: rgb(10, 13, 21);
+  --surface-subtle: rgba(255, 255, 255, 0.025);
+  --surface-elevated: rgb(10, 13, 21);
+  --card: rgb(10, 13, 21);
+  --foreground: oklch(0.98 0 0);
+  --primary: oklch(0.65 0.24 275);
+  --border: rgba(255, 255, 255, 0.05);
+  --border-hover: rgba(255, 255, 255, 0.1);
+  --sidebar: #0a0f1a;
+  --ring: oklch(0.65 0.24 275);
+}
+
+/* SIGV2-1201: the approved focus model for composed form controls.
+   @tailwindcss/forms (@plugin above) paints every bare input/select/textarea
+   with `border-color:#2563eb` plus a 1px #2563eb ring on `:focus` - not
+   `:focus-visible` - so a mouse click lights a blue inner ring the approved
+   MVP never had. signal.css solves this in one place (lines 104-120): where a
+   wrapper draws the visible control, the ring belongs to the shell and is
+   suppressed on the bare field inside it. Focus is relocated, never removed,
+   so WCAG 2.4.7 still holds.
+
+   These are opt-in classes, deliberately not a global `input:focus` override:
+   only markup that carries `.input-shell` / `.field-focus-ring` changes, and
+   no validation or disabled state is suppressed. Add new shells here. */
+@layer components {
+  .input-shell > :is(input, select, textarea):focus {
+    box-shadow: none;
+    border-color: transparent;
+  }
+
+  /* A shell that draws its own `.mchev` indicator must not also inherit the
+     forms plugin's background-image chevron and its 2.5rem reservation: the
+     approved control has exactly one arrow. */
+  .input-shell > select {
+    background-image: none;
+    padding-inline-end: 0;
+  }
+
+  /* Standalone controls (signal.css `.winput` / `.wselect`) keep their own
+     ring, but only for keyboard focus and in the approved indigo `--ring`
+     (signal.css line 101), never the forms plugin's blue on mouse click. */
+  .field-focus-ring:focus {
+    box-shadow: none;
+  }
+
+  .field-focus-ring:focus-visible {
+    box-shadow: 0 0 0 3px var(--ring);
+  }
+}
+
+@layer utilities {
+  .select-chevron {
+    appearance: none;
+    background-image:
+      linear-gradient(45deg, transparent 50%, var(--text-muted) 50%),
+      linear-gradient(135deg, var(--text-muted) 50%, transparent 50%);
+    background-position:
+      calc(100% - 18px) calc(50% + 1px),
+      calc(100% - 13px) calc(50% + 1px);
+    background-repeat: no-repeat;
+    background-size:
+      5px 5px,
+      5px 5px;
+  }
+
+  .wselect-chevron {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238A92A1' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+  }
+
+  button:not([class*="rounded-"]) {
+    @apply rounded-md;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    opacity: var(--disabled-opacity, 0.6);
+  }
+
+  input[type="checkbox"] {
+    appearance: none;
+    width: 1rem;
+    height: 1rem;
+    display: inline-grid;
+    place-content: center;
+    vertical-align: middle;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    background-color: var(--surface);
+    box-shadow: var(--shadow-inset);
+    cursor: pointer;
+    transition:
+      background-color var(--duration-fast),
+      border-color var(--duration-fast),
+      box-shadow var(--duration-fast);
+  }
+
+  input[type="checkbox"]::before {
+    content: "";
+    width: 60%;
+    height: 60%;
+    transform: scale(0);
+    transform-origin: center;
+    transition: transform var(--duration-fast);
+    clip-path: polygon(14% 44%, 0 59%, 44% 100%, 100% 18%, 84% 4%, 43% 65%);
+    background-color: var(--foreground);
+  }
+
+  input[type="checkbox"]:hover:not(:disabled) {
+    border-color: var(--border-hover);
+  }
+
+  input[type="checkbox"]:checked {
+    border-color: var(--primary);
+    background-color: var(--primary);
+  }
+
+  input[type="checkbox"]:checked::before {
+    transform: scale(1);
+  }
+
+  input[type="checkbox"]:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  @keyframes synapse-node-pulse {
+    0%,
+    100% {
+      transform: scale(0.88);
+      opacity: 0.45;
+      box-shadow:
+        0 0 0 1px rgb(99 102 241 / 0.18),
+        0 0 0 0 rgb(34 211 238 / 0);
+    }
+
+    50% {
+      transform: scale(1.08);
+      opacity: 1;
+      box-shadow:
+        0 0 0 1px rgb(34 211 238 / 0.32),
+        0 0 0 6px rgb(34 211 238 / 0.08);
+    }
+  }
+
+  @keyframes synapse-signal {
+    0% {
+      transform: translateX(-120%);
+      opacity: 0;
+    }
+
+    15%,
+    85% {
+      opacity: 1;
+    }
+
+    100% {
+      transform: translateX(120%);
+      opacity: 0;
+    }
+  }
+
+  @media print {
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
+
+    html,
+    body {
+      background: #ffffff !important;
+      color: #111827 !important;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+
+    nav,
+    aside,
+    [role="tooltip"],
+    .tooltip,
+    .filter-panel,
+    .interactive-only,
+    button,
+    [type="button"],
+    [type="submit"] {
+      display: none !important;
+    }
+
+    .executive-report-print,
+    .executive-report-print * {
+      background: #ffffff !important;
+      color: #111827 !important;
+      border-color: #d1d5db !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+
+    .executive-report-print {
+      max-width: none;
+      width: 100%;
+      padding: 0 !important;
+      margin: 0 !important;
+      font-size: 10.5pt;
+      line-height: 1.45;
+    }
+
+    .executive-report-print section,
+    .executive-report-print ul,
+    .executive-report-print ol,
+    .executive-report-print table,
+    .executive-report-print tbody,
+    .executive-report-print tr,
+    .executive-report-print li {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .executive-report-print table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+      transform: none !important;
+    }
+  }
+
+  @keyframes hero-radial-pulse {
+    0% {
+      transform: translate3d(0, 0, 0) scale(0.95);
+      opacity: 0.36;
+    }
+
+    50% {
+      transform: translate3d(0, -1.2%, 0) scale(1.03);
+      opacity: 0.55;
+    }
+
+    100% {
+      transform: translate3d(0, 0, 0) scale(1.1);
+      opacity: 0.42;
+    }
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
+  @keyframes pulse-slow {
+    0%,
+    100% {
+      opacity: 0.4;
+    }
+
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes sg-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-sg-spin {
+    animation: sg-spin 0.85s linear infinite;
+  }
+
+  /* Global override to ensure focus borders are transparent when using --ring */
+  .focus\:border-\[--ring\]:focus {
+    border-color: transparent !important;
+  }
+
+  /* ── Marketing: logo marquee ── */
+  @keyframes marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  .marquee-container {
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  .marquee-track {
+    animation: marquee-scroll var(--marquee-duration, 30s) linear infinite;
+  }
+
+  .marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  /* ── Marketing: hero glow pulse ── */
+  @keyframes hero-glow-pulse {
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
+  .hero-glow-orb {
+    animation: hero-glow-pulse 6s ease-in-out infinite;
+  }
+
+  /* ── Marketing: card hover glow ── */
+  .marketing-card {
+    background: var(--card);
+    border-color: oklch(1 0 0 / 0.1);
+    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(24px);
+    box-shadow:
+      0 4px 24px -1px oklch(0.12 0.03 250 / 0.4),
+      inset 0 1px 0 0 oklch(1 0 0 / 0.05);
+    transition:
+      border-color 0.3s,
+      background-color 0.3s,
+      box-shadow 0.3s,
+      transform 0.3s;
+  }
+
+  .marketing-card:hover {
+    border-color: oklch(1 0 0 / 0.18);
+    box-shadow:
+      0 8px 32px -2px oklch(0.12 0.03 250 / 0.5),
+      inset 0 1px 0 0 oklch(1 0 0 / 0.05);
+    transform: translateY(-2px);
+  }
+
+  .marketing-card .marketing-card-icon {
+    transition: transform 0.3s;
+  }
+
+  .marketing-card:hover .marketing-card-icon {
+    transform: scale(1.1);
+  }
+
+  .marketing-card--amber:hover {
+    border-color: rgba(245, 158, 11, 0.2);
+  }
+
+  /* ── Marketing focus rings (a11y) ── */
+  .marketing-main a:focus-visible,
+  .marketing-main button:focus-visible,
+  .marketing-main [role="button"]:focus-visible,
+  .marketing-main input:focus-visible,
+  .marketing-main select:focus-visible,
+  .marketing-main textarea:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+    .hero-glow-orb {
+      animation: none;
+      opacity: 0.7;
+    }
+    .marketing-card {
+      transition: none;
+    }
+    .marketing-card:hover {
+      transform: none;
+    }
+    .marketing-card .marketing-card-icon {
+      transition: none;
+    }
+    .marketing-card:hover .marketing-card-icon {
+      transform: none;
+    }
+  }
+
+  /* ===== qiko.ai design system (1:1) ===== */
+  .glass-card {
+    background: #0a0f1a;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+  }
+  .qiko-gradient {
+    background-image: linear-gradient(to right, oklch(0.55 0.25 270), oklch(0.75 0.15 195));
+  }
+  .qiko-gradient-text {
+    background-image: linear-gradient(to right, oklch(0.55 0.25 270), oklch(0.75 0.15 195));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  @keyframes qiko-float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-16px);
+    }
+  }
+  @keyframes qiko-float-delayed {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(16px);
+    }
+  }
+  @keyframes qiko-pulse-glow {
+    0%,
+    100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+  .animate-float {
+    animation: qiko-float 8s ease-in-out infinite;
+  }
+  .animate-float-delayed {
+    animation: qiko-float-delayed 10s ease-in-out infinite;
+  }
+  .animate-pulse-glow {
+    animation: qiko-pulse-glow 6s ease-in-out infinite;
+  }
+
+  /* qiko ambient background orbs (exact) */
+  .qiko-orbs {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .qiko-orbs i {
+    position: absolute;
+    display: block;
+    border-radius: 9999px;
+  }
+  .qiko-orbs .o1 {
+    top: -5%;
+    left: 15%;
+    width: 700px;
+    height: 700px;
+    background: oklch(0.55 0.25 270 / 0.45);
+    filter: blur(80px);
+  }
+  .qiko-orbs .o2 {
+    top: 25%;
+    right: 5%;
+    width: 550px;
+    height: 550px;
+    background: oklch(0.75 0.15 195 / 0.38);
+    filter: blur(80px);
+  }
+  .qiko-orbs .o3 {
+    bottom: 10%;
+    left: 30%;
+    width: 450px;
+    height: 450px;
+    background: oklch(0.62 0.22 305 / 0.3);
+    filter: blur(90px);
+  }
+
+  /* ===== Scoped app palettes (dashboard vs admin), per qiko.ai (decizii T7/T8) ===== */
+
+  /* Dashboard: flat uniform cards (single color, no card-in-card, no blur).
+   MVP fidelity: 16px radius to match signal-MVP `.card` (signal.css --r). */
+  .app-shell .glass-card,
+  .app-shell .surface-card,
+  .app-shell .surface-card-strong,
+  .app-shell .glass-surface {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: var(--card);
+    border-color: var(--border);
+    border-radius: var(--r, 16px);
+    box-shadow: none;
+  }
+
+  /* Nested cards: transparent so they never create a card-in-card effect */
+  .app-shell .glass-card .glass-card,
+  .app-shell .glass-card .surface-card,
+  .app-shell .surface-card .glass-card,
+  .app-shell .surface-card .surface-card {
+    background: transparent;
+    box-shadow: none;
+  }
+
+  /* qiko.ai ambient grid overlay (subtle indigo, exact) */
+  .qiko-grid {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image:
+      linear-gradient(rgba(99, 102, 241, 0.3) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99, 102, 241, 0.3) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* qiko.ai hero headline gradient (white -> indigo -> cyan, exact) */
+  .qiko-hero-text {
+    background: linear-gradient(135deg, #ffffff 0%, #6366f1 50%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  /* Perf: disable heavy ambient blur layers on mobile */
+  @media (max-width: 768px) {
+    .qiko-orbs,
+    .qiko-grid {
+      display: none;
+    }
+  }
+}
+@layer utilities {
+  :where(.space-y-0 > :not(:last-child)) {
+    margin-block-end: 0;
+  }
+  .space-y-0 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: calc(var(--spacing) * 0);
+    margin-bottom: 0;
+  }
+  :where(.space-y-0\.5 > :not(:last-child)) {
+    margin-block-end: 0;
+  }
+  .space-y-0\.5 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: calc(var(--spacing) * 0.5);
+    margin-bottom: 0;
+  }
+  :where(.space-y-1 > :not(:last-child)) {
+    margin-block-end: 0;
+  }
+  .space-y-1 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: calc(var(--spacing) * 1);
+    margin-bottom: 0;
+  }
+  :where(.space-y-1\.5 > :not(:last-child)) {
+    margin-block-end: 0;
+  }
+  .space-y-1\.5 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: calc(var(--spacing) * 1.5);
+    margin-bottom: 0;
+  }
+  :where(.space-y-2 > :not(:last-child)) {
+    margin-block-end: 0;
+  }
+  .space-y-2 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: calc(var(--spacing) * 2);
+    margin-bottom: 0;
+  }
+  :where(.space-y-2\.5 > :not(:last-child)) {
+    margin-block-end: 0;
+  }
+  .space-y-2\.5 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: calc(var(--spacing) * 2.5);
+    margin-bottom: 0;
+  }
+  :where(.space-y-3 > :not(:last-child)) {
+    margin-block-end: 0;
+  }
+  .space-y-3 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: calc(var(--spacing) * 3);
+    margin-bottom: 0;
+  }
+  :where(.space-y-4 > :not(:last-child)) {
+    margin-block-end: 0;
+  }
+  .space-y-4 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: calc(var(--spacing) * 4);
+    margin-bottom: 0;
+  }
+  :where(.space-y-5 > :not(:last-child)) {
+    margin-block-end: 0;
+  }
+  .space-y-5 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: calc(var(--spacing) * 5);
+    margin-bottom: 0;
+  }
+  :where(.space-y-6 > :not(:last-child)) {
+    margin-block-end: 0;
+  }
+  .space-y-6 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: calc(var(--spacing) * 6);
+    margin-bottom: 0;
+  }
+  :where(.space-y-8 > :not(:last-child)) {
+    margin-block-end: 0;
+  }
+  .space-y-8 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: calc(var(--spacing) * 8);
+    margin-bottom: 0;
+  }
+  :where(.space-y-10 > :not(:last-child)) {
+    margin-block-end: 0;
+  }
+  .space-y-10 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: calc(var(--spacing) * 10);
+    margin-bottom: 0;
+  }
+  :where(.space-y-12 > :not(:last-child)) {
+    margin-block-end: 0;
+  }
+  .space-y-12 > :not([hidden]) ~ :not([hidden]) {
+    margin-top: calc(var(--spacing) * 12);
+    margin-bottom: 0;
+  }
+
+  @media (min-width: 768px) {
+    .md\:space-y-8 > :not(:last-child) {
+      margin-block-end: 0;
+    }
+    .md\:space-y-8 > :not([hidden]) ~ :not([hidden]) {
+      margin-top: calc(var(--spacing) * 8);
+      margin-bottom: 0;
+    }
+  }
+
+  @media print {
+    .print\:space-y-4 > :not(:last-child) {
+      margin-block-end: 0;
+    }
+    .print\:space-y-4 > :not([hidden]) ~ :not([hidden]) {
+      margin-top: calc(var(--spacing) * 4);
+      margin-bottom: 0;
+    }
+  }
+}

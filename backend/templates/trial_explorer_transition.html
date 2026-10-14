@@ -1,0 +1,28 @@
+{% extends "base_email.html" %}
+{% set preheader = "Your trial ended, welcome to the Explorer plan with free SEO audits every month." %}
+{% set eyebrow = "Plan Update" %}
+{% set title = "You are now on the Explorer plan" %}
+{% set lead = "Your 14-day trial has ended, but you still have access to SEO audits on the free Explorer plan." %}
+{% set cta_label = "Upgrade for Full Access" %}
+{% set cta_url = upgrade_url %}
+{% set fallback_url = upgrade_url %}
+{% block content %}
+<tr><td class="body">
+    <p class="copy">Hi {{ user_name }},</p>
+    <p class="copy">
+        Your agency trial has come to an end. Instead of losing access, we have automatically moved you to the <strong>Explorer plan</strong>, our permanent free tier.
+    </p>
+    <div class="panel">
+        <p class="panel-title">Your Explorer plan includes</p>
+        <div class="detail-row"><span class="detail-label">Monthly scans:</span> refreshed every 30 days</div>
+        <div class="detail-row"><span class="detail-label">Audit scope:</span> SEO audits (1 site, up to 3 scans/month)</div>
+        <div class="detail-row"><span class="detail-label">Cost:</span> Free, forever</div>
+    </div>
+    <p class="copy">
+        To unlock the full AIO breakdown, entity authority tracking, competitor analysis, and all advanced features, upgrade to a paid plan anytime.
+    </p>
+    <p class="copy">
+        No pressure, explore at your own pace. Your data and audit history are safe.
+    </p>
+</td></tr>
+{% endblock %}

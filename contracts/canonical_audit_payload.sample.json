@@ -1,0 +1,100 @@
+{
+  "schema_version": "2026-03-09",
+  "audit_mode": "website",
+  "score_source": "deterministic_matrix",
+  "generated_at": "2026-01-01T00:00:00Z",
+  "scores": {
+    "overall": 73,
+    "seo": 81,
+    "geo": 72,
+    "aeo": 66
+  },
+  "seo": {
+    "onpage": 81,
+    "performance": 79,
+    "indexing": 80,
+    "core_web_vitals": 85,
+    "technical_seo": 78,
+    "onpage_content": 82,
+    "eeat_trust": 70,
+    "security_accessibility": 88
+  },
+  "geo": {
+    "visibility_index": 72,
+    "citation_share": 44,
+    "brand_anchor": 38,
+    "advanced_local_schema": 60,
+    "napw_completeness": 55,
+    "spatial_content": 48,
+    "brand_citation": 52,
+    "content_citability": 65,
+    "source_authority": 70,
+    "entity_clarity": 68,
+    "visibility_audit": {}
+  },
+  "aeo": {
+    "answerability_score": 66,
+    "extractable_pages": 12,
+    "schema_health": { "score": 74, "detected_schema_types": ["Article", "Organization"], "missing_required_types": [], "missing_fields_by_type": {}, "high_impact_blockers": [], "missing_high_impact_types": [] },
+    "schema_coverage": { "coverage_by_type": { "Article": 74.0 }, "coverage_percent": 74, "missing_high_impact_types": [] },
+    "readability_score": 0.73,
+    "readability_findings": ["Paragraphs exceed 120 words"],
+    "rewrite_suggestions": [
+      {
+        "page": "/",
+        "suggestion": "Break long paragraphs into shorter chunks for better AI extractability",
+        "priority": "medium"
+      }
+    ],
+    "llm_schema_readiness": 0,
+    "semantic_entity_density": 75,
+    "information_gain": 72,
+    "snippet_formatting": 60,
+    "answerability_audit": {}
+  },
+  "metadata": {
+    "version": "2.0",
+    "plan": "plan_specialist",
+    "created_at": "2026-01-01T00:00:00Z",
+    "updated_at": "2026-01-01T00:00:00Z",
+    "audit_outcome": "completed",
+    "scores_available": true,
+    "intent": "informational",
+    "query_type": "informational"
+  },
+  "site": {
+    "url": "https://example.com/",
+    "market": "us",
+    "language": "en"
+  },
+  "competitors": [
+    { "name": "Competitor A", "score": 64 }
+  ],
+  "entities": ["ExampleCo", "Acme"],
+  "suggestions": [],
+  "hallucination": {
+    "threshold": 0.85,
+    "total_claims": 2,
+    "flagged_claims": 1,
+    "omitted_claims": 1,
+    "average_certainty": 0.5,
+    "claims": [],
+    "high_risk_discrepancies": [],
+    "field_summaries": [
+      {
+        "field_path": "summary",
+        "label": "Summary",
+        "total_claims": 2,
+        "supported_claims": 0,
+        "flagged_claims": 1,
+        "omitted_claims": 1,
+        "average_certainty": 0.5,
+        "certainty_level": "medium"
+      }
+    ]
+  },
+  "target": { "type": "website", "name": null, "url": "https://example.com/", "metadata": {} },
+  "recommendations": { "items": [] },
+  "narrative": { "executive_summary": null },
+  "competitive": {}
+}

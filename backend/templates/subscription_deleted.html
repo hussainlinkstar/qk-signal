@@ -1,0 +1,18 @@
+{% extends "base_email.html" %}
+{% set preheader = "Your subscription has been canceled." %}
+{% set eyebrow = "Billing" %}
+{% set title = "Subscription canceled" %}
+{% set lead = "Your subscription was canceled. You can still review billing details and reactivate access from the dashboard." %}
+{% set cta_label = "Manage Billing" %}
+{% set cta_url = manage_billing_url %}
+{% set fallback_url = manage_billing_url %}
+{% block content %}
+<tr><td class="body">
+    <p class="copy">Hi {{ recipient_name }},</p>
+    <div class="panel warning">
+        <p class="panel-title danger">What this means</p>
+        <div class="detail-row danger"><span class="detail-label">Subscription status:</span> canceled</div>
+        <div class="detail-row danger"><span class="detail-label">Next step:</span> open billing if you want to reactivate your workspace or review account status.</div>
+    </div>
+</td></tr>
+{% endblock %}

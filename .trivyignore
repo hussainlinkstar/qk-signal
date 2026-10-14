@@ -1,0 +1,7 @@
+# Trivy ignore file — SEC-03
+# Add CVE IDs below (one per line) to suppress known false-positives or
+# accepted-risk vulnerabilities.  Each entry should include a comment
+# explaining why the CVE is suppressed.
+#
+# Example:
+# CVE-2024-XXXXX   # accepted risk — no network exposure, patched in next release

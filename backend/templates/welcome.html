@@ -1,0 +1,19 @@
+{% extends "base_email.html" %}
+{% set preheader = brand_name ~ " workspace is ready." %}
+{% set eyebrow = "Onboarding" %}
+{% set title = "Your workspace is ready" %}
+{% set lead = "Welcome to " ~ brand_name ~ ". Your account is active and ready for audit, monitoring, and AI-assisted workflows." %}
+{% set cta_label = "Open Dashboard" %}
+{% set cta_url = dashboard_url %}
+{% set fallback_url = dashboard_url %}
+{% block content %}
+<tr><td class="body">
+    <p class="copy">Hi {{ recipient_name }},</p>
+    <p class="copy">You can use the dashboard right away. The fastest path to value is usually:</p>
+    <ul class="list">
+        <li>Run a baseline audit on your highest-priority website.</li>
+        <li>Review your AIO score and SEO score in the report to see where you are weakest.</li>
+        <li>Invite the right stakeholders once the first benchmark is in place.</li>
+    </ul>
+</td></tr>
+{% endblock %}

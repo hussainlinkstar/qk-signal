@@ -1,0 +1,20 @@
+{% extends "base_email.html" %}
+{% set preheader = "A project is approaching its monthly scan cap." %}
+{% set eyebrow = "Project Budget" %}
+{% set title = "Project scan cap warning" %}
+{% set lead = "One of your projects is approaching its configured monthly scan cap. Review the remaining allowance before more automated or manual audits are blocked." %}
+{% set cta_label = "Review Budget Settings" %}
+{% set cta_url = settings_url %}
+{% set fallback_url = settings_url %}
+{% block content %}
+<tr><td class="body">
+    <div class="panel warning">
+        <p class="panel-title">Usage alert</p>
+        <div class="detail-row"><span class="detail-label">Workspace:</span> {{ workspace_name }}</div>
+        <div class="detail-row"><span class="detail-label">Project:</span> {{ project_name }}</div>
+        <div class="detail-row"><span class="detail-label">Used:</span> {{ consumed_scans }} / {{ monthly_limit_scans }} scans</div>
+        <div class="detail-row"><span class="detail-label">Threshold:</span> {{ percent_consumed }}% of the monthly cap</div>
+    </div>
+    <p class="copy">If this project still needs recurring audits this month, update the cap or rebalance usage before the next run is blocked.</p>
+</td></tr>
+{% endblock %}

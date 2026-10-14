@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "language_name": "Polski",
+    "language_name_map": {
+      "en": "English",
+      "es": "Spanish",
+      "fr": "French",
+      "de": "German",
+      "it": "Italian",
+      "ro": "Romanian",
+      "nl": "Dutch",
+      "pt": "Portuguese",
+      "pl": "Polish",
+      "sv": "Swedish",
+      "ja": "Japanese",
+      "zh": "Chinese"
+    }
+  },
+  "pdf": {
+    "ai_disclaimer": "Uwaga: ten raport zawiera zautomatyzowaną analizę AI. Zalecany jest przegląd przez człowieka przed wdrożeniem zmian technicznych.",
+    "generated_on": "Wygenerowano",
+    "executive_summary": "Podsumowanie zarządcze",
+    "highlights": "Najważniejsze punkty",
+    "score_breakdown": "Rozbicie wyników",
+    "key_recommendations": "Kluczowe rekomendacje",
+    "competitor_analysis": "Analiza konkurencji",
+    "competitor_section_enabled": "Sekcja benchmarku konkurencji jest włączona dla tego eksportu.",
+    "battle_report": "Raport porównawczy",
+    "head_to_head_comparison": "Porównanie bezpośrednie ({index}/{total})",
+    "strategic_highlights": "Strategiczne highlights",
+    "no_analysis_summary": "Brak dostępnego podsumowania analizy.",
+    "no_summary_available": "Brak dostępnego podsumowania.",
+    "left_site": "Lewa witryna",
+    "right_site": "Prawa witryna",
+    "score": "Wynik",
+    "technical_report": "Raport techniczny",
+    "executive_report": "Raport zarządczy",
+    "comparative_report": "Raport porównawczy"
+  },
+  "email": {
+    "common": {
+      "notification": "Powiadomienie",
+      "unsubscribe_blurb": "Otrzymujesz tę wiadomość, ponieważ masz konto w {brand_name}. Możesz zarządzać preferencjami powiadomień lub zrezygnować z subskrypcji w dowolnym momencie.",
+      "fallback_hint": "Jeśli przycisk nie działa, otwórz",
+      "support_hint": "Aby uzyskać pomoc, skontaktuj się z",
+      "aio_label": "Wynik AIO",
+      "seo_label": "Wynik SEO",
+      "metric_label_seo_score": "Wynik SEO",
+      "metric_label_aio_score": "Wynik AIO",
+      "metric_label_unknown": "Wynik widoczności",
+      "score_delta_up": "Wzrost o {points} punkty od {period}",
+      "score_delta_up_one": "Wzrost o {points} punkt od {period}",
+      "score_delta_down": "Spadek o {points} punkty od {period}",
+      "score_delta_down_one": "Spadek o {points} punkt od {period}",
+      "score_delta_flat": "Bez zmian od {period}",
+      "score_delta_period": "zeszłego miesiąca",
+      "rank_delta_up": "Awans z #{previous}",
+      "rank_delta_down": "Spadek z #{previous}",
+      "rank_delta_flat": "Bez zmian"
+    },
+    "audit_completed": {
+      "subject": "Audyt zakończony dla {target_host}",
+      "preheader": "Twój najnowszy audyt jest zakończony i gotowy do przeglądu.",
+      "eyebrow": "Audyt zakończony",
+      "title": "Twój audyt jest gotowy",
+      "lead": "Zakończyliśmy przetwarzanie Twojego najnowszego audytu. Poniżej znajdziesz podsumowanie wyników, a pełny raport czeka w panelu.",
+      "cta_label": "Otwórz raport audytu",
+      "target_label": "Cel",
+      "body": "Użyj pełnego raportu, aby priorytetyzować ulepszenia techniczne, treściowe i answerability z jednego miejsca."
+    },
+    "consensus_ready": {
+      "subject": "Konsensus wielu modeli gotowy dla {target_host}",
+      "preheader": "Twój raport konsensusu wielu modeli jest gotowy.",
+      "eyebrow": "Konsensus gotowy",
+      "title": "Twój audyt konsensusu jest gotowy",
+      "lead": "Uruchomienie wielu modeli zakończyło się sukcesem. Porównaj uzgodnione wnioski i podsumowanie wyników w raporcie.",
+      "cta_label": "Przejrzyj konsensus",
+      "models_included": "Uwzględnione modele",
+      "model_set_label": "Zestaw modeli",
+      "target_label": "Cel"
+    },
+    "progress_report": {
+      "subject": "Raport postępu dla {project_name} za {report_month_label}",
+      "eyebrow": "Raport postępu",
+      "title": "Miesięczna aktualizacja wyników dla {project_name}",
+      "lead": "Najnowsza migawka trendu jest gotowa i zawiera zmianę wyników miesiąc do miesiąca, kluczowe wygrane oraz kolejne kwestie nadal blokujące postęp.",
+      "cta_label": "Otwórz centrum raportów",
+      "preheader": "Wyniki i miesięczny postęp dla {project_name} są gotowe.",
+      "intro": "Raport za {report_month_label} dla {project_name}{domain_suffix} jest gotowy. Użyj go jako klientocentrycznego dowodu postępu projektu.",
+      "audits_captured_label": "Ujęte audyty",
+      "top_improvements": "Najważniejsze ulepszenia",
+      "remaining_issues": "Pozostałe kwestie",
+      "no_remaining_issues": "Z najnowszego audytu nie wyodrębniono nierozwiązanych działań priorytetowych."
+    },
+    "competitive_digest": {
+      "subject": "Digest konkurencyjny {report_period} dla {project_name}",
+      "preheader": "Aktualizacja benchmarku konkurencyjnego dla {project_name}.",
+      "eyebrow": "Digest konkurencyjny",
+      "title": "Aktualizacja benchmarku dla {project_name}",
+      "lead": "{workspace_name} ma teraz odświeżoną migawkę konkurencyjną dla {competitor_count} monitorowanych konkurentów.",
+      "cta_label": "Otwórz panel konkurencyjny",
+      "highlights": "Najważniejsze punkty",
+      "updated_at": "Zaktualizowano"
+    }
+  }
+}

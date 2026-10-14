@@ -1,0 +1,50 @@
+{% if sections["redaction_notice"] %}
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ sections["redaction_notice"]["title"] | bi }}</h2></div>
+    <p class="section-copy">{{ sections["redaction_notice"]["body"] | bi }}</p>
+</section>
+{% elif sections["financial_summary"] %}
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Financial Summary") }}</h2></div>
+    <div class="card-grid">
+        {% for item in sections["financial_summary"]["items"] %}
+        <article class="metric-card four-up{% if loop.index % 4 == 0 or loop.last %} last{% endif %}">
+            <div class="metric-label">{{ l(item.label) }}</div>
+            <div class="trust-value">{{ item.value }}</div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Report history") }}</h2></div>
+    <table class="report-table">
+        <thead>
+            <tr>
+                <th>{{ l("Date") }}</th>
+                <th>{{ l("Audit Type") }}</th>
+                <th>{{ l("Target") }}</th>
+                <th class="numeric">{{ l("Estimated") }}</th>
+                <th class="numeric">{{ l("Consumed") }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in sections["ledger_rows"]["items"] %}
+            <tr>
+                <td>{{ item.date }}</td>
+                <td>{{ l(item.audit_type | upper) }}</td>
+                <td>{{ item.target | bi }}</td>
+                <td class="numeric">{{ item.estimated_credits }}</td>
+                <td class="numeric">{{ item.credits_consumed }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5">{{ l("No ledger rows were available.") }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endif %}

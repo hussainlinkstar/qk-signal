@@ -1,0 +1,39 @@
+{% extends "base_email.html" %}
+{% set preheader = "Your agency invited you to a white-labeled client portal." %}
+{% set eyebrow = "Client Portal" %}
+{% set title = "Access your live client portal" %}
+{% set lead = "You have been invited to a read-only portal where you can review the live AIO and SEO scores for the projects shared with you." %}
+{% set cta_label = "Set Password And Open Portal" %}
+{% set cta_url = invitation_url %}
+{% set fallback_url = invitation_url %}
+{% set is_transactional = true %}
+{% block content %}
+<tr><td class="body">
+    <p class="copy">Hi {{ recipient_name }},</p>
+    <p class="copy">
+        {% if agency_name %}
+        {{ agency_name }} invited you to access {{ workspace_name }}.
+        {% else %}
+        You were invited to access {{ workspace_name }}.
+        {% endif %}
+        This portal is read-only and scoped only to the projects assigned to you.
+    </p>
+    <div class="panel">
+        <p class="panel-title">What you can access</p>
+        <div class="detail-row"><span class="detail-label">Portal:</span> live scorecards, trend views, recommendations, and exported Jira tasks.</div>
+        <div class="detail-row"><span class="detail-label">Restricted:</span> billing, plan settings, audit configuration, and other client projects.</div>
+        <div class="detail-row"><span class="detail-label">Portal URL:</span> <a class="muted-link" href="{{ portal_url }}">{{ portal_url }}</a></div>
+    </div>
+    {% if project_names %}
+    <div class="panel">
+        <p class="panel-title">Assigned projects</p>
+        <ul class="list">
+            {% for project_name in project_names %}
+            <li>{{ project_name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    <p class="copy">Use the button above to set your password and finish access setup.</p>
+</td></tr>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base_email.html" %}
+{% set preheader = "Your white-label domain is now active." %}
+{% set eyebrow = "White-Label" %}
+{% set title = "Custom domain is live" %}
+{% set lead = "Your workspace is now available from the branded domain you configured." %}
+{% set cta_label = "Open Live Domain" %}
+{% set cta_url = preview_url %}
+{% set fallback_url = preview_url %}
+{% block content %}
+<tr><td class="body">
+    <p class="copy">Hi {{ recipient_name }},</p>
+    <p class="copy">
+        <strong>{{ domain }}</strong> is active and ready to use for {{ company_name }}.
+    </p>
+    <div class="panel">
+        <p class="panel-title">Live endpoint</p>
+        <div class="detail-row"><span class="detail-label">Workspace:</span> {{ workspace_name }}</div>
+        <div class="detail-row"><span class="detail-label">Preview URL:</span> <a class="muted-link" href="{{ preview_url }}">{{ preview_url }}</a></div>
+    </div>
+    <p class="copy">Your team can now sign in directly on the branded domain and continue in the same dark theme with your workspace identity.</p>
+</td></tr>
+{% endblock %}

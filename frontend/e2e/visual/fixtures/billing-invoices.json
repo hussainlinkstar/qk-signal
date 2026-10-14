@@ -1,0 +1,92 @@
+{
+  "invoices": [
+    {
+      "date": "2026-06-12T09:00:00.000Z",
+      "amounts": { "amount_due": 99900, "amount_paid": 99900, "amount_remaining": 0 },
+      "currency": "usd",
+      "status": "paid",
+      "hosted_invoice_url": "https://billing.stripe.com/invoices/stub-2026-06",
+      "invoice_pdf": "https://billing.stripe.com/invoices/stub-2026-06.pdf"
+    },
+    {
+      "date": "2026-05-12T09:00:00.000Z",
+      "amounts": { "amount_due": 99900, "amount_paid": 99900, "amount_remaining": 0 },
+      "currency": "usd",
+      "status": "paid",
+      "hosted_invoice_url": "https://billing.stripe.com/invoices/stub-2026-05",
+      "invoice_pdf": "https://billing.stripe.com/invoices/stub-2026-05.pdf"
+    },
+    {
+      "date": "2026-04-12T09:00:00.000Z",
+      "amounts": { "amount_due": 99900, "amount_paid": 99900, "amount_remaining": 0 },
+      "currency": "usd",
+      "status": "paid",
+      "hosted_invoice_url": "https://billing.stripe.com/invoices/stub-2026-04",
+      "invoice_pdf": "https://billing.stripe.com/invoices/stub-2026-04.pdf"
+    },
+    {
+      "date": "2026-03-28T09:00:00.000Z",
+      "amounts": { "amount_due": 12500, "amount_paid": 12500, "amount_remaining": 0 },
+      "currency": "usd",
+      "status": "paid",
+      "hosted_invoice_url": "https://billing.stripe.com/invoices/stub-topup-2026-03",
+      "invoice_pdf": "https://billing.stripe.com/invoices/stub-topup-2026-03.pdf"
+    },
+    {
+      "date": "2026-03-12T09:00:00.000Z",
+      "amounts": { "amount_due": 99900, "amount_paid": 99900, "amount_remaining": 0 },
+      "currency": "usd",
+      "status": "refunded",
+      "hosted_invoice_url": "https://billing.stripe.com/invoices/stub-2026-03",
+      "invoice_pdf": "https://billing.stripe.com/invoices/stub-2026-03.pdf"
+    },
+    {
+      "date": "2026-02-12T09:00:00.000Z",
+      "amounts": { "amount_due": 9900, "amount_paid": 9900, "amount_remaining": 0 },
+      "currency": "usd",
+      "status": "paid",
+      "hosted_invoice_url": "https://billing.stripe.com/invoices/stub-2026-02",
+      "invoice_pdf": "https://billing.stripe.com/invoices/stub-2026-02.pdf"
+    },
+    {
+      "date": "2026-01-12T09:00:00.000Z",
+      "amounts": { "amount_due": 9900, "amount_paid": 9900, "amount_remaining": 0 },
+      "currency": "usd",
+      "status": "paid",
+      "hosted_invoice_url": "https://billing.stripe.com/invoices/stub-2026-01",
+      "invoice_pdf": "https://billing.stripe.com/invoices/stub-2026-01.pdf"
+    },
+    {
+      "date": "2025-12-12T09:00:00.000Z",
+      "amounts": { "amount_due": 9900, "amount_paid": 9900, "amount_remaining": 0 },
+      "currency": "usd",
+      "status": "paid",
+      "hosted_invoice_url": "https://billing.stripe.com/invoices/stub-2025-12",
+      "invoice_pdf": "https://billing.stripe.com/invoices/stub-2025-12.pdf"
+    },
+    {
+      "date": "2025-11-12T09:00:00.000Z",
+      "amounts": { "amount_due": 9900, "amount_paid": 9900, "amount_remaining": 0 },
+      "currency": "usd",
+      "status": "paid",
+      "hosted_invoice_url": "https://billing.stripe.com/invoices/stub-2025-11",
+      "invoice_pdf": "https://billing.stripe.com/invoices/stub-2025-11.pdf"
+    },
+    {
+      "date": "2025-10-12T09:00:00.000Z",
+      "amounts": { "amount_due": 9900, "amount_paid": 9900, "amount_remaining": 0 },
+      "currency": "usd",
+      "status": "paid",
+      "hosted_invoice_url": "https://billing.stripe.com/invoices/stub-2025-10",
+      "invoice_pdf": "https://billing.stripe.com/invoices/stub-2025-10.pdf"
+    },
+    {
+      "date": "2025-09-12T09:00:00.000Z",
+      "amounts": { "amount_due": 9900, "amount_paid": 0, "amount_remaining": 9900 },
+      "currency": "usd",
+      "status": "open",
+      "hosted_invoice_url": "https://billing.stripe.com/invoices/stub-2025-09",
+      "invoice_pdf": "https://billing.stripe.com/invoices/stub-2025-09.pdf"
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+# Backend linting dependency (single-source linter)
+ruff==0.6.9

@@ -1,0 +1,106 @@
+{
+  "meta": {
+    "language_name": "中文",
+    "language_name_map": {
+      "en": "English",
+      "es": "Spanish",
+      "fr": "French",
+      "de": "German",
+      "it": "Italian",
+      "ro": "Romanian",
+      "nl": "Dutch",
+      "pt": "Portuguese",
+      "pl": "Polish",
+      "sv": "Swedish",
+      "ja": "Japanese",
+      "zh": "Chinese"
+    }
+  },
+  "pdf": {
+    "ai_disclaimer": "提示：本报告包含自动化 AI 分析。在应用技术变更之前，建议进行人工复核。",
+    "generated_on": "生成时间",
+    "executive_summary": "执行摘要",
+    "highlights": "重点亮点",
+    "score_breakdown": "评分拆解",
+    "key_recommendations": "关键建议",
+    "competitor_analysis": "竞争对手分析",
+    "competitor_section_enabled": "本次导出已启用竞争对手基准分析部分。",
+    "battle_report": "对比报告",
+    "head_to_head_comparison": "正面对比 ({index}/{total})",
+    "strategic_highlights": "战略亮点",
+    "no_analysis_summary": "暂无分析摘要。",
+    "no_summary_available": "暂无摘要。",
+    "left_site": "左侧站点",
+    "right_site": "右侧站点",
+    "score": "评分",
+    "technical_report": "技术报告",
+    "executive_report": "执行报告",
+    "comparative_report": "对比报告"
+  },
+  "email": {
+    "common": {
+      "notification": "通知",
+      "unsubscribe_blurb": "由于你在 {brand_name} 拥有账户，因此会收到此邮件。你可以随时管理通知偏好或取消订阅。",
+      "fallback_hint": "如果按钮无法使用，请打开",
+      "support_hint": "如需帮助，请联系",
+      "aio_label": "AIO 得分",
+      "seo_label": "SEO 得分",
+      "metric_label_seo_score": "SEO 得分",
+      "metric_label_aio_score": "AIO 得分",
+      "metric_label_unknown": "可见度得分",
+      "score_delta_up": "较{period}上升 {points} 分",
+      "score_delta_up_one": "较{period}上升 {points} 分",
+      "score_delta_down": "较{period}下降 {points} 分",
+      "score_delta_down_one": "较{period}下降 {points} 分",
+      "score_delta_flat": "较{period}无变化",
+      "score_delta_period": "上月",
+      "rank_delta_up": "从第 {previous} 名上升",
+      "rank_delta_down": "从第 {previous} 名下降",
+      "rank_delta_flat": "无变化"
+    },
+    "audit_completed": {
+      "subject": "{target_host} 的审计已完成",
+      "preheader": "你最近一次审计已完成，可以开始查看。",
+      "eyebrow": "审计完成",
+      "title": "你的审计报告已就绪",
+      "lead": "我们已完成最近一次审计处理。下方是评分概览，完整报告已在你的仪表盘中等待查看。",
+      "cta_label": "打开审计报告",
+      "target_label": "目标",
+      "body": "使用完整报告可在一个地方统一确定技术、内容和 answerability 改进的优先级。"
+    },
+    "consensus_ready": {
+      "subject": "{target_host} 的多模型共识结果已就绪",
+      "preheader": "你的多模型共识报告已就绪。",
+      "eyebrow": "共识就绪",
+      "title": "你的共识审计报告已就绪",
+      "lead": "多模型运行已成功完成。你可以在报告中查看对齐后的发现与评分概览。",
+      "cta_label": "查看共识",
+      "models_included": "包含的模型",
+      "model_set_label": "模型集合",
+      "target_label": "目标"
+    },
+    "progress_report": {
+      "subject": "{project_name} 的 {report_month_label} 进度报告",
+      "eyebrow": "进度报告",
+      "title": "{project_name} 月度表现更新",
+      "lead": "最新趋势快照已准备完成，包含环比评分变化、关键成果以及仍在阻碍进展的下一步问题。",
+      "cta_label": "打开报告中心",
+      "preheader": "{project_name} 的评分和月度进展已准备完成。",
+      "intro": "{project_name}{domain_suffix} 的 {report_month_label} 报告已就绪。你可以将其作为面向客户的项目进展证明。",
+      "audits_captured_label": "纳入的审计数量",
+      "top_improvements": "主要改进",
+      "remaining_issues": "剩余问题",
+      "no_remaining_issues": "最近一次审计中未提取到未解决的高优先级行动。"
+    },
+    "competitive_digest": {
+      "subject": "{project_name} 的 {report_period} 竞争摘要",
+      "preheader": "{project_name} 的竞争基准更新。",
+      "eyebrow": "竞争摘要",
+      "title": "{project_name} 基准更新",
+      "lead": "{workspace_name} 现已为 {competitor_count} 个跟踪中的竞争对手生成最新竞争快照。",
+      "cta_label": "打开竞争仪表盘",
+      "highlights": "亮点",
+      "updated_at": "更新时间"
+    }
+  }
+}

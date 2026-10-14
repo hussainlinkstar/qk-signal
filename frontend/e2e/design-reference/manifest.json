@@ -1,0 +1,3862 @@
+{
+  "screens": {
+    "workspace-overview": {
+      "workspace-overview-1440x900-en.png": {
+        "sourceFile": "Signal Workspace Overview.html",
+        "sourceSha256": "fbcb3e3e6685e6a618674f9440218dc00f2f1658ae7997f91e2fd94c8e7471b6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "6dee79b2d96a5b2a1acb174b21b55fefbaaadbddfa66faac53f91907bfb380c2",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "project-card-copy": [
+            [267, 147, 365, 282],
+            [288, 378, 323, 30],
+            [648, 147, 365, 282],
+            [669, 378, 323, 30],
+            [1028, 147, 365, 282],
+            [1049, 378, 323, 30]
+          ],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "workspace-overview-1440x900-ar.png": {
+        "sourceFile": "Signal Workspace Overview.html",
+        "sourceSha256": "fbcb3e3e6685e6a618674f9440218dc00f2f1658ae7997f91e2fd94c8e7471b6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "886fdf3a5611826c70c28c20b19b3e063d5abc55e2926bd89c779b9c4d816c31",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "project-card-copy": [
+            [808, 147, 365, 282],
+            [829, 378, 323, 30],
+            [428, 147, 365, 282],
+            [449, 378, 323, 30],
+            [47, 147, 365, 282],
+            [68, 378, 323, 30]
+          ],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "workspace-overview-1440x1100-en.png": {
+        "sourceFile": "Signal Workspace Overview.html",
+        "sourceSha256": "fbcb3e3e6685e6a618674f9440218dc00f2f1658ae7997f91e2fd94c8e7471b6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "22fb22442c554b5a512b317d8495a89311039a59ca2412c76f9edb216c252dc3",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "project-card-copy": [
+            [267, 147, 365, 282],
+            [288, 378, 323, 30],
+            [648, 147, 365, 282],
+            [669, 378, 323, 30],
+            [1028, 147, 365, 282],
+            [1049, 378, 323, 30]
+          ],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "workspace-overview-1440x1100-ar.png": {
+        "sourceFile": "Signal Workspace Overview.html",
+        "sourceSha256": "fbcb3e3e6685e6a618674f9440218dc00f2f1658ae7997f91e2fd94c8e7471b6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "9c2d6c8b6beb8c86725af7c76bdbaf7e9901b727a1d137680b39b66fc117688e",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "project-card-copy": [
+            [808, 147, 365, 282],
+            [829, 378, 323, 30],
+            [428, 147, 365, 282],
+            [449, 378, 323, 30],
+            [47, 147, 365, 282],
+            [68, 378, 323, 30]
+          ],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "workspace-onboarding": {
+      "workspace-onboarding-1440x900-en.png": {
+        "sourceFile": "Signal Onboarding.html",
+        "sourceSha256": "c29e6c217cb25d74370e72524854ee019a9afec0578b9c134258851667078329",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "3866165d49e3e58964e775d178d099d7d290420a395dd1e4a4c40ec84ed7a2c4",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "wizard-step-copy": [[510, 99, 640, 310]],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "workspace-onboarding-1440x900-ar.png": {
+        "sourceFile": "Signal Onboarding.html",
+        "sourceSha256": "c29e6c217cb25d74370e72524854ee019a9afec0578b9c134258851667078329",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "8bf82816451086a8765bb3e9408381ba675012b231d24a7187097771ba21417b",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "wizard-step-copy": [[290, 99, 640, 310]],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "workspace-onboarding-1440x1100-en.png": {
+        "sourceFile": "Signal Onboarding.html",
+        "sourceSha256": "c29e6c217cb25d74370e72524854ee019a9afec0578b9c134258851667078329",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "2625f403472b521cdee656a5cb39ac40c8dfaef8b793e0f22745f0fabb7f0f64",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "wizard-step-copy": [[510, 99, 640, 310]],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "workspace-onboarding-1440x1100-ar.png": {
+        "sourceFile": "Signal Onboarding.html",
+        "sourceSha256": "c29e6c217cb25d74370e72524854ee019a9afec0578b9c134258851667078329",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "bf84db8462ee482abb513e63d2ebfb1bc9be81724df7ec4b1a461de55f5ecee0",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "wizard-step-copy": [[290, 99, 640, 310]],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "project-overview": {
+      "project-overview-1440x900-en.png": {
+        "sourceFile": "Signal Overview.html",
+        "sourceSha256": "7b5a2233eb0cc553a871ed2ddb5f4b0d1083e47c82dd8353ee27fad3bad70adf",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "501f3a590d1406b9150383fbd869301a906fb8efabc45888f21b5b21a066a3d1",
+        "width": 1440,
+        "height": 2448,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "chart-series": [
+            [404, 247, 58, 28],
+            [632, 247, 58, 28],
+            [860, 247, 58, 28],
+            [1088, 247, 58, 28],
+            [1316, 247, 58, 28],
+            [290, 416, 576, 274]
+          ],
+          "fixture-metrics": [
+            [267, 210, 214, 82],
+            [495, 210, 214, 82],
+            [723, 210, 214, 82],
+            [951, 210, 214, 82],
+            [1179, 210, 214, 82],
+            [1144, 1426, 108, 36],
+            [1144, 1492, 108, 36],
+            [1144, 1558, 108, 36],
+            [1144, 1624, 108, 36]
+          ],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "project-overview-1440x900-ar.png": {
+        "sourceFile": "Signal Overview.html",
+        "sourceSha256": "7b5a2233eb0cc553a871ed2ddb5f4b0d1083e47c82dd8353ee27fad3bad70adf",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "0778d77b16a4801d7a4ae171c96f71f8853589956d28b4137b8dfd843a832cae",
+        "width": 1440,
+        "height": 2386,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "chart-series": [
+            [978, 245, 58, 28],
+            [750, 245, 58, 28],
+            [522, 245, 58, 28],
+            [294, 245, 58, 28],
+            [66, 245, 58, 28],
+            [595, 446, 555, 242]
+          ],
+          "fixture-metrics": [
+            [959, 208, 214, 82],
+            [731, 208, 214, 82],
+            [503, 208, 214, 82],
+            [275, 208, 214, 82],
+            [47, 208, 214, 82],
+            [188, 1425, 108, 33],
+            [188, 1491, 108, 33],
+            [188, 1558, 108, 33],
+            [188, 1622, 108, 33]
+          ],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "project-overview-1440x1100-en.png": {
+        "sourceFile": "Signal Overview.html",
+        "sourceSha256": "7b5a2233eb0cc553a871ed2ddb5f4b0d1083e47c82dd8353ee27fad3bad70adf",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "a9c29ae5f53b1b6751f617485df8c8f2e3314d17ceedb56a3ed33d8e1d4805dc",
+        "width": 1440,
+        "height": 2448,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "chart-series": [
+            [404, 247, 58, 28],
+            [632, 247, 58, 28],
+            [860, 247, 58, 28],
+            [1088, 247, 58, 28],
+            [1316, 247, 58, 28],
+            [290, 416, 576, 274]
+          ],
+          "fixture-metrics": [
+            [267, 210, 214, 82],
+            [495, 210, 214, 82],
+            [723, 210, 214, 82],
+            [951, 210, 214, 82],
+            [1179, 210, 214, 82],
+            [1144, 1426, 108, 36],
+            [1144, 1492, 108, 36],
+            [1144, 1558, 108, 36],
+            [1144, 1624, 108, 36]
+          ],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "project-overview-1440x1100-ar.png": {
+        "sourceFile": "Signal Overview.html",
+        "sourceSha256": "7b5a2233eb0cc553a871ed2ddb5f4b0d1083e47c82dd8353ee27fad3bad70adf",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "2d5d492a71b91a8bd251add5914ece3666fa97815e0129f3190bb061e1ddb127",
+        "width": 1440,
+        "height": 2386,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "chart-series": [
+            [978, 245, 58, 28],
+            [750, 245, 58, 28],
+            [522, 245, 58, 28],
+            [294, 245, 58, 28],
+            [66, 245, 58, 28],
+            [595, 446, 555, 242]
+          ],
+          "fixture-metrics": [
+            [959, 208, 214, 82],
+            [731, 208, 214, 82],
+            [503, 208, 214, 82],
+            [275, 208, 214, 82],
+            [47, 208, 214, 82],
+            [188, 1425, 108, 33],
+            [188, 1491, 108, 33],
+            [188, 1558, 108, 33],
+            [188, 1622, 108, 33]
+          ],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "maintenance": {
+      "maintenance-1440x900-en.png": {
+        "sourceFile": "Signal Maintenance.html",
+        "sourceSha256": "01ddd949290da3263901725157a1cefaa97818fc2f53fa8dc014550ead2e974b",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "500a79adc0480fff2ae4b94d089bc1cba6b53f294e8e10df5faeab7b19a89355",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "maintenance-1440x900-ar.png": {
+        "sourceFile": "Signal Maintenance.html",
+        "sourceSha256": "01ddd949290da3263901725157a1cefaa97818fc2f53fa8dc014550ead2e974b",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "a516dc8d8f03e4e6d4c2fef4ab5216a1c06b9d4a041c1c41b7e1b9ee2c5dbec9",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "maintenance-1440x1100-en.png": {
+        "sourceFile": "Signal Maintenance.html",
+        "sourceSha256": "01ddd949290da3263901725157a1cefaa97818fc2f53fa8dc014550ead2e974b",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "c5e048e94f7ce601949f83e42c8429eed3a4e66b09d5f138cf166779f43278b7",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "maintenance-1440x1100-ar.png": {
+        "sourceFile": "Signal Maintenance.html",
+        "sourceSha256": "01ddd949290da3263901725157a1cefaa97818fc2f53fa8dc014550ead2e974b",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "71e3764d3eeab270677ffc6adaeea5ad9f45c8485edb1693a066c690ae42cea2",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "not-found": {
+      "not-found-1440x900-en.png": {
+        "sourceFile": "Signal 404.html",
+        "sourceSha256": "3ade9cd6f5b6200a045cf3bc741247c652d084f4c90034a113bf2d3e167d2f91",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "03cd3581d0641b0738fe224a066c4b07b6f710f490aa98c3d1c33ed57ac48181",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "not-found-1440x900-ar.png": {
+        "sourceFile": "Signal 404.html",
+        "sourceSha256": "3ade9cd6f5b6200a045cf3bc741247c652d084f4c90034a113bf2d3e167d2f91",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "cf8545e326b2c16663eda974a27ff25c02476664193e1cd9d05dcffb905a10c8",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "not-found-1440x1100-en.png": {
+        "sourceFile": "Signal 404.html",
+        "sourceSha256": "3ade9cd6f5b6200a045cf3bc741247c652d084f4c90034a113bf2d3e167d2f91",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "c59bf2c651eb894a5b908b5f124ee0bd626b87ae6010c88adf157b8479c331d6",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "not-found-1440x1100-ar.png": {
+        "sourceFile": "Signal 404.html",
+        "sourceSha256": "3ade9cd6f5b6200a045cf3bc741247c652d084f4c90034a113bf2d3e167d2f91",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "1395e943400c93ad2bce2ab68125913676b5605cba952efad26f16bf91d73883",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "aio-detail": {
+      "aio-detail-1440x900-en.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "455bcfb3c7675440e5f4d9c58a4d39323452e874de15acdc3761532266df5530",
+        "width": 1440,
+        "height": 935,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-elements": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [523, 343, 19, 17],
+            [652, 343, 19, 17],
+            [772, 343, 26, 17],
+            [267, 424, 232, 18],
+            [267, 462, 1126, 375],
+            [267, 462, 1126, 375]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "aio-detail-1440x900-ar.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "18b8af680b533cf044a15086c48314973076c4174c81bb4f4bb2879e6fe8e118",
+        "width": 1440,
+        "height": 920,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-elements": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [921, 328, 19, 17],
+            [784, 328, 19, 17],
+            [660, 328, 26, 17],
+            [974, 409, 199, 18],
+            [47, 447, 1126, 375],
+            [47, 447, 1126, 375]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "aio-detail-1440x1100-en.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "66e0001938814c5c35faf5cd16266d5ada1171d03b0a84c02776919c8ec700f1",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-elements": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [523, 343, 19, 17],
+            [652, 343, 19, 17],
+            [772, 343, 26, 17],
+            [267, 424, 232, 18],
+            [267, 462, 1126, 375],
+            [267, 462, 1126, 375]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "aio-detail-1440x1100-ar.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "e26fc623cf06c8ebc6c81027e1ae7f6bc495b40f423487fe55cee80cf587061a",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-elements": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [921, 328, 19, 17],
+            [784, 328, 19, 17],
+            [660, 328, 26, 17],
+            [974, 409, 199, 18],
+            [47, 447, 1126, 375],
+            [47, 447, 1126, 375]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "seo-detail": {
+      "seo-detail-1440x900-en.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "4b954389de119c99555c829df221fc8cb06a7f1d064300aac9d0713ef1925b45",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-elements": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [542, 343, 19, 17],
+            [672, 343, 26, 17],
+            [782, 343, 26, 17],
+            [267, 424, 231, 18],
+            [267, 462, 1126, 336],
+            [267, 462, 1126, 336]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "seo-detail-1440x900-ar.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "fe1fd7d8c845582a0a1b173ca0f4ba85dc9a78ae771d0ae369160afa2ed04879",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-elements": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [905, 328, 19, 17],
+            [705, 328, 26, 17],
+            [581, 328, 26, 17],
+            [974, 409, 199, 18],
+            [47, 447, 1126, 336],
+            [47, 447, 1126, 336]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "seo-detail-1440x1100-en.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "5a7cb70691d4907c80d759d25aa6327740c6282e298f1bb83085436201fa8070",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-elements": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [542, 343, 19, 17],
+            [672, 343, 26, 17],
+            [782, 343, 26, 17],
+            [267, 424, 231, 18],
+            [267, 462, 1126, 336],
+            [267, 462, 1126, 336]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "seo-detail-1440x1100-ar.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "f8cd1cebb9c0822b5030220c972dc41458c487e02cf702bda72807035b104bdc",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-elements": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [905, 328, 19, 17],
+            [705, 328, 26, 17],
+            [581, 328, 26, 17],
+            [974, 409, 199, 18],
+            [47, 447, 1126, 336],
+            [47, 447, 1126, 336]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "competitors": {
+      "competitors-1440x900-en.png": {
+        "sourceFile": "Signal Competitors.html",
+        "sourceSha256": "4895a40bb0309887776dec9cc7902632dd972432b920b9e905dbf7a659571d0f",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "b947d2ad19237c23a8f7cbfd00187502e2d965386e31468c634b83a38582edda",
+        "width": 1440,
+        "height": 1686,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-values": [
+            [296, 147, 132, 97],
+            [454, 153, 634, 38],
+            [454, 197, 600, 63],
+            [1114, 130, 250, 130],
+            [528, 420, 407, 15],
+            [292, 459, 1076, 327],
+            [268, 949, 57, 65],
+            [325, 949, 477, 65],
+            [802, 949, 117, 65],
+            [918, 949, 117, 65],
+            [1035, 949, 200, 65],
+            [1235, 949, 157, 65],
+            [268, 1014, 57, 65],
+            [325, 1014, 477, 65],
+            [802, 1014, 117, 65],
+            [918, 1014, 117, 65],
+            [1035, 1014, 200, 65],
+            [1235, 1014, 157, 65],
+            [268, 1079, 57, 65],
+            [325, 1079, 477, 65],
+            [802, 1079, 117, 65],
+            [918, 1079, 117, 65],
+            [1035, 1079, 200, 65],
+            [1235, 1079, 157, 65],
+            [268, 1144, 57, 65],
+            [325, 1144, 477, 65],
+            [802, 1144, 117, 65],
+            [918, 1144, 117, 65],
+            [1035, 1144, 200, 65],
+            [1235, 1144, 157, 65],
+            [268, 1209, 57, 65],
+            [325, 1209, 477, 65],
+            [802, 1209, 117, 65],
+            [918, 1209, 117, 65],
+            [1035, 1209, 200, 65],
+            [1235, 1209, 157, 65],
+            [581, 1440, 220, 24],
+            [581, 1487, 220, 24],
+            [581, 1534, 220, 24],
+            [1152, 1440, 220, 24],
+            [1152, 1487, 220, 24],
+            [1152, 1534, 220, 24]
+          ],
+          "chart-window-deviation": [
+            [453, 335, 249, 15],
+            [378, 855, 211, 15],
+            [474, 1324, 196, 15]
+          ],
+          "unmeasured-rows": [
+            [581, 1440, 220, 24],
+            [581, 1487, 220, 24],
+            [581, 1534, 220, 24],
+            [1152, 1440, 220, 24],
+            [1152, 1487, 220, 24],
+            [1152, 1534, 220, 24]
+          ],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "competitors-1440x900-ar.png": {
+        "sourceFile": "Signal Competitors.html",
+        "sourceSha256": "4895a40bb0309887776dec9cc7902632dd972432b920b9e905dbf7a659571d0f",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "b18bc955adc36c323ab28b84cabbce0d6dcd5edf9955da4d7f558b0c0037efd4",
+        "width": 1440,
+        "height": 1686,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-values": [
+            [1012, 147, 132, 97],
+            [352, 164, 634, 38],
+            [386, 208, 600, 42],
+            [76, 130, 250, 130],
+            [742, 420, 406, 15],
+            [72, 459, 1076, 327],
+            [1115, 949, 57, 65],
+            [642, 949, 473, 65],
+            [525, 949, 116, 65],
+            [409, 949, 116, 65],
+            [209, 949, 200, 65],
+            [48, 949, 161, 65],
+            [1115, 1014, 57, 65],
+            [642, 1014, 473, 65],
+            [525, 1014, 116, 65],
+            [409, 1014, 116, 65],
+            [209, 1014, 200, 65],
+            [48, 1014, 161, 65],
+            [1115, 1079, 57, 65],
+            [642, 1079, 473, 65],
+            [525, 1079, 116, 65],
+            [409, 1079, 116, 65],
+            [209, 1079, 200, 65],
+            [48, 1079, 161, 65],
+            [1115, 1144, 57, 65],
+            [642, 1144, 473, 65],
+            [525, 1144, 116, 65],
+            [409, 1144, 116, 65],
+            [209, 1144, 200, 65],
+            [48, 1144, 161, 65],
+            [1115, 1209, 57, 65],
+            [642, 1209, 473, 65],
+            [525, 1209, 116, 65],
+            [409, 1209, 116, 65],
+            [209, 1209, 200, 65],
+            [48, 1209, 161, 65],
+            [639, 1440, 220, 24],
+            [639, 1487, 220, 24],
+            [639, 1534, 220, 24],
+            [68, 1440, 220, 24],
+            [68, 1487, 220, 24],
+            [68, 1534, 220, 24]
+          ],
+          "chart-window-deviation": [
+            [774, 335, 210, 15],
+            [900, 855, 140, 15],
+            [808, 1324, 168, 15]
+          ],
+          "unmeasured-rows": [
+            [639, 1440, 220, 24],
+            [639, 1487, 220, 24],
+            [639, 1534, 220, 24],
+            [68, 1440, 220, 24],
+            [68, 1487, 220, 24],
+            [68, 1534, 220, 24]
+          ],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "competitors-1440x1100-en.png": {
+        "sourceFile": "Signal Competitors.html",
+        "sourceSha256": "4895a40bb0309887776dec9cc7902632dd972432b920b9e905dbf7a659571d0f",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "020f1ee39d65e03548992916c3c09a36cf1efc684083ae035ba2f864cebe25da",
+        "width": 1440,
+        "height": 1686,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-values": [
+            [296, 147, 132, 97],
+            [454, 153, 634, 38],
+            [454, 197, 600, 63],
+            [1114, 130, 250, 130],
+            [528, 420, 407, 15],
+            [292, 459, 1076, 327],
+            [268, 949, 57, 65],
+            [325, 949, 477, 65],
+            [802, 949, 117, 65],
+            [918, 949, 117, 65],
+            [1035, 949, 200, 65],
+            [1235, 949, 157, 65],
+            [268, 1014, 57, 65],
+            [325, 1014, 477, 65],
+            [802, 1014, 117, 65],
+            [918, 1014, 117, 65],
+            [1035, 1014, 200, 65],
+            [1235, 1014, 157, 65],
+            [268, 1079, 57, 65],
+            [325, 1079, 477, 65],
+            [802, 1079, 117, 65],
+            [918, 1079, 117, 65],
+            [1035, 1079, 200, 65],
+            [1235, 1079, 157, 65],
+            [268, 1144, 57, 65],
+            [325, 1144, 477, 65],
+            [802, 1144, 117, 65],
+            [918, 1144, 117, 65],
+            [1035, 1144, 200, 65],
+            [1235, 1144, 157, 65],
+            [268, 1209, 57, 65],
+            [325, 1209, 477, 65],
+            [802, 1209, 117, 65],
+            [918, 1209, 117, 65],
+            [1035, 1209, 200, 65],
+            [1235, 1209, 157, 65],
+            [581, 1440, 220, 24],
+            [581, 1487, 220, 24],
+            [581, 1534, 220, 24],
+            [1152, 1440, 220, 24],
+            [1152, 1487, 220, 24],
+            [1152, 1534, 220, 24]
+          ],
+          "chart-window-deviation": [
+            [453, 335, 249, 15],
+            [378, 855, 211, 15],
+            [474, 1324, 196, 15]
+          ],
+          "unmeasured-rows": [
+            [581, 1440, 220, 24],
+            [581, 1487, 220, 24],
+            [581, 1534, 220, 24],
+            [1152, 1440, 220, 24],
+            [1152, 1487, 220, 24],
+            [1152, 1534, 220, 24]
+          ],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "competitors-1440x1100-ar.png": {
+        "sourceFile": "Signal Competitors.html",
+        "sourceSha256": "4895a40bb0309887776dec9cc7902632dd972432b920b9e905dbf7a659571d0f",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "b3cdf8ead112fb6241b1e621ee16ac5ad0f330befbcb210bc81dca1c5c29c2ec",
+        "width": 1440,
+        "height": 1686,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-values": [
+            [1012, 147, 132, 97],
+            [352, 164, 634, 38],
+            [386, 208, 600, 42],
+            [76, 130, 250, 130],
+            [742, 420, 406, 15],
+            [72, 459, 1076, 327],
+            [1115, 949, 57, 65],
+            [642, 949, 473, 65],
+            [525, 949, 116, 65],
+            [409, 949, 116, 65],
+            [209, 949, 200, 65],
+            [48, 949, 161, 65],
+            [1115, 1014, 57, 65],
+            [642, 1014, 473, 65],
+            [525, 1014, 116, 65],
+            [409, 1014, 116, 65],
+            [209, 1014, 200, 65],
+            [48, 1014, 161, 65],
+            [1115, 1079, 57, 65],
+            [642, 1079, 473, 65],
+            [525, 1079, 116, 65],
+            [409, 1079, 116, 65],
+            [209, 1079, 200, 65],
+            [48, 1079, 161, 65],
+            [1115, 1144, 57, 65],
+            [642, 1144, 473, 65],
+            [525, 1144, 116, 65],
+            [409, 1144, 116, 65],
+            [209, 1144, 200, 65],
+            [48, 1144, 161, 65],
+            [1115, 1209, 57, 65],
+            [642, 1209, 473, 65],
+            [525, 1209, 116, 65],
+            [409, 1209, 116, 65],
+            [209, 1209, 200, 65],
+            [48, 1209, 161, 65],
+            [639, 1440, 220, 24],
+            [639, 1487, 220, 24],
+            [639, 1534, 220, 24],
+            [68, 1440, 220, 24],
+            [68, 1487, 220, 24],
+            [68, 1534, 220, 24]
+          ],
+          "chart-window-deviation": [
+            [774, 335, 210, 15],
+            [900, 855, 140, 15],
+            [808, 1324, 168, 15]
+          ],
+          "unmeasured-rows": [
+            [639, 1440, 220, 24],
+            [639, 1487, 220, 24],
+            [639, 1534, 220, 24],
+            [68, 1440, 220, 24],
+            [68, 1487, 220, 24],
+            [68, 1534, 220, 24]
+          ],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "fixes": {
+      "fixes-1440x900-en.png": {
+        "sourceFile": "Signal Fixes.html",
+        "sourceSha256": "4a416a232b01f28cc13fafb78a62880c3f691791edeea5fe1b1590b7b4ccbe12",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "dec1b26e8a4d270858c50d6ef57be257f65f8b33f4f9400d7e365dbfe89cda7a",
+        "width": 1440,
+        "height": 1392,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-plan-rows": [
+            [267, 374, 1126, 123],
+            [267, 507, 1126, 123],
+            [267, 639, 1126, 103],
+            [267, 753, 1126, 103],
+            [267, 866, 1126, 123],
+            [267, 999, 1126, 103],
+            [267, 1112, 1126, 103]
+          ],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "fixes-1440x900-ar.png": {
+        "sourceFile": "Signal Fixes.html",
+        "sourceSha256": "4a416a232b01f28cc13fafb78a62880c3f691791edeea5fe1b1590b7b4ccbe12",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "a9b64669452c74070357e179550b99365605567817241a6bfda14f0509113a84",
+        "width": 1440,
+        "height": 1411,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-plan-rows": [
+            [47, 354, 1126, 123],
+            [47, 487, 1126, 123],
+            [47, 620, 1126, 123],
+            [47, 753, 1126, 123],
+            [47, 885, 1126, 123],
+            [47, 1018, 1126, 103],
+            [47, 1131, 1126, 103]
+          ],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "fixes-1440x1100-en.png": {
+        "sourceFile": "Signal Fixes.html",
+        "sourceSha256": "4a416a232b01f28cc13fafb78a62880c3f691791edeea5fe1b1590b7b4ccbe12",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "08fb1b0fbbc4936c6c82a8908b2a7ddd97b7743a0fa0d76da40e4e32a2116514",
+        "width": 1440,
+        "height": 1392,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-plan-rows": [
+            [267, 374, 1126, 123],
+            [267, 507, 1126, 123],
+            [267, 639, 1126, 103],
+            [267, 753, 1126, 103],
+            [267, 866, 1126, 123],
+            [267, 999, 1126, 103],
+            [267, 1112, 1126, 103]
+          ],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "fixes-1440x1100-ar.png": {
+        "sourceFile": "Signal Fixes.html",
+        "sourceSha256": "4a416a232b01f28cc13fafb78a62880c3f691791edeea5fe1b1590b7b4ccbe12",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "e11e3a7f528300d017de24833e634414894c6623e1d5225bd1db8d215e2644fb",
+        "width": 1440,
+        "height": 1411,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-plan-rows": [
+            [47, 354, 1126, 123],
+            [47, 487, 1126, 123],
+            [47, 620, 1126, 123],
+            [47, 753, 1126, 123],
+            [47, 885, 1126, 123],
+            [47, 1018, 1126, 103],
+            [47, 1131, 1126, 103]
+          ],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "settings": {
+      "settings-1440x900-en.png": {
+        "sourceFile": "Signal Settings.html",
+        "sourceSha256": "f0a7896deb07fad8008c265b9263cd1c70b614eba41e50ae15161bb736c4f100",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "b2fd658cae9543d560eb780754374c588ea04a62ed096806d5c12b3f92d91b73",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [781, 342, 18, 17],
+            [290, 367, 509, 6],
+            [782, 411, 17, 17],
+            [290, 436, 509, 6],
+            [861, 342, 154, 32],
+            [1023, 342, 129, 32],
+            [1160, 342, 136, 32],
+            [718, 650, 81, 22],
+            [712, 702, 87, 32],
+            [712, 759, 87, 32],
+            [861, 655, 206, 35],
+            [1328, 711, 42, 24],
+            [1328, 760, 42, 24]
+          ],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "settings-1440x900-ar.png": {
+        "sourceFile": "Signal Settings.html",
+        "sourceSha256": "f0a7896deb07fad8008c265b9263cd1c70b614eba41e50ae15161bb736c4f100",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "ce56da9fbb2838c337bb6d69cdbcd5ce6cbf3ac46da49cf63c7971b113e4566a",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [641, 342, 18, 17],
+            [641, 367, 509, 6],
+            [641, 411, 17, 17],
+            [641, 436, 509, 6],
+            [420, 342, 159, 32],
+            [284, 342, 128, 32],
+            [147, 342, 129, 32],
+            [641, 650, 46, 22],
+            [641, 702, 56, 32],
+            [641, 759, 56, 32],
+            [383, 655, 196, 35],
+            [70, 711, 42, 24],
+            [70, 760, 42, 24]
+          ],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "settings-1440x1100-en.png": {
+        "sourceFile": "Signal Settings.html",
+        "sourceSha256": "f0a7896deb07fad8008c265b9263cd1c70b614eba41e50ae15161bb736c4f100",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "4e1c81a68b8243932a45b32eb7e52715cbe97f94d3b772d4fa49fe00bd9bf22d",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [781, 342, 18, 17],
+            [290, 367, 509, 6],
+            [782, 411, 17, 17],
+            [290, 436, 509, 6],
+            [861, 342, 154, 32],
+            [1023, 342, 129, 32],
+            [1160, 342, 136, 32],
+            [718, 650, 81, 22],
+            [712, 702, 87, 32],
+            [712, 759, 87, 32],
+            [861, 655, 206, 35],
+            [1328, 711, 42, 24],
+            [1328, 760, 42, 24]
+          ],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "settings-1440x1100-ar.png": {
+        "sourceFile": "Signal Settings.html",
+        "sourceSha256": "f0a7896deb07fad8008c265b9263cd1c70b614eba41e50ae15161bb736c4f100",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "5107ebf6ea19aff2b9d2681635bb0b37fcc1bb72c8b02f0d450f512560f961fb",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [641, 342, 18, 17],
+            [641, 367, 509, 6],
+            [641, 411, 17, 17],
+            [641, 436, 509, 6],
+            [420, 342, 159, 32],
+            [284, 342, 128, 32],
+            [147, 342, 129, 32],
+            [641, 650, 46, 22],
+            [641, 702, 56, 32],
+            [641, 759, 56, 32],
+            [383, 655, 196, 35],
+            [70, 711, 42, 24],
+            [70, 760, 42, 24]
+          ],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "workspace-settings": {
+      "workspace-settings-1440x900-en.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "c062ab0635f0c7c596c98783f6280932e2c1574ed9966270341fb95160f5ee6c",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [290, 378, 1003, 44],
+            [290, 491, 441, 35]
+          ],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "workspace-settings-1440x900-ar.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "cebd9c5d0cbd290277a267c53d5f9ff79185fc34592dee92231901ce71008e08",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [138, 378, 1012, 44],
+            [748, 491, 402, 35]
+          ],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "workspace-settings-1440x1100-en.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "f81ecb3f3e4d61c63d7a9443fa006ed818de7c9790b4fd3424ba37619f73800e",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [290, 378, 1003, 44],
+            [290, 491, 441, 35]
+          ],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "workspace-settings-1440x1100-ar.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "352830cfede8e0ae182e1d8c68d2994b0277aeb8849bd2f0e4785f9a4caa0bf6",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [138, 378, 1012, 44],
+            [748, 491, 402, 35]
+          ],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "developer-hub": {
+      "developer-hub-1440x900-en.png": {
+        "sourceFile": "Signal Developer Hub.html",
+        "sourceSha256": "999f27a397ab2af6fda3be3b557c4a0c730adefc5702c945e0cfb1fd1d5a8d73",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "d2a0297c24e0e70c71af32edb7dfed26ba7a0e71d7069dfd9c8f71b8167c066d",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "developer-hub-1440x900-ar.png": {
+        "sourceFile": "Signal Developer Hub.html",
+        "sourceSha256": "999f27a397ab2af6fda3be3b557c4a0c730adefc5702c945e0cfb1fd1d5a8d73",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "1a1f92087652e9458c8ba95eeb76774656e55995863ac3a44b1d9bcfc735a281",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "developer-hub-1440x1100-en.png": {
+        "sourceFile": "Signal Developer Hub.html",
+        "sourceSha256": "999f27a397ab2af6fda3be3b557c4a0c730adefc5702c945e0cfb1fd1d5a8d73",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "ef49dc9d6984b349b4bbc088bedfe1dd71dbd149ebb7dd3ae48736201d543286",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "developer-hub-1440x1100-ar.png": {
+        "sourceFile": "Signal Developer Hub.html",
+        "sourceSha256": "999f27a397ab2af6fda3be3b557c4a0c730adefc5702c945e0cfb1fd1d5a8d73",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "b768a391acfe702e76e032dcba9c27c9ed73960f2850f7e4b665ea2fe4f99786",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "audit-start": {
+      "audit-start-1440x900-en.png": {
+        "sourceFile": "Signal Audit.html",
+        "sourceSha256": "b2c7f719fa57599326693bd1b8991ed420855fdc90f7183d4d9c4238011b2884",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "740d3a804336b7c96eff1602794b9442407180dad6564875a6abeaf3aa6f20cc",
+        "width": 1440,
+        "height": 2282,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "audit-start-1440x900-ar.png": {
+        "sourceFile": "Signal Audit.html",
+        "sourceSha256": "b2c7f719fa57599326693bd1b8991ed420855fdc90f7183d4d9c4238011b2884",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "3a257aba17bb0204aeee590415f5fa27491f32e7d99bda48277552456d571334",
+        "width": 1440,
+        "height": 2221,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "audit-start-1440x1100-en.png": {
+        "sourceFile": "Signal Audit.html",
+        "sourceSha256": "b2c7f719fa57599326693bd1b8991ed420855fdc90f7183d4d9c4238011b2884",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "16a98b8eca319d6f194ba68e682c9d3d3533522998552a6b2d482b60416dd18d",
+        "width": 1440,
+        "height": 2282,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "audit-start-1440x1100-ar.png": {
+        "sourceFile": "Signal Audit.html",
+        "sourceSha256": "b2c7f719fa57599326693bd1b8991ed420855fdc90f7183d4d9c4238011b2884",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "ab99ddf3491363244d0f75a44455fc8b6d41f49a0b6454cef54cc96b0856e67d",
+        "width": 1440,
+        "height": 2221,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "audit-run": {
+      "audit-run-1440x900-en.png": {
+        "sourceFile": "Signal Audit Run.html",
+        "sourceSha256": "f358a28d8cc7a227ca0d47ff50526b2449116fa3f625d2bd62d57053666d6a83",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "5858edcda95c65d5360d09e7ce90bdfe51de8964e86394e1536e05f28c1d130b",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "audit-run-1440x900-ar.png": {
+        "sourceFile": "Signal Audit Run.html",
+        "sourceSha256": "f358a28d8cc7a227ca0d47ff50526b2449116fa3f625d2bd62d57053666d6a83",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "9661e6163f25742cf98a46e1e5f52c20a637cc6628670a8167a25e52cc3aca2f",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "audit-run-1440x1100-en.png": {
+        "sourceFile": "Signal Audit Run.html",
+        "sourceSha256": "f358a28d8cc7a227ca0d47ff50526b2449116fa3f625d2bd62d57053666d6a83",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "bf3f6ce9826edb396566ae91aa67f419273582cd8c930115acc6e9574cd4063a",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "audit-run-1440x1100-ar.png": {
+        "sourceFile": "Signal Audit Run.html",
+        "sourceSha256": "f358a28d8cc7a227ca0d47ff50526b2449116fa3f625d2bd62d57053666d6a83",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "cce0b15e4d3d6291597d00f3ffab235b1182740d101a76e6eac0b3bcb0a95f12",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "billing": {
+      "billing-1440x900-en.png": {
+        "sourceFile": "Signal Billing.html",
+        "sourceSha256": "27ac79fb25ff60df888e3945388f176f209db23f325baf6ed92dbe8ec55b2f48",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "1cf6cac7fabbc37c04b06244020259e63a6d4d6746a2343e6c89745a9580cd30",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "billing-1440x900-ar.png": {
+        "sourceFile": "Signal Billing.html",
+        "sourceSha256": "27ac79fb25ff60df888e3945388f176f209db23f325baf6ed92dbe8ec55b2f48",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "2368192986a84bfd23fb55b137050bd1bafcf67dc3f963258032d3b2db89fe2c",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "billing-1440x1100-en.png": {
+        "sourceFile": "Signal Billing.html",
+        "sourceSha256": "27ac79fb25ff60df888e3945388f176f209db23f325baf6ed92dbe8ec55b2f48",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "a0aba8867b80d08cbd6fe92f8f9f181b3387929676e4eec6385304372bdc4c4d",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "billing-1440x1100-ar.png": {
+        "sourceFile": "Signal Billing.html",
+        "sourceSha256": "27ac79fb25ff60df888e3945388f176f209db23f325baf6ed92dbe8ec55b2f48",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "98d09a381afe56e05d79df3fbb41df6cb98fab9e9d338038e7e41369a19c5b0c",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "billing-success": {
+      "billing-success-1440x900-en.png": {
+        "sourceFile": "Signal Billing Success.html",
+        "sourceSha256": "1ac42b793c6cc67b99f3037a22e36e935a013bbb0445865b4ba85f916ec15711",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "a7228a64c8943c32862e0a64867ffeecd42231c3f49723f7378afb0b21dc5ecb",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "billing-success-1440x900-ar.png": {
+        "sourceFile": "Signal Billing Success.html",
+        "sourceSha256": "1ac42b793c6cc67b99f3037a22e36e935a013bbb0445865b4ba85f916ec15711",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "d0d623fc1dab55a8498aa06a102a4dde9202f065c70586cfab25c22377408607",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "billing-success-1440x1100-en.png": {
+        "sourceFile": "Signal Billing Success.html",
+        "sourceSha256": "1ac42b793c6cc67b99f3037a22e36e935a013bbb0445865b4ba85f916ec15711",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "188b84f06b2fa23f2c20df644949666e1126fb4d99bd7e07afe5ca5092ae7bf7",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "billing-success-1440x1100-ar.png": {
+        "sourceFile": "Signal Billing Success.html",
+        "sourceSha256": "1ac42b793c6cc67b99f3037a22e36e935a013bbb0445865b4ba85f916ec15711",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "a7a00ddf1cd4fb00fb701e1d1f3b0806e19e37361f84d956312dfe36ea08c3c0",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "billing-cancel": {
+      "billing-cancel-1440x900-en.png": {
+        "sourceFile": "Signal Billing Cancel.html",
+        "sourceSha256": "5fc06b35de0652484e1337393985f4fd21d4804f3e452d3a03fc42813ef2d0dd",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "35498de7342ea842f587cfa06616c1aa32ce64e1822a75a87d4cb03b49e16471",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "billing-cancel-1440x900-ar.png": {
+        "sourceFile": "Signal Billing Cancel.html",
+        "sourceSha256": "5fc06b35de0652484e1337393985f4fd21d4804f3e452d3a03fc42813ef2d0dd",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "94496f5ca783e7ca2d053ca3951c8892e6cad221bcb4f17d4990e2a54140479b",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "billing-cancel-1440x1100-en.png": {
+        "sourceFile": "Signal Billing Cancel.html",
+        "sourceSha256": "5fc06b35de0652484e1337393985f4fd21d4804f3e452d3a03fc42813ef2d0dd",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "3bb1abbee15c0781ce1c72b75c358e38163613a9c480f6fa276e39d268039ab1",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "billing-cancel-1440x1100-ar.png": {
+        "sourceFile": "Signal Billing Cancel.html",
+        "sourceSha256": "5fc06b35de0652484e1337393985f4fd21d4804f3e452d3a03fc42813ef2d0dd",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "2daa9a1f03867d850a42c9b057d5a9358df41a109ff420ad001d89e53130b9a4",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "billing-history": {
+      "billing-history-1440x900-en.png": {
+        "sourceFile": "Signal Billing History.html",
+        "sourceSha256": "725d4ede79362f21b35022b76cc86151cb828a8256097de5e3a1778d3e885bbd",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "4c46de4227e4450b32ecc2cb0f1bd13e820eaba06e266aa5266eadbeac7b5b75",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "billing-history-1440x900-ar.png": {
+        "sourceFile": "Signal Billing History.html",
+        "sourceSha256": "725d4ede79362f21b35022b76cc86151cb828a8256097de5e3a1778d3e885bbd",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "f0e23499d23d5509136bea406fe5652d01c24b7b5bfe98398fcd8e74db6e1529",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "billing-history-1440x1100-en.png": {
+        "sourceFile": "Signal Billing History.html",
+        "sourceSha256": "725d4ede79362f21b35022b76cc86151cb828a8256097de5e3a1778d3e885bbd",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "6dcc6c912bdc95b967bfd3397776a7eb42c3d611304ef320fc6d7aa63fe5c88f",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "billing-history-1440x1100-ar.png": {
+        "sourceFile": "Signal Billing History.html",
+        "sourceSha256": "725d4ede79362f21b35022b76cc86151cb828a8256097de5e3a1778d3e885bbd",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "d56bc84b99ec14af7130948390bd8b7353388b95feba1b142357a922a84016b1",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "my-profile": {
+      "my-profile-1440x900-en.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "f4f3a04e966470d534a308d08a3ded6377568c30261af5094841300b53684637",
+        "width": 1440,
+        "height": 1516,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "my-profile-1440x900-ar.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "ca8f1fb08465f41a2ca8ccd2b4f50893a88c5e0e1f2de787874bb71dddaf36fb",
+        "width": 1440,
+        "height": 1516,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "my-profile-1440x1100-en.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "4ebb25060556e2a34ceae661a15f12dbdd521dc35d460d6962c8af5ef4da7eb3",
+        "width": 1440,
+        "height": 1516,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "my-profile-1440x1100-ar.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "0d7eb974b7bff30833b2bb44f50c6964ce7610c7d1a25e6df4b91b875ec3f4be",
+        "width": 1440,
+        "height": 1516,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "reports": {
+      "reports-1440x900-en.png": {
+        "sourceFile": "Signal Reports.html",
+        "sourceSha256": "d563789399f388348eee5f56dbfafebb31031a537a508b9b9d405262b948301f",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "c7da0502a5f9f2e9f915e6845a39a1b40edafd4219cb443dde3c51645b24034b",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "reports-1440x900-ar.png": {
+        "sourceFile": "Signal Reports.html",
+        "sourceSha256": "d563789399f388348eee5f56dbfafebb31031a537a508b9b9d405262b948301f",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "3a17204b99895e47bc9ed780355c031869829669a43e2a59e2ee4fe57ee60b0c",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "reports-1440x1100-en.png": {
+        "sourceFile": "Signal Reports.html",
+        "sourceSha256": "d563789399f388348eee5f56dbfafebb31031a537a508b9b9d405262b948301f",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "65ffd3169c96093df79cbe262646a4c048d04f301d77a6d67c7647dbdee443ff",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "reports-1440x1100-ar.png": {
+        "sourceFile": "Signal Reports.html",
+        "sourceSha256": "d563789399f388348eee5f56dbfafebb31031a537a508b9b9d405262b948301f",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "pngSha256": "48cd53e63f119b0bef2d3983ea431ac5353322099d6b559187ca30151445fa75",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "my-profile-tab-security": {
+      "my-profile-tab-security-1440x900-en.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "security",
+        "designTab": "security",
+        "pngSha256": "49677f7c59dba8107945f3e8fa7aa3ea55911d02b5f15f627e4558eed67e5198",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "my-profile-tab-security-1440x900-ar.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "security",
+        "designTab": "security",
+        "pngSha256": "2abde8b5125615f898e9922111b7cc4222fd3bdcbeedcbaaf79373b57620c8e9",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "my-profile-tab-security-1440x1100-en.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "security",
+        "designTab": "security",
+        "pngSha256": "bf0791ec73d58d9cfeb1f5e1917c6ca86276e6d18be6bd8c3629cf644c6c50e8",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "my-profile-tab-security-1440x1100-ar.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "security",
+        "designTab": "security",
+        "pngSha256": "4097b9eed0ece7fe21e814c1b83e0021c1a1fe42cf093cc0f541f682c8b886c7",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "my-profile-tab-notifications": {
+      "my-profile-tab-notifications-1440x900-en.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "notifications",
+        "designTab": "notifications",
+        "pngSha256": "d3d128feb07ae13c79fd68a2228d422620ba5e9dbd4bcc189d71cafcd9c4c502",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "my-profile-tab-notifications-1440x900-ar.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "notifications",
+        "designTab": "notifications",
+        "pngSha256": "9ba1665c0d3fcb0ba96bef4f896ff0f2e19dea73bfd23c11cd99f66074e63ad0",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "my-profile-tab-notifications-1440x1100-en.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "notifications",
+        "designTab": "notifications",
+        "pngSha256": "7facc2b4fdb662fe2e01b82b2420129dc03271831a4247fe718a0900cd0b9fca",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "my-profile-tab-notifications-1440x1100-ar.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "notifications",
+        "designTab": "notifications",
+        "pngSha256": "c6cff79bf81b9950e698688189365501b56e2f5fadbba533def9024b4dcfa2ae",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "my-profile-tab-branding": {
+      "my-profile-tab-branding-1440x900-en.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "branding",
+        "designTab": "branding",
+        "pngSha256": "89878a7c8c228e3ecb72f3c610c378c1d6b781f1477a03f53caeeac6689f1ba8",
+        "width": 1440,
+        "height": 1124,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "my-profile-tab-branding-1440x900-ar.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "branding",
+        "designTab": "branding",
+        "pngSha256": "9456e13de945724bbab015874a8cebd4e31be492f98c05664b18ba5cab487fed",
+        "width": 1440,
+        "height": 1107,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "my-profile-tab-branding-1440x1100-en.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "branding",
+        "designTab": "branding",
+        "pngSha256": "41f2cd8263d033184ff0ee564bf7f8f1d4072e9e2735e9b92670c10d3a7ae4c7",
+        "width": 1440,
+        "height": 1124,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "my-profile-tab-branding-1440x1100-ar.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "branding",
+        "designTab": "branding",
+        "pngSha256": "71509946b263e6c96c3992693bf89247488f0840438b5c589695421a1e4c2a48",
+        "width": 1440,
+        "height": 1107,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "my-profile-tab-data": {
+      "my-profile-tab-data-1440x900-en.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "data",
+        "designTab": "data",
+        "pngSha256": "4fa7fadb81763b3ee99b067dd0cc387c1508ad0fc101a1d4be440bdd40327d81",
+        "width": 1440,
+        "height": 1745,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "my-profile-tab-data-1440x900-ar.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "data",
+        "designTab": "data",
+        "pngSha256": "73f9a98630c36cc38d13cae31f68bd090057ac5178f77b7ae7ea31987cb7681a",
+        "width": 1440,
+        "height": 1746,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "my-profile-tab-data-1440x1100-en.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "data",
+        "designTab": "data",
+        "pngSha256": "22b5923a7bb2539ef897a6fc1cb3af94295c77e7f9078e5941038eb3c239a366",
+        "width": 1440,
+        "height": 1745,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "my-profile-tab-data-1440x1100-ar.png": {
+        "sourceFile": "Signal My Profile.html",
+        "sourceSha256": "8d028adeaa590bc401fc9469808ae50db2f1e4668f1762e8b02aca99187152e6",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "data",
+        "designTab": "data",
+        "pngSha256": "143d5f9d9e4233faebb6f66fcec299b7dc42abf27cc03abb5c5f151f07454874",
+        "width": 1440,
+        "height": 1746,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "aio-detail-tab-improve": {
+      "aio-detail-tab-improve-1440x900-en.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "improve",
+        "designTab": "improve",
+        "pngSha256": "455bcfb3c7675440e5f4d9c58a4d39323452e874de15acdc3761532266df5530",
+        "width": 1440,
+        "height": 935,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "hero-fixture": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [523, 343, 19, 17],
+            [652, 343, 19, 17],
+            [772, 343, 26, 17],
+            [267, 424, 232, 18]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "aio-detail-tab-improve-1440x900-ar.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "improve",
+        "designTab": "improve",
+        "pngSha256": "18b8af680b533cf044a15086c48314973076c4174c81bb4f4bb2879e6fe8e118",
+        "width": 1440,
+        "height": 920,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "hero-fixture": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [921, 328, 19, 17],
+            [784, 328, 19, 17],
+            [660, 328, 26, 17],
+            [974, 409, 199, 18]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "aio-detail-tab-improve-1440x1100-en.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "improve",
+        "designTab": "improve",
+        "pngSha256": "66e0001938814c5c35faf5cd16266d5ada1171d03b0a84c02776919c8ec700f1",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "hero-fixture": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [523, 343, 19, 17],
+            [652, 343, 19, 17],
+            [772, 343, 26, 17],
+            [267, 424, 232, 18]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "aio-detail-tab-improve-1440x1100-ar.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "improve",
+        "designTab": "improve",
+        "pngSha256": "e26fc623cf06c8ebc6c81027e1ae7f6bc495b40f423487fe55cee80cf587061a",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "hero-fixture": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [921, 328, 19, 17],
+            [784, 328, 19, 17],
+            [660, 328, 26, 17],
+            [974, 409, 199, 18]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "aio-detail-tab-types": {
+      "aio-detail-tab-types-1440x900-en.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "types",
+        "designTab": "types",
+        "pngSha256": "38503ef038bc40c852c662721ac8e8ac957ea6cccad52bb573f84d3c65e3c1c9",
+        "width": 1440,
+        "height": 999,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "hero-fixture": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [523, 343, 19, 17],
+            [652, 343, 19, 17],
+            [772, 343, 26, 17],
+            [267, 418, 239, 18]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "aio-detail-tab-types-1440x900-ar.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "types",
+        "designTab": "types",
+        "pngSha256": "87582fab5bb02a25a954021f51acab2207d11eec3a757b716c8b1c7c50180feb",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "hero-fixture": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [921, 328, 19, 17],
+            [784, 328, 19, 17],
+            [660, 328, 26, 17],
+            [1029, 403, 144, 18]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "aio-detail-tab-types-1440x1100-en.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "types",
+        "designTab": "types",
+        "pngSha256": "0317b34f7b25127aca5e0a27bcbf6439b10848a882fbb45f4ff8675e3c4fc51c",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "hero-fixture": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [523, 343, 19, 17],
+            [652, 343, 19, 17],
+            [772, 343, 26, 17],
+            [267, 418, 239, 18]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "aio-detail-tab-types-1440x1100-ar.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "types",
+        "designTab": "types",
+        "pngSha256": "4be002a515957b593dce6b8195257cf518e9142164e3c4fc65b9a78e6513322f",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "hero-fixture": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [921, 328, 19, 17],
+            [784, 328, 19, 17],
+            [660, 328, 26, 17],
+            [1029, 403, 144, 18]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "aio-detail-tab-engines": {
+      "aio-detail-tab-engines-1440x900-en.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "engines",
+        "designTab": "engines",
+        "pngSha256": "5bf4b46c3e5d044cbfa0a13adaa0bf4529683bba216eaa31eb092f87904f4653",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "hero-fixture": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [523, 343, 19, 17],
+            [652, 343, 19, 17],
+            [772, 343, 26, 17],
+            [267, 418, 226, 18]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "aio-detail-tab-engines-1440x900-ar.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "engines",
+        "designTab": "engines",
+        "pngSha256": "73553cfbd56505ca9a8379df1083b7679f009ca45d8eca01483a6a05b5a3ead0",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "hero-fixture": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [921, 328, 19, 17],
+            [784, 328, 19, 17],
+            [660, 328, 26, 17],
+            [1037, 403, 136, 18]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "aio-detail-tab-engines-1440x1100-en.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "engines",
+        "designTab": "engines",
+        "pngSha256": "67ab09260db18bf3536f07f47a61f508db3bde159c7f687d0d0eca43de9bcfc8",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "hero-fixture": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [523, 343, 19, 17],
+            [652, 343, 19, 17],
+            [772, 343, 26, 17],
+            [267, 418, 226, 18]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "aio-detail-tab-engines-1440x1100-ar.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "engines",
+        "designTab": "engines",
+        "pngSha256": "588ec69a9d9600920d0a903bfc612ef33bd24701410bdf097a50ec57c9191fb7",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "hero-fixture": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [921, 328, 19, 17],
+            [784, 328, 19, 17],
+            [660, 328, 26, 17],
+            [1037, 403, 136, 18]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "aio-detail-tab-prompts": {
+      "aio-detail-tab-prompts-1440x900-en.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "prompts",
+        "designTab": "prompts",
+        "pngSha256": "4a1fc859a4943e7c04fddf5e8d100d29970a53ee259860d5d072ce16e5eb8da1",
+        "width": 1440,
+        "height": 1391,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "hero-fixture": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [523, 343, 19, 17],
+            [652, 343, 19, 17],
+            [772, 343, 26, 17]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "aio-detail-tab-prompts-1440x900-ar.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "prompts",
+        "designTab": "prompts",
+        "pngSha256": "a18cc9c007d415aa948bdd82bce51fc1669b1e2bf56e8fdefb0ae6e3b38d3258",
+        "width": 1440,
+        "height": 1372,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "hero-fixture": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [921, 328, 19, 17],
+            [784, 328, 19, 17],
+            [660, 328, 26, 17]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "aio-detail-tab-prompts-1440x1100-en.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "prompts",
+        "designTab": "prompts",
+        "pngSha256": "0b32cc43a16850b119813933072c0402613fdd53a4f3811da141ef1a82ccfdf1",
+        "width": 1440,
+        "height": 1391,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "hero-fixture": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [523, 343, 19, 17],
+            [652, 343, 19, 17],
+            [772, 343, 26, 17]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "aio-detail-tab-prompts-1440x1100-ar.png": {
+        "sourceFile": "Signal AIO Detail.html",
+        "sourceSha256": "d984d6c4699959e71a990c3b4a5e96952148b3d43ac397548bfba6c4e97e6b93",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "prompt-setup.css": "ec579568bc0c69e21c5f4f1264d017e606bcd005a5bc3454523c13c95a74ce3f",
+          "prompt-setup.js": "bb7940cbba98d0fcd0c7fb66491045a406f6a033686028963a2a9955aeb367cf",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "prompts",
+        "designTab": "prompts",
+        "pngSha256": "d043aeb1020d6cad95fda01bb649b91d56f7608be812d63546c446f7fafb0614",
+        "width": 1440,
+        "height": 1372,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "hero-fixture": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [921, 328, 19, 17],
+            [784, 328, 19, 17],
+            [660, 328, 26, 17]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "seo-detail-tab-improve": {
+      "seo-detail-tab-improve-1440x900-en.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "improve",
+        "designTab": "improve",
+        "pngSha256": "4b954389de119c99555c829df221fc8cb06a7f1d064300aac9d0713ef1925b45",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "hero-fixture": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [542, 343, 19, 17],
+            [672, 343, 26, 17],
+            [782, 343, 26, 17],
+            [267, 424, 231, 18]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "seo-detail-tab-improve-1440x900-ar.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "improve",
+        "designTab": "improve",
+        "pngSha256": "fe1fd7d8c845582a0a1b173ca0f4ba85dc9a78ae771d0ae369160afa2ed04879",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "hero-fixture": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [905, 328, 19, 17],
+            [705, 328, 26, 17],
+            [581, 328, 26, 17],
+            [974, 409, 199, 18]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "seo-detail-tab-improve-1440x1100-en.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "improve",
+        "designTab": "improve",
+        "pngSha256": "5a7cb70691d4907c80d759d25aa6327740c6282e298f1bb83085436201fa8070",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "hero-fixture": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [542, 343, 19, 17],
+            [672, 343, 26, 17],
+            [782, 343, 26, 17],
+            [267, 424, 231, 18]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "seo-detail-tab-improve-1440x1100-ar.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "improve",
+        "designTab": "improve",
+        "pngSha256": "f8cd1cebb9c0822b5030220c972dc41458c487e02cf702bda72807035b104bdc",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "hero-fixture": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [905, 328, 19, 17],
+            [705, 328, 26, 17],
+            [581, 328, 26, 17],
+            [974, 409, 199, 18]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "seo-detail-tab-factors": {
+      "seo-detail-tab-factors-1440x900-en.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "factors",
+        "designTab": "factors",
+        "pngSha256": "c66a1ccc90c9bebb41ebf22c6b16c5b521d5a1ff3cb297b1c33a7d0d5e9a28c6",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "hero-fixture": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [542, 343, 19, 17],
+            [672, 343, 26, 17],
+            [782, 343, 26, 17],
+            [267, 418, 211, 18]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "seo-detail-tab-factors-1440x900-ar.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "factors",
+        "designTab": "factors",
+        "pngSha256": "bc9b86935a5252a7b9044d85b14de71b6ca8a837c084934788675561b26a720e",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "hero-fixture": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [905, 328, 19, 17],
+            [705, 328, 26, 17],
+            [581, 328, 26, 17],
+            [1049, 403, 124, 18]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "seo-detail-tab-factors-1440x1100-en.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "factors",
+        "designTab": "factors",
+        "pngSha256": "9f79249a588be01e3fb5e6eda6b33ff196f6901733f5b8ac1b561ca1e9276d63",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "hero-fixture": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [542, 343, 19, 17],
+            [672, 343, 26, 17],
+            [782, 343, 26, 17],
+            [267, 418, 211, 18]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "seo-detail-tab-factors-1440x1100-ar.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "factors",
+        "designTab": "factors",
+        "pngSha256": "d1a5882a61ea544def872f225e741326c34c80a2659c33a3f37d90e4c5a83ad5",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "hero-fixture": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [905, 328, 19, 17],
+            [705, 328, 26, 17],
+            [581, 328, 26, 17],
+            [1049, 403, 124, 18]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "seo-detail-tab-keywords": {
+      "seo-detail-tab-keywords-1440x900-en.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "keywords",
+        "designTab": "keywords",
+        "pngSha256": "18437efd75cc562c173cba789fc0185cb82d3ab6d0a10723ee0b885fb6a5f2cc",
+        "width": 1440,
+        "height": 915,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "hero-fixture": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [542, 343, 19, 17],
+            [672, 343, 26, 17],
+            [782, 343, 26, 17],
+            [267, 425, 123, 18]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "seo-detail-tab-keywords-1440x900-ar.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "keywords",
+        "designTab": "keywords",
+        "pngSha256": "449b902b030b3e22fbcef365868f93358f9f8296eedfa2b98ff2cf8c0ee3965c",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "hero-fixture": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [905, 328, 19, 17],
+            [705, 328, 26, 17],
+            [581, 328, 26, 17],
+            [1049, 410, 124, 18]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "seo-detail-tab-keywords-1440x1100-en.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "keywords",
+        "designTab": "keywords",
+        "pngSha256": "87092849862c4197e7157030cb5ce0f23e46d70ef388b5ac5727963f8a07077c",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "hero-fixture": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [542, 343, 19, 17],
+            [672, 343, 26, 17],
+            [782, 343, 26, 17],
+            [267, 425, 123, 18]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "seo-detail-tab-keywords-1440x1100-ar.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "keywords",
+        "designTab": "keywords",
+        "pngSha256": "7fc2e4dfc30735e1ae5b51ab6bbb6ac14fba0459b2bba4ab15ed8eba16e8161e",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "hero-fixture": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [905, 328, 19, 17],
+            [705, 328, 26, 17],
+            [581, 328, 26, 17],
+            [1049, 410, 124, 18]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "seo-detail-tab-pages": {
+      "seo-detail-tab-pages-1440x900-en.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "pages",
+        "designTab": "pages",
+        "pngSha256": "0783ce9fb6f6c1894ddae58dcea2314b0bb184c0ba412e12d0e46ed2b020fb74",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "hero-fixture": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [542, 343, 19, 17],
+            [672, 343, 26, 17],
+            [782, 343, 26, 17],
+            [267, 418, 180, 18]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "seo-detail-tab-pages-1440x900-ar.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "pages",
+        "designTab": "pages",
+        "pngSha256": "9cf81551177dc1f0ca8e64b6251cb3e9339922670e49ddc41e8f0d2721f8ec0a",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "hero-fixture": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [905, 328, 19, 17],
+            [705, 328, 26, 17],
+            [581, 328, 26, 17],
+            [1037, 403, 136, 18]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "seo-detail-tab-pages-1440x1100-en.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "pages",
+        "designTab": "pages",
+        "pngSha256": "c3ca5d5a72ddf8c25c5c99bf6e99834050a59dfa3ee60d7a9da013264ac416a3",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "hero-fixture": [
+            [296, 143, 132, 104],
+            [372, 343, 19, 17],
+            [542, 343, 19, 17],
+            [672, 343, 26, 17],
+            [782, 343, 26, 17],
+            [267, 418, 180, 18]
+          ],
+          "no-target-deviation": [[1114, 130, 250, 130]],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "seo-detail-tab-pages-1440x1100-ar.png": {
+        "sourceFile": "Signal SEO Detail.html",
+        "sourceSha256": "994f71ad29d77508277c48bc422660e739b297aeec46a1dd2a5420da1ca26456",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "pages",
+        "designTab": "pages",
+        "pngSha256": "6d0cfa482f09304526e59e4b6d324e12a981d4524313a3f6f6b9779d2fa42935",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "hero-fixture": [
+            [1012, 137, 132, 102],
+            [1066, 328, 19, 17],
+            [905, 328, 19, 17],
+            [705, 328, 26, 17],
+            [581, 328, 26, 17],
+            [1037, 403, 136, 18]
+          ],
+          "no-target-deviation": [[76, 130, 250, 115]],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "developer-hub-tab-quickstart": {
+      "developer-hub-tab-quickstart-1440x900-en.png": {
+        "sourceFile": "Signal Developer Hub.html",
+        "sourceSha256": "999f27a397ab2af6fda3be3b557c4a0c730adefc5702c945e0cfb1fd1d5a8d73",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "quickstart",
+        "designTab": "quickstart",
+        "pngSha256": "0343ccda3c474a00f01b68243918617dedea90c65d0dd55e683af9e8db4b5944",
+        "width": 1440,
+        "height": 984,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "developer-hub-tab-quickstart-1440x900-ar.png": {
+        "sourceFile": "Signal Developer Hub.html",
+        "sourceSha256": "999f27a397ab2af6fda3be3b557c4a0c730adefc5702c945e0cfb1fd1d5a8d73",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "quickstart",
+        "designTab": "quickstart",
+        "pngSha256": "d71b8f5a1afa0bed9a3751ad24dc2bdfd809a3fa981bb50ad8cd076882b1626b",
+        "width": 1440,
+        "height": 980,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "developer-hub-tab-quickstart-1440x1100-en.png": {
+        "sourceFile": "Signal Developer Hub.html",
+        "sourceSha256": "999f27a397ab2af6fda3be3b557c4a0c730adefc5702c945e0cfb1fd1d5a8d73",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "quickstart",
+        "designTab": "quickstart",
+        "pngSha256": "2dd4a37d463a9af7586335bb0f4c0827075bf39bca0581b54d96888e9e13d460",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "developer-hub-tab-quickstart-1440x1100-ar.png": {
+        "sourceFile": "Signal Developer Hub.html",
+        "sourceSha256": "999f27a397ab2af6fda3be3b557c4a0c730adefc5702c945e0cfb1fd1d5a8d73",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "quickstart",
+        "designTab": "quickstart",
+        "pngSha256": "8bab24ca990ef3d7382f0e81100420f25e6a8539e1c0a19fa01ac76db4de67c6",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "developer-hub-tab-reference": {
+      "developer-hub-tab-reference-1440x900-en.png": {
+        "sourceFile": "Signal Developer Hub.html",
+        "sourceSha256": "999f27a397ab2af6fda3be3b557c4a0c730adefc5702c945e0cfb1fd1d5a8d73",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "reference",
+        "designTab": "reference",
+        "pngSha256": "489026cf0cfa8f604fd13b3d0a964de7d0508c3c7163659b4201806cf7895057",
+        "width": 1440,
+        "height": 958,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "developer-hub-tab-reference-1440x900-ar.png": {
+        "sourceFile": "Signal Developer Hub.html",
+        "sourceSha256": "999f27a397ab2af6fda3be3b557c4a0c730adefc5702c945e0cfb1fd1d5a8d73",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "reference",
+        "designTab": "reference",
+        "pngSha256": "227acd6d9aedd963b5a44e5ed5eb0820a0c4ccb3e020f7453b14a64e34d2bcdb",
+        "width": 1440,
+        "height": 958,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "developer-hub-tab-reference-1440x1100-en.png": {
+        "sourceFile": "Signal Developer Hub.html",
+        "sourceSha256": "999f27a397ab2af6fda3be3b557c4a0c730adefc5702c945e0cfb1fd1d5a8d73",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "reference",
+        "designTab": "reference",
+        "pngSha256": "843355d26142be836157fdc3c2074bd5efb522caa45e1829930f21dc6948e588",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "developer-hub-tab-reference-1440x1100-ar.png": {
+        "sourceFile": "Signal Developer Hub.html",
+        "sourceSha256": "999f27a397ab2af6fda3be3b557c4a0c730adefc5702c945e0cfb1fd1d5a8d73",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "reference",
+        "designTab": "reference",
+        "pngSha256": "45e58e02d8a93e8a475819f86a8e6cd183d2f641cad5fbafdbe72b06067e8043",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "billing-tab-usage": {
+      "billing-tab-usage-1440x900-en.png": {
+        "sourceFile": "Signal Billing.html",
+        "sourceSha256": "27ac79fb25ff60df888e3945388f176f209db23f325baf6ed92dbe8ec55b2f48",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "usage",
+        "designTab": "usage",
+        "pngSha256": "bf81b5e35187f6e25110d01bd8cb007fc519b7e09f1452e1e0b28cd05bfc9720",
+        "width": 1440,
+        "height": 1049,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "billing-tab-usage-1440x900-ar.png": {
+        "sourceFile": "Signal Billing.html",
+        "sourceSha256": "27ac79fb25ff60df888e3945388f176f209db23f325baf6ed92dbe8ec55b2f48",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "usage",
+        "designTab": "usage",
+        "pngSha256": "6c9132ae7d119f71d1db0edd305683eb19761be4e89f134d024fbe076ffae78c",
+        "width": 1440,
+        "height": 1047,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "billing-tab-usage-1440x1100-en.png": {
+        "sourceFile": "Signal Billing.html",
+        "sourceSha256": "27ac79fb25ff60df888e3945388f176f209db23f325baf6ed92dbe8ec55b2f48",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "usage",
+        "designTab": "usage",
+        "pngSha256": "b783c58e370f7a46852ef2f07ebf23884bad694f331fdd3a79dd8591872d54aa",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "billing-tab-usage-1440x1100-ar.png": {
+        "sourceFile": "Signal Billing.html",
+        "sourceSha256": "27ac79fb25ff60df888e3945388f176f209db23f325baf6ed92dbe8ec55b2f48",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "usage",
+        "designTab": "usage",
+        "pngSha256": "1511a2c2de21d4f5bc74a284ca8088a4132e93e42729dca1316bd987908a3673",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "billing-tab-plans": {
+      "billing-tab-plans-1440x900-en.png": {
+        "sourceFile": "Signal Billing.html",
+        "sourceSha256": "27ac79fb25ff60df888e3945388f176f209db23f325baf6ed92dbe8ec55b2f48",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "plans",
+        "designTab": "plans",
+        "pngSha256": "adf557ad9d534a5906ade1b3081688a99477a7f1a8122d1880961b2e0d64e9da",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "billing-tab-plans-1440x900-ar.png": {
+        "sourceFile": "Signal Billing.html",
+        "sourceSha256": "27ac79fb25ff60df888e3945388f176f209db23f325baf6ed92dbe8ec55b2f48",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "plans",
+        "designTab": "plans",
+        "pngSha256": "cb5fa40863cc81488b4b6bb9fd1f5e64a140817e4029c6f6aa7e070f33b80c9a",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "billing-tab-plans-1440x1100-en.png": {
+        "sourceFile": "Signal Billing.html",
+        "sourceSha256": "27ac79fb25ff60df888e3945388f176f209db23f325baf6ed92dbe8ec55b2f48",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "plans",
+        "designTab": "plans",
+        "pngSha256": "664b36d5cbf8350c7a7711d4642a17e32b9d46723d1263c478bf07908a9a6de5",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "billing-tab-plans-1440x1100-ar.png": {
+        "sourceFile": "Signal Billing.html",
+        "sourceSha256": "27ac79fb25ff60df888e3945388f176f209db23f325baf6ed92dbe8ec55b2f48",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "plans",
+        "designTab": "plans",
+        "pngSha256": "4eb1c665776720a45011501694b1b10ff0081d6df2b45fb611cd9f76ecef0364",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "billing-tab-comparison": {
+      "billing-tab-comparison-1440x900-en.png": {
+        "sourceFile": "Signal Billing.html",
+        "sourceSha256": "27ac79fb25ff60df888e3945388f176f209db23f325baf6ed92dbe8ec55b2f48",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "comparison",
+        "designTab": "comparison",
+        "pngSha256": "fcf3bb00de2f34a94f619d83fc5744359d07c9d91f578dedee2553cf94cd3c3e",
+        "width": 1440,
+        "height": 1265,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "billing-tab-comparison-1440x900-ar.png": {
+        "sourceFile": "Signal Billing.html",
+        "sourceSha256": "27ac79fb25ff60df888e3945388f176f209db23f325baf6ed92dbe8ec55b2f48",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "comparison",
+        "designTab": "comparison",
+        "pngSha256": "471a533cd6d2ac806e252d4c73a9fb5af1f29c8fa01f0564bf78b668107e8074",
+        "width": 1440,
+        "height": 1265,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      },
+      "billing-tab-comparison-1440x1100-en.png": {
+        "sourceFile": "Signal Billing.html",
+        "sourceSha256": "27ac79fb25ff60df888e3945388f176f209db23f325baf6ed92dbe8ec55b2f48",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "comparison",
+        "designTab": "comparison",
+        "pngSha256": "56483085a1df6d0280bed5efae13bc803aba480e0cde01a7629df9fa791d1c49",
+        "width": 1440,
+        "height": 1265,
+        "designDir": "ltr",
+        "exclusionRects": {}
+      },
+      "billing-tab-comparison-1440x1100-ar.png": {
+        "sourceFile": "Signal Billing.html",
+        "sourceSha256": "27ac79fb25ff60df888e3945388f176f209db23f325baf6ed92dbe8ec55b2f48",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "comparison",
+        "designTab": "comparison",
+        "pngSha256": "8e714bcd02565c558491c261a40d7f1a1d3979618b2c33bd17455569dc098f99",
+        "width": 1440,
+        "height": 1265,
+        "designDir": "rtl",
+        "exclusionRects": {}
+      }
+    },
+    "settings-tab-brand": {
+      "settings-tab-brand-1440x900-en.png": {
+        "sourceFile": "Signal Settings.html",
+        "sourceSha256": "f0a7896deb07fad8008c265b9263cd1c70b614eba41e50ae15161bb736c4f100",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "brand",
+        "designTab": "brand",
+        "pngSha256": "df0dcac69e35f8396b8e54e4e12ea931cb36fc55d3578d349a8ee5e82bb82cb3",
+        "width": 1440,
+        "height": 2907,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [290, 370, 349, 44],
+            [655, 370, 349, 44],
+            [1021, 370, 349, 44],
+            [290, 485, 1080, 44],
+            [290, 567, 46, 32],
+            [344, 567, 50, 32],
+            [402, 567, 46, 32],
+            [456, 567, 117, 32],
+            [581, 567, 138, 32],
+            [727, 567, 144, 32],
+            [290, 660, 532, 76],
+            [838, 660, 532, 76],
+            [290, 790, 1080, 44],
+            [290, 893, 1080, 76],
+            [1328, 1219, 42, 24],
+            [290, 1299, 196, 35],
+            [290, 1495, 477, 44],
+            [779, 1495, 477, 44],
+            [290, 1551, 1080, 70],
+            [290, 1767, 116, 35],
+            [452, 1758, 785, 44],
+            [1328, 1823, 42, 24],
+            [290, 1866, 1080, 70],
+            [290, 2070, 509, 70],
+            [861, 2070, 509, 70],
+            [290, 2380, 686, 44],
+            [988, 2380, 150, 44],
+            [290, 2561, 1080, 70],
+            [290, 2768, 943, 44]
+          ],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "settings-tab-brand-1440x900-ar.png": {
+        "sourceFile": "Signal Settings.html",
+        "sourceSha256": "f0a7896deb07fad8008c265b9263cd1c70b614eba41e50ae15161bb736c4f100",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "brand",
+        "designTab": "brand",
+        "pngSha256": "8d366fa871230894b7a913bae7d478f32a78b1cd9f5509dd3c9eaa53ccdc17e3",
+        "width": 1440,
+        "height": 2903,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [801, 370, 349, 44],
+            [435, 370, 349, 44],
+            [70, 370, 349, 44],
+            [70, 485, 1080, 44],
+            [1104, 567, 46, 32],
+            [1048, 567, 48, 32],
+            [996, 567, 44, 32],
+            [895, 567, 93, 32],
+            [794, 567, 93, 32],
+            [669, 567, 117, 32],
+            [618, 660, 532, 76],
+            [70, 660, 532, 76],
+            [70, 790, 1080, 44],
+            [70, 893, 1080, 76],
+            [70, 1219, 42, 24],
+            [946, 1299, 204, 35],
+            [672, 1491, 479, 44],
+            [181, 1491, 479, 44],
+            [70, 1547, 1080, 70],
+            [1012, 1763, 138, 35],
+            [189, 1754, 799, 44],
+            [70, 1819, 42, 24],
+            [70, 1862, 1080, 70],
+            [641, 2066, 509, 70],
+            [70, 2066, 509, 70],
+            [454, 2376, 696, 44],
+            [292, 2376, 150, 44],
+            [70, 2557, 1080, 70],
+            [197, 2764, 953, 44]
+          ],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "settings-tab-brand-1440x1100-en.png": {
+        "sourceFile": "Signal Settings.html",
+        "sourceSha256": "f0a7896deb07fad8008c265b9263cd1c70b614eba41e50ae15161bb736c4f100",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "brand",
+        "designTab": "brand",
+        "pngSha256": "07537d576c178e86613147a27a439b64106b46f2bb6de947a5c84898d5f164ec",
+        "width": 1440,
+        "height": 2907,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [290, 370, 349, 44],
+            [655, 370, 349, 44],
+            [1021, 370, 349, 44],
+            [290, 485, 1080, 44],
+            [290, 567, 46, 32],
+            [344, 567, 50, 32],
+            [402, 567, 46, 32],
+            [456, 567, 117, 32],
+            [581, 567, 138, 32],
+            [727, 567, 144, 32],
+            [290, 660, 532, 76],
+            [838, 660, 532, 76],
+            [290, 790, 1080, 44],
+            [290, 893, 1080, 76],
+            [1328, 1219, 42, 24],
+            [290, 1299, 196, 35],
+            [290, 1495, 477, 44],
+            [779, 1495, 477, 44],
+            [290, 1551, 1080, 70],
+            [290, 1767, 116, 35],
+            [452, 1758, 785, 44],
+            [1328, 1823, 42, 24],
+            [290, 1866, 1080, 70],
+            [290, 2070, 509, 70],
+            [861, 2070, 509, 70],
+            [290, 2380, 686, 44],
+            [988, 2380, 150, 44],
+            [290, 2561, 1080, 70],
+            [290, 2768, 943, 44]
+          ],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "settings-tab-brand-1440x1100-ar.png": {
+        "sourceFile": "Signal Settings.html",
+        "sourceSha256": "f0a7896deb07fad8008c265b9263cd1c70b614eba41e50ae15161bb736c4f100",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "brand",
+        "designTab": "brand",
+        "pngSha256": "4d6faa52a2898664847cd089e9340042b58786dac40f0569480597c4387ae6fe",
+        "width": 1440,
+        "height": 2903,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [801, 370, 349, 44],
+            [435, 370, 349, 44],
+            [70, 370, 349, 44],
+            [70, 485, 1080, 44],
+            [1104, 567, 46, 32],
+            [1048, 567, 48, 32],
+            [996, 567, 44, 32],
+            [895, 567, 93, 32],
+            [794, 567, 93, 32],
+            [669, 567, 117, 32],
+            [618, 660, 532, 76],
+            [70, 660, 532, 76],
+            [70, 790, 1080, 44],
+            [70, 893, 1080, 76],
+            [70, 1219, 42, 24],
+            [946, 1299, 204, 35],
+            [672, 1491, 479, 44],
+            [181, 1491, 479, 44],
+            [70, 1547, 1080, 70],
+            [1012, 1763, 138, 35],
+            [189, 1754, 799, 44],
+            [70, 1819, 42, 24],
+            [70, 1862, 1080, 70],
+            [641, 2066, 509, 70],
+            [70, 2066, 509, 70],
+            [454, 2376, 696, 44],
+            [292, 2376, 150, 44],
+            [70, 2557, 1080, 70],
+            [197, 2764, 953, 44]
+          ],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "workspace-settings-tab-team": {
+      "workspace-settings-tab-team-1440x900-en.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "team",
+        "designTab": "team",
+        "pngSha256": "481fd7434f6d9acc659a6cbbd4f8f052648b6ca31ae36172b3d848d8fea407de",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [290, 378, 807, 44],
+            [1109, 378, 180, 44],
+            [268, 532, 447, 58],
+            [715, 532, 439, 58],
+            [1154, 532, 238, 58]
+          ],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "workspace-settings-tab-team-1440x900-ar.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "team",
+        "designTab": "team",
+        "pngSha256": "e25190adf47b5d162c3f99ebf5e2750485e013455dbc880abda10638a1063279",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [338, 378, 812, 44],
+            [146, 378, 180, 44],
+            [712, 532, 460, 58],
+            [306, 532, 406, 58],
+            [48, 532, 258, 58]
+          ],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "workspace-settings-tab-team-1440x1100-en.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "team",
+        "designTab": "team",
+        "pngSha256": "be2b2c81abab61dd5ac2ddd2bee0d7b54ec3a6e95c77cc93972c1c26f5514260",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [290, 378, 807, 44],
+            [1109, 378, 180, 44],
+            [268, 532, 447, 58],
+            [715, 532, 439, 58],
+            [1154, 532, 238, 58]
+          ],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "workspace-settings-tab-team-1440x1100-ar.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "team",
+        "designTab": "team",
+        "pngSha256": "7bebda35d65e252d1fb947020d8435eac5679beef0094dd626ebc276a9556da9",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [338, 378, 812, 44],
+            [146, 378, 180, 44],
+            [712, 532, 460, 58],
+            [306, 532, 406, 58],
+            [48, 532, 258, 58]
+          ],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "workspace-settings-tab-client": {
+      "workspace-settings-tab-client-1440x900-en.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "client",
+        "designTab": "client",
+        "pngSha256": "d40210bd8f1f97e8c5d5093b463974279ade69a6ec041635bb283cd23acd785c",
+        "width": 1440,
+        "height": 900,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [290, 378, 532, 44],
+            [838, 378, 532, 44],
+            [268, 682, 1124, 43]
+          ],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "workspace-settings-tab-client-1440x900-ar.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "client",
+        "designTab": "client",
+        "pngSha256": "e4249539f380d6b7edca8d502ae910ff33d497908aa962819fdcfaf70581966d",
+        "width": 1440,
+        "height": 900,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [618, 378, 532, 44],
+            [70, 378, 532, 44],
+            [48, 678, 1124, 43]
+          ],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "workspace-settings-tab-client-1440x1100-en.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "client",
+        "designTab": "client",
+        "pngSha256": "354e876630e7cc94f840fd04e951de9452a74d9b6be40ee9cb356aff0a474e6f",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [290, 378, 532, 44],
+            [838, 378, 532, 44],
+            [268, 682, 1124, 43]
+          ],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "workspace-settings-tab-client-1440x1100-ar.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "client",
+        "designTab": "client",
+        "pngSha256": "62bc14006cbeb742a29e405358380f03d4f93c89d00496d00adf4fcc88c3325b",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [618, 378, 532, 44],
+            [70, 378, 532, 44],
+            [48, 678, 1124, 43]
+          ],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "workspace-settings-tab-whitelabel": {
+      "workspace-settings-tab-whitelabel-1440x900-en.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "whitelabel",
+        "designTab": "whitelabel",
+        "pngSha256": "e5ada1380fe110d8b974b56e700768d809400fd7f222035b5d7467441c56556c",
+        "width": 1440,
+        "height": 2620,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [290, 554, 532, 44],
+            [838, 554, 532, 44],
+            [290, 648, 1080, 132],
+            [290, 814, 532, 44],
+            [838, 814, 532, 44],
+            [290, 1013, 34, 34],
+            [336, 1003, 486, 44],
+            [838, 1013, 34, 34],
+            [884, 1003, 486, 44],
+            [1328, 1095, 42, 24],
+            [290, 1272, 532, 44],
+            [838, 1272, 532, 44],
+            [290, 1461, 532, 44],
+            [838, 1461, 532, 44],
+            [290, 1649, 532, 44],
+            [838, 1649, 532, 44],
+            [290, 1743, 1080, 76],
+            [290, 1861, 349, 44],
+            [655, 1861, 349, 44],
+            [1021, 1861, 349, 44],
+            [290, 1917, 349, 44],
+            [655, 1917, 349, 44],
+            [1021, 1917, 349, 44],
+            [290, 2145, 957, 44],
+            [290, 2203, 1080, 70],
+            [290, 2384, 1080, 53],
+            [290, 2399, 24, 24],
+            [290, 2437, 1080, 53],
+            [290, 2452, 24, 24],
+            [290, 2490, 1080, 53],
+            [290, 2505, 24, 24]
+          ],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "workspace-settings-tab-whitelabel-1440x900-ar.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "whitelabel",
+        "designTab": "whitelabel",
+        "pngSha256": "fecfebb3391800751c16ea5cc8002c7c5631111605adb569fb2c548fb4444a0b",
+        "width": 1440,
+        "height": 2618,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [618, 554, 532, 44],
+            [70, 554, 532, 44],
+            [70, 648, 1080, 130],
+            [618, 812, 532, 44],
+            [70, 812, 532, 44],
+            [1116, 1011, 34, 34],
+            [618, 1001, 486, 44],
+            [568, 1011, 34, 34],
+            [70, 1001, 486, 44],
+            [70, 1093, 42, 24],
+            [618, 1270, 532, 44],
+            [70, 1270, 532, 44],
+            [618, 1459, 532, 44],
+            [70, 1459, 532, 44],
+            [618, 1647, 532, 44],
+            [70, 1647, 532, 44],
+            [70, 1741, 1080, 76],
+            [801, 1859, 349, 44],
+            [435, 1859, 349, 44],
+            [70, 1859, 349, 44],
+            [801, 1915, 349, 44],
+            [435, 1915, 349, 44],
+            [70, 1915, 349, 44],
+            [189, 2143, 961, 44],
+            [70, 2201, 1080, 70],
+            [70, 2382, 1080, 53],
+            [1126, 2397, 24, 24],
+            [70, 2435, 1080, 53],
+            [1126, 2450, 24, 24],
+            [70, 2488, 1080, 53],
+            [1126, 2503, 24, 24]
+          ],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "workspace-settings-tab-whitelabel-1440x1100-en.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "whitelabel",
+        "designTab": "whitelabel",
+        "pngSha256": "5f0dab40b9ba836017f3ffbce2241ddf2f31f3ddc99b57aec15d183f7f267074",
+        "width": 1440,
+        "height": 2620,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [290, 554, 532, 44],
+            [838, 554, 532, 44],
+            [290, 648, 1080, 132],
+            [290, 814, 532, 44],
+            [838, 814, 532, 44],
+            [290, 1013, 34, 34],
+            [336, 1003, 486, 44],
+            [838, 1013, 34, 34],
+            [884, 1003, 486, 44],
+            [1328, 1095, 42, 24],
+            [290, 1272, 532, 44],
+            [838, 1272, 532, 44],
+            [290, 1461, 532, 44],
+            [838, 1461, 532, 44],
+            [290, 1649, 532, 44],
+            [838, 1649, 532, 44],
+            [290, 1743, 1080, 76],
+            [290, 1861, 349, 44],
+            [655, 1861, 349, 44],
+            [1021, 1861, 349, 44],
+            [290, 1917, 349, 44],
+            [655, 1917, 349, 44],
+            [1021, 1917, 349, 44],
+            [290, 2145, 957, 44],
+            [290, 2203, 1080, 70],
+            [290, 2384, 1080, 53],
+            [290, 2399, 24, 24],
+            [290, 2437, 1080, 53],
+            [290, 2452, 24, 24],
+            [290, 2490, 1080, 53],
+            [290, 2505, 24, 24]
+          ],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "workspace-settings-tab-whitelabel-1440x1100-ar.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "whitelabel",
+        "designTab": "whitelabel",
+        "pngSha256": "c5c6b9622be2237fb8aaa5a25f1006c8764e5b7f86fcb6f66fa1c41abcc4e745",
+        "width": 1440,
+        "height": 2618,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [618, 554, 532, 44],
+            [70, 554, 532, 44],
+            [70, 648, 1080, 130],
+            [618, 812, 532, 44],
+            [70, 812, 532, 44],
+            [1116, 1011, 34, 34],
+            [618, 1001, 486, 44],
+            [568, 1011, 34, 34],
+            [70, 1001, 486, 44],
+            [70, 1093, 42, 24],
+            [618, 1270, 532, 44],
+            [70, 1270, 532, 44],
+            [618, 1459, 532, 44],
+            [70, 1459, 532, 44],
+            [618, 1647, 532, 44],
+            [70, 1647, 532, 44],
+            [70, 1741, 1080, 76],
+            [801, 1859, 349, 44],
+            [435, 1859, 349, 44],
+            [70, 1859, 349, 44],
+            [801, 1915, 349, 44],
+            [435, 1915, 349, 44],
+            [70, 1915, 349, 44],
+            [189, 2143, 961, 44],
+            [70, 2201, 1080, 70],
+            [70, 2382, 1080, 53],
+            [1126, 2397, 24, 24],
+            [70, 2435, 1080, 53],
+            [1126, 2450, 24, 24],
+            [70, 2488, 1080, 53],
+            [1126, 2503, 24, 24]
+          ],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    },
+    "workspace-settings-tab-developer": {
+      "workspace-settings-tab-developer-1440x900-en.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "developer",
+        "designTab": "developer",
+        "pngSha256": "91720a3a918e17f95a60f53e4c40cc78d0953aaaf0b2938065fe9fda84bdcd38",
+        "width": 1440,
+        "height": 935,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [290, 356, 1080, 87],
+            [290, 356, 351, 87],
+            [309, 373, 313, 38],
+            [655, 356, 351, 87],
+            [674, 373, 313, 38],
+            [1019, 356, 351, 87],
+            [1038, 373, 313, 38],
+            [290, 497, 320, 59],
+            [610, 497, 322, 59],
+            [931, 497, 182, 59],
+            [1114, 497, 256, 59],
+            [290, 691, 938, 44],
+            [290, 786, 1080, 43]
+          ],
+          "workspace-switcher-fixture": [[25, 830, 199, 35]]
+        }
+      },
+      "workspace-settings-tab-developer-1440x900-ar.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "developer",
+        "designTab": "developer",
+        "pngSha256": "7511c8d6099463be400ffca89c7ff41e13645c7aadd6dd4a758750acebe45e9d",
+        "width": 1440,
+        "height": 935,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [70, 356, 1080, 87],
+            [799, 356, 351, 87],
+            [818, 373, 313, 38],
+            [435, 356, 351, 87],
+            [454, 373, 313, 38],
+            [70, 356, 351, 87],
+            [89, 373, 313, 38],
+            [846, 497, 304, 59],
+            [536, 497, 310, 59],
+            [347, 497, 190, 59],
+            [70, 497, 277, 59],
+            [223, 691, 927, 44],
+            [70, 786, 1080, 43]
+          ],
+          "workspace-switcher-fixture": [[1216, 830, 199, 35]]
+        }
+      },
+      "workspace-settings-tab-developer-1440x1100-en.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "developer",
+        "designTab": "developer",
+        "pngSha256": "73691e0498a25366f5880799eda0f35d4ce327d263942bfd1f0177ff68562039",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "ltr",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [290, 356, 1080, 87],
+            [290, 356, 351, 87],
+            [309, 373, 313, 38],
+            [655, 356, 351, 87],
+            [674, 373, 313, 38],
+            [1019, 356, 351, 87],
+            [1038, 373, 313, 38],
+            [290, 497, 320, 59],
+            [610, 497, 322, 59],
+            [931, 497, 182, 59],
+            [1114, 497, 256, 59],
+            [290, 691, 938, 44],
+            [290, 786, 1080, 43]
+          ],
+          "workspace-switcher-fixture": [[25, 1030, 199, 35]]
+        }
+      },
+      "workspace-settings-tab-developer-1440x1100-ar.png": {
+        "sourceFile": "Signal Workspace Settings.html",
+        "sourceSha256": "00b822a642fe254ff460b639b9d5575ad90aefc718d823be9101c6b72bbd1389",
+        "sharedSha256": {
+          "app.js": "808bace4feb32575679a6f123ca5eeb98d35f712c96ef5d1c5eb1b94ad4b67fa",
+          "signal.css": "2deeabcfb6f5d76c9370d299b8d7d1a3bdc9bec2f5920dab45c4fcf8e78bdf05"
+        },
+        "tab": "developer",
+        "designTab": "developer",
+        "pngSha256": "2e7c1a7f05610295975d8b5e062b8d06b10ed109df7ca1bbc5f6706d136a8d9c",
+        "width": 1440,
+        "height": 1100,
+        "designDir": "rtl",
+        "exclusionRects": {
+          "fixture-field-values": [
+            [70, 356, 1080, 87],
+            [799, 356, 351, 87],
+            [818, 373, 313, 38],
+            [435, 356, 351, 87],
+            [454, 373, 313, 38],
+            [70, 356, 351, 87],
+            [89, 373, 313, 38],
+            [846, 497, 304, 59],
+            [536, 497, 310, 59],
+            [347, 497, 190, 59],
+            [70, 497, 277, 59],
+            [223, 691, 927, 44],
+            [70, 786, 1080, 43]
+          ],
+          "workspace-switcher-fixture": [[1216, 1030, 199, 35]]
+        }
+      }
+    }
+  },
+  "viewports": ["1440x900", "1440x1100"],
+  "locales": ["en", "ar"]
+}

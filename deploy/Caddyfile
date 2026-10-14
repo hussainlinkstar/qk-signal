@@ -1,0 +1,54 @@
+# Caddy runs behind Traefik (TLS terminated by Traefik).
+# Traefik forwards plain HTTP to Caddy on port 80.
+# Caddy adds security headers, compression, and proxies to the Next.js frontend.
+
+:80 {
+    encode gzip zstd
+
+    header {
+        Strict-Transport-Security "max-age=63072000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "strict-origin-when-cross-origin"
+        Permissions-Policy "camera=(), microphone=(), geolocation=()"
+        X-XSS-Protection "0"
+        Cross-Origin-Opener-Policy "same-origin"
+        -Server
+    }
+
+    # Private preview gate lives in the Next.js middleware (cookie-based) so it
+    # works with the SPA's XHR/CORS/SSE flows. See src/lib/signalGate.ts.
+
+    # The public marketing surface moved to the Website V2 site on qiko.ai.
+    # These redirects are scoped to the origin host on purpose: requests that
+    # arrive via qiko.ai are routed by the Cloudflare worker, and redirecting
+    # them to the same URL could loop while a path still lands here.
+    @signalOriginMarketing {
+        host signal-origin.qiko.ai
+        path /signal /signal/guest-audit /signal/sample-report /signal/terms /signal/privacy
+    }
+    redir @signalOriginMarketing https://qiko.ai{uri} 301
+
+    @signalOriginCookies {
+        host signal-origin.qiko.ai
+        path /signal/cookies
+    }
+    redir @signalOriginCookies https://qiko.ai/cookies 301
+
+    reverse_proxy frontend:3000 {
+        # Trust Traefik (Docker network) + Cloudflare IP ranges
+        trusted_proxies 10.0.0.0/8 172.16.0.0/12 192.168.0.0/16 173.245.48.0/20 103.21.244.0/22 103.22.200.0/22 103.31.4.0/22 141.101.64.0/18 108.162.192.0/18 190.93.240.0/20 188.114.96.0/20 197.234.240.0/22 198.41.128.0/17 162.158.0.0/15 104.16.0.0/13 104.24.0.0/14 172.64.0.0/13 131.0.72.0/22
+
+        # Deploys run `docker compose up -d --build frontend`, which stops the old
+        # container before the new one finishes booting, so every request in that
+        # window returned a hard 502. Rather than retrying, Caddy now holds the
+        # request and keeps trying the upstream for up to 45s, which covers the
+        # observed restart. A visitor waits instead of seeing an error page.
+        #
+        # This is not zero-downtime. That needs two replicas behind a load
+        # balancer, which is a topology change to the Caddyfile, the compose file
+        # and deploy-production.sh, with no staging environment to test it on.
+        lb_try_duration 45s
+        lb_try_interval 500ms
+    }
+}

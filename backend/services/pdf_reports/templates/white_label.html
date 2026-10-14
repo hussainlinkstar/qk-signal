@@ -1,0 +1,151 @@
+{% extends "base_report.html.j2" %}
+
+{% block cover_page %}
+{% if report_kind in ['standard', 'aio', 'seo', 'executive'] %}
+<section class="report-cover report-cover-mvp">
+    <div class="cover-upper">
+        <div class="cover-brand">
+            {% if branding.header_mode == 'platform_logo' and (branding.cover_logo_data_uri or branding.logo_data_uri) %}
+            <img class="cover-logo" src="{{ branding.cover_logo_data_uri or branding.logo_data_uri }}" alt="Qiko" />
+            <span class="cover-brand-word">Signal</span>
+            {% elif branding.header_mode == 'agency_logo' and (branding.cover_logo_data_uri or branding.logo_data_uri) %}
+            <img class="cover-logo" src="{{ branding.cover_logo_data_uri or branding.logo_data_uri }}" alt="{{ branding.agency_name or branding.report_title }}" />
+            {% else %}
+            <div class="cover-brand-name">{{ branding.agency_name or branding.report_title }}</div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="cover-body">
+        <div class="cover-identity">
+            <div class="cover-identity-copy">
+                <div class="cover-kicker">{{ branding.report_title }}</div>
+                <h1 class="cover-title">
+                    {% if report_kind == 'executive' %}
+                        {% if is_brand_without_url %}{{ l('Where your brand stands, and what to do') }}{% else %}{{ l('Where you stand, and what to do') }}{% endif %}
+                    {% elif report_kind == 'aio' %}
+                        {% if is_brand_without_url %}{{ l('How AI assistants see your brand') }}{% else %}{{ l('How AI assistants see your website') }}{% endif %}
+                    {% elif report_kind == 'seo' %}
+                        {% if is_brand_without_url %}{{ l('How search engines see your brand') }}{% else %}{{ l('How search engines see your website') }}{% endif %}
+                    {% else %}
+                        {% if is_brand_without_url %}{{ l('How AI and search see your brand') }}{% else %}{{ l('How AI and search see your website') }}{% endif %}
+                    {% endif %}
+                </h1>
+                <p class="cover-subtitle">{{ target.domain or target.url or (target.name | bi) }}</p>
+            </div>
+            <div class="cover-cards">
+                {% for card in scores.cards %}
+                {% set ring = namespace(pct=0, c1='#CBD5E1', c2='#94A3B8') %}
+                {% if card.value is not none %}
+                    {% set ring.pct = ([0, card.value, 100] | sort)[1] %}
+                    {% if card.value >= 71 %}
+                        {% set ring.c1 = '#86EFAC' %}
+                        {% set ring.c2 = '#15803D' %}
+                    {% elif card.value >= 41 %}
+                        {% set ring.c1 = '#FDE68A' %}
+                        {% set ring.c2 = '#D97706' %}
+                    {% else %}
+                        {% set ring.c1 = '#FECACA' %}
+                        {% set ring.c2 = '#DC2626' %}
+                    {% endif %}
+                {% endif %}
+                <div class="cover-card cover-card-{{ 'aio' if loop.first else 'seo' }}{% if loop.last %} last{% endif %}">
+                    <svg class="score-ring" viewBox="0 0 64 64" width="58" height="58" aria-hidden="true">
+                        <defs>
+                            <linearGradient id="score-ring-{{ loop.index }}" x1="0" y1="0" x2="1" y2="1">
+                                <stop offset="0%" stop-color="{{ ring.c1 }}" />
+                                <stop offset="100%" stop-color="{{ ring.c2 }}" />
+                            </linearGradient>
+                        </defs>
+                        <circle cx="32" cy="32" r="22" fill="none" stroke="#E6E9EE" stroke-width="5" />
+                        <circle cx="32" cy="32" r="22" fill="none" stroke="url(#score-ring-{{ loop.index }})" stroke-width="5" stroke-linecap="round" stroke-dasharray="{{ '%.2f' | format(ring.pct / 100 * 138.23) }} 138.23" transform="rotate(-90 32 32)" />
+                        <text x="32" y="36" text-anchor="middle" font-size="13" font-weight="700" fill="#0C0F16">{{ card.display_value }}</text>
+                    </svg>
+                    <div class="cover-card-label">{{ l(card.label) }}</div>
+                    <div class="cover-card-value">{{ card.display_value }}<small>/100</small></div>
+                    {% if card.delta_display %}
+                    <div class="cover-card-delta">{{ card.delta_display }}</div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="cover-meta">
+            <div><span>{{ l('Prepared for') }}</span><strong>{{ target.name | bi }}</strong></div>
+            <div><span>{{ l('Scan completed') }}</span><strong>{{ branding.generated_date_long }}</strong></div>
+        </div>
+    </div>
+</section>
+{% else %}
+<section class="report-cover">
+    <div class="cover-accent-strip"></div>
+    <div class="cover-upper">
+        <div class="cover-brand">
+            {% if branding.header_mode in ['platform_logo', 'agency_logo'] and (branding.cover_logo_data_uri or branding.logo_data_uri) %}
+            <img class="cover-logo" src="{{ branding.cover_logo_data_uri or branding.logo_data_uri }}" alt="{{ branding.agency_name or branding.report_title }}" />
+            {% else %}
+            <div class="cover-brand-text">{{ branding.agency_name or branding.report_title }}</div>
+            {% endif %}
+            <div class="cover-brand-text">{{ l(report_kind | upper) }}</div>
+        </div>
+    </div>
+    <div class="cover-body">
+        <div class="cover-grid-overlay"></div>
+        <div class="cover-accent-line"></div>
+        <div class="cover-kicker">{{ branding.report_title }}</div>
+        <h1 class="cover-title">{{ target.name | bi }}</h1>
+        <p class="cover-subtitle">{{ branding.report_subtitle }}</p>
+        <div class="cover-cards">
+            <div class="cover-card">
+                <div class="eyebrow">{{ labels.target }}</div>
+                <div class="cover-card-value">{{ target.url or target.name }}</div>
+            </div>
+            <div class="cover-card">
+                <div class="eyebrow">{{ labels.score }}</div>
+                <div class="cover-card-value">{{ scores.overall if scores.overall is not none else "-" }}</div>
+            </div>
+            <div class="cover-card last">
+                <div class="eyebrow">{{ labels.generated_on }}</div>
+                <div class="cover-card-value">{{ branding.generated_date_long }}</div>
+            </div>
+        </div>
+        <div class="cover-summary-band">
+            <p>{{ (narrative.strategic_summary or narrative.neural_executive_summary or narrative.market_dominance_blueprint or branding.report_subtitle) | bi }}</p>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
+
+{% block context_page %}
+{% include "partials/context_page.html.j2" %}
+{% endblock %}
+
+{% block toc_page %}
+{% if report_kind != 'executive' %}
+{% include "partials/toc_page.html.j2" %}
+{% endif %}
+{% endblock %}
+
+{% block analysis_body %}
+{% if report_kind == 'executive' %}
+{% include "partials/executive_analysis.html.j2" %}
+{% elif report_kind == 'project' %}
+{% include "partials/project_analysis.html.j2" %}
+{% elif report_kind == 'financial' %}
+{% include "partials/financial_analysis.html.j2" %}
+{% elif report_kind == 'aio' %}
+{% include "partials/aio_analysis.html.j2" %}
+{% elif report_kind == 'seo' %}
+{% include "partials/seo_analysis.html.j2" %}
+{% else %}
+{% include "partials/standard_analysis.html.j2" %}
+{% endif %}
+{% endblock %}
+
+{% block withheld_sections %}
+{% include "partials/withheld_sections.html.j2" %}
+{% endblock %}
+
+{% block integrity_page %}
+{% include "partials/integrity_page.html.j2" %}
+{% endblock %}

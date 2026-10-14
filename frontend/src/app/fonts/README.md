@@ -1,0 +1,9 @@
+# Local frontend fonts
+
+Inter, Roboto Mono, Geist and Geist Mono are vendored from their official distributions and loaded with `next/font/local`. `font-sources.json` pins each file to its source, release or source commit, SHA-256 and included SIL Open Font License. The sources are the official Google Fonts distribution, pinned to commit `7085eb89a950e85db5b166b7a58d414544b4140c`, matching the font versions in the previous Google build. Full normal TTF files were compressed once with FontTools 4.60.2 to WOFF2, without character subsetting. Inter’s optical-size axis is fixed at 14, matching the existing Google CSS request, and the weight axes are retained. The `prep` table is removed to match Google CDN rasterization; glyph contours and coverage are preserved. The local font-face Unicode ranges match the previous Google build, preserving system fallbacks for symbols such as arrows. The ranges are recorded in `font-sources.json`. The build consumes only the committed WOFF2 files; it never downloads or converts fonts. Satoshi remains unchanged.
+
+The root layout declares Inter at 400/500/600/700 and Roboto Mono at 400/500. Files at each declared weight retain identical variable-font data. The gate loads the complete Geist and Geist Mono variable weight ranges (100–900). Fonts without Arabic glyphs continue to use the existing system fallback stack; language and RTL selection are unchanged.
+
+Before replacing an asset, verify the upstream source and license, record its new SHA-256, run `npm test -- src/test/font-policy.test.ts`, and compare the visual suites in the pinned Playwright image. Review visible changes; do not refresh baselines to hide them.
+
+With dependencies already installed, an empty Next output/cache and networking disabled, `npm run build` must succeed. The committed font assets make a cold build independent of Google font services. The Next build cache is only a performance optimization.

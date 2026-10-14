@@ -1,0 +1,3113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qiko Signal UI Standard Preview</title>
+    <link rel="icon" href="data:," />
+    <style>
+      :root {
+        --bg: #08111f;
+        --surface: #111a2e;
+        --surface-2: #15213a;
+        --surface-3: rgba(255, 255, 255, 0.03);
+        --border: #26344d;
+        --border-strong: #3c5275;
+        --text: #eaf0fa;
+        --soft: #c5d0e0;
+        --muted: #98a7bd;
+        --faint: #73829a;
+        --atlas: #ff4d2d;
+        --sky: #7fb1ff;
+        --signal: #14b8a6;
+        --primary: #67a6ff;
+        --primary-2: #4e90ff;
+        --primary-ink: #07101f;
+        --accent: #2dd4bf;
+        --warning: #d97706;
+        --danger: #ef4444;
+        --success: #22c55e;
+        --info: #0ea5e9;
+        --score-excellent: #16a34a;
+        --score-warning: #d97706;
+        --score-critical: #dc2626;
+        --shadow-sm: 0 12px 28px rgba(2, 6, 23, 0.2);
+        --shadow-md: 0 24px 56px rgba(2, 6, 23, 0.34);
+        --shadow-lg: 0 36px 80px rgba(2, 6, 23, 0.45);
+        --r-sm: 14px;
+        --r-md: 18px;
+        --r-lg: 24px;
+        --max: 1360px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        color-scheme: dark;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at top left, rgba(103, 166, 255, 0.14), transparent 34%),
+          radial-gradient(circle at top right, rgba(45, 212, 191, 0.12), transparent 26%),
+          linear-gradient(180deg, #091423 0%, var(--bg) 52%, #07101d 100%);
+        color: var(--text);
+        font-family: Manrope, "Segoe UI", sans-serif;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+      .page {
+        width: min(calc(100% - 32px), var(--max));
+        margin: 0 auto;
+        padding: 32px 0 72px;
+      }
+      .hero,
+      .section,
+      .shell {
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--r-lg);
+        background: rgba(9, 17, 31, 0.72);
+        box-shadow: var(--shadow-md);
+      }
+      .hero {
+        position: relative;
+        overflow: hidden;
+        padding: 32px;
+        border-color: rgba(103, 166, 255, 0.18);
+        background:
+          linear-gradient(135deg, rgba(103, 166, 255, 0.12), rgba(45, 212, 191, 0.05)),
+          rgba(9, 17, 31, 0.72);
+        box-shadow: var(--shadow-lg);
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        right: -60px;
+        bottom: -90px;
+        width: 260px;
+        height: 260px;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(103, 166, 255, 0.28), transparent 68%);
+      }
+      .row,
+      .section-head,
+      .shell-head,
+      .hero-top,
+      .foot,
+      .actions,
+      .btn-row,
+      .pills {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .hero-top,
+      .section-head,
+      .shell-head,
+      .foot {
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .hero-grid,
+      .assemble,
+      .grid-2,
+      .grid-3,
+      .grid-4 {
+        display: grid;
+        gap: 18px;
+      }
+      .hero-grid {
+        grid-template-columns: minmax(0, 1.5fr) minmax(320px, 0.9fr);
+        gap: 28px;
+      }
+      .assemble {
+        grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+        gap: 22px;
+      }
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .grid-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+      .section,
+      .shell {
+        margin-top: 28px;
+        padding: 28px;
+      }
+      .shell {
+        background: linear-gradient(180deg, rgba(17, 26, 46, 0.98), rgba(11, 18, 32, 0.98));
+        box-shadow: var(--shadow-lg);
+      }
+      .kicker,
+      .tag,
+      .meta-label,
+      .mini,
+      .group-label,
+      .field-label,
+      .type-micro {
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 7px 12px;
+        border: 1px solid rgba(103, 166, 255, 0.16);
+        border-radius: 999px;
+        background: rgba(103, 166, 255, 0.08);
+        color: var(--primary);
+        font-size: 11px;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--primary), var(--accent));
+        box-shadow: 0 0 18px rgba(103, 166, 255, 0.6);
+      }
+      .pill,
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--soft);
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .hero h1,
+      .metric,
+      .type-metric {
+        letter-spacing: -0.06em;
+        font-weight: 800;
+      }
+      .hero h1 {
+        margin: 0;
+        font-size: clamp(2.5rem, 5vw, 4.4rem);
+        line-height: 0.95;
+      }
+      .hero h1 span {
+        display: block;
+        color: var(--primary);
+      }
+      .hero p,
+      .copy,
+      .field-hint,
+      .inventory p,
+      .footer-note {
+        color: var(--soft);
+        line-height: 1.7;
+      }
+      .hero p {
+        max-width: 58ch;
+        margin: 18px 0 0;
+        font-size: 1rem;
+      }
+      .meta {
+        padding: 18px 20px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: var(--r-md);
+        background: rgba(10, 18, 31, 0.6);
+        box-shadow: var(--shadow-sm);
+      }
+      .meta-label,
+      .mini,
+      .group-label,
+      .field-label,
+      .type-micro {
+        color: #d8e7ff;
+      }
+      .meta-label,
+      .group-label,
+      .field-label {
+        display: block;
+      }
+      .meta-label,
+      .group-label {
+        margin: 0 0 12px;
+      }
+      .field-label {
+        margin: 0 0 2px;
+        font-size: 11px;
+        letter-spacing: 0.16em;
+      }
+      .meta-value,
+      .title,
+      .card-title,
+      .shell-title,
+      .inventory h3 {
+        margin: 0;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+      }
+      .title {
+        font-size: clamp(1.35rem, 2vw, 1.7rem);
+      }
+      .section-text {
+        max-width: 64ch;
+        margin: 10px 0 0;
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+      .card {
+        padding: 22px;
+        border: 1px solid var(--border);
+        border-radius: var(--r-md);
+        background: var(--surface);
+        box-shadow: var(--shadow-sm);
+      }
+      .card.elevated {
+        border-color: rgba(103, 166, 255, 0.18);
+        background: linear-gradient(180deg, rgba(21, 33, 58, 0.98), rgba(17, 26, 46, 0.96));
+        box-shadow: var(--shadow-md);
+      }
+      .card.accent {
+        border-color: rgba(103, 166, 255, 0.42);
+        background: linear-gradient(135deg, rgba(103, 166, 255, 0.18), rgba(17, 26, 46, 0.94));
+      }
+      .card.state {
+        border-color: rgba(45, 212, 191, 0.26);
+        background: linear-gradient(135deg, rgba(45, 212, 191, 0.12), rgba(17, 26, 46, 0.94));
+      }
+      .overlay-card {
+        position: relative;
+        min-height: 318px;
+        overflow: hidden;
+      }
+      .locked-preview {
+        display: grid;
+        gap: 16px;
+        opacity: 0.42;
+        filter: blur(1.2px);
+      }
+      .chart-preview {
+        display: grid;
+        gap: 10px;
+      }
+      .chart-bar {
+        height: 12px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+        overflow: hidden;
+      }
+      .chart-bar span {
+        display: block;
+        height: 100%;
+        border-radius: inherit;
+        background: rgba(127, 177, 255, 0.55);
+      }
+      .upsell-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 22px;
+        background: rgba(7, 12, 23, 0.74);
+        backdrop-filter: blur(6px);
+      }
+      .upsell-dialog {
+        position: relative;
+        width: min(100%, 340px);
+        padding: 22px;
+        border: 1px solid rgba(245, 158, 11, 0.24);
+        border-radius: 20px;
+        background: rgba(24, 16, 6, 0.94);
+        box-shadow: 0 28px 60px rgba(0, 0, 0, 0.34);
+        text-align: center;
+      }
+      .upsell-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        margin: 0 auto;
+        border: 1px solid rgba(245, 158, 11, 0.28);
+        border-radius: 999px;
+        background: rgba(245, 158, 11, 0.12);
+        color: #fde68a;
+      }
+      .upsell-meta {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+      .upsell-pill {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .upsell-pill.primary {
+        border: 1px solid rgba(245, 158, 11, 0.24);
+        background: rgba(245, 158, 11, 0.12);
+        color: #fde68a;
+      }
+      .upsell-pill.secondary {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: #cbd5e1;
+      }
+      .upsell-title {
+        margin: 14px 0 0;
+        font-size: 1.08rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .upsell-copy {
+        margin: 10px 0 0;
+        color: #f5e7c8;
+        font-size: 0.9rem;
+        line-height: 1.65;
+      }
+      .score-grid,
+      .state-grid {
+        display: grid;
+        gap: 18px;
+      }
+      .score-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .state-grid {
+        grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      }
+      .score-preview-card {
+        position: relative;
+        display: grid;
+        gap: 16px;
+        min-height: 248px;
+        padding: 30px 28px 24px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 24px;
+        background:
+          radial-gradient(circle at top right, rgba(127, 177, 255, 0.1), transparent 24%),
+          linear-gradient(180deg, rgba(8, 17, 31, 0.98), rgba(6, 15, 29, 1));
+        box-shadow: var(--shadow-md);
+        overflow: hidden;
+      }
+      .score-preview-card::after {
+        content: "";
+        position: absolute;
+        inset: auto -48px -80px auto;
+        width: 180px;
+        height: 180px;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent 68%);
+        pointer-events: none;
+      }
+      .score-preview-card.critical {
+        border-color: rgba(220, 38, 38, 0.3);
+      }
+      .score-preview-card.warning {
+        border-color: rgba(217, 119, 6, 0.3);
+      }
+      .score-preview-card.excellent {
+        border-color: rgba(22, 163, 74, 0.3);
+      }
+      .score-card-head,
+      .graph-legend,
+      .graph-footer,
+      .loader-copy,
+      .trend-strip,
+      .badge-row,
+      .recommendation-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .score-card-head {
+        justify-content: space-between;
+      }
+      .score-label,
+      .score-support {
+        margin: 0;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .score-label {
+        color: #dbe7ff;
+      }
+      .score-support {
+        color: var(--muted);
+      }
+      .score-sigil {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 54px;
+        height: 54px;
+        border: 1px solid rgba(220, 38, 38, 0.34);
+        border-radius: 18px;
+        background: rgba(220, 38, 38, 0.1);
+        color: #fca5a5;
+      }
+      .score-sigil svg {
+        width: 20px;
+        height: 20px;
+      }
+      .score-big {
+        margin: 0;
+        font-size: clamp(3.25rem, 6vw, 4.6rem);
+        line-height: 0.92;
+        letter-spacing: -0.08em;
+        font-weight: 800;
+      }
+      .score-preview-card.critical .score-big {
+        color: var(--score-critical);
+      }
+      .score-preview-card.warning .score-big {
+        color: var(--score-warning);
+      }
+      .score-preview-card.excellent .score-big {
+        color: var(--score-excellent);
+      }
+      .matrix-badge,
+      .pill-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        width: fit-content;
+        padding: 7px 11px;
+        border-radius: 999px;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .matrix-badge.critical,
+      .pill-badge.critical {
+        border: 1px solid rgba(220, 38, 38, 0.22);
+        background: rgba(220, 38, 38, 0.12);
+        color: #fecaca;
+      }
+      .matrix-badge.warning,
+      .pill-badge.strategic {
+        border: 1px solid rgba(217, 119, 6, 0.22);
+        background: rgba(217, 119, 6, 0.12);
+        color: #fde68a;
+      }
+      .matrix-badge.excellent,
+      .pill-badge.success {
+        border: 1px solid rgba(22, 163, 74, 0.22);
+        background: rgba(22, 163, 74, 0.12);
+        color: #bbf7d0;
+      }
+      .pill-badge.info {
+        border: 1px solid rgba(14, 165, 233, 0.18);
+        background: rgba(14, 165, 233, 0.12);
+        color: #bae6fd;
+      }
+      .pill-badge.neutral {
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.04);
+        color: #dbe7ff;
+      }
+      .score-detail,
+      .recommendation-copy {
+        margin: 0;
+        color: var(--soft);
+        font-size: 0.92rem;
+        line-height: 1.7;
+      }
+      .graph-shell,
+      .recommendation-card,
+      .loader-card {
+        display: grid;
+        gap: 18px;
+      }
+      .graph-shell {
+        align-content: start;
+      }
+      .graph-stage {
+        padding: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 20px;
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+      }
+      .graph-legend {
+        justify-content: space-between;
+      }
+      .legend-group,
+      .trend-strip {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      .legend-item {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--soft);
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+      .legend-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 999px;
+        background: var(--dot);
+        box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.04);
+      }
+      .graph-svg {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .axis-text {
+        fill: #7f90ab;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .trend-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 11px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--soft);
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .trend-chip strong {
+        color: #ffffff;
+        font-size: 0.8rem;
+        letter-spacing: 0;
+      }
+      .recommendation-card .sub {
+        margin-top: 0;
+      }
+      .recommendation-actions {
+        justify-content: space-between;
+      }
+      .loader-viewport {
+        position: relative;
+        min-height: 286px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 20px;
+        background: #091221;
+        overflow: hidden;
+      }
+      .blurred-page {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        gap: 14px;
+        padding: 18px;
+        filter: blur(9px);
+        opacity: 0.58;
+      }
+      .blur-strip,
+      .blur-panel {
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .blur-strip {
+        height: 14px;
+        max-width: var(--w, 100%);
+      }
+      .blur-panel {
+        min-height: 74px;
+        padding: 16px;
+      }
+      .blur-panel-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .loader-overlay {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        background: rgba(5, 11, 21, 0.32);
+        backdrop-filter: blur(8px);
+      }
+      .synapse-shell {
+        display: grid;
+        justify-items: center;
+        gap: 14px;
+        text-align: center;
+      }
+      .synapse-network {
+        width: min(100%, 340px);
+        height: auto;
+      }
+      .synapse-link {
+        fill: none;
+        stroke: rgba(255, 255, 255, 0.72);
+        stroke-width: 1.65;
+        stroke-linecap: round;
+        stroke-dasharray: 6 12;
+        animation: synapseDash 2.4s linear infinite;
+      }
+      .synapse-link.delay {
+        animation-delay: -0.9s;
+      }
+      .synapse-link.delay-2 {
+        animation-delay: -1.6s;
+      }
+      .synapse-node {
+        fill: #ffffff;
+        filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.6));
+        animation: synapsePulse 1.8s ease-in-out infinite;
+      }
+      .synapse-node.delay {
+        animation-delay: -0.6s;
+      }
+      .synapse-node.delay-2 {
+        animation-delay: -1.2s;
+      }
+      .loader-title {
+        margin: 0;
+        color: #ffffff;
+        font-size: 1.08rem;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+      .loader-copy {
+        justify-content: center;
+        color: #dbe7ff;
+        font-size: 0.82rem;
+      }
+      .loader-copy span:last-child {
+        color: var(--soft);
+      }
+      .defs {
+        position: absolute;
+        width: 0;
+        height: 0;
+        overflow: hidden;
+      }
+      @keyframes synapseDash {
+        to {
+          stroke-dashoffset: -36;
+        }
+      }
+      @keyframes synapsePulse {
+        0%,
+        100% {
+          opacity: 0.42;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.18);
+        }
+      }
+      .mini {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        width: fit-content;
+        margin: 0 0 12px;
+        padding: 7px 11px;
+        border: 1px solid rgba(127, 177, 255, 0.16);
+        border-radius: 999px;
+        background: rgba(127, 177, 255, 0.1);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        color: var(--sky);
+      }
+      .card-title {
+        font-size: 1.12rem;
+        line-height: 1.3;
+      }
+      .copy {
+        margin: 12px 0 0;
+        font-size: 0.93rem;
+      }
+      .sub {
+        margin-top: 18px;
+        padding: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 16px;
+        background: var(--surface-3);
+      }
+      .metric {
+        font-size: clamp(2rem, 5vw, 3.4rem);
+        line-height: 0.9;
+      }
+      .caption,
+      .field-hint {
+        color: var(--faint);
+        font-size: 0.78rem;
+        line-height: 1.5;
+      }
+      .foot {
+        padding-top: 18px;
+        margin-top: 18px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+      .type-stack {
+        display: grid;
+        gap: 14px;
+      }
+      .type-row {
+        display: grid;
+        grid-template-columns: 180px minmax(0, 1fr);
+        gap: 20px;
+        padding: 16px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      .type-row:last-child {
+        border-bottom: 0;
+      }
+      .token {
+        color: var(--muted);
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .type-page {
+        margin: 0;
+        font-size: clamp(2.15rem, 4vw, 3rem);
+        line-height: 0.97;
+        letter-spacing: -0.05em;
+        font-weight: 800;
+      }
+      .type-section {
+        margin: 0;
+        font-size: 1.55rem;
+        line-height: 1.1;
+        letter-spacing: -0.035em;
+        font-weight: 700;
+      }
+      .type-card {
+        margin: 0;
+        font-size: 1.12rem;
+        line-height: 1.28;
+        letter-spacing: -0.025em;
+        font-weight: 700;
+      }
+      .type-body {
+        margin: 0;
+        color: var(--soft);
+        font-size: 1rem;
+        line-height: 1.75;
+        font-weight: 500;
+      }
+      .type-strong {
+        margin: 0;
+        color: var(--text);
+        font-size: 1rem;
+        line-height: 1.7;
+        font-weight: 700;
+      }
+      .type-label {
+        margin: 0;
+        color: var(--text);
+        font-size: 0.92rem;
+        line-height: 1.4;
+        font-weight: 700;
+      }
+      .type-micro {
+        margin: 0;
+        color: #cfe0ff;
+        font-size: 10px;
+        line-height: 1.4;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .type-caption {
+        margin: 0;
+        color: var(--faint);
+        font-size: 0.8rem;
+        line-height: 1.6;
+        font-weight: 500;
+      }
+      .type-metric {
+        margin: 0;
+        font-size: 2.7rem;
+        line-height: 0.9;
+      }
+      .group {
+        padding: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.025);
+      }
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        min-width: 0;
+        border: 1px solid transparent;
+        border-radius: 14px;
+        font-family: inherit;
+        font-weight: 700;
+        line-height: 1;
+        text-decoration: none;
+        cursor: pointer;
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          background-color 180ms ease,
+          color 180ms ease,
+          box-shadow 180ms ease;
+      }
+      .button:hover {
+        transform: translateY(-1px);
+      }
+      .sm {
+        min-height: 36px;
+        padding: 0 14px;
+        font-size: 0.78rem;
+      }
+      .md {
+        min-height: 44px;
+        padding: 0 18px;
+        font-size: 0.92rem;
+      }
+      .lg {
+        min-height: 52px;
+        padding: 0 22px;
+        font-size: 0.95rem;
+      }
+      .primary {
+        border-color: rgba(127, 177, 255, 0.52);
+        background: var(--atlas);
+        color: #ffffff;
+        box-shadow: 0 16px 34px rgba(47, 107, 255, 0.28);
+      }
+      .secondary {
+        border-color: rgba(45, 212, 191, 0.44);
+        background: var(--signal);
+        color: #07101f;
+        box-shadow: 0 16px 34px rgba(20, 184, 166, 0.24);
+      }
+      .inverse {
+        border-color: rgba(234, 240, 250, 0.38);
+        background: #f5f8ff;
+        color: #09111f;
+        box-shadow: 0 14px 30px rgba(226, 234, 252, 0.18);
+      }
+      .ghost {
+        border-color: rgba(14, 165, 233, 0.24);
+        background: rgba(14, 165, 233, 0.12);
+        color: #d8f1ff;
+      }
+      .danger {
+        border-color: rgba(239, 68, 68, 0.4);
+        background: #dc2626;
+        color: #ffffff;
+        box-shadow: 0 16px 34px rgba(239, 68, 68, 0.22);
+      }
+      .disabled {
+        opacity: 0.46;
+        box-shadow: none;
+        transform: none;
+        cursor: not-allowed;
+      }
+      .icon-only {
+        width: 44px;
+        padding: 0;
+      }
+      .spinner {
+        width: 15px;
+        height: 15px;
+        border: 2px solid rgba(255, 255, 255, 0.26);
+        border-top-color: currentColor;
+        border-radius: 999px;
+        animation: spin 850ms linear infinite;
+      }
+      .secondary .spinner,
+      .inverse .spinner {
+        border-color: rgba(7, 16, 31, 0.24);
+        border-top-color: currentColor;
+      }
+      .ghost .spinner,
+      .danger .spinner {
+        border-color: rgba(255, 255, 255, 0.2);
+        border-top-color: currentColor;
+      }
+      .glyph {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        font-size: 0.98rem;
+        line-height: 1;
+      }
+      .choice-grid {
+        display: grid;
+        gap: 12px;
+      }
+      .choice {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 13px 14px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .choice input {
+        appearance: none;
+        margin: 0;
+        width: 18px;
+        height: 18px;
+        flex: 0 0 auto;
+        border: 1px solid var(--border-strong);
+        background: rgba(255, 255, 255, 0.03);
+        position: relative;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      }
+      .choice input[type="checkbox"] {
+        border-radius: 6px;
+      }
+      .choice input[type="checkbox"]:checked {
+        border-color: rgba(127, 177, 255, 0.55);
+        background: var(--signal);
+      }
+      .choice input[type="checkbox"]:checked::after {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 2px;
+        width: 4px;
+        height: 8px;
+        border: solid #07101f;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+      .choice input[type="radio"] {
+        border-radius: 999px;
+      }
+      .choice input[type="radio"]:checked {
+        border-color: rgba(127, 177, 255, 0.55);
+      }
+      .choice input[type="radio"]:checked::after {
+        content: "";
+        position: absolute;
+        inset: 4px;
+        border-radius: 999px;
+        background: var(--atlas);
+      }
+      .choice input:disabled {
+        opacity: 0.48;
+      }
+      .choice-copy {
+        display: grid;
+        gap: 4px;
+      }
+      .upload-input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      .upload-dropzone,
+      .picker-shell {
+        display: block;
+        padding: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.025);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+      }
+      .upload-dropzone {
+        border-style: dashed;
+      }
+      .upload-box,
+      .picker-preview,
+      .picker-head,
+      .upload-actions,
+      .picker-action-row {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .upload-box,
+      .picker-preview,
+      .picker-head {
+        align-items: center;
+      }
+      .picker-head {
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .upload-icon,
+      .picker-swatch {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 0 0 auto;
+        width: 44px;
+        height: 44px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.04);
+        color: #d8e7ff;
+      }
+      .picker-swatch {
+        width: 56px;
+        height: 56px;
+        border-radius: 18px;
+        background: var(--atlas);
+        box-shadow:
+          inset 0 0 0 2px rgba(255, 255, 255, 0.14),
+          0 16px 28px rgba(47, 107, 255, 0.26);
+      }
+      .upload-copy,
+      .picker-copy {
+        display: grid;
+        gap: 4px;
+        min-width: 0;
+      }
+      .upload-actions {
+        align-items: center;
+      }
+      .picker-chip {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 10px;
+        border: 1px solid rgba(127, 177, 255, 0.18);
+        border-radius: 999px;
+        background: rgba(127, 177, 255, 0.1);
+        color: #d8e7ff;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .picker-palette {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .palette-swatch {
+        position: relative;
+        display: block;
+        height: 42px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        background: var(--swatch);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.16);
+      }
+      .palette-swatch.selected {
+        box-shadow:
+          inset 0 0 0 2px rgba(255, 255, 255, 0.22),
+          0 14px 24px rgba(15, 23, 42, 0.24);
+      }
+      .palette-swatch.selected::after {
+        content: "";
+        position: absolute;
+        right: 8px;
+        top: 8px;
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.96);
+      }
+      .mono {
+        font-family: ui-monospace, SFMono-Regular, SFMono-Regular, Consolas, monospace;
+      }
+      .picker-grid {
+        display: grid;
+        gap: 14px;
+      }
+      .picker-action-row {
+        align-items: end;
+      }
+      .color-native {
+        width: 52px;
+        height: 44px;
+        padding: 0;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        background: transparent;
+        overflow: hidden;
+      }
+      .color-native::-webkit-color-swatch-wrapper {
+        padding: 4px;
+      }
+      .color-native::-webkit-color-swatch {
+        border: 0;
+        border-radius: 10px;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .field {
+        display: grid;
+        gap: 8px;
+        min-width: 0;
+      }
+      .stack,
+      .inventory {
+        display: grid;
+        gap: 12px;
+      }
+      .control,
+      .select,
+      .textarea,
+      .affix {
+        width: 100%;
+        min-height: 46px;
+        padding: 0 15px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: var(--surface-3);
+        color: var(--text);
+        font: inherit;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+      }
+      .control::placeholder,
+      .textarea::placeholder {
+        color: var(--faint);
+      }
+      .select {
+        appearance: none;
+        background-image:
+          linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+          linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+        background-position:
+          calc(100% - 18px) calc(50% + 1px),
+          calc(100% - 13px) calc(50% + 1px);
+        background-repeat: no-repeat;
+        background-size:
+          5px 5px,
+          5px 5px;
+      }
+      .select,
+      .select option,
+      .select optgroup {
+        background-color: #111a2e;
+        color: var(--text);
+      }
+      .textarea {
+        min-height: 124px;
+        padding: 14px 15px;
+        resize: vertical;
+      }
+      .affix {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-right: 10px;
+      }
+      .affix input {
+        flex: 1 1 auto;
+        min-width: 0;
+        padding: 0;
+        border: 0;
+        outline: 0;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+      }
+      .prefix,
+      .suffix {
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 700;
+        white-space: nowrap;
+      }
+      .readonly .control,
+      .readonly .affix,
+      .disabled-field .control,
+      .disabled-field .select,
+      .disabled-field .textarea,
+      .disabled-field .color-native {
+        color: var(--faint);
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .readonly .control {
+        padding-right: 42px;
+        background-image: radial-gradient(
+          circle at right 16px center,
+          rgba(255, 255, 255, 0.24) 0,
+          rgba(255, 255, 255, 0.24) 4px,
+          transparent 4px
+        );
+        background-repeat: no-repeat;
+      }
+      .error .control,
+      .error .select,
+      .error .textarea {
+        border-color: rgba(239, 68, 68, 0.5);
+        background: rgba(239, 68, 68, 0.08);
+      }
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 9px 12px;
+        border: 1px solid rgba(45, 212, 191, 0.2);
+        border-radius: 999px;
+        background: rgba(45, 212, 191, 0.1);
+        color: #b8fff1;
+        font-size: 0.74rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .inventory-item {
+        padding: 16px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .tag {
+        margin-bottom: 10px;
+        padding: 5px 9px;
+        background: rgba(103, 166, 255, 0.11);
+        color: var(--primary);
+        font-size: 0.7rem;
+      }
+      .footer-note {
+        margin-top: 24px;
+        padding: 16px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.025);
+        font-size: 0.9rem;
+      }
+      .branding-grid,
+      .logo-grid,
+      .partner-grid,
+      .sso-spec-grid,
+      .auth-card-grid {
+        display: grid;
+        gap: 18px;
+      }
+      .branding-grid {
+        grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+        gap: 22px;
+      }
+      .logo-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .logo-frame,
+      .brand-panel,
+      .auth-card {
+        padding: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 20px;
+        background: rgba(255, 255, 255, 0.025);
+      }
+      .logo-frame {
+        display: grid;
+        gap: 14px;
+        align-content: start;
+      }
+      .logo-frame.light {
+        border-color: #d8e1ee;
+        background: #f8fbff;
+        color: #0f172a;
+      }
+      .logo-frame.light .field-label,
+      .logo-frame.light .logo-note {
+        color: #43526a;
+      }
+      .logo-frame.dark {
+        border-color: rgba(127, 177, 255, 0.16);
+        background: #08111f;
+      }
+      .logo-image {
+        display: block;
+        width: min(220px, 100%);
+        height: auto;
+      }
+      /* The approved product lockup, as SignalBrandLockup renders it: the Qiko
+         mark beside the Signal word. Sizes mirror the component's two variants. */
+      .signal-lockup {
+        display: inline-flex;
+        align-items: center;
+        gap: 9px;
+      }
+      .signal-lockup img {
+        display: block;
+        height: 21px;
+        width: auto;
+      }
+      .signal-lockup .signal-lockup-word {
+        font-family: Manrope, "Segoe UI", sans-serif;
+        font-size: 16px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        line-height: 1;
+        color: #8a92a1;
+      }
+      .logo-frame.light .signal-lockup .signal-lockup-word {
+        color: #5f6876;
+      }
+      .signal-lockup.auth {
+        gap: 6px;
+      }
+      .signal-lockup.auth img {
+        height: 32px;
+      }
+      .signal-lockup.auth .signal-lockup-word {
+        font-size: 22px;
+      }
+      .logo-note {
+        margin: 0;
+        color: var(--soft);
+        font-size: 0.84rem;
+        line-height: 1.65;
+      }
+      .brand-panel {
+        display: grid;
+        gap: 16px;
+      }
+      .sso-spec-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .sso-button,
+      .sso-icon-button {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 52px;
+        padding: 12px 14px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--text);
+      }
+      .sso-button-copy {
+        display: grid;
+        gap: 2px;
+      }
+      .sso-caption {
+        color: var(--faint);
+        font-size: 0.72rem;
+        line-height: 1.4;
+      }
+      .sso-icon-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .sso-icon-button {
+        justify-content: center;
+        width: 48px;
+        min-height: 48px;
+        padding: 0;
+      }
+      .brand-mark {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        flex: 0 0 auto;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.7);
+        color: #ffffff;
+        overflow: hidden;
+      }
+      .brand-mark.square {
+        border-radius: 10px;
+      }
+      .brand-mark svg {
+        width: 18px;
+        height: 18px;
+        display: block;
+      }
+      .brand-mark.github {
+        color: #f8fafc;
+      }
+      .brand-mark.linkedin {
+        border-color: rgba(10, 102, 194, 0.24);
+        background: #0a66c2;
+        font-size: 13px;
+        font-weight: 800;
+      }
+      .brand-mark.passkey {
+        border-color: rgba(127, 177, 255, 0.2);
+        background: rgba(127, 177, 255, 0.12);
+        color: #d8e7ff;
+      }
+      .brand-mark.github svg,
+      .brand-mark.passkey svg {
+        width: 16px;
+        height: 16px;
+      }
+      .partner-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+      .partner-tile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 76px;
+        padding: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.07);
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .partner-tile img {
+        display: block;
+        max-width: 110px;
+        max-height: 28px;
+        width: auto;
+        height: auto;
+      }
+      .auth-card-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin-top: 22px;
+      }
+      .auth-card {
+        background: linear-gradient(180deg, rgba(17, 26, 46, 0.96), rgba(11, 18, 32, 0.98));
+        box-shadow: var(--shadow-md);
+      }
+      .auth-card-header,
+      .auth-card-body {
+        display: grid;
+        gap: 16px;
+      }
+      .auth-card-header {
+        text-align: center;
+      }
+      .auth-logo-wrap {
+        display: flex;
+        justify-content: center;
+      }
+      .auth-chip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: fit-content;
+        margin: 0 auto;
+        padding: 7px 12px;
+        border: 1px solid rgba(127, 177, 255, 0.18);
+        border-radius: 999px;
+        background: rgba(127, 177, 255, 0.08);
+        color: #d8e7ff;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .auth-title {
+        margin: 0;
+        font-size: 1.75rem;
+        line-height: 1.06;
+        letter-spacing: -0.04em;
+        font-weight: 800;
+      }
+      .auth-subtitle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.92rem;
+        line-height: 1.7;
+      }
+      .auth-divider {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .auth-divider-line {
+        height: 1px;
+        flex: 1 1 auto;
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .auth-divider-text {
+        color: var(--faint);
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .auth-check-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .auth-check {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        color: var(--soft);
+        font-size: 0.88rem;
+        line-height: 1.6;
+      }
+      .auth-check input {
+        appearance: none;
+        margin: 2px 0 0;
+        width: 18px;
+        height: 18px;
+        flex: 0 0 auto;
+        border: 1px solid var(--border-strong);
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.03);
+        position: relative;
+      }
+      .auth-check input:checked {
+        border-color: rgba(127, 177, 255, 0.55);
+        background: rgba(47, 107, 255, 0.18);
+      }
+      .auth-check input:checked::after {
+        content: "";
+        position: absolute;
+        left: 5px;
+        top: 2px;
+        width: 4px;
+        height: 8px;
+        border: solid #d8e7ff;
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
+      }
+      .auth-link {
+        color: #d8e7ff;
+        font-size: 10px;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        text-decoration: none;
+      }
+      .auth-link.inline {
+        font-size: inherit;
+        font-weight: 700;
+        letter-spacing: 0;
+        text-transform: none;
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .strength-scale {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .strength-scale span {
+        height: 8px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.08);
+      }
+      .strength-scale span.active {
+        background: var(--signal);
+      }
+      @media print {
+        body {
+          background: #07101d;
+        }
+        .page {
+          width: 100%;
+          padding: 0;
+        }
+        .hero,
+        .section,
+        .shell,
+        .card,
+        .group,
+        .brand-panel,
+        .auth-card,
+        .inventory-item,
+        .score-preview-card,
+        .graph-stage,
+        .loader-viewport {
+          break-inside: avoid;
+        }
+      }
+      @media (max-width: 1120px) {
+        .hero-grid,
+        .assemble,
+        .branding-grid,
+        .auth-card-grid {
+          grid-template-columns: 1fr;
+        }
+        .state-grid {
+          grid-template-columns: 1fr;
+        }
+        .score-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .grid-4 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .partner-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+      @media (max-width: 860px) {
+        .page {
+          width: min(calc(100% - 24px), var(--max));
+          padding-top: 20px;
+        }
+        .hero,
+        .section,
+        .shell {
+          padding: 22px;
+        }
+        .grid-2,
+        .grid-3,
+        .grid-4,
+        .score-grid,
+        .type-row,
+        .picker-palette,
+        .logo-grid,
+        .sso-spec-grid,
+        .partner-grid {
+          grid-template-columns: 1fr;
+        }
+        .blur-panel-grid {
+          grid-template-columns: 1fr;
+        }
+        .type-row {
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <svg class="defs" aria-hidden="true" focusable="false">
+      <symbol id="icon-github" viewBox="0 0 24 24">
+        <path
+          d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3.26-.36 6.68-1.6 6.68-7.2A5.6 5.6 0 0 0 19 3.77 5.07 5.07 0 0 0 18.91 1S17.73.65 15 2.48a13.38 13.38 0 0 0-6 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 3.77 5.6 5.6 0 0 0 3.32 7.6c0 5.56 3.42 6.8 6.68 7.2A4.8 4.8 0 0 0 9 18v4"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.75"
+        />
+        <path
+          d="M9 18c-4.51 2-5-2-7-2"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.75"
+        />
+      </symbol>
+      <symbol id="icon-fingerprint" viewBox="0 0 24 24">
+        <path
+          d="M17 8a5 5 0 1 0-10 0"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.75"
+        />
+        <path
+          d="M20 9a8 8 0 1 0-16 0"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.75"
+        />
+        <path
+          d="M9 9a3 3 0 0 1 6 0c0 4.77-1.4 8.2-3.88 10.83"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.75"
+        />
+        <path
+          d="M7 14c0 2.6-.7 4.73-1.95 6.4"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.75"
+        />
+        <path
+          d="M13.5 14.5c-.2 3.08-1.12 5.62-2.73 7.5"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.75"
+        />
+      </symbol>
+      <symbol id="icon-pulse" viewBox="0 0 24 24">
+        <path
+          d="M3 12h4l2.2-5 3.3 10 2.3-6H21"
+          fill="none"
+          stroke="currentColor"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.9"
+        />
+      </symbol>
+    </svg>
+    <main class="page">
+      <section class="hero">
+        <div class="hero-top">
+          <div class="kicker"><span class="dot"></span>Approval artifact</div>
+          <div class="pills">
+            <span class="pill">Dark product only</span>
+            <span class="pill">Manrope system</span>
+            <span class="pill">Atlas blue + signal teal</span>
+          </div>
+        </div>
+        <div class="hero-grid">
+          <div>
+            <h1>Qiko Signal <span>UI Standard Preview</span></h1>
+            <p>
+              This standalone specimen defines the first-pass product standard for typography,
+              buttons, cards, and form controls across app and project surfaces before broad React
+              primitive migration starts.
+            </p>
+            <div class="actions" style="margin-top: 26px">
+              <span class="button lg primary">Approve direction</span>
+              <span class="button lg secondary">Request adjustments</span>
+              <span class="button lg ghost">Keep marketing out of scope</span>
+            </div>
+          </div>
+          <div class="stack">
+            <div class="meta">
+              <p class="meta-label">Scope</p>
+              <p class="meta-value">App + project surfaces only</p>
+            </div>
+            <div class="meta">
+              <p class="meta-label">Artifact goal</p>
+              <p class="meta-value">Lock the visual contract before component migration</p>
+            </div>
+            <div class="meta">
+              <p class="meta-label">Immediate follow-up</p>
+              <p class="meta-value">
+                Buttons, field shell, card parity, and type-scale tokenization
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <p class="kicker"><span class="dot"></span>Typography</p>
+            <h2 class="title">Canonical product type scale</h2>
+            <p class="section-text">
+              One font family, clear hierarchy, and compact rhythm tuned for dense dashboard
+              surfaces without falling into all-caps overload or oversized hero styles.
+            </p>
+          </div>
+        </div>
+        <div class="card elevated">
+          <div class="type-stack">
+            <div class="type-row">
+              <div class="token">Page title</div>
+              <p class="type-page">Entity Authority Intelligence</p>
+            </div>
+            <div class="type-row">
+              <div class="token">Section title</div>
+              <p class="type-section">Visibility summary and next actions</p>
+            </div>
+            <div class="type-row">
+              <div class="token">Card title</div>
+              <p class="type-card">Competitor benchmark readiness</p>
+            </div>
+            <div class="type-row">
+              <div class="token">Body</div>
+              <p class="type-body">
+                Use the default body style for explanatory copy, onboarding detail, and supporting
+                text inside cards and project panels.
+              </p>
+            </div>
+            <div class="type-row">
+              <div class="token">Body strong</div>
+              <p class="type-strong">
+                Use the strong body style for important guidance, short emphasis lines, and critical
+                summary statements.
+              </p>
+            </div>
+            <div class="type-row">
+              <div class="token">Label</div>
+              <p class="type-label">Monthly visibility threshold</p>
+            </div>
+            <div class="type-row">
+              <div class="token">Micro label</div>
+              <p class="type-micro">AI Visibility</p>
+            </div>
+            <div class="type-row">
+              <div class="token">Caption</div>
+              <p class="type-caption">
+                Used for timestamps, helper rows, and context notes below key actions.
+              </p>
+            </div>
+            <div class="type-row">
+              <div class="token">Metric value</div>
+              <p class="type-metric">84</p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <p class="kicker"><span class="dot"></span>Buttons</p>
+            <h2 class="title">Higher-contrast button colors and explicit icon actions</h2>
+            <p class="section-text">
+              The button system now leans on the existing brand palette more directly with solid
+              fills only: Atlas Blue for primary actions, Signal Teal for secondary actions, and a
+              bright inverse style for high-contrast alternate contexts.
+            </p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="group">
+            <p class="group-label">Variants</p>
+            <div class="btn-row">
+              <span class="button md primary">Primary</span>
+              <span class="button md secondary">Secondary</span>
+              <span class="button md inverse">Inverse</span>
+              <span class="button md ghost">Ghost</span>
+              <span class="button md danger">Danger</span>
+            </div>
+          </div>
+          <div class="group">
+            <p class="group-label">Sizes</p>
+            <div class="btn-row">
+              <span class="button sm primary">Small</span>
+              <span class="button md primary">Medium</span>
+              <span class="button lg primary">Large</span>
+            </div>
+          </div>
+          <div class="group">
+            <p class="group-label">Icon buttons</p>
+            <div class="btn-row">
+              <span class="button md primary icon-only"><span class="glyph">+</span></span>
+              <span class="button md secondary icon-only"><span class="glyph">&#9998;</span></span>
+              <span class="button md inverse icon-only"><span class="glyph">&#8594;</span></span>
+              <span class="button md ghost icon-only"><span class="glyph">&#8981;</span></span>
+            </div>
+          </div>
+          <div class="group">
+            <p class="group-label">Icon with text</p>
+            <div class="btn-row">
+              <span class="button md primary"><span class="glyph">+</span>Create project</span>
+              <span class="button md secondary"
+                ><span class="glyph">&#8635;</span>Refresh scores</span
+              >
+              <span class="button md inverse"><span class="glyph">&#8681;</span>Export PDF</span>
+              <span class="button md ghost"><span class="glyph">&#128274;</span>View access</span>
+            </div>
+          </div>
+          <div class="group">
+            <p class="group-label">States</p>
+            <div class="btn-row">
+              <span class="button md primary"><span class="spinner"></span>Loading</span>
+              <span class="button md secondary disabled" aria-disabled="true">Disabled</span>
+              <span class="button md danger disabled" aria-disabled="true">Archive</span>
+            </div>
+          </div>
+          <div class="group">
+            <p class="group-label">Footer action stack</p>
+            <div class="btn-row">
+              <span class="button md primary">Save automation</span>
+              <span class="button md secondary">Preview audience</span>
+              <span class="button md ghost">Cancel</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <p class="kicker"><span class="dot"></span>Cards</p>
+            <h2 class="title">Clear surface hierarchy without page-specific styling</h2>
+            <p class="section-text">
+              Cards should communicate hierarchy through elevation, border strength, and background
+              treatment. The system below separates default content, elevated attention, accent
+              panels, and nested subsections.
+            </p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <article class="card">
+            <p class="mini">Surface</p>
+            <h3 class="card-title">Default content card</h3>
+            <p class="copy">
+              Use this as the baseline dashboard container for lists, charts, summaries, and most
+              settings panels.
+            </p>
+            <div class="row" style="align-items: end; margin-top: 18px">
+              <div class="metric">42</div>
+              <div class="caption">tracked prompts in the latest visibility batch</div>
+            </div>
+            <div class="foot">
+              <span class="caption">Last sync 8 minutes ago</span>
+              <span class="button sm secondary">Open panel</span>
+            </div>
+          </article>
+          <article class="card elevated">
+            <p class="mini">Elevated</p>
+            <h3 class="card-title">High-emphasis decision card</h3>
+            <p class="copy">
+              Use for launch actions, status-critical summaries, or hero modules that need one level
+              more prominence than surrounding cards.
+            </p>
+            <div class="sub">
+              <p class="type-micro">Included subsection</p>
+              <p class="caption">
+                Nested information inherits the same visual language instead of starting a new one.
+              </p>
+            </div>
+          </article>
+          <article class="card accent">
+            <p class="mini">Accent</p>
+            <h3 class="card-title">Guided upgrade or next-step panel</h3>
+            <p class="copy">
+              Accent panels use the primary brand color for positive emphasis without reading like a
+              warning or an error.
+            </p>
+            <div class="foot">
+              <span class="button sm primary">Review path</span>
+              <span class="caption">Plan-based recommendation</span>
+            </div>
+          </article>
+          <article class="card state">
+            <p class="mini">State</p>
+            <h3 class="card-title">Success / empty / system message panel</h3>
+            <p class="copy">
+              Tone can shift with semantic colors, but spacing, header structure, and copy hierarchy
+              remain consistent.
+            </p>
+            <div class="sub">
+              <p class="type-micro">Empty state</p>
+              <p class="caption">
+                No project visibility queries yet. Add one tracked prompt to begin daily indexing.
+              </p>
+            </div>
+          </article>
+          <article class="card elevated overlay-card">
+            <div class="locked-preview">
+              <p class="mini">Locked surface</p>
+              <h3 class="card-title">Entity authority trend explorer</h3>
+              <p class="copy">
+                The underlying card keeps its normal layout so users still understand what lives
+                here before the upsell overlay takes focus.
+              </p>
+              <div class="chart-preview">
+                <div class="chart-bar"><span style="width: 82%"></span></div>
+                <div class="chart-bar"><span style="width: 68%"></span></div>
+                <div class="chart-bar"><span style="width: 54%"></span></div>
+              </div>
+              <div class="foot">
+                <span class="caption">12 tracked entities across 3 categories</span>
+                <span class="button sm ghost">Open explorer</span>
+              </div>
+            </div>
+            <div class="upsell-overlay">
+              <div class="upsell-dialog">
+                <div class="upsell-icon"><span class="glyph">&#128274;</span></div>
+                <div class="upsell-meta">
+                  <span class="upsell-pill primary">Upgrade required</span>
+                  <span class="upsell-pill secondary">Synapse Pro+</span>
+                </div>
+                <h3 class="upsell-title">Unlock entity authority insights</h3>
+                <p class="upsell-copy">
+                  Keep the feature context visible, but place the upgrade path directly over the
+                  locked card so the user sees both the value and the next action.
+                </p>
+                <div class="btn-row" style="justify-content: center; margin-top: 18px">
+                  <span class="button md primary"
+                    ><span class="glyph">&#8594;</span>Upgrade plan</span
+                  >
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <p class="kicker"><span class="dot"></span>Product states</p>
+            <h2 class="title">Score, recommendation, chart, and loading treatments</h2>
+            <p class="section-text">
+              These are the high-signal product states that need one shared language: score cards
+              aligned to the matrix, recommendation severity badges, trend visuals, and a loader
+              that keeps page context visible while synapses work in the foreground.
+            </p>
+          </div>
+        </div>
+        <div class="score-grid">
+          <article class="score-preview-card critical">
+            <div class="score-card-head">
+              <div>
+                <p class="score-label">Synthesis score</p>
+                <span class="matrix-badge critical">Critical</span>
+              </div>
+              <div class="score-sigil">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <use href="#icon-pulse"></use>
+                </svg>
+              </div>
+            </div>
+            <p class="score-big">27</p>
+            <p class="score-support">Combined score</p>
+            <p class="score-detail">
+              Below the 41 threshold. This state should always read as urgent and visually distinct
+              from warning and strong scores.
+            </p>
+          </article>
+          <article class="score-preview-card warning">
+            <div class="score-card-head">
+              <div>
+                <p class="score-label">Authority score</p>
+                <span class="matrix-badge warning">Developing</span>
+              </div>
+              <span class="pill-badge strategic">41-70 band</span>
+            </div>
+            <p class="score-big">58</p>
+            <p class="score-support">Entity coverage</p>
+            <p class="score-detail">
+              In-progress performance. Use the amber state for partial coverage, uneven entity
+              mentions, or adoption that still needs improvement work.
+            </p>
+          </article>
+          <article class="score-preview-card excellent">
+            <div class="score-card-head">
+              <div>
+                <p class="score-label">Visibility score</p>
+                <span class="matrix-badge excellent">Strong</span>
+              </div>
+              <span class="pill-badge success">71+ band</span>
+            </div>
+            <p class="score-big">84</p>
+            <p class="score-support">Brand visibility</p>
+            <p class="score-detail">
+              Use the green state only for genuinely strong results so the matrix stays meaningful
+              and easy to scan across reports and dashboards.
+            </p>
+          </article>
+        </div>
+        <div class="state-grid" style="margin-top: 18px">
+          <article class="card elevated graph-shell">
+            <div class="section-head" style="margin: 0">
+              <div>
+                <p class="mini">Graph</p>
+                <h3 class="card-title">AI visibility trend snapshot</h3>
+                <p class="copy">
+                  Charts should share one dark frame, one legend style, and a restrained accent
+                  palette so they feel consistent across monitoring and reports.
+                </p>
+              </div>
+            </div>
+            <div class="graph-stage">
+              <div class="graph-legend">
+                <div class="legend-group">
+                  <span class="legend-item"
+                    ><span class="legend-dot" style="--dot: #ff4d2d"></span>Overall</span
+                  >
+                  <span class="legend-item"
+                    ><span class="legend-dot" style="--dot: #14b8a6"></span>Google AI</span
+                  >
+                  <span class="legend-item"
+                    ><span class="legend-dot" style="--dot: #7fb1ff"></span>Perplexity</span
+                  >
+                </div>
+                <span class="pill-badge info">Last 30 days</span>
+              </div>
+              <svg class="graph-svg" viewBox="0 0 520 240" role="img" aria-label="Visibility trend">
+                <defs>
+                  <linearGradient id="trendFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#FF4D2D" stop-opacity="0.26"></stop>
+                    <stop offset="100%" stop-color="#FF4D2D" stop-opacity="0"></stop>
+                  </linearGradient>
+                </defs>
+                <rect x="0" y="0" width="520" height="240" rx="18" fill="#0a1323"></rect>
+                <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
+                  <line x1="40" y1="44" x2="490" y2="44"></line>
+                  <line x1="40" y1="94" x2="490" y2="94"></line>
+                  <line x1="40" y1="144" x2="490" y2="144"></line>
+                  <line x1="40" y1="194" x2="490" y2="194"></line>
+                </g>
+                <g class="axis-text">
+                  <text x="14" y="48">90</text>
+                  <text x="14" y="98">70</text>
+                  <text x="14" y="148">50</text>
+                  <text x="14" y="198">30</text>
+                  <text x="40" y="226">Jan</text>
+                  <text x="128" y="226">Feb</text>
+                  <text x="214" y="226">Mar</text>
+                  <text x="300" y="226">Apr</text>
+                  <text x="386" y="226">May</text>
+                  <text x="468" y="226">Jun</text>
+                </g>
+                <path
+                  d="M40 176L40 158C85 150 118 132 154 126C190 120 221 130 256 112C289 95 327 96 360 88C393 80 428 88 490 62L490 176Z"
+                  fill="url(#trendFill)"
+                ></path>
+                <polyline
+                  fill="none"
+                  stroke="#FF4D2D"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="4"
+                  points="40,158 128,134 216,118 304,104 392,90 490,62"
+                ></polyline>
+                <polyline
+                  fill="none"
+                  stroke="#14b8a6"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="3"
+                  points="40,170 128,152 216,138 304,124 392,114 490,96"
+                ></polyline>
+                <polyline
+                  fill="none"
+                  stroke="#7fb1ff"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="3"
+                  points="40,180 128,168 216,154 304,144 392,136 490,118"
+                ></polyline>
+                <g fill="#FF4D2D">
+                  <circle cx="40" cy="158" r="5"></circle>
+                  <circle cx="128" cy="134" r="5"></circle>
+                  <circle cx="216" cy="118" r="5"></circle>
+                  <circle cx="304" cy="104" r="5"></circle>
+                  <circle cx="392" cy="90" r="5"></circle>
+                  <circle cx="490" cy="62" r="5"></circle>
+                </g>
+              </svg>
+            </div>
+            <div class="graph-footer">
+              <div class="trend-strip">
+                <span class="trend-chip">Current <strong>68%</strong></span>
+                <span class="trend-chip">Delta <strong>+14 pts</strong></span>
+                <span class="trend-chip">Mentions <strong>42</strong></span>
+              </div>
+              <span class="caption"
+                >Use this framing for monitoring, exports, and summary cards.</span
+              >
+            </div>
+          </article>
+          <div class="stack">
+            <article class="card recommendation-card">
+              <div>
+                <p class="mini">Recommendation</p>
+                <h3 class="card-title">Add organization and author schema to key landing pages</h3>
+              </div>
+              <div class="badge-row">
+                <span class="pill-badge info">Structured data</span>
+                <span class="pill-badge critical">Critical</span>
+                <span class="pill-badge neutral">SEO</span>
+              </div>
+              <p class="recommendation-copy">
+                Entity references are present, but they are not reinforced by explicit structured
+                data. This creates a high-priority authority gap for branded and commercial prompts.
+              </p>
+              <div class="sub">
+                <p class="type-micro">Why this matters</p>
+                <p class="caption">
+                  A critical badge should always pair with a clearly relevant recommendation label
+                  and a concise explanation of impact, not just a color state alone.
+                </p>
+              </div>
+              <div class="recommendation-actions">
+                <span class="button sm primary">Create task</span>
+                <span class="caption">Owner: Technical SEO</span>
+              </div>
+            </article>
+            <article class="card loader-card">
+              <div>
+                <p class="mini">Page loader</p>
+                <h3 class="card-title">Blur the page and keep the synapse overlay working</h3>
+              </div>
+              <div class="loader-viewport">
+                <div class="blurred-page" aria-hidden="true">
+                  <div class="blur-strip" style="--w: 38%"></div>
+                  <div class="blur-panel"></div>
+                  <div class="blur-panel-grid">
+                    <div class="blur-panel"></div>
+                    <div class="blur-panel"></div>
+                  </div>
+                  <div class="blur-strip" style="--w: 62%"></div>
+                </div>
+                <div class="loader-overlay">
+                  <div class="synapse-shell">
+                    <svg
+                      class="synapse-network"
+                      viewBox="0 0 340 180"
+                      role="img"
+                      aria-label="Animated synapse loader"
+                    >
+                      <path
+                        class="synapse-link"
+                        d="M36 116C82 126 98 74 144 84C196 95 208 150 254 132C285 120 296 78 312 66"
+                      ></path>
+                      <path
+                        class="synapse-link delay"
+                        d="M32 66C70 52 102 92 146 72C184 55 194 26 244 38C280 47 294 74 312 98"
+                      ></path>
+                      <path
+                        class="synapse-link delay-2"
+                        d="M54 150C94 148 104 116 140 116C188 116 208 160 250 152C282 146 294 126 310 118"
+                      ></path>
+                      <circle class="synapse-node" cx="32" cy="66" r="5"></circle>
+                      <circle class="synapse-node delay" cx="144" cy="84" r="6"></circle>
+                      <circle class="synapse-node delay-2" cx="244" cy="38" r="5"></circle>
+                      <circle class="synapse-node" cx="312" cy="98" r="4.5"></circle>
+                      <circle class="synapse-node delay" cx="54" cy="150" r="4.5"></circle>
+                      <circle class="synapse-node delay-2" cx="250" cy="152" r="5"></circle>
+                    </svg>
+                    <h4 class="loader-title">Synapses working</h4>
+                    <div class="loader-copy">
+                      <span class="status"><span class="dot"></span>Refreshing page state</span>
+                      <span
+                        >Keep the underlying page visible but blurred until the response
+                        settles.</span
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <p class="kicker"><span class="dot"></span>Forms</p>
+            <h2 class="title">
+              One field shell for text, select, textarea, checkbox, and radio controls
+            </h2>
+            <p class="section-text">
+              Inputs should not invent their own label weight, focus ring, or border language. The
+              examples below lock the shared control anatomy before component-level migration.
+            </p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="group">
+            <p class="group-label">Default controls</p>
+            <div class="grid-2">
+              <div class="field">
+                <label class="field-label" for="default-name">Project name</label>
+                <input
+                  class="control"
+                  id="default-name"
+                  type="text"
+                  value="Qiko Signal Knowledge Graph"
+                />
+                <div class="field-hint">
+                  Used in reports, exports, and customer-facing portal surfaces.
+                </div>
+              </div>
+              <div class="field">
+                <label class="field-label" for="default-market">Primary market</label>
+                <select class="select" id="default-market">
+                  <option>Romania</option>
+                  <option>United States</option>
+                  <option>United Kingdom</option>
+                </select>
+                <div class="field-hint">
+                  Dropdowns follow the same height, radius, and border contrast as text fields.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="group">
+            <p class="group-label">Textarea and helper text</p>
+            <div class="field">
+              <label class="field-label" for="default-summary">Brief summary</label>
+              <textarea class="textarea" id="default-summary">
+Track how often the brand appears in AI-generated answers for commercial and educational prompts, then route deltas into project tasks.</textarea
+              >
+              <div class="field-hint">
+                Helper text lives close to the field and uses caption rhythm, not all-caps utility
+                styling.
+              </div>
+            </div>
+          </div>
+          <div class="group">
+            <p class="group-label">Read-only, disabled, and error</p>
+            <div class="stack">
+              <div class="field readonly">
+                <label class="field-label" for="readonly-key">API workspace key</label>
+                <input
+                  class="control"
+                  id="readonly-key"
+                  type="text"
+                  value="wk_7f32db9f5c8d4a1"
+                  readonly
+                />
+                <div class="field-hint">
+                  Read-only fields keep clarity without looking disabled.
+                </div>
+              </div>
+              <div class="field disabled-field">
+                <label class="field-label" for="disabled-input">Connected source</label>
+                <input
+                  class="control"
+                  id="disabled-input"
+                  type="text"
+                  value="Google Search Console"
+                  disabled
+                />
+              </div>
+              <div class="field error">
+                <label class="field-label" for="error-input">Target URL</label>
+                <input class="control" id="error-input" type="text" value="thothgraph" />
+                <div class="field-hint" style="color: #fecaca">
+                  Enter a fully qualified domain or URL before saving.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="group">
+            <p class="group-label">Affixes and actions</p>
+            <div class="stack">
+              <div class="field">
+                <label class="field-label" for="prefix-field">Monthly cap</label>
+                <div class="affix">
+                  <span class="prefix">EUR</span>
+                  <input id="prefix-field" type="text" value="240" />
+                  <span class="suffix">/ month</span>
+                </div>
+              </div>
+              <div class="field">
+                <label class="field-label" for="search-field">Competitor lookup</label>
+                <div class="affix">
+                  <span class="prefix">&#8981;</span>
+                  <input id="search-field" type="text" value="lavan-events.com" />
+                  <span class="button sm secondary">Validate</span>
+                </div>
+                <div class="field-hint">
+                  Decorated fields stay inside the same shell instead of becoming a separate control
+                  family.
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="group">
+            <p class="group-label">Checkboxes</p>
+            <div class="choice-grid">
+              <label class="choice">
+                <input type="checkbox" checked />
+                <span class="choice-copy">
+                  <span class="type-label">Send digest automatically</span>
+                  <span class="caption"
+                    >Enable recurring project summary emails after benchmark runs settle.</span
+                  >
+                </span>
+              </label>
+              <label class="choice">
+                <input type="checkbox" />
+                <span class="choice-copy">
+                  <span class="type-label">Pause when budget is exhausted</span>
+                  <span class="caption"
+                    >Stop future automation runs until new credits or a higher cap are
+                    available.</span
+                  >
+                </span>
+              </label>
+              <label class="choice">
+                <input type="checkbox" disabled checked />
+                <span class="choice-copy">
+                  <span class="type-label">Connected data source required</span>
+                  <span class="caption"
+                    >Shown as a disabled state when the rule is enforced upstream.</span
+                  >
+                </span>
+              </label>
+            </div>
+          </div>
+          <div class="group">
+            <p class="group-label">Radio groups</p>
+            <div class="choice-grid">
+              <label class="choice">
+                <input type="radio" name="digest-mode" checked />
+                <span class="choice-copy">
+                  <span class="type-label">Weekly digest</span>
+                  <span class="caption"
+                    >Best for active monitoring and hands-on project teams.</span
+                  >
+                </span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="digest-mode" />
+                <span class="choice-copy">
+                  <span class="type-label">Monthly digest</span>
+                  <span class="caption"
+                    >Good for lower-volume programs that still need strategic summaries.</span
+                  >
+                </span>
+              </label>
+              <label class="choice">
+                <input type="radio" name="digest-mode" />
+                <span class="choice-copy">
+                  <span class="type-label">No digest</span>
+                  <span class="caption">Keep monitoring active without scheduled reporting.</span>
+                </span>
+              </label>
+            </div>
+          </div>
+          <div class="group">
+            <p class="group-label">File upload</p>
+            <div class="stack">
+              <input class="upload-input" id="log-upload" type="file" />
+              <label class="upload-dropzone" for="log-upload">
+                <span class="upload-box">
+                  <span class="upload-icon"><span class="glyph">&#8682;</span></span>
+                  <span class="upload-copy">
+                    <span class="type-label">Drop log file here or click to upload</span>
+                    <span class="caption"
+                      >Supported formats: .log, .txt, .gz. Keep the same dashed dropzone and helper
+                      rhythm used in project upload flows.</span
+                    >
+                  </span>
+                </span>
+              </label>
+              <div class="upload-actions">
+                <label class="button sm secondary" for="log-upload"
+                  ><span class="glyph">&#8682;</span>Choose file</label
+                >
+                <span class="button sm primary"
+                  ><span class="glyph">&#10010;</span>Upload + parse</span
+                >
+                <span class="caption">Selected file: ai-crawler-logs-2026-03-10.gz</span>
+              </div>
+            </div>
+          </div>
+          <div class="group">
+            <p class="group-label">Color picker</p>
+            <div class="picker-shell">
+              <div class="picker-grid">
+                <div class="picker-head">
+                  <div class="picker-copy">
+                    <span class="field-label">Primary accent</span>
+                    <span class="field-hint"
+                      >Use quick presets or dial in an exact brand color for report and branding
+                      surfaces.</span
+                    >
+                  </div>
+                  <span class="picker-chip">Preset</span>
+                </div>
+                <div class="picker-preview">
+                  <span class="picker-swatch" style="background: #ff4d2d"></span>
+                  <span class="picker-copy">
+                    <span class="type-micro">Live preview</span>
+                    <span class="type-label mono">#FF4D2D</span>
+                    <span class="caption"
+                      >Applied to highlights, accents, and key report surfaces.</span
+                    >
+                  </span>
+                </div>
+                <div class="picker-grid">
+                  <span class="field-label">Quick palette</span>
+                  <div class="picker-palette">
+                    <span class="palette-swatch selected" style="--swatch: #ff4d2d"></span>
+                    <span class="palette-swatch" style="--swatch: #14b8a6"></span>
+                    <span class="palette-swatch" style="--swatch: #7fb1ff"></span>
+                    <span class="palette-swatch" style="--swatch: #0f172a"></span>
+                    <span class="palette-swatch" style="--swatch: #d97706"></span>
+                    <span class="palette-swatch" style="--swatch: #0ea5e9"></span>
+                  </div>
+                </div>
+                <div class="picker-action-row">
+                  <div class="field" style="flex: 1 1 220px">
+                    <label class="field-label" for="brand-color-hex">Hex value</label>
+                    <input class="control mono" id="brand-color-hex" type="text" value="#FF4D2D" />
+                    <div class="field-hint">Paste a hex value or use the native picker.</div>
+                  </div>
+                  <div class="field" style="flex: 0 0 auto">
+                    <label class="field-label" for="brand-color-picker">Native picker</label>
+                    <div class="upload-actions">
+                      <label class="button sm secondary" for="brand-color-picker"
+                        ><span class="glyph">&#129498;</span>Open picker</label
+                      >
+                      <input
+                        class="color-native"
+                        id="brand-color-picker"
+                        type="color"
+                        value="#FF4D2D"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <p class="kicker"><span class="dot"></span>Auth and branding</p>
+            <h2 class="title">Standardize logos, SSO providers, partner marks, and auth forms</h2>
+            <p class="section-text">
+              The onboarding surface needs the same discipline as the app: predictable logo usage,
+              brand-safe provider buttons, neutral partner tiles, and login/register forms that
+              share one visual contract.
+            </p>
+          </div>
+        </div>
+        <div class="branding-grid">
+          <div class="stack">
+            <div class="brand-panel">
+              <p class="group-label">Qiko Signal logo variants</p>
+              <div class="logo-grid">
+                <div class="logo-frame light">
+                  <span class="field-label">The approved lockup on a light surface</span>
+                  <span class="signal-lockup">
+                    <img src="./qiko-logo.png" alt="Qiko" />
+                    <span class="signal-lockup-word">Signal</span>
+                  </span>
+                  <p class="logo-note">
+                    One lockup for every surface: the Qiko mark beside the Signal word, rendered by
+                    SignalBrandLockup (SIGV2-1087).
+                  </p>
+                </div>
+                <div class="logo-frame dark">
+                  <span class="field-label">The same lockup on a dark surface</span>
+                  <span class="signal-lockup">
+                    <img src="./qiko-logo.png" alt="Qiko" />
+                    <span class="signal-lockup-word">Signal</span>
+                  </span>
+                  <p class="logo-note">
+                    There is no separate inverse mark. The gradient reads on dark app shells, auth
+                    screens and dark-mode marketing without one (SIGV2-1087).
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="brand-panel">
+              <p class="group-label">Partner branding logos</p>
+              <p class="caption">
+                Partner marks should sit in neutral tiles with one shared size, padding, and
+                contrast rule so the row feels curated instead of noisy.
+              </p>
+              <div class="partner-grid">
+                <div class="partner-tile">
+                  <img src="./icons/providers/google-gemini.svg" alt="Google Gemini logo" />
+                </div>
+                <div class="partner-tile">
+                  <img src="./icons/providers/openai.svg" alt="OpenAI logo" />
+                </div>
+                <div class="partner-tile">
+                  <img src="./icons/providers/anthropic.svg" alt="Anthropic logo" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="stack">
+            <div class="brand-panel">
+              <p class="group-label">SSO provider buttons</p>
+              <div class="sso-spec-grid">
+                <div class="sso-button">
+                  <span class="brand-mark">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                        fill="#4285F4"
+                      />
+                      <path
+                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                        fill="#34A853"
+                      />
+                      <path
+                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                        fill="#FBBC05"
+                      />
+                      <path
+                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                        fill="#EA4335"
+                      />
+                    </svg>
+                  </span>
+                  <span class="sso-button-copy">
+                    <span class="type-label">Continue with Google</span>
+                    <span class="sso-caption"
+                      >Keep the official multi-color mark inside one neutral shell.</span
+                    >
+                  </span>
+                </div>
+                <div class="sso-button">
+                  <span class="brand-mark square">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M2 2h9.5v9.5H2z" fill="#F25022" />
+                      <path d="M12.5 2H22v9.5h-9.5z" fill="#7FBA00" />
+                      <path d="M2 12.5h9.5V22H2z" fill="#00A4EF" />
+                      <path d="M12.5 12.5H22V22h-9.5z" fill="#FFB900" />
+                    </svg>
+                  </span>
+                  <span class="sso-button-copy">
+                    <span class="type-label">Continue with Microsoft</span>
+                    <span class="sso-caption"
+                      >Use the four-tile mark without recoloring or glows.</span
+                    >
+                  </span>
+                </div>
+                <div class="sso-button">
+                  <span class="brand-mark github">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-github"></use>
+                    </svg>
+                  </span>
+                  <span class="sso-button-copy">
+                    <span class="type-label">Continue with GitHub</span>
+                    <span class="sso-caption"
+                      >Monochrome providers still use the same shell and spacing.</span
+                    >
+                  </span>
+                </div>
+                <div class="sso-button">
+                  <span class="brand-mark linkedin square">in</span>
+                  <span class="sso-button-copy">
+                    <span class="type-label">Continue with LinkedIn</span>
+                    <span class="sso-caption"
+                      >Keep provider brand color inside the icon only, not the whole button.</span
+                    >
+                  </span>
+                </div>
+              </div>
+              <div class="auth-divider" style="margin-top: 16px">
+                <span class="auth-divider-line"></span>
+                <span class="auth-divider-text">Login with</span>
+                <span class="auth-divider-line"></span>
+              </div>
+              <div class="sso-icon-row">
+                <span class="sso-icon-button">
+                  <span class="brand-mark">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                        fill="#4285F4"
+                      />
+                      <path
+                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                        fill="#34A853"
+                      />
+                      <path
+                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                        fill="#FBBC05"
+                      />
+                      <path
+                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                        fill="#EA4335"
+                      />
+                    </svg>
+                  </span>
+                </span>
+                <span class="sso-icon-button">
+                  <span class="brand-mark square">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M2 2h9.5v9.5H2z" fill="#F25022" />
+                      <path d="M12.5 2H22v9.5h-9.5z" fill="#7FBA00" />
+                      <path d="M2 12.5h9.5V22H2z" fill="#00A4EF" />
+                      <path d="M12.5 12.5H22V22h-9.5z" fill="#FFB900" />
+                    </svg>
+                  </span>
+                </span>
+                <span class="sso-icon-button">
+                  <span class="brand-mark github">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-github"></use>
+                    </svg>
+                  </span>
+                </span>
+                <span class="sso-icon-button"
+                  ><span class="brand-mark linkedin square">in</span></span
+                >
+                <span class="sso-icon-button">
+                  <span class="brand-mark passkey">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-fingerprint"></use>
+                    </svg>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="auth-card-grid">
+          <div class="auth-card">
+            <div class="auth-card-header">
+              <div class="auth-logo-wrap">
+                <span class="signal-lockup auth">
+                  <img src="./qiko-logo.png" alt="Qiko" />
+                  <span class="signal-lockup-word">Signal</span>
+                </span>
+              </div>
+              <span class="auth-chip"><span class="dot"></span>Intelligence access</span>
+              <div>
+                <h3 class="auth-title">Sign in to your workspace</h3>
+                <p class="auth-subtitle">
+                  Keep the auth shell, SSO row, divider, and form fields on the same visual system
+                  as the rest of the product.
+                </p>
+              </div>
+            </div>
+            <form class="auth-card-body">
+              <div class="sso-icon-row" style="justify-content: center">
+                <span class="sso-icon-button">
+                  <span class="brand-mark">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                        fill="#4285F4"
+                      />
+                      <path
+                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                        fill="#34A853"
+                      />
+                      <path
+                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                        fill="#FBBC05"
+                      />
+                      <path
+                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                        fill="#EA4335"
+                      />
+                    </svg>
+                  </span>
+                </span>
+                <span class="sso-icon-button">
+                  <span class="brand-mark square">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M2 2h9.5v9.5H2z" fill="#F25022" />
+                      <path d="M12.5 2H22v9.5h-9.5z" fill="#7FBA00" />
+                      <path d="M2 12.5h9.5V22H2z" fill="#00A4EF" />
+                      <path d="M12.5 12.5H22V22h-9.5z" fill="#FFB900" />
+                    </svg>
+                  </span>
+                </span>
+                <span class="sso-icon-button">
+                  <span class="brand-mark github">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-github"></use>
+                    </svg>
+                  </span>
+                </span>
+                <span class="sso-icon-button"
+                  ><span class="brand-mark linkedin square">in</span></span
+                >
+                <span class="sso-icon-button">
+                  <span class="brand-mark passkey">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-fingerprint"></use>
+                    </svg>
+                  </span>
+                </span>
+              </div>
+              <div class="auth-divider">
+                <span class="auth-divider-line"></span>
+                <span class="auth-divider-text">Or use password</span>
+                <span class="auth-divider-line"></span>
+              </div>
+              <div class="field">
+                <label class="field-label" for="auth-login-email">Email</label>
+                <input
+                  autocomplete="username"
+                  class="control"
+                  id="auth-login-email"
+                  type="email"
+                  value="ops@qiko.ai"
+                />
+              </div>
+              <div class="field">
+                <label class="field-label" for="auth-login-password">Password</label>
+                <input
+                  autocomplete="current-password"
+                  class="control"
+                  id="auth-login-password"
+                  type="password"
+                  value="************"
+                />
+              </div>
+              <div class="auth-check-row">
+                <label class="auth-check">
+                  <input type="checkbox" checked />
+                  <span>Remember me</span>
+                </label>
+                <a class="auth-link" href="#">Forgot password?</a>
+              </div>
+              <span class="button lg primary auth-submit">Sign in</span>
+            </form>
+          </div>
+          <div class="auth-card">
+            <div class="auth-card-header">
+              <div class="auth-logo-wrap">
+                <span class="signal-lockup auth">
+                  <img src="./qiko-logo.png" alt="Qiko" />
+                  <span class="signal-lockup-word">Signal</span>
+                </span>
+              </div>
+              <span class="auth-chip"><span class="dot"></span>Workspace onboarding</span>
+              <div>
+                <h3 class="auth-title">Create your account</h3>
+                <p class="auth-subtitle">
+                  Registration keeps the same shell, but adds password guidance and legal consent
+                  without drifting into a separate mini-design system.
+                </p>
+              </div>
+            </div>
+            <form class="auth-card-body">
+              <div class="sso-icon-row" style="justify-content: center">
+                <span class="sso-icon-button">
+                  <span class="brand-mark">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                        fill="#4285F4"
+                      />
+                      <path
+                        d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                        fill="#34A853"
+                      />
+                      <path
+                        d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+                        fill="#FBBC05"
+                      />
+                      <path
+                        d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                        fill="#EA4335"
+                      />
+                    </svg>
+                  </span>
+                </span>
+                <span class="sso-icon-button">
+                  <span class="brand-mark square">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M2 2h9.5v9.5H2z" fill="#F25022" />
+                      <path d="M12.5 2H22v9.5h-9.5z" fill="#7FBA00" />
+                      <path d="M2 12.5h9.5V22H2z" fill="#00A4EF" />
+                      <path d="M12.5 12.5H22V22h-9.5z" fill="#FFB900" />
+                    </svg>
+                  </span>
+                </span>
+                <span class="sso-icon-button">
+                  <span class="brand-mark github">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="#icon-github"></use>
+                    </svg>
+                  </span>
+                </span>
+                <span class="sso-icon-button"
+                  ><span class="brand-mark linkedin square">in</span></span
+                >
+              </div>
+              <div class="auth-divider">
+                <span class="auth-divider-line"></span>
+                <span class="auth-divider-text">Or use email</span>
+                <span class="auth-divider-line"></span>
+              </div>
+              <div class="field">
+                <label class="field-label" for="auth-register-name">Name</label>
+                <input
+                  autocomplete="name"
+                  class="control"
+                  id="auth-register-name"
+                  type="text"
+                  value="Razvan Baba"
+                />
+              </div>
+              <div class="field">
+                <label class="field-label" for="auth-register-email">Email</label>
+                <input
+                  autocomplete="email"
+                  class="control"
+                  id="auth-register-email"
+                  type="email"
+                  value="razvan@example.com"
+                />
+              </div>
+              <div class="grid-2">
+                <div class="field">
+                  <label class="field-label" for="auth-register-password">Password</label>
+                  <input
+                    autocomplete="new-password"
+                    class="control"
+                    id="auth-register-password"
+                    type="password"
+                    value="************"
+                  />
+                </div>
+                <div class="field">
+                  <label class="field-label" for="auth-register-confirm">Confirm password</label>
+                  <input
+                    autocomplete="new-password"
+                    class="control"
+                    id="auth-register-confirm"
+                    type="password"
+                    value="************"
+                  />
+                </div>
+              </div>
+              <div class="stack">
+                <span class="field-label">Password strength</span>
+                <div class="strength-scale">
+                  <span class="active"></span>
+                  <span class="active"></span>
+                  <span class="active"></span>
+                  <span></span>
+                </div>
+                <span class="caption"
+                  >Strong enough for account creation with one more unique character.</span
+                >
+              </div>
+              <label class="auth-check">
+                <input type="checkbox" checked />
+                <span>
+                  I agree to the <a class="auth-link inline" href="#">Terms of Service</a> and
+                  <a class="auth-link inline" href="#"> Privacy Policy</a>.
+                </span>
+              </label>
+              <span class="button lg primary auth-submit">Create account</span>
+            </form>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <p class="kicker"><span class="dot"></span>Assembled screen</p>
+            <h2 class="title">Representative product composition</h2>
+            <p class="section-text">
+              This block shows how the approved pieces work together in a realistic app setting: one
+              page header, a decision card, grouped inputs, and a disciplined footer action row.
+            </p>
+          </div>
+        </div>
+        <div class="assemble">
+          <section class="shell">
+            <div class="shell-head">
+              <div>
+                <p class="type-micro">Project monitoring</p>
+                <h3 class="shell-title" style="font-size: 1.45rem; line-height: 1.08">
+                  Competitive digest automation
+                </h3>
+                <p class="copy" style="margin-top: 8px; max-width: 58ch">
+                  Keep weekly or monthly project competitor summaries aligned with the same visual
+                  language used across settings, reports, and monitoring panels.
+                </p>
+              </div>
+              <div class="status"><span class="dot"></span>Ready to save</div>
+            </div>
+            <article class="card">
+              <p class="mini">Delivery rules</p>
+              <h4 class="card-title">Automation cadence and digest behavior</h4>
+              <p class="copy">
+                High-impact copy stays in sentence case, labels stay compact, and actions keep one
+                consistent hierarchy.
+              </p>
+              <div class="grid-2" style="margin-top: 18px">
+                <div class="field">
+                  <label class="field-label" for="assembled-frequency">Digest frequency</label>
+                  <select class="select" id="assembled-frequency">
+                    <option>Weekly</option>
+                    <option>Monthly</option>
+                    <option>Off</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label class="field-label" for="assembled-recipient">Primary recipient</label>
+                  <input
+                    class="control"
+                    id="assembled-recipient"
+                    type="email"
+                    value="ops@qiko.ai"
+                  />
+                </div>
+              </div>
+              <div class="sub">
+                <div class="grid-2">
+                  <div>
+                    <p class="type-micro">Delivery note</p>
+                    <p class="caption">
+                      Send only after benchmark runs settle and summary deltas are available.
+                    </p>
+                  </div>
+                  <div>
+                    <p class="type-micro">Current state</p>
+                    <p class="caption">
+                      2 competitors indexed, 1 benchmark run pending, next digest due Friday.
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="foot">
+                <div class="btn-row">
+                  <span class="button md primary">Save automation</span>
+                  <span class="button md secondary">Preview digest</span>
+                  <span class="button md ghost">Cancel</span>
+                </div>
+                <span class="caption">Changes apply to project-level digests only.</span>
+              </div>
+            </article>
+          </section>
+          <aside class="shell">
+            <p class="type-micro">Migration inventory</p>
+            <h3 class="shell-title" style="font-size: 1.45rem; line-height: 1.08">
+              First targets after approval
+            </h3>
+            <div class="inventory">
+              <article class="inventory-item">
+                <span class="tag">High drift</span>
+                <h3>AuditConfigurationForm</h3>
+                <p>
+                  Uses multiple custom inputs, bespoke button styling, and its own typography rhythm
+                  inside a single critical flow.
+                </p>
+              </article>
+              <article class="inventory-item">
+                <span class="tag">Project settings</span>
+                <h3>ProjectCompetitorManager</h3>
+                <p>
+                  Blends GlassCard-only styling with custom uppercase treatments, custom action
+                  buttons, and mixed field anatomy.
+                </p>
+              </article>
+              <article class="inventory-item">
+                <span class="tag">Shared surfaces</span>
+                <h3>Billing and settings card families</h3>
+                <p>
+                  Still rely heavily on one-off glass variants, custom headings, and field layouts
+                  that should collapse into the shared standard.
+                </p>
+              </article>
+            </div>
+            <div class="footer-note">
+              Approval goal: confirm contrast, hierarchy, and system coherence first. Implementation
+              goal after approval: update shared primitives, preserve backward compatibility where
+              needed, and migrate the highest-drift surfaces incrementally.
+            </div>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

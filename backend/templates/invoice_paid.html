@@ -1,0 +1,19 @@
+{% extends "base_email.html" %}
+{% set preheader = "Your payment was processed successfully." %}
+{% set eyebrow = "Billing" %}
+{% set title = "Payment received" %}
+{% set lead = "Your billing update completed successfully. Any related plan access has been applied to your workspace." %}
+{% set cta_label = "Open Billing" %}
+{% set cta_url = manage_billing_url %}
+{% set fallback_url = manage_billing_url %}
+{% block content %}
+<tr><td class="body">
+    <p class="copy">Hi {{ recipient_name }},</p>
+    <div class="panel">
+        <p class="panel-title">Payment summary</p>
+        {% if formatted_amount %}<div class="detail-row"><span class="detail-label">Amount:</span> {{ formatted_amount }}</div>{% endif %}
+        {% if plan_name_display %}<div class="detail-row"><span class="detail-label">Plan:</span> {{ plan_name_display }}</div>{% endif %}
+        <div class="detail-row"><span class="detail-label">Status:</span> Paid</div>
+    </div>
+</td></tr>
+{% endblock %}

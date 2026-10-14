@@ -1,0 +1,28 @@
+{% extends "base_email.html" %}
+
+{% set eyebrow = "Lead Capture" %}
+{% set title = "New lead captured from your embed widget" %}
+{% set lead = "A visitor submitted a URL for a free audit. Open your Leads dashboard to review and follow up." %}
+{% set cta_url = dashboard_url or "/dashboard/leads" %}
+{% set cta_label = "Open Leads Dashboard" %}
+
+{% block content %}
+<tr>
+    <td class="body">
+        <div class="panel">
+            <p class="panel-title">Lead details</p>
+            <div class="detail-row"><span class="detail-label">Lead email:</span> {{ lead_email }}</div>
+            <div class="detail-row"><span class="detail-label">Target URL:</span> {{ lead_url }}</div>
+            {% if lead_entity %}
+            <div class="detail-row"><span class="detail-label">Entity:</span> {{ lead_entity }}</div>
+            {% endif %}
+            {% if workspace_name %}
+            <div class="detail-row"><span class="detail-label">Workspace:</span> {{ workspace_name }}</div>
+            {% endif %}
+            <div class="detail-row"><span class="detail-label">Lead ID:</span> {{ lead_id }}</div>
+        </div>
+
+        <p class="copy">The audit is running asynchronously. Scores will appear in the Leads dashboard as soon as processing completes.</p>
+    </td>
+</tr>
+{% endblock %}

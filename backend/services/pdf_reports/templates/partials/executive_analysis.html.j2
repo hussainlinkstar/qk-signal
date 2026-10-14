@@ -1,0 +1,51 @@
+{% set interp = sections.get("strategic_interpretation", {}) %}
+{% set grid_items = sections.get("strategic_intelligence_grid", {}).get("items", []) %}
+{% set blocker_items = sections.get("high_impact_ai_blockers", {}).get("items", []) %}
+{% set action_items = sections.get("top_action_items", {}).get("items", []) %}
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Where you stand") }}</h2></div>
+    <p class="section-copy">{{ l("The two scores below come from the selected audit. A dash means that score was not recorded.") }}</p>
+    {% if interp.get("body") %}
+    <div class="subsection-label">{{ l("The short version") }}</div>
+    <p class="section-copy">{{ interp.body | bi }}</p>
+    {% endif %}
+    <div class="pillar-score-grid">
+        <div class="card-grid">
+            {% for card in scores.cards %}
+            <article class="metric-card two-up{% if loop.last %} last{% endif %}">
+                <div class="metric-label">{{ l(card.label) }}</div>
+                <div class="metric-value tone-{{ card.tone }}">{{ card.display_value }}</div>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+    {% if grid_items or blocker_items %}
+    <div class="subsection-label">{{ l("What is holding each one back") }}</div>
+    {% if grid_items %}
+    <div class="list-stack">
+        {% for item in grid_items %}
+        <article class="grid-item">
+            <div class="grid-title">{{ item.agent_correlation | bi }}</div>
+            {% if item.priority_weight %}<div class="row-meta">{{ item.priority_weight }}</div>{% endif %}
+            {% if item.neural_logic %}<p class="grid-copy">{{ item.neural_logic | bi }}</p>{% endif %}
+            {% if item.architect_fix %}<p class="grid-copy"><strong>{{ l("Architect fix:") }}</strong> {{ item.architect_fix | bi }}</p>{% endif %}
+            {% if item.discovery %}<p class="grid-copy"><strong>{{ l("Discovery:") }}</strong> {{ item.discovery | bi }}</p>{% endif %}
+        </article>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if blocker_items %}
+    <div class="list-stack">
+        {% for item in blocker_items %}
+        <article class="list-row">
+            <div class="row-title">{{ item.reason | bi }}</div>
+            <div class="row-copy">{{ l(item.category) }}{% if item.impact_display %} · {{ item.impact_display }}{% endif %}</div>
+        </article>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endif %}
+</section>
+
+{% set actions_empty = "No audit-backed actions were recorded for this report." %}
+{% include "partials/actions_section.html.j2" %}

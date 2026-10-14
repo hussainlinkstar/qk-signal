@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="{{ language | default('en') }}"{% if is_rtl %} dir="rtl"{% endif %}>
+<head>
+    <meta charset="utf-8" />
+    <title>{{ branding.report_title | default(branding.title) }}</title>
+    <style>
+    /* ── @page rules live here so Jinja2 can inject branding colours
+         into the :first page selector.
+
+         Header and footer are drawn by reportlab (chrome_overlay.py)
+         as a full-bleed overlay AFTER WeasyPrint renders the body.
+         The top/bottom margins reserve space for them; no @page
+         margin-box content is needed. ── */
+
+    @page {
+      size: A4;
+      margin: 18mm 14mm 18mm;
+    }
+
+    @page :first {
+      margin: 0;
+    }
+
+    {% if report_kind in ['standard', 'aio', 'seo', 'executive'] %}
+    @page {
+      size: A4;
+      margin: 16mm 11mm 14mm;
+    }
+
+    @page :first {
+      margin: 8mm 11mm 10mm;
+    }
+    {% endif %}
+
+    /* ── Approved typefaces, vendored under services/pdf_reports/assets/.
+         @font-face must live in the document's own <style>: WeasyPrint 70
+         ignores @font-face rules in stylesheets passed to write_pdf().
+         Earlier stacks named Inter/Manrope, but neither was installed in
+         the worker image, so every PDF silently fell back to DejaVu. ── */
+    @font-face { font-family: "Satoshi"; src: url("{{ fonts_uri }}/satoshi-400.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Satoshi"; src: url("{{ fonts_uri }}/satoshi-500.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Satoshi"; src: url("{{ fonts_uri }}/satoshi-700.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Satoshi"; src: url("{{ fonts_uri }}/satoshi-900.woff2") format("woff2"); font-weight: 900; }
+    @font-face { font-family: "Inter"; src: url("{{ fonts_uri }}/inter-400.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Inter"; src: url("{{ fonts_uri }}/inter-500.woff2") format("woff2"); font-weight: 500; }
+    @font-face { font-family: "Inter"; src: url("{{ fonts_uri }}/inter-600.woff2") format("woff2"); font-weight: 600; }
+    @font-face { font-family: "Inter"; src: url("{{ fonts_uri }}/inter-700.woff2") format("woff2"); font-weight: 700; }
+    @font-face { font-family: "Roboto Mono"; src: url("{{ fonts_uri }}/roboto-mono-400.woff2") format("woff2"); font-weight: 400; }
+    @font-face { font-family: "Roboto Mono"; src: url("{{ fonts_uri }}/roboto-mono-500.woff2") format("woff2"); font-weight: 500; }
+    </style>
+</head>
+<body class="report-shell report-type-{{ report_type }} report-kind-{{ report_kind }}{% if is_cjk %} is-cjk{% endif %}{% if is_rtl %} is-rtl{% endif %}" style="
+      --brand-primary: {{ branding.colors.primary }};
+      --brand-secondary: {{ branding.colors.secondary }};
+      --brand-accent: #22D3EE;
+      --brand-primary-text: {{ branding.colors.primary_text }};
+      --brand-secondary-text: {{ branding.colors.secondary_text }};
+      --report-background: {{ branding.colors.background }};
+      --report-card: {{ branding.colors.card }};
+      --report-card-alt: {{ branding.colors.card_alt }};
+      --report-border: {{ branding.colors.border }};
+      --report-text: {{ branding.colors.text }};
+      --report-muted: {{ branding.colors.muted }};
+      --report-success: {{ branding.colors.success }};
+      --report-warning: {{ branding.colors.warning }};
+      --report-danger: {{ branding.colors.danger }};
+      --report-header-bg: {{ branding.colors.header_bg | default('#050A11') }};
+      --report-header-text: {{ branding.colors.header_text | default('#94A3B8') }};
+      --report-cover-from: {{ branding.colors.cover_from }};
+      --report-cover-to: {{ branding.colors.cover_to }};
+      --report-cover-accent: {{ branding.colors.cover_accent | default(branding.colors.cover_to) }};
+    ">
+<header class="running-header" aria-hidden="true">
+    <!-- Header chrome is drawn by reportlab (chrome_overlay.py) as a
+         full-bleed overlay.  This element is kept as a hidden placeholder
+         so existing CSS selectors don't break. -->
+</header>
+<footer class="running-footer" aria-hidden="true">
+    <!-- Footer chrome is drawn by reportlab (chrome_overlay.py). -->
+</footer>
+{% block content %}
+{% block cover_page %}{% endblock %}
+{% block context_page %}{% endblock %}
+{% if report_kind in ['standard', 'aio', 'seo', 'executive'] %}<div class="report-flow">{% endif %}
+{% block toc_page %}{% endblock %}
+{% block analysis_body %}{% endblock %}
+{% block withheld_sections %}{% endblock %}
+{% block integrity_page %}{% endblock %}
+{% if report_kind in ['standard', 'aio', 'seo', 'executive'] %}</div>{% endif %}
+{% endblock %}
+</body>
+</html>

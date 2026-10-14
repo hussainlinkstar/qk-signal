@@ -1,0 +1,25 @@
+{% extends "base_email.html" %}
+{% set preheader = "Your custom domain passed DNS verification." %}
+{% set eyebrow = "White-Label" %}
+{% set title = "Domain verified" %}
+{% set lead = "Your workspace domain is now verified and ready for the final activation step." %}
+{% set cta_label = "Open White-Label Settings" %}
+{% set cta_url = settings_url %}
+{% set fallback_url = settings_url %}
+{% block content %}
+<tr><td class="body">
+    <p class="copy">Hi {{ recipient_name }},</p>
+    <p class="copy">
+        We verified <strong>{{ domain }}</strong> and confirmed it points to
+        <strong>{{ dns_target }}</strong>.
+    </p>
+    <div class="panel">
+        <p class="panel-title">Verified domain</p>
+        <div class="detail-row"><span class="detail-label">Workspace:</span> {{ workspace_name }}</div>
+        <div class="detail-row"><span class="detail-label">Brand:</span> {{ company_name }}</div>
+        <div class="detail-row"><span class="detail-label">Domain:</span> {{ domain }}</div>
+        <div class="detail-row"><span class="detail-label">DNS target:</span> {{ dns_target }}</div>
+    </div>
+    <p class="copy">If platform-managed SSL is enabled in this environment, activation will continue automatically.</p>
+</td></tr>
+{% endblock %}

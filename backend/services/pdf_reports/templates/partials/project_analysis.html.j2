@@ -1,0 +1,96 @@
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Score change") }}</h2></div>
+    <div class="card-grid">
+        {% for item in sections["project_score_delta"]["items"] %}
+        <article class="metric-card four-up{% if loop.index % 4 == 0 or loop.last %} last{% endif %}">
+            <div class="metric-label">{{ l(item.label) }}</div>
+            <div class="metric-value tone-{{ item.tone }}">{{ item.display_value }}</div>
+        </article>
+        {% endfor %}
+    </div>
+    {% include "partials/score_radar_chart.html.j2" %}
+</section>
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Trend over time") }}</h2></div>
+    {% include "partials/trend_line_chart.html.j2" %}
+    <div class="list-stack">
+        {% for item in sections["project_trend_timeline"]["items"] %}
+        <article class="list-row">
+            <div class="row-title">{{ item.date_label }}</div>
+            <div class="row-copy">Overall {{ item.overall_display }} / SEO {{ item.seo_display }} / GEO {{ item.geo_display }} / AEO {{ item.aeo_display }}</div>
+        </article>
+        {% else %}
+        <p class="muted-copy">{{ l("No trend points were available for this interval.") }}</p>
+        {% endfor %}
+    </div>
+</section>
+
+{% if sections.get("score_breakdown") and sections["score_breakdown"]["items"] %}
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("What makes up your score") }}</h2></div>
+    {% include "partials/breakdown_bar_chart.html.j2" %}
+    {% include "partials/score_breakdown.html.j2" %}
+</section>
+{% endif %}
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Action progress") }}</h2></div>
+    <div class="card-grid">
+        {% for item in sections["task_movement"]["items"] %}
+        <article class="panel-card three-up{% if loop.index % 3 == 0 or loop.last %} last{% endif %}">
+            <div class="metric-label">{{ l(item.label) }}</div>
+            <div class="trust-value">{{ item.value }}</div>
+            {% if item.details %}
+            <div class="section-note">{{ l("Examples") }}</div>
+            <div class="row-copy">{{ item.details | join(", ") | bi }}</div>
+            {% endif %}
+        </article>
+        {% endfor %}
+    </div>
+    <p class="section-note">{{ sections["task_movement"]["caption"] | bi }}</p>
+</section>
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Action status") }}</h2></div>
+    <div class="card-grid">
+        {% for item in sections["task_status_summary"]["items"] %}
+        <article class="metric-card four-up{% if loop.index % 4 == 0 or loop.last %} last{% endif %}">
+            <div class="metric-label">{{ l(item.label) }}</div>
+            <div class="metric-value tone-muted">{{ item.value }}</div>
+        </article>
+        {% endfor %}
+    </div>
+    <p class="section-note">{{ sections["task_status_summary"]["caption"] | bi }}</p>
+</section>
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Action verification") }}</h2></div>
+    <p class="section-note">{{ sections["validated_impact"]["caption"] | bi }}</p>
+    <div class="list-stack">
+        {% for item in sections["validated_impact"]["items"] %}
+        <article class="list-row">
+            <div class="row-title">{{ item.title | bi }}</div>
+            <div class="row-meta">{% if item.category %}{{ l(item.category) }} • {% endif %}{{ item.verification_label }}</div>
+            {% if item.narrative %}
+            <div class="row-copy">{{ item.narrative | bi }}</div>
+            {% endif %}
+        </article>
+        {% else %}
+        <p class="muted-copy">{{ l("No action verification results yet.") }}</p>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="report-section">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Open issues") }}</h2></div>
+    <div class="list-stack">
+        {% for item in sections["remaining_issues"]["items"] %}
+        <article class="list-row">
+            <div class="row-copy">{{ item | bi }}</div>
+        </article>
+        {% else %}
+        <p class="muted-copy">{{ l("No remaining issues were captured.") }}</p>
+        {% endfor %}
+    </div>
+</section>

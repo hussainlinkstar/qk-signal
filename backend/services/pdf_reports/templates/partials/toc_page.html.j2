@@ -1,0 +1,56 @@
+{% if report_kind in ['standard', 'aio', 'seo'] %}
+{% if report_kind == 'standard' %}
+{% set mvp_entries = [
+    ('Where you stand', 'the two scores, and what they mean for you'),
+    ('Actions', 'your fixes, in priority order'),
+    ('Questions people ask AI', 'the five question types we test'),
+    ('Trust signals', 'visibility and reputation, measured separately'),
+    ('AI engines', 'where you show up and where you are absent'),
+    ('SEO factors', 'the five factors behind the number'),
+    ('Traffic', 'traffic that assistants send you'),
+    ('Evidence', 'evidence, coverage and confidence'),
+] %}
+{% elif report_kind == 'aio' %}
+{% set mvp_entries = [
+    ('Where you stand', 'your AIO score, and what it means'),
+    ('Actions', 'your fixes, in priority order'),
+    ('Questions people ask AI', 'the five question types we test'),
+    ('Trust signals', 'visibility and reputation, measured separately'),
+    ('AI engines', 'where you show up and where you are absent'),
+    ('Traffic', 'traffic that assistants send you'),
+    ('Evidence', 'evidence, coverage and confidence'),
+] %}
+{% else %}
+{% set mvp_entries = [
+    ('Where you stand', 'your SEO score, and what it means'),
+    ('Actions', 'your fixes, in priority order'),
+    ('SEO factors', 'the five factors behind the number'),
+    ('Traffic', 'how people arrive today'),
+    ('Evidence', 'evidence, coverage and confidence'),
+] %}
+{% endif %}
+<section class="report-section toc-page">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l('Contents') }}</h2></div>
+    <div class="toc-list">
+        {% for title, description in mvp_entries %}
+        <div class="toc-entry toc-primary">
+            <span class="toc-num">{{ "%02d" | format(loop.index) }}</span>
+            <span class="toc-label">{{ l(title) }}</span>
+            <span class="toc-desc">{{ l(description) }}</span>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% elif toc_entries %}
+<section class="report-section toc-page">
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l("Table of Contents") }}</h2></div>
+    <div class="toc-list">
+        {% for entry in toc_entries %}
+        <div class="toc-entry{% if entry.level == 1 %} toc-primary{% else %} toc-secondary{% endif %}">
+            <span class="toc-label">{{ l(entry.label) }}</span>
+            <span class="toc-dots"></span>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}

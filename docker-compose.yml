@@ -1,0 +1,381 @@
+services:
+  backend:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-backend.sh"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./contracts:/contracts:ro
+      - generated_storage:/home/appuser/generated_storage
+    env_file:
+      - ${ROOT_ENV_FILE:-./.env.development}
+      - ${BACKEND_ENV_FILE:-./backend/.env.development}
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/dbname
+      - REDIS_URL=redis://redis:6379
+      - AI_SERVICE_URL=http://ai-service:8001
+      - RUN_MIGRATIONS=1
+      - LOG_LEVEL=ERROR
+      - BACKEND_RELOAD=1
+      - BACKEND_RELOAD_DIR=/app
+      - BACKEND_LOG_LEVEL=info
+      - BACKEND_ACCESS_LOG=1
+      - LOCAL_STORAGE_ROOT=${LOCAL_STORAGE_ROOT:-/home/appuser/generated_storage}
+      - SERVICE_CREDENTIAL_ROLE=api_server
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      ai-service:
+        condition: service_started
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import requests; requests.get('http://localhost:8000/openapi.json', timeout=2).raise_for_status()",
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+
+  audit-worker:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-worker.sh"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ${ROOT_ENV_FILE:-./.env.development}
+      - ${BACKEND_ENV_FILE:-./backend/.env.development}
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/dbname
+      - REDIS_URL=redis://redis:6379
+      - AI_SERVICE_URL=http://ai-service:8001
+      - LOG_LEVEL=ERROR
+      - RUN_MIGRATIONS=0
+      - SERVICE_CREDENTIAL_ROLE=audit_worker
+      - MAX_CONCURRENT_AUDITS=${MAX_CONCURRENT_AUDITS:-4}
+    depends_on:
+      db:
+        condition: service_started
+      redis:
+        condition: service_started
+      ai-service:
+        condition: service_started
+      backend:
+        condition: service_healthy
+
+  external-webhook-worker:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-external-webhook-worker.sh"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ${ROOT_ENV_FILE:-./.env.development}
+      - ${BACKEND_ENV_FILE:-./backend/.env.development}
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/dbname
+      - REDIS_URL=redis://redis:6379
+      - LOG_LEVEL=ERROR
+      - RUN_MIGRATIONS=0
+      - SERVICE_CREDENTIAL_ROLE=external_webhook_worker
+    depends_on:
+      db:
+        condition: service_started
+      redis:
+        condition: service_started
+      backend:
+        condition: service_healthy
+
+  email-worker:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-email-worker.sh"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ${ROOT_ENV_FILE:-./.env.development}
+      - ${BACKEND_ENV_FILE:-./backend/.env.development}
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/dbname
+      - REDIS_URL=redis://redis:6379
+      - LOG_LEVEL=ERROR
+      - RUN_MIGRATIONS=0
+      - SERVICE_CREDENTIAL_ROLE=email_worker
+    depends_on:
+      db:
+        condition: service_started
+      backend:
+        condition: service_healthy
+
+  billing-webhook-worker:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-billing-webhook-worker.sh"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ${ROOT_ENV_FILE:-./.env.development}
+      - ${BACKEND_ENV_FILE:-./backend/.env.development}
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/dbname
+      - REDIS_URL=redis://redis:6379
+      - LOG_LEVEL=ERROR
+      - RUN_MIGRATIONS=0
+      - SERVICE_CREDENTIAL_ROLE=billing_webhook_worker
+    depends_on:
+      db:
+        condition: service_started
+      redis:
+        condition: service_started
+      backend:
+        condition: service_healthy
+
+  pdf-worker:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-pdf-worker.sh"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes:
+      - ./backend:/app
+      - generated_storage:/home/appuser/generated_storage
+    env_file:
+      - ${ROOT_ENV_FILE:-./.env.development}
+      - ${BACKEND_ENV_FILE:-./backend/.env.development}
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/dbname
+      - REDIS_URL=redis://redis:6379
+      - AI_SERVICE_URL=http://ai-service:8001
+      - LOG_LEVEL=ERROR
+      - RUN_MIGRATIONS=0
+      - LOCAL_STORAGE_ROOT=${LOCAL_STORAGE_ROOT:-/home/appuser/generated_storage}
+      - SERVICE_CREDENTIAL_ROLE=pdf_worker
+    depends_on:
+      db:
+        condition: service_started
+      redis:
+        condition: service_started
+      backend:
+        condition: service_healthy
+
+  ai-service:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-ai-service.sh"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ${ROOT_ENV_FILE:-./.env.development}
+      - ${BACKEND_ENV_FILE:-./backend/.env.development}
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - AI_RETRY_COUNT=${AI_RETRY_COUNT:-3}
+      - AI_RETRY_BASE_DELAY=${AI_RETRY_BASE_DELAY:-0.5}
+      - AI_RETRY_MAX_DELAY=${AI_RETRY_MAX_DELAY:-4.0}
+      - AI_RETRY_COUNT_GOOGLE=${AI_RETRY_COUNT_GOOGLE:-3}
+      - AI_RETRY_COUNT_OPENAI=${AI_RETRY_COUNT_OPENAI:-3}
+      - AI_RETRY_COUNT_ANTHROPIC=${AI_RETRY_COUNT_ANTHROPIC:-3}
+      - AI_ANTHROPIC_MAX_TOKENS=${AI_ANTHROPIC_MAX_TOKENS:-8192}
+      - LOG_LEVEL=ERROR
+      - AI_SERVICE_RELOAD=${AI_SERVICE_RELOAD:-0}
+      - AI_SERVICE_RELOAD_DIR=${AI_SERVICE_RELOAD_DIR:-/app}
+      - AI_SERVICE_LOG_LEVEL=${AI_SERVICE_LOG_LEVEL:-info}
+      - SERVICE_CREDENTIAL_ROLE=ai_service
+    depends_on:
+      - redis
+
+  monitoring-worker:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-monitoring-worker.sh"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ${ROOT_ENV_FILE:-./.env.development}
+      - ${BACKEND_ENV_FILE:-./backend/.env.development}
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/dbname
+      - REDIS_URL=redis://redis:6379
+      - LOG_LEVEL=ERROR
+      - SERVICE_CREDENTIAL_ROLE=monitoring_worker
+    depends_on:
+      db:
+        condition: service_started
+      redis:
+        condition: service_started
+      backend:
+        condition: service_healthy
+
+  visibility-worker:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-visibility-worker.sh"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ${ROOT_ENV_FILE:-./.env.development}
+      - ${BACKEND_ENV_FILE:-./backend/.env.development}
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/dbname
+      - REDIS_URL=redis://redis:6379
+      - AI_SERVICE_URL=http://ai-service:8001
+      - LOG_LEVEL=ERROR
+      - SERVICE_CREDENTIAL_ROLE=visibility_worker
+    depends_on:
+      db:
+        condition: service_started
+      redis:
+        condition: service_started
+      ai-service:
+        condition: service_started
+      backend:
+        condition: service_healthy
+
+  performance-worker:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-performance-worker.sh"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ${ROOT_ENV_FILE:-./.env.development}
+      - ${BACKEND_ENV_FILE:-./backend/.env.development}
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/dbname
+      - REDIS_URL=redis://redis:6379
+      - LOG_LEVEL=ERROR
+      - SERVICE_CREDENTIAL_ROLE=performance_worker
+    depends_on:
+      db:
+        condition: service_started
+      redis:
+        condition: service_started
+      backend:
+        condition: service_healthy
+
+  cron-sweeper:
+    build: ./backend
+    command: sh -c "exec sh ./scripts/start-cron-sweeper.sh"
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes:
+      - ./backend:/app
+    env_file:
+      - ${ROOT_ENV_FILE:-./.env.development}
+      - ${BACKEND_ENV_FILE:-./backend/.env.development}
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/dbname
+      - REDIS_URL=redis://redis:6379
+      - LOG_LEVEL=ERROR
+      - SERVICE_CREDENTIAL_ROLE=cron_sweeper
+    depends_on:
+      db:
+        condition: service_started
+      redis:
+        condition: service_started
+      backend:
+        condition: service_healthy
+
+  frontend:
+    build: ./frontend
+    profiles:
+      - production
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    ports:
+      - "3000:3000"
+    env_file:
+      - ${ROOT_ENV_FILE:-./.env.development}
+    # The volume mounts that caused the issue have been removed.
+    # The container will now use the code baked into the image during the build.
+    environment:
+      - BACKEND_URL=${BACKEND_URL:-http://backend:8000}
+      - PROXY_TIMEOUT_MS=${PROXY_TIMEOUT_MS:-90000}
+      - PROXY_SHORT_TIMEOUT_MS=${PROXY_SHORT_TIMEOUT_MS:-15000}
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  frontend-dev:
+    build:
+      context: ./frontend
+      target: deps
+    profiles:
+      - frontend-dev
+    cap_drop: [ALL]
+    cap_add: [DAC_OVERRIDE, FOWNER, CHOWN]
+    security_opt: [no-new-privileges:true]
+    command: >
+      sh -c "mkdir -p .next-dev &&
+             echo 'self.__PRERENDER_MANIFEST=\"{}\"' > .next-dev/prerender-manifest.js &&
+             exec npm run dev"
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+      - frontend_next_dev:/app/.next-dev
+    env_file:
+      - ${ROOT_ENV_FILE:-./.env.development}
+    environment:
+      - NODE_ENV=development
+      - BACKEND_URL=${BACKEND_URL:-http://backend:8000}
+      - PROXY_TIMEOUT_MS=${PROXY_TIMEOUT_MS:-90000}
+      - PROXY_SHORT_TIMEOUT_MS=${PROXY_SHORT_TIMEOUT_MS:-15000}
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
+    depends_on:
+      backend:
+        condition: service_healthy
+
+  db:
+    image: postgres:18
+    cap_drop: [ALL]
+    cap_add: [CHOWN, DAC_OVERRIDE, FOWNER, SETGID, SETUID]
+    security_opt: [no-new-privileges:true]
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=dbname
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user -d dbname"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  redis:
+    image: redis:8
+    cap_drop: [ALL]
+    cap_add: [SETGID, SETUID, SETPCAP]
+    security_opt: [no-new-privileges:true]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+  generated_storage:
+  frontend_next_dev:

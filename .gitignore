@@ -1,0 +1,156 @@
+# Dependencies & Frameworks
+node_modules/
+frontend/node_modules/
+frontend/.next/
+frontend/.next-build/
+frontend/.next-dev/
+frontend/playwright-report/
+frontend/test-results/
+# TypeScript incremental build state: rewritten by any local `tsc`, so tracking
+# it turns every typecheck into a dirty working tree (SIGV2-1125).
+frontend/tsconfig.tsbuildinfo
+
+# Python Cache & Virtual Envs
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+backend/.venv
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.nyc_output/
+coverage/
+backend/calibration_output/
+
+# Environment files & Secrets
+.env
+*.env
+*.env.development
+*.env.local
+*.env.production
+*.env.staging
+backend/.env
+frontend/.env
+*.pem
+*.key
+*.cert
+*.crt
+*credentials*.json
+*.p12
+*.pfx
+service-account*.json
+gcp-credentials.json
+gen-lang-client-*.json
+
+# IDE & AI Assistant Tools
+.idea/
+.vscode/
+.devin/
+.claude/
+.cursor/
+.cursorrules
+.codex/
+.cognition/
+.windsurf/
+.aider*
+.copilot/
+.bolt/
+.cline/
+.continue/
+.roomodes
+.roo/
+AGENTS.md
+CLAUDE.md
+*.swp
+*.swo
+*~
+
+# Build & Deploy Artifacts
+dist/
+build/
+*.egg-info/
+docker-compose.override.yml
+.vite/
+/frontend/package-lock.json
+
+# Logs & Temporary Files
+*.log
+logs/
+.tmp/
+C:/
+widget.html
+test_redesign.html
+test_redesign.pdf
+/.analytics-setup-venv/
+
+# Audit & Report Artifacts
+backend/generated_reports/
+/UI-AUDIT/
+latest_canonical_audit.json
+latest_raw_audit.json
+/report_dev/.venv/
+/report_dev/__pycache__/
+/report_dev/*.local.json
+/report_dev/*.html
+/report_dev/*.pdf
+/report_dev/latest_canonical_audit.json
+
+# PDF Local Dev (Whitelist)
+/report_dev/*
+!/report_dev/
+!/report_dev/README.md
+!/report_dev/dev_server.py
+!/report_dev/requirements.txt
+!/report_dev/setup.sh
+!/report_dev/start.sh
+
+# OS Specific Files
+.DS_Store
+Thumbs.db
+/report_dev/
+
+# Calibration State
+scripts/.v3_calibration_state.json
+
+# Internal development planning & tracking
+/planning/
+/TASKS/
+/BUGS/
+/ACCOUNTS.md
+
+# Product documentation PDF (lives in acquire/)
+/ThothGraph_Product_Documentation.pdf
+
+# Local buyer data room artifacts
+/SUpported_data/
+/acquire/
+
+# Temporary brand assets
+/temp_brands/
+outreach/
+
+# git worktrees (local dev isolation)
+.worktrees/
+
+# Written by scripts/deploy-production.sh after a deploy completes (server-local).
+.deployed-sha
+
+# Server-local credentials, never committed.
+secrets/
+
+# Local visual-drift gate artifacts (uncommitted tooling + live session state)
+frontend/visual-drift*.mjs
+frontend/auth-state.json
+frontend/debug-*.mjs
+frontend/probe-*.mjs
+
+# Local email template previews (scripts/generate_email_previews.py output)
+backend/email_previews/
+
+# local mock/stub run logs
+frontend/stub-out.txt
+frontend/stub-err.txt
+stub-run.out
+stub-run.err

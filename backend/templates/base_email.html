@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="{{ lang | default('en') }}" dir="ltr" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, user-scalable=yes">
+    <meta name="x-apple-disable-message-reformatting">
+    <meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no">
+    <meta name="color-scheme" content="light dark">
+    <meta name="supported-color-schemes" content="light dark">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ subject }}</title>
+    <!--[if mso]><noscript>
+    <xml>
+        <o:OfficeDocumentSettings>
+            <o:PixelsPerInch>96</o:PixelsPerInch>
+        </o:OfficeDocumentSettings>
+    </xml>
+    </noscript><![endif]-->
+    <!--[if mso]>
+    <style type="text/css">
+        body,table,td,a,span,h1,h2,h3,h4,h5,p,img,ul,ol,li{font-family:Helvetica,Arial,sans-serif!important;mso-line-height-rule:exactly!important}
+    </style>
+    <![endif]-->
+    <!-- Keep each stylesheet below Gmail's style-block parsing limit. -->
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            word-wrap: normal;
+            word-spacing: normal;
+            width: 100% !important;
+        }
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0;
+            mso-table-rspace: 0;
+        }
+        body, table, td, a {
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+            font-family: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        }
+        img {
+            border: 0;
+            line-height: 100%;
+            outline: 0;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+            display: block;
+        }
+        .wrapper {
+            width: 100%;
+            background: #F6F7F9;
+        }
+        .fluid {
+            width: 580px;
+            max-width: 580px;
+        }
+        .browser-row {
+            padding: 12px 40px 12px 40px;
+            text-align: right;
+        }
+        .browser-link {
+            color: #565E6E !important;
+            text-decoration: none;
+            font-size: 14px;
+            line-height: 20px;
+        }
+        .header-row {
+            padding: 24px 40px 24px 40px;
+        }
+        .header-cta {
+            color: #0C0F16 !important;
+            text-decoration: none;
+            font-size: 13px;
+            line-height: 18px;
+            font-weight: 700;
+        }
+        .logo-img {
+            height: 32px;
+            width: auto;
+            max-width: 220px;
+        }
+        .hero {
+            padding: 40px 40px 32px 40px;
+        }
+        .meta-chip {
+            display: inline-block;
+            color: {{ brand_accent_color | default('#9333EA') }};
+            font-family: 'Roboto Mono', 'SFMono-Regular', Consolas, monospace;
+            font-size: 11px;
+            line-height: 16px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        h1 {
+            margin: 16px 0 12px 0;
+            color: #0C0F16;
+            font-family: 'Satoshi', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 36px;
+            line-height: 40px;
+            letter-spacing: -0.02em;
+            font-weight: 700;
+        }
+        .lead {
+            margin: 0;
+            color: #0C0F16;
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 400;
+        }
+        .button-wrap {
+            margin-top: 24px;
+        }
+        .button {
+            background: {{ brand_primary_color | default('#0C0F16') }};
+            background-color: {{ brand_primary_color | default('#0C0F16') }};
+            text-decoration: none;
+            padding: 12px 20px;
+            color: #ffffff !important;
+            border-radius: 10px;
+            display: inline-block;
+            mso-padding-alt: 0;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 16px;
+            text-align: center;
+        }
+        .body {
+            padding: 0 40px 0 40px;
+        }
+        .copy {
+            color: #0C0F16;
+            font-size: 16px;
+            line-height: 24px;
+            margin: 0 0 16px 0;
+            font-weight: 400;
+        }
+        .panel {
+            margin: 0 0 20px 0;
+            padding: 18px 20px;
+            border-radius: 10px;
+            background: #EEF0F3;
+            border: 1px solid #E8EAEE;
+        }
+        .panel-title {
+            margin: 0 0 10px 0;
+            color: #0C0F16;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 20px;
+        }
+        .detail-row {
+            padding: 8px 0;
+            border-bottom: 1px solid #E8EAEE;
+            color: #0C0F16;
+            font-size: 14px;
+            line-height: 20px;
+        }
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        .detail-label {
+            color: #565E6E;
+            font-weight: 600;
+        }
+        .list {
+            margin: 0 0 16px;
+            padding-left: 18px;
+            color: #0C0F16;
+            font-size: 16px;
+            line-height: 24px;
+        }
+        .warning {
+            background: #FCEBEB;
+            border-color: #E5484D;
+        }
+        .danger {
+            color: #E5484D;
+        }
+        .muted-link {
+            color: {{ brand_accent_color | default('#9333EA') }} !important;
+            text-decoration: none;
+            word-break: break-all;
+        }
+        .copy-muted {
+            color: #565E6E;
+            font-size: 13px;
+            line-height: 20px;
+            margin: 0 0 16px 0;
+            font-weight: 400;
+        }
+        .footer {
+            padding: 32px 40px 40px 40px;
+        }
+        .footer-divider {
+            border: none;
+            border-top: 1px solid #E8EAEE;
+            margin: 0 0 16px 0;
+        }
+        .footer-heading {
+            color: #0C0F16;
+            font-size: 16px;
+            line-height: 24px;
+            margin: 0 0 12px 0;
+            font-weight: 700;
+        }
+        .footer-copy {
+            margin: 0 0 8px 0;
+            color: #565E6E;
+            font-size: 12px;
+            line-height: 18px;
+            font-weight: 400;
+        }
+        .footer-copy a {
+            color: #565E6E;
+            text-decoration: underline;
+        }
+        .legal-row {
+            margin: 0;
+            padding: 22px 0 22px 0;
+            border-bottom: 1px solid #E8EAEE;
+        }
+        .legal-link {
+            color: #0C0F16 !important;
+            text-decoration: underline;
+            font-size: 14px;
+            line-height: 14px;
+            margin-right: 14px;
+            white-space: nowrap;
+        }
+        .social-link {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border-radius: 999px;
+            border: 1px solid #E8EAEE;
+            background: #FFFFFF;
+            text-decoration: none;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .social-icon {
+            width: 16px;
+            height: 16px;
+            margin: 7px auto 0 auto;
+        }
+        .social-glyph {
+            color: #0C0F16;
+            font-size: 10px;
+            line-height: 32px;
+            text-align: center;
+            display: block;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .brand-lockup {
+            padding: 0 0 16px 0;
+        }
+        .brand-lockup img {
+            width: auto;
+            height: 26px;
+            max-width: 220px;
+        }
+        .darkmode-show {
+            display: none !important;
+        }
+    </style>
+    <style type="text/css">
+        .brand-sig {
+            font-family: 'Satoshi', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 16px;
+            color: #5F6876;
+            letter-spacing: -0.02em;
+        }
+        .score-grid {
+            width: 100%;
+            margin: 0 0 18px 0;
+        }
+        .score-cell {
+            width: 50%;
+            padding-right: 10px;
+            vertical-align: top;
+        }
+        .score-cell-last {
+            padding-right: 0;
+        }
+        .score-card {
+            padding: 16px 18px;
+            border: 1px solid #E8EAEE;
+            border-left: 3px solid #E8EAEE;
+            border-radius: 14px;
+        }
+        .score-card.aio {
+            border-left-color: #9333EA;
+        }
+        .score-card.seo {
+            border-left-color: #12A150;
+        }
+        .score-label {
+            margin: 0;
+            color: #5F6876;
+            font-family: 'Roboto Mono', 'SFMono-Regular', Consolas, monospace;
+            font-size: 10px;
+            line-height: 10px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .score-value {
+            margin: 10px 0 3px 0;
+            color: #0C0F16;
+            font-family: 'Satoshi', 'Inter', 'Helvetica Neue', Arial, sans-serif;
+            font-size: 32px;
+            line-height: 1;
+            font-weight: 900;
+        }
+        .score-value small {
+            font-size: 12px;
+            font-weight: 600;
+            color: #5F6876;
+        }
+        .score-desc {
+            margin: 0;
+            color: #565E6E;
+            font-size: 12px;
+            line-height: 16px;
+        }
+        @media screen and (max-width: 620px) {
+            .fluid {
+                width: 100% !important;
+                max-width: 100% !important;
+            }
+            .px-16 {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+            .p-20-16 {
+                padding: 20px 16px !important;
+            }
+            .p-12-16 {
+                padding: 12px 16px !important;
+            }
+            .hero, .body, .footer {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+            .browser-row {
+                padding-left: 16px !important;
+                padding-right: 16px !important;
+            }
+            .score-cell {
+                display: block !important;
+                width: 100% !important;
+                padding-right: 0 !important;
+                padding-bottom: 10px !important;
+            }
+            h1 {
+                font-size: 30px !important;
+                line-height: 36px !important;
+            }
+        }
+    </style>
+    <style type="text/css">
+        :root {
+            color-scheme: light dark;
+            supported-color-schemes: light dark;
+        }
+        @media (prefers-color-scheme: dark) {
+            .darkmode-bg1 {
+                background: #1C222D !important;
+                background-color: #1C222D !important;
+            }
+            .darkmode-bg2 {
+                background: #0C0F16 !important;
+                background-color: #0C0F16 !important;
+            }
+            .darkmode-bg3 {
+                background: {{ brand_accent_color | default('#9333EA') }} !important;
+                background-color: {{ brand_accent_color | default('#9333EA') }} !important;
+            }
+            .darkmode-bg4 {
+                background: #141821 !important;
+                background-color: #141821 !important;
+            }
+            .darkmode-bg8 {
+                background: #232A36 !important;
+                background-color: #232A36 !important;
+            }
+            .darkmode-text1 {
+                color: #F6F7F9 !important;
+            }
+            .darkmode-text2 {
+                color: #C7CDD6 !important;
+            }
+            .darkmode-text4 {
+                color: #8A92A1 !important;
+            }
+            .darkmode-text5 {
+                color: {{ brand_primary_color | default('#0C0F16') }} !important;
+            }
+            .darkmode-border1 {
+                border-color: #242B38 !important;
+            }
+            .darkmode-hide {
+                display: none !important;
+                max-height: 0 !important;
+                overflow: hidden !important;
+            }
+            .darkmode-show {
+                display: block !important;
+                max-height: none !important;
+                overflow: visible !important;
+            }
+            .darkmode-bg2 .copy,
+            .darkmode-bg2 .lead,
+            .darkmode-bg2 .list,
+            .darkmode-bg2 .list li,
+            .darkmode-bg2 .detail-row {
+                color: #C7CDD6 !important;
+            }
+            .darkmode-bg2 h1,
+            .darkmode-bg2 .panel-title,
+            .darkmode-bg2 .score-value {
+                color: #F6F7F9 !important;
+            }
+            .darkmode-bg2 .detail-label,
+            .darkmode-bg2 .score-label,
+            .darkmode-bg2 .score-value small {
+                color: #8A92A1 !important;
+            }
+            .darkmode-bg2 .score-desc {
+                color: #C7CDD6 !important;
+            }
+            .darkmode-bg2 .panel,
+            .darkmode-bg2 .score-card {
+                background: #141821 !important;
+                background-color: #141821 !important;
+                border-color: #242B38 !important;
+            }
+            .darkmode-bg2 .score-card.aio {
+                border-left-color: #9333EA !important;
+            }
+            .darkmode-bg2 .score-card.seo {
+                border-left-color: #12A150 !important;
+            }
+            .darkmode-bg2 .detail-row {
+                border-color: #242B38 !important;
+            }
+            .darkmode-bg2 .danger {
+                color: #FF9A9E !important;
+            }
+            .darkmode-bg2 .warning {
+                background: #2A1618 !important;
+                background-color: #2A1618 !important;
+                border-color: #4A1F22 !important;
+            }
+            .darkmode-bg2 .copy-muted {
+                color: #8A92A1 !important;
+            }
+        }
+    </style>
+    <style type="text/css">
+        [data-ogsb] .darkmode-bg1 {
+            background: #1C222D !important;
+            background-color: #1C222D !important;
+        }
+        [data-ogsb] .darkmode-bg2 {
+            background: #0C0F16 !important;
+            background-color: #0C0F16 !important;
+        }
+        [data-ogsb] .darkmode-bg3 {
+            background: {{ brand_accent_color | default('#9333EA') }} !important;
+            background-color: {{ brand_accent_color | default('#9333EA') }} !important;
+        }
+        [data-ogsb] .darkmode-bg4 {
+            background: #141821 !important;
+            background-color: #141821 !important;
+        }
+        [data-ogsb] .darkmode-bg8 {
+            background: #232A36 !important;
+            background-color: #232A36 !important;
+        }
+        [data-ogsb] .darkmode-text1 {
+            color: #F6F7F9 !important;
+        }
+        [data-ogsb] .darkmode-text2 {
+            color: #C7CDD6 !important;
+        }
+        [data-ogsb] .darkmode-text4 {
+            color: #8A92A1 !important;
+        }
+        [data-ogsb] .darkmode-text5 {
+            color: {{ brand_primary_color | default('#0C0F16') }} !important;
+        }
+        [data-ogsb] .darkmode-border1 {
+            border-color: #242B38 !important;
+        }
+        [data-ogsb] .darkmode-hide {
+            display: none !important;
+            max-height: 0 !important;
+            overflow: hidden !important;
+        }
+        [data-ogsb] .darkmode-show {
+            display: block !important;
+            max-height: none !important;
+            overflow: visible !important;
+        }
+        [data-ogsb] .darkmode-bg2 .copy,
+        [data-ogsb] .darkmode-bg2 .lead,
+        [data-ogsb] .darkmode-bg2 .list,
+        [data-ogsb] .darkmode-bg2 .list li,
+        [data-ogsb] .darkmode-bg2 .detail-row {
+            color: #C7CDD6 !important;
+        }
+        [data-ogsb] .darkmode-bg2 h1,
+        [data-ogsb] .darkmode-bg2 .panel-title,
+        [data-ogsb] .darkmode-bg2 .score-value {
+            color: #F6F7F9 !important;
+        }
+        [data-ogsb] .darkmode-bg2 .detail-label,
+        [data-ogsb] .darkmode-bg2 .score-label,
+        [data-ogsb] .darkmode-bg2 .score-value small {
+            color: #8A92A1 !important;
+        }
+        [data-ogsb] .darkmode-bg2 .score-desc {
+            color: #C7CDD6 !important;
+        }
+        [data-ogsb] .darkmode-bg2 .panel,
+        [data-ogsb] .darkmode-bg2 .score-card {
+            background: #141821 !important;
+            background-color: #141821 !important;
+            border-color: #242B38 !important;
+        }
+        [data-ogsb] .darkmode-bg2 .score-card.aio {
+            border-left-color: #9333EA !important;
+        }
+        [data-ogsb] .darkmode-bg2 .score-card.seo {
+            border-left-color: #12A150 !important;
+        }
+        [data-ogsb] .darkmode-bg2 .detail-row {
+            border-color: #242B38 !important;
+        }
+        [data-ogsb] .darkmode-bg2 .danger {
+            color: #FF9A9E !important;
+        }
+        [data-ogsb] .darkmode-bg2 .warning {
+            background: #2A1618 !important;
+            background-color: #2A1618 !important;
+            border-color: #4A1F22 !important;
+        }
+        [data-ogsb] .darkmode-bg2 .copy-muted {
+            color: #8A92A1 !important;
+        }
+    </style>
+    <style type="text/css">
+        .force-dark .darkmode-bg1 {
+            background: #1C222D !important;
+            background-color: #1C222D !important;
+        }
+        .force-dark .darkmode-bg2 {
+            background: #0C0F16 !important;
+            background-color: #0C0F16 !important;
+        }
+        .force-dark .darkmode-bg3 {
+            background: {{ brand_accent_color | default('#9333EA') }} !important;
+            background-color: {{ brand_accent_color | default('#9333EA') }} !important;
+        }
+        .force-dark .darkmode-bg4 {
+            background: #141821 !important;
+            background-color: #141821 !important;
+        }
+        .force-dark .darkmode-bg8 {
+            background: #232A36 !important;
+            background-color: #232A36 !important;
+        }
+        .force-dark .darkmode-text1 {
+            color: #F6F7F9 !important;
+        }
+        .force-dark .darkmode-text2 {
+            color: #C7CDD6 !important;
+        }
+        .force-dark .darkmode-text4 {
+            color: #8A92A1 !important;
+        }
+        .force-dark .darkmode-text5 {
+            color: {{ brand_primary_color | default('#0C0F16') }} !important;
+        }
+        .force-dark .darkmode-border1 {
+            border-color: #242B38 !important;
+        }
+        .force-dark .darkmode-hide {
+            display: none !important;
+            max-height: 0 !important;
+            overflow: hidden !important;
+        }
+        .force-dark .darkmode-show {
+            display: block !important;
+            max-height: none !important;
+            overflow: visible !important;
+        }
+        .force-dark .darkmode-bg2 .copy,
+        .force-dark .darkmode-bg2 .lead,
+        .force-dark .darkmode-bg2 .list,
+        .force-dark .darkmode-bg2 .list li,
+        .force-dark .darkmode-bg2 .detail-row {
+            color: #C7CDD6 !important;
+        }
+        .force-dark .darkmode-bg2 h1,
+        .force-dark .darkmode-bg2 .panel-title,
+        .force-dark .darkmode-bg2 .score-value {
+            color: #F6F7F9 !important;
+        }
+        .force-dark .darkmode-bg2 .detail-label,
+        .force-dark .darkmode-bg2 .score-label,
+        .force-dark .darkmode-bg2 .score-value small {
+            color: #8A92A1 !important;
+        }
+        .force-dark .darkmode-bg2 .score-desc {
+            color: #C7CDD6 !important;
+        }
+        .force-dark .darkmode-bg2 .panel,
+        .force-dark .darkmode-bg2 .score-card {
+            background: #141821 !important;
+            background-color: #141821 !important;
+            border-color: #242B38 !important;
+        }
+        .force-dark .darkmode-bg2 .score-card.aio {
+            border-left-color: #9333EA !important;
+        }
+        .force-dark .darkmode-bg2 .score-card.seo {
+            border-left-color: #12A150 !important;
+        }
+        .force-dark .darkmode-bg2 .detail-row {
+            border-color: #242B38 !important;
+        }
+        .force-dark .darkmode-bg2 .danger {
+            color: #FF9A9E !important;
+        }
+        .force-dark .darkmode-bg2 .warning {
+            background: #2A1618 !important;
+            background-color: #2A1618 !important;
+            border-color: #4A1F22 !important;
+        }
+        .force-dark .darkmode-bg2 .copy-muted {
+            color: #8A92A1 !important;
+        }
+    </style>
+</head>
+<body class="{% if force_dark_mode %}force-dark{% endif %} darkmode-bg1">
+<span style="color:transparent;visibility:hidden;display:none;opacity:0;height:0;width:0;font-size:0;">{{ preheader }}</span>
+<div style="display:none;max-height:0;overflow:hidden;">
+    &#847; &zwnj; &nbsp; &#8199; &shy; &#847; &zwnj; &nbsp; &#8199; &shy; &#847; &zwnj; &nbsp; &#8199; &shy;
+</div>
+<table bgcolor="#F6F7F9" width="100%" align="center" border="0" cellspacing="0" cellpadding="0" class="wrapper darkmode-bg1" role="presentation" aria-roledescription="email" aria-label="{{ brand_name }}">
+    <tr>
+        <td width="100%" align="center" class="darkmode-bg1">
+            <table bgcolor="#FFFFFF" align="center" border="0" cellpadding="0" cellspacing="0" style="width:580px;" width="580" class="fluid darkmode-bg2" role="presentation">
+                {% if view_in_browser_url %}
+                <tr>
+                    <td align="right" class="browser-row px-16 darkmode-bg1">
+                        <a href="{{ view_in_browser_url }}" class="browser-link darkmode-text4" target="_blank" rel="noopener">View in browser</a>
+                    </td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <td class="darkmode-bg2">
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:580px;" width="580" class="fluid" role="presentation">
+                            <tr>
+                                <td valign="middle" align="left" class="header-row p-20-16">
+                                    <a href="{{ brand_home_url or dashboard_url or '#' }}" title="{{ brand_name }}" style="text-decoration:none;">
+                                        {% if logo_light_url or logo_dark_url %}
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation"><tr>
+                                            <td valign="middle">
+                                                {% if logo_light_url %}
+                                                <img src="{{ logo_light_url }}" alt="{{ 'Qiko' if is_default_brand_logo else brand_name }}" width="65" height="26" class="logo-img darkmode-hide" style="display:block;height:26px;width:auto;max-width:65px;">
+                                                {% endif %}
+                                                {% if logo_dark_url %}
+                                                <!--[if !mso]><!-->
+                                                <span class="darkmode-show" style="display:none;max-height:0;overflow:hidden;font-size:0;line-height:0;">
+                                                    <img src="{{ logo_dark_url }}" alt="{{ 'Qiko' if is_default_brand_logo else brand_name }}" width="65" height="26" class="logo-img" style="display:block;height:26px;width:auto;max-width:65px;">
+                                                </span>
+                                                <!--<![endif]-->
+                                                {% endif %}
+                                            </td>
+                                            {% if is_default_brand_logo %}
+                                            <td valign="middle" style="padding-left:9px;">
+                                                <span class="brand-sig darkmode-text4">Signal</span>
+                                            </td>
+                                            {% endif %}
+                                        </tr></table>
+                                        {% endif %}
+                                        {% if not logo_light_url and not logo_dark_url %}
+                                        <span style="font-family:'Satoshi', 'Inter', 'Helvetica Neue', Arial, sans-serif;font-size:22px;line-height:22px;font-weight:700;color:#0C0F16;" class="darkmode-text1">{{ brand_name }}</span>
+                                        {% endif %}
+                                    </a>
+                                </td>
+                                <td valign="middle" align="right" class="header-row p-12-16">
+                                    {% if dashboard_url %}
+                                    <a href="{{ dashboard_url }}" class="header-cta darkmode-text1" style="color:#0C0F16;" target="_blank" rel="noopener">{{ email_i18n.login_label or 'Open app' }}</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="center" style="padding:0 0 40px 0;" class="darkmode-bg2">
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" style="width:580px;" width="580" class="fluid" role="presentation">
+                            <tr>
+                                <td class="hero px-16">
+                                    <span class="meta-chip">{{ eyebrow or email_i18n.notification or 'Notification' }}</span>
+                                    <h1 class="darkmode-text1">{{ title or subject }}</h1>
+                                    <p class="lead darkmode-text1">{{ lead }}</p>
+                                    {% if cta_url and cta_label %}
+                                    <p class="button-wrap">
+                                        <!--[if mso]>
+                                        <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" href="{{ cta_url }}" style="height:44px;v-text-anchor:middle;width:260px;" arcsize="23%" strokecolor="{{ brand_primary_color | default('#0C0F16') }}" fillcolor="{{ brand_primary_color | default('#0C0F16') }}">
+                                            <w:anchorlock/>
+                                            <center style="color:#ffffff;font-family:Helvetica,Arial,sans-serif;font-size:16px;font-weight:700;">{{ cta_label }} &rarr;</center>
+                                        </v:roundrect>
+                                        <![endif]-->
+                                        <!--[if !mso]><!-- -->
+                                        <a href="{{ cta_url }}" class="button darkmode-bg3 darkmode-text1" target="_blank" rel="noopener">{{ cta_label }} &rarr;</a>
+                                        <!--<![endif]-->
+                                    </p>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% block content %}{% endblock %}
+                            <tr>
+                                <td class="footer px-16">
+                                    {% if logo_light_url or logo_dark_url %}
+                                    <div class="brand-lockup">
+                                        <table border="0" cellpadding="0" cellspacing="0" role="presentation"><tr>
+                                            <td valign="middle">
+                                                {% if logo_light_url %}<img src="{{ logo_light_url }}" alt="{{ 'Qiko' if is_default_brand_logo else brand_name }}" width="45" height="18" class="darkmode-hide" style="display:block;width:auto;height:18px;max-width:45px;">{% endif %}
+                                                {% if logo_dark_url %}<!--[if !mso]><!--><span class="darkmode-show" style="display:none;max-height:0;overflow:hidden;font-size:0;line-height:0;"><img src="{{ logo_dark_url }}" alt="{{ 'Qiko' if is_default_brand_logo else brand_name }}" width="45" height="18" style="display:block;width:auto;height:18px;max-width:45px;"></span><!--<![endif]-->{% endif %}
+                                            </td>
+                                            {% if is_default_brand_logo %}
+                                            <td valign="middle" style="padding-left:9px;">
+                                                <span class="brand-sig darkmode-text4">Signal</span>
+                                            </td>
+                                            {% endif %}
+                                        </tr></table>
+                                    </div>
+                                    {% endif %}
+                                    {% if fallback_url %}
+                                    <p class="footer-copy darkmode-text4">{{ email_i18n.fallback_hint or "If the button does not work, open" }} <a class="darkmode-text4" href="{{ fallback_url }}" target="_blank" rel="noopener">{{ fallback_url }}</a>.</p>
+                                    {% endif %}
+                                    <p class="footer-copy darkmode-text4">{{ email_i18n.support_hint or "Need help? Contact" }} <a class="darkmode-text4" href="mailto:{{ support_address }}">{{ support_address }}</a>.</p>
+                                    {% if not is_transactional %}
+                                    <p class="footer-copy darkmode-text4">
+                                        {{ email_i18n.unsubscribe_blurb or ("You receive this email because you have a " ~ brand_name ~ " account.") }}
+                                    </p>
+                                    {% if unsubscribe_url %}<p class="footer-copy darkmode-text4"><a class="darkmode-text4" href="{{ unsubscribe_url }}" target="_blank" rel="noopener">Unsubscribe</a></p>{% endif %}
+                                    {% if company_legal_name %}<p class="footer-copy darkmode-text4">{{ company_legal_name }}{% if company_address %} &middot; {{ company_address | replace("\n", ", ") }}{% endif %}</p>{% endif %}
+                                    {% endif %}
+                                    <p class="footer-copy darkmode-text4" style="margin-top:8px;">{{ brand_name }} &copy; {{ current_year }}</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

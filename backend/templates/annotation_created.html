@@ -1,0 +1,29 @@
+{% extends "base_email.html" %}
+
+{% set eyebrow = "Report Annotation" %}
+{% set title = "New context was added to " ~ project_name %}
+{% set lead = "A team member added a report annotation so the latest audit can be reviewed as a living document, not a static snapshot." %}
+{% set cta_url = report_url %}
+{% set cta_label = "Open Report Review" %}
+{% set fallback_url = report_url %}
+{% set preheader = "A new report annotation is available for " ~ project_name ~ "." %}
+
+{% block content %}
+<tr>
+    <td class="body">
+        <p class="copy">
+            <strong>{{ annotation_author or "A teammate" }}</strong> added context on
+            <strong>{{ project_name }}</strong>{% if domain_url %} ({{ domain_url }}){% endif %}.
+        </p>
+
+        <div class="panel">
+            <p class="panel-title">Latest annotation</p>
+            <p class="copy" style="margin-bottom:0;">{{ annotation_content }}</p>
+        </div>
+
+        <p class="copy">
+            Review the thread to keep delivery notes, client-facing explanations, and report findings aligned.
+        </p>
+    </td>
+</tr>
+{% endblock %}

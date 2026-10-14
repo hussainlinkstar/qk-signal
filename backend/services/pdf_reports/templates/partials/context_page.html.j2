@@ -1,0 +1,64 @@
+{% set page = context_page if context_page is defined and context_page else {
+    "title": "Audit Context",
+    "subtitle": "Report context was assembled from persisted audit evidence.",
+    "cards": [],
+    "lists": [],
+    "highlights": [],
+} %}
+<section class="report-section">
+    {% set page_exists = context_page is defined and context_page %}
+    {% if report_kind in ['standard', 'aio', 'seo', 'executive'] %}
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ l('What this report measures') }}</h2></div>
+    <p class="section-copy">{{ l('People no longer only type into a search box. They ask an assistant. This report measures both routes to your website and tells you, in plain terms, where you are being found, where you are being trusted, and what to change first.') }}</p>
+    <div class="card-grid">
+        <article class="metric-card">
+            <div class="metric-label">{{ l('AI visibility') }}</div>
+            <div class="row-copy">{{ l('Whether assistants such as ChatGPT, Gemini, Claude and Perplexity mention you, describe you correctly, and recommend you when someone asks a question your business should answer. We test a fixed set of real questions across every engine we measure, then check whether you appear and whether the assistant cites you as its source.') }}</div>
+        </article>
+        <article class="metric-card">
+            <div class="metric-label">{{ l('Search visibility') }}</div>
+            <div class="row-copy">{{ l('Whether your pages rank in traditional search for the terms your customers use, and whether the technical health, content and authority behind those pages support those rankings.') }}</div>
+        </article>
+        <article class="metric-card">
+            <div class="metric-label">{{ l('How to read the scores') }}</div>
+            <div class="row-copy">{{ l('Both scores run from 0 to 100 and are built from measured signals, not opinion. A score is only useful next to its direction of travel. Where we have too little data to be confident, we say so rather than filling the gap with a number.') }}</div>
+        </article>
+    </div>
+    {% else %}
+    <div class="section-header"><div class="section-accent-line"></div><h2 class="section-title">{{ page.title }}</h2></div>
+    <p class="section-copy">{{ page.subtitle }}</p>
+    {% endif %}
+
+    {% if page.cards and report_kind not in ['standard', 'aio', 'seo', 'executive'] %}
+    <div class="card-grid" style="margin-top: 5mm;">
+        {% for item in page.cards %}
+        <article class="metric-card two-up{% if loop.index % 2 == 0 or loop.last %} last{% endif %}">
+            <div class="metric-label">{{ l(item.label) }}</div>
+            <div class="trust-value">{{ item.value }}</div>
+        </article>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    {% for section in page.lists %}
+    <div class="subsection-label">{{ l(section.label) }}</div>
+    <div class="list-stack">
+        {% for item in section["items"] %}
+        <article class="list-row">
+            <div class="row-copy">{{ item | bi }}</div>
+        </article>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+    {% if page.highlights %}
+    <div class="subsection-label">{{ l("Context Notes") }}</div>
+    <div class="list-stack">
+        {% for item in page.highlights %}
+        <article class="list-row">
+            <div class="row-copy">{{ item | bi }}</div>
+        </article>
+        {% endfor %}
+    </div>
+    {% endif %}
+</section>

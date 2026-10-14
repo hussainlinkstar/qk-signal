@@ -1,0 +1,21 @@
+{% extends "base_email.html" %}
+{% set preheader = email_i18n.preheader %}
+{% set eyebrow = email_i18n.eyebrow %}
+{% set title = email_i18n.title %}
+{% set lead = email_i18n.lead %}
+{% set cta_label = email_i18n.cta_label %}
+{% set cta_url = report_url %}
+{% set fallback_url = report_url %}
+{% block content %}
+<tr><td class="body">
+    <div class="panel">
+        <p class="panel-title">{{ email_i18n.models_included }}</p>
+        <div class="detail-row"><span class="detail-label">{{ email_i18n.model_set_label }}:</span> {{ model_names_csv }}</div>
+    </div>
+    <table role="presentation" class="score-grid"><tr>
+        <td class="score-cell"><div class="score-card aio"><p class="score-label">{{ email_i18n.aio_label or "AIO score" }}</p><p class="score-value">{{ aio_score if aio_score is not none else "--" }}<small>/100</small></p></div></td>
+        <td class="score-cell score-cell-last"><div class="score-card seo"><p class="score-label">{{ email_i18n.seo_label or "SEO score" }}</p><p class="score-value">{{ seo_score if seo_score is not none else "--" }}<small>/100</small></p></div></td>
+    </tr></table>
+    <p class="copy">{{ email_i18n.target_label }}: {{ target_url }}</p>
+</td></tr>
+{% endblock %}

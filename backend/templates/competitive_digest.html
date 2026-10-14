@@ -1,0 +1,27 @@
+{% extends "base_email.html" %}
+{% set preheader = email_i18n.preheader %}
+{% set eyebrow = email_i18n.eyebrow %}
+{% set title = email_i18n.title %}
+{% set lead = email_i18n.lead %}
+{% set cta_label = email_i18n.cta_label %}
+{% set cta_url = dashboard_url %}
+{% set fallback_url = dashboard_url %}
+{% block content %}
+<tr><td class="body">
+    {% if current_rank %}
+    <table role="presentation" class="score-grid"><tr>
+        <td class="score-cell"><div class="score-card aio"><p class="score-label">{{ email_i18n.aio_label or "AIO score" }}</p><p class="score-value">#{{ current_rank.aio or "--" }}</p>{% if rank_movement.aio %}<p class="score-desc">{{ rank_movement.aio }}</p>{% endif %}</div></td>
+        <td class="score-cell score-cell-last"><div class="score-card seo"><p class="score-label">{{ email_i18n.seo_label or "SEO score" }}</p><p class="score-value">#{{ current_rank.seo or "--" }}</p>{% if rank_movement.seo %}<p class="score-desc">{{ rank_movement.seo }}</p>{% endif %}</div></td>
+    </tr></table>
+    {% endif %}
+    <div class="panel">
+        <p class="panel-title">{{ email_i18n.highlights }}</p>
+        <ul class="list">
+            {% for item in highlights %}
+            <li>{{ item }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <p class="copy-muted">{{ email_i18n.updated_at }} {{ updated_at or "the latest scheduled run" }}.</p>
+</td></tr>
+{% endblock %}
