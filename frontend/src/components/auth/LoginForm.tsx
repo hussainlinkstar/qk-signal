@@ -280,6 +280,10 @@ export const LoginForm = () => {
     );
   }
 
+  const showMockDemoHint =
+    process.env.NEXT_PUBLIC_MOCK_PREVIEW === "1" ||
+    process.env.NEXT_PUBLIC_MOCK_PREVIEW === "true";
+
   return (
     <div className="w-full space-y-4">
       {showSessionExpiredNotice ? (
@@ -288,6 +292,15 @@ export const LoginForm = () => {
           description="For security reasons, your previous session has ended. Continue with password, passkey, or provider sign-in."
           title="Your session expired. Sign in to continue."
           variant="warning"
+        />
+      ) : null}
+
+      {showMockDemoHint ? (
+        <AuthInlineNotice
+          className="mb-1"
+          description="Use demo@demo.com / demo to open the mock preview dashboard."
+          title="Demo preview sign-in"
+          variant="progress"
         />
       ) : null}
 

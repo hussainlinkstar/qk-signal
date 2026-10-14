@@ -1,5 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import { isCookieSessionBearer } from "@/lib/auth-session";
+import {
+  MOCK_PREVIEW_USER,
+  isMockPreviewEnabled,
+  isMockPreviewToken,
+  isMockUserPath,
+} from "@/lib/mockPreviewAuth";
 
 const backendUrl = process.env.BACKEND_URL ?? "http://localhost:8000";
 const backendApiPrefix = "/api/v1";
@@ -93,6 +99,15 @@ export async function proxyRequest(request: NextRequest, path: string, options: 
     : path.startsWith("/v1/")
       ? `/api${path}`
       : `${backendApiPrefix}${path.startsWith("/") ? "" : "/"}${path}`;
+
+  if (isMockPreviewEnabled() && isMockUserPath(normalizedPath)) {
+    const cookieToken = request.cookies.get("auth_token")?.value;
+    const bearer = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
+    if (isMockPreviewToken(cookieToken) || isMockPreviewToken(bearer)) {
+      return NextResponse.json(MOCK_PREVIEW_USER);
+    }
+  }
+
   const targetUrl = new URL(normalizedPath.replace(/^\//, ""), base);
   targetUrl.search = request.nextUrl.search;
 

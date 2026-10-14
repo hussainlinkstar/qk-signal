@@ -1,5 +1,11 @@
 import { cookies, headers as nextHeaders } from "next/headers";
 import { redirect } from "next/navigation";
+import {
+  MOCK_PREVIEW_USER,
+  isMockPreviewEnabled,
+  isMockPreviewToken,
+  isMockUserPath,
+} from "@/lib/mockPreviewAuth";
 
 const API_PREFIX = "/api/v1";
 const DEFAULT_TIMEOUT_MS = getTimeoutFromEnv("PROXY_SHORT_TIMEOUT_MS", 5000);
@@ -123,6 +129,18 @@ function buildUpstreamErrorResponse(targetUrl: URL, timeoutMs: number, error: un
  */
 export async function serverFetch(path: string, options: ServerFetchOptions = {}) {
   const { headers, redirectOnUnauthorized = true, ...init } = options;
+
+  if (isMockPreviewEnabled() && isMockUserPath(path)) {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("auth_token")?.value;
+    if (isMockPreviewToken(token)) {
+      return new Response(JSON.stringify(MOCK_PREVIEW_USER), {
+        status: 200,
+        headers: { "content-type": "application/json" },
+      });
+    }
+  }
+
   const requestInit: RequestInit = {
     ...init,
     headers: await buildServerHeaders(headers),

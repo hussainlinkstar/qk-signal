@@ -27,8 +27,8 @@ const projectDataSourcesByProject = fixture("project-data-sources.json");
 
 const user = {
   id: 1,
-  email: "jake@qiko.ai",
-  name: "Jake",
+  email: "demo@demo.com",
+  name: "Demo User",
   is_staff: false,
   portal_only: false,
   subscription_plan: "plan_standard",

@@ -4,6 +4,9 @@
   "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm run build",
   "env": {
-    "NEXT_DIST_DIR": ".next"
+    "NEXT_DIST_DIR": ".next",
+    "MOCK_PREVIEW": "1",
+    "NEXT_PUBLIC_MOCK_PREVIEW": "1"
   }
 }
+
