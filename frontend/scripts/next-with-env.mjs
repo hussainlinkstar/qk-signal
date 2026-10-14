@@ -15,7 +15,13 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const frontendRoot = path.resolve(__dirname, "..");
 
 const args = process.argv.slice(2);
-const env = { ...process.env, NEXT_DIST_DIR: process.env.NEXT_DIST_DIR || ".next-build" };
+// Local/Docker use .next-build so it does not collide with .next-dev.
+// Vercel (and most hosts) require the standard .next output directory.
+const defaultDistDir = process.env.VERCEL || process.env.VERCEL_ENV ? ".next" : ".next-build";
+const env = {
+  ...process.env,
+  NEXT_DIST_DIR: process.env.NEXT_DIST_DIR || defaultDistDir,
+};
 const forwarded = [];
 
 for (const arg of args) {
