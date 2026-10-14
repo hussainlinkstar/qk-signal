@@ -1,5 +1,3 @@
-import path from "node:path";
-import { pathToFileURL } from "node:url";
 import { NextResponse } from "next/server";
 
 import { isMockPreviewEnabled } from "@/lib/mockPreviewAuth";
@@ -15,8 +13,9 @@ let stubModulePromise: Promise<StubModule> | null = null;
 
 function loadStubModule(): Promise<StubModule> {
   if (!stubModulePromise) {
-    const stubPath = path.join(process.cwd(), "e2e", "visual", "stub-backend.mjs");
-    stubModulePromise = import(pathToFileURL(stubPath).href) as Promise<StubModule>;
+    // Static specifier required for Vercel/webpack (dynamic path fails with
+    // "Cannot find module as expression is too dynamic").
+    stubModulePromise = import("../../e2e/visual/stub-backend.mjs") as Promise<StubModule>;
   }
   return stubModulePromise;
 }

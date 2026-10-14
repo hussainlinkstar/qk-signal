@@ -57,6 +57,8 @@ const nextConfig = {
   // answer /api/v1/* on Vercel without a separate backend process.
   outputFileTracingIncludes: {
     "/*": ["./e2e/visual/**/*"],
+    "/api/**/*": ["./e2e/visual/**/*"],
+    "/dashboard/**/*": ["./e2e/visual/**/*"],
   },
 
   // ---------------------------------------------------------------------------

@@ -18,8 +18,21 @@ const NOW = "2026-09-29T12:00:00.000Z";
 // and the other payloads stay reviewable. Serving these is what makes the
 // billing screens render their real state instead of the silent "Free"
 // fallback the budgets below were first calibrated on.
-const fixture = (name) =>
-  JSON.parse(readFileSync(new URL(`./fixtures/${name}`, import.meta.url), "utf8"));
+const STUB_DIR = path.dirname(fileURLToPath(import.meta.url));
+const fixture = (name) => {
+  const candidates = [
+    path.join(STUB_DIR, "fixtures", name),
+    path.join(process.cwd(), "e2e", "visual", "fixtures", name),
+  ];
+  for (const candidate of candidates) {
+    try {
+      return JSON.parse(readFileSync(candidate, "utf8"));
+    } catch {
+      // try next candidate
+    }
+  }
+  throw new Error(`stub fixture not found: ${name}`);
+};
 
 const billingPlans = fixture("billing-plans.json");
 const billingInvoices = fixture("billing-invoices.json");
@@ -908,6 +921,21 @@ const fakeJwt = (extra = {}) => {
 // scans, one failed), so the fixture tells the same story.
 const projectAuditHistory = {
   9: [
+    {
+      // Mock preview deep-link /dashboard/audit/2 (full_report included).
+      id: 2,
+      project_id: 9,
+      audit_type: "SMART",
+      url: "https://northwind-hotels.com",
+      audit_target_type: "website",
+      geo_score: mockPreviewAuditsById[2].geo_score,
+      seo_score: mockPreviewAuditsById[2].seo_score,
+      aeo_score: mockPreviewAuditsById[2].aeo_score,
+      status: "completed",
+      created_at: mockPreviewAuditsById[2].created_at,
+      completed_at: mockPreviewAuditsById[2].completed_at,
+      full_report: mockPreviewAuditsById[2].full_report,
+    },
     {
       id: 903,
       project_id: 9,
