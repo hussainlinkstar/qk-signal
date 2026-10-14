@@ -2022,36 +2022,60 @@ export function stubRequestListener(req, res) {
       });
     }
     // Score deltas vs the previous completed run for the same target.
+    // sub_components drive the report "What changed" card (empty → card hidden).
     else if (/^\/api\/v1\/audit\/\d+\/comparison$/.test(p)) {
       const aid = Number(p.match(/audit\/(\d+)/)?.[1]);
       ok({
         audit_id: aid,
         has_previous: true,
         previous_audit_id: 900,
-        previous_audit_date: "2026-09-18T10:00:00.000Z",
+        previous_audit_date: "2026-10-07T10:00:00.000Z",
         scores: {
-          overall: { current: 64, previous: 58, delta: 6, direction: "up" },
-          seo: { current: 72, previous: 68, delta: 4, direction: "up" },
-          geo: { current: 61, previous: 55, delta: 6, direction: "up" },
-          aeo: { current: 61, previous: 60, delta: 1, direction: "stable" },
+          overall: { current: 71, previous: 69, delta: 2, direction: "up" },
+          seo: { current: 68.4, previous: 72, delta: -3.6, direction: "down" },
+          geo: { current: 73, previous: 70, delta: 3, direction: "up" },
+          aeo: { current: 73, previous: 71, delta: 2, direction: "up" },
         },
-        sub_components: {},
+        sub_components: {
+          seo: {
+            security_accessibility: {
+              current: 92,
+              previous: 100,
+              delta: -8,
+              direction: "down",
+            },
+            onpage_content: {
+              current: 56,
+              previous: 63,
+              delta: -7,
+              direction: "down",
+            },
+          },
+          aeo: {
+            semantic_entity_density: {
+              current: 76,
+              previous: 82,
+              delta: -6,
+              direction: "down",
+            },
+          },
+        },
         history: [
           {
             audit_id: 900,
-            date: "2026-09-18T10:00:00.000Z",
-            overall: 58,
-            seo: 68,
-            geo: 55,
-            aeo: 60,
+            date: "2026-10-07T10:00:00.000Z",
+            overall: 69,
+            seo: 72,
+            geo: 70,
+            aeo: 71,
           },
           {
-            audit_id: 901,
-            date: "2026-09-29T10:00:00.000Z",
-            overall: 64,
-            seo: 72,
-            geo: 61,
-            aeo: 61,
+            audit_id: aid,
+            date: "2026-10-12T10:00:00.000Z",
+            overall: 71,
+            seo: 68,
+            geo: 73,
+            aeo: 73,
           },
         ],
       });
