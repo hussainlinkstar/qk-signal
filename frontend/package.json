@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@9.15.9",
   "scripts": {
     "dev": "node scripts/next-with-env.mjs NEXT_DIST_DIR=.next-dev dev",
     "build": "node scripts/next-with-env.mjs build",
