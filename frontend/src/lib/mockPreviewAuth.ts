@@ -1,7 +1,7 @@
 /** Mock-preview demo auth (local stub + Vercel MOCK_PREVIEW). */
 
 export const MOCK_DEMO_EMAIL = "demo@demo.com";
-export const MOCK_DEMO_PASSWORD = "demo";
+export const MOCK_DEMO_PASSWORD = "demo123";
 
 export function isMockPreviewEnabled(): boolean {
   return process.env.MOCK_PREVIEW === "1" || process.env.MOCK_PREVIEW === "true";

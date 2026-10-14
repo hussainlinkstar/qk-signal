@@ -298,7 +298,7 @@ export const LoginForm = () => {
       {showMockDemoHint ? (
         <AuthInlineNotice
           className="mb-1"
-          description="Use demo@demo.com / demo to open the mock preview dashboard."
+          description="Use demo@demo.com / demo123 to open the mock preview dashboard."
           title="Demo preview sign-in"
           variant="progress"
         />
