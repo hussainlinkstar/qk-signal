@@ -131,6 +131,9 @@ function buildUpstreamErrorResponse(targetUrl: URL, timeoutMs: number, error: un
 export async function serverFetch(path: string, options: ServerFetchOptions = {}) {
   const { headers, redirectOnUnauthorized = true, ...init } = options;
 
+  // Mock preview: /auth/me must require the demo cookie. Falling through to the
+  // stub (which always returns a user) made /login think it was signed in and
+  // bounce ↔ /dashboard forever (ERR_TOO_MANY_REDIRECTS on Vercel).
   if (isMockPreviewEnabled() && isMockUserPath(path)) {
     const cookieStore = await cookies();
     const token = cookieStore.get("auth_token")?.value;
@@ -140,6 +143,13 @@ export async function serverFetch(path: string, options: ServerFetchOptions = {}
         headers: { "content-type": "application/json" },
       });
     }
+    if (redirectOnUnauthorized) {
+      redirect(SESSION_EXPIRED_REDIRECT_PATH);
+    }
+    return new Response(JSON.stringify({ detail: "Not authenticated" }), {
+      status: 401,
+      headers: { "content-type": "application/json" },
+    });
   }
 
   const requestInit: RequestInit = {

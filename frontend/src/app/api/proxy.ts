@@ -107,6 +107,9 @@ export async function proxyRequest(request: NextRequest, path: string, options: 
     if (isMockPreviewToken(cookieToken) || isMockPreviewToken(bearer)) {
       return NextResponse.json(MOCK_PREVIEW_USER);
     }
+    // Do not fall through to the stub: unauthenticated /auth/me must be 401 so
+    // the login page does not redirect-loop with middleware.
+    return NextResponse.json({ detail: "Not authenticated" }, { status: 401 });
   }
 
   const headers = new Headers(request.headers);

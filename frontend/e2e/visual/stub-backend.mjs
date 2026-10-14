@@ -1658,11 +1658,23 @@ export function stubRequestListener(req, res) {
       body = b;
     };
 
-    if (p === "/api/v1/auth/me") ok(user);
-    else if (p === "/api/v1/auth/login" || p === "/api/v1/auth/refresh") {
+    if (p === "/api/v1/auth/me" || p === "/api/v1/users/me") {
+      // MOCK_PREVIEW (Vercel): require a bearer so anonymous /login does not
+      // treat stub /auth/me as a live session and redirect-loop with middleware.
+      const authHeader = req.headers.authorization || req.headers.Authorization || "";
+      const hasBearer =
+        typeof authHeader === "string" && /^Bearer\s+\S+/i.test(authHeader.trim());
+      if (isMockPreviewRuntime() && !hasBearer) {
+        status = 401;
+        body = { detail: "Not authenticated" };
+      } else if (p === "/api/v1/auth/me") {
+        ok(user);
+      } else {
+        ok({ ...user, trial: { is_trial: false, trial_active: false, trial_expired: false } });
+      }
+    } else if (p === "/api/v1/auth/login" || p === "/api/v1/auth/refresh") {
       ok({ access_token: fakeJwt(), refresh_token: fakeJwt({ type: "refresh", remember_me: true }) });
-    } else if (p === "/api/v1/users/me")
-      ok({ ...user, trial: { is_trial: false, trial_active: false, trial_expired: false } });
+    }
     else if (p === "/api/v1/users/me/onboarding") {
       if (req.method === "PATCH") {
         let raw = "";
