@@ -53,8 +53,55 @@ const GAP_METRIC_LABEL_KEY: Record<string, string> = {
   geo: "signalCompetitors.metric.recommendations",
 };
 
-// Competitor series colours after the project line (always --purple).
-const LINE_COLORS = ["var(--bad)", "var(--t-3)", "var(--blue)", "var(--warn)", "var(--good)"];
+// Flat series palette — project line is solid blue; rivals stay distinct.
+const PROJECT_LINE = "#3B82F6";
+const PROJECT_SOFT = "#DBEAFE";
+const LINE_COLORS = ["#EF4444", "#64748B", "#F59E0B", "#10B981", "#8B5CF6"];
+const LINE_SOFT = ["#FEE2E2", "#F1F5F9", "#FEF3C7", "#D1FAE5", "#EDE9FE"];
+
+const sectionHeaderCls =
+  "m-0 whitespace-nowrap font-(family-name:--disp) text-[15px] font-extrabold tracking-[-0.02em] text-[#111827] max-md:min-w-0 max-md:whitespace-normal";
+const miniCls =
+  "whitespace-nowrap text-[12px] font-medium text-(--t-3) max-md:w-full max-md:whitespace-normal";
+
+function Sec({ title, mini }: { title: string; mini?: string }) {
+  return (
+    <div className="flex items-center gap-3 md:mt-[26px] md:mb-[14px] max-md:min-w-0 max-md:flex-wrap max-md:items-start">
+      <h2 className={sectionHeaderCls}>{title}</h2>
+      <span className="h-4 w-px flex-none bg-(--line-2)" />
+      {mini ? <span className={miniCls}>{mini}</span> : null}
+    </div>
+  );
+}
+
+/** Catmull-Rom-ish smooth path for multi-series trend charts. */
+function smoothPath(pts: [number, number][]): string {
+  if (pts.length === 0) return "";
+  if (pts.length === 1) return `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+  let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
+  for (let i = 0; i < pts.length - 1; i++) {
+    const p0 = pts[Math.max(0, i - 1)];
+    const p1 = pts[i];
+    const p2 = pts[i + 1];
+    const p3 = pts[Math.min(pts.length - 1, i + 2)];
+    const c1x = p1[0] + (p2[0] - p0[0]) / 6;
+    const c1y = p1[1] + (p2[1] - p0[1]) / 6;
+    const c2x = p2[0] - (p3[0] - p1[0]) / 6;
+    const c2y = p2[1] - (p3[1] - p1[1]) / 6;
+    d += ` C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${p2[0].toFixed(1)},${p2[1].toFixed(1)}`;
+  }
+  return d;
+}
+
+function seriesColor(isProject: boolean, idx: number): string {
+  if (isProject) return PROJECT_LINE;
+  return LINE_COLORS[(idx - 1 + LINE_COLORS.length) % LINE_COLORS.length];
+}
+
+function seriesSoft(isProject: boolean, idx: number): string {
+  if (isProject) return PROJECT_SOFT;
+  return LINE_SOFT[(idx - 1 + LINE_SOFT.length) % LINE_SOFT.length];
+}
 
 type ScoresLike = { aeo: number | null; geo: number | null } | null | undefined;
 
@@ -493,70 +540,56 @@ export default function ProjectCompetitorsPage() {
           locked && "pointer-events-none select-none blur-[7px]"
         )}
       >
-        <div className="relative flex items-center gap-[26px] overflow-hidden rounded-[22px] border-0 bg-white px-7 py-6 before:absolute before:top-0 before:bottom-0 before:left-0 before:w-1 before:bg-(image:--grad) before:content-[''] max-md:flex-col max-md:items-stretch max-md:p-5">
+        <div className="relative overflow-hidden rounded-[18px] border-0 bg-[#F4F7FB] max-md:p-3.5">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-y-0 left-0 w-[42%] bg-[radial-gradient(ellipse_at_20%_50%,rgba(59,130,246,0.14)_0%,transparent_70%)]"
+          />
+          <div className="relative flex items-center gap-3.5 px-4 py-3 max-md:flex-col max-md:items-stretch max-md:gap-3 max-md:px-0 max-md:py-0">
           {rankOverall !== null ? (
             <div
               data-testid="comp-rank-badge"
-              className="w-[132px] flex-none rounded-[14px] border-0 bg-[#EEF1F6] px-0 py-4 text-center"
+              className="flex h-[78px] w-[78px] flex-none flex-col items-center justify-center rounded-full border-0 bg-white text-center shadow-[0_0_0_1px_rgba(17,24,39,0.05)]"
             >
               <div
-                className="font-(family-name:--disp) text-[44px] font-black leading-none tracking-[-0.03em]"
+                className="font-(family-name:--disp) text-[22px] font-extrabold leading-none tracking-[-0.03em] text-[#111827]"
                 data-signal-enter="count"
                 data-signal-count={rankOverall === null ? undefined : ordinalRank(rankOverall)}
               >
                 {ordinalRank(rankOverall)}
               </div>
-              <small className="mt-1.5 block font-mono text-[10px] uppercase tracking-[0.1em] text-(--t-3)">
+              <small className="mt-0.5 block text-[9px] font-semibold uppercase tracking-[0.06em] text-(--t-3)">
                 {t("signalCompetitors.hero.ofTracked", { total: trackedCount })}
               </small>
             </div>
           ) : null}
           <div className="min-w-0 flex-1">
-            {/* `.hmeta .eyebrow` is mono in the approved design; rendering it
-                in the body font made the block 1px shorter than the approved
-                one and shifted the headline and intro under it. */}
-            <div className="font-mono text-[11px] uppercase tracking-[0.14em] text-(--purple)">
+            <span className="inline-flex rounded-full bg-white px-2 py-px text-[10px] font-semibold text-[#1D4ED8] shadow-[0_0_0_1px_rgba(29,78,216,0.12)]">
               {t("signalCompetitors.hero.eyebrow")}
-            </div>
-            <h1 className="mt-2 mb-1.5 font-(family-name:--disp) text-[28px] font-black tracking-[-0.02em]">
+            </span>
+            <h1 className="mt-1 mb-0.5 font-(family-name:--disp) text-[18px] font-extrabold leading-[1.25] tracking-[-0.02em] text-[#111827]">
               {rankOverall !== null
                 ? t("signalCompetitors.hero.youRank", { rank: ordinalRank(rankOverall) })
                 : t("signalCompetitors.hero.title")}
             </h1>
-            <p className="m-0 max-w-[600px] text-[14px] leading-[1.5] text-(--t-2)">
+            <p className="m-0 max-w-[540px] text-[12.5px] leading-[1.4] text-(--t-2)">
               {t("signalCompetitors.hero.intro")}
             </p>
           </div>
-          {/* The approved `.gap` card is 250px wide with a larger type scale,
-              which is also the width that makes its status line fit on two
-              lines and the whole hero exactly the approved 180px (measured:
-              English divergence 26.44% -> 23.00%). It is NOT adopted here: at
-              250px the headline column narrows to the approved 660px, where
-              our Arabic headline wraps to a second line (the approved mockup's
-              own Arabic for this headline is materially shorter) and the Arabic
-              figure regresses to 37.25%. Closing that needs an Arabic copy
-              decision, not a layout one, so the card keeps its 180px width and
-              the hero stays 7px taller than the approved one. Reported on
-              SIGV2-1037. */}
           {leader && projectOverall !== null && leaderScore !== null ? (
             <div
               data-testid="comp-gap-card"
-              className="w-[180px] flex-none rounded-[14px] border-0 bg-[#EEF1F6] px-4 py-4"
+              className="flex w-[168px] flex-none flex-col justify-center rounded-[14px] border-0 bg-white px-3.5 py-2.5 shadow-[0_0_0_1px_rgba(17,24,39,0.05)]"
             >
-              <div className="font-mono text-[10px] uppercase tracking-[0.1em] text-(--t-3)">
+              <div className="text-[9.5px] font-semibold uppercase tracking-[0.07em] text-(--t-3)">
                 {t("signalCompetitors.hero.gapLabel")}
               </div>
-              <div className="mt-1.5 flex items-center gap-2 font-(family-name:--disp) text-[24px] font-black tracking-[-0.02em]">
+              <div className="mt-1 flex items-center gap-1.5 font-(family-name:--disp) text-[18px] font-extrabold tracking-[-0.02em] text-[#111827]">
                 <span>{projectOverall}</span>
                 <span className="text-(--t-3) rtl:-scale-x-100">→</span>
-                <span className="text-(--purple)">{leaderScore}</span>
+                <span className="text-[#1D4ED8]">{leaderScore}</span>
               </div>
-              {/* The approved `.gs` carries no line-height override, so it
-                  renders at the normal ratio; the 1.4 here added ~2px a line
-                  and, on the third line this card's longer status sentence
-                  needs, pushed the card past the approved 130px and the hero
-                  past the approved 180px. */}
-              <div className="mt-1 text-[11.5px] text-(--t-3)">
+              <div className="mt-1.5 text-[11px] leading-[1.3] text-(--t-3)">
                 {(() => {
                   const leaderChange = lineChange(lineForCompetitor(trend30?.lines, leader));
                   if (projectChange30 !== null && leaderChange !== null) {
@@ -578,49 +611,33 @@ export default function ProjectCompetitorsPage() {
               </div>
             </div>
           ) : null}
+          </div>
         </div>
 
         {!locked && hasCompetitors ? (
           <>
-            <div className="flex items-center gap-3 md:mt-[26px] md:mb-[14px] max-md:min-w-0 max-md:flex-wrap max-md:items-start">
-              <h2 className="m-0 whitespace-nowrap font-(family-name:--disp) text-[14px] font-bold tracking-[-0.01em] max-md:min-w-0 max-md:whitespace-normal">
-                {t("signalCompetitors.chart.heading")}
-              </h2>
-              <span className="h-4 w-px flex-none bg-(--line-2)" />
-              <span
-                data-chart-caption
-                className="whitespace-nowrap font-mono text-[11px] tracking-[0.05em] text-(--t-3) max-md:w-full max-md:whitespace-normal"
-              >
-                {/* Approved caption wording: "blended AIO + SEO · last 6
-                    months". The metric half is the approved phrase for the
-                    Blended series; the window half names the window the
-                    trends endpoint actually returned (30d|90d|1y|all - there
-                    is no six-month window to request), so it reads
-                    "last 12 months" and that half stays divergent. */}
-                {t("signalCompetitors.chart.mini", {
-                  metric: t(`signalCompetitors.chart.captionMetric.${chartMetric}`),
-                  window: t("signalCompetitors.chart.window1y"),
-                })}
-              </span>
-            </div>
-            <div className="rounded-[22px] border-0 bg-white px-6 pb-[18px] pt-[22px]">
-              <div className="mb-3.5 flex items-center gap-4 max-md:flex-wrap">
+            <Sec
+              title={t("signalCompetitors.chart.heading")}
+              mini={t("signalCompetitors.chart.mini", {
+                metric: t(`signalCompetitors.chart.captionMetric.${chartMetric}`),
+                window: t("signalCompetitors.chart.window1y"),
+              })}
+            />
+            <div className="rounded-[22px] border-0 bg-white px-5 pb-3 pt-5 sm:px-[22px]">
+              <div className="mb-3 flex flex-wrap items-center gap-3">
                 <div
                   data-testid="comp-chart-legend"
-                  className="flex items-center gap-[18px] max-md:flex-wrap"
+                  className="flex flex-wrap items-center gap-1.5"
                 >
                   {(chartTrend?.lines ?? []).map((line, idx) => (
                     <span
                       key={line.key}
-                      className="flex items-center gap-[7px] text-[12.5px] font-semibold"
+                      className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11.5px] font-semibold text-[#374151]"
+                      style={{ backgroundColor: seriesSoft(line.is_project, idx) }}
                     >
                       <i
-                        className="h-[9px] w-[9px] rounded-[3px]"
-                        style={{
-                          background: line.is_project
-                            ? "var(--purple)"
-                            : LINE_COLORS[(idx - 1 + LINE_COLORS.length) % LINE_COLORS.length],
-                        }}
+                        className="inline-block h-1.5 w-1.5 rounded-full"
+                        style={{ backgroundColor: seriesColor(line.is_project, idx) }}
                       />
                       {line.is_project
                         ? t("signalCompetitors.chart.youLine", {
@@ -630,17 +647,17 @@ export default function ProjectCompetitorsPage() {
                     </span>
                   ))}
                 </div>
-                <div className="inline-flex gap-[2px] rounded-[9px] border-0 bg-[#EEF1F6] p-[3px] ltr:ml-auto rtl:mr-auto ltr:[direction:ltr]">
+                <div className="inline-flex gap-0.5 rounded-[12px] border-0 bg-[#EEF1F6] p-[3px] ltr:ml-auto rtl:mr-auto ltr:[direction:ltr]">
                   {CHART_METRICS.map((metric) => (
                     <button
                       key={metric}
                       type="button"
                       aria-pressed={chartMetric === metric}
                       className={cx(
-                        "cursor-pointer rounded-[6px] border-none px-3 py-1.5 font-(family-name:--body-font) text-[12.5px] font-semibold",
+                        "cursor-pointer rounded-[9px] border-none px-[11px] py-1.5 font-mono text-[12px] font-semibold transition-colors",
                         chartMetric === metric
-                          ? "bg-(--ink) text-white"
-                          : "bg-transparent text-(--t-2)"
+                          ? "bg-[#E8F1FF] text-[#1D4ED8]"
+                          : "bg-transparent text-(--t-3) hover:text-(--t-1)"
                       )}
                       onClick={() => setChartMetric(metric)}
                     >
@@ -658,7 +675,7 @@ export default function ProjectCompetitorsPage() {
                 );
                 if (allValues.length === 0) {
                   return (
-                    <div className="py-10 text-center text-[12.5px] text-(--t-3)">
+                    <div className="rounded-[16px] bg-[#F8FAFC] py-10 text-center text-[13px] text-(--t-3)">
                       {t("signalCompetitors.chart.unmeasured")}
                     </div>
                   );
@@ -672,92 +689,131 @@ export default function ProjectCompetitorsPage() {
                 const step = Math.max(10, Math.ceil((max - min) / 50) * 10);
                 const gridValues: number[] = [];
                 for (let v = min; v <= max; v += step) gridValues.push(v);
-                const y = (v: number) => 230 - ((v - min) / (max - min)) * 200;
+                const W = 920;
+                const H = 280;
+                const AXIS = 52;
+                const RIGHT = 16;
+                const FLOOR = 28;
+                const plotW = W - AXIS - RIGHT;
+                const plotH = H - FLOOR - 16;
+                const y = (v: number) => H - FLOOR - ((v - min) / (max - min)) * plotH;
+                const xFor = (i: number, n: number) =>
+                  AXIS + (n <= 1 ? 0 : (i * plotW) / (n - 1));
                 const anchor =
                   lines.reduce((a, b) => (b.points.length > a.points.length ? b : a)).points ?? [];
                 const labelEvery = Math.max(1, Math.ceil(anchor.length / 6));
                 const monthFmt = new Intl.DateTimeFormat(i18n.language, { month: "short" });
+                const floorY = y(min);
                 return (
-                  <svg
-                    data-testid="comp-trend-chart"
-                    viewBox="0 0 920 280"
-                    preserveAspectRatio="none"
-                    aria-hidden="true"
-                    className="block h-auto w-full overflow-visible"
-                  >
-                    {gridValues.map((v) => (
-                      <g key={v}>
-                        <line
-                          x1={60}
-                          y1={y(v)}
-                          x2={880}
-                          y2={y(v)}
-                          stroke="var(--line-2)"
-                          strokeWidth={1}
-                        />
-                        <text
-                          x={44}
-                          y={y(v) + 4}
-                          textAnchor="end"
-                          className="fill-(--t-3) font-mono text-[10px]"
-                        >
-                          {v}
-                        </text>
-                      </g>
-                    ))}
-                    {anchor.map((point, idx) =>
-                      idx % labelEvery === 0 && point.date ? (
-                        <text
-                          key={`${point.date}-${idx}`}
-                          x={60 + (idx * 820) / Math.max(1, anchor.length - 1)}
-                          y={258}
-                          textAnchor="middle"
-                          className="fill-(--t-3) font-mono text-[10px]"
-                        >
-                          {monthFmt.format(new Date(point.date))}
-                        </text>
-                      ) : null
-                    )}
-                    {lines.map((line, lineIdx) => {
-                      const denom = Math.max(1, line.points.length - 1);
-                      const pts = line.points
-                        .map((p, i) =>
-                          typeof p.value === "number"
-                            ? `${60 + (i * 820) / denom},${y(p.value)}`
-                            : null
-                        )
-                        .filter(Boolean)
-                        .join(" ");
-                      const last = [...line.points]
-                        .reverse()
-                        .find((p) => typeof p.value === "number");
-                      const color = line.is_project
-                        ? "var(--purple)"
-                        : LINE_COLORS[(lineIdx - 1 + LINE_COLORS.length) % LINE_COLORS.length];
-                      return (
-                        <g key={line.key}>
-                          <polyline
-                            points={pts}
-                            fill="none"
-                            stroke={color}
-                            strokeWidth={line.is_project ? 3.5 : 2.5}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
+                  <div className="rounded-[16px] bg-[#F8FAFC] px-1.5 pt-2 pb-0 sm:px-2.5">
+                    <svg
+                      data-testid="comp-trend-chart"
+                      viewBox={`0 0 ${W} ${H}`}
+                      preserveAspectRatio="none"
+                      aria-hidden="true"
+                      className="block h-auto min-h-[260px] w-full"
+                    >
+                      <defs>
+                        {lines.map((line, lineIdx) => {
+                          const color = seriesColor(line.is_project, lineIdx);
+                          return (
+                            <linearGradient
+                              key={`fill-${line.key}`}
+                              id={`comp-fill-${line.key}`}
+                              x1="0"
+                              y1="0"
+                              x2="0"
+                              y2="1"
+                            >
+                              <stop offset="0%" stopColor={color} stopOpacity="0.2" />
+                              <stop offset="70%" stopColor={color} stopOpacity="0.04" />
+                              <stop offset="100%" stopColor={color} stopOpacity="0" />
+                            </linearGradient>
+                          );
+                        })}
+                      </defs>
+                      {gridValues.map((v, gi) => (
+                        <g key={v}>
+                          <line
+                            x1={AXIS}
+                            y1={y(v)}
+                            x2={W - RIGHT}
+                            y2={y(v)}
+                            stroke="#E5E7EB"
+                            strokeWidth={1}
+                            strokeDasharray={gi === 0 ? undefined : "3 5"}
                           />
-                          {last ? (
-                            <circle
-                              cx={60 + (line.points.indexOf(last) * 820) / denom}
-                              cy={y(last.value as number)}
-                              r={line.is_project ? 5 : 4.5}
-                              fill={color}
-                              stroke="var(--panel)"
-                              strokeWidth={2}
-                            />
-                          ) : null}
+                          <text
+                            x={AXIS - 8}
+                            y={y(v) + 3.5}
+                            textAnchor="end"
+                            fontSize="10"
+                            fill="#9CA3AF"
+                            fontFamily="var(--body-font), system-ui, sans-serif"
+                            fontWeight="500"
+                          >
+                            {v}
+                          </text>
                         </g>
-                      );
-                    })}
-                  </svg>
+                      ))}
+                      {anchor.map((point, idx) =>
+                        idx % labelEvery === 0 && point.date ? (
+                          <text
+                            key={`${point.date}-${idx}`}
+                            x={xFor(idx, anchor.length)}
+                            y={H - 8}
+                            textAnchor="middle"
+                            fontSize="10"
+                            fill="#9CA3AF"
+                            fontFamily="var(--body-font), system-ui, sans-serif"
+                            fontWeight="500"
+                          >
+                            {monthFmt.format(new Date(point.date))}
+                          </text>
+                        ) : null
+                      )}
+                      {lines.map((line, lineIdx) => {
+                        const pts = line.points
+                          .map((p, i) =>
+                            typeof p.value === "number"
+                              ? ([xFor(i, line.points.length), y(p.value)] as [number, number])
+                              : null
+                          )
+                          .filter((p): p is [number, number] => p !== null);
+                        if (pts.length === 0) return null;
+                        const linePath = smoothPath(pts);
+                        const last = pts[pts.length - 1];
+                        const color = seriesColor(line.is_project, lineIdx);
+                        const area = `${linePath} L${last[0].toFixed(1)},${floorY.toFixed(1)} L${pts[0][0].toFixed(1)},${floorY.toFixed(1)} Z`;
+                        return (
+                          <g key={line.key}>
+                            {line.is_project ? (
+                              <path d={area} fill={`url(#comp-fill-${line.key})`} />
+                            ) : null}
+                            <path
+                              d={linePath}
+                              fill="none"
+                              stroke={color}
+                              strokeWidth={line.is_project ? 2.6 : 2}
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              vectorEffect="non-scaling-stroke"
+                            />
+                            <rect
+                              x={(last[0] - 3.5).toFixed(1)}
+                              y={(last[1] - 3.5).toFixed(1)}
+                              width="7"
+                              height="7"
+                              rx="2"
+                              fill="#fff"
+                              stroke={color}
+                              strokeWidth="2"
+                            />
+                          </g>
+                        );
+                      })}
+                    </svg>
+                  </div>
                 );
               })()}
             </div>
@@ -766,31 +822,22 @@ export default function ProjectCompetitorsPage() {
 
         {!locked && hasCompetitors ? (
           <>
-            <div className="flex items-center gap-3 md:mt-[26px] md:mb-[14px] max-md:min-w-0 max-md:flex-wrap max-md:items-start">
-              <h2 className="m-0 whitespace-nowrap font-(family-name:--disp) text-[14px] font-bold tracking-[-0.01em] max-md:min-w-0 max-md:whitespace-normal">
-                {t("signalCompetitors.board.heading")}
-              </h2>
-              <span className="h-4 w-px flex-none bg-(--line-2)" />
-              <span className="whitespace-nowrap font-mono text-[11px] tracking-[0.05em] text-(--t-3) max-md:w-full max-md:whitespace-normal">
-                {t("signalCompetitors.board.sub")}
-              </span>
-            </div>
+            <Sec
+              title={t("signalCompetitors.board.heading")}
+              mini={t("signalCompetitors.board.sub")}
+            />
             <div
               className="rounded-[22px] border-0 bg-white max-md:max-w-full max-md:overflow-x-auto max-md:overscroll-x-contain"
               role="region"
               aria-label={t("signalCompetitors.scores.regionLabel")}
               tabIndex={0}
             >
-              <table className="w-full border-collapse max-md:min-w-[720px] [&_thead_th]:border-b [&_thead_th]:border-b-(--line) [&_thead_th]:px-[22px] [&_thead_th]:py-[13px] [&_thead_th]:text-left [&_thead_th]:font-mono [&_thead_th]:text-[10.5px] [&_thead_th]:font-normal [&_thead_th]:uppercase [&_thead_th]:tracking-[0.06em] [&_thead_th]:text-(--t-3) [&_tbody_td]:border-b [&_tbody_td]:border-b-(--line-2) [&_tbody_td]:px-[22px] [&_tbody_td]:py-[15px] [&_tbody_td]:text-[13.5px] [&_tbody_tr:last-child_td]:border-b-0">
+              <table className="w-full border-collapse max-md:min-w-[720px] [&_thead_th]:border-b [&_thead_th]:border-b-[#EEF1F6] [&_thead_th]:px-[22px] [&_thead_th]:py-[13px] [&_thead_th]:text-left [&_thead_th]:text-[10.5px] [&_thead_th]:font-semibold [&_thead_th]:uppercase [&_thead_th]:tracking-[0.06em] [&_thead_th]:text-(--t-3) [&_tbody_td]:border-b [&_tbody_td]:border-b-[#F1F5F9] [&_tbody_td]:px-[22px] [&_tbody_td]:py-[15px] [&_tbody_td]:text-[13.5px] [&_tbody_tr:last-child_td]:border-b-0">
                 <thead>
                   <tr>
                     <th className="w-[34px]" />
                     <th>{t("signalCompetitors.scores.company")}</th>
                     <th className="text-right">{t("signalCompetitors.metric.aio")}</th>
-                    {/* The approved leaderboard head reads AIO / SEO, and this
-                        page already says SEO on the chart's own toggle, so the
-                        column takes the approved label rather than the prose
-                        word "Search" the card copy uses. */}
                     <th className="text-right">{t("signalCompetitors.board.seoColumn")}</th>
                     <th className="w-[200px] text-right">
                       {t("signalCompetitors.metric.visibility")}
@@ -813,15 +860,12 @@ export default function ProjectCompetitorsPage() {
                     return (
                       <tr
                         key={row.key}
-                        className={cx(
-                          row.isProject &&
-                            "bg-[linear-gradient(90deg,var(--purple-a5),var(--blue-a3))]"
-                        )}
+                        className={cx(row.isProject && "bg-[#F0F7FF]")}
                       >
                         <td
                           className={cx(
-                            "font-(family-name:--disp) text-[18px] font-black text-(--t-3)",
-                            row.isProject && "text-(--purple)"
+                            "font-(family-name:--disp) text-[18px] font-extrabold text-(--t-3)",
+                            row.isProject && "text-[#1D4ED8]"
                           )}
                         >
                           {idx + 1}
@@ -830,53 +874,45 @@ export default function ProjectCompetitorsPage() {
                           <div className="flex items-center gap-3">
                             <div
                               className={cx(
-                                "flex h-[34px] w-[34px] flex-none items-center justify-center rounded-[9px] font-(family-name:--disp) text-[14px] font-bold text-white",
-                                row.isProject ? "bg-(image:--grad)" : "bg-(--ink)"
+                                "flex h-[34px] w-[34px] flex-none items-center justify-center rounded-[10px] font-(family-name:--disp) text-[14px] font-bold text-white",
+                                row.isProject ? "bg-[#1D4ED8]" : "bg-[#111827]"
                               )}
                             >
                               {row.name.charAt(0).toUpperCase()}
                             </div>
-                            <div className="font-(family-name:--disp) text-[14.5px] font-bold tracking-[-0.01em]">
+                            <div className="font-(family-name:--disp) text-[14.5px] font-bold tracking-[-0.01em] text-[#111827]">
                               {row.name}
                               {row.isProject ? (
-                                <span className="ml-0.5 rounded-[5px] bg-(--ink) px-1.5 py-0.5 text-[9.5px] tracking-[0.06em] text-white">
+                                <span className="ml-1.5 rounded-full bg-[#E8F1FF] px-2 py-0.5 text-[9.5px] font-semibold tracking-[0.04em] text-[#1D4ED8]">
                                   {t("signalCompetitors.scores.youBadge")}
                                 </span>
                               ) : (
-                                <small className="block font-mono text-[11.5px] font-normal text-(--t-3)">
+                                <small className="block text-[11.5px] font-normal text-(--t-3)">
                                   {row.sub}
                                 </small>
                               )}
                             </div>
                           </div>
                         </td>
-                        <td
-                          className={cx(
-                            "text-right font-(family-name:--disp) text-[16px]! font-extrabold tracking-[-0.01em]",
-                            row.isProject ? "text-(--purple)" : "text-(--blue)"
-                          )}
-                        >
+                        <td className="text-right font-(family-name:--disp) text-[16px]! font-extrabold tracking-[-0.01em] text-[#111827]">
                           {row.aio ?? "-"}
                         </td>
-                        <td
-                          className={cx(
-                            "text-right font-(family-name:--disp) text-[16px]! font-extrabold tracking-[-0.01em]",
-                            row.isProject ? "text-(--purple)" : "text-(--blue)"
-                          )}
-                        >
+                        <td className="text-right font-(family-name:--disp) text-[16px]! font-extrabold tracking-[-0.01em] text-[#111827]">
                           {row.seo ?? "-"}
                         </td>
                         <td className="text-right">
                           {row.visibility !== null ? (
                             <div className="flex items-center justify-end gap-2.5">
-                              <div className="h-1.5 w-[70px] overflow-hidden rounded-[999px] bg-(--line)">
+                              <div className="h-1.5 w-[70px] overflow-hidden rounded-full bg-[#EEF1F6]">
                                 <i
-                                  className="block h-full w-(--vw) origin-left rounded-[999px] bg-(image:--grad) rtl:origin-right"
+                                  className="block h-full w-(--vw) origin-left rounded-full bg-[#3B82F6] rtl:origin-right"
                                   data-signal-enter="bar"
                                   style={{ "--vw": `${row.visibility}%` } as React.CSSProperties}
                                 />
                               </div>
-                              <b>{row.visibility}</b>
+                              <b className="font-(family-name:--disp) text-[14px] font-extrabold text-[#111827]">
+                                {row.visibility}
+                              </b>
                             </div>
                           ) : (
                             "-"
@@ -966,15 +1002,10 @@ export default function ProjectCompetitorsPage() {
             than between them. They used to sit between the chart and the
             leaderboard, which pushed every approved section out of its approved
             position for the sake of content the design never had. */}
-        <div className="flex items-center gap-3 md:mt-[26px] md:mb-[14px] max-md:min-w-0 max-md:flex-wrap max-md:items-start">
-          <h2 className="m-0 whitespace-nowrap font-(family-name:--disp) text-[14px] font-bold tracking-[-0.01em] max-md:min-w-0 max-md:whitespace-normal">
-            {t("signalCompetitors.wins.heading")}
-          </h2>
-          <span className="h-4 w-px flex-none bg-(--line-2)" />
-          <span className="whitespace-nowrap font-mono text-[11px] tracking-[0.05em] text-(--t-3) max-md:w-full max-md:whitespace-normal">
-            {t("signalCompetitors.wins.sub")}
-          </span>
-        </div>
+        <Sec
+          title={t("signalCompetitors.wins.heading")}
+          mini={t("signalCompetitors.wins.sub")}
+        />
 
         {!locked && !loadingCompetitive && unmeasured.length > 0 ? (
           <div className="flex flex-wrap items-center gap-3 rounded-[22px] border-0 bg-white px-[15px] py-[10px]">
@@ -988,7 +1019,7 @@ export default function ProjectCompetitorsPage() {
             {latestAudit ? (
               <button
                 type="button"
-                className="inline-flex h-[30px] cursor-pointer items-center gap-1.5 rounded-(--r-sm) border border-(--ink) bg-(--ink) px-[11px] font-(family-name:--body-font) text-[12px] font-semibold text-(--panel) hover:bg-black disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex h-[30px] cursor-pointer items-center gap-1.5 rounded-full border-0 bg-[#111827] px-[11px] font-(family-name:--body-font) text-[12px] font-semibold text-white hover:bg-black disabled:cursor-not-allowed disabled:opacity-50"
                 disabled={benchmarkBusy}
                 onClick={() => void runBenchmark()}
               >
@@ -1049,11 +1080,11 @@ export default function ProjectCompetitorsPage() {
                     key={competitor.id}
                   >
                     <div className="mb-3.5 flex items-center gap-2.5">
-                      <div className="flex items-center gap-3">
-                        <div className="flex h-[34px] w-[34px] flex-none items-center justify-center rounded-[9px] font-(family-name:--disp) text-[14px] font-bold text-white bg-(--ink)">
+                      <div className="flex min-w-0 flex-1 items-center gap-3">
+                        <div className="flex h-[34px] w-[34px] flex-none items-center justify-center rounded-[10px] bg-[#111827] font-(family-name:--disp) text-[14px] font-bold text-white">
                           {competitor.display_name.charAt(0).toUpperCase()}
                         </div>
-                        <div className="font-(family-name:--disp) text-[14.5px] font-bold tracking-[-0.01em]">
+                        <div className="min-w-0 font-(family-name:--disp) text-[14.5px] font-bold tracking-[-0.01em] text-[#111827]">
                           {competitor.display_name}
                           <small className="block text-[11.5px] font-normal text-(--t-3)">
                             {competitor.normalized_domain}
@@ -1138,7 +1169,7 @@ export default function ProjectCompetitorsPage() {
                               current === competitor.id ? null : competitor.id
                             )
                           }
-                          className="mt-2 cursor-pointer bg-transparent text-[12px] text-(--purple) underline underline-offset-2"
+                          className="mt-2 cursor-pointer bg-transparent text-[12px] font-semibold text-[#1D4ED8] underline underline-offset-2"
                         >
                           {isExpanded
                             ? t("signalCompetitors.card.hideQuestions")
@@ -1210,15 +1241,10 @@ export default function ProjectCompetitorsPage() {
             under it. Nothing else here may assert a standing. */}
         {!locked && gaps.length > 0 ? (
           <>
-            <div className="flex items-center gap-3 md:mt-[26px] md:mb-[14px] max-md:min-w-0 max-md:flex-wrap max-md:items-start">
-              <h2 className="m-0 whitespace-nowrap font-(family-name:--disp) text-[14px] font-bold tracking-[-0.01em] max-md:min-w-0 max-md:whitespace-normal">
-                {t("signalCompetitors.gaps.heading")}
-              </h2>
-              <span className="h-4 w-px flex-none bg-(--line-2)" />
-              <span className="whitespace-nowrap font-mono text-[11px] tracking-[0.05em] text-(--t-3) max-md:w-full max-md:whitespace-normal">
-                {t("signalCompetitors.gaps.sub")}
-              </span>
-            </div>
+            <Sec
+              title={t("signalCompetitors.gaps.heading")}
+              mini={t("signalCompetitors.gaps.sub")}
+            />
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {Array.from(
                 gaps.reduce((map, gap) => {
@@ -1236,16 +1262,16 @@ export default function ProjectCompetitorsPage() {
                     key={competitorName}
                   >
                     <div className="mb-3.5 flex items-center gap-2.5">
-                      <span className="font-(family-name:--disp) text-[14px] font-bold">
+                      <span className="font-(family-name:--disp) text-[14px] font-bold text-[#111827]">
                         {t("signalCompetitors.gaps.cardTitle", { name: competitorName })}
                       </span>
-                      <span className="ml-auto rounded-md bg-(--bad-s) px-2 py-[3px] text-[10px] uppercase tracking-[0.05em] text-(--bad)">
+                      <span className="ml-auto rounded-full bg-(--bad-s) px-2.5 py-[3px] text-[10px] font-semibold uppercase tracking-[0.04em] text-(--bad)">
                         {t("signalCompetitors.gaps.badge")}
                       </span>
                     </div>
                     {items.map((gap) => (
                       <div
-                        className="flex items-center gap-3.5 border-t border-t-(--line-2) py-[11px] first-of-type:border-t-0"
+                        className="flex items-center gap-3.5 border-t border-t-[#F1F5F9] py-[11px] first-of-type:border-t-0"
                         key={`${gap.competitor_id}-${gap.metric}`}
                       >
                         <div className="flex-1 text-[13px] text-(--t-2)">
@@ -1257,16 +1283,16 @@ export default function ProjectCompetitorsPage() {
                             <div className="mb-1 flex justify-between text-[10.5px] text-(--t-3)">
                               <span>
                                 {t("signalCompetitors.gaps.you")}{" "}
-                                <b className="text-(--t-1)">{Math.round(gap.project_score)}</b>
+                                <b className="text-[#111827]">{Math.round(gap.project_score)}</b>
                               </span>
                               <span>
                                 {t("signalCompetitors.gaps.them")}{" "}
-                                <b className="text-(--t-1)">{Math.round(gap.competitor_score)}</b>
+                                <b className="text-[#111827]">{Math.round(gap.competitor_score)}</b>
                               </span>
                             </div>
-                            <div className="h-1.5 overflow-hidden rounded-[999px] bg-(--line)">
+                            <div className="h-1.5 overflow-hidden rounded-full bg-[#EEF1F6]">
                               <i
-                                className="block h-full w-(--bw) origin-left rounded-[999px] bg-(--purple) rtl:origin-right"
+                                className="block h-full w-(--bw) origin-left rounded-full bg-[#3B82F6] rtl:origin-right"
                                 data-signal-enter="bar"
                                 style={
                                   {

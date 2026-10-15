@@ -40,7 +40,7 @@ import { useScanPrompts } from "@/hooks/useScanPrompts";
 import SignalCrumb from "@/components/signal/SignalCrumb";
 import SignalExportMenu from "@/components/signal/SignalExportMenu";
 import SignalTabs from "@/components/signal/SignalTabs";
-import SignalScoreRing from "@/components/signal/SignalScoreRing";
+import SignalScoreHero from "@/components/signal/SignalScoreHero";
 import { useWorkspacePageHeader } from "@/components/dashboard/workspacePageHeader";
 import type { VisibilityProviderBreakdown, VisibilitySummaryResponse } from "@/types/monitoring";
 import {
@@ -337,65 +337,36 @@ export default function ProjectAioDetailPage() {
     // 6px at the top only helps English, because the Arabic hero is 165px in
     // the approved page against 196px here (longer Arabic strings), so the
     // Arabic body already sits below the frame.
-    <div className="flex min-w-0 flex-col gap-[22px]">
-      <div ref={heroEntranceRef} className="flex flex-col gap-[22px]">
-        {/* Hero */}
-        <div className="relative flex items-center gap-[26px] overflow-hidden rounded-[22px] border-0 bg-white px-7 py-6 max-md:flex-col max-md:items-stretch max-md:p-5">
-          <SignalScoreRing
-            score={score}
-            size={140}
-            color="#3B82F6"
-            className="max-md:self-center"
-            emptyLabel={
-              <span className="font-(family-name:--body-font) text-[12px] font-semibold tracking-normal text-(--t-3)">
-                {t("signalOverview.notMeasured")}
-              </span>
-            }
-          />
-          <div className="min-w-0 flex-1">
-            <span className="inline-flex rounded-full bg-[#E8F1FF] px-2.5 py-0.5 text-[11px] font-semibold text-[#1D4ED8]">
-              {t("signalAioDetail.eyebrow")}
+    <div className="flex min-w-0 flex-col gap-4">
+      <div ref={heroEntranceRef} className="flex flex-col gap-3.5">
+        <SignalScoreHero
+          score={score}
+          eyebrow={t("signalAioDetail.eyebrow")}
+          title={t("signalAioDetail.heroTitle")}
+          copy={t("signalAioDetail.heroCopy")}
+          currentScoreLabel={t("signalAioDetail.currentScore")}
+          emptyLabel={
+            <span className="font-(family-name:--body-font) text-[11px] font-semibold tracking-normal text-(--t-3)">
+              {t("signalOverview.notMeasured")}
             </span>
-            <h1 className="mt-2.5 mb-1.5 font-(family-name:--disp) text-[28px] font-extrabold tracking-[-0.02em] text-[#111827]">
-              {t("signalAioDetail.heroTitle")}
-            </h1>
-            <p className="m-0 max-w-[560px] text-[14px] leading-[1.5] text-(--t-2)">
-              {t("signalAioDetail.heroCopy")}
-            </p>
-          </div>
-          <div className="w-[250px] flex-none rounded-[16px] border-0 bg-[#F8FAFC] px-[18px] py-4 max-md:w-full">
-            <div className="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-(--t-3)">
-              {t("signalAioDetail.currentScore")}
-            </div>
-            <div className="mt-2 mb-1 flex items-baseline gap-2">
-              <span className="font-(family-name:--disp) text-[30px] font-extrabold tracking-[-0.02em] text-[#111827]">
-                {score === null ? (
-                  <span className="font-(family-name:--body-font) text-[12px] font-semibold tracking-normal text-(--t-3)">
-                    {t("signalOverview.notMeasured")}
-                  </span>
-                ) : (
-                  score
-                )}
-              </span>
-            </div>
-            <div className="text-[12.5px] text-(--t-2)">
-              {project?.score_targets?.aio == null
-                ? t("signalAioDetail.noTargets")
-                : project.score_targets.aio.gap === null
-                  ? t("signalAioDetail.targetUnmeasured", {
+          }
+          targetLine={
+            project?.score_targets?.aio == null
+              ? t("signalAioDetail.noTargets")
+              : project.score_targets.aio.gap === null
+                ? t("signalAioDetail.targetUnmeasured", {
+                    target: project.score_targets.aio.target,
+                  })
+                : project.score_targets.aio.gap === 0
+                  ? t("signalAioDetail.atTarget", {
                       target: project.score_targets.aio.target,
                     })
-                  : project.score_targets.aio.gap === 0
-                    ? t("signalAioDetail.atTarget", {
-                        target: project.score_targets.aio.target,
-                      })
-                    : t("signalAioDetail.targetLine", {
-                        target: project.score_targets.aio.target,
-                        gap: Math.round(project.score_targets.aio.gap),
-                      })}
-            </div>
-          </div>
-        </div>
+                  : t("signalAioDetail.targetLine", {
+                      target: project.score_targets.aio.target,
+                      gap: Math.round(project.score_targets.aio.gap),
+                    })
+          }
+        />
 
         {/* signal-MVP `.tabs`: the approved underline row via SignalTabs. */}
         <SignalTabs

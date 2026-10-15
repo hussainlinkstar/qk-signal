@@ -82,7 +82,9 @@ export default function SignalTabs<T extends string>({
     <div
       role="tablist"
       className={cn(
-        "mt-5 mb-5 flex w-full max-w-full gap-1.5 overflow-x-auto rounded-[16px] bg-[#EEF1F6] p-1.5",
+        // Vertical spacing comes from the parent flex gap — extra mt/mb here
+        // stacked with page gaps and left a blank band under the score hero.
+        "flex w-full max-w-full gap-1.5 overflow-x-auto rounded-[16px] bg-[#EEF1F6] p-1.5",
         className
       )}
     >

@@ -412,7 +412,9 @@ describe("ProjectAeoPage (approved AIO detail)", () => {
     expect(container.querySelector("[data-score-ring] [data-signal-enter='count']")?.textContent).toBe(
       "64"
     );
-    expect(container.querySelector('span[class*="text-[30px]"]')?.textContent).toBe("64");
+    expect(container.querySelector("[data-score-hero] span[class*='text-[22px]']")?.textContent).toBe(
+      "64"
+    );
   });
 
   it("switches to the Search types tab and expands a row", async () => {

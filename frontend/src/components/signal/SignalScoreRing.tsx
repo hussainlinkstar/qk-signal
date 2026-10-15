@@ -6,8 +6,8 @@ import { cx } from "@/components/ui/utils";
 export type SignalScoreRingProps = {
   /** 0–100 progress; null renders the empty track + unmeasured label. */
   score: number | null;
-  /** Center pill label — defaults to "/100". */
-  label?: string;
+  /** Center pill label — defaults to "/100". Pass `null` to hide. */
+  label?: string | null;
   /** Outer box size in px. */
   size?: number;
   /** Progress stroke color. */
@@ -100,7 +100,7 @@ export default function SignalScoreRing({
               ))
             : Math.round(score)}
         </b>
-        {score !== null ? (
+        {score !== null && label != null && label !== "" ? (
           <small
             className={cx(
               "mt-1.5 rounded-full bg-white font-semibold text-(--t-3)",
