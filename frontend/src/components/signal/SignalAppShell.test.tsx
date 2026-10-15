@@ -43,13 +43,12 @@ describe("SignalAppShell dashboard geometry", () => {
     expect(screen.getByRole("navigation", { name: "Main navigation" })).toBeInTheDocument();
     const destination = screen.getByRole("link", { name: "Who gets recommended instead" });
     expect(destination).toHaveAttribute("aria-current", "page");
-    // signal.css `.nav a.on`: the active row is 32px, `#EBEDFB`/`#3730A3`, 600.
     expect(destination).toHaveClass(
-      "h-8",
+      "h-11",
       "focus-visible:ring-2",
-      "bg-[#EBEDFB]",
       "font-semibold",
-      "text-[#3730A3]"
+      "bg-[#E8F1FF]",
+      "text-[#1D4ED8]"
     );
     const brand = screen.getByRole("link", { name: "Qiko" });
     expect(brand).toHaveClass("focus-visible:ring-2");
@@ -77,9 +76,7 @@ describe("SignalAppShell dashboard geometry", () => {
     const back = screen.getByRole("link", { name: "Workspace overview" });
     expect(back).toHaveAttribute("href", "/dashboard");
     expect(back).not.toHaveAttribute("aria-current");
-    // signal.css `.ws-link`: 13.5px semibold indigo text on a bottom rule,
-    // not a nav row.
-    expect(back).toHaveClass("text-[13.5px]", "font-semibold", "text-[#4F46E5]");
+    expect(back).toHaveClass("text-[13.5px]", "font-medium", "text-[#4B5563]");
   });
 
   it("announces SOON entries as unavailable, not merely grey", () => {

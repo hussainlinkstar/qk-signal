@@ -145,7 +145,7 @@ export default function MobileDashboardDrawer({
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby={titleId}
-                className="absolute inset-y-0 start-0 flex w-[min(320px,85vw)] max-w-full flex-col border-e border-(--line) bg-(--panel) animate-in fade-in slide-in-from-left rtl:slide-in-from-right duration-200 motion-reduce:animate-none"
+                className="absolute inset-y-0 start-0 m-2 flex w-[min(320px,85vw)] max-w-full flex-col rounded-[24px] border-0 bg-[#F7F8FA] shadow-[0_16px_40px_-18px_rgba(15,23,42,0.28)] animate-in fade-in slide-in-from-left rtl:slide-in-from-right duration-200 motion-reduce:animate-none"
                 onClickCapture={(event) => {
                   const target = event.target;
                   if (!(target instanceof HTMLElement)) return;

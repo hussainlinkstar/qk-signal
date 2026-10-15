@@ -300,7 +300,7 @@ export default function DashboardLayoutClient({ children }: { children: React.Re
   return (
     <div
       data-testid="workspace-dashboard-gutter"
-      className="min-h-screen signal-canvas"
+      className="min-h-screen bg-[#F3F4F6]"
       style={dashboardBrandingStyle}
       data-workspace-dashboard-shell="true"
     >
@@ -329,8 +329,7 @@ export default function DashboardLayoutClient({ children }: { children: React.Re
         {/* ══════════════════════════════════════════
             MAIN CONTENT
             ══════════════════════════════════════════ */}
-        <div className="relative flex min-h-[calc(100dvh-30px)] flex-col">
-          {/* Mobile header */}
+        <div className="relative flex min-h-[calc(100dvh-2rem)] flex-col">
           <SignalTopBar
             siteName={projectName}
             siteLabel={
@@ -378,7 +377,7 @@ export default function DashboardLayoutClient({ children }: { children: React.Re
           {/* Page content */}
           <main
             key={workspaceVersion}
-            className="bg-(--paper) text-(--t-1) font-(family-name:--body-font) antialiased relative z-10 flex flex-1 flex-col gap-[22px] scroll-pb-24 p-3 pb-24 md:scroll-pb-8 md:px-8 md:pt-5 md:pb-3.5"
+            className="bg-transparent text-(--t-1) font-(family-name:--body-font) antialiased relative z-10 flex flex-1 flex-col gap-5 scroll-pb-24 px-4 pb-24 pt-1 md:scroll-pb-8 md:px-6 md:pb-4"
           >
             <WorkspacePageHeaderContext.Provider
               value={{ header: pageHeader, setHeader: setPageHeader }}

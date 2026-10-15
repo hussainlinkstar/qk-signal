@@ -32,7 +32,7 @@ import {
   recordOnboardingResume,
 } from "@/lib/onboardingResume";
 import { resolveServedCapability } from "@/lib/planCapabilities";
-import { AIO_TREND_COLOR, scoreDeltaMeta, scoreTrendPoints } from "@/lib/projectScoreTrend";
+import { scoreDeltaMeta, scoreTrendPoints } from "@/lib/projectScoreTrend";
 import { beginScanLaunch } from "@/lib/scanLaunch";
 import { GLOBAL_TARGET_MARKET, toTargetCountry } from "@/lib/targetMarket";
 import { fetchUserProjects, type UserProjectSummary } from "@/services/auditService";
@@ -108,7 +108,12 @@ const formatAuditCount = (count: number) => `${count} ${count === 1 ? "audit" : 
 // Approved `.pc-fav` tiles carry distinct accent colours per card
 // (#0C0F16 / #0E7C6B / #B45309 in the mockup); cycle them by position so
 // every project gets a stable, deterministic tint.
-const PROJECT_FAV_COLORS = ["#0C0F16", "#0E7C6B", "#B45309"];
+const PROJECT_ICON_TILES = [
+  { bg: "#E8F1FF", fg: "#3B82F6" },
+  { bg: "#FFE8F1", fg: "#EC4899" },
+  { bg: "#E7F9EF", fg: "#22C55E" },
+  { bg: "#FFF3E0", fg: "#F59E0B" },
+] as const;
 
 const OVERVIEW_CARD_RADIUS_CLASS = "rounded-(--r-lg)";
 const PROJECT_CARD_HOVER_CLASS =
@@ -856,15 +861,21 @@ export default function OverviewPage() {
           }}
         />
       ) : (
-        <div className="space-y-[18px]">
-          {/* signal-MVP `.wrap`: measured dhead -> .pgrid gap (declared gap 22
-              minus the h1 line-box bottom). `.dhead` keeps title and sub on
-              one baseline row, gap 16. */}
-          <div className="flex items-end gap-4">
-            <h1 className="m-0 font-(family-name:--disp) text-[24px] leading-8 font-extrabold tracking-[-0.02em]">
+        <div className="space-y-5">
+          <div className="px-0.5 pt-1">
+            <p className="m-0 text-[13px] font-medium text-[#9CA3AF]">
+              {new Date().toLocaleDateString(undefined, {
+                weekday: "short",
+                month: "long",
+                day: "numeric",
+              })}
+            </p>
+            <h1 className="m-0 mt-1 font-(family-name:--disp) text-[30px] leading-[1.15] font-bold tracking-[-0.03em] text-[#111827] sm:text-[34px]">
               {t("wsOverview.title")}
             </h1>
-            <p className="m-0 text-[13px] leading-4 text-(--t-2)">{t("wsOverview.sub")}</p>
+            <p className="m-0 mt-1.5 max-w-2xl text-[15px] leading-6 text-[#6B7280]">
+              {t("wsOverview.sub")}
+            </p>
           </div>
 
           {!isEmailVerified && !emailBannerDismissed && user?.email ? (
@@ -880,22 +891,13 @@ export default function OverviewPage() {
             settings={settings}
           />
 
-          <section className="space-y-[18px]">
-            {/* signal-MVP `.pgrid`: repeat(auto-fill,minmax(320px,1fr)), gap 16. */}
+          <section>
             <div
               ref={pcardEntranceRef}
-              className="grid grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-4"
+              className="grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-3.5"
             >
               {/* shared AIO ring gradient, same position-independent pattern as
                   the mockup's page-level defs */}
-              <svg width="0" height="0" className="absolute" aria-hidden="true">
-                <defs>
-                  <linearGradient id="gAIOw" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stopColor="var(--blue)" />
-                    <stop offset="1" stopColor="var(--purple)" />
-                  </linearGradient>
-                </defs>
-              </svg>
               {settings.projects.map((project, projectIndex) => {
                 const domainLabel = deriveDomainLabel(project.domain, project.display_name);
                 const fav = (project.display_name || domainLabel || "P")
@@ -931,74 +933,76 @@ export default function OverviewPage() {
                   <Link
                     key={project.project_id}
                     href={`/dashboard/projects/${project.project_id}`}
-                    className="flex flex-col gap-4 rounded-(--r) border border-(--line) bg-(--panel) p-5 text-left transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-(--line-btn-hover) hover:shadow-[0_8px_26px_-18px_rgba(12,15,22,0.28)]"
+                    className="flex h-full flex-col gap-4 rounded-[22px] border-0 bg-white p-5 text-left transition-transform duration-200 hover:-translate-y-0.5"
                   >
-                    <div className="flex items-center gap-[11px]">
+                    <div className="flex items-start gap-3">
                       <div
-                        className="flex h-[34px] w-[34px] flex-none items-center justify-center rounded-[9px] font-(family-name:--disp) text-[15px] font-bold text-white"
+                        className="flex h-10 w-10 flex-none items-center justify-center rounded-[12px] font-(family-name:--disp) text-[15px] font-bold"
                         style={{
                           backgroundColor:
-                            PROJECT_FAV_COLORS[projectIndex % PROJECT_FAV_COLORS.length],
+                            PROJECT_ICON_TILES[projectIndex % PROJECT_ICON_TILES.length].bg,
+                          color: PROJECT_ICON_TILES[projectIndex % PROJECT_ICON_TILES.length].fg,
                         }}
                       >
                         {fav}
                       </div>
                       <div className="min-w-0 flex-1">
-                        <b className="block font-(family-name:--disp) text-[14.5px] leading-[19px] font-bold tracking-[-0.01em]">
+                        <b className="block truncate font-(family-name:--disp) text-[14.5px] leading-[19px] font-bold tracking-[-0.01em]">
                           {project.display_name}
                         </b>
-                        <small className="mt-px block font-(family-name:--font-roboto-mono) text-[11.5px] leading-[15px] text-(--t-3)">
+                        <small className="mt-px block truncate font-(family-name:--font-roboto-mono) text-[11.5px] leading-[15px] text-(--t-3)">
                           {domainLabel}
                         </small>
+                        {hasScores ? (
+                          <span className="mt-1.5 inline-flex items-center gap-1.5 rounded-[999px] bg-(--good-s) px-[9px] py-1 font-(family-name:--font-roboto-mono) text-[10px] leading-[13px] tracking-[0.05em] text-(--good)">
+                            <span className="signal-pulse-dot h-[5px] w-[5px] rounded-[50%] bg-(--good)" />
+                            {t("wsOverview.monitoring")}
+                          </span>
+                        ) : null}
                       </div>
-                      {hasScores ? (
-                        <span className="inline-flex flex-none items-center gap-1.5 rounded-[999px] bg-(--good-s) px-[9px] py-1 font-(family-name:--font-roboto-mono) text-[10px] leading-[13px] tracking-[0.05em] text-(--good)">
-                          <span className="signal-pulse-dot h-[5px] w-[5px] rounded-[50%] bg-(--good)" />
-                          {t("wsOverview.monitoring")}
-                        </span>
-                      ) : null}
                     </div>
-                    <div className="flex flex-col gap-3 border-t border-t-(--line-2) pt-3.5">
-                      <div className="flex items-center gap-[13px]">
-                        <div className="relative h-[58px] w-[58px] flex-none">
-                          <svg className="h-[58px] w-[58px] -rotate-90" viewBox="0 0 84 84">
+                    <div className="flex flex-col gap-3 border-t border-t-[#F3F4F6] pt-3.5">
+                      <div className="flex items-center gap-3">
+                        <div className="relative h-12 w-12 flex-none">
+                          <svg className="h-12 w-12 -rotate-90" viewBox="0 0 48 48" aria-hidden="true">
+                            <circle cx="24" cy="24" r="18" fill="#F3E8FF" />
                             <circle
-                              cx="42"
-                              cy="42"
-                              r="34"
+                              cx="24"
+                              cy="24"
+                              r="15.5"
                               fill="none"
-                              stroke="var(--line)"
-                              strokeWidth="8"
+                              stroke="#E9D5FF"
+                              strokeWidth="5"
                             />
                             <circle
-                              cx="42"
-                              cy="42"
-                              r="34"
+                              cx="24"
+                              cy="24"
+                              r="15.5"
                               fill="none"
-                              stroke="url(#gAIOw)"
-                              strokeWidth="8"
+                              stroke="#A855F7"
+                              strokeWidth="5"
                               strokeLinecap="round"
-                              strokeDasharray={213.63}
-                              strokeDashoffset={213.63 * (1 - (aio ?? 0) / 100)}
+                              strokeDasharray={97.39}
+                              strokeDashoffset={97.39 * (1 - (aio ?? 0) / 100)}
                               data-signal-enter="ring"
                             />
                           </svg>
                           <div
-                            className="absolute inset-0 flex items-center justify-center font-(family-name:--disp) text-[16px] font-black tracking-[-0.02em]"
+                            className="absolute inset-0 flex items-center justify-center font-(family-name:--disp) text-[13px] font-bold tracking-[-0.02em] text-[#111827]"
                             data-signal-enter="count"
                             data-signal-count={aio ?? undefined}
                           >
                             {aio ?? "-"}
                           </div>
                         </div>
-                        <div className="flex min-w-[50px] flex-none flex-col gap-[3px]">
-                          <span className="font-(family-name:--font-roboto-mono) text-[10.5px] uppercase tracking-[0.1em] text-(--t-3)">
+                        <div className="flex min-w-[44px] flex-none flex-col gap-0.5">
+                          <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
                             AIO
                           </span>
                           {aioDelta ? (
                             <span
                               className={cx(
-                                "font-(family-name:--font-roboto-mono) text-[11.5px] font-semibold",
+                                "text-[12px] font-semibold",
                                 aioDelta.cls
                               )}
                             >
@@ -1007,49 +1011,50 @@ export default function OverviewPage() {
                           ) : null}
                         </div>
                         {aioSparkPoints.length >= 2 ? (
-                          <ProjectScoreSparkline points={aioSparkPoints} color={AIO_TREND_COLOR} />
+                          <ProjectScoreSparkline points={aioSparkPoints} color="#A855F7" />
                         ) : null}
                       </div>
-                      <div className="flex items-center gap-[13px]">
-                        <div className="relative h-[58px] w-[58px] flex-none">
-                          <svg className="h-[58px] w-[58px] -rotate-90" viewBox="0 0 84 84">
+                      <div className="flex items-center gap-3">
+                        <div className="relative h-12 w-12 flex-none">
+                          <svg className="h-12 w-12 -rotate-90" viewBox="0 0 48 48" aria-hidden="true">
+                            <circle cx="24" cy="24" r="18" fill="#E8F1FF" />
                             <circle
-                              cx="42"
-                              cy="42"
-                              r="34"
+                              cx="24"
+                              cy="24"
+                              r="15.5"
                               fill="none"
-                              stroke="var(--line)"
-                              strokeWidth="8"
+                              stroke="#BFDBFE"
+                              strokeWidth="5"
                             />
                             <circle
-                              cx="42"
-                              cy="42"
-                              r="34"
+                              cx="24"
+                              cy="24"
+                              r="15.5"
                               fill="none"
-                              stroke="var(--blue)"
-                              strokeWidth="8"
+                              stroke="#3B82F6"
+                              strokeWidth="5"
                               strokeLinecap="round"
-                              strokeDasharray={213.63}
-                              strokeDashoffset={213.63 * (1 - (seo ?? 0) / 100)}
+                              strokeDasharray={97.39}
+                              strokeDashoffset={97.39 * (1 - (seo ?? 0) / 100)}
                               data-signal-enter="ring"
                             />
                           </svg>
                           <div
-                            className="absolute inset-0 flex items-center justify-center font-(family-name:--disp) text-[16px] font-black tracking-[-0.02em]"
+                            className="absolute inset-0 flex items-center justify-center font-(family-name:--disp) text-[13px] font-bold tracking-[-0.02em] text-[#111827]"
                             data-signal-enter="count"
                             data-signal-count={seo ?? undefined}
                           >
                             {seo ?? "-"}
                           </div>
                         </div>
-                        <div className="flex min-w-[50px] flex-none flex-col gap-[3px]">
-                          <span className="font-(family-name:--font-roboto-mono) text-[10.5px] uppercase tracking-[0.1em] text-(--t-3)">
+                        <div className="flex min-w-[44px] flex-none flex-col gap-0.5">
+                          <span className="text-[11px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
                             SEO
                           </span>
                           {seoDelta ? (
                             <span
                               className={cx(
-                                "font-(family-name:--font-roboto-mono) text-[11.5px] font-semibold",
+                                "text-[12px] font-semibold",
                                 seoDelta.cls
                               )}
                             >
@@ -1058,11 +1063,11 @@ export default function OverviewPage() {
                           ) : null}
                         </div>
                         {seoSparkPoints.length >= 2 ? (
-                          <ProjectScoreSparkline points={seoSparkPoints} color="#2563EB" />
+                          <ProjectScoreSparkline points={seoSparkPoints} color="#3B82F6" />
                         ) : null}
                       </div>
                     </div>
-                    <div className="mt-auto flex items-center justify-between border-t border-t-(--line-2) pt-3.5 text-[12.5px] leading-[15px] text-(--t-2)">
+                    <div className="mt-auto flex items-center justify-between border-t border-t-[#F3F4F6] pt-3.5 text-[12.5px] leading-[15px] text-(--t-2)">
                       <span>{scanned}</span>
                       <span className="inline-flex items-center gap-[5px] font-semibold text-(--blue)">
                         {t("wsOverview.openProject")}
@@ -1077,28 +1082,19 @@ export default function OverviewPage() {
               <button
                 type="button"
                 style={{ borderRadius: "var(--r)" }}
-                /* `col-start-1` (SIGV2-1121): the tile stays one card wide but
-                   always opens its own row. Pinning only its column start
-                   makes auto-placement move to the next row whenever the
-                   cursor has passed column 1, at every column count this
-                   auto-fill grid reflows through, and leaves it where it is
-                   when the cursor is already at column 1 (no projects, or a
-                   single-column grid), so it never leaves an empty cell above
-                   itself.
-                   `self-start`: the approved `.padd` is 365x123, its own
-                   content height, so the tile keeps that height instead of
-                   stretching to the row and reading as an empty panel. */
-                className="col-start-1 flex cursor-pointer flex-col items-center justify-center gap-2 self-start border-[1.5px] border-dashed border-(--line) bg-transparent px-5 py-6 text-center font-(family-name:--body-font) text-(--t-3) transition-[border-color,color] duration-150 hover:border-(--purple) hover:text-(--purple)"
+                className="flex h-full min-h-full cursor-pointer flex-col items-center justify-center gap-2.5 rounded-[22px] border-0 bg-white px-5 py-6 text-center font-(family-name:--body-font) text-[#9CA3AF] transition-colors duration-150 hover:bg-[#F3F4F6] hover:text-[#111827]"
                 onClick={() => setCreateModalOpen(true)}
               >
-                <svg
-                  className="h-6 w-6 flex-none [stroke-width:1.8]"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                >
-                  <path d="M12 5v14M5 12h14" />
-                </svg>
+                <span className="flex h-10 w-10 items-center justify-center rounded-[12px] bg-[#E8F1FF] text-[#3B82F6]">
+                  <svg
+                    className="h-5 w-5 flex-none [stroke-width:1.8]"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                </span>
                 <b className="font-(family-name:--disp) text-[14px] leading-[18px] font-bold text-(--t-1)">
                   {t("wsOverview.addProject")}
                 </b>

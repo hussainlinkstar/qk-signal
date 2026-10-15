@@ -903,10 +903,12 @@
 }
 
 @utility signal-canvas {
-  /* signal.css `body{background:#F2F4FB}`: the flat canvas behind the
-     floating app card. Used by every Signal surface's ancestors so nothing
-     darker peeks through coverage gaps. Single source: --signal-canvas. */
+  /* Soft gray stage behind the single flat app frame. */
   background-color: var(--signal-canvas);
+}
+
+@utility signal-main-surface {
+  background: transparent;
 }
 
 @utility app-surface-gradient {
@@ -1688,10 +1690,8 @@ html[dir="rtl"] .skel::after {
   --mono: var(--font-roboto-mono, "Roboto Mono"), "Roboto Mono", ui-monospace, monospace;
   --disp: var(--font-satoshi), var(--font-sans), "Inter", sans-serif;
   --body-font: var(--font-sans), "Inter", system-ui, sans-serif;
-  /* signal.css `body{background:#F2F4FB}` - the single source for the flat
-     canvas behind the floating app card (signal-canvas utility, SignalAppShell
-     inline style and the ancestor :has() overrides all reference this). */
-  --signal-canvas: #f2f4fb;
+  /* Soft gray stage behind the flat app frame. */
+  --signal-canvas: #f3f4f6;
 }
 
 body {

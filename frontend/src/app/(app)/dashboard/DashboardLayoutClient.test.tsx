@@ -304,7 +304,7 @@ describe("DashboardLayoutClient", () => {
 
     const footer = await screen.findByRole("contentinfo");
     expect(footer.compareDocumentPosition(screen.getByRole("main")) & 2).toBeTruthy();
-    expect(screen.getByRole("main").parentElement).toHaveClass("min-h-[calc(100dvh-30px)]");
+    expect(screen.getByRole("main").parentElement).toHaveClass("min-h-[calc(100dvh-2rem)]");
     for (const label of ["Terms", "Privacy", "Cookies"]) {
       expect(within(footer).getByRole("link", { name: label })).toHaveAttribute("target", "_blank");
     }
@@ -372,17 +372,17 @@ describe("DashboardLayoutClient", () => {
     );
 
     await screen.findByText("Workspace content");
-    // signal.css `.app`: floating card inset 15px, max 1560px, app shadow.
+    // Flat unified app frame on soft gray stage.
     expect(screen.getByTestId("signal-app-shell").firstElementChild).toHaveClass(
       "mx-auto",
-      "my-[15px]",
-      "min-h-[calc(100dvh-30px)]",
-      "w-[calc(100%-30px)]",
-      "max-w-[1560px]"
+      "my-3",
+      "w-[calc(100%-1.5rem)]",
+      "max-w-[1600px]",
+      "rounded-[28px]"
     );
     expect(screen.getByTestId("workspace-dashboard-gutter")).toHaveClass(
       "min-h-screen",
-      "signal-canvas"
+      "bg-[#F3F4F6]"
     );
   });
 
@@ -464,7 +464,7 @@ describe("DashboardLayoutClient", () => {
     );
 
     const main = await screen.findByRole("main");
-    expect(main).toHaveClass("pb-24", "scroll-pb-24", "md:pb-3.5", "md:scroll-pb-8");
+    expect(main).toHaveClass("pb-24", "scroll-pb-24", "md:pb-4", "md:scroll-pb-8");
   });
 
   it("shows project name in project context instead of raw project id", async () => {

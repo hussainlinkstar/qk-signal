@@ -29,7 +29,7 @@ export default function SignalAppFooter() {
   // `.site-footer`: border-top --line, padding 6px 32px; `.footer-inner`
   // centres brand and links with the approved min(24vw,340px) gap.
   return (
-    <footer className="mt-auto flex-none rounded-ee-[16px] border-t border-(--line) px-8 py-1.5">
+    <footer className="mt-auto flex-none border-t border-transparent px-2 py-3">
       <div className="flex flex-wrap items-center justify-center gap-x-[min(24vw,340px)] gap-y-2">
         <div className="flex items-center gap-2.5">
           {/* The centred row keeps the outgoing logo's 44.75px slot width so

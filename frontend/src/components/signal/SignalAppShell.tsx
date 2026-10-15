@@ -8,11 +8,7 @@ import SignalBrandLockup from "@/components/signal/SignalBrandLockup";
 
 /**
  * Minimal, presentation-only nav shape shared by both consumers of
- * SignalAppShell (dashboard + admin). Each caller maps its own nav config
- * (which use different icon/type shapes today — see navigationConfig.ts vs
- * admin/layout.tsx's local NavItem) into this shape; SignalAppShell itself
- * has no opinion on where nav data comes from or how it's filtered
- * (role/plan gating stays entirely in the caller).
+ * SignalAppShell (dashboard + admin). Gating stays in the caller.
  */
 export type SignalNavItem = {
   name: string;
@@ -21,10 +17,6 @@ export type SignalNavItem = {
   badge?: string;
   disabled?: boolean;
   active?: boolean;
-  /**
-   * Non-navigating action item (the approved IA's "Sign out" entry). Rendered
-   * as a button with nav-item styling; never as a link.
-   */
   onSelect?: () => void;
 };
 
@@ -37,59 +29,79 @@ export type SignalAppShellProps = {
   brandHref: string;
   brandName: string;
   brandSub?: string;
-  /**
-   * The "Workspace overview" link the approved design pins under the brand,
-   * above the nav sections (signal-MVP `.ws-link`). Rendered only when the
-   * caller passes it; the workspace overview page omits its own self-link.
-   */
   topLink?: { label: string; href: string; icon: React.ReactNode };
   sections: SignalNavSection[];
-  /**
-   * Single control rendered in the sidebar's bottom "foot" block. signal-MVP's
-   * `.foot` holds exactly one `.ssw` switcher, so consumers pass one node here.
-   */
+  /** Profile / workspace switcher — flat block under brand. */
   footerSlot?: React.ReactNode;
   shellClassName?: string;
   children: React.ReactNode;
 };
 
-// signal.css `.nav a`: gap 11px, height 30px (32px when `.on`), padding 0 10px,
-// radius 9px, 14px/500; hover `--line-2`/`--t-1`; active `#EBEDFB`/`#3730A3`/600.
-// The approved rows sit below the usual 44px touch guidance; that is the
-// desktop-sidebar metric the design ships (the mobile drawer keeps 44px).
-export const ITEM_CLASSES =
-  "flex w-full items-center gap-[11px] rounded-[9px] px-2.5 text-start text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple) focus-visible:ring-offset-2 motion-reduce:transition-none";
-export const ITEM_INACTIVE = "h-[30px] text-(--t-2) hover:bg-(--line-2) hover:text-(--t-1)";
-export const ITEM_ACTIVE = "h-8 bg-[#EBEDFB] font-semibold text-[#3730A3]";
+// Soft tinted icon tiles cycle — CashPilot metric-icon language.
+const ICON_TILES = [
+  { bg: "bg-[#E8F1FF]", fg: "text-[#3B82F6]" },
+  { bg: "bg-[#FFE8F1]", fg: "text-[#EC4899]" },
+  { bg: "bg-[#E7F9EF]", fg: "text-[#22C55E]" },
+  { bg: "bg-[#FFF3E0]", fg: "text-[#F59E0B]" },
+  { bg: "bg-[#F3E8FF]", fg: "text-[#8B5CF6]" },
+  { bg: "bg-[#E0F7FA]", fg: "text-[#06B6D4]" },
+] as const;
 
-function NavItemRow({ item }: { item: SignalNavItem }) {
-  // signal.css `.nav a .soon`: mono 8.5px chip on `--paper`, pushed to the end.
-  const badge = item.badge ? (
-    <em className="ms-auto rounded-[4px] border border-(--line) bg-(--paper) px-[5px] py-[2px] font-(family-name:--mono) text-[8.5px] uppercase not-italic tracking-[0.08em] text-(--t-3)">
-      {item.badge}
+export const ITEM_CLASSES =
+  "group flex w-full items-center gap-3 rounded-full px-2.5 text-start text-[14px] font-medium transition-colors duration-200 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#111827] focus-visible:ring-offset-2 motion-reduce:transition-none";
+export const ITEM_INACTIVE = "h-11 text-[#4B5563] hover:bg-[#F3F4F6] hover:text-[#111827]";
+export const ITEM_ACTIVE = "h-11 bg-[#E8F1FF] font-semibold text-[#1D4ED8] shadow-none";
+
+function NavBadge({ label }: { label: string }) {
+  const numeric = /^\d+$/.test(label.trim());
+  if (numeric) {
+    return (
+      <em className="ms-auto flex h-5 min-w-5 items-center justify-center rounded-full bg-[#111827] px-1.5 text-[10px] font-bold not-italic text-white">
+        {label}
+      </em>
+    );
+  }
+  return (
+    <em className="ms-auto rounded-full bg-[#F3F4F6] px-2 py-0.5 text-[9px] font-semibold uppercase not-italic tracking-[0.06em] text-[#9CA3AF]">
+      {label}
     </em>
-  ) : null;
+  );
+}
+
+function NavItemRow({ item, tileIndex }: { item: SignalNavItem; tileIndex: number }) {
+  const tile = ICON_TILES[tileIndex % ICON_TILES.length];
+  const badge = item.badge ? <NavBadge label={item.badge} /> : null;
+  const iconWrap = (
+    <span
+      className={cx(
+        "flex h-8 w-8 flex-none items-center justify-center rounded-[10px] [&_svg]:h-[17px] [&_svg]:w-[17px] [&_svg]:stroke-[1.8]",
+        tile.bg,
+        tile.fg
+      )}
+    >
+      {item.icon}
+    </span>
+  );
   const inner = (
     <>
-      <span className="flex-none [&_svg]:h-[17px] [&_svg]:w-[17px] [&_svg]:stroke-[1.9]">
-        {item.icon}
-      </span>
+      {iconWrap}
       <span className="min-w-0 truncate leading-snug">{item.name}</span>
       {badge}
     </>
   );
 
   if (item.disabled && item.badge !== "Upgrade") {
-    // SOON entries stay in the IA per the approved design but must announce
-    // themselves as unavailable, not merely look grey. No role: an entry that
-    // can neither be focused nor activated must not claim to be a link.
     return (
       <div
         aria-disabled="true"
         title={item.name}
-        className="flex h-[30px] cursor-not-allowed items-center gap-[11px] rounded-[9px] px-2.5 text-sm font-medium text-(--t-3)"
+        className="flex h-11 cursor-not-allowed items-center gap-3 rounded-full px-2.5 text-[14px] font-medium text-[#9CA3AF]"
       >
-        {inner}
+        <span className="flex h-8 w-8 flex-none items-center justify-center rounded-[10px] bg-[#F3F4F6] text-[#9CA3AF] [&_svg]:h-[17px] [&_svg]:w-[17px]">
+          {item.icon}
+        </span>
+        <span className="min-w-0 truncate">{item.name}</span>
+        {badge}
       </div>
     );
   }
@@ -120,14 +132,8 @@ function NavItemRow({ item }: { item: SignalNavItem }) {
 }
 
 /**
- * Shared sidebar + main-content shell for the signal-light design system.
- * Structure mirrors signal-MVP's `.app`/`.side`/`.nav`/`.foot` markup
- * (see signal-MVP signal.css): the whole app is a floating card inset 15px
- * from the viewport (max 1560px wide, `app float` shadow) on a #F2F4FB
- * canvas; the sidebar is a sticky 220px column with 16px rounded outer
- * corners, and `.main` takes the trailing corners. No collapse affordance
- * (signal-MVP has none; mobile handling lands in a later phase, desktop
- * sidebar is `hidden lg:flex` in the meantime).
+ * CashPilot-inspired shell: one flat app frame on a soft stage.
+ * Sidebar/header are plain regions — not separate floating cards.
  */
 export default function SignalAppShell({
   brandHref,
@@ -139,27 +145,23 @@ export default function SignalAppShell({
   shellClassName,
   children,
 }: SignalAppShellProps) {
+  let tileCursor = 0;
+
   return (
     <div
       data-testid="signal-app-shell"
       data-signal-theme
       className={cx(
-        "min-h-dvh w-full text-(--t-1) font-(family-name:--body-font) leading-[normal]",
+        "min-h-dvh w-full bg-[#F3F4F6] text-(--t-1) font-(family-name:--body-font) leading-[normal]",
         shellClassName
       )}
-      // The canvas behind the floating app card is the mockup's body colour;
-      // inline style wins over [data-signal-theme]'s own --paper background.
-      style={{ background: "var(--signal-canvas)" }}
     >
-      <div className="mx-auto my-[15px] flex min-h-[calc(100dvh-30px)] w-[calc(100%-30px)] max-w-[1560px] shadow-[0_1px_3px_rgba(15,23,42,0.07),0_8px_24px_rgba(15,23,42,0.05)]">
-        {/* signal.css `.side`: 220px, padding 20px 10px, sticky top 15,
-            height 100dvh-30, panel bg, inline-end border, leading corners. */}
-        <aside className="hidden w-[220px] flex-none flex-col rounded-s-[16px] border-e border-(--line) bg-(--panel) px-2.5 py-5 sticky top-[15px] h-[calc(100dvh-30px)] lg:flex">
-          {/* `.brand`: logo mark (h21) + "Signal" sig, bottom --line-2 rule. */}
+      <div className="mx-auto my-3 flex min-h-[calc(100dvh-1.5rem)] w-[calc(100%-1.5rem)] max-w-[1600px] overflow-hidden rounded-[28px] bg-[#F7F8FA] shadow-[0_20px_50px_-28px_rgba(15,23,42,0.28)] lg:my-4 lg:min-h-[calc(100dvh-2rem)] lg:w-[calc(100%-2rem)]">
+        <aside className="sticky top-0 hidden h-[calc(100dvh-2rem)] w-[248px] flex-none flex-col bg-transparent px-4 py-5 lg:flex">
           <Link
             href={brandHref}
             aria-label={brandName}
-            className="flex items-center gap-[9px] rounded-none border-b border-(--line-2) px-2.5 pb-[13px] pt-1 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple) focus-visible:ring-offset-2"
+            className="mb-5 flex items-center gap-2 px-1 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#111827] focus-visible:ring-offset-2"
           >
             {brandSub ? (
               <SignalBrandLockup word={brandSub} />
@@ -168,48 +170,44 @@ export default function SignalAppShell({
             )}
           </Link>
 
+          {/* Flat welcome / workspace switcher — not a card */}
+          {footerSlot ? <div className="mb-5 px-1">{footerSlot}</div> : null}
+
           {topLink ? (
-            /* `.ws-link`: 13.5px/600 #4F46E5, gap 8, bottom --line-2 rule. */
             <Link
               href={topLink.href}
-              className="flex items-center gap-2 border-b border-(--line-2) px-2.5 pb-[13px] pt-2.5 text-[13.5px] font-semibold text-[#4F46E5] transition-colors hover:text-[#4338CA] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple) focus-visible:ring-offset-2 motion-reduce:transition-none"
+              className="mb-3 flex items-center gap-3 rounded-full px-2.5 py-2.5 text-[13.5px] font-medium text-[#4B5563] transition-colors hover:bg-[#F3F4F6] hover:text-[#111827] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#111827] focus-visible:ring-offset-2"
             >
-              <span className="flex-none [&_svg]:h-[15px] [&_svg]:w-[15px] [&_svg]:stroke-2">
+              <span className="flex h-8 w-8 flex-none items-center justify-center rounded-[10px] bg-[#E8F1FF] text-[#3B82F6] [&_svg]:h-4 [&_svg]:w-4 [&_svg]:stroke-[1.8]">
                 {topLink.icon}
               </span>
-              <span className="min-w-0 truncate leading-snug">{topLink.label}</span>
+              <span className="min-w-0 truncate">{topLink.label}</span>
             </Link>
           ) : null}
 
-          {/* `.nav`: no inter-row gap; `.lab` gets a top rule + extra space
-              on every label but the first. */}
           <nav
             aria-label="Main navigation"
-            className="min-h-0 flex-1 overflow-y-auto flex flex-col"
+            className="min-h-0 flex-1 overflow-y-auto [scrollbar-width:thin]"
           >
             {sections.map((section, index) => (
-              <div key={section.label}>
-                <div
-                  className={cx(
-                    "px-2.5 pb-1.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.12em] text-(--t-3)",
-                    index === 0 ? "pt-[11px]" : "mt-2 border-t border-(--line-2) pt-4"
-                  )}
-                >
+              <div key={section.label} className={cx(index === 0 ? "" : "mt-6")}>
+                <div className="px-2.5 pb-2.5 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#9CA3AF]">
                   {section.label}
                 </div>
-                {section.items.map((item) => (
-                  <NavItemRow key={item.href ?? item.name} item={item} />
-                ))}
+                <div className="flex flex-col gap-1">
+                  {section.items.map((item) => {
+                    const tileIndex = tileCursor++;
+                    return (
+                      <NavItemRow key={item.href ?? item.name} item={item} tileIndex={tileIndex} />
+                    );
+                  })}
+                </div>
               </div>
             ))}
           </nav>
-
-          {/* `.side .foot`: margin-top auto, padding-top 12px, no top rule. */}
-          {footerSlot ? <div className="mt-auto flex-none pt-3">{footerSlot}</div> : null}
         </aside>
 
-        {/* `.main`: paper bg, trailing corners. */}
-        <div className="min-w-0 flex-1 rounded-e-[16px] bg-(--paper)">{children}</div>
+        <div className="relative min-w-0 flex-1 bg-[#F7F8FA]">{children}</div>
       </div>
     </div>
   );

@@ -38,7 +38,7 @@ export default function WorkspacePageFrame({
     // padding alone decides the offset, exactly like the mockup.
     <div
       data-workspace-page
-      className="-mx-3 -mt-3 -mb-24 flex min-w-0 flex-1 flex-col gap-[18px] px-3 pt-[18px] pb-3 leading-[normal] md:-mx-8 md:-mt-5 md:-mb-3.5 md:px-8"
+      className="flex min-w-0 flex-1 flex-col gap-6 pt-1 pb-2 leading-[normal]"
     >
       {backHref && backLabel ? (
         <Link

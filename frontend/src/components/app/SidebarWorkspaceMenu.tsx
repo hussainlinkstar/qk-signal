@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { usePathname, useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { Check, ChevronsUpDown, LogOut } from "lucide-react";
+import { Check, ChevronDown, LogOut } from "lucide-react";
 
 import { useAuth } from "@/components/auth/custom-auth";
 import { cx } from "@/components/ui/utils";
@@ -58,18 +58,21 @@ type Props = {
   note?: React.ReactNode;
 };
 
-/* signal-MVP `.ssw` tokens (signal.css:57-72): menu opens upward, sits at the
-   sidebar bottom; entries, a separator, the identity block, then Sign out.
-   The approved control has no avatars — name + chevron only. */
+/* Flat welcome trigger — menu opens downward, no card chrome. */
 const MENU =
-  "absolute inset-x-0 bottom-[calc(100%+8px)] z-20 rounded-[10px] border border-(--line) bg-(--panel) p-1.5 shadow-[0_16px_40px_-16px_rgba(12,15,22,0.28)]";
-const KIND_LAB =
-  "px-2.5 pb-[5px] font-(family-name:--mono) text-[9.5px] uppercase tracking-[0.1em] text-(--t-3)";
+  "absolute inset-x-0 top-[calc(100%+8px)] z-30 rounded-2xl border-0 bg-white p-2 shadow-[0_16px_40px_-18px_rgba(15,23,42,0.28)]";
 const ITEM =
-  "flex w-full items-center gap-[9px] rounded-[8px] px-2.5 py-2 text-start text-[13px] font-medium text-(--t-1) transition-colors hover:bg-(--line-2)";
-const DIVIDER = "mx-1 my-[5px] h-px bg-(--line-2)";
+  "flex w-full items-center gap-[9px] rounded-xl px-3 py-2.5 text-start text-[13px] font-medium text-[#111827] transition-colors hover:bg-[#F3F4F6]";
+const DIVIDER = "mx-1 my-1.5 h-px bg-[#E5E7EB]";
 const SIGNOUT =
-  "flex w-full items-center gap-[9px] rounded-[8px] px-2.5 py-2 text-start text-[13px] font-medium text-(--bad) transition-colors hover:bg-(--line-2)";
+  "flex w-full items-center gap-[9px] rounded-xl px-3 py-2.5 text-start text-[13px] font-medium text-(--bad) transition-colors hover:bg-(--bad-s)";
+
+const initialsFrom = (value: string) => {
+  const parts = value.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return "?";
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return `${parts[0][0]}${parts[1][0]}`.toUpperCase();
+};
 
 const stripScheme = (value?: string | null) =>
   value?.replace(/^https?:\/\//i, "").replace(/\/+$/, "") || null;
@@ -205,6 +208,8 @@ export default function SidebarWorkspaceMenu({
     ? (stripScheme(activeProject?.domain_url) ?? activeProject?.name ?? t("signalShell.project"))
     : (label ?? workspaceName);
   const displayName = user?.name?.trim() || email;
+  const avatarLabel = displayName || toggleLabel || "?";
+  const avatarInitials = initialsFrom(avatarLabel);
 
   const onSelectWorkspace = (workspace: WorkspaceSummary) => {
     setOpen(false);
@@ -231,7 +236,7 @@ export default function SidebarWorkspaceMenu({
 
   return (
     <div ref={containerRef} className="relative">
-      <p className={KIND_LAB}>{kindLabel}</p>
+      <p className="sr-only">{kindLabel}</p>
       {open ? (
         <div
           ref={menuRef}
@@ -309,8 +314,6 @@ export default function SidebarWorkspaceMenu({
         </div>
       ) : null}
 
-      {/* `.ssw-btn`: bordered paper field, pad 9px 10px, 13px, gap 8,
-          name + chevron only (the approved control has no avatar). */}
       <button
         ref={triggerRef}
         type="button"
@@ -318,12 +321,33 @@ export default function SidebarWorkspaceMenu({
         aria-expanded={open}
         aria-label={menuLabel}
         onClick={() => setOpen((value) => !value)}
-        className="flex w-full cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--paper) px-2.5 py-[9px] text-start text-[13px] font-semibold leading-[1.15] text-(--t-1) transition-colors hover:border-[#D7DAE0]"
+        className="flex w-full cursor-pointer items-start gap-0 border-0 bg-transparent p-0 text-start transition-opacity hover:opacity-80"
       >
-        <span dir="ltr" className="min-w-0 flex-1 truncate text-start">
-          {toggleLabel}
+        <span className="min-w-0 flex-1">
+          <span className="block text-[12px] font-medium text-[#9CA3AF]">Welcome,</span>
+          <span className="mt-0.5 flex items-center gap-1.5">
+            <span
+              dir="ltr"
+              className="truncate font-(family-name:--disp) text-[18px] font-bold leading-tight tracking-[-0.02em] text-[#111827]"
+            >
+              {displayName || toggleLabel}
+            </span>
+            <ChevronDown
+              size={16}
+              className={cx(
+                "shrink-0 text-[#9CA3AF] transition-transform duration-200",
+                open && "rotate-180"
+              )}
+            />
+          </span>
+          <span className="mt-1 block truncate text-[12px] text-[#9CA3AF]">{toggleLabel}</span>
         </span>
-        <ChevronsUpDown size={14} className="ms-auto shrink-0 text-(--t-3)" />
+        <span
+          aria-hidden="true"
+          className="ms-2 flex h-9 w-9 flex-none items-center justify-center rounded-[10px] bg-[#E8F1FF] text-[12px] font-bold text-[#3B82F6]"
+        >
+          {avatarInitials}
+        </span>
       </button>
     </div>
   );

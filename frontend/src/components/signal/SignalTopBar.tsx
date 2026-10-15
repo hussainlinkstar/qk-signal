@@ -78,16 +78,15 @@ function SignalSearchBox({ sections }: { sections: SignalNavSection[] }) {
       filter={(value, search) => (value.toLowerCase().includes(search.toLowerCase()) ? 1 : 0)}
       className="contents"
     >
-      <div ref={rootRef} className="relative mx-auto w-full max-w-[430px]">
-        {/* `.tsearch`: 38px pill on #EFF1F6, radius 10, gap 9, pad 0 14. */}
+      <div ref={rootRef} className="relative mx-auto w-full max-w-[460px]">
         <div
-          className={`flex h-[38px] w-full items-center gap-[9px] rounded-[10px] border bg-[#EFF1F6] px-3.5 text-sm text-(--t-3) transition-colors ${
-            open
-              ? "border-[#C9CEF7] bg-(--panel) shadow-[0_0_0_2px_color-mix(in_srgb,var(--brand)_28%,transparent)]"
-              : "border-transparent hover:bg-[#E9ECF3]"
+          className={`flex h-12 w-full items-center gap-3 rounded-[16px] bg-[#EEF1F6] px-2.5 text-sm text-[#9CA3AF] transition-all ${
+            open ? "bg-white ring-2 ring-[#BFDBFE]" : "hover:bg-[#E8ECF3]"
           }`}
         >
-          <Search aria-hidden="true" className="h-4 w-4 flex-none" strokeWidth={2} />
+          <span className="flex h-8 w-8 flex-none items-center justify-center rounded-[10px] bg-[#E8F1FF] text-[#3B82F6]">
+            <Search aria-hidden="true" className="h-4 w-4" strokeWidth={2} />
+          </span>
           <CommandPrimitive.Input
             role="combobox"
             aria-autocomplete="list"
@@ -96,21 +95,20 @@ function SignalSearchBox({ sections }: { sections: SignalNavSection[] }) {
             onKeyDown={(event) => {
               if (event.key === "Escape" || event.key === "Tab") setOpen(false);
             }}
-            className="min-w-0 flex-1 border-none bg-transparent p-0 text-[13px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:shadow-none focus:ring-0 focus-visible:shadow-none focus-visible:ring-0"
+            className="min-w-0 flex-1 border-none bg-transparent p-0 text-[14px] text-[#111827] outline-none placeholder:text-[#9CA3AF] focus:shadow-none focus:ring-0 focus-visible:shadow-none focus-visible:ring-0"
           />
           <kbd
-            className={`flex-none rounded border border-(--line) bg-(--paper) px-1.5 py-0.5 font-(family-name:--mono) text-[10px] text-(--t-3) ${
+            className={`me-1 flex h-7 flex-none items-center rounded-[8px] bg-white px-2 font-(family-name:--mono) text-[11px] font-medium text-[#6B7280] ${
               open ? "hidden" : ""
             }`}
           >
             ⌘K
           </kbd>
         </div>
-        {/* `.qs-panel`: absolute, centred under the field, width min(430px,100%). */}
         {open ? (
           <div
             id="signal-qs-panel"
-            className="absolute start-1/2 top-[44px] z-50 max-h-[340px] w-[min(430px,100%)] -translate-x-1/2 overflow-auto rounded-xl border border-(--line) bg-(--panel) p-1.5 shadow-[0_16px_40px_-16px_rgba(12,15,22,0.28)] rtl:start-auto rtl:end-1/2 rtl:translate-x-1/2"
+            className="absolute start-1/2 top-[56px] z-50 max-h-[340px] w-[min(460px,100%)] -translate-x-1/2 overflow-auto rounded-[16px] border-0 bg-white p-2 shadow-[0_18px_40px_-20px_rgba(15,23,42,0.3)] rtl:start-auto rtl:end-1/2 rtl:translate-x-1/2"
           >
             <CommandPrimitive.List>
               <CommandPrimitive.Empty className="px-2.5 py-3 text-[12.5px] text-(--t-2)">
@@ -328,7 +326,7 @@ export default function SignalTopBar({
        because the project pill, the crumb and the workspace title are all
        different widths. The grid delivers what the design intends, on every
        page, and the left column truncates instead of pushing the field. */
-    <header className="sticky top-[15px] z-topbar flex min-h-16 items-center gap-3.5 rounded-se-[16px] border-b border-(--line) bg-[rgba(246,247,249,0.82)] px-3 backdrop-blur-[8px] sm:px-8 md:grid md:grid-cols-[1fr_minmax(0,430px)_1fr]">
+    <header className="sticky top-0 z-topbar flex min-h-[68px] items-center gap-3.5 bg-transparent px-4 py-2 md:grid md:grid-cols-[1fr_minmax(0,460px)_1fr] md:px-6">
       <div className="flex min-w-0 items-center gap-3">
         {menu}
         {/* The sidebar carries `.brand` at lg+; below that the top bar is the

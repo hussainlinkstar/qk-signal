@@ -265,16 +265,12 @@ describe("DashboardOverviewPage", () => {
 
       const tile = await screen.findByRole("button", { name: /add project/i });
       const grid = tile.parentElement as HTMLElement;
-      expect(grid.className).toContain("grid-cols-[repeat(auto-fill,minmax(320px,1fr))]");
+      expect(grid.className).toContain("grid-cols-[repeat(auto-fill,minmax(280px,1fr))]");
       expect(grid.querySelectorAll("a[href^='/dashboard/projects/']")).toHaveLength(projectCount);
 
-      // jsdom does not lay out CSS grid, so assert the placement contract that
-      // produces the row break: the tile is the last grid child and pins its
-      // column start to the first line, which makes auto-placement move it down
-      // a row whenever the cursor has passed column 1. It must stay one card
-      // wide, so no column span may be added.
+      // Add Project stays in normal grid flow (same row when space allows).
       expect(grid.lastElementChild).toBe(tile);
-      expect(tile).toHaveClass("col-start-1");
+      expect(tile).not.toHaveClass("col-start-1");
       expect(tile.className).not.toMatch(/\bcol-span-/);
     }
   );

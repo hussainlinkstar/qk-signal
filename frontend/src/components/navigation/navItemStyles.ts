@@ -1,20 +1,18 @@
-// Nav item styles — exact match to app.qiko.ai GlobalLayout sidebar
-// Active: gradient fill (indigo→cyan) + gradient left indicator + cyan icon
-// Inactive: slate-400 text, white/5 hover — identical to GlobalLayout
+// Mobile drawer nav rows — aligned with the modern desktop sidebar.
 
 const NAV_ITEM_BASE =
-  "w-full flex items-center gap-3 py-3 px-3 rounded-xl " +
-  "transition-all duration-200 group relative text-sm font-medium " +
+  "w-full flex items-center gap-3 py-3 px-2.5 rounded-full " +
+  "transition-colors duration-200 group relative text-sm font-medium " +
   "focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-offset-(--background)";
 
 const NAV_ITEM_VARIANTS = {
   primary: {
     active:
-      "bg-(--purple-s) text-(--primary-hover) border border-transparent border-s-2 border-s-(--purple) " +
-      "[&_svg]:text-(--primary-hover) focus-visible:ring-(--purple)",
+      "bg-[#E8F1FF] text-[#1D4ED8] border border-transparent " +
+      "[&_svg]:text-[#2563EB] focus-visible:ring-[#3B82F6]",
     inactive:
-      "border border-transparent text-(--t-2) hover:text-(--t-1) hover:bg-(--line-2) " +
-      "focus-visible:ring-[#6366F1]/50",
+      "border border-transparent text-[#4B5563] hover:text-[#111827] hover:bg-[#F3F4F6] " +
+      "focus-visible:ring-[#111827]/40",
   },
   danger: {
     active:
