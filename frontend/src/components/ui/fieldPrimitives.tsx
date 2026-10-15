@@ -32,16 +32,16 @@ export const fieldControlClasses = ({
         "w-full rounded-(--r-md) border bg-(--paper) px-[13px] font-(family-name:--body-font) text-base font-normal leading-[1.5] text-(--t-1) shadow-none transition-[border-color,box-shadow] duration-150 placeholder:text-(--t-3) focus:outline-hidden focus:ring-[3px] focus:ring-(--ring) disabled:cursor-not-allowed disabled:bg-(--line-2) disabled:text-(--t-3) sm:text-[13.5px]",
         error
           ? "border-(--bad) focus:border-(--bad)"
-          : "border-(--line) hover:border-(--line-btn-hover) focus:border-(--brand)",
+          : "border-(--line) hover:bg-[#E8ECF3] focus:border-(--brand)",
         multiline ? "min-h-[124px] py-[11px]" : "h-11 py-0"
       )
     : cx(
-        "w-full border bg-(--surface-subtle) font-(family-name:--body-font) font-normal leading-[normal] text-(--foreground) placeholder:text-(--text-muted) shadow-none transition-[border-color,box-shadow] duration-150 focus:outline-hidden focus:ring-[3px] focus:ring-(--ring) disabled:cursor-not-allowed disabled:text-(--text-muted) disabled:opacity-80 read-only:text-(--text-soft)",
-        RADIUS_CONTROL_CLASS,
+        "w-full border-0 bg-[#EEF1F6] font-(family-name:--body-font) font-normal leading-[normal] text-[#111827] placeholder:text-[#9CA3AF] shadow-none transition-[background-color,box-shadow] duration-150 focus:outline-hidden focus:bg-white focus:ring-[3px] focus:ring-[#BFDBFE] disabled:cursor-not-allowed disabled:bg-[#F3F4F6] disabled:text-[#9CA3AF] disabled:opacity-80 read-only:text-[#6B7280]",
+        "rounded-[14px]",
         error
-          ? "border-[color-mix(in_srgb,var(--danger)_50%,transparent)] bg-[color-mix(in_srgb,var(--danger)_5%,var(--surface))] focus:border-danger"
-          : "border-(--border) hover:border-(--border-hover) focus:border-(--brand)",
-        "px-[13px] text-base sm:text-[13.5px]",
+          ? "bg-[color-mix(in_srgb,var(--danger)_8%,white)] focus:ring-[color-mix(in_srgb,var(--danger)_35%,transparent)]"
+          : "hover:bg-[#E8ECF3]",
+        "px-3.5 text-base sm:text-[13.5px]",
         multiline ? "min-h-[76px] py-[11px]" : "h-11 py-0"
       );
 

@@ -67,7 +67,7 @@ export default function WorkflowActionCard({
           size="sm"
           disabled={disabled}
           onClick={onRemove}
-          className="rounded-xl border border-rose-500/20 bg-rose-500/10 text-rose-200 hover:bg-rose-500/20"
+          className="rounded-xl border-0 bg-rose-500/10 text-rose-200 hover:bg-rose-500/20"
         >
           <Trash2 className="h-4 w-4" />
         </Button>

@@ -68,13 +68,13 @@ type FeedbackAnalytics = {
 
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
-const WSTAT = "rounded-(--r) border border-(--line) bg-(--panel) px-4 py-3";
+const WSTAT = "rounded-[22px] border-0 bg-white px-4 py-3";
 const WSTAT_VALUE =
   "font-(family-name:--disp) text-[20px] font-bold leading-none tracking-[-0.02em] text-(--t-1)";
-const WSEC = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const WSEC = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const SEC_TITLE =
   "m-0 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em] text-(--t-1)";
-const INSET = "rounded-(--r-md) border border-(--line) bg-(--paper) p-3";
+const INSET = "rounded-(--r-md) border-0 bg-[#EEF1F6] p-3";
 const CHIP =
   "inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em]";
 
@@ -192,7 +192,7 @@ export default function AdminClaimFeedbackPage() {
   useEffect(() => {
     setHeader({
       actions: (
-        <div className="hidden gap-1 rounded-(--r-md) border border-(--line) bg-(--paper) p-0.5 sm:flex">
+        <div className="hidden gap-1 rounded-(--r-md) border-0 bg-[#EEF1F6] p-0.5 sm:flex">
           {WINDOWS.map((w) => (
             <button
               key={w.value}
@@ -287,7 +287,7 @@ export default function AdminClaimFeedbackPage() {
       <div
         role="group"
         aria-label="Feedback window"
-        className="flex gap-1 self-start rounded-(--r-md) border border-(--line) bg-(--paper) p-0.5 sm:hidden"
+        className="flex gap-1 self-start rounded-(--r-md) border-0 bg-[#EEF1F6] p-0.5 sm:hidden"
       >
         {WINDOWS.map((w) => (
           <button

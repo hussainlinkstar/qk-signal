@@ -62,7 +62,7 @@ export default function AnnotationComposer({
   };
 
   return (
-    <div className="rounded border border-(--line) bg-(--line-2) p-4">
+    <div className="rounded border-0 bg-(--line-2) p-4">
       {showVisibilityToggle ? (
         <div className="mb-3 flex flex-wrap gap-2">
           {[
@@ -96,7 +96,7 @@ export default function AnnotationComposer({
         onChange={(event) => setContent(event.target.value.slice(0, MAX_CONTENT_LENGTH))}
         disabled={disabled || loading}
         placeholder={placeholder}
-        className="min-h-[112px] w-full rounded border border-(--line) bg-(--paper) px-4 py-3 text-sm leading-6 text-(--t-1) outline-hidden transition placeholder:text-(--t-3) focus:border-primary/40 focus:ring-2 focus:ring-primary/20 disabled:opacity-60"
+        className="min-h-[112px] w-full rounded border-0 bg-[#EEF1F6] px-4 py-3 text-sm leading-6 text-(--t-1) outline-hidden transition placeholder:text-(--t-3) focus:border-primary/40 focus:ring-2 focus:ring-primary/20 disabled:opacity-60"
       />
 
       <div className="mt-3 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">

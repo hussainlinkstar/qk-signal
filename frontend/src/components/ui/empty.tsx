@@ -14,7 +14,7 @@ const EmptyMedia = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDiv
       ref={ref}
       data-slot="empty-icon"
       className={cx(
-        "mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full border border-(--border) bg-(--surface-subtle)",
+        "mx-auto mb-4 inline-flex h-12 w-12 items-center justify-center rounded-full border-0 bg-(--surface-subtle)",
         className
       )}
       {...props}

@@ -80,7 +80,7 @@ export default function SignalAddCompetitorModal({
     >
       <div
         data-signal-theme
-        className="w-[560px] max-w-full rounded-[20px] border border-(--line) bg-(--panel) p-[28px_30px_26px] shadow-[0_40px_90px_-30px_rgba(12,15,22,0.5)]"
+        className="w-[560px] max-w-full rounded-[20px] border-0 bg-white p-[28px_30px_26px] shadow-[0_40px_90px_-30px_rgba(12,15,22,0.5)]"
       >
         <p className="font-(family-name:--mono) text-[11px] uppercase tracking-[0.14em] text-(--t-3)">
           Competitive intelligence
@@ -101,7 +101,7 @@ export default function SignalAddCompetitorModal({
               value={targetUrl}
               onChange={(e) => setTargetUrl(e.target.value)}
               placeholder="https://competitor.com"
-              className="h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-3 text-[13.5px] text-(--t-1) outline-hidden focus:border-[#C7CDD6]"
+              className="h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-3 text-[13.5px] text-(--t-1) outline-hidden focus:bg-white"
             />
           </label>
           <label className="block">
@@ -112,7 +112,7 @@ export default function SignalAddCompetitorModal({
               value={displayName}
               onChange={(e) => setDisplayName(e.target.value)}
               placeholder="Example competitor"
-              className="h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-3 text-[13.5px] text-(--t-1) outline-hidden focus:border-[#C7CDD6]"
+              className="h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-3 text-[13.5px] text-(--t-1) outline-hidden focus:bg-white"
             />
           </label>
         </div>
@@ -124,7 +124,7 @@ export default function SignalAddCompetitorModal({
             type="button"
             onClick={handleClose}
             disabled={submitting}
-            className="h-[38px] rounded-[10px] border border-(--line) bg-(--panel) px-[15px] text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] disabled:opacity-50"
+            className="h-[38px] rounded-full border-0 bg-[#EEF1F6] px-[15px] text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:opacity-50"
           >
             Cancel
           </button>

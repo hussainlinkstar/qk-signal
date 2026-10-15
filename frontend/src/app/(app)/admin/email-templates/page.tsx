@@ -62,11 +62,11 @@ type TestSendResponse = {
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const MONO_META = MICRO_LABEL.replace("uppercase ", "");
-const WSEC = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const WSEC = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const WINPUT_SM =
-  "field-focus-ring h-8 rounded-(--r-md) border border-(--line) bg-(--paper) px-[10px] text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
+  "field-focus-ring h-8 rounded-(--r-md) border-0 bg-[#EEF1F6] px-[10px] text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
 const WINPUT =
-  "field-focus-ring h-11 w-full rounded-(--r-md) border border-(--line) bg-(--paper) px-[13px] text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
+  "field-focus-ring h-11 w-full rounded-(--r-md) border-0 bg-[#EEF1F6] px-[13px] text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
 const CHIP =
   "inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em]";
 
@@ -333,7 +333,7 @@ export default function AdminEmailTemplatesPage() {
       {/* Main layout */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[340px_1fr]">
         {/* Left: Template list */}
-        <section className="overflow-hidden rounded-(--r-md) border border-(--line) bg-(--panel)">
+        <section className="overflow-hidden rounded-(--r-md) border-0 bg-white">
           {/* Search & filter */}
           <div className="space-y-3 border-b border-(--line) p-4">
             <div className="relative">
@@ -422,7 +422,7 @@ export default function AdminEmailTemplatesPage() {
                   </div>
                   <div className="flex items-center gap-2">
                     {/* Viewport toggle */}
-                    <div className="flex overflow-hidden rounded-(--r-sm) border border-(--line)">
+                    <div className="flex overflow-hidden rounded-[10px] border-0 bg-[#EEF1F6]">
                       <button
                         onClick={() => setViewMode("desktop")}
                         className={`px-2.5 py-1.5 text-xs transition-colors ${
@@ -496,7 +496,7 @@ export default function AdminEmailTemplatesPage() {
                     }}
                     rows={12}
                     spellCheck={false}
-                    className="field-focus-ring w-full resize-y rounded-(--r-md) border border-(--line) bg-(--paper) p-3 font-(family-name:--mono) text-xs text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]"
+                    className="field-focus-ring w-full resize-y rounded-(--r-md) border-0 bg-[#EEF1F6] p-3 font-(family-name:--mono) text-xs text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]"
                   />
                   {contextError && <p className="text-xs text-(--bad)">{contextError}</p>}
                   <div className="flex justify-end">
@@ -513,7 +513,7 @@ export default function AdminEmailTemplatesPage() {
               )}
 
               {/* Email preview iframe */}
-              <div className="overflow-hidden rounded-(--r-md) border border-(--line) bg-(--panel)">
+              <div className="overflow-hidden rounded-(--r-md) border-0 bg-white">
                 <div
                   className="mx-auto transition-all duration-300"
                   style={{ maxWidth: viewMode === "mobile" ? 375 : "100%" }}

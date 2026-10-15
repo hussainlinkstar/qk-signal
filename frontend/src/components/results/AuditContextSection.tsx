@@ -16,7 +16,7 @@ type AuditContextSectionProps = {
 const LABEL_CLASS =
   "mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const FIELD_CLASS =
-  "field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6] disabled:bg-(--line-2) disabled:text-(--t-3)";
+  "field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6] disabled:bg-(--line-2) disabled:text-(--t-3)";
 
 export default function AuditContextSection({ auditForm, auditRunner }: AuditContextSectionProps) {
   const { t } = useTranslation();
@@ -43,7 +43,7 @@ export default function AuditContextSection({ auditForm, auditRunner }: AuditCon
               [field]: true,
             }))
           }
-          className="inline-flex h-6 cursor-pointer items-center gap-1 rounded-[10px] border border-(--line) bg-(--panel) px-2 font-(family-name:--body-font) text-xs font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+          className="inline-flex h-6 cursor-pointer items-center gap-1 rounded-full border-0 bg-[#EEF1F6] px-2 font-(family-name:--body-font) text-xs font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
           title={t("signalStartCheck.context.editTitle")}
         >
           <Sparkles className="h-3 w-3" />

@@ -276,8 +276,8 @@ export default function AuditDetailsPage() {
   if (workspaceHistory.reportError) {
     return (
       <div className="flex min-h-[70vh] items-center justify-center px-6">
-        <div className="w-full max-w-md rounded border border-(--border) bg-(--surface-subtle) p-8 text-center space-y-5">
-          <div className="flex items-center justify-center w-12 h-12 mx-auto rounded border border-(--border) bg-(--background)">
+        <div className="w-full max-w-md rounded-[14px] border-0 bg-[#EEF1F6] p-8 text-center space-y-5">
+          <div className="flex items-center justify-center w-12 h-12 mx-auto rounded border-0 bg-(--background)">
             <AlertTriangle className="w-5 h-5 text-amber-500" />
           </div>
           <div className="space-y-2">
@@ -579,7 +579,7 @@ export default function AuditDetailsPage() {
             >
               <Link
                 href={`/dashboard/projects/${projectId}/fixes`}
-                className="inline-flex h-[30px] items-center gap-1.5 rounded-(--r-sm) border border-(--line) bg-(--panel) px-[11px] text-[12px] font-semibold text-(--t-1) hover:border-(--line-btn-hover)"
+                className="inline-flex h-[30px] items-center gap-1.5 rounded-(--r-sm) border-0 bg-white px-[11px] text-[12px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
               >
                 {t("signalAuditReport.action.planCta")}
               </Link>

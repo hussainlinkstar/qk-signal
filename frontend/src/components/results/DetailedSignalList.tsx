@@ -22,7 +22,7 @@ const DetailedSignalList = ({ title, signals }: DetailedSignalListProps) => {
   if (!signals || signals.length === 0) return null;
 
   return (
-    <div className="rounded-xl border border-(--line) bg-(--line-2) p-6 shadow-sm">
+    <div className="rounded-xl border-0 bg-(--line-2) p-6 shadow-sm">
       <h3 className="mb-4 text-lg font-semibold text-(--t-1)">{title}</h3>
       <div className="space-y-4">
         {signals.map((signal) => {
@@ -47,7 +47,7 @@ const DetailedSignalList = ({ title, signals }: DetailedSignalListProps) => {
               badgeClasses = "bg-amber-500/10 text-amber-300 border border-amber-500/20";
               BadgeIcon = Cpu;
             } else {
-              badgeClasses = "bg-slate-700/20 text-(--t-2) border border-(--line)";
+              badgeClasses = "bg-slate-700/20 text-(--t-2) border-0";
             }
           }
 

@@ -142,7 +142,7 @@ export default function VerifyEmailPageClient({ branding }: VerifyEmailPageClien
               title="Email verified"
             />
 
-            <div className="space-y-3 rounded-(--r-md) border border-(--line) bg-(--paper) p-[18px]">
+            <div className="space-y-3 rounded-(--r-md) border-0 bg-[#EEF1F6] p-[18px]">
               <div className="flex items-start gap-3">
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded border border-primary/25 bg-primary/10 text-primary">
                   <ShieldCheck className="h-4.5 w-4.5" />

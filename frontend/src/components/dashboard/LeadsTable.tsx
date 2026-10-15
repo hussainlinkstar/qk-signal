@@ -41,7 +41,7 @@ export default function LeadsTable({ leads }: LeadsTableProps) {
   const isExternalHttpUrl = (value: string) => /^https?:\/\//i.test(value || "");
 
   return (
-    <div className="rounded-lg border border-(--border) overflow-hidden">
+    <div className="rounded-lg border-0 overflow-hidden">
       <div className="overflow-x-auto">
         <table className="w-full min-w-[640px] text-sm">
           <thead>

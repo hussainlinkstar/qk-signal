@@ -36,9 +36,9 @@ export function AdminGuardProvider({ children }: { children: React.ReactNode }) 
         data-signal-theme
         className="flex min-h-screen items-center justify-center bg-(--paper) px-6 py-20 font-(family-name:--body-font) text-(--t-1) antialiased"
       >
-        <div className="w-full max-w-md rounded-(--r-lg) border border-(--line) bg-(--panel) px-10 py-12 text-center">
+        <div className="w-full max-w-md rounded-(--r-lg) border-0 bg-white px-10 py-12 text-center">
           <div className="flex flex-col items-center gap-6">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full border border-(--line) bg-(--paper) text-(--purple)">
+            <div className="flex h-14 w-14 items-center justify-center rounded-full border-0 bg-[#EEF1F6] text-(--purple)">
               <Lock size={24} />
             </div>
             <div className="space-y-3">

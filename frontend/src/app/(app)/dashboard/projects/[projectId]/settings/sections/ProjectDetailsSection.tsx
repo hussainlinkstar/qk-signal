@@ -107,7 +107,7 @@ export default function ProjectDetailsSection({
           </label>
           <input
             id={field("name")}
-            className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+            className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
             type="text"
             placeholder={t("signalProjectSettings.projectDetails.namePlaceholder")}
             value={form.name}
@@ -126,7 +126,7 @@ export default function ProjectDetailsSection({
           </label>
           <input
             id={field("domain")}
-            className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+            className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
             type="text"
             placeholder={t("signalProjectSettings.projectDetails.domainPlaceholder")}
             value={form.domainUrl}
@@ -145,7 +145,7 @@ export default function ProjectDetailsSection({
           </label>
           <select
             id={field("market")}
-            className="wselect-chevron field-focus-ring h-11 w-full cursor-pointer appearance-none rounded-[10px] border border-(--line) bg-(--paper) pl-[13px] pr-[34px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none focus:border-[#C7CDD6]"
+            className="wselect-chevron field-focus-ring h-11 w-full cursor-pointer appearance-none rounded-[14px] border-0 bg-[#EEF1F6] pl-[13px] pr-[34px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none focus:bg-white"
             value={form.targetCountry}
             onChange={(event) => onFormChange({ targetCountry: event.target.value })}
           >
@@ -170,7 +170,7 @@ export default function ProjectDetailsSection({
         </label>
         <select
           id={field("language")}
-          className="wselect-chevron field-focus-ring h-11 w-full cursor-pointer appearance-none rounded-[10px] border border-(--line) bg-(--paper) pl-[13px] pr-[34px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none focus:border-[#C7CDD6]"
+          className="wselect-chevron field-focus-ring h-11 w-full cursor-pointer appearance-none rounded-[14px] border-0 bg-[#EEF1F6] pl-[13px] pr-[34px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none focus:bg-white"
           value={normalizeReportLanguage(form.language)}
           onChange={(event) => onFormChange({ language: event.target.value })}
         >
@@ -197,7 +197,7 @@ export default function ProjectDetailsSection({
             <button
               key={role}
               type="button"
-              className="inline-flex h-8 items-center gap-2 rounded-[999px] border border-(--line) pl-2.5 pr-1.5 text-[13px] font-semibold"
+              className="inline-flex h-8 items-center gap-2 rounded-[999px] border-0 pl-2.5 pr-1.5 text-[13px] font-semibold"
               aria-pressed={true}
               aria-label={t("signalProjectSettings.projectDetails.rolesSelected", { role })}
               onClick={() => onToggleRole(role)}
@@ -209,7 +209,7 @@ export default function ProjectDetailsSection({
             <button
               key={role}
               type="button"
-              className="inline-flex h-8 items-center gap-2 rounded-[999px] border border-(--line) pl-2.5 pr-1.5 text-[13px] font-semibold"
+              className="inline-flex h-8 items-center gap-2 rounded-[999px] border-0 pl-2.5 pr-1.5 text-[13px] font-semibold"
               aria-pressed={false}
               aria-label={t("signalProjectSettings.projectDetails.rolesAvailable", { role })}
               onClick={() => onToggleRole(role)}
@@ -224,7 +224,7 @@ export default function ProjectDetailsSection({
           </label>
           <input
             id={field("custom-role")}
-            className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+            className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
             type="text"
             placeholder={t("signalProjectSettings.projectDetails.rolesAddPlaceholder")}
             value={customRole}
@@ -238,7 +238,7 @@ export default function ProjectDetailsSection({
           />
           <button
             type="button"
-            className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] flex-none max-md:min-h-11"
+            className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] flex-none max-md:min-h-11"
             onClick={onAddCustomRole}
           >
             {t("signalProjectSettings.projectDetails.rolesAdd")}
@@ -259,7 +259,7 @@ export default function ProjectDetailsSection({
           </label>
           <textarea
             id={field("pain")}
-            className="field-focus-ring min-h-[76px] w-full resize-y rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-[11px] font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6]"
+            className="field-focus-ring min-h-[76px] w-full resize-y rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-[11px] font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white"
             placeholder={t("signalProjectSettings.projectDetails.painPlaceholder")}
             value={form.painPoints}
             onChange={(event) => onFormChange({ painPoints: event.target.value })}
@@ -274,7 +274,7 @@ export default function ProjectDetailsSection({
           </label>
           <textarea
             id={field("usp")}
-            className="field-focus-ring min-h-[76px] w-full resize-y rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-[11px] font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6]"
+            className="field-focus-ring min-h-[76px] w-full resize-y rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-[11px] font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white"
             placeholder={t("signalProjectSettings.projectDetails.uspPlaceholder")}
             value={form.usp}
             onChange={(event) => onFormChange({ usp: event.target.value })}
@@ -291,7 +291,7 @@ export default function ProjectDetailsSection({
         </label>
         <input
           id={field("tags")}
-          className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+          className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
           type="text"
           placeholder={t("signalProjectSettings.projectDetails.tagsPlaceholder")}
           value={form.priorityPulseTags}
@@ -311,7 +311,7 @@ export default function ProjectDetailsSection({
         </label>
         <textarea
           id={field("expertise")}
-          className="field-focus-ring min-h-[76px] w-full resize-y rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-[11px] font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6]"
+          className="field-focus-ring min-h-[76px] w-full resize-y rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-[11px] font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white"
           placeholder={t("signalProjectSettings.projectDetails.expertisePlaceholder")}
           value={form.smeProfiles}
           onChange={(event) => onFormChange({ smeProfiles: event.target.value })}
@@ -324,7 +324,7 @@ export default function ProjectDetailsSection({
       <div className="flex justify-end gap-2.5">
         <button
           type="button"
-          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] max-md:min-h-11"
+          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] max-md:min-h-11"
           onClick={onGenerate}
           disabled={busy || missingFields.length > 0}
         >
@@ -335,7 +335,7 @@ export default function ProjectDetailsSection({
         </button>
         <button
           type="button"
-          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black max-md:min-h-11"
+          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black max-md:min-h-11"
           onClick={onSave}
           disabled={busy}
         >

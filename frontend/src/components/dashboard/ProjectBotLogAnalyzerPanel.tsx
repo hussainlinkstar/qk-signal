@@ -322,7 +322,7 @@ export default function ProjectBotLogAnalyzerPanel({ projectId }: ProjectBotLogA
             aria-label="Bot log source type"
             value={selectedSourceType}
             onChange={(event) => setSelectedSourceType(event.target.value as SourceType)}
-            className="h-10 rounded border border-(--border) bg-(--background) px-3 text-sm text-(--foreground) transition-colors focus-visible:border-brand-geo focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-brand-geo"
+            className="h-10 rounded border-0 bg-(--background) px-3 text-sm text-(--foreground) transition-colors focus-visible:border-brand-geo focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-brand-geo"
           >
             {SOURCE_PRESETS.map((preset) => (
               <option key={preset.source_type} value={preset.source_type}>
@@ -492,7 +492,7 @@ export default function ProjectBotLogAnalyzerPanel({ projectId }: ProjectBotLogA
             return (
               <div
                 key={preset.source_type}
-                className="rounded border border-(--border) p-4 transition-colors hover:border-(--border-hover)"
+                className="rounded border-0 p-4 transition-colors hover:border-(--border-hover)"
               >
                 <div className="flex items-start justify-between gap-3">
                   <div>
@@ -545,7 +545,7 @@ export default function ProjectBotLogAnalyzerPanel({ projectId }: ProjectBotLogA
                       }}
                       rows={4}
                       placeholder={preset.placeholder}
-                      className="mt-2 w-full rounded border border-(--border) bg-(--card) px-3 py-2 text-xs text-(--foreground) outline-hidden transition-colors focus:border-brand-geo"
+                      className="mt-2 w-full rounded border-0 bg-(--card) px-3 py-2 text-xs text-(--foreground) outline-hidden transition-colors focus:border-brand-geo"
                     />
                   </label>
 
@@ -566,7 +566,7 @@ export default function ProjectBotLogAnalyzerPanel({ projectId }: ProjectBotLogA
                         }}
                         className="peer sr-only"
                       />
-                      <span className="flex h-4 w-4 items-center justify-center rounded-[3px] border border-(--border) bg-(--card) transition-colors group-hover:border-(--border-hover) peer-checked:border-brand-aeo peer-checked:bg-brand-aeo peer-focus-visible:ring-2 peer-focus-visible:ring-brand-geo peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-(--background)">
+                      <span className="flex h-4 w-4 items-center justify-center rounded-[3px] border-0 bg-(--card) transition-colors group-hover:border-(--border-hover) peer-checked:border-brand-aeo peer-checked:bg-brand-aeo peer-focus-visible:ring-2 peer-focus-visible:ring-brand-geo peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-(--background)">
                         <Check className="h-3 w-3 stroke-3 text-(--t-1) opacity-0 transition-opacity peer-checked:opacity-100" />
                       </span>
                       Source active

@@ -25,7 +25,7 @@ export default function PlanLockNotice({
   return (
     <section
       className={cx(
-        "mx-auto w-full max-w-[380px] rounded-2xl border border-(--line) bg-(--panel) px-6 py-[22px] text-center shadow-[0_24px_60px_-24px_rgba(12,15,22,0.4)]",
+        "mx-auto w-full max-w-[380px] rounded-[22px] border-0 bg-white px-6 py-[22px] text-center shadow-[0_24px_60px_-24px_rgba(12,15,22,0.4)]",
         className
       )}
     >

@@ -37,7 +37,7 @@ type UserSession = {
   created_at: string;
 };
 
-const STAT = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const STAT = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const CHIP =
@@ -239,13 +239,13 @@ export default function AdminSecurityPage() {
         <div className="flex gap-2">
           <button
             onClick={() => handleRevokeSession(s.id)}
-            className="rounded-md border border-(--line) bg-(--bad-s) px-2.5 py-1 font-(family-name:--mono) text-[10.5px] tracking-[0.04em] text-(--bad) transition-colors hover:opacity-80"
+            className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--bad-s) px-2.5 py-1 font-(family-name:--mono) text-[10.5px] tracking-[0.04em] text-(--bad) transition-colors hover:opacity-80"
           >
             Revoke
           </button>
           <button
             onClick={() => handleRevokeAllUserSessions(s.user_id)}
-            className="rounded-md border border-(--line) bg-(--warn-s) px-2.5 py-1 text-(--warn) transition-colors hover:opacity-80"
+            className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--warn-s) px-2.5 py-1 text-(--warn) transition-colors hover:opacity-80"
             title="Revoke all sessions for this user"
           >
             <UserX size={12} />

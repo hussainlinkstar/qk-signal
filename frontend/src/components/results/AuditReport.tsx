@@ -140,7 +140,7 @@ const HallucinationGauge = ({
     : "Total flagged claims out of all reviewed AI-generated statements.";
 
   return (
-    <div className="rounded-md border border-(--line) bg-(--line-2) p-4">
+    <div className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) p-4">
       <div className="mb-2 flex items-center justify-between">
         <span className="text-xs font-medium text-(--t-2)">{label}</span>
         <span className={`font-mono text-sm font-bold ${textColor}`}>
@@ -288,7 +288,7 @@ const AuditReport = ({ report }: { report: CanonicalAuditReport; isLocked?: bool
           ) : null}
         </div>
 
-        <section className="mb-8 rounded-xl border border-(--line) bg-(--line-2) p-4 sm:p-6">
+        <section className="mb-8 rounded-xl border-0 bg-(--line-2) p-4 sm:p-6">
           <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <h3 className="text-xl font-semibold text-(--t-1)">Current Status vs Improvements</h3>
@@ -299,30 +299,30 @@ const AuditReport = ({ report }: { report: CanonicalAuditReport; isLocked?: bool
             <div className="text-xs uppercase tracking-wide text-(--t-3)">30-second overview</div>
           </div>
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-            <div className="rounded-lg border border-(--line) bg-(--line-2) p-5">
+            <div className="rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) p-5">
               <h4 className="text-sm font-semibold uppercase tracking-wide text-thoth-brass">
                 Current Metrics
               </h4>
               <div className="mt-4 grid grid-cols-2 gap-3">
-                <div className="rounded-md border border-(--line) bg-(--line-2) p-3">
+                <div className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) p-3">
                   <p className="text-xs text-(--t-2)">Overall Score</p>
                   <p className="text-xl font-bold text-(--t-1)">{overallScore}/100</p>
                 </div>
-                <div className="rounded-md border border-(--line) bg-(--line-2) p-3">
+                <div className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) p-3">
                   <p className="text-xs text-(--t-2)">Average Subscore</p>
                   <p className="text-xl font-bold text-(--t-1)">{averageScore}/100</p>
                 </div>
-                <div className="rounded-md border border-(--line) bg-(--line-2) p-3">
+                <div className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) p-3">
                   <p className="text-xs text-(--t-2)">Entities Detected</p>
                   <p className="text-xl font-bold text-(--t-1)">{entities.length}</p>
                 </div>
-                <div className="rounded-md border border-(--line) bg-(--line-2) p-3">
+                <div className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) p-3">
                   <p className="text-xs text-(--t-2)">Warnings</p>
                   <p className="text-xl font-bold text-(--t-1)">{warnings.length}</p>
                 </div>
               </div>
             </div>
-            <div className="rounded-lg border border-(--line) bg-(--line-2) p-5">
+            <div className="rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) p-5">
               <div className="flex items-center justify-between gap-3">
                 <h4 className="text-sm font-semibold uppercase tracking-wide text-thoth-logic">
                   Prioritized Improvements
@@ -336,7 +336,7 @@ const AuditReport = ({ report }: { report: CanonicalAuditReport; isLocked?: bool
                   prioritizedRecommendations.map((item, index) => (
                     <li
                       key={`${item.text}-${index}`}
-                      className="rounded-md border border-(--line) bg-(--line-2) p-3"
+                      className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) p-3"
                     >
                       <div className="mb-1 flex items-center justify-between gap-2">
                         <p className="text-sm font-medium text-(--t-1)">
@@ -352,7 +352,7 @@ const AuditReport = ({ report }: { report: CanonicalAuditReport; isLocked?: bool
                     </li>
                   ))
                 ) : (
-                  <li className="rounded-md border border-(--line) bg-(--line-2) p-3 text-sm text-(--t-2)">
+                  <li className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) p-3 text-sm text-(--t-2)">
                     No roadmap items were returned for this audit.
                   </li>
                 )}
@@ -362,7 +362,7 @@ const AuditReport = ({ report }: { report: CanonicalAuditReport; isLocked?: bool
         </section>
 
         {warnings.length > 0 && (
-          <div className="mb-8 rounded-xl border border-amber-500/40 bg-amber-500/10 p-4 text-amber-100">
+          <div className="mb-8 rounded-xl border-0 bg-amber-500/10 p-4 text-amber-100">
             <h3 className="text-sm font-semibold uppercase tracking-wider text-amber-200">
               Warnings
             </h3>
@@ -375,7 +375,7 @@ const AuditReport = ({ report }: { report: CanonicalAuditReport; isLocked?: bool
         )}
 
         {hallucinationSnapshot && (
-          <section className="mb-8 rounded-xl border border-rose-500/40 bg-rose-500/10 p-4 text-rose-100">
+          <section className="mb-8 rounded-xl border-0 bg-rose-500/10 p-4 text-rose-100">
             <div className="flex items-center gap-2">
               <AlertTriangle className="h-4 w-4" />
               <h3 className="text-sm font-semibold uppercase tracking-wider text-rose-200">
@@ -635,9 +635,9 @@ const AuditReport = ({ report }: { report: CanonicalAuditReport; isLocked?: bool
         {report.debate?.enabled && <DebateProcessCard debate={report.debate} />}
 
         {screenshotUrl && (
-          <div className="mb-8 rounded-xl border border-(--line) bg-surface p-4">
+          <div className="mb-8 rounded-xl border-0 bg-surface p-4">
             <h3 className="mb-3 text-lg font-semibold text-(--t-1)">Captured Page Screenshot</h3>
-            <div className="overflow-hidden rounded-lg border border-(--line)">
+            <div className="overflow-hidden rounded-[14px] border-0 bg-[#EEF1F6]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={screenshotUrl} alt="Captured page" className="w-full h-auto" />
             </div>
@@ -645,7 +645,7 @@ const AuditReport = ({ report }: { report: CanonicalAuditReport; isLocked?: bool
         )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="flex flex-col items-center justify-center rounded-lg border border-(--line) bg-(--line-2) p-6 lg:col-span-1">
+          <div className="flex flex-col items-center justify-center rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) p-6 lg:col-span-1">
             <ScoreGauge score={overallScore} label="Overall AI Visibility Score" />
             <p className="text-center text-(--t-2) mt-4">
               This score represents the overall readiness of your content for AI-driven search
@@ -653,7 +653,7 @@ const AuditReport = ({ report }: { report: CanonicalAuditReport; isLocked?: bool
             </p>
           </div>
           <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="rounded-lg border border-(--line) bg-(--line-2) p-6">
+            <div className="rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) p-6">
               <div className="flex items-center text-thoth-brass mb-4">
                 <BrainCircuit className="w-6 h-6 mr-2" />
                 <h3 className="text-xl font-semibold">AI Analysis</h3>
@@ -664,7 +664,7 @@ const AuditReport = ({ report }: { report: CanonicalAuditReport; isLocked?: bool
                 ))}
               </div>
             </div>
-            <div className="rounded-lg border border-(--line) bg-(--line-2) p-6">
+            <div className="rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) p-6">
               <div className="flex items-center text-thoth-logic mb-4">
                 <ShieldCheck className="w-6 h-6 mr-2" />
                 <h3 className="text-xl font-semibold">Trust & Technicals</h3>
@@ -759,7 +759,7 @@ const AuditReport = ({ report }: { report: CanonicalAuditReport; isLocked?: bool
           <div className="lg:col-span-2 space-y-6">
             <EntityChips entities={entities} />
             {entitySummary && (
-              <div className="rounded-lg border border-(--line) bg-(--line-2) p-6">
+              <div className="rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) p-6">
                 <h3 className="mb-3 text-xl font-semibold text-(--t-1)">Entity Summary</h3>
                 <p className="text-(--t-2) text-sm leading-relaxed">{entitySummary}</p>
               </div>
@@ -768,7 +768,7 @@ const AuditReport = ({ report }: { report: CanonicalAuditReport; isLocked?: bool
           </div>
           <div className="lg:col-span-1 space-y-6">
             <TechnicalMetrics metrics={performanceMetrics} />
-            <div className="rounded-lg border border-(--line) bg-(--line-2) p-6">
+            <div className="rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) p-6">
               <div className="mb-4 flex items-center text-thoth-brass">
                 <Globe className="w-6 h-6 mr-2" />
                 <h3 className="text-xl font-semibold">Network Analysis</h3>

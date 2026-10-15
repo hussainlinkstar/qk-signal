@@ -81,7 +81,7 @@ type AuditHistoryItem = {
 
 /* ── Style constants ───────────────────────────────────────────── */
 
-const WSTAT = "flex flex-col gap-1 rounded-(--r) border border-(--line) bg-(--panel) px-4 py-3";
+const WSTAT = "flex flex-col gap-1 rounded-[22px] border-0 bg-white px-4 py-3";
 const WSTAT_VALUE =
   "font-(family-name:--disp) text-[20px] font-bold leading-none tracking-[-0.02em] text-(--t-1)";
 const MICRO_LABEL =
@@ -89,7 +89,7 @@ const MICRO_LABEL =
 const MONO_META = MICRO_LABEL.replace("uppercase ", "");
 const FIELD_LABEL = `mb-2 block ${MICRO_LABEL}`;
 const WINPUT =
-  "field-focus-ring h-11 w-full rounded-(--r-md) border border-(--line) bg-(--paper) px-[13px] text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
+  "field-focus-ring h-11 w-full rounded-(--r-md) border-0 bg-[#EEF1F6] px-[13px] text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
 const CHIP =
   "inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em]";
 const CHIP_NEUTRAL = `${CHIP} text-(--t-2) bg-(--line-2)`;

@@ -489,7 +489,7 @@ function WorkspaceSettingsPage() {
     return (
       <div
         role="alert"
-        className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-6"
+        className="rounded-[22px] border-0 bg-white px-[22px] py-6"
       >
         <h2 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
           Workspace settings could not be loaded
@@ -498,7 +498,7 @@ function WorkspaceSettingsPage() {
         <button
           type="button"
           onClick={() => void loadSettings()}
-          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
         >
           Try again
         </button>
@@ -533,7 +533,7 @@ function WorkspaceSettingsPage() {
           {/* ── General / Overview Panel ── */}
           {activeSection === "workspace-overview" && (
             <div className="flex flex-col gap-[22px]">
-              <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+              <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
                 <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
                   Workspace Identity
                 </h3>
@@ -547,7 +547,7 @@ function WorkspaceSettingsPage() {
                       Workspace name
                     </span>
                     <input
-                      className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+                      className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
                       type="text"
                       value={workspaceNameInput}
                       onChange={(event) => setWorkspaceNameInput(event.target.value)}
@@ -556,7 +556,7 @@ function WorkspaceSettingsPage() {
                   </div>
                   <button
                     type="button"
-                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
                     onClick={handleSaveName}
                     disabled={!canManage || !workspaceNameInput.trim() || isSavingWorkspace}
                   >
@@ -588,7 +588,7 @@ function WorkspaceSettingsPage() {
                 </div>
               </div>
 
-              <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+              <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
                 <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
                   My Workspaces
                 </h3>
@@ -603,7 +603,7 @@ function WorkspaceSettingsPage() {
                     <div className="flex items-center justify-end gap-4 border-t border-t-(--line-2) py-3.5 first:border-t-0">
                       <button
                         type="button"
-                        className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+                        className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
                         onClick={() => setShowCreateWorkspaceModal(true)}
                       >
                         Add Workspace
@@ -636,7 +636,7 @@ function WorkspaceSettingsPage() {
                               {!isActive ? (
                                 <button
                                   type="button"
-                                  className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                                  className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                                   onClick={() => {
                                     setActiveWorkspaceId(ws.id);
                                     window.location.reload();
@@ -647,7 +647,7 @@ function WorkspaceSettingsPage() {
                               ) : null}
                               <button
                                 type="button"
-                                className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                                className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                                 disabled={
                                   isActive ||
                                   busyWorkspaceId === ws.id ||
@@ -695,14 +695,14 @@ function WorkspaceSettingsPage() {
                     <div className="flex flex-none gap-2.5">
                       <button
                         type="button"
-                        className="inline-flex h-[38px] items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) disabled:cursor-not-allowed disabled:opacity-55"
+                        className="inline-flex h-[38px] items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) disabled:cursor-not-allowed disabled:opacity-55"
                         disabled
                       >
                         Add Workspace
                       </button>
                       <a
                         href={CONTACT_SALES_HREF}
-                        className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+                        className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
                       >
                         Contact Sales
                       </a>
@@ -718,7 +718,7 @@ function WorkspaceSettingsPage() {
             <div className="flex flex-col gap-[22px]">
               {/* Invite form card */}
               {canManage ? (
-                <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+                <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
                   <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
                     Invite Team Member
                   </h3>
@@ -731,7 +731,7 @@ function WorkspaceSettingsPage() {
                         Email
                       </span>
                       <input
-                        className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+                        className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
                         type="text"
                         placeholder="teammate@company.com"
                         value={memberEmail}
@@ -746,7 +746,7 @@ function WorkspaceSettingsPage() {
                         Role
                       </span>
                       <select
-                        className="field-focus-ring h-11 w-full appearance-none rounded-[10px] border border-(--line) bg-(--paper) py-0 pl-[13px] pr-[34px] font-(family-name:--body-font) cursor-pointer text-[13.5px] text-(--t-1) outline-none wselect-chevron"
+                        className="field-focus-ring h-11 w-full appearance-none rounded-[14px] border-0 bg-[#EEF1F6] py-0 pl-[13px] pr-[34px] font-(family-name:--body-font) cursor-pointer text-[13.5px] text-(--t-1) outline-none wselect-chevron"
                         value={memberRole}
                         onChange={(event) =>
                           setMemberRole(event.target.value as InternalWorkspaceRole)
@@ -761,7 +761,7 @@ function WorkspaceSettingsPage() {
                     </div>
                     <button
                       type="button"
-                      className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+                      className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
                       onClick={handleAddMember}
                       disabled={isAddingMember}
                     >
@@ -770,7 +770,7 @@ function WorkspaceSettingsPage() {
                     {canMultiWorkspace && workspace?.is_owner ? (
                       <button
                         type="button"
-                        className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                        className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                         onClick={() => setShowMultiInviteModal(true)}
                         title="Invite to multiple workspaces at once (owner only)"
                       >
@@ -783,7 +783,7 @@ function WorkspaceSettingsPage() {
               ) : null}
 
               {/* Team roster table */}
-              <div className="rounded-(--r) border border-(--line) bg-(--panel)">
+              <div className="rounded-[22px] border-0 bg-white">
                 <div className="px-6 pt-[22px] pb-0">
                   <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
                     Team Roster{" "}
@@ -828,7 +828,7 @@ function WorkspaceSettingsPage() {
                           ) : (
                             <select
                               aria-label={`Role for ${member.email}`}
-                              className="field-focus-ring h-11 w-full max-w-[160px] appearance-none rounded-[10px] border border-(--line) bg-(--paper) py-0 pl-[13px] pr-[34px] font-(family-name:--body-font) cursor-pointer text-[13.5px] text-(--t-1) outline-none wselect-chevron"
+                              className="field-focus-ring h-11 w-full max-w-[160px] appearance-none rounded-[14px] border-0 bg-[#EEF1F6] py-0 pl-[13px] pr-[34px] font-(family-name:--body-font) cursor-pointer text-[13.5px] text-(--t-1) outline-none wselect-chevron"
                               value={member.role}
                               onChange={(event) =>
                                 handleRoleUpdate(
@@ -852,7 +852,7 @@ function WorkspaceSettingsPage() {
                           ) : (
                             <button
                               type="button"
-                              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                               onClick={() => handleRemoveMember(member.user_id)}
                               disabled={!canManage || busyUserId === member.user_id}
                               title="Remove workspace access"
@@ -888,7 +888,7 @@ function WorkspaceSettingsPage() {
             <div className="flex flex-col gap-[22px]">
               {/* Invite form + project picker */}
               {canManage ? (
-                <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+                <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
                   <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
                     Invite Client
                   </h3>
@@ -902,7 +902,7 @@ function WorkspaceSettingsPage() {
                         Client email
                       </span>
                       <input
-                        className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+                        className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
                         type="text"
                         placeholder="client@brand.com"
                         value={clientEmail}
@@ -914,7 +914,7 @@ function WorkspaceSettingsPage() {
                         Client name (optional)
                       </span>
                       <input
-                        className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+                        className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
                         type="text"
                         placeholder="Jane Client"
                         value={clientName}
@@ -938,7 +938,7 @@ function WorkspaceSettingsPage() {
                           return (
                             <label
                               key={project.id}
-                              className="flex cursor-pointer items-center gap-[11px] rounded-[10px] border border-(--line) bg-(--paper) px-3.5 py-3"
+                              className="flex cursor-pointer items-center gap-[11px] rounded-[14px] border-0 bg-[#EEF1F6] px-3.5 py-3"
                             >
                               <input
                                 type="checkbox"
@@ -966,7 +966,7 @@ function WorkspaceSettingsPage() {
 
                   <button
                     type="button"
-                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
                     onClick={handleInviteClient}
                     disabled={
                       projects.length === 0 ||
@@ -985,7 +985,7 @@ function WorkspaceSettingsPage() {
                       <p className="mb-2 text-[12px] text-(--t-3)">
                         Email delivery is disabled in this environment. Share this link directly.
                       </p>
-                      <div className="break-all select-all rounded-[10px] border border-(--line) bg-(--paper) px-3.5 py-3 font-(family-name:--mono) text-[12px]">
+                      <div className="break-all select-all rounded-[14px] border-0 bg-[#EEF1F6] px-3.5 py-3 font-(family-name:--mono) text-[12px]">
                         {manualInvitationUrl}
                       </div>
                     </div>
@@ -994,7 +994,7 @@ function WorkspaceSettingsPage() {
               ) : null}
 
               {/* Client roster table */}
-              <div className="rounded-(--r) border border-(--line) bg-(--panel)">
+              <div className="rounded-[22px] border-0 bg-white">
                 <div className="px-6 pt-[22px] pb-0">
                   <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
                     Portal Users{" "}
@@ -1039,7 +1039,7 @@ function WorkspaceSettingsPage() {
                         <td className="border-b border-b-(--line-2) px-4 py-[13px] text-right align-middle text-[13px]">
                           <button
                             type="button"
-                            className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                            className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                             onClick={() => handleRemoveMember(member.user_id)}
                             disabled={!canManage || busyUserId === member.user_id}
                             title="Remove portal access"

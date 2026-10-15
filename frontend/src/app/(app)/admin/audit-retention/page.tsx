@@ -28,12 +28,12 @@ type DataRetentionCleanupResponse = {
   screenshots_redacted: number;
 };
 
-const CARD = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const CARD = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const CARD_TITLE =
   "m-0 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em] text-(--t-1)";
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
-const INSET = "rounded-(--r-md) border border-(--line) bg-(--paper) px-[18px] py-4";
+const INSET = "rounded-(--r-md) border-0 bg-[#EEF1F6] px-[18px] py-4";
 
 export default function AdminAuditRetentionPage() {
   const { getToken, isSignedIn } = useAuth();

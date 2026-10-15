@@ -29,7 +29,7 @@ export default function AuditSection({
     <section
       id={id}
       aria-label={heading}
-      className={cx("rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-5", className)}
+      className={cx("rounded-[22px] border-0 bg-white px-[22px] py-5", className)}
     >
       <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[14.5px] font-bold">{heading}</h3>
       <p className="m-0 mb-4 text-[12.5px] leading-[1.5] text-(--t-3)">{description}</p>

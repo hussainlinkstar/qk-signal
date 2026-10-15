@@ -28,7 +28,7 @@ export default function RoleModeSwitcher() {
     <div
       role="radiogroup"
       aria-label="Role mode"
-      className="inline-flex flex-wrap gap-1 rounded-lg border border-(--line) bg-(--line-2) p-1"
+      className="inline-flex flex-wrap gap-1 rounded-full bg-[#EEF1F6] p-1"
     >
       {ROLE_MODES.map((mode) => {
         const isActive = mode === roleMode;
@@ -41,10 +41,10 @@ export default function RoleModeSwitcher() {
             disabled={pendingMode !== null}
             onClick={() => void handleSelect(mode)}
             className={cx(
-              "rounded-md px-3 py-1.5 text-xs font-semibold transition-colors duration-normal focus:outline-hidden focus-visible:ring-1 focus-visible:ring-primary/40 disabled:cursor-not-allowed disabled:opacity-60",
+              "rounded-full px-3.5 py-2 text-[12.5px] font-semibold transition-colors duration-150 focus:outline-hidden focus-visible:ring-2 focus-visible:ring-[#3B82F6] disabled:cursor-not-allowed disabled:opacity-60",
               isActive
-                ? "bg-primary/15 text-(--t-1)"
-                : "text-(--text-secondary) hover:bg-(--line-2) hover:text-(--t-1)"
+                ? "bg-[#E8F1FF] text-[#1D4ED8]"
+                : "text-[#6B7280] hover:bg-white/80 hover:text-[#111827]"
             )}
           >
             {ROLE_LABEL[mode]}

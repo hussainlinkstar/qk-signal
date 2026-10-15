@@ -218,7 +218,7 @@ export default function ClaimReviewQueue({
 
   if (loading) {
     return (
-      <div className="flex min-h-[280px] items-center justify-center rounded border border-(--border) bg-(--surface-subtle)">
+      <div className="flex min-h-[280px] items-center justify-center rounded-[14px] border-0 bg-[#EEF1F6]">
         <Spinner size="md" label="Loading claim review queue" />
       </div>
     );
@@ -246,7 +246,7 @@ export default function ClaimReviewQueue({
 
   return (
     <div className="space-y-6">
-      <div className="rounded border border-(--border) bg-(--surface-subtle) p-5">
+      <div className="rounded-[14px] border-0 bg-[#EEF1F6] p-5">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div className="space-y-2">
             <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.24em] text-(--text-muted)">
@@ -306,13 +306,13 @@ export default function ClaimReviewQueue({
         return (
           <section
             key={claim.claim_id}
-            className="rounded border border-(--border) bg-(--surface-subtle) p-5"
+            className="rounded-[14px] border-0 bg-[#EEF1F6] p-5"
             aria-label={`Claim review card ${claim.claim_id}`}
           >
             <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
               <div className="space-y-3">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full border border-(--line) bg-(--line-2) px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-(--foreground)">
+                  <span className="rounded-full border-0 bg-(--line-2) px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-(--foreground)">
                     {claim.claim_id}
                   </span>
                   <span className="rounded-full border border-primary/20 bg-primary/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-primary">
@@ -337,7 +337,7 @@ export default function ClaimReviewQueue({
                     </span>
                   ) : null}
                   {typeof claim.confidence_score === "number" ? (
-                    <span className="rounded-full border border-(--line) bg-(--line-2) px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-(--text-muted)">
+                    <span className="rounded-full border-0 bg-(--line-2) px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-(--text-muted)">
                       Confidence {Math.round(claim.confidence_score * 100)}%
                     </span>
                   ) : null}
@@ -351,7 +351,7 @@ export default function ClaimReviewQueue({
                 </div>
 
                 {evidenceLines.length > 0 ? (
-                  <div className="rounded border border-(--line) bg-(--line-2) p-3">
+                  <div className="rounded border-0 bg-(--line-2) p-3">
                     <p className="text-[10px] font-black uppercase tracking-[0.18em] text-(--text-muted)">
                       Evidence Anchor
                     </p>
@@ -370,7 +370,7 @@ export default function ClaimReviewQueue({
                 ) : null}
 
                 {claim.review_decision ? (
-                  <div className="rounded border border-(--line) bg-(--line-2) p-3 text-sm text-(--text-soft)">
+                  <div className="rounded border-0 bg-(--line-2) p-3 text-sm text-(--text-soft)">
                     <p className="font-medium text-(--foreground)">
                       {formatDispositionLabel(claim.current_disposition)}
                       {reviewedBy ? ` by ${reviewedBy}` : ""}

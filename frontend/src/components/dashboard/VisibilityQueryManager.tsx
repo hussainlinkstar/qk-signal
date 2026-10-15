@@ -122,7 +122,7 @@ export default function VisibilityQueryManager({
         </div>
       ) : null}
 
-      <div className={`${CARD_SUBSECTION_CLASS} border border-(--border) bg-(--card)`}>
+      <div className={`${CARD_SUBSECTION_CLASS} border-0 bg-(--card)`}>
         <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
           <div>
             <p className={CARD_LABEL_CLASS}>{t("visibilityQueryManager.planUsageLabel")}</p>
@@ -153,7 +153,7 @@ export default function VisibilityQueryManager({
           </p>
           <Link
             href={`/dashboard/projects/${projectId}/ai-answers?tab=prompts`}
-            className="inline-flex h-9 flex-none items-center rounded-md border border-(--border) bg-(--background) px-4 text-xs font-semibold text-(--foreground) hover:border-(--foreground)/30"
+            className="inline-flex h-9 flex-none items-center rounded-md border-0 bg-(--background) px-4 text-xs font-semibold text-(--foreground) hover:border-(--foreground)/30"
           >
             {t("visibilityQueryManager.addAction")}
           </Link>
@@ -180,7 +180,7 @@ export default function VisibilityQueryManager({
             return (
               <div
                 key={query.id}
-                className={`${CARD_SUBSECTION_CLASS} border border-(--border) bg-(--card)`}
+                className={`${CARD_SUBSECTION_CLASS} border-0 bg-(--card)`}
               >
                 <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
                   <div className="space-y-2">

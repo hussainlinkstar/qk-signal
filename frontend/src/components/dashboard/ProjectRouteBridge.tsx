@@ -104,7 +104,7 @@ export default function ProjectRouteBridge({
         <div className="flex flex-col items-center gap-8">
           <div className="flex flex-col items-center gap-4">
             <div className="flex items-center gap-3 mb-2">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 text-primary shadow-[0_0_20px_rgba(6,182,212,0.2)]">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl border-0 bg-primary/10 text-primary shadow-[0_0_20px_rgba(6,182,212,0.2)]">
                 <Target size={20} className="animate-pulse" />
               </div>
               <h1 className="text-3xl font-black tracking-tighter text-(--t-1) uppercase ">

@@ -117,7 +117,7 @@ const PROJECT_ICON_TILES = [
 
 const OVERVIEW_CARD_RADIUS_CLASS = "rounded-(--r-lg)";
 const PROJECT_CARD_HOVER_CLASS =
-  "transition-all duration-200 hover:-translate-y-0.5 hover:border-[#D7DAE0] hover:shadow-[0_6px_24px_rgba(12,15,22,0.07)]";
+  "transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#E8ECF3] hover:shadow-[0_6px_24px_rgba(12,15,22,0.07)]";
 const PRIMARY_CARD_HOVER_CLASS =
   "transition-all duration-200 hover:border-(--accent-warm) hover:shadow-[0_6px_24px_rgba(12,15,22,0.07)]";
 
@@ -423,7 +423,7 @@ function ProjectCreateModal({
       open={open}
       onClose={onClose}
       /* signal-MVP `.modal`: 560px, radius 20, padding 28/30/26. */
-      panelClassName="w-full max-w-[560px] rounded-[20px] border border-(--line) bg-(--panel) p-[28px_30px_26px]"
+      panelClassName="w-full max-w-[560px] rounded-[20px] border-0 bg-white p-[28px_30px_26px]"
       /* The approved `.modal-title` is the dialog's name; without this the
          shared Modal adds a second, visually hidden "Dialog" heading. */
       ariaLabelledby={PROJECT_MODAL_TITLE_ID}
@@ -474,7 +474,7 @@ function ProjectCreateModal({
             and the single approved 3px --ring on keyboard focus. */}
         <button
           type="button"
-          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) transition-colors hover:border-(--line-btn-hover) focus-visible:outline-hidden focus-visible:ring-[3px] focus-visible:ring-(--ring)"
+          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) transition-colors hover:bg-[#E8ECF3] focus-visible:outline-hidden focus-visible:ring-[3px] focus-visible:ring-(--ring)"
           onClick={onClose}
           disabled={settings.isCreating}
         >
@@ -482,7 +482,7 @@ function ProjectCreateModal({
         </button>
         <button
           type="button"
-          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white transition-colors hover:bg-black focus-visible:outline-hidden focus-visible:ring-[3px] focus-visible:ring-(--ring)"
+          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white transition-colors hover:bg-black focus-visible:outline-hidden focus-visible:ring-[3px] focus-visible:ring-(--ring)"
           onClick={async () => {
             const created = await settings.handleCreateProject();
             if (created) onClose();
@@ -963,15 +963,14 @@ export default function OverviewPage() {
                     </div>
                     <div className="flex flex-col gap-3 border-t border-t-[#F3F4F6] pt-3.5">
                       <div className="flex items-center gap-3">
-                        <div className="relative h-12 w-12 flex-none">
+                        <div className="relative h-12 w-12 flex-none" data-score-ring>
                           <svg className="h-12 w-12 -rotate-90" viewBox="0 0 48 48" aria-hidden="true">
-                            <circle cx="24" cy="24" r="18" fill="#F3E8FF" />
                             <circle
                               cx="24"
                               cy="24"
                               r="15.5"
                               fill="none"
-                              stroke="#E9D5FF"
+                              stroke="#EDE9FE"
                               strokeWidth="5"
                             />
                             <circle
@@ -987,12 +986,14 @@ export default function OverviewPage() {
                               data-signal-enter="ring"
                             />
                           </svg>
-                          <div
-                            className="absolute inset-0 flex items-center justify-center font-(family-name:--disp) text-[13px] font-bold tracking-[-0.02em] text-[#111827]"
-                            data-signal-enter="count"
-                            data-signal-count={aio ?? undefined}
-                          >
-                            {aio ?? "-"}
+                          <div className="absolute inset-[18%] flex items-center justify-center rounded-full bg-[#F8FAFC]">
+                            <span
+                              className="font-(family-name:--disp) text-[12px] font-extrabold tracking-[-0.02em] text-[#111827]"
+                              data-signal-enter="count"
+                              data-signal-count={aio ?? undefined}
+                            >
+                              {aio ?? "—"}
+                            </span>
                           </div>
                         </div>
                         <div className="flex min-w-[44px] flex-none flex-col gap-0.5">
@@ -1015,15 +1016,14 @@ export default function OverviewPage() {
                         ) : null}
                       </div>
                       <div className="flex items-center gap-3">
-                        <div className="relative h-12 w-12 flex-none">
+                        <div className="relative h-12 w-12 flex-none" data-score-ring>
                           <svg className="h-12 w-12 -rotate-90" viewBox="0 0 48 48" aria-hidden="true">
-                            <circle cx="24" cy="24" r="18" fill="#E8F1FF" />
                             <circle
                               cx="24"
                               cy="24"
                               r="15.5"
                               fill="none"
-                              stroke="#BFDBFE"
+                              stroke="#DBEAFE"
                               strokeWidth="5"
                             />
                             <circle
@@ -1039,12 +1039,14 @@ export default function OverviewPage() {
                               data-signal-enter="ring"
                             />
                           </svg>
-                          <div
-                            className="absolute inset-0 flex items-center justify-center font-(family-name:--disp) text-[13px] font-bold tracking-[-0.02em] text-[#111827]"
-                            data-signal-enter="count"
-                            data-signal-count={seo ?? undefined}
-                          >
-                            {seo ?? "-"}
+                          <div className="absolute inset-[18%] flex items-center justify-center rounded-full bg-[#F8FAFC]">
+                            <span
+                              className="font-(family-name:--disp) text-[12px] font-extrabold tracking-[-0.02em] text-[#111827]"
+                              data-signal-enter="count"
+                              data-signal-count={seo ?? undefined}
+                            >
+                              {seo ?? "—"}
+                            </span>
                           </div>
                         </div>
                         <div className="flex min-w-[44px] flex-none flex-col gap-0.5">
@@ -1108,7 +1110,7 @@ export default function OverviewPage() {
                 <p>{settings.error}</p>
                 <button
                   type="button"
-                  className="inline-flex h-[38px] min-h-11 cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                  className="inline-flex h-[38px] min-h-11 cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                   onClick={() => void settings.reload()}
                 >
                   {t("common.tryAgain")}

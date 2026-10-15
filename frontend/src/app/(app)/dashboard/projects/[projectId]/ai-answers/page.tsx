@@ -40,6 +40,7 @@ import { useScanPrompts } from "@/hooks/useScanPrompts";
 import SignalCrumb from "@/components/signal/SignalCrumb";
 import SignalExportMenu from "@/components/signal/SignalExportMenu";
 import SignalTabs from "@/components/signal/SignalTabs";
+import SignalScoreRing from "@/components/signal/SignalScoreRing";
 import { useWorkspacePageHeader } from "@/components/dashboard/workspacePageHeader";
 import type { VisibilityProviderBreakdown, VisibilitySummaryResponse } from "@/types/monitoring";
 import {
@@ -47,8 +48,6 @@ import {
   isMeasuredVisibilityProvider,
   measuredVisibilityProviders,
 } from "@/components/dashboard/visibilityUtils";
-
-const RING_C = 2 * Math.PI * 54;
 
 const roundOrNull = (v: unknown): number | null =>
   typeof v === "number" && Number.isFinite(v) ? Math.round(v) : null;
@@ -59,18 +58,19 @@ const scoreColor = (n: number): string =>
 type TabId = "improve" | "types" | "engines" | "prompts";
 const TABS: TabId[] = ["improve", "types", "engines", "prompts"];
 
-// This page's approved <style> block overrides .sec h2 to 14px/700 and .mini
-// to mono 11px ls .05em (the shared rules are 17px/800 and 12.5px body text).
-const sectionHeaderCls = "m-0 font-(family-name:--disp) text-[14px] font-bold tracking-[-0.01em]";
+const sectionHeaderCls =
+  "m-0 font-(family-name:--disp) text-[15px] font-extrabold tracking-[-0.02em] text-[#111827]";
 const miniCls =
-  "whitespace-nowrap font-mono text-[11px] tracking-[0.05em] text-(--t-3) max-md:w-full max-md:whitespace-normal";
-const unmeasuredCls = "font-mono text-[11px] text-(--t-3)";
+  "whitespace-nowrap text-[12px] font-medium text-(--t-3) max-md:w-full max-md:whitespace-normal";
+const unmeasuredCls = "text-[11px] font-medium text-(--t-3)";
 const emptyCls =
-  "mt-3.5 flex flex-col items-center gap-3 rounded-2xl border border-(--line) bg-(--panel) px-6 py-[22px] text-center text-[13px] text-(--t-2)";
+  "mt-3.5 flex flex-col items-center gap-3 rounded-[22px] border-0 bg-white px-6 py-[22px] text-center text-[13px] text-(--t-2)";
 const btnCls =
-  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-(--line-btn-hover) disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-50";
 const btnPrimaryCls =
-  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black";
+  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black";
+const chipCls =
+  "rounded-full px-2.5 py-0.5 text-[10.5px] font-semibold uppercase tracking-[0.04em]";
 
 /** signal-MVP `.sec`: heading, `.ln` divider, `.mini`, spacer, action. */
 function Sec({ title, mini, action }: { title: string; mini?: string; action?: React.ReactNode }) {
@@ -339,66 +339,36 @@ export default function ProjectAioDetailPage() {
     // Arabic body already sits below the frame.
     <div className="flex min-w-0 flex-col gap-[22px]">
       <div ref={heroEntranceRef} className="flex flex-col gap-[22px]">
-        {/* signal-MVP `.hero` */}
-        <div className="relative flex items-center gap-[26px] overflow-hidden rounded-(--r) border border-(--line) bg-(--panel) px-7 py-6 before:absolute before:top-0 before:bottom-0 before:start-0 before:w-1 before:bg-(image:--grad) before:content-[''] max-md:flex-col max-md:items-stretch max-md:p-5">
-          <div className="relative h-[132px] w-[132px] flex-none max-md:self-center">
-            <svg viewBox="0 0 132 132" className="h-[132px] w-[132px] -rotate-90">
-              <defs>
-                <linearGradient id="gA" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stopColor="var(--blue)" />
-                  <stop offset="1" stopColor="var(--purple)" />
-                </linearGradient>
-              </defs>
-              <circle cx="66" cy="66" r="54" fill="none" stroke="var(--line)" strokeWidth="11" />
-              <circle
-                cx="66"
-                cy="66"
-                r="54"
-                fill="none"
-                stroke="url(#gA)"
-                strokeWidth="11"
-                strokeLinecap="round"
-                strokeDasharray={RING_C}
-                strokeDashoffset={RING_C * (1 - (score ?? 0) / 100)}
-                data-signal-enter="ring"
-              />
-            </svg>
-            <div className="absolute inset-0 mt-0 flex flex-col items-center justify-center">
-              <b
-                className="block font-(family-name:--disp) text-[40px] font-black leading-none tracking-[-0.02em]"
-                data-signal-enter="count"
-                data-signal-count={score ?? undefined}
-              >
-                {score === null ? (
-                  <span className="font-(family-name:--body-font) text-[12px] font-semibold tracking-normal text-(--t-3)">
-                    {t("signalOverview.notMeasured")}
-                  </span>
-                ) : (
-                  score
-                )}
-              </b>
-              {score !== null && (
-                <small className="text-[10px] uppercase tracking-[0.12em] text-(--t-3)">/100</small>
-              )}
-            </div>
-          </div>
+        {/* Hero */}
+        <div className="relative flex items-center gap-[26px] overflow-hidden rounded-[22px] border-0 bg-white px-7 py-6 max-md:flex-col max-md:items-stretch max-md:p-5">
+          <SignalScoreRing
+            score={score}
+            size={140}
+            color="#3B82F6"
+            className="max-md:self-center"
+            emptyLabel={
+              <span className="font-(family-name:--body-font) text-[12px] font-semibold tracking-normal text-(--t-3)">
+                {t("signalOverview.notMeasured")}
+              </span>
+            }
+          />
           <div className="min-w-0 flex-1">
-            <div className="text-[11px] uppercase tracking-[0.14em] text-(--purple)">
+            <span className="inline-flex rounded-full bg-[#E8F1FF] px-2.5 py-0.5 text-[11px] font-semibold text-[#1D4ED8]">
               {t("signalAioDetail.eyebrow")}
-            </div>
-            <h1 className="mt-2 mb-1.5 font-(family-name:--disp) text-[28px] font-black tracking-[-0.02em]">
+            </span>
+            <h1 className="mt-2.5 mb-1.5 font-(family-name:--disp) text-[28px] font-extrabold tracking-[-0.02em] text-[#111827]">
               {t("signalAioDetail.heroTitle")}
             </h1>
             <p className="m-0 max-w-[560px] text-[14px] leading-[1.5] text-(--t-2)">
               {t("signalAioDetail.heroCopy")}
             </p>
           </div>
-          <div className="w-[250px] flex-none rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4 max-md:w-full">
-            <div className="text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)">
+          <div className="w-[250px] flex-none rounded-[16px] border-0 bg-[#F8FAFC] px-[18px] py-4 max-md:w-full">
+            <div className="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-(--t-3)">
               {t("signalAioDetail.currentScore")}
             </div>
             <div className="mt-2 mb-1 flex items-baseline gap-2">
-              <span className="font-(family-name:--disp) text-[30px] font-black tracking-[-0.02em]">
+              <span className="font-(family-name:--disp) text-[30px] font-extrabold tracking-[-0.02em] text-[#111827]">
                 {score === null ? (
                   <span className="font-(family-name:--body-font) text-[12px] font-semibold tracking-normal text-(--t-3)">
                     {t("signalOverview.notMeasured")}
@@ -458,7 +428,7 @@ export default function ProjectAioDetailPage() {
             action={
               <Link
                 href={`${base}/fixes`}
-                className="inline-flex h-[30px] cursor-pointer items-center gap-2 rounded-lg border border-(--line) bg-(--panel) px-[11px] font-(family-name:--body-font) text-[12px] font-semibold text-(--t-1) hover:border-(--line-btn-hover)"
+                className="inline-flex h-[34px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-3.5 font-(family-name:--body-font) text-[12px] font-semibold text-[#111827] hover:bg-[#E8ECF3]"
               >
                 {t("signalAioDetail.advisorActionPlan")}
               </Link>
@@ -473,7 +443,7 @@ export default function ProjectAioDetailPage() {
                 )}
                 aria-hidden={!advisorPlan.allowed || undefined}
               >
-                <div className="rounded-(--r) border border-(--line) bg-(--panel)">
+                <div className="rounded-[22px] border-0 bg-white">
                   {!advisorPlan.allowed ? (
                     // Blur is presentation, not authorization: gated rows
                     // must not sit in the DOM, so render the approved .act
@@ -483,17 +453,28 @@ export default function ProjectAioDetailPage() {
                   ) : (
                     improve.map((a) => (
                       <div
-                        className="flex items-center gap-4 border-t border-t-(--line-2) px-[22px] py-[18px] first:border-t-0"
+                        className="flex items-center gap-4 border-t border-t-[#F3F4F6] px-[22px] py-[18px] first:border-t-0"
                         key={a.title}
                       >
-                        {/* The approved `.act` row's leading column. It held
-                            the "+N PTS" badge; the figure is gone (SIGV2-1211)
-                            but the column is the approved row anatomy and is
-                            kept, empty, exactly as it already was for a row
-                            the audit attached no number to. */}
-                        <div className="w-16 flex-none text-center" aria-hidden="true" />
+                        {/* Leading column kept for approved row anatomy
+                            (SIGV2-1211); the +N PTS figure is gone. */}
+                        <div
+                          className="flex h-10 w-10 flex-none items-center justify-center rounded-[12px] bg-[#F5F3FF] text-[#7C3AED]"
+                          aria-hidden="true"
+                        >
+                          <svg
+                            width="16"
+                            height="16"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                          >
+                            <path d="M12 3l2.1 6.4L20.5 11l-6.4 2.1L12 19.5l-2.1-6.4L3.5 11l6.4-1.6z" />
+                          </svg>
+                        </div>
                         <div className="min-w-0 flex-1">
-                          <h3 className="m-0 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
+                          <h3 className="m-0 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em] text-[#111827]">
                             {a.title}
                           </h3>
                           {a.action ? (
@@ -501,30 +482,27 @@ export default function ProjectAioDetailPage() {
                               {a.action}
                             </p>
                           ) : null}
-                          <div className="mt-[9px] flex flex-wrap items-center gap-2">
-                            <span className="rounded-[6px] bg-(--purple-a10) px-2 py-[3px] text-[10.5px] uppercase tracking-[0.04em] text-(--purple)">
+                          <div className="mt-[9px] flex flex-wrap items-center gap-1.5">
+                            <span className={`${chipCls} bg-[#F5F3FF] text-[#7C3AED]`}>
                               {a.category}
                             </span>
                             {/* SIGV2-1193: one consolidated list, so each row
                                 says which channel raised it rather than the
                                 list as a whole naming one source. */}
                             {fixSourceLabelKeys(a.sources).map((key) => (
-                              <span
-                                key={key}
-                                className="rounded-[6px] border border-(--line) bg-(--paper) px-2 py-[3px] text-[10.5px] uppercase tracking-[0.04em] text-(--t-3)"
-                              >
+                              <span key={key} className={`${chipCls} bg-[#EEF1F6] text-(--t-3)`}>
                                 {t(key)}
                               </span>
                             ))}
                             {a.impact.measured ? (
-                              <span className="rounded-[6px] bg-(--line-2) px-2 py-[3px] text-[10.5px] uppercase tracking-[0.04em] text-(--t-2)">
+                              <span className={`${chipCls} bg-[#EEF1F6] text-(--t-2)`}>
                                 {t("signalFixes.plan.impactRated", {
                                   level: t(`signalFixes.plan.level.${a.impact.level}`),
                                 })}
                               </span>
                             ) : (
                               <span
-                                className="rounded-[6px] border border-dashed border-(--line) px-2 py-[3px] text-[10.5px] tracking-[0.04em] text-(--t-3)"
+                                className={`${chipCls} bg-[#F8FAFC] text-(--t-3)`}
                                 title={t("signalFixes.plan.unratedHint")}
                               >
                                 {t("signalFixes.plan.impactUnrated")}
@@ -590,7 +568,7 @@ export default function ProjectAioDetailPage() {
         >
           <Sec title={t("signalAioDetail.typesTitle")} mini={t("signalAioDetail.typesMini")} />
           {searchTypes.length > 0 ? (
-            <div className="rounded-(--r) border border-(--line) bg-(--panel)">
+            <div className="rounded-[22px] border-0 bg-white">
               {searchTypes.map((s, i) => {
                 // Measured on this project's own AI-engine runs, or nothing.
                 // The retired "Estimated" state put an audit sub-score behind
@@ -598,37 +576,43 @@ export default function ProjectAioDetailPage() {
                 const measured = isMeasuredSearchType(s);
                 const stScore = measured ? (s.score as number) : 0;
                 return (
-                  <div className="border-t border-t-(--line-2) first:border-t-0" key={s.id}>
+                  <div className="border-t border-t-[#F3F4F6] first:border-t-0" key={s.id}>
                     <button
                       type="button"
-                      className="flex w-full cursor-pointer items-center gap-3.5 border-current px-[22px] py-4 text-left font-normal hover:bg-(--line-2) focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-(--purple)"
+                      className="flex w-full cursor-pointer items-center gap-3.5 border-current px-[22px] py-4 text-left font-normal transition-colors hover:bg-[#F8FAFC] focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-[#3B82F6]"
                       aria-expanded={open === i}
                       onClick={() => setOpen(open === i ? null : i)}
                     >
                       <span
-                        className="w-[52px] flex-none font-(family-name:--disp) text-[26px] font-black tracking-[-0.02em] text-(--sc)"
+                        className="w-[52px] flex-none font-(family-name:--disp) text-[26px] font-extrabold tracking-[-0.02em] text-(--sc)"
                         style={{ "--sc": scoreColor(stScore) } as React.CSSProperties}
                       >
-                        {measured ? s.score : "-"}
+                        {measured ? s.score : "—"}
                       </span>
                       <span className="flex-1">
-                        <span className="block font-(family-name:--disp) text-[14.5px] font-bold">
+                        <span className="block font-(family-name:--disp) text-[14.5px] font-bold text-[#111827]">
                           {s.label}
                         </span>
                         <span
                           className={cx(
-                            "mt-1 inline-block rounded-[6px] px-2 py-[2px] text-[10.5px]",
-                            measured ? "bg-(--good-s) text-(--good)" : "bg-(--line-2) text-(--t-2)"
+                            "mt-1.5 inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-[10.5px] font-semibold",
+                            measured
+                              ? "bg-[#ECFDF5] text-[#059669]"
+                              : "bg-[#EEF1F6] text-(--t-2)"
                           )}
                         >
+                          <span
+                            className="h-[5px] w-[5px] rounded-full bg-current"
+                            aria-hidden="true"
+                          />
                           {measured
                             ? t("signalOverview.measured")
                             : t("signalOverview.notMeasured")}
                         </span>
                       </span>
-                      <span className="block h-[7px] w-[150px] flex-none overflow-hidden rounded-[999px] bg-(--line)">
+                      <span className="block h-1.5 w-[150px] flex-none overflow-hidden rounded-full bg-[#EEF1F6]">
                         <i
-                          className="block h-full w-(--sw) origin-left rounded-[999px] bg-(--sc) rtl:origin-right"
+                          className="block h-full w-(--sw) origin-left rounded-full bg-(--sc) rtl:origin-right"
                           data-signal-enter="bar"
                           style={
                             {
@@ -659,7 +643,7 @@ export default function ProjectAioDetailPage() {
                         open === i ? "block" : "hidden"
                       )}
                     >
-                      <div className="mt-3 mb-1.5 text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)">
+                      <div className="mt-3 mb-1.5 text-[10.5px] font-semibold uppercase tracking-[0.06em] text-(--t-3)">
                         {t("signalAioDetail.whyHere")}
                       </div>
                       <p className="m-0 text-[13px] leading-[1.55] text-(--t-2)">
@@ -669,7 +653,7 @@ export default function ProjectAioDetailPage() {
                           audit emits global recommendations, not keyed to a
                           type, so this slot names that rather than re-showing
                           the global list under a type heading. */}
-                      <div className="mt-4 mb-1.5 text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)">
+                      <div className="mt-4 mb-1.5 text-[10.5px] font-semibold uppercase tracking-[0.06em] text-(--t-3)">
                         {t("signalAioDetail.howImprove")}
                       </div>
                       <p className={unmeasuredCls}>{t("signalAioDetail.typeActionsUnmeasured")}</p>
@@ -701,35 +685,23 @@ export default function ProjectAioDetailPage() {
               <span>{visibilityUnavailableReason}</span>
             </div>
           ) : engineRows.length > 0 ? (
-            <div className="rounded-(--r) border border-(--line) bg-(--panel)">
+            <div className="rounded-[22px] border-0 bg-white">
               {engineRows.map((row: VisibilityProviderBreakdown) => (
                 <div
                   key={row.provider}
-                  className="flex items-center gap-3.5 border-t border-t-(--line-2) px-[22px] py-[14px] first:border-t-0 max-md:flex-wrap"
+                  className="flex items-center gap-3.5 border-t border-t-[#F3F4F6] px-[22px] py-3.5 first:border-t-0 max-md:flex-wrap"
                 >
-                  {/* SIGV2-1036, measured and reverted: this row's columns do
-                      not follow signal.css `.eng` (`.mb` 30x30 r8 display
-                      13/700, `.en` 100px, `.tr` flex:1, `.note` 280px fixed,
-                      `.stt` 96px trailing mono 11.5px), and moving them onto
-                      it made the gate WORSE on all four variants
-                      (aio-detail-tab-engines en 14.72 -> 15.52, ar 15.77 ->
-                      16.75, over budget). The reason is `.tr{flex:1}`: it
-                      makes the bar ~517px instead of 150px, and this bar is a
-                      real visibility score on a good/warn/bad scale while the
-                      approved art is a fixed blue-purple gradient at a
-                      different fill fraction, so five times more bar means
-                      five times more honest-but-divergent pixels. Nothing here
-                      is masked. Realigning the columns needs a decision about
-                      the bar first; it is not a free layout fix. */}
-                  <span className="flex h-8 w-8 flex-none items-center justify-center rounded-full bg-(--line-2) font-mono text-[12px] font-semibold text-(--t-2)">
+                  {/* Keep a fixed 150px bar (SIGV2-1036): widening it blows
+                      the design-comparison budget on this tab. */}
+                  <span className="flex h-9 w-9 flex-none items-center justify-center rounded-[12px] bg-[#E8F1FF] text-[12px] font-bold text-[#1D4ED8]">
                     {(VISIBILITY_PROVIDER_LABELS[row.provider] ?? row.provider).charAt(0)}
                   </span>
-                  <span className="w-[140px] flex-none text-[13.5px] font-semibold text-(--t-1) max-md:w-full">
+                  <span className="w-[140px] flex-none text-[13.5px] font-semibold text-[#111827] max-md:w-full">
                     {VISIBILITY_PROVIDER_LABELS[row.provider] ?? row.provider}
                   </span>
-                  <span className="block h-[7px] w-[150px] flex-none overflow-hidden rounded-[999px] bg-(--line)">
+                  <span className="block h-1.5 w-[150px] flex-none overflow-hidden rounded-full bg-[#EEF1F6]">
                     <i
-                      className="block h-full w-(--sw) origin-left rounded-[999px] bg-(--sc) rtl:origin-right"
+                      className="block h-full w-(--sw) origin-left rounded-full bg-(--sc) rtl:origin-right"
                       data-signal-enter="bar"
                       style={
                         {
@@ -746,12 +718,8 @@ export default function ProjectAioDetailPage() {
                           total: row.completed_checks,
                         })
                       : t("signalAioDetail.noCompletedChecks")}
-                    {/* SIGV2-1299: a stand-in answer must not sit under a
-                        consumer engine label with nothing to distinguish it.
-                        Rendered inside the existing note slot rather than as
-                        its own column, because the engines tab is already at
-                        the edge of its design-comparison budget (see the
-                        SIGV2-1036 note above). */}
+                    {/* SIGV2-1299: stand-in answers stay labelled inside this
+                        note slot rather than as a new column. */}
                     {engineSources[row.provider] === "fallback" ||
                     engineSources[row.provider] === "mixed" ? (
                       <span
@@ -771,12 +739,8 @@ export default function ProjectAioDetailPage() {
                       </span>
                     ) : null}
                   </span>
-                  {/* A provider score is not the design's three-way
-                      recommended / mentioned / absent status, and the backend
-                      defines no mapping between them, so the status slot is
-                      unmeasured rather than thresholded. */}
                   <span
-                    className={cx(unmeasuredCls, "flex-none")}
+                    className="flex-none rounded-full bg-[#EEF1F6] px-2.5 py-0.5 text-[11px] font-semibold text-(--t-3)"
                     title={t("signalAioDetail.statusReason")}
                   >
                     {t("signalAioDetail.statusNotMeasured")}

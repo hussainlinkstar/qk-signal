@@ -31,7 +31,7 @@ const NotificationsSection: React.FC<NotificationsSectionProps> = ({ settings })
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+      <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
         <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
           Notifications
         </h3>
@@ -152,7 +152,7 @@ const NotificationsSection: React.FC<NotificationsSectionProps> = ({ settings })
           )}
           <button
             type="button"
-            className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+            className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
             onClick={handleSaveNotifications}
             disabled={!isSignedIn || isBootLoading || isSavingNotifications}
           >

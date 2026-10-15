@@ -371,7 +371,7 @@ export default function ProjectCompetitorsPage() {
           disabledReason={locked ? t("signalCompetitors.export.locked") : undefined}
         />
         <button
-          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
           disabled={locked || atLimit}
           title={
             atLimit ? t("signalCompetitors.add.limitTitle", { max: MAX_COMPETITORS }) : undefined
@@ -493,11 +493,11 @@ export default function ProjectCompetitorsPage() {
           locked && "pointer-events-none select-none blur-[7px]"
         )}
       >
-        <div className="relative flex items-center gap-[26px] overflow-hidden rounded-(--r) border border-(--line) bg-(--panel) px-7 py-6 before:absolute before:top-0 before:bottom-0 before:left-0 before:w-1 before:bg-(image:--grad) before:content-[''] max-md:flex-col max-md:items-stretch max-md:p-5">
+        <div className="relative flex items-center gap-[26px] overflow-hidden rounded-[22px] border-0 bg-white px-7 py-6 before:absolute before:top-0 before:bottom-0 before:left-0 before:w-1 before:bg-(image:--grad) before:content-[''] max-md:flex-col max-md:items-stretch max-md:p-5">
           {rankOverall !== null ? (
             <div
               data-testid="comp-rank-badge"
-              className="w-[132px] flex-none rounded-[14px] border border-(--line) bg-(--paper) px-0 py-4 text-center"
+              className="w-[132px] flex-none rounded-[14px] border-0 bg-[#EEF1F6] px-0 py-4 text-center"
             >
               <div
                 className="font-(family-name:--disp) text-[44px] font-black leading-none tracking-[-0.03em]"
@@ -541,7 +541,7 @@ export default function ProjectCompetitorsPage() {
           {leader && projectOverall !== null && leaderScore !== null ? (
             <div
               data-testid="comp-gap-card"
-              className="w-[180px] flex-none rounded-[14px] border border-(--line) bg-(--paper) px-4 py-4"
+              className="w-[180px] flex-none rounded-[14px] border-0 bg-[#EEF1F6] px-4 py-4"
             >
               <div className="font-mono text-[10px] uppercase tracking-[0.1em] text-(--t-3)">
                 {t("signalCompetitors.hero.gapLabel")}
@@ -603,7 +603,7 @@ export default function ProjectCompetitorsPage() {
                 })}
               </span>
             </div>
-            <div className="rounded-(--r) border border-(--line) bg-(--panel) px-6 pb-[18px] pt-[22px]">
+            <div className="rounded-[22px] border-0 bg-white px-6 pb-[18px] pt-[22px]">
               <div className="mb-3.5 flex items-center gap-4 max-md:flex-wrap">
                 <div
                   data-testid="comp-chart-legend"
@@ -630,7 +630,7 @@ export default function ProjectCompetitorsPage() {
                     </span>
                   ))}
                 </div>
-                <div className="inline-flex gap-[2px] rounded-[9px] border border-(--line) bg-(--paper) p-[3px] ltr:ml-auto rtl:mr-auto ltr:[direction:ltr]">
+                <div className="inline-flex gap-[2px] rounded-[9px] border-0 bg-[#EEF1F6] p-[3px] ltr:ml-auto rtl:mr-auto ltr:[direction:ltr]">
                   {CHART_METRICS.map((metric) => (
                     <button
                       key={metric}
@@ -776,7 +776,7 @@ export default function ProjectCompetitorsPage() {
               </span>
             </div>
             <div
-              className="rounded-(--r) border border-(--line) bg-(--panel) max-md:max-w-full max-md:overflow-x-auto max-md:overscroll-x-contain"
+              className="rounded-[22px] border-0 bg-white max-md:max-w-full max-md:overflow-x-auto max-md:overscroll-x-contain"
               role="region"
               aria-label={t("signalCompetitors.scores.regionLabel")}
               tabIndex={0}
@@ -977,7 +977,7 @@ export default function ProjectCompetitorsPage() {
         </div>
 
         {!locked && !loadingCompetitive && unmeasured.length > 0 ? (
-          <div className="flex flex-wrap items-center gap-3 rounded-(--r) border border-(--line) bg-(--panel) px-[15px] py-[10px]">
+          <div className="flex flex-wrap items-center gap-3 rounded-[22px] border-0 bg-white px-[15px] py-[10px]">
             <span className="text-[12.5px] leading-[1.5] text-(--t-2)">
               {unmeasured.some((c) => c.latest_status === "pending")
                 ? t("signalCompetitors.benchmark.running")
@@ -1010,11 +1010,11 @@ export default function ProjectCompetitorsPage() {
             <SkelCard />
           </div>
         ) : !hasCompetitors ? (
-          <div className="flex flex-col items-center gap-3 rounded-2xl border border-(--line) bg-(--panel) px-6 py-[22px] text-center text-[13px] text-(--t-2)">
+          <div className="flex flex-col items-center gap-3 rounded-[22px] border-0 bg-white px-6 py-[22px] text-center text-[13px] text-(--t-2)">
             <span>{t("signalCompetitors.empty.noCompetitors")}</span>
             {!locked ? (
               <button
-                className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+                className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
                 onClick={() => setAddOpen(true)}
               >
                 {t("signalCompetitors.add.button")}
@@ -1022,11 +1022,11 @@ export default function ProjectCompetitorsPage() {
             ) : null}
           </div>
         ) : !report ? (
-          <div className="rounded-(--r) border border-(--line) bg-(--panel) p-6">
+          <div className="rounded-[22px] border-0 bg-white p-6">
             <span>{t("signalCompetitors.empty.noCheck")}</span>
           </div>
         ) : !hasComparisons ? (
-          <div className="rounded-(--r) border border-(--line) bg-(--panel) p-6">
+          <div className="rounded-[22px] border-0 bg-white p-6">
             <span>{t("signalCompetitors.empty.noComparisons")}</span>
           </div>
         ) : (
@@ -1045,7 +1045,7 @@ export default function ProjectCompetitorsPage() {
 
                 return (
                   <div
-                    className="rounded-(--r) border border-(--line) bg-(--panel) px-5 py-[18px]"
+                    className="rounded-[22px] border-0 bg-white px-5 py-[18px]"
                     key={competitor.id}
                   >
                     <div className="mb-3.5 flex items-center gap-2.5">
@@ -1180,7 +1180,7 @@ export default function ProjectCompetitorsPage() {
               })}
             </div>
 
-            <div className="rounded-(--r) border border-(--line) bg-(--panel) p-4">
+            <div className="rounded-[22px] border-0 bg-white p-4">
               {questionWins.nobodyNamed > 0 ? (
                 <p className="text-[12px] text-(--t-3)">
                   {t("signalCompetitors.summary.nobodyNamed", {
@@ -1232,7 +1232,7 @@ export default function ProjectCompetitorsPage() {
                 .slice(0, 2)
                 .map(([competitorName, items]) => (
                   <div
-                    className="rounded-(--r) border border-(--line) bg-(--panel) px-5 py-[18px]"
+                    className="rounded-[22px] border-0 bg-white px-5 py-[18px]"
                     key={competitorName}
                   >
                     <div className="mb-3.5 flex items-center gap-2.5">

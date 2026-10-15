@@ -44,17 +44,17 @@ const MICRO_LABEL =
 const MONO_META = MICRO_LABEL.replace("uppercase ", "");
 const SLINK =
   "flex items-center gap-1 text-[12.5px] font-semibold text-(--link) transition-colors hover:text-(--t-1)";
-const WSTAT = "rounded-(--r) border border-(--line) bg-(--panel) px-4 py-3";
+const WSTAT = "rounded-[22px] border-0 bg-white px-4 py-3";
 const WSTAT_VALUE =
   "font-(family-name:--disp) text-[24px] font-bold leading-none tracking-[-0.02em] text-(--t-1)";
-const WSEC = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const WSEC = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const SEC_TITLE =
   "m-0 flex items-center gap-2 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em] text-(--t-1)";
-const INSET = "rounded-(--r-md) border border-(--line) bg-(--paper) p-4";
+const INSET = "rounded-(--r-md) border-0 bg-[#EEF1F6] p-4";
 const CHIP =
   "inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em]";
 const WINPUT =
-  "field-focus-ring h-9 w-full rounded-(--r-md) border border-(--line) bg-(--paper) px-[10px] text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
+  "field-focus-ring h-9 w-full rounded-(--r-md) border-0 bg-[#EEF1F6] px-[10px] text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
 const SKEL = "animate-pulse rounded-(--r-sm) bg-(--line-2)";
 
 const StatCard = ({
@@ -478,7 +478,7 @@ export default function AdminOverviewPage() {
           <div
             role="group"
             aria-label="Timeseries period"
-            className="hidden items-center gap-0.5 rounded-(--r-md) border border-(--line) bg-(--paper) p-0.5 sm:flex"
+            className="hidden items-center gap-0.5 rounded-(--r-md) border-0 bg-[#EEF1F6] p-0.5 sm:flex"
           >
             {(["7d", "30d", "90d"] as const).map((p) => (
               <button
@@ -522,7 +522,7 @@ export default function AdminOverviewPage() {
       <div
         role="group"
         aria-label="Timeseries period"
-        className="flex items-center gap-0.5 self-start rounded-(--r-md) border border-(--line) bg-(--paper) p-0.5 sm:hidden"
+        className="flex items-center gap-0.5 self-start rounded-(--r-md) border-0 bg-[#EEF1F6] p-0.5 sm:hidden"
       >
         {(["7d", "30d", "90d"] as const).map((p) => (
           <button
@@ -653,7 +653,7 @@ export default function AdminOverviewPage() {
                 />
               ))
             ) : tokenUsage ? (
-              <div className="flex flex-col items-center justify-center rounded-(--r-md) border border-dashed border-(--line) bg-(--paper) py-12">
+              <div className="flex flex-col items-center justify-center rounded-[22px] border-0 bg-[#EEF1F6] py-12">
                 <Activity size={24} className="mb-2 text-(--t-3)" />
                 <p className={MONO_META}>No usage data available.</p>
               </div>
@@ -687,7 +687,7 @@ export default function AdminOverviewPage() {
           </h3>
 
           <div className="space-y-5">
-            <div className="flex items-center justify-between rounded-(--r-md) border border-(--good) bg-(--good-s) px-4 py-3">
+            <div className="flex items-center justify-between rounded-[14px] border-0 bg-(--good-s) px-4 py-3">
               <span className={`${CHIP} text-(--good)`}>
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-(--good)" />
                 {systemStatusLabel}

@@ -22,7 +22,7 @@ function SkeletonBlock({ className }: { className?: string }) {
 
 function LoadingSkeleton() {
   return (
-    <div className="bg-(--surface) border border-(--border) rounded p-6 space-y-6">
+    <div className="bg-(--surface) border-0 rounded p-6 space-y-6">
       {/* Header skeleton */}
       <div className="flex items-center gap-2">
         <SkeletonBlock className="h-5 w-5" />
@@ -98,7 +98,7 @@ export default function PortalPreferencesCard() {
   if (loading) return <LoadingSkeleton />;
 
   return (
-    <div className="bg-(--surface) border border-(--border) rounded p-6 space-y-6">
+    <div className="bg-(--surface) border-0 rounded p-6 space-y-6">
       {/* Header */}
       <div className="flex items-center gap-2">
         <Bell className="h-5 w-5 text-(--muted-foreground)" />

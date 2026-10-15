@@ -111,12 +111,12 @@ type AuditExecutionFilters = {
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const MONO_META = MICRO_LABEL.replace("uppercase ", "");
-const WSTAT = "rounded-(--r) border border-(--line) bg-(--panel) px-4 py-3";
+const WSTAT = "rounded-[22px] border-0 bg-white px-4 py-3";
 const WSTAT_VALUE =
   "font-(family-name:--disp) text-[20px] font-bold leading-none tracking-[-0.02em] text-(--t-1)";
-const WSEC = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const WSEC = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const WINPUT_SM =
-  "field-focus-ring h-8 rounded-(--r-md) border border-(--line) bg-(--paper) px-[10px] text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
+  "field-focus-ring h-8 rounded-(--r-md) border-0 bg-[#EEF1F6] px-[10px] text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
 const CHIP =
   "inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em]";
 const PAGER_BTN =
@@ -220,7 +220,7 @@ function DetailModal({ entry, onClose }: { entry: ActionLogEntry | null; onClose
         <button
           onClick={onClose}
           aria-label="Close"
-          className="flex h-8 w-8 items-center justify-center rounded-(--r-sm) border border-(--line) bg-(--panel) text-(--t-2) transition-colors hover:text-(--t-1)"
+          className="flex h-8 w-8 items-center justify-center rounded-(--r-sm) border-0 bg-white text-(--t-2) transition-colors hover:text-(--t-1)"
         >
           <X size={16} />
         </button>
@@ -257,7 +257,7 @@ function DetailModal({ entry, onClose }: { entry: ActionLogEntry | null; onClose
         {entry.metadata && Object.keys(entry.metadata).length > 0 && (
           <div>
             <p className={`${MICRO_LABEL} mb-2`}>Metadata</p>
-            <div className="overflow-x-auto rounded-(--r-md) border border-(--line) bg-(--paper) p-4">
+            <div className="overflow-x-auto rounded-(--r-md) border-0 bg-[#EEF1F6] p-4">
               <pre className="whitespace-pre-wrap font-(family-name:--mono) text-xs text-(--t-2)">
                 {JSON.stringify(entry.metadata, null, 2)}
               </pre>
@@ -578,7 +578,7 @@ export default function AuditTrailPage() {
           type="button"
           onClick={() => setSelectedEntry(entry)}
           aria-label="View log details"
-          className="inline-flex h-8 w-8 items-center justify-center rounded-(--r-sm) border border-(--line) bg-(--panel) text-(--t-2) transition-colors hover:border-(--purple) hover:text-(--purple)"
+          className="inline-flex h-8 w-8 items-center justify-center rounded-(--r-sm) border-0 bg-white text-(--t-2) transition-colors hover:border-(--purple) hover:text-(--purple)"
         >
           <Eye size={14} />
         </button>
@@ -821,7 +821,7 @@ export default function AuditTrailPage() {
                 setDateFrom("");
                 setDateTo("");
               }}
-              className="flex items-center gap-1.5 rounded-(--r-sm) border border-(--line) bg-(--panel) px-3 py-2 text-xs font-medium text-(--t-2) transition-colors hover:text-(--t-1)"
+              className="flex items-center gap-1.5 rounded-(--r-sm) border-0 bg-white px-3 py-2 text-xs font-medium text-(--t-2) transition-colors hover:text-(--t-1)"
             >
               <X size={14} />
               Clear
@@ -882,7 +882,7 @@ export default function AuditTrailPage() {
       />
 
       {/* Audit execution trail */}
-      <div className="overflow-hidden rounded-(--r-md) border border-(--line) bg-(--panel)">
+      <div className="overflow-hidden rounded-(--r-md) border-0 bg-white">
         <div className="border-b border-(--line) px-[22px] py-[18px]">
           <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
             <div>
@@ -985,7 +985,7 @@ export default function AuditTrailPage() {
                 onClick={() => {
                   setAuditFilters(defaultAuditFilters);
                 }}
-                className="flex items-center justify-center gap-1.5 rounded-(--r-sm) border border-(--line) bg-(--panel) px-3 py-2 text-xs font-medium text-(--t-2) transition-colors hover:text-(--t-1)"
+                className="flex items-center justify-center gap-1.5 rounded-(--r-sm) border-0 bg-white px-3 py-2 text-xs font-medium text-(--t-2) transition-colors hover:text-(--t-1)"
               >
                 <X size={14} />
                 Clear

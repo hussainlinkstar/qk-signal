@@ -19,7 +19,7 @@ const TooltipContent = React.forwardRef<
       data-slot="tooltip-content"
       sideOffset={sideOffset}
       className={cx(
-        "pointer-events-none z-100 w-max max-w-64 border border-(--border) bg-(--chart-tooltip-bg) px-3 py-2 text-xs text-(--foreground) shadow-lg animate-in fade-in-0 zoom-in-95",
+        "pointer-events-none z-100 w-max max-w-64 border-0 bg-(--chart-tooltip-bg) px-3 py-2 text-xs text-(--foreground) shadow-lg animate-in fade-in-0 zoom-in-95",
         RADIUS_OVERLAY_CLASS,
         className
       )}

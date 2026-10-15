@@ -22,14 +22,14 @@ import Button from "@/components/ui/Button";
 import { NativeSelect } from "@/components/ui/native-select";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
-const CARD = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const CARD = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const CARD_TITLE =
   "m-0 mb-[3px] flex items-center gap-2 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]";
 const CARD_DESC = "mb-[18px] text-[12.5px] leading-[1.5] text-(--t-3)";
 const FIELD_LABEL =
   "mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const WINPUT =
-  "field-focus-ring h-11 w-full rounded-(--r-md) border border-(--line) bg-(--paper) px-[13px] text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6] disabled:bg-(--line-2) disabled:text-(--t-3)";
+  "field-focus-ring h-11 w-full rounded-(--r-md) border-0 bg-[#EEF1F6] px-[13px] text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6] disabled:bg-(--line-2) disabled:text-(--t-3)";
 const CODE =
   "rounded-(--r-sm) bg-(--line-2) px-1 font-(family-name:--mono) text-[11.5px] text-(--t-1)";
 
@@ -536,7 +536,7 @@ export default function AiModelsPage() {
           {Object.entries(data?.measurement_model_map ?? {}).map(([provider, model]) => (
             <div
               key={provider}
-              className="flex items-center justify-between gap-2 rounded-(--r-sm) border border-(--line) bg-(--paper) px-3 py-2"
+              className="flex items-center justify-between gap-2 rounded-(--r-sm) border-0 bg-[#EEF1F6] px-3 py-2"
             >
               <span className="font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)">
                 {provider}

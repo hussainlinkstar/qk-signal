@@ -161,7 +161,7 @@ export default function PriorityActionsTable({
             <div className="h-40 w-full animate-pulse rounded bg-(--line-2)" />
           </div>
         ) : error ? (
-          <div className="space-y-3 rounded-lg border border-red-400/30 bg-red-500/5 p-4 text-sm text-red-200">
+          <div className="space-y-3 rounded-lg border-0 bg-red-500/5 p-4 text-sm text-red-200">
             <p>{error}</p>
             {onRetry ? (
               <button
@@ -175,11 +175,11 @@ export default function PriorityActionsTable({
             ) : null}
           </div>
         ) : isEmpty || sortedActions.length === 0 ? (
-          <div className="rounded-xl border border-amber-500/20 bg-amber-500/10 p-4 text-sm font-medium text-amber-200 shadow-inner">
+          <div className="rounded-xl border-0 bg-amber-500/10 p-4 text-sm font-medium text-amber-200 shadow-inner">
             No priority actions are available for this audit.
           </div>
         ) : rows.length === 0 ? (
-          <div className="rounded-xl border border-amber-500/20 bg-amber-500/10 p-4 text-sm font-medium text-amber-200 shadow-inner">
+          <div className="rounded-xl border-0 bg-amber-500/10 p-4 text-sm font-medium text-amber-200 shadow-inner">
             No actions are available in the selected category.
           </div>
         ) : (

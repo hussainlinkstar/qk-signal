@@ -80,7 +80,7 @@ function TrendTooltip({
   }
 
   return (
-    <div className="rounded-2xl border border-(--border) bg-(--chart-tooltip-bg) px-4 py-3">
+    <div className="rounded-2xl border-0 bg-(--chart-tooltip-bg) px-4 py-3">
       <p className={CHART_TOOLTIP_LABEL_CLASS}>{label}</p>
       <div className="mt-2 space-y-2">
         {payload.map((entry) => (
@@ -192,7 +192,7 @@ export default function VisibilityTrendChart({
           <p className={CARD_LABEL_CLASS}>AI Visibility</p>
           <h2 className={TYPO.sectionTitle}>Visibility Trend</h2>
         </div>
-        <div className="inline-flex items-center gap-2 rounded-full border border-(--border) bg-(--surface) px-3 py-1.5 text-xs font-semibold text-(--text-soft)">
+        <div className="inline-flex items-center gap-2 rounded-full border-0 bg-(--surface) px-3 py-1.5 text-xs font-semibold text-(--text-soft)">
           <TrendingUp className="h-4 w-4 text-primary" />
           Last {trends.days} days
         </div>

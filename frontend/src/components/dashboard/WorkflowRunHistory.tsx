@@ -41,7 +41,7 @@ export default function WorkflowRunHistory({ runs, isLoading = false }: Props) {
       ) : (
         <div className="mt-6 space-y-3">
           {runs.map((run) => (
-            <div key={run.id} className="rounded-4xl border border-(--line) bg-(--line-2) p-4">
+            <div key={run.id} className="rounded-4xl border-0 bg-(--line-2) p-4">
               <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
                 <div>
                   <div className="flex flex-wrap items-center gap-2">
@@ -61,7 +61,7 @@ export default function WorkflowRunHistory({ runs, isLoading = false }: Props) {
                     {run.completed_at ? formatDateTime(run.completed_at) : "Still running"}
                   </p>
                 </div>
-                <div className="min-w-[220px] rounded border border-(--line) bg-(--line-2) px-4 py-3 text-xs text-(--t-2)">
+                <div className="min-w-[220px] rounded border-0 bg-(--line-2) px-4 py-3 text-xs text-(--t-2)">
                   {run.action_results.length} action{run.action_results.length === 1 ? "" : "s"}
                 </div>
               </div>
@@ -70,7 +70,7 @@ export default function WorkflowRunHistory({ runs, isLoading = false }: Props) {
                 {run.action_results.map((result, index) => (
                   <div
                     key={`${run.id}-${index}`}
-                    className="rounded border border-(--line) bg-(--line-2) px-4 py-3 text-xs text-(--t-2)"
+                    className="rounded border-0 bg-(--line-2) px-4 py-3 text-xs text-(--t-2)"
                   >
                     <p className="font-black uppercase tracking-[0.18em] text-(--t-3)">
                       {String(result.type || "action")}

@@ -172,7 +172,7 @@ export function ApiKeysSection({ getAuthHeaders }: ApiKeysSectionProps) {
 
       <div className="space-y-6 p-8">
         {loading ? (
-          <div className="rounded border border-(--line) bg-(--line-2) p-6 text-sm text-(--t-2)">
+          <div className="rounded border-0 bg-(--line-2) p-6 text-sm text-(--t-2)">
             Loading API keys...
           </div>
         ) : null}
@@ -221,7 +221,7 @@ export function ApiKeysSection({ getAuthHeaders }: ApiKeysSectionProps) {
                   <p className="text-[10px] font-black uppercase tracking-[0.2em] text-emerald-200">
                     Copy This Key Now
                   </p>
-                  <div className="mt-3 rounded-xl border border-(--line) bg-black/30 p-4 font-mono text-sm text-emerald-50 break-all">
+                  <div className="mt-3 rounded-xl border-0 bg-black/30 p-4 font-mono text-sm text-emerald-50 break-all">
                     {createdKey}
                   </div>
                 </div>
@@ -254,7 +254,7 @@ export function ApiKeysSection({ getAuthHeaders }: ApiKeysSectionProps) {
           ) : null}
         </AnimatePresence>
 
-        <div className="overflow-hidden rounded border border-(--line)">
+        <div className="overflow-hidden rounded border-0">
           <table className="w-full text-left">
             <thead>
               <tr className="bg-(--line-2) text-[10px] font-black uppercase tracking-[0.18em] text-(--t-3)">
@@ -294,7 +294,7 @@ export function ApiKeysSection({ getAuthHeaders }: ApiKeysSectionProps) {
                         >
                           {item.is_active ? "Active" : "Revoked"}
                         </span>
-                        <span className="inline-flex items-center rounded-full border border-(--line) bg-(--line-2) px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-(--t-2)">
+                        <span className="inline-flex items-center rounded-full border-0 bg-(--line-2) px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-(--t-2)">
                           Created{" "}
                           <span className="ml-1">
                             {item.created_at ? (
@@ -312,7 +312,7 @@ export function ApiKeysSection({ getAuthHeaders }: ApiKeysSectionProps) {
                       {item.scopes.map((scope) => (
                         <span
                           key={scope}
-                          className="inline-flex items-center rounded-full border border-(--line) bg-(--line-2) px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-(--t-2)"
+                          className="inline-flex items-center rounded-full border-0 bg-(--line-2) px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-(--t-2)"
                         >
                           {scope}
                         </span>
@@ -356,7 +356,7 @@ export function ApiKeysSection({ getAuthHeaders }: ApiKeysSectionProps) {
           </table>
         </div>
 
-        <div className="flex flex-col gap-3 rounded border border-(--line) bg-(--line-2) p-5 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-3 rounded border-0 bg-(--line-2) p-5 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-[10px] font-black uppercase tracking-[0.2em] text-(--t-3)">
               Quick Summary

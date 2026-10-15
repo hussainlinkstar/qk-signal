@@ -33,7 +33,7 @@ function VoiceTooltip({ active, payload }: Partial<TooltipContentProps<number, s
   }
 
   return (
-    <div className="rounded-2xl border border-(--border) bg-(--chart-tooltip-bg) px-4 py-3">
+    <div className="rounded-2xl border-0 bg-(--chart-tooltip-bg) px-4 py-3">
       <p className={CHART_TOOLTIP_VALUE_CLASS}>{point.label}</p>
       <p
         className={`${CHART_TOOLTIP_LABEL_CLASS} mt-1 text-(--c)`}
@@ -76,7 +76,7 @@ export default function GeoShareOfVoiceChart({ data }: GeoShareOfVoiceChartProps
             return (
               <li
                 key={entry.label}
-                className="flex items-center justify-between rounded-xl border border-(--border) bg-(--surface-subtle) px-4 py-3 text-sm transition-colors hover:bg-(--surface)"
+                className="flex items-center justify-between rounded-xl border-0 bg-(--surface-subtle) px-4 py-3 text-sm transition-colors hover:bg-(--surface)"
               >
                 <span className="flex items-center gap-2 text-(--foreground)">
                   <span

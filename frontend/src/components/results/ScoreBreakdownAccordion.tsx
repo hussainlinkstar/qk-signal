@@ -81,7 +81,7 @@ const ScoreBreakdownAccordion = ({
   if (!subScores || subScores.length === 0) return null;
 
   return (
-    <div className="overflow-hidden rounded-xl border border-(--line) bg-(--line-2) shadow-lg  transition-all duration-300 hover:border-(--line)">
+    <div className="overflow-hidden rounded-xl border-0 bg-(--line-2) shadow-lg  transition-all duration-300 hover:border-(--line)">
       {/* Header */}
       <button
         onClick={() => setIsOpen(!isOpen)}

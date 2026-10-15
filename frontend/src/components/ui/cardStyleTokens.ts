@@ -28,7 +28,7 @@ export const CARD_SUBSECTION_CLASS = CARD_SUBSECTION_PRESETS.standard;
 
 export const DASHBOARD_CARD_CLASS = "space-y-6";
 
-export const CARD_SUBSECTION_SURFACE_CLASS = `${CARD_SUBSECTION_CLASS} border border-(--border) bg-(--surface-subtle)`;
+export const CARD_SUBSECTION_SURFACE_CLASS = `${CARD_SUBSECTION_CLASS} border-0 bg-[#EEF1F6]`;
 export const CARD_SUBSECTION_INTENT_PRIMARY_CLASS = "border-primary/20 bg-primary/10";
 export const CARD_SUBSECTION_INTENT_WARNING_CLASS = "border-warning/20 bg-warning/10";
 

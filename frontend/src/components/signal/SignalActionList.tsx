@@ -34,17 +34,17 @@ export default function SignalActionList({
 }: SignalActionListProps) {
   if (actions.length === 0) {
     return (
-      <div className="rounded-[16px] border border-(--line) bg-(--panel) p-8 text-center text-[13px] text-(--t-3)">
+      <div className="rounded-[22px] border-0 bg-white p-8 text-center text-[13px] text-(--t-3)">
         {emptyLabel}
       </div>
     );
   }
   return (
-    <div className="rounded-[16px] border border-(--line) bg-(--panel)">
+    <div className="rounded-[22px] border-0 bg-white">
       {actions.map((a, i) => (
         <div
           key={a.id}
-          className={cx("flex gap-4 p-[18px_20px]", i > 0 && "border-t border-(--line)")}
+          className={cx("flex gap-4 p-[18px_20px]", i > 0 && "border-t border-[#F3F4F6]")}
         >
           <div className="flex-none text-center">
             <b
@@ -76,7 +76,7 @@ export default function SignalActionList({
                 </span>
               )}
               {a.effort && (
-                <span className="rounded-full border border-(--line) px-2.5 py-1 font-(family-name:--mono) text-[10.5px] tracking-[0.04em] text-(--t-3)">
+                <span className="rounded-full border-0 px-2.5 py-1 font-(family-name:--mono) text-[10.5px] tracking-[0.04em] text-(--t-3)">
                   Effort: {a.effort}
                 </span>
               )}

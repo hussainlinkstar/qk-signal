@@ -242,7 +242,7 @@ export default function AuditAnnotationThread({
   };
 
   return (
-    <div className="rounded-4xl border border-(--line) bg-(--panel) p-6">
+    <div className="rounded-4xl border-0 bg-white p-6">
       <div className="flex flex-col gap-3 border-b border-(--line) pb-5">
         <div className="flex items-start justify-between gap-4">
           <div>
@@ -251,7 +251,7 @@ export default function AuditAnnotationThread({
             </p>
             <h4 className="mt-2 text-xl font-black text-(--t-1)">{title}</h4>
           </div>
-          <div className="rounded-full border border-(--line) bg-(--line-2) px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-(--t-2)">
+          <div className="rounded-full border-0 bg-(--line-2) px-3 py-1 text-[10px] font-black uppercase tracking-[0.2em] text-(--t-2)">
             {countAnnotations(items)} items
           </div>
         </div>
@@ -298,7 +298,7 @@ export default function AuditAnnotationThread({
               return (
                 <div
                   key={annotation.id}
-                  className="rounded border border-(--line) bg-(--line-2) p-5"
+                  className="rounded border-0 bg-(--line-2) p-5"
                 >
                   <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
                     <div>
@@ -319,7 +319,7 @@ export default function AuditAnnotationThread({
                             : "Internal"}
                         </span>
                         {annotation.user_id === currentUserId ? (
-                          <span className="rounded-full border border-(--line) px-2 py-0.5 text-[10px] font-black uppercase tracking-[0.18em] text-(--t-3)">
+                          <span className="rounded-full border-0 px-2 py-0.5 text-[10px] font-black uppercase tracking-[0.18em] text-(--t-3)">
                             You
                           </span>
                         ) : null}
@@ -397,7 +397,7 @@ export default function AuditAnnotationThread({
                       {annotation.replies.map((reply) => (
                         <div
                           key={reply.id}
-                          className="rounded border border-(--line) bg-(--paper) px-4 py-3"
+                          className="rounded border-0 bg-[#EEF1F6] px-4 py-3"
                         >
                           <div className="flex flex-wrap items-center gap-2">
                             <p className="text-sm font-semibold text-(--t-1)">
@@ -443,7 +443,7 @@ export default function AuditAnnotationThread({
               onSubmit={(payload) => handleCreate(payload)}
             />
           ) : (
-            <div className="flex items-center gap-3 rounded border border-(--line) bg-(--line-2) px-4 py-3 text-sm text-(--t-2)">
+            <div className="flex items-center gap-3 rounded border-0 bg-(--line-2) px-4 py-3 text-sm text-(--t-2)">
               <Shield className="h-4 w-4 text-(--t-3)" />
               Viewer access can review threads but cannot add or edit annotations.
             </div>

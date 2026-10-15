@@ -42,7 +42,7 @@ export default function EmbedCodeSnippet({ apiKey, origin }: EmbedCodeSnippetPro
           {copied ? "Copied" : "Copy"}
         </Button>
       </div>
-      <pre className="overflow-x-auto rounded-xl border border-(--border) bg-(--surface-subtle) p-3 text-xs text-(--t-2)">
+      <pre className="overflow-x-auto rounded-xl border-0 bg-(--surface-subtle) p-3 text-xs text-(--t-2)">
         <code>{snippet}</code>
       </pre>
       {!hasRawKey ? (

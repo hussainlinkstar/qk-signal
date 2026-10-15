@@ -261,7 +261,7 @@ export default function ProjectOffPageMentionsPanel({
               {summary.top_domains.map((domain) => (
                 <div
                   key={domain.domain}
-                  className="flex items-center justify-between rounded-xl border border-(--line) bg-(--line-2) px-4 py-3"
+                  className="flex items-center justify-between rounded-xl border-0 bg-(--line-2) px-4 py-3"
                 >
                   <div>
                     <p className="text-sm font-semibold text-(--t-1)">{domain.domain}</p>
@@ -292,7 +292,7 @@ export default function ProjectOffPageMentionsPanel({
               {summary.actionable_advice.slice(0, 4).map((advice, index) => (
                 <div
                   key={`${advice.title}-${index}`}
-                  className="rounded-xl border border-(--line) bg-(--line-2) p-3"
+                  className="rounded-xl border-0 bg-(--line-2) p-3"
                 >
                   <p className="text-xs font-bold uppercase tracking-widest text-(--t-3)">
                     {advice.priority}
@@ -328,7 +328,7 @@ export default function ProjectOffPageMentionsPanel({
               {trends.points.slice(-7).map((point) => (
                 <div
                   key={point.date}
-                  className="flex items-center justify-between rounded-lg border border-(--line) bg-(--line-2) px-3 py-2 text-xs text-(--t-2)"
+                  className="flex items-center justify-between rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) px-3 py-2 text-xs text-(--t-2)"
                 >
                   <span>{formatDate(point.date)}</span>
                   <span>
@@ -354,7 +354,7 @@ export default function ProjectOffPageMentionsPanel({
               {feed.slice(0, 6).map((mention) => (
                 <div
                   key={mention.id}
-                  className="rounded-xl border border-(--line) bg-(--line-2) p-3"
+                  className="rounded-xl border-0 bg-(--line-2) p-3"
                 >
                   <p className="text-xs text-(--t-2)">
                     {mention.source_domain || mention.source_type} •{" "}

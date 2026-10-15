@@ -639,7 +639,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <div className="rounded border border-(--line) bg-(--line-2) px-4 py-3 text-[10px] font-black uppercase tracking-[0.24em] text-(--t-2)">
+            <div className="rounded border-0 bg-(--line-2) px-4 py-3 text-[10px] font-black uppercase tracking-[0.24em] text-(--t-2)">
               {board.tasks.length} tracked tasks
             </div>
             <div className="rounded border border-emerald-400/20 bg-emerald-500/10 px-4 py-3 text-[10px] font-black uppercase tracking-[0.24em] text-emerald-200">
@@ -670,7 +670,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
                 Add project work outside the audit feed
               </h4>
             </div>
-            <div className="rounded border border-(--line) bg-(--line-2) px-4 py-3 text-[10px] font-black uppercase tracking-[0.24em] text-(--t-2)">
+            <div className="rounded border-0 bg-(--line-2) px-4 py-3 text-[10px] font-black uppercase tracking-[0.24em] text-(--t-2)">
               Latest audit{" "}
               {board.latest_audit_at ? formatRelativeTime(board.latest_audit_at) : "not available"}
             </div>
@@ -719,7 +719,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
                   setCreateDraft((current) => ({ ...current, description: event.target.value }))
                 }
                 disabled={!board.can_edit || saving}
-                className="w-full rounded-xl border border-(--line) bg-(--line-2) px-4 py-3 text-sm text-(--t-1) focus-visible:border-primary focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-primary"
+                className="w-full rounded-xl border-0 bg-(--line-2) px-4 py-3 text-sm text-(--t-1) focus-visible:border-primary focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-primary"
               />
             </div>
             <div className="grid gap-4 md:grid-cols-2">
@@ -820,7 +820,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
           {STATUS_ORDER.map((status) => (
             <div
               key={status}
-              className="rounded-4xl border border-(--line) bg-(--background-deep) p-5"
+              className="rounded-4xl border-0 bg-(--background-deep) p-5"
             >
               <div className="flex items-center justify-between gap-3">
                 <span
@@ -831,7 +831,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
                 >
                   {STATUS_META[status].title}
                 </span>
-                <span className="rounded border border-(--line) bg-(--line-2) px-3 py-2 text-sm font-black text-(--t-1)">
+                <span className="rounded border-0 bg-(--line-2) px-3 py-2 text-sm font-black text-(--t-1)">
                   {columns[status].length}
                 </span>
               </div>
@@ -853,7 +853,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
                         setSelectedTaskId(task.id);
                       }
                     }}
-                    className="w-full rounded-4xl border border-(--line) bg-(--line-2) p-4 text-left transition hover:border-cyan-300/30 hover:bg-(--line-2)"
+                    className="w-full rounded-4xl border-0 bg-(--line-2) p-4 text-left transition hover:border-cyan-300/30 hover:bg-(--line-2)"
                   >
                     <div className="flex flex-wrap items-center gap-2">
                       <span
@@ -864,7 +864,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
                       >
                         {task.priority}
                       </span>
-                      <span className="rounded-full border border-(--line) bg-(--line-2) px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-(--t-2)">
+                      <span className="rounded-full border-0 bg-(--line-2) px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.18em] text-(--t-2)">
                         {task.category}
                       </span>
                     </div>
@@ -902,7 +902,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
                           size="sm"
                           disabled={index === 0 || saving}
                           onClick={() => void shiftTask(task, -1)}
-                          className="rounded-xl border border-(--line) bg-(--line-2) text-(--t-2) hover:bg-(--line-2)"
+                          className="rounded-xl border-0 bg-(--line-2) text-(--t-2) hover:bg-(--line-2)"
                         >
                           <MoveUp className="h-4 w-4" />
                         </Button>
@@ -911,7 +911,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
                           size="sm"
                           disabled={index === columns[status].length - 1 || saving}
                           onClick={() => void shiftTask(task, 1)}
-                          className="rounded-xl border border-(--line) bg-(--line-2) text-(--t-2) hover:bg-(--line-2)"
+                          className="rounded-xl border-0 bg-(--line-2) text-(--t-2) hover:bg-(--line-2)"
                         >
                           <MoveDown className="h-4 w-4" />
                         </Button>
@@ -948,7 +948,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
             </p>
             <h4 className="mt-2 text-xl font-black text-(--t-1)">Audit-validated score movement</h4>
           </div>
-          <div className="rounded border border-(--line) bg-(--line-2) px-4 py-3 text-[10px] font-black uppercase tracking-[0.24em] text-(--t-2)">
+          <div className="rounded border-0 bg-(--line-2) px-4 py-3 text-[10px] font-black uppercase tracking-[0.24em] text-(--t-2)">
             Strongest lift{" "}
             {impact?.summary.strongest_metric
               ? `${impact.summary.strongest_metric.toUpperCase()} +${impact.summary.strongest_delta}`
@@ -964,7 +964,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
             impact.items.map((item) => (
               <div
                 key={item.task_id}
-                className="rounded-4xl border border-(--line) bg-(--line-2) p-5"
+                className="rounded-4xl border-0 bg-(--line-2) p-5"
               >
                 <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
                   <div>
@@ -978,7 +978,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
                     {(["seo", "geo", "aeo", "overall"] as const).map((metric) => (
                       <div
                         key={metric}
-                        className="rounded border border-(--line) bg-(--line-2) px-4 py-3"
+                        className="rounded border-0 bg-(--line-2) px-4 py-3"
                       >
                         <p className="text-[10px] font-black uppercase tracking-[0.22em] text-(--t-3)">
                           {metric}
@@ -1060,7 +1060,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
                 onChange={(event) =>
                   setTaskDraft((current) => ({ ...current, description: event.target.value }))
                 }
-                className="w-full rounded-xl border border-(--line) bg-(--line-2) px-4 py-3 text-sm text-(--t-1) focus-visible:border-primary focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-primary"
+                className="w-full rounded-xl border-0 bg-(--line-2) px-4 py-3 text-sm text-(--t-1) focus-visible:border-primary focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-primary"
               />
             </div>
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
@@ -1134,7 +1134,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
               />
             </div>
 
-            <div className="rounded-4xl border border-(--line) bg-(--line-2) p-4 text-sm text-(--t-2)">
+            <div className="rounded-4xl border-0 bg-(--line-2) p-4 text-sm text-(--t-2)">
               <div className="flex flex-wrap gap-6">
                 <span>
                   Source assessment:{" "}
@@ -1159,7 +1159,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
               </div>
             </div>
 
-            <div className="rounded-4xl border border-(--line) bg-(--line-2) p-5">
+            <div className="rounded-4xl border-0 bg-(--line-2) p-5">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-[0.22em] text-(--purple)">
@@ -1169,7 +1169,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
                     Preview, confirm, and deploy this fix to production
                   </h5>
                 </div>
-                <div className="rounded border border-(--line) bg-(--line-2) px-3 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-(--t-2)">
+                <div className="rounded border-0 bg-(--line-2) px-3 py-2 text-[10px] font-black uppercase tracking-[0.2em] text-(--t-2)">
                   {cmsConnections.length} connection{cmsConnections.length === 1 ? "" : "s"}
                 </div>
               </div>
@@ -1319,7 +1319,7 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
                         seconds.
                       </div>
                       <div
-                        className="cms-diff-preview rounded border border-(--line) bg-black/30 p-4 text-sm text-(--t-2)"
+                        className="cms-diff-preview rounded border-0 bg-black/30 p-4 text-sm text-(--t-2)"
                         dangerouslySetInnerHTML={{ __html: sanitizeDiffHtml(cmsPreview.diff_html) }}
                       />
                     </div>
@@ -1330,14 +1330,14 @@ export default function ProjectTaskBoardClient({ projectId }: Props) {
                   )}
 
                   {cmsLogs.length > 0 ? (
-                    <div className="space-y-2 rounded border border-(--line) bg-black/30 p-4">
+                    <div className="space-y-2 rounded border-0 bg-black/30 p-4">
                       <p className="text-[10px] font-black uppercase tracking-[0.2em] text-(--t-3)">
                         Recent Deployments
                       </p>
                       {cmsLogs.slice(0, 3).map((entry) => (
                         <div
                           key={entry.id}
-                          className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-(--line) bg-(--line-2) px-3 py-2 text-xs text-(--t-2)"
+                          className="flex flex-wrap items-center justify-between gap-3 rounded-xl border-0 bg-(--line-2) px-3 py-2 text-xs text-(--t-2)"
                         >
                           <span className="inline-flex items-center gap-1.5">
                             {entry.status === "failed" ? (

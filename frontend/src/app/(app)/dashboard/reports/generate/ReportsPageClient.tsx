@@ -1581,7 +1581,7 @@ export default function ReportsPageClient({ initialKind }: { initialKind?: Repor
               </Notice>
             )
           ) : loadingCompetitors ? (
-            <div className="flex items-center gap-3 rounded border border-(--border) px-4 py-3 text-sm text-(--text-soft)">
+            <div className="flex items-center gap-3 rounded border-0 px-4 py-3 text-sm text-(--text-soft)">
               <Loader2 className="h-4 w-4 animate-spin" />
               Loading tracked competitors...
             </div>
@@ -1618,7 +1618,7 @@ export default function ReportsPageClient({ initialKind }: { initialKind?: Repor
     if (selectedReportFlow === "executive") {
       return (
         <div className="space-y-5">
-          <div className="relative overflow-hidden rounded border border-(--border) bg-(--surface) p-4">
+          <div className="relative overflow-hidden rounded border-0 bg-(--surface) p-4">
             <div className="relative space-y-4">
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -1630,18 +1630,18 @@ export default function ReportsPageClient({ initialKind }: { initialKind?: Repor
                 </div>
                 <div className="flex gap-2">
                   <span
-                    className="h-4 w-4 rounded-full border border-(--border) bg-(--c)"
+                    className="h-4 w-4 rounded-full border-0 bg-(--c)"
                     style={{ "--c": primaryColor } as React.CSSProperties}
                     aria-hidden="true"
                   />
                   <span
-                    className="h-4 w-4 rounded-full border border-(--border) bg-(--c)"
+                    className="h-4 w-4 rounded-full border-0 bg-(--c)"
                     style={{ "--c": secondaryColor } as React.CSSProperties}
                     aria-hidden="true"
                   />
                 </div>
               </div>
-              <div className="rounded border border-(--border) bg-(--surface-subtle) px-4 py-3 text-sm leading-6 text-(--text-soft)">
+              <div className="rounded-[14px] border-0 bg-[#EEF1F6] px-4 py-3 text-sm leading-6 text-(--text-soft)">
                 {previewFooterCopy}
               </div>
             </div>
@@ -1692,7 +1692,7 @@ export default function ReportsPageClient({ initialKind }: { initialKind?: Repor
           )}
 
           <div className="grid gap-4 lg:grid-cols-3">
-            <div className="rounded-xl border border-(--border) bg-(--surface) p-5 shadow-xs">
+            <div className="rounded-[22px] border-0 bg-white p-5 shadow-xs">
               <div className="space-y-2">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--foreground)">
                   Platform Executive
@@ -1721,7 +1721,7 @@ export default function ReportsPageClient({ initialKind }: { initialKind?: Repor
               </div>
             </div>
 
-            <div className="rounded-xl border border-(--border) bg-(--surface) p-5 shadow-xs">
+            <div className="rounded-[22px] border-0 bg-white p-5 shadow-xs">
               <div className="space-y-2">
                 <p className="text-xs font-semibold uppercase tracking-[0.16em] text-(--foreground)">
                   Agency Executive
@@ -1959,7 +1959,7 @@ export default function ReportsPageClient({ initialKind }: { initialKind?: Repor
           {currentStep === "project" ? (
             <div className="flex flex-col flex-1 gap-6">
               <div className="flex items-center gap-3 border-b border-(--border) pb-4">
-                <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded border border-primary/20 bg-primary/10 text-[10px] font-semibold text-primary">
+                <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded border-0 bg-[#E8F1FF] text-[10px] font-semibold text-[#1D4ED8]">
                   1
                 </span>
                 <h2 className="text-lg font-semibold text-(--foreground)">Choose the project</h2>
@@ -1968,7 +1968,7 @@ export default function ReportsPageClient({ initialKind }: { initialKind?: Repor
 
               <div className="flex-1">
                 {loadingContext ? (
-                  <div className="flex items-center gap-3 rounded-xl border border-(--border) px-4 py-3 text-sm text-(--text-soft)">
+                  <div className="flex items-center gap-3 rounded-xl border-0 px-4 py-3 text-sm text-(--text-soft)">
                     <Loader2 className="h-4 w-4 animate-spin" />
                     Loading project context...
                   </div>
@@ -2051,7 +2051,7 @@ export default function ReportsPageClient({ initialKind }: { initialKind?: Repor
                         type="button"
                         disabled={projectPage === 0}
                         onClick={() => setProjectPage((p) => p - 1)}
-                        className="rounded border border-(--border) px-3 py-1.5 text-xs text-(--text-muted) disabled:opacity-40 hover:bg-(--surface-elevated)"
+                        className="rounded border-0 px-3 py-1.5 text-xs text-(--text-muted) disabled:opacity-40 hover:bg-(--surface-elevated)"
                       >
                         Prev
                       </button>
@@ -2062,7 +2062,7 @@ export default function ReportsPageClient({ initialKind }: { initialKind?: Repor
                         type="button"
                         disabled={projectPage >= projectPageCount - 1}
                         onClick={() => setProjectPage((p) => p + 1)}
-                        className="rounded border border-(--border) px-3 py-1.5 text-xs text-(--text-muted) disabled:opacity-40 hover:bg-(--surface-elevated)"
+                        className="rounded border-0 px-3 py-1.5 text-xs text-(--text-muted) disabled:opacity-40 hover:bg-(--surface-elevated)"
                       >
                         Next
                       </button>
@@ -2084,7 +2084,7 @@ export default function ReportsPageClient({ initialKind }: { initialKind?: Repor
           {currentStep === "audit" ? (
             <div className="flex flex-col flex-1 gap-6">
               <div className="flex items-center gap-3 border-b border-(--border) pb-4">
-                <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded border border-primary/20 bg-primary/10 text-[10px] font-semibold text-primary">
+                <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded border-0 bg-[#E8F1FF] text-[10px] font-semibold text-[#1D4ED8]">
                   2
                 </span>
                 <h2 className="text-lg font-semibold text-(--foreground)">Choose the audit</h2>
@@ -2094,7 +2094,7 @@ export default function ReportsPageClient({ initialKind }: { initialKind?: Repor
 
               <div className="flex-1">
                 {loadingAudits ? (
-                  <div className="flex items-center gap-3 rounded-xl border border-(--border) px-4 py-3 text-sm text-(--text-soft)">
+                  <div className="flex items-center gap-3 rounded-xl border-0 px-4 py-3 text-sm text-(--text-soft)">
                     <Loader2 className="h-4 w-4 animate-spin" />
                     Loading completed audits...
                   </div>
@@ -2138,7 +2138,7 @@ export default function ReportsPageClient({ initialKind }: { initialKind?: Repor
                             setAuditTypeFilter("");
                             setAuditPage(0);
                           }}
-                          className="rounded border border-(--border) px-3 py-1.5 text-xs text-(--text-muted) hover:bg-(--surface-elevated)"
+                          className="rounded border-0 px-3 py-1.5 text-xs text-(--text-muted) hover:bg-(--surface-elevated)"
                         >
                           Clear
                         </button>
@@ -2216,7 +2216,7 @@ export default function ReportsPageClient({ initialKind }: { initialKind?: Repor
                         type="button"
                         disabled={auditPage === 0}
                         onClick={() => setAuditPage((p) => p - 1)}
-                        className="rounded border border-(--border) px-3 py-1.5 text-xs text-(--text-muted) disabled:opacity-40 hover:bg-(--surface-elevated)"
+                        className="rounded border-0 px-3 py-1.5 text-xs text-(--text-muted) disabled:opacity-40 hover:bg-(--surface-elevated)"
                       >
                         Prev
                       </button>
@@ -2227,7 +2227,7 @@ export default function ReportsPageClient({ initialKind }: { initialKind?: Repor
                         type="button"
                         disabled={auditPage >= auditPageCount - 1}
                         onClick={() => setAuditPage((p) => p + 1)}
-                        className="rounded border border-(--border) px-3 py-1.5 text-xs text-(--text-muted) disabled:opacity-40 hover:bg-(--surface-elevated)"
+                        className="rounded border-0 px-3 py-1.5 text-xs text-(--text-muted) disabled:opacity-40 hover:bg-(--surface-elevated)"
                       >
                         Next
                       </button>
@@ -2254,7 +2254,7 @@ export default function ReportsPageClient({ initialKind }: { initialKind?: Repor
           {currentStep === "report" ? (
             <div className="flex flex-col flex-1 gap-6">
               <div className="flex items-center gap-3 border-b border-(--border) pb-4">
-                <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded border border-primary/20 bg-primary/10 text-[10px] font-semibold text-primary">
+                <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded border-0 bg-[#E8F1FF] text-[10px] font-semibold text-[#1D4ED8]">
                   3
                 </span>
                 <h2 className="text-lg font-semibold text-(--foreground)">Report type</h2>
@@ -2307,7 +2307,7 @@ export default function ReportsPageClient({ initialKind }: { initialKind?: Repor
           {currentStep === "configure" ? (
             <div className="flex flex-col flex-1 gap-6">
               <div className="flex items-center gap-3 border-b border-(--border) pb-4">
-                <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded border border-primary/20 bg-primary/10 text-[10px] font-semibold text-primary">
+                <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded border-0 bg-[#E8F1FF] text-[10px] font-semibold text-[#1D4ED8]">
                   4
                 </span>
                 <h2 className="text-lg font-semibold text-(--foreground)">

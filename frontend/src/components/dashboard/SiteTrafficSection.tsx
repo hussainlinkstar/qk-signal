@@ -32,24 +32,54 @@ import { cx } from "@/components/ui/utils";
 // layout is the approved card (icon chip, mono label, disp value, delta pill,
 // 58x28 spark).
 const METRIC_ACCENTS: Record<string, { ac: string; bg: string }> = {
-  sessions: { ac: "#2563EB", bg: "rgba(37,99,235,.09)" },
-  users: { ac: "#D9930B", bg: "rgba(217,147,11,.10)" },
-  engagement: { ac: "#E5484D", bg: "rgba(229,72,77,.09)" },
-  conversions: { ac: "#9333EA", bg: "rgba(147,51,234,.09)" },
-  audience: { ac: "#2563EB", bg: "rgba(37,99,235,.09)" },
+  sessions: { ac: "#3B82F6", bg: "#E8F1FF" },
+  users: { ac: "#D97706", bg: "#FEF3C7" },
+  engagement: { ac: "#E11D48", bg: "#FFE4E6" },
+  conversions: { ac: "#7C3AED", bg: "#F3E8FF" },
+  audience: { ac: "#3B82F6", bg: "#E8F1FF" },
 };
 
-// signal-MVP `.chan-legend` dot palette, extended with Other (the seventh
-// contract bucket the mockup never drew).
+// Soft flat channel palette (CashPilot-adjacent, still distinct).
 const CHANNEL_COLORS: Record<string, string> = {
-  organic: "#4ADE80",
+  organic: "#34D399",
   direct: "#3B82F6",
-  referral: "#CBD5E1",
-  ai: "#A855F7",
+  referral: "#94A3B8",
+  ai: "#8B5CF6",
   paid: "#F59E0B",
-  social: "#EF4444",
-  other: "#8A92A1",
+  social: "#F43F5E",
+  other: "#9CA3AF",
 };
+
+const CHANNEL_SOFT_BG: Record<string, string> = {
+  organic: "#ECFDF5",
+  direct: "#EFF6FF",
+  referral: "#F1F5F9",
+  ai: "#F5F3FF",
+  paid: "#FFFBEB",
+  social: "#FFF1F2",
+  other: "#F3F4F6",
+};
+
+/** Shorten ISO day buckets for chart axis labels; leave other grains as-is. */
+function formatBucketLabel(bucket: string): string {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(bucket);
+  if (!m) return bucket;
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  return `${months[Number(m[2]) - 1]} ${Number(m[3])}`;
+}
 
 const ENTRY_MS = 450;
 const GRID_MS = 200;
@@ -103,29 +133,43 @@ function DeltaPill({ change, plain }: { change: SiteTrafficChange; plain?: boole
   );
 }
 
-// signal-MVP `.kpi svg.spark`: 58x28 polyline of the bucketed series.
+// Compact bar spark for KPI cards — matches workspace overview sparklines.
 function Spark({ values, color }: { values: number[]; color: string }) {
   if (values.length < 2) {
     return <svg className="h-7 w-[58px]" aria-hidden="true" />;
   }
+  const width = 58;
+  const height = 28;
+  const padX = 1;
+  const padY = 2;
   const max = Math.max(...values);
   const min = Math.min(...values);
   const range = max - min || 1;
-  const step = 56 / (values.length - 1);
-  const points = values
-    .map((v, i) => `${(1 + i * step).toFixed(1)},${(26 - ((v - min) / range) * 22).toFixed(1)}`)
-    .join(" ");
+  const slot = (width - padX * 2) / values.length;
+  const barW = Math.max(2.5, Math.min(5, slot * 0.55));
+  const plotH = height - padY * 2;
   return (
-    <svg className="h-7 w-[58px]" viewBox="0 0 58 28" aria-hidden="true">
-      <polyline
-        points={points}
-        fill="none"
-        stroke={color}
-        strokeWidth="1.8"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        data-signal-enter="path"
-      />
+    <svg className="h-7 w-[58px]" viewBox={`0 0 ${width} ${height}`} aria-hidden="true">
+      {values.map((v, i) => {
+        const h = Math.max(3, ((v - min) / range) * plotH);
+        const x = padX + i * slot + (slot - barW) / 2;
+        const y = height - padY - h;
+        const isLast = i === values.length - 1;
+        return (
+          <rect
+            key={i}
+            x={x.toFixed(2)}
+            y={y.toFixed(2)}
+            width={barW.toFixed(2)}
+            height={h.toFixed(2)}
+            rx={barW / 2}
+            ry={barW / 2}
+            fill={color}
+            opacity={isLast ? 1 : 0.28}
+            data-signal-enter="sparkfill"
+          />
+        );
+      })}
     </svg>
   );
 }
@@ -163,17 +207,12 @@ function KpiCard({
   const { ac, bg } = METRIC_ACCENTS[metric];
   const card = (
     <div
-      className="relative flex h-full items-center gap-[13px] rounded-[14px] border border-(--line) bg-(--panel) px-[18px] py-4"
+      className="relative flex h-full items-center gap-3.5 rounded-[22px] border-0 bg-white px-[18px] py-4"
       data-metric={metric}
       data-xsell=""
     >
       <span
-        aria-hidden="true"
-        className="absolute inset-y-[14%] -start-px w-1 rounded"
-        style={{ backgroundColor: ac }}
-      />
-      <span
-        className="flex h-10 w-10 flex-none items-center justify-center rounded-full"
+        className="flex h-10 w-10 flex-none items-center justify-center rounded-[12px]"
         style={{ color: ac, backgroundColor: bg }}
       >
         {icon}
@@ -242,20 +281,23 @@ function KpiCard({
   );
 }
 
-// signal-MVP `.chan-donut`: r42 / stroke 15 on a 200x200 svg, legend rows with
-// mono delta pills. Shares come from the payload verbatim - never normalised
-// and never invented for a bucket the payload omits (null share => no arc).
+// Donut + soft legend rows. Shares come from the payload verbatim - never
+// normalised and never invented for a bucket the payload omits (null share => no arc).
 function ChannelDonut({ payload }: { payload: SiteTrafficPayload }) {
   const { t } = useTranslation();
-  const C = 2 * Math.PI * 42;
+  const R = 41;
+  const STROKE = 13;
+  const C = 2 * Math.PI * R;
+  const GAP = 4.2;
   let offset = 0;
   const arcs = payload.channel_mix
     .filter((b) => b.share !== null && b.share > 0)
     .map((b) => {
       const len = (b.share! / 100) * C;
+      const drawn = Math.max(len - GAP, 0);
       const arc = {
         bucket: b.bucket,
-        dash: `${Math.max(len - 1.5, 0)} ${C - Math.max(len - 1.5, 0)}`,
+        dash: `${drawn} ${C - drawn}`,
         offset: -offset,
         color: CHANNEL_COLORS[b.bucket] ?? CHANNEL_COLORS.other,
       };
@@ -265,28 +307,29 @@ function ChannelDonut({ payload }: { payload: SiteTrafficPayload }) {
   const totalSessions = payload.overview.sessions;
 
   return (
-    <div className="flex flex-1 items-center gap-[30px]">
-      <div className="relative h-[200px] w-[200px] flex-none">
-        <svg viewBox="0 0 110 110" className="h-[200px] w-[200px] -rotate-90" aria-hidden="true">
-          <circle cx="55" cy="55" r="42" fill="none" stroke="var(--line)" strokeWidth="15" />
+    <div className="flex flex-1 flex-col items-stretch gap-5 sm:flex-row sm:items-center sm:gap-6">
+      <div className="relative mx-auto h-[196px] w-[196px] flex-none sm:mx-0" data-score-ring>
+        <svg viewBox="0 0 110 110" className="h-full w-full -rotate-90" aria-hidden="true">
+          <circle cx="55" cy="55" r={R} fill="none" stroke="#EEF1F6" strokeWidth={STROKE} />
           {arcs.map((arc) => (
             <circle
               key={arc.bucket}
               cx="55"
               cy="55"
-              r="42"
+              r={R}
               fill="none"
               stroke={arc.color}
-              strokeWidth="15"
+              strokeWidth={STROKE}
+              strokeLinecap="round"
               strokeDasharray={arc.dash}
               strokeDashoffset={arc.offset}
               data-signal-enter="donut"
             />
           ))}
         </svg>
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <div className="absolute inset-[21%] flex flex-col items-center justify-center rounded-full bg-white shadow-[inset_0_0_0_1px_#F3F4F6]">
           <b
-            className="font-(family-name:--disp) text-[34px] font-black leading-none tracking-[-0.02em]"
+            className="font-(family-name:--disp) text-[30px] font-extrabold leading-none tracking-[-0.03em] text-[#111827]"
             data-signal-enter="count"
             data-signal-delay={ENTRY_MS}
             data-signal-count={compact(totalSessions) ?? undefined}
@@ -297,73 +340,90 @@ function ChannelDonut({ payload }: { payload: SiteTrafficPayload }) {
               </span>
             )}
           </b>
-          <small className="mt-1.5 text-[13.5px] text-(--t-2)">
+          <small className="mt-1.5 rounded-full bg-[#F8FAFC] px-2.5 py-0.5 text-[11px] font-semibold text-(--t-3)">
             {t("siteTraffic.sessionsLabel")}
           </small>
         </div>
       </div>
-      <div className="flex flex-1 flex-col gap-5">
-        {payload.channel_mix.map((bucket, index) => (
-          <div
-            key={bucket.bucket}
-            className="flex items-center gap-2.5 whitespace-nowrap text-[15px] text-(--t-1)"
-            data-signal-enter="fade"
-            data-signal-delay={ENTRY_MS + index * STAG_MS}
-          >
-            <span
-              className="h-[11px] w-[11px] flex-none rounded-full"
-              style={{ backgroundColor: CHANNEL_COLORS[bucket.bucket] ?? CHANNEL_COLORS.other }}
-            />
-            {bucket.label}
-            <span
-              className="ms-auto min-w-9 text-end font-(family-name:--disp) font-bold"
-              title={bucket.share === null ? t("siteTraffic.shareNotReported") : undefined}
+      <div className="flex min-w-0 flex-1 flex-col gap-1.5">
+        {payload.channel_mix.map((bucket, index) => {
+          const color = CHANNEL_COLORS[bucket.bucket] ?? CHANNEL_COLORS.other;
+          const soft = CHANNEL_SOFT_BG[bucket.bucket] ?? CHANNEL_SOFT_BG.other;
+          const share = bucket.share;
+          return (
+            <div
+              key={bucket.bucket}
+              className="group flex items-center gap-2.5 rounded-[12px] px-2.5 py-2 transition-colors hover:bg-[#F8FAFC]"
+              data-signal-enter="fade"
+              data-signal-delay={ENTRY_MS + index * STAG_MS}
             >
-              {bucket.share === null ? (
-                <span className="font-(family-name:--body-font) text-[11.5px] font-medium text-(--t-3)">
-                  {t("siteTraffic.notReported")}
-                </span>
-              ) : (
-                `${bucket.share}%`
-              )}
-            </span>
-            <DeltaPill change={bucket.share_change} />
-          </div>
-        ))}
+              <span
+                className="flex h-7 w-7 flex-none items-center justify-center rounded-[9px]"
+                style={{ backgroundColor: soft }}
+              >
+                <span className="h-2 w-2 rounded-full" style={{ backgroundColor: color }} />
+              </span>
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <span className="truncate text-[13px] font-semibold text-[#111827]">
+                    {bucket.label}
+                  </span>
+                  <span
+                    className="ms-auto shrink-0 font-(family-name:--disp) text-[13px] font-bold tabular-nums text-[#111827]"
+                    title={share === null ? t("siteTraffic.shareNotReported") : undefined}
+                  >
+                    {share === null ? (
+                      <span className="font-(family-name:--body-font) text-[11px] font-medium text-(--t-3)">
+                        {t("siteTraffic.notReported")}
+                      </span>
+                    ) : (
+                      `${share}%`
+                    )}
+                  </span>
+                  <DeltaPill change={bucket.share_change} />
+                </div>
+                <div className="mt-1.5 h-1 overflow-hidden rounded-full bg-[#EEF1F6]">
+                  <div
+                    className="h-full rounded-full transition-[width] duration-500"
+                    style={{
+                      width: `${Math.max(0, Math.min(100, share ?? 0))}%`,
+                      backgroundColor: color,
+                    }}
+                  />
+                </div>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
 
-// signal-MVP `.tchart` (app.js stacked()): despite the function name the
-// approved chart is NOT stacked - each series maps its own raw value to the
-// shared axis, overlaps the others, and fills down to the baseline at 0.07
-// opacity with a 2px round-cap smooth stroke. Deliberate deviation kept from
-// the original implementation: the mock hardcodes maxV = 60 with "k" ticks;
-// we keep the data-derived scale because a fixed axis is mockup placeholder.
-// The mock's AI/Organic/Direct/Others channels are not in the contract, which
-// provides sessions, pageviews and key events per bucket (recorded deviation).
+// Smooth multi-series traffic chart with gradient fills. Data-derived Y scale
+// (not the mock's fixed axis). Series keys are contract fields only.
 function TrafficChart({ payload }: { payload: SiteTrafficPayload }) {
   const { t } = useTranslation();
   const W = 900;
-  const H = 240;
-  const AXIS = 34; // left room for the Y scale
-  const FLOOR = 16; // bottom room for x labels
+  const H = 260;
+  const AXIS = 38;
+  const FLOOR = 22;
+  const RIGHT = 8;
   const series = [
-    { key: "sessions" as const, color: "#2563EB", label: t("siteTraffic.metricSessions") },
-    { key: "pageviews" as const, color: "#0E7C6B", label: t("siteTraffic.metricPageviews") },
-    { key: "key_events" as const, color: "#9333EA", label: t("siteTraffic.metricConversions") },
+    { key: "sessions" as const, color: "#3B82F6", soft: "#DBEAFE", label: t("siteTraffic.metricSessions") },
+    { key: "pageviews" as const, color: "#14B8A6", soft: "#CCFBF1", label: t("siteTraffic.metricPageviews") },
+    { key: "key_events" as const, color: "#8B5CF6", soft: "#EDE9FE", label: t("siteTraffic.metricConversions") },
   ];
   const n = payload.series.length;
   const seriesMax = Math.max(1, ...payload.series.flatMap((p) => series.map((s) => p[s.key])));
-  // Data-derived Y scale: round the per-series max up to a clean step for 4 ticks.
   const rawStep = seriesMax / 3;
   const mag = Math.pow(10, Math.floor(Math.log10(rawStep)));
   const step = Math.ceil(rawStep / mag) * mag;
   const yMax = step * 3;
-  const xFor = (i: number) => AXIS + (n <= 1 ? 0 : (i * (W - AXIS - 6)) / (n - 1));
-  const yFor = (v: number) => H - FLOOR - (v / yMax) * (H - FLOOR - 6);
-  // app.js smoothPath(): Catmull-Rom control points converted to cubic beziers.
+  const plotW = W - AXIS - RIGHT;
+  const plotH = H - FLOOR - 10;
+  const xFor = (i: number) => AXIS + (n <= 1 ? 0 : (i * plotW) / (n - 1));
+  const yFor = (v: number) => H - FLOOR - (v / yMax) * plotH;
   const smoothPath = (pts: [number, number][]) => {
     let d = `M${pts[0][0].toFixed(1)},${pts[0][1].toFixed(1)}`;
     for (let i = 0; i < pts.length - 1; i++) {
@@ -381,23 +441,31 @@ function TrafficChart({ payload }: { payload: SiteTrafficPayload }) {
   };
   const xTicks =
     n <= 8
-      ? payload.series.map((p, i) => ({ label: p.bucket, x: xFor(i) }))
+      ? payload.series.map((p, i) => ({ label: formatBucketLabel(p.bucket), raw: p.bucket, x: xFor(i) }))
       : [0, 1, 2, 3, 4, 5, 6].map((k) => {
           const i = Math.round((k * (n - 1)) / 6);
-          return { label: payload.series[i].bucket, x: xFor(i) };
+          return {
+            label: formatBucketLabel(payload.series[i].bucket),
+            raw: payload.series[i].bucket,
+            x: xFor(i),
+          };
         });
 
   return (
-    <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] pb-2.5 pt-[18px]">
-      <div className="mb-1.5 flex flex-wrap items-center gap-4">
-        <h2 className="m-0 font-(family-name:--disp) text-[14px] font-bold tracking-[-0.01em]">
+    <div className="flex h-full flex-col rounded-[22px] border-0 bg-white px-5 pb-3 pt-5 sm:px-[22px]">
+      <div className="mb-3 flex flex-wrap items-center gap-3">
+        <h2 className="m-0 font-(family-name:--disp) text-[15px] font-extrabold tracking-[-0.02em] text-[#111827]">
           {t("siteTraffic.overTime")}
         </h2>
-        <div className="ms-auto flex items-center gap-4">
+        <div className="ms-auto flex flex-wrap items-center gap-1.5">
           {series.map((s) => (
-            <span key={s.key} className="flex items-center gap-1.5 text-[11.5px] text-(--t-2)">
+            <span
+              key={s.key}
+              className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11.5px] font-semibold text-[#374151]"
+              style={{ backgroundColor: s.soft }}
+            >
               <i
-                className="inline-block h-2.5 w-2.5 rounded-full"
+                className="inline-block h-1.5 w-1.5 rounded-full"
                 style={{ backgroundColor: s.color }}
               />
               {s.label}
@@ -406,91 +474,134 @@ function TrafficChart({ payload }: { payload: SiteTrafficPayload }) {
         </div>
       </div>
       {n === 0 ? (
-        <div className="flex h-[240px] items-center justify-center text-[13px] text-(--t-3)">
+        <div className="flex flex-1 items-center justify-center text-[13px] text-(--t-3)">
           {t("siteTraffic.noSeries")}
         </div>
       ) : (
-        <svg
-          viewBox={`0 0 ${W} ${H}`}
-          className="h-[268px] w-full"
-          preserveAspectRatio="none"
-          role="img"
-          aria-label={t("siteTraffic.overTime")}
-        >
-          {[0, 1, 2, 3].map((k) => {
-            const v = step * k;
-            const y = yFor(v);
-            return (
-              <g key={k} data-signal-enter="fade" data-signal-delay={k * STAG_MS}>
-                <line x1={AXIS} x2={W - 6} y1={y} y2={y} stroke="var(--line-2)" strokeWidth="1" />
-                <text
-                  x={AXIS - 6}
-                  y={y + 3}
-                  textAnchor="end"
-                  fontSize="9.5"
-                  fill="var(--t-3)"
-                  fontFamily="var(--mono)"
+        <div className="min-h-0 flex-1 rounded-[16px] bg-[#F8FAFC] px-1.5 pt-2 pb-0 sm:px-2.5">
+          <svg
+            viewBox={`0 0 ${W} ${H}`}
+            className="h-full min-h-[280px] w-full"
+            preserveAspectRatio="none"
+            role="img"
+            aria-label={t("siteTraffic.overTime")}
+          >
+            <defs>
+              {series.map((s) => (
+                <linearGradient
+                  key={s.key}
+                  id={`traffic-fill-${s.key}`}
+                  x1="0"
+                  y1="0"
+                  x2="0"
+                  y2="1"
                 >
-                  {v >= 1000 ? `${Math.round(v / 100) / 10}k` : v}
-                </text>
-              </g>
-            );
-          })}
-          {/* overlaid series: each plotted on its raw value, own baseline fill */}
-          {series.map((s, i) => {
-            const pts = payload.series.map((p, i) => [xFor(i), yFor(p[s.key])] as [number, number]);
-            const line = smoothPath(pts);
-            const area = `${line} L${xFor(n - 1).toFixed(1)},${yFor(0).toFixed(1)} L${xFor(0).toFixed(1)},${yFor(0).toFixed(1)} Z`;
-            return (
-              <g key={s.key}>
-                <path
-                  d={area}
-                  fill={s.color}
-                  opacity={0.07}
-                  data-signal-enter="fade"
-                  data-signal-delay={GRID_MS + i * STAG_MS + ENTRY_MS - 150}
-                />
-                <path
-                  d={line}
-                  fill="none"
-                  stroke={s.color}
-                  strokeWidth={2}
-                  strokeLinecap="round"
-                  vectorEffect="non-scaling-stroke"
-                  data-signal-enter="path"
-                  data-signal-delay={GRID_MS + i * STAG_MS}
-                />
-              </g>
-            );
-          })}
-          {/* per-bucket hover targets with the real values as tooltips */}
-          {payload.series.map((p, i) => (
-            <rect
-              key={`hit-${i}`}
-              x={n <= 1 ? AXIS : xFor(i) - (W - AXIS - 6) / (2 * (n - 1))}
-              y={6}
-              width={n <= 1 ? W - AXIS - 6 : (W - AXIS - 6) / (n - 1)}
-              height={H - FLOOR - 6}
-              fill="transparent"
-            >
-              <title>
-                {`${p.bucket} - ${series.map((s) => `${s.label}: ${p[s.key]}`).join(", ")}`}
-              </title>
-            </rect>
-          ))}
-          {xTicks.map((tick, i) => (
-            <text
-              key={`x-${i}`}
-              x={tick.x}
-              y={H - 2}
-              textAnchor="middle"
-              fontSize="9.5"
-              fill="var(--t-3)"
-            >
-              {tick.label}
-            </text>
-          ))}
-        </svg>
+                  <stop offset="0%" stopColor={s.color} stopOpacity="0.22" />
+                  <stop offset="70%" stopColor={s.color} stopOpacity="0.05" />
+                  <stop offset="100%" stopColor={s.color} stopOpacity="0" />
+                </linearGradient>
+              ))}
+            </defs>
+            {[0, 1, 2, 3].map((k) => {
+              const v = step * k;
+              const y = yFor(v);
+              return (
+                <g key={k} data-signal-enter="fade" data-signal-delay={k * STAG_MS}>
+                  <line
+                    x1={AXIS}
+                    x2={W - RIGHT}
+                    y1={y}
+                    y2={y}
+                    stroke="#E5E7EB"
+                    strokeWidth="1"
+                    strokeDasharray={k === 0 ? undefined : "3 5"}
+                  />
+                  <text
+                    x={AXIS - 8}
+                    y={y + 3.5}
+                    textAnchor="end"
+                    fontSize="10"
+                    fill="#9CA3AF"
+                    fontFamily="var(--body-font), system-ui, sans-serif"
+                    fontWeight="500"
+                  >
+                    {v >= 1000 ? `${Math.round(v / 100) / 10}k` : v}
+                  </text>
+                </g>
+              );
+            })}
+            {series.map((s, i) => {
+              const pts = payload.series.map(
+                (p, idx) => [xFor(idx), yFor(p[s.key])] as [number, number]
+              );
+              const line = smoothPath(pts);
+              const area = `${line} L${xFor(n - 1).toFixed(1)},${yFor(0).toFixed(1)} L${xFor(0).toFixed(1)},${yFor(0).toFixed(1)} Z`;
+              const last = pts[pts.length - 1];
+              return (
+                <g key={s.key}>
+                  <path
+                    d={area}
+                    fill={`url(#traffic-fill-${s.key})`}
+                    data-signal-enter="fade"
+                    data-signal-delay={GRID_MS + i * STAG_MS + ENTRY_MS - 150}
+                  />
+                  <path
+                    d={line}
+                    fill="none"
+                    stroke={s.color}
+                    strokeWidth={2.4}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    vectorEffect="non-scaling-stroke"
+                    data-signal-enter="path"
+                    data-signal-delay={GRID_MS + i * STAG_MS}
+                  />
+                  {/* Square end marker — stays crisp under preserveAspectRatio=none. */}
+                  <rect
+                    x={(last[0] - 3.5).toFixed(1)}
+                    y={(last[1] - 3.5).toFixed(1)}
+                    width="7"
+                    height="7"
+                    rx="2"
+                    fill="#fff"
+                    stroke={s.color}
+                    strokeWidth="2"
+                    data-signal-enter="fade"
+                    data-signal-delay={GRID_MS + i * STAG_MS + 120}
+                  />
+                </g>
+              );
+            })}
+            {payload.series.map((p, i) => (
+              <rect
+                key={`hit-${i}`}
+                x={n <= 1 ? AXIS : xFor(i) - plotW / (2 * (n - 1))}
+                y={8}
+                width={n <= 1 ? plotW : plotW / (n - 1)}
+                height={plotH}
+                fill="transparent"
+              >
+                <title>
+                  {`${p.bucket} — ${series.map((s) => `${s.label}: ${p[s.key]}`).join(", ")}`}
+                </title>
+              </rect>
+            ))}
+            {xTicks.map((tick, i) => (
+              <text
+                key={`x-${i}`}
+                x={tick.x}
+                y={H - 8}
+                textAnchor="middle"
+                fontSize="10.5"
+                fill="#9CA3AF"
+                fontFamily="var(--body-font), system-ui, sans-serif"
+                fontWeight="500"
+              >
+                {tick.label}
+              </text>
+            ))}
+          </svg>
+        </div>
       )}
     </div>
   );
@@ -506,7 +617,7 @@ function StateCard({
   action?: React.ReactNode;
 }) {
   return (
-    <div className="flex flex-col items-center gap-3 rounded-2xl border border-(--line) bg-(--panel) px-6 py-[22px] text-center">
+    <div className="flex flex-col items-center gap-3 rounded-[22px] border-0 bg-white px-6 py-[22px] text-center">
       <h3 className="m-0 font-(family-name:--disp) text-[16px] font-bold">{title}</h3>
       <p className="m-0 max-w-[520px] text-[13px] leading-[1.5] text-(--t-2)">{body}</p>
       {action}
@@ -518,7 +629,7 @@ function ConnectAction({ label, href }: { label: string; href: string }) {
   return (
     <Link
       href={href}
-      className="inline-flex h-[38px] items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] text-[13.5px] font-semibold leading-[normal] text-(--panel) hover:brightness-95 max-md:min-h-11"
+      className="inline-flex h-[38px] items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] text-[13.5px] font-semibold leading-[normal] text-(--panel) hover:brightness-95 max-md:min-h-11"
     >
       {label}
     </Link>
@@ -575,7 +686,7 @@ export default function SiteTrafficSection({
     : null;
 
   const GA4_BADGE_CLASS =
-    "rounded-[5px] border border-(--line) px-[7px] py-0.5 font-mono text-[10px] text-(--t-3)";
+    "rounded-full border-0 bg-[#EEF1F6] px-2.5 py-0.5 font-mono text-[10px] font-semibold text-(--t-3)";
 
   const secHeader = (
     <div className="mb-3 flex flex-wrap items-center gap-3">
@@ -622,7 +733,7 @@ export default function SiteTrafficSection({
           {Array.from({ length: 5 }).map((_, i) => (
             <div
               key={i}
-              className="h-[76px] animate-pulse rounded-[14px] border border-(--line) bg-(--panel)"
+              className="h-[76px] animate-pulse rounded-[22px] border-0 bg-white"
             />
           ))}
         </div>
@@ -641,7 +752,7 @@ export default function SiteTrafficSection({
             <button
               type="button"
               onClick={() => void refetch()}
-              className="inline-flex h-[38px] items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] text-[13.5px] font-semibold hover:border-(--line-btn-hover)"
+              className="inline-flex h-[38px] items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] text-[13.5px] font-semibold hover:bg-[#E8ECF3]"
             >
               {t("common.tryAgain")}
             </button>
@@ -771,7 +882,7 @@ export default function SiteTrafficSection({
               {canChangeAccount ? (
                 <Link
                   href="/dashboard/connections"
-                  className="inline-flex h-[38px] items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] text-[13.5px] font-semibold leading-[normal] hover:border-(--line-btn-hover) max-md:min-h-11"
+                  className="inline-flex h-[38px] items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] text-[13.5px] font-semibold leading-[normal] hover:bg-[#E8ECF3] max-md:min-h-11"
                 >
                   {t("siteTraffic.changeAccountCta")}
                 </Link>
@@ -794,7 +905,7 @@ export default function SiteTrafficSection({
             <button
               type="button"
               onClick={() => void refetch()}
-              className="inline-flex h-[38px] items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] text-[13.5px] font-semibold hover:border-(--line-btn-hover)"
+              className="inline-flex h-[38px] items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] text-[13.5px] font-semibold hover:bg-[#E8ECF3]"
             >
               {t("common.tryAgain")}
             </button>
@@ -956,7 +1067,7 @@ export default function SiteTrafficSection({
       ) : (
         <>
           {payload.availability === "partial" && qualityFlags.length > 0 ? (
-            <p className="mb-3 flex items-center gap-2 rounded-[10px] border border-(--warn) bg-(--warn-s) px-4 py-2.5 text-[12.5px] font-medium text-(--warn)">
+            <p className="mb-3 flex items-center gap-2 rounded-[14px] border-0 bg-(--warn-s) px-4 py-2.5 text-[12.5px] font-medium text-(--warn)">
               {t("siteTraffic.partialNotice", { flags: qualityFlags.join(", ") })}
             </p>
           ) : null}
@@ -1047,22 +1158,22 @@ export default function SiteTrafficSection({
                   honour would be worse than the recorded deviation. */}
               <span
                 data-traffic-grain
-                className="inline-flex flex-none rounded-[9px] border border-(--line) bg-(--panel) p-[3px]"
+                className="inline-flex flex-none rounded-full border-0 bg-[#EEF1F6] px-3 py-1"
               >
-                <span className="rounded-[6px] px-2.5 py-[5px] text-[12px] font-semibold leading-[normal] text-(--t-2)">
+                <span className="text-[12px] font-semibold leading-[normal] text-(--t-2)">
                   {t(`siteTraffic.grain.${payload.bucket_granularity}`, {
                     defaultValue: payload.bucket_granularity,
                   })}
                 </span>
               </span>
             </div>
-            <div className="grid grid-cols-1 gap-4 xl:grid-cols-[622fr_488fr]">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-stretch">
               <TrafficChart payload={payload} />
-              <div className="flex flex-col rounded-(--r) border border-(--line) bg-(--panel) px-6 py-[22px]">
-                <h4 className="m-0 font-(family-name:--disp) text-[14px] font-bold tracking-[-0.01em]">
+              <div className="flex h-full flex-col rounded-[22px] border-0 bg-white px-5 py-5 sm:px-6">
+                <h4 className="m-0 font-(family-name:--disp) text-[15px] font-extrabold tracking-[-0.02em] text-[#111827]">
                   {t("siteTraffic.channelMix")}
                 </h4>
-                <div className="mt-[18px]">
+                <div className="mt-4 flex flex-1 items-center">
                   <ChannelDonut payload={payload} />
                 </div>
               </div>

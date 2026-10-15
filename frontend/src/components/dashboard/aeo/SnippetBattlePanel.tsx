@@ -69,7 +69,7 @@ export default function SnippetBattlePanel({ snippets }: { snippets: SnippetBatt
               setSelectedQuery(event.target.value);
               setSelectedCompetitorDomain("");
             }}
-            className="w-full rounded-xl border border-(--line) bg-(--line-2) px-4 py-3 text-sm font-medium text-(--t-1) shadow-inner transition-colors focus:border-cyan-500/50 focus:outline-hidden focus:ring-1 focus:ring-cyan-500/50"
+            className="w-full rounded-xl border-0 bg-(--line-2) px-4 py-3 text-sm font-medium text-(--t-1) shadow-inner transition-colors focus:border-cyan-500/50 focus:outline-hidden focus:ring-1 focus:ring-cyan-500/50"
           >
             {snippets.map((snippet) => (
               <option key={snippet.query} value={snippet.query}>
@@ -90,7 +90,7 @@ export default function SnippetBattlePanel({ snippets }: { snippets: SnippetBatt
                 id="snippet-competitor"
                 value={selectedCompetitor?.domain ?? ""}
                 onChange={(event) => setSelectedCompetitorDomain(event.target.value)}
-                className="w-full rounded-xl border border-(--line) bg-(--line-2) px-4 py-3 text-sm font-medium text-(--t-1) shadow-inner transition-colors focus:border-cyan-500/50 focus:outline-hidden focus:ring-1 focus:ring-cyan-500/50 disabled:opacity-50"
+                className="w-full rounded-xl border-0 bg-(--line-2) px-4 py-3 text-sm font-medium text-(--t-1) shadow-inner transition-colors focus:border-cyan-500/50 focus:outline-hidden focus:ring-1 focus:ring-cyan-500/50 disabled:opacity-50"
                 disabled={competitors.length === 0}
               >
                 {competitors.length === 0 ? (
@@ -104,7 +104,7 @@ export default function SnippetBattlePanel({ snippets }: { snippets: SnippetBatt
                 )}
               </select>
 
-              <div className="mt-6 overflow-x-auto rounded-xl border border-(--line) shadow-inner">
+              <div className="mt-6 overflow-x-auto rounded-xl border-0 shadow-inner">
                 <table className="min-w-full text-left text-sm text-(--t-1)">
                   <thead className="bg-(--line-2) text-xs uppercase tracking-wider text-(--t-2)">
                     <tr>
@@ -155,7 +155,7 @@ export default function SnippetBattlePanel({ snippets }: { snippets: SnippetBatt
               </div>
 
               <div className="mt-6 grid gap-4 lg:grid-cols-2">
-                <div className="rounded-xl border border-cyan-500/30 bg-cyan-500/5 p-5 shadow-inner">
+                <div className="rounded-xl border-0 bg-cyan-500/5 p-5 shadow-inner">
                   <p className="text-[10px] uppercase font-bold tracking-widest text-cyan-500">
                     Main Site
                   </p>
@@ -173,7 +173,7 @@ export default function SnippetBattlePanel({ snippets }: { snippets: SnippetBatt
                   </p>
                 </div>
 
-                <div className="rounded-xl border border-amber-500/30 bg-amber-500/5 p-5 shadow-inner">
+                <div className="rounded-xl border-0 bg-amber-500/5 p-5 shadow-inner">
                   <p className="text-[10px] uppercase font-bold tracking-widest text-amber-500">
                     Competitor
                   </p>

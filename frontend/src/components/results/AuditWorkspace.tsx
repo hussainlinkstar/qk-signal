@@ -455,7 +455,7 @@ export default function AuditWorkspace({
 
           <div
             className={cx(
-              "relative mx-4 mb-4 flex flex-col rounded-4xl border border-(--line) bg-(--panel) shadow-2xl ring-1 ring-white/5 md:mx-0 md:mb-8 xl:flex-row",
+              "relative mx-4 mb-4 flex flex-col rounded-4xl border-0 bg-white shadow-2xl ring-1 ring-white/5 md:mx-0 md:mb-8 xl:flex-row",
               isEmbedded
                 ? "min-h-[400px] md:min-h-[600px]"
                 : "h-[calc(100vh-140px)] min-h-[400px] md:min-h-[600px] overflow-hidden"
@@ -474,7 +474,7 @@ export default function AuditWorkspace({
                       Recent Audit Runs
                     </p>
                   </div>
-                  <div className="px-2.5 py-0.5 rounded-lg border border-(--line) bg-(--line-2) text-[10px] font-black text-(--t-2)">
+                  <div className="px-2.5 py-0.5 rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) text-[10px] font-black text-(--t-2)">
                     {workspaceHistory.sortedHistory.length}
                   </div>
                 </div>
@@ -492,7 +492,7 @@ export default function AuditWorkspace({
                     workspaceHistory.history.length === 0 &&
                     !workspaceHistory.historyError && (
                       <div className="flex flex-col items-center justify-center p-12 text-center">
-                        <div className="w-14 h-14 rounded bg-(--line-2) border border-(--line) flex items-center justify-center mb-4 text-(--t-3)">
+                        <div className="w-14 h-14 rounded bg-(--line-2) border-0 flex items-center justify-center mb-4 text-(--t-3)">
                           <FileJson className="w-6 h-6" />
                         </div>
                         <p className="text-[10px] font-black uppercase tracking-[0.3em] text-(--t-2) ">
@@ -665,7 +665,7 @@ export default function AuditWorkspace({
                                 href={activeTargetUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="h-9 w-9 rounded-xl flex items-center justify-center bg-(--line-2) border border-(--line) text-(--t-3) hover:text-primary hover:border-primary/20 hover:shadow-[0_0_15px_rgba(6,182,212,0.1)] transition-all"
+                                className="h-9 w-9 rounded-xl flex items-center justify-center bg-(--line-2) border-0 text-(--t-3) hover:text-primary hover:border-primary/20 hover:shadow-[0_0_15px_rgba(6,182,212,0.1)] transition-all"
                               >
                                 <Globe className="w-4 h-4" />
                               </a>
@@ -682,7 +682,7 @@ export default function AuditWorkspace({
                         </div>
 
                         <div className="flex flex-col items-end gap-3 shrink-0">
-                          <div className="flex items-center gap-4 bg-(--line-2) border border-(--line) rounded px-6 py-4 shadow-inner w-full justify-end">
+                          <div className="flex items-center gap-4 bg-(--line-2) border-0 rounded px-6 py-4 shadow-inner w-full justify-end">
                             <div className="flex flex-col items-end">
                               <span className="text-[9px] font-black uppercase tracking-[0.2em] text-(--t-3) mb-0.5">
                                 Overall Score
@@ -776,7 +776,7 @@ export default function AuditWorkspace({
                                 {isActive && (
                                   <motion.div
                                     layoutId="activeWorkspaceTab"
-                                    className="absolute inset-0 bg-primary/5 rounded-xl border border-primary/10"
+                                    className="absolute inset-0 bg-primary/5 rounded-xl border-0"
                                   />
                                 )}
                               </button>
@@ -786,7 +786,7 @@ export default function AuditWorkspace({
                     </div>
                   ) : (
                     <div className="flex items-center gap-6 py-4">
-                      <div className="w-14 h-14 rounded bg-(--line-2) border border-(--line) flex items-center justify-center text-(--t-3)">
+                      <div className="w-14 h-14 rounded bg-(--line-2) border-0 flex items-center justify-center text-(--t-3)">
                         <Activity className="w-6 h-6 animate-pulse" />
                       </div>
                       <div>
@@ -861,7 +861,7 @@ export default function AuditWorkspace({
                     <div className="flex h-full min-h-[400px] flex-col items-center justify-center gap-6 text-center">
                       <div className="relative group">
                         <div className="absolute inset-0 bg-primary/10 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-full" />
-                        <div className="relative h-20 w-20 rounded bg-(--line-2) border border-(--line) flex items-center justify-center text-(--t-3) group-hover:text-primary group-hover:border-primary/20 transition-all duration-700">
+                        <div className="relative h-20 w-20 rounded bg-(--line-2) border-0 flex items-center justify-center text-(--t-3) group-hover:text-primary group-hover:border-primary/20 transition-all duration-700">
                           <FileJson className="h-10 w-10 opacity-30 group-hover:opacity-100" />
                         </div>
                       </div>
@@ -1136,7 +1136,7 @@ export default function AuditWorkspace({
                         <TabErrorBoundary sectionName="Technical Analysis">
                           {isBrandWithoutUrl ? (
                             <div className="flex flex-col items-center justify-center gap-4 py-20 text-center">
-                              <div className="rounded-xl border border-(--line) bg-(--line-2) px-8 py-6">
+                              <div className="rounded-xl border-0 bg-(--line-2) px-8 py-6">
                                 <h3 className="text-lg font-semibold text-(--t-1)">
                                   Technical Metrics Unavailable
                                 </h3>

@@ -138,7 +138,7 @@ export default function EntityKnowledgeGraph({ graph }: EntityKnowledgeGraphProp
         </p>
       </div>
 
-      <div className="overflow-hidden rounded border border-(--line) bg-[color-mix(in_srgb,var(--panel)_80%,transparent)]">
+      <div className="overflow-hidden rounded border-0 bg-[color-mix(in_srgb,var(--panel)_80%,transparent)]">
         <svg
           viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
           className="h-[420px] w-full"
@@ -212,7 +212,7 @@ export default function EntityKnowledgeGraph({ graph }: EntityKnowledgeGraphProp
       </div>
 
       {selectedNode && (
-        <div className="mt-5 rounded-xl border border-(--line) bg-(--line-2) p-4">
+        <div className="mt-5 rounded-xl border-0 bg-(--line-2) p-4">
           <p className="text-[11px] font-black uppercase tracking-wider text-primary">
             Entity Detail
           </p>
@@ -241,7 +241,7 @@ function LegendItem({
   return (
     <span className="inline-flex items-center gap-2">
       <span
-        className="h-3 w-3 rounded-full border border-(--line) bg-(--c) [border-style:var(--bs)]"
+        className="h-3 w-3 rounded-full border-0 bg-(--c) [border-style:var(--bs)]"
         style={
           {
             "--c": color,

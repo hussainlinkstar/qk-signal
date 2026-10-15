@@ -86,7 +86,7 @@ const EntityChips = ({ entities, suggestions = [], onEdit, onRemove, onAdd }: En
   };
 
   return (
-    <div className="p-6 bg-(--panel) rounded-lg border border-(--line)">
+    <div className="p-6 bg-(--panel) rounded-[14px] border-0 bg-[#EEF1F6]">
       <h3 className="text-xl font-semibold text-(--t-1) mb-3">
         {t("signalAuditReport.entities.chipsTitle")}
       </h3>
@@ -105,7 +105,7 @@ const EntityChips = ({ entities, suggestions = [], onEdit, onRemove, onAdd }: En
             return (
               <div
                 key={`${entity.name}-${index}`}
-                className="inline-flex items-center gap-2 rounded-full border border-(--line) bg-(--panel) px-3 py-1.5 text-xs text-(--t-1)"
+                className="inline-flex items-center gap-2 rounded-full border-0 bg-white px-3 py-1.5 text-xs text-(--t-1)"
               >
                 <Icon className="h-3.5 w-3.5 text-thoth-brass" aria-hidden="true" />
                 {editingIndex === index ? (
@@ -182,7 +182,7 @@ const EntityChips = ({ entities, suggestions = [], onEdit, onRemove, onAdd }: En
                 key={`${entity.name}-${entity.type}`}
                 type="button"
                 onClick={() => onAdd?.(entity)}
-                className="rounded-full border border-(--line) bg-[color-mix(in_srgb,var(--panel)_50%,transparent)] px-3 py-1 text-xs text-(--t-2) hover:border-primary hover:text-(--t-1)"
+                className="rounded-full border-0 bg-[color-mix(in_srgb,var(--panel)_50%,transparent)] px-3 py-1 text-xs text-(--t-2) hover:border-primary hover:text-(--t-1)"
               >
                 + Add {entity.name}
               </button>

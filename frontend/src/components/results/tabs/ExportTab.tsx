@@ -190,7 +190,7 @@ export default function ExportTab({
             <button
               type="button"
               onClick={() => setShowSettings((prev) => !prev)}
-              className="inline-flex items-center gap-3 rounded-xl border border-(--line) bg-(--panel) px-4 py-2 text-xs font-semibold text-(--t-2) transition-all hover:bg-(--line-2) hover:text-(--t-1)"
+              className="inline-flex items-center gap-3 rounded-xl border-0 bg-white px-4 py-2 text-xs font-semibold text-(--t-2) transition-all hover:bg-(--line-2) hover:text-(--t-1)"
             >
               <Settings2 className="h-3.5 w-3.5" />
               Choose report sections
@@ -251,7 +251,7 @@ export default function ExportTab({
                 "group/btn relative flex items-center justify-center gap-3 overflow-hidden rounded px-10 py-5 text-[11px] font-black uppercase tracking-[0.08em] transition-all duration-500",
                 hasReport && !isGeneratingPdf
                   ? "bg-primary text-white hover:-translate-y-0.5 hover:shadow-[0_0_30px_rgba(6,182,212,0.6)] active:translate-y-0"
-                  : "cursor-not-allowed border border-(--line) bg-(--panel) text-(--t-3)"
+                  : "cursor-not-allowed border-0 bg-white text-(--t-3)"
               )}
             >
               {isGeneratingPdf ? (
@@ -289,7 +289,7 @@ export default function ExportTab({
               onClick={handleCopyShareLink}
               disabled={!activeAuditMeta?.id}
               className={cx(
-                "flex items-center gap-3 rounded-xl border border-(--line) bg-(--panel) px-6 py-3 text-xs font-semibold transition-all",
+                "flex items-center gap-3 rounded-xl border-0 bg-white px-6 py-3 text-xs font-semibold transition-all",
                 activeAuditMeta?.id
                   ? "text-(--t-2) hover:border-(--line) hover:bg-(--line-2) hover:text-(--t-1)"
                   : "cursor-not-allowed text-(--t-3)"
@@ -300,13 +300,13 @@ export default function ExportTab({
             </button>
             <button
               onClick={handleCopySummary}
-              className="flex items-center gap-3 rounded-xl border border-(--line) bg-(--panel) px-6 py-3 text-xs font-semibold text-(--t-2) transition-all hover:border-(--line) hover:bg-(--line-2) hover:text-(--t-1)"
+              className="flex items-center gap-3 rounded-xl border-0 bg-white px-6 py-3 text-xs font-semibold text-(--t-2) transition-all hover:border-(--line) hover:bg-(--line-2) hover:text-(--t-1)"
             >
               <Copy className="h-3.5 w-3.5 text-primary" /> Copy summary
             </button>
             <button
               onClick={handleExportJson}
-              className="flex items-center gap-3 rounded-xl border border-(--line) bg-(--panel) px-6 py-3 text-xs font-semibold text-(--t-2) transition-all hover:border-(--line) hover:bg-(--line-2) hover:text-(--t-1)"
+              className="flex items-center gap-3 rounded-xl border-0 bg-white px-6 py-3 text-xs font-semibold text-(--t-2) transition-all hover:border-(--line) hover:bg-(--line-2) hover:text-(--t-1)"
             >
               <FileJson className="h-3.5 w-3.5 text-(--purple)" /> Download JSON
             </button>

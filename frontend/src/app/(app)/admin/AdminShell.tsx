@@ -527,7 +527,7 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
                 ref={hamburgerRef}
                 type="button"
                 onClick={() => setMobileOpen(true)}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-(--line) bg-(--panel) text-(--t-1) transition-colors hover:bg-(--line-2) focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple) focus-visible:ring-offset-2 lg:hidden"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-lg border-0 bg-white text-(--t-1) transition-colors hover:bg-(--line-2) focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple) focus-visible:ring-offset-2 lg:hidden"
                 aria-expanded={mobileOpen}
                 aria-label="Open admin menu"
               >
@@ -601,7 +601,7 @@ function AdminLayoutInner({ children }: { children: React.ReactNode }) {
                 </div>
 
                 {/* Admin badge */}
-                <div className="mx-3 mb-3 rounded-[10px] border border-(--line) bg-(--paper) px-3 py-2.5 text-xs">
+                <div className="mx-3 mb-3 rounded-[14px] border-0 bg-[#EEF1F6] px-3 py-2.5 text-xs">
                   <div className="flex items-center gap-2 font-semibold text-(--t-1)">
                     <ShieldCheck size={14} className="text-(--purple)" />
                     <span>{roleLabel} workspace</span>

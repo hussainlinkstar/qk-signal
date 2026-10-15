@@ -84,12 +84,12 @@ type EmailStats = {
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const MONO_META = MICRO_LABEL.replace("uppercase ", "");
-const WSTAT = "rounded-(--r) border border-(--line) bg-(--panel) px-4 py-3";
+const WSTAT = "rounded-[22px] border-0 bg-white px-4 py-3";
 const WSTAT_VALUE =
   "font-(family-name:--disp) text-[20px] font-bold leading-none tracking-[-0.02em] text-(--t-1)";
-const WSEC = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const WSEC = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const WINPUT_SM =
-  "field-focus-ring h-8 rounded-(--r-md) border border-(--line) bg-(--paper) px-[10px] text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
+  "field-focus-ring h-8 rounded-(--r-md) border-0 bg-[#EEF1F6] px-[10px] text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
 const CHIP =
   "inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em]";
 const PAGER_BTN =
@@ -202,7 +202,7 @@ function DetailModal({
         <button
           onClick={onClose}
           aria-label="Close"
-          className="flex h-8 w-8 items-center justify-center rounded-(--r-sm) border border-(--line) bg-(--panel) text-(--t-2) transition-colors hover:text-(--t-1)"
+          className="flex h-8 w-8 items-center justify-center rounded-(--r-sm) border-0 bg-white text-(--t-2) transition-colors hover:text-(--t-1)"
         >
           <X size={16} />
         </button>
@@ -296,7 +296,7 @@ function DetailModal({
                     </div>
                   )}
                 </div>
-                <div className="max-h-[300px] overflow-hidden overflow-y-auto rounded-(--r-md) border border-(--line) bg-(--paper)">
+                <div className="max-h-[300px] overflow-hidden overflow-y-auto rounded-(--r-md) border-0 bg-[#EEF1F6]">
                   {showHtml && detail.html_body ? (
                     <iframe
                       srcDoc={detail.html_body}
@@ -644,7 +644,7 @@ export default function EmailOutboxPage() {
             type="button"
             onClick={() => loadDetail(entry.id)}
             title="View details"
-            className="inline-flex h-8 w-8 items-center justify-center rounded-(--r-sm) border border-(--line) bg-(--panel) text-(--t-2) transition-colors hover:border-(--purple) hover:text-(--purple)"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-(--r-sm) border-0 bg-white text-(--t-2) transition-colors hover:border-(--purple) hover:text-(--purple)"
           >
             <Eye size={14} />
           </button>
@@ -654,7 +654,7 @@ export default function EmailOutboxPage() {
               onClick={() => handleResend(entry.id)}
               disabled={isResending}
               title="Resend"
-              className="inline-flex h-8 w-8 items-center justify-center rounded-(--r-sm) border border-(--line) bg-(--panel) text-(--t-2) transition-colors hover:border-(--warn) hover:text-(--warn) disabled:opacity-40"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-(--r-sm) border-0 bg-white text-(--t-2) transition-colors hover:border-(--warn) hover:text-(--warn) disabled:opacity-40"
             >
               <RotateCcw size={14} />
             </button>
@@ -816,7 +816,7 @@ export default function EmailOutboxPage() {
               type="checkbox"
               checked={hasErrorFilter}
               onChange={(e) => setHasErrorFilter(e.target.checked)}
-              className="h-[17px] w-[17px] rounded-[5px] border border-(--line) bg-(--paper) accent-(--ink)"
+              className="h-[17px] w-[17px] rounded-[5px] border-0 bg-[#EEF1F6] accent-(--ink)"
             />
             <span className={`${MICRO_LABEL} text-(--bad)`}>Errors only</span>
           </label>
@@ -836,7 +836,7 @@ export default function EmailOutboxPage() {
                 setDateTo("");
                 setHasErrorFilter(false);
               }}
-              className="flex items-center gap-1.5 rounded-(--r-sm) border border-(--line) bg-(--panel) px-3 py-2 text-xs font-medium text-(--t-2) transition-colors hover:text-(--t-1)"
+              className="flex items-center gap-1.5 rounded-(--r-sm) border-0 bg-white px-3 py-2 text-xs font-medium text-(--t-2) transition-colors hover:text-(--t-1)"
             >
               <X size={14} />
               Clear

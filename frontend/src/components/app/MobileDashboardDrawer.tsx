@@ -120,7 +120,7 @@ export default function MobileDashboardDrawer({
         ref={buttonRef}
         type="button"
         className={cx(
-          "inline-flex h-11 w-11 items-center justify-center rounded-lg border border-(--line) text-(--t-1) transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple) focus-visible:ring-offset-2 lg:hidden",
+          "inline-flex h-11 w-11 items-center justify-center rounded-[14px] border-0 bg-[#EEF1F6] text-(--t-1) transition-colors focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple) focus-visible:ring-offset-2 lg:hidden",
           isOpen ? "bg-(--line-2)" : "bg-(--panel) hover:bg-(--line-2)"
         )}
         aria-expanded={isOpen}

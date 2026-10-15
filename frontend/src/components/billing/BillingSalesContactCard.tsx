@@ -48,7 +48,7 @@ export default function BillingSalesContactCard() {
 
   return (
     <>
-      <div className="relative mx-auto max-w-5xl overflow-hidden rounded-(--r) border border-(--line) bg-(--panel) p-6">
+      <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[22px] border-0 bg-white p-6">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
             <div className="max-w-2xl">
@@ -136,11 +136,11 @@ export default function BillingSalesContactCard() {
               value={requirements}
               onChange={(event) => setRequirements(event.target.value)}
               placeholder="Describe procurement needs, invoice rules, onboarding expectations, or delivery constraints."
-              className="w-full rounded-md border border-(--line) bg-(--paper) px-4 py-3 text-sm text-(--t-1) placeholder:text-(--t-3) focus-visible:border-primary focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-primary"
+              className="w-full rounded-md border-0 bg-[#EEF1F6] px-4 py-3 text-sm text-(--t-1) placeholder:text-(--t-3) focus-visible:border-primary focus-visible:outline-hidden focus-visible:ring-1 focus-visible:ring-primary"
             />
           </div>
 
-          <div className="rounded-md border border-(--line) bg-(--paper) px-4 py-4 text-sm text-(--t-2)">
+          <div className="rounded-md border-0 bg-[#EEF1F6] px-4 py-4 text-sm text-(--t-2)">
             The message draft will be sent to{" "}
             <span className="font-medium text-(--t-2)">{BILLING_EMAIL}</span>.
           </div>

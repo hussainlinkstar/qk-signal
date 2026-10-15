@@ -93,8 +93,8 @@ type JobStats = {
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const MONO_META = MICRO_LABEL.replace("uppercase ", "");
-const WSEC = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
-const WSTAT = "rounded-(--r) border border-(--line) bg-(--panel) px-4 py-3";
+const WSEC = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
+const WSTAT = "rounded-[22px] border-0 bg-white px-4 py-3";
 const CHIP =
   "inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em]";
 const PAGER_BTN =

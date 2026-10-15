@@ -50,7 +50,7 @@ type NotificationChannel = {
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const MONO_META = MICRO_LABEL.replace("uppercase ", "");
-const WSTAT = "rounded-(--r) border border-(--line) bg-(--panel) px-4 py-3";
+const WSTAT = "rounded-[22px] border-0 bg-white px-4 py-3";
 const CHIP =
   "inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em]";
 
@@ -190,7 +190,7 @@ export default function AdminAlertsPage() {
           {e.status === "active" && (
             <button
               onClick={() => handleAcknowledge(e.id)}
-              className={`${CHIP} border border-(--purple) text-(--purple) transition-colors hover:bg-(--purple-s)`}
+              className={`${CHIP} border-0 bg-(--purple-s) text-(--purple) transition-colors hover:bg-(--purple-s)`}
             >
               Ack
             </button>

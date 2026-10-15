@@ -21,7 +21,7 @@ type AuditTargetSectionProps = {
 const LABEL_CLASS =
   "mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const INPUT_CLASS =
-  "field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6] disabled:bg-(--line-2) disabled:text-(--t-3)";
+  "field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6] disabled:bg-(--line-2) disabled:text-(--t-3)";
 const NOTE_CLASS = "mt-2 text-xs leading-[1.5] text-(--t-3)";
 
 export default function AuditTargetSection({
@@ -66,7 +66,7 @@ export default function AuditTargetSection({
         <div
           role="group"
           aria-labelledby="audit-target-type-label"
-          className="inline-flex gap-[2px] rounded-[9px] border border-(--line) bg-(--paper) p-[3px]"
+          className="inline-flex gap-[2px] rounded-[9px] border-0 bg-[#EEF1F6] p-[3px]"
         >
           {(["website", "brand"] as const).map((targetType) => {
             const active = isBrandMode === (targetType === "brand");
@@ -108,7 +108,7 @@ export default function AuditTargetSection({
         </label>
         {/* `.minp`: the icon and the field are one shell, so the focus ring
             belongs to the shell (see the composed-input rule in signal.css). */}
-        <span className="flex h-11 items-center gap-[9px] rounded-[10px] border border-(--line) bg-(--paper) px-3 focus-within:border-[#c9cef7]">
+        <span className="flex h-11 items-center gap-[9px] rounded-[14px] border-0 bg-[#EEF1F6] px-3 focus-within:border-[#c9cef7]">
           <Globe className="h-4 w-4 shrink-0 text-(--t-3)" aria-hidden="true" />
           <input
             id="audit-url"

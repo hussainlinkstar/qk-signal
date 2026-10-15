@@ -364,7 +364,7 @@ export const LoginForm = () => {
             </div>
           </>
         ) : (
-          <div className="space-y-5 rounded-(--r-md) border border-(--line) bg-(--paper) p-[18px]">
+          <div className="space-y-5 rounded-(--r-md) border-0 bg-[#EEF1F6] p-[18px]">
             <div className="flex items-start gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded border border-primary/25 bg-primary/10 text-primary">
                 <ShieldCheck className="h-5 w-5" />

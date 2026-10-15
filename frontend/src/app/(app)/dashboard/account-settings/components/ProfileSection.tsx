@@ -60,7 +60,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
   return (
     <div className="flex flex-col gap-4">
       {/* ── Identity ── */}
-      <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+      <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
         <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
           Identity
         </h3>
@@ -77,7 +77,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             </label>
             <input
               id="profile-display-name"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="text"
               value={profileName}
               onChange={(e) => setProfileName(e.target.value)}
@@ -93,7 +93,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             </label>
             <input
               id="profile-email"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="text"
               value={profileEmail}
               readOnly
@@ -109,7 +109,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             </label>
             <input
               id="profile-role"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="text"
               value={profileRole}
               readOnly
@@ -120,7 +120,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
       </div>
 
       {/* ── Company ── */}
-      <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+      <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
         <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
           Company
         </h3>
@@ -137,7 +137,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             </label>
             <input
               id="company-legal-name"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="text"
               value={companyLegalName}
               onChange={(e) => setCompanyLegalName(e.target.value)}
@@ -153,7 +153,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             </label>
             <input
               id="company-registration-number"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="text"
               value={companyRegistrationNumber}
               onChange={(e) => setCompanyRegistrationNumber(e.target.value)}
@@ -171,7 +171,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             </label>
             <input
               id="company-vat-number"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="text"
               value={companyVatNumber}
               onChange={(e) => setCompanyVatNumber(e.target.value)}
@@ -187,7 +187,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             </label>
             <input
               id="stripe-customer-id"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="text"
               value={stripeCustomerId ?? "Not linked yet"}
               readOnly
@@ -227,7 +227,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
       </div>
 
       {/* ── Billing Details ── */}
-      <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+      <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
         <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
           Billing Details
         </h3>
@@ -244,7 +244,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             </label>
             <input
               id="billing-email"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="text"
               value={billingEmail}
               onChange={(e) => setBillingEmail(e.target.value)}
@@ -260,7 +260,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             </label>
             <input
               id="billing-phone"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="text"
               value={billingPhone}
               onChange={(e) => setBillingPhone(e.target.value)}
@@ -276,7 +276,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             </label>
             <input
               id="billing-website"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="text"
               value={billingWebsiteUrl}
               onChange={(e) => setBillingWebsiteUrl(e.target.value)}
@@ -293,7 +293,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
           </label>
           <input
             id="billing-address-line-1"
-            className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+            className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
             type="text"
             value={billingAddressLine1}
             onChange={(e) => setBillingAddressLine1(e.target.value)}
@@ -310,7 +310,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             </label>
             <input
               id="billing-address-line-2"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="text"
               value={billingAddressLine2}
               onChange={(e) => setBillingAddressLine2(e.target.value)}
@@ -326,7 +326,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             </label>
             <input
               id="billing-city"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="text"
               value={billingCity}
               onChange={(e) => setBillingCity(e.target.value)}
@@ -344,7 +344,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             </label>
             <input
               id="billing-state"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="text"
               value={billingState}
               onChange={(e) => setBillingState(e.target.value)}
@@ -360,7 +360,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             </label>
             <input
               id="billing-postal-code"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="text"
               value={billingPostalCode}
               onChange={(e) => setBillingPostalCode(e.target.value)}
@@ -376,7 +376,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             </label>
             <input
               id="billing-country"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="text"
               value={billingCountry}
               onChange={(e) => setBillingCountry(e.target.value.toUpperCase())}
@@ -388,7 +388,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
       </div>
 
       {/* ── Recent Invoices ── */}
-      <div className="rounded-(--r) border border-(--line) bg-(--panel)">
+      <div className="rounded-[22px] border-0 bg-white">
         <div className="flex flex-col items-stretch justify-between gap-4 px-6 pt-[22px] pb-0 sm:flex-row sm:items-center">
           <div>
             <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
@@ -400,7 +400,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
           </div>
           <button
             type="button"
-            className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+            className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
             onClick={() => void loadInvoices()}
             disabled={invoicesRefreshing}
           >
@@ -524,7 +524,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
         )}
         <button
           type="button"
-          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
           onClick={handleSaveProfile}
           disabled={authLoading || !isSignedIn || isBootLoading || isSavingProfile}
         >

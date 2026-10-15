@@ -50,10 +50,10 @@ type ConfigIssue = {
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const MONO_META = MICRO_LABEL.replace("uppercase ", "");
-const WSEC = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const WSEC = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const SEC_TITLE =
   "m-0 mb-4 flex items-center gap-2 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em] text-(--t-1)";
-const INSET = "rounded-(--r-md) border border-(--line) bg-(--paper) p-4";
+const INSET = "rounded-(--r-md) border-0 bg-[#EEF1F6] p-4";
 const CHIP =
   "inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em]";
 
@@ -165,7 +165,7 @@ function StatTile({
   color?: string;
 }) {
   return (
-    <div className="flex items-center gap-4 rounded-(--r) border border-(--line) bg-(--panel) px-4 py-3">
+    <div className="flex items-center gap-4 rounded-[22px] border-0 bg-white px-4 py-3">
       <div
         className={`flex h-10 w-10 items-center justify-center rounded-(--r-md) bg-(--paper) ${color}`}
       >
@@ -357,7 +357,7 @@ export default function SystemStatusClient() {
           <button
             onClick={() => void loadStatus()}
             disabled={isRefreshing}
-            className="flex h-8 w-8 items-center justify-center rounded-(--r-sm) border border-(--line) bg-(--panel) text-(--t-2) transition-colors hover:text-(--t-1) disabled:opacity-40"
+            className="flex h-8 w-8 items-center justify-center rounded-(--r-sm) border-0 bg-white text-(--t-2) transition-colors hover:text-(--t-1) disabled:opacity-40"
             title="Refresh now"
             aria-label="Refresh now"
           >
@@ -436,9 +436,9 @@ export default function SystemStatusClient() {
             return (
               <div
                 key={service.id}
-                className="group flex min-w-0 items-center gap-3 rounded-(--r-md) border border-(--line) bg-(--paper) p-4 transition-colors hover:border-(--line-2)"
+                className="group flex min-w-0 items-center gap-3 rounded-(--r-md) border-0 bg-[#EEF1F6] p-4 transition-colors hover:border-(--line-2)"
               >
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-(--r-sm) border border-(--line) bg-(--panel) text-(--purple)">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-(--r-sm) border-0 bg-white text-(--purple)">
                   {service.icon}
                 </div>
                 <div className="min-w-0 flex-1">
@@ -467,7 +467,7 @@ export default function SystemStatusClient() {
             <Terminal size={14} className="text-(--warn)" /> System issues
           </h2>
           {configIssues.length === 0 ? (
-            <div className="flex items-center gap-3 rounded-(--r-md) border border-(--good) bg-(--good-s) px-4 py-4">
+            <div className="flex items-center gap-3 rounded-[14px] border-0 bg-(--good-s) px-4 py-4">
               <CheckCircle2 size={16} className="shrink-0 text-(--good)" />
               <p className="text-xs font-semibold text-(--good)">
                 All systems operational, no issues detected.
@@ -577,7 +577,7 @@ export default function SystemStatusClient() {
               ))}
             </div>
           ) : (
-            <div className="flex flex-col items-center justify-center rounded-(--r-md) border border-dashed border-(--line) bg-(--paper) py-12">
+            <div className="flex flex-col items-center justify-center rounded-[22px] border-0 bg-[#EEF1F6] py-12">
               <Activity size={28} className="mb-3 animate-pulse text-(--t-3)" />
               <p className={MONO_META}>Connecting to status stream...</p>
             </div>

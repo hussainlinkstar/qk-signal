@@ -189,7 +189,7 @@ export default function MagicLinkConnectPage() {
           <SignalBrandLockup />
         </Link>
 
-        <div className="rounded-(--r) border border-(--line) bg-(--panel) p-6">
+        <div className="rounded-[22px] border-0 bg-white p-6">
           <span className="inline-flex items-center gap-1.5 rounded-[6px] bg-(--purple-a10) px-[7px] py-[3px] font-mono text-[9.5px] uppercase tracking-[0.06em] text-(--purple-deep)">
             <ShieldCheck size={12} strokeWidth={2} aria-hidden="true" />
             Secure data handshake
@@ -228,7 +228,7 @@ export default function MagicLinkConnectPage() {
               {Array.from({ length: 3 }).map((_, i) => (
                 <div
                   key={i}
-                  className="h-[52px] animate-pulse rounded-[10px] border border-(--line) bg-(--paper)"
+                  className="h-[52px] animate-pulse rounded-[14px] border-0 bg-[#EEF1F6]"
                 />
               ))}
               <span className="sr-only">Validating link...</span>
@@ -336,7 +336,7 @@ export default function MagicLinkConnectPage() {
                             type="button"
                             onClick={() => startProviderOAuth(provider.provider)}
                             disabled={connectingProvider !== null}
-                            className="inline-flex h-8 flex-none cursor-pointer items-center gap-1.5 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] text-[13.5px] font-semibold text-(--panel) hover:brightness-95 disabled:opacity-60 max-md:min-h-11"
+                            className="inline-flex h-8 flex-none cursor-pointer items-center gap-1.5 rounded-full border-0 bg-[#111827] px-[15px] text-[13.5px] font-semibold text-(--panel) hover:brightness-95 disabled:opacity-60 max-md:min-h-11"
                           >
                             {connectingProvider === provider.provider
                               ? "Redirecting..."
@@ -387,7 +387,7 @@ export default function MagicLinkConnectPage() {
               return (
                 <div
                   key={signal.label}
-                  className="flex items-start gap-2.5 rounded-[10px] border border-(--line) bg-(--panel) p-3"
+                  className="flex items-start gap-2.5 rounded-full border-0 bg-[#EEF1F6] p-3"
                 >
                   <Icon className="mt-0.5 h-4 w-4 shrink-0 text-(--t-3)" aria-hidden="true" />
                   <div>

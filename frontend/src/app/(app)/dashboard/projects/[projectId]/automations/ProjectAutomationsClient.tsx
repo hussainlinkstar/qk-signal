@@ -223,7 +223,7 @@ export default function ProjectAutomationsClient() {
   const topActions = useMemo(
     () => (
       <button
-        className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+        className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
         disabled={locked}
         onClick={() => {
           setEditing(null);
@@ -275,14 +275,14 @@ export default function ProjectAutomationsClient() {
             </div>
 
             {loading ? (
-              <div className="rounded-(--r) border border-(--line) bg-(--panel) p-6">
+              <div className="rounded-[22px] border-0 bg-white p-6">
                 <span>Loading automations...</span>
               </div>
             ) : (
               <div className="grid grid-cols-1 gap-3.5 md:grid-cols-2">
                 {workflows.map((w) => (
                   <div
-                    className="flex flex-col gap-3.5 rounded-2xl border border-(--line) bg-(--panel) p-5 transition-[box-shadow,border-color] duration-150 hover:border-[#DDE0E6] hover:shadow-[0_8px_26px_-18px_rgba(12,15,22,0.28)] max-md:min-w-0"
+                    className="flex flex-col gap-3.5 rounded-[22px] border-0 bg-white p-5 transition-[box-shadow,border-color] duration-150 hover:border-[#DDE0E6] hover:shadow-[0_8px_26px_-18px_rgba(12,15,22,0.28)] max-md:min-w-0"
                     key={w.id}
                   >
                     <div className="flex items-start gap-[13px] max-md:flex-wrap">
@@ -333,7 +333,7 @@ export default function ProjectAutomationsClient() {
                     <div className="mt-0.5 flex gap-2 max-md:flex-wrap">
                       <button
                         type="button"
-                        className="inline-flex h-[34px] flex-1 cursor-pointer items-center justify-center gap-[7px] rounded-[9px] border border-(--line) bg-(--panel) font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:bg-(--line-2) max-md:min-w-[calc(50%-4px)] [&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:stroke-2"
+                        className="inline-flex h-[34px] flex-1 cursor-pointer items-center justify-center gap-[7px] rounded-[9px] border-0 bg-white font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:bg-(--line-2) max-md:min-w-[calc(50%-4px)] [&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:stroke-2"
                         disabled={busyId === w.id}
                         onClick={() => void handleToggleActive(w)}
                       >
@@ -356,7 +356,7 @@ export default function ProjectAutomationsClient() {
                       </button>
                       <button
                         type="button"
-                        className="inline-flex h-[34px] flex-1 cursor-pointer items-center justify-center gap-[7px] rounded-[9px] border border-(--line) bg-(--panel) font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:bg-(--line-2) max-md:min-w-[calc(50%-4px)] [&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:stroke-2"
+                        className="inline-flex h-[34px] flex-1 cursor-pointer items-center justify-center gap-[7px] rounded-[9px] border-0 bg-white font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:bg-(--line-2) max-md:min-w-[calc(50%-4px)] [&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:stroke-2"
                         disabled={busyId === w.id}
                         onClick={() => void handleTest(w)}
                       >
@@ -367,7 +367,7 @@ export default function ProjectAutomationsClient() {
                       </button>
                       <button
                         type="button"
-                        className="inline-flex h-[34px] flex-1 cursor-pointer items-center justify-center gap-[7px] rounded-[9px] border border-(--line) bg-(--panel) font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:bg-(--line-2) max-md:min-w-[calc(50%-4px)] [&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:stroke-2"
+                        className="inline-flex h-[34px] flex-1 cursor-pointer items-center justify-center gap-[7px] rounded-[9px] border-0 bg-white font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:bg-(--line-2) max-md:min-w-[calc(50%-4px)] [&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:stroke-2"
                         disabled={busyId === w.id}
                         onClick={() => {
                           setEditing(w);
@@ -382,7 +382,7 @@ export default function ProjectAutomationsClient() {
                       <button
                         type="button"
                         className={cx(
-                          "inline-flex h-[34px] flex-1 cursor-pointer items-center justify-center gap-[7px] rounded-[9px] border border-(--line) bg-(--panel) font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:bg-(--line-2) max-md:min-w-[calc(50%-4px)] [&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:stroke-2",
+                          "inline-flex h-[34px] flex-1 cursor-pointer items-center justify-center gap-[7px] rounded-[9px] border-0 bg-white font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:bg-(--line-2) max-md:min-w-[calc(50%-4px)] [&>svg]:h-3.5 [&>svg]:w-3.5 [&>svg]:stroke-2",
                           pendingDeleteId === w.id && "border-(--bad) text-(--bad)"
                         )}
                         disabled={busyId === w.id}

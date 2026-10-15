@@ -113,7 +113,7 @@ export default function AuditLaunchSection({
       <div className="flex flex-wrap items-center gap-2.5">
         <Link
           href="/dashboard"
-          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
         >
           {t("signalStartCheck.launch.cancel")}
         </Link>

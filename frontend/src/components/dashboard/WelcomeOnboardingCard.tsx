@@ -95,7 +95,7 @@ export default function WelcomeOnboardingCard({ className }: WelcomeOnboardingCa
           {/* Projects Card */}
           <motion.div
             variants={itemVariants}
-            className="rounded border border-(--line) bg-(--line-2) p-5  transition-all hover:bg-(--line-2) hover:border-(--line) group/feat shadow-inner"
+            className="rounded border-0 bg-(--line-2) p-5  transition-all hover:bg-(--line-2) hover:border-(--line) group/feat shadow-inner"
           >
             <div className="flex items-start gap-4">
               <div className="h-8 w-8 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0">
@@ -125,7 +125,7 @@ export default function WelcomeOnboardingCard({ className }: WelcomeOnboardingCa
           {/* Competitors Card */}
           <motion.div
             variants={itemVariants}
-            className="rounded border border-(--line) bg-(--line-2) p-5  transition-all hover:bg-(--line-2) hover:border-(--line) group/feat shadow-inner"
+            className="rounded border-0 bg-(--line-2) p-5  transition-all hover:bg-(--line-2) hover:border-(--line) group/feat shadow-inner"
           >
             <div className="flex items-start gap-4">
               <div className="h-8 w-8 rounded-lg bg-[color-mix(in_srgb,var(--purple)_10%,transparent)] border border-[color-mix(in_srgb,var(--purple)_20%,transparent)] text-(--purple) flex items-center justify-center shrink-0">

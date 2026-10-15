@@ -22,20 +22,20 @@ import {
 /*  Shared class strings, matching the approved .wsec card vocabulary   */
 /* ------------------------------------------------------------------ */
 
-const CARD = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const CARD = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const CARD_TITLE =
   "m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]";
 const CARD_DESC = "m-0 mb-[18px] text-[12.5px] leading-[1.5] text-(--t-3)";
 const FIELD_LABEL =
   "mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const INPUT =
-  "field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)";
+  "field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)";
 const TEXTAREA =
-  "field-focus-ring min-h-[76px] w-full resize-y rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-2.5 font-(family-name:--body-font) text-[13.5px] leading-[1.5] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)";
+  "field-focus-ring min-h-[76px] w-full resize-y rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-2.5 font-(family-name:--body-font) text-[13.5px] leading-[1.5] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)";
 const BTN =
-  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] disabled:cursor-not-allowed disabled:opacity-55";
+  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-55";
 const BTN_PRIMARY =
-  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black disabled:cursor-not-allowed disabled:opacity-55";
+  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black disabled:cursor-not-allowed disabled:opacity-55";
 const GRID2 = "grid grid-cols-1 gap-4 md:grid-cols-2";
 const GRID3 = "grid grid-cols-1 gap-4 md:grid-cols-3";
 const NOTE = "text-[12px] leading-[1.5] text-(--t-3)";
@@ -521,7 +521,7 @@ export default function WorkspaceWhiteLabelSection({
             </span>
             <div className="flex items-center gap-2.5">
               <span
-                className="h-[34px] w-[34px] flex-none rounded-[9px] border border-(--line) bg-(--sw)"
+                className="h-[34px] w-[34px] flex-none rounded-[9px] border-0 bg-(--sw)"
                 style={{ "--sw": form.primary_color || "transparent" } as React.CSSProperties}
               />
               <input
@@ -539,7 +539,7 @@ export default function WorkspaceWhiteLabelSection({
             </span>
             <div className="flex items-center gap-2.5">
               <span
-                className="h-[34px] w-[34px] flex-none rounded-[9px] border border-(--line) bg-(--sw)"
+                className="h-[34px] w-[34px] flex-none rounded-[9px] border-0 bg-(--sw)"
                 style={{ "--sw": form.secondary_color || "transparent" } as React.CSSProperties}
               />
               <input
@@ -789,7 +789,7 @@ export default function WorkspaceWhiteLabelSection({
           </button>
         </div>
         {domains.length === 0 ? (
-          <div className="rounded-[10px] border border-dashed border-(--line) px-4 py-[22px] text-center text-[13px] text-(--t-3)">
+          <div className="rounded-[14px] border border-dashed border-[#D1D5DB] bg-[#F8FAFC] px-4 py-[22px] text-center text-[13px] text-(--t-3)">
             {t("wsSettings.whiteLabel.customDomain.empty")}
           </div>
         ) : (

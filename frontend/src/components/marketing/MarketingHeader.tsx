@@ -30,7 +30,7 @@ function MobileNavSection({ title, children }: { title: string; children: React.
       <p className="text-[10px] font-medium uppercase tracking-wider text-(--text-muted)">
         {title}
       </p>
-      <div className="mt-2 rounded-xl border border-(--border) bg-(--surface) p-1 shadow-xs">
+      <div className="mt-2 rounded-[22px] border-0 bg-white p-1 shadow-xs">
         {children}
       </div>
     </div>

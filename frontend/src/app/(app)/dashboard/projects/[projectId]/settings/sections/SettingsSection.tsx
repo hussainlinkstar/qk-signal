@@ -41,7 +41,7 @@ export default function SettingsSection({
       id={id}
       tabIndex={id ? -1 : undefined}
       className={cx(
-        "rounded-(--r) border border-(--line) bg-(--panel) px-[22px]",
+        "rounded-[22px] border-0 bg-white px-[22px]",
         wsec ? "py-[18px]" : "py-5",
         danger && "border-[color-mix(in_srgb,var(--bad)_40%,transparent)]",
         className

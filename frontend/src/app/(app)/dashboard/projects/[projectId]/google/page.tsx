@@ -34,6 +34,7 @@ import SignalAddKeywordModal from "@/components/signal/SignalAddKeywordModal";
 import SignalCrumb from "@/components/signal/SignalCrumb";
 import SignalExportMenu from "@/components/signal/SignalExportMenu";
 import SignalTabs from "@/components/signal/SignalTabs";
+import SignalScoreRing from "@/components/signal/SignalScoreRing";
 import { useWorkspacePageHeader } from "@/components/dashboard/workspacePageHeader";
 import {
   isSearchConsolePagesPayload,
@@ -42,8 +43,6 @@ import {
   type SerpTrackingSummary,
   type TargetKeyword,
 } from "@/types/monitoring";
-
-const RING_C = 2 * Math.PI * 54;
 
 const roundOrNull = (v: unknown): number | null =>
   typeof v === "number" && Number.isFinite(v) ? Math.round(v) : null;
@@ -82,11 +81,11 @@ const miniCls =
   "whitespace-nowrap font-mono text-[11px] tracking-[0.05em] text-(--t-3) max-md:w-full max-md:whitespace-normal";
 const unmeasuredCls = "font-mono text-[11px] text-(--t-3)";
 const emptyCls =
-  "mt-3.5 flex flex-col items-center gap-3 rounded-2xl border border-(--line) bg-(--panel) px-6 py-[22px] text-center text-[13px] text-(--t-2)";
+  "mt-3.5 flex flex-col items-center gap-3 rounded-[22px] border-0 bg-white px-6 py-[22px] text-center text-[13px] text-(--t-2)";
 const btnCls =
-  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-(--line-btn-hover) disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-50";
 const btnPrimaryCls =
-  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black";
+  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black";
 
 /** signal-MVP `.sec`: heading, `.ln` divider, `.mini`, spacer, action. */
 function Sec({ title, mini, action }: { title: string; mini?: string; action?: React.ReactNode }) {
@@ -424,48 +423,24 @@ export default function ProjectSeoDetailPage() {
     // hero height resolved first, not padding.
     <div className="flex min-w-0 flex-col gap-[22px]">
       <div ref={heroEntranceRef} className="flex flex-col gap-[22px]">
-        {/* signal-MVP `.hero` */}
-        <div className="relative flex items-center gap-[26px] overflow-hidden rounded-(--r) border border-(--line) bg-(--panel) px-7 py-6 before:absolute before:top-0 before:bottom-0 before:start-0 before:w-1 before:bg-(image:--grad) before:content-[''] max-md:flex-col max-md:items-stretch max-md:p-5">
-          <div className="relative h-[132px] w-[132px] flex-none max-md:self-center">
-            <svg viewBox="0 0 132 132" className="h-[132px] w-[132px] -rotate-90">
-              <circle cx="66" cy="66" r="54" fill="none" stroke="var(--line)" strokeWidth="11" />
-              <circle
-                cx="66"
-                cy="66"
-                r="54"
-                fill="none"
-                stroke="var(--blue)"
-                strokeWidth="11"
-                strokeLinecap="round"
-                strokeDasharray={RING_C}
-                strokeDashoffset={RING_C * (1 - (score ?? 0) / 100)}
-                data-signal-enter="ring"
-              />
-            </svg>
-            <div className="absolute inset-0 mt-0 flex flex-col items-center justify-center">
-              <b
-                className="block font-(family-name:--disp) text-[40px] font-black leading-none tracking-[-0.02em]"
-                data-signal-enter="count"
-                data-signal-count={score ?? undefined}
-              >
-                {score === null ? (
-                  <span className="font-(family-name:--body-font) text-[12px] font-semibold tracking-normal text-(--t-3)">
-                    {t("signalOverview.notMeasured")}
-                  </span>
-                ) : (
-                  score
-                )}
-              </b>
-              {score !== null && (
-                <small className="text-[10px] uppercase tracking-[0.12em] text-(--t-3)">/100</small>
-              )}
-            </div>
-          </div>
+        {/* Hero */}
+        <div className="relative flex items-center gap-[26px] overflow-hidden rounded-[22px] border-0 bg-white px-7 py-6 max-md:flex-col max-md:items-stretch max-md:p-5">
+          <SignalScoreRing
+            score={score}
+            size={140}
+            color="#3B82F6"
+            className="max-md:self-center"
+            emptyLabel={
+              <span className="font-(family-name:--body-font) text-[12px] font-semibold tracking-normal text-(--t-3)">
+                {t("signalOverview.notMeasured")}
+              </span>
+            }
+          />
           <div className="min-w-0 flex-1">
-            <div className="text-[11px] uppercase tracking-[0.14em] text-(--blue)">
+            <span className="inline-flex rounded-full bg-[#E8F1FF] px-2.5 py-0.5 text-[11px] font-semibold text-[#1D4ED8]">
               {t("signalSeoDetail.eyebrow")}
-            </div>
-            <h1 className="mt-2 mb-1.5 font-(family-name:--disp) text-[28px] font-black tracking-[-0.02em]">
+            </span>
+            <h1 className="mt-2.5 mb-1.5 font-(family-name:--disp) text-[28px] font-extrabold tracking-[-0.02em] text-[#111827]">
               {t("signalSeoDetail.heroTitle")}
             </h1>
             <p className="m-0 max-w-[560px] text-[14px] leading-[1.5] text-(--t-2)">
@@ -475,12 +450,12 @@ export default function ProjectSeoDetailPage() {
                 : t("signalSeoDetail.heroCopyNoScore")}
             </p>
           </div>
-          <div className="w-[250px] flex-none rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4 max-md:w-full">
-            <div className="text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)">
+          <div className="w-[250px] flex-none rounded-[16px] border-0 bg-[#F8FAFC] px-[18px] py-4 max-md:w-full">
+            <div className="text-[10.5px] font-semibold uppercase tracking-[0.06em] text-(--t-3)">
               {t("signalSeoDetail.currentScore")}
             </div>
             <div className="mt-2 mb-1 flex items-baseline gap-2">
-              <span className="font-(family-name:--disp) text-[30px] font-black tracking-[-0.02em]">
+              <span className="font-(family-name:--disp) text-[30px] font-extrabold tracking-[-0.02em] text-[#111827]">
                 {score === null ? (
                   <span className="font-(family-name:--body-font) text-[12px] font-semibold tracking-normal text-(--t-3)">
                     {t("signalOverview.notMeasured")}
@@ -554,7 +529,7 @@ export default function ProjectSeoDetailPage() {
             action={
               <Link
                 href={`${base}/fixes`}
-                className="inline-flex h-[30px] cursor-pointer items-center gap-2 rounded-lg border border-(--line) bg-(--panel) px-[11px] font-(family-name:--body-font) text-[12px] font-semibold text-(--t-1) hover:border-(--line-btn-hover)"
+                className="inline-flex h-[30px] cursor-pointer items-center gap-2 rounded-lg border-0 bg-white px-[11px] font-(family-name:--body-font) text-[12px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
               >
                 {t("signalSeoDetail.advisorActionPlan")}
               </Link>
@@ -569,7 +544,7 @@ export default function ProjectSeoDetailPage() {
                 )}
                 aria-hidden={!advisorPlan.allowed || undefined}
               >
-                <div className="rounded-(--r) border border-(--line) bg-(--panel)">
+                <div className="rounded-[22px] border-0 bg-white">
                   {!advisorPlan.allowed ? (
                     // Blur is presentation, not authorization: gated rows
                     // must not sit in the DOM, so render the approved .act
@@ -607,7 +582,7 @@ export default function ProjectSeoDetailPage() {
                             {fixSourceLabelKeys(a.sources).map((key) => (
                               <span
                                 key={key}
-                                className="rounded-[6px] border border-(--line) bg-(--paper) px-2 py-[3px] text-[10.5px] uppercase tracking-[0.04em] text-(--t-3)"
+                                className="rounded-[6px] border-0 bg-[#EEF1F6] px-2 py-[3px] text-[10.5px] uppercase tracking-[0.04em] text-(--t-3)"
                               >
                                 {t(key)}
                               </span>
@@ -686,7 +661,7 @@ export default function ProjectSeoDetailPage() {
         >
           <Sec title={t("signalSeoDetail.factorsTitle")} mini={t("signalSeoDetail.factorsMini")} />
           {factors.length > 0 ? (
-            <div className="rounded-(--r) border border-(--line) bg-(--panel)">
+            <div className="rounded-[22px] border-0 bg-white">
               {factors.map((f, i) => (
                 <div className="border-t border-t-(--line-2) first:border-t-0" key={f.key}>
                   <button
@@ -800,7 +775,7 @@ export default function ProjectSeoDetailPage() {
               <span>{t("signalSeoDetail.keywordsFailed")}</span>
             </div>
           ) : keywordRows.length > 0 ? (
-            <div className="overflow-x-auto rounded-(--r) border border-(--line) bg-(--panel)">
+            <div className="overflow-x-auto rounded-[22px] border-0 bg-white">
               <table className="min-w-full">
                 <thead>
                   <tr>
@@ -915,7 +890,7 @@ export default function ProjectSeoDetailPage() {
               {gscPayload.completeness !== "full" && gscPayload.partial_reason ? (
                 <p className="m-0 mb-3 text-[12px] text-(--warn)">{gscPayload.partial_reason}</p>
               ) : null}
-              <div className="overflow-x-auto rounded-(--r) border border-(--line) bg-(--panel)">
+              <div className="overflow-x-auto rounded-[22px] border-0 bg-white">
                 <table className="min-w-full">
                   <thead>
                     <tr>

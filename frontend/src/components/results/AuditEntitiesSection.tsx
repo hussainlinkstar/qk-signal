@@ -54,7 +54,7 @@ export default function AuditEntitiesSection({
           {t("signalStartCheck.entities.inputLabel")}
         </label>
         {/* `.minp` with the plus icon, as the approved entity field is drawn. */}
-        <span className="flex h-11 items-center gap-[9px] rounded-[10px] border border-(--line) bg-(--paper) px-3 focus-within:border-[#c9cef7]">
+        <span className="flex h-11 items-center gap-[9px] rounded-[14px] border-0 bg-[#EEF1F6] px-3 focus-within:border-[#c9cef7]">
           <Plus className="h-4 w-4 shrink-0 text-(--t-3)" aria-hidden="true" />
           <input
             id="audit-entities"
@@ -120,7 +120,7 @@ export default function AuditEntitiesSection({
         {stats.map((stat) => (
           <div
             key={stat.label}
-            className="flex-1 rounded-xl border border-(--line) bg-(--paper) px-[18px] py-4"
+            className="flex-1 rounded-xl border-0 bg-[#EEF1F6] px-[18px] py-4"
           >
             <div className="mb-1.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
               {stat.label}

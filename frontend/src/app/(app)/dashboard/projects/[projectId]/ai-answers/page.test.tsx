@@ -409,7 +409,9 @@ describe("ProjectAeoPage (approved AIO detail)", () => {
       </PageHeaderHarness>
     );
 
-    expect(container.querySelector('b[class*="text-[40px]"]')?.textContent).toBe("64");
+    expect(container.querySelector("[data-score-ring] [data-signal-enter='count']")?.textContent).toBe(
+      "64"
+    );
     expect(container.querySelector('span[class*="text-[30px]"]')?.textContent).toBe("64");
   });
 

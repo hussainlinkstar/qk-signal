@@ -74,10 +74,10 @@ type AdminAuditSanitizeResponse = {
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const MONO_META = MICRO_LABEL.replace("uppercase ", "");
-const WSEC = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const WSEC = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const SEC_TITLE =
   "m-0 mb-5 flex items-center gap-2 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em] text-(--t-1)";
-const INSET = "rounded-(--r-md) border border-(--line) bg-(--paper) p-4";
+const INSET = "rounded-(--r-md) border-0 bg-[#EEF1F6] p-4";
 const CHIP =
   "inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em]";
 const BACKLINK =
@@ -509,7 +509,7 @@ export default function AdminAuditDetailPage() {
             </section>
 
             {showRaw && (
-              <section className="overflow-hidden rounded-(--r) border border-(--line) bg-(--panel)">
+              <section className="overflow-hidden rounded-[22px] border-0 bg-white">
                 <div className="flex items-center justify-between border-b border-(--line) px-[22px] py-[14px]">
                   <h4 className={`${MONO_META} m-0 flex items-center gap-2`}>
                     <FileJson size={14} /> Raw results data
@@ -583,7 +583,7 @@ export default function AdminAuditDetailPage() {
               </div>
             </section>
 
-            <section className="rounded-(--r) border border-(--bad) bg-(--bad-s) px-[22px] py-[18px]">
+            <section className="rounded-[22px] border-0 bg-(--bad-s) px-[22px] py-[18px]">
               <p className={`${MICRO_LABEL} text-(--bad)`}>Danger zone</p>
               <p className="mt-2 text-xs leading-relaxed text-(--t-2)">
                 Deleting this record will permanently erase all assessment data and scores from the

@@ -44,7 +44,7 @@ export default function FixRow({ fix, rank }: { fix: ConsolidatedFix; rank?: num
           {fixSourceLabelKeys(fix.sources ?? []).map((key) => (
             <span
               key={key}
-              className="rounded-[6px] border border-(--line) bg-(--paper) px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em] text-(--t-3)"
+              className="rounded-[6px] border-0 bg-[#EEF1F6] px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em] text-(--t-3)"
             >
               {t(key)}
             </span>

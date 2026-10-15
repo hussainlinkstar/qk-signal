@@ -110,7 +110,7 @@ const MetricsGridCard = ({ label, score, helper, icon: Icon, tooltip, delta, onC
       role={onClick ? "button" : undefined}
       tabIndex={onClick ? 0 : undefined}
     >
-      <div className="relative flex flex-col justify-between p-6 rounded border border-(--line) bg-(--panel) h-full hover:bg-(--line-2) transition-all duration-500 overflow-visible">
+      <div className="relative flex flex-col justify-between p-6 rounded border-0 bg-white h-full hover:bg-(--line-2) transition-all duration-500 overflow-visible">
         {tooltip && (
           <div className="absolute top-2 right-2 z-60">
             <Tooltip
@@ -131,7 +131,7 @@ const MetricsGridCard = ({ label, score, helper, icon: Icon, tooltip, delta, onC
           </div>
           <div
             className={cx(
-              "p-2 rounded-xl border border-(--line) bg-(--panel)",
+              "p-2 rounded-xl border-0 bg-white",
               scoreColor ? scoreColor.text : "text-(--t-2)"
             )}
           >
@@ -309,7 +309,7 @@ export default function OverviewTab({
 
           {!isBrandWithoutUrl && (
             <div className="relative group h-full">
-              <div className="relative flex flex-col items-center justify-center p-4 rounded border border-(--line) bg-(--panel) h-full hover:bg-(--line-2) transition-all duration-500">
+              <div className="relative flex flex-col items-center justify-center p-4 rounded border-0 bg-white h-full hover:bg-(--line-2) transition-all duration-500">
                 <div className="absolute top-2 right-2 z-10">
                   <Tooltip
                     content={
@@ -336,7 +336,7 @@ export default function OverviewTab({
 
       {/* Score History Sparkline */}
       {comparisonData?.history && comparisonData.history.length >= 2 && (
-        <div className="rounded border border-(--line) bg-(--panel) p-5 space-y-3">
+        <div className="rounded border-0 bg-white p-5 space-y-3">
           <div className="flex items-center justify-between">
             <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-(--t-3) text-(--t-3)">
               Score Trend ({comparisonData.history.length} audits)
@@ -527,7 +527,7 @@ export default function OverviewTab({
                   {scoreGroups.map((group) => (
                     <div
                       key={group.label}
-                      className="p-4 min-w-[140px] shrink-0 rounded border border-(--line) hover:bg-(--line-2) transition-colors flex items-center justify-center"
+                      className="p-4 min-w-[140px] shrink-0 rounded border-0 hover:bg-(--line-2) transition-colors flex items-center justify-center"
                     >
                       <ScoreGauge
                         score={group.score}

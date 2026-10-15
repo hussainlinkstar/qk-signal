@@ -560,7 +560,7 @@ export default function GeoTab({
   if (isBrandWithoutUrl) {
     return (
       <div className="space-y-8">
-        <div className="rounded-xl border border-(--line) bg-(--panel) p-6">
+        <div className="rounded-xl border-0 bg-white p-6">
           <h3 className="text-lg font-semibold text-(--t-1)">
             Brand Entity AI Visibility Assessment
           </h3>
@@ -573,13 +573,13 @@ export default function GeoTab({
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
-          <div className="rounded-xl border border-(--line) bg-(--panel) p-5">
+          <div className="rounded-xl border-0 bg-white p-5">
             <div className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)">
               AI Visibility Score
             </div>
             <div className="mt-1 text-2xl font-bold text-(--t-1)">{geoScore}</div>
           </div>
-          <div className="rounded-xl border border-(--line) bg-(--panel) p-5">
+          <div className="rounded-xl border-0 bg-white p-5">
             <div className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)">
               Summary
             </div>
@@ -590,7 +590,7 @@ export default function GeoTab({
         </div>
 
         {geoRecommendations.length > 0 && (
-          <div className="rounded-xl border border-(--line) bg-(--panel) p-5">
+          <div className="rounded-xl border-0 bg-white p-5">
             <h4 className="mb-3 text-sm font-semibold text-(--t-1)">
               Entity Visibility Recommendations
             </h4>
@@ -709,8 +709,8 @@ export default function GeoTab({
           <div className="grid gap-4 sm:grid-cols-2">
             {geoRecommendations.map((rec, i) => (
               <div key={i} className="group relative">
-                <div className="relative flex items-start gap-5 overflow-hidden rounded border border-(--line) p-6 transition-all duration-500 hover:border-(--line) hover:bg-(--line-2)">
-                  <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-primary/20 bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
+                <div className="relative flex items-start gap-5 overflow-hidden rounded border-0 p-6 transition-all duration-500 hover:border-(--line) hover:bg-(--line-2)">
+                  <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border-0 bg-primary/10 text-primary transition-colors group-hover:bg-primary/20">
                     <Target className="h-4 w-4" />
                   </div>
                   <div className="space-y-1">
@@ -787,7 +787,7 @@ export default function GeoTab({
         ) : null}
 
         <div className="grid gap-4 lg:grid-cols-2">
-          <div className="space-y-4 rounded border border-(--line) p-5">
+          <div className="space-y-4 rounded border-0 p-5">
             <p className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-(--t-3) text-(--t-3)">
               Suggested Prompts
             </p>
@@ -820,7 +820,7 @@ export default function GeoTab({
                   return (
                     <div
                       key={`${prompt}-${index}`}
-                      className="rounded-xl border border-(--line) bg-black/30 p-3"
+                      className="rounded-xl border-0 bg-black/30 p-3"
                     >
                       <div className="mb-2 flex flex-wrap items-center gap-2">
                         <Badge color={ideaLabelTone(idea.label)}>{idea.label}</Badge>
@@ -894,7 +894,7 @@ export default function GeoTab({
                       return (
                         <div
                           key={item.id}
-                          className="space-y-3 rounded-xl border border-(--line) bg-black/30 p-3"
+                          className="space-y-3 rounded-xl border-0 bg-black/30 p-3"
                         >
                           <div className="flex items-start justify-between gap-3">
                             <div className="space-y-2">
@@ -975,7 +975,7 @@ export default function GeoTab({
                       {manualTrackedPrompts.map((item) => (
                         <div
                           key={item.prompt}
-                          className="space-y-2 rounded-xl border border-(--line) bg-black/30 p-3"
+                          className="space-y-2 rounded-xl border-0 bg-black/30 p-3"
                         >
                           <div className="flex items-start justify-between gap-3">
                             <div className="space-y-2">
@@ -1016,7 +1016,7 @@ export default function GeoTab({
                 {trackedPrompts.map((item) => (
                   <div
                     key={item.prompt}
-                    className="space-y-2 rounded-xl border border-(--line) bg-black/30 p-3"
+                    className="space-y-2 rounded-xl border-0 bg-black/30 p-3"
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="space-y-2">

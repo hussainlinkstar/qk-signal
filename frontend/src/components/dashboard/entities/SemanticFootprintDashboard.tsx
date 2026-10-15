@@ -219,12 +219,12 @@ export default function SemanticFootprintDashboard() {
         )}
 
         {notice ? (
-          <div className="rounded-xl border border-cyan-500/20 bg-cyan-900/10 px-4 py-3 text-sm font-medium text-(--purple) shadow-inner">
+          <div className="rounded-xl border-0 bg-cyan-900/10 px-4 py-3 text-sm font-medium text-(--purple) shadow-inner">
             {notice}
           </div>
         ) : null}
         {error ? (
-          <div className="rounded-xl border border-rose-500/20 bg-rose-500/10 px-4 py-3 text-sm font-medium text-rose-300 shadow-inner">
+          <div className="rounded-xl border-0 bg-rose-500/10 px-4 py-3 text-sm font-medium text-rose-300 shadow-inner">
             {error}
           </div>
         ) : null}
@@ -347,7 +347,7 @@ export default function SemanticFootprintDashboard() {
                 {sourceEntities.map((entry) => (
                   <li
                     key={entry.normalizedKey}
-                    className="rounded-lg border border-(--line) bg-(--line-2) p-3 flex justify-between items-center transition-colors hover:bg-(--line-2)"
+                    className="rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) p-3 flex justify-between items-center transition-colors hover:bg-(--line-2)"
                   >
                     <div>
                       <span className="font-bold text-(--t-1) mr-2">{entry.name}</span>

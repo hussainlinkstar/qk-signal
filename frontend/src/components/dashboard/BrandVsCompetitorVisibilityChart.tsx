@@ -86,7 +86,7 @@ function CompTooltip({
 }) {
   if (!active || !payload?.length) return null;
   return (
-    <div className="rounded-2xl border border-(--border) bg-(--chart-tooltip-bg) px-4 py-3">
+    <div className="rounded-2xl border-0 bg-(--chart-tooltip-bg) px-4 py-3">
       <p className={CHART_TOOLTIP_LABEL_CLASS}>{label}</p>
       <div className="mt-2 space-y-2">
         {payload.map((e) => (
@@ -318,7 +318,7 @@ export default function BrandVsCompetitorVisibilityChart({ projectId }: Props) {
           <h2 className={TYPO.sectionTitle}>Brand vs Competitor AI Visibility</h2>
         </div>
         <div className="flex flex-col items-start gap-2 md:items-end">
-          <div className="inline-flex items-center gap-2 rounded-full border border-(--border) bg-(--surface) px-3 py-1.5 text-xs font-semibold text-(--text-soft)">
+          <div className="inline-flex items-center gap-2 rounded-full border-0 bg-(--surface) px-3 py-1.5 text-xs font-semibold text-(--text-soft)">
             <TrendingUp className="h-4 w-4 text-primary" />
             Last 90 days
           </div>

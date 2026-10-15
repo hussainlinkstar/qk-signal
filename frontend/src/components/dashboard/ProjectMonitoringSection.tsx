@@ -115,7 +115,7 @@ export default function ProjectMonitoringSection({
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="space-y-2">
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 text-primary">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl border-0 bg-primary/10 text-primary">
               <Icon className="h-5 w-5" />
             </div>
             <h2 className="text-2xl font-black uppercase tracking-tight text-(--t-1)">
@@ -224,12 +224,12 @@ export function ProjectMonitoringWidgetCard({
   iconClassName,
 }: ProjectMonitoringWidgetCardProps) {
   return (
-    <div className={cx("rounded border border-(--line) bg-(--line-2) p-6", className)}>
+    <div className={cx("rounded border-0 bg-(--line-2) p-6", className)}>
       <div className="mb-6 flex flex-wrap items-start justify-between gap-4">
         <div className="flex items-center gap-3">
           <div
             className={cx(
-              "flex h-10 w-10 items-center justify-center rounded-xl border border-primary/15 bg-primary/10",
+              "flex h-10 w-10 items-center justify-center rounded-xl border-0 bg-primary/10",
               iconShellClassName
             )}
           >

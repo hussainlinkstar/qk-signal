@@ -70,7 +70,7 @@ const DISMISS_FALLBACK = "Dismiss notification";
 const DISMISS_KEY = "alerts.dismiss";
 
 export const SIGNAL_ALERT_ACTION =
-  "inline-flex min-h-[38px] items-center justify-center gap-2 rounded-(--r-md) border border-(--line) bg-(--panel) px-[15px] py-2 text-[13px] font-semibold leading-[1.5] text-(--t-1) transition-colors duration-150 hover:border-(--line-btn-hover) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--brand) disabled:cursor-not-allowed disabled:opacity-45";
+  "inline-flex min-h-[38px] items-center justify-center gap-2 rounded-(--r-md) border-0 bg-white px-[15px] py-2 text-[13px] font-semibold leading-[1.5] text-(--t-1) transition-colors duration-150 hover:bg-[#E8ECF3] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--brand) disabled:cursor-not-allowed disabled:opacity-45";
 
 export default function SignalAlert({
   title,

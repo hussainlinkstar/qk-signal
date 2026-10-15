@@ -232,7 +232,7 @@ export default function AIVisibilityScoreCard({
                           : "Pending"}
                       </p>
                     </div>
-                    <span className="rounded-full border border-(--border) bg-(--surface-elevated) px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-(--text-muted)">
+                    <span className="rounded-full border-0 bg-(--surface-elevated) px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-(--text-muted)">
                       {provider.tracked_queries} tracked
                     </span>
                   </div>

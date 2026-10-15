@@ -34,7 +34,7 @@ const ComponentScore = ({ label, score }: { label: string; score: number | null 
   const hasScore = typeof score === "number";
   const color = hasScore ? getScoreColor(score) : null;
   return (
-    <div className="flex items-center gap-2 rounded-full border border-(--line) bg-(--line-2) px-3 py-1">
+    <div className="flex items-center gap-2 rounded-full border-0 bg-(--line-2) px-3 py-1">
       <span className="text-[9px] font-bold uppercase tracking-widest text-(--t-2)">{label}</span>
       <span className={cx("text-[11px] font-black", color ? color.text : "text-(--t-3)")}>
         {hasScore ? `${Math.round(score)}/100` : "N/A"}
@@ -68,7 +68,7 @@ export default function AioBreakdown({
   return (
     <section
       aria-label="AI engine visibility & reputation"
-      className="space-y-10 rounded border border-(--line) bg-(--line-2) p-6 shadow-inner"
+      className="space-y-10 rounded border-0 bg-(--line-2) p-6 shadow-inner"
     >
       <header className="flex flex-col gap-4 border-b border-(--line) pb-6 sm:flex-row sm:items-start sm:justify-between">
         <div className="space-y-2">

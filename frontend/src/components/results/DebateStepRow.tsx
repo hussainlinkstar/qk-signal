@@ -56,7 +56,7 @@ const DebateStepRow = ({ step }: { step: DebateStep }) => {
     step.layer != null && step.layer > 0 ? `Layer ${step.layer}` : `Step ${meta.step}`;
 
   return (
-    <div className="flex flex-col gap-1 rounded-md border border-(--line) bg-(--line-2) p-3">
+    <div className="flex flex-col gap-1 rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) p-3">
       <div className="flex items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <span className="rounded-full bg-(--line-2) px-2 py-0.5 text-xs font-semibold text-(--t-2)">

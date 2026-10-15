@@ -69,7 +69,7 @@ export default function AuditPromptsSection({
     <section
       id="audit-step-prompts"
       aria-label={t("signalStartCheck.prompts.heading")}
-      className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-5"
+      className="rounded-[22px] border-0 bg-white px-[22px] py-5"
     >
       {unavailableReason !== null ? (
         <>

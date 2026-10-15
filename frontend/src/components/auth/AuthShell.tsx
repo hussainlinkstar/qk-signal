@@ -85,7 +85,7 @@ export default function AuthShell({
           Back to home
         </Link>
 
-        <div className="rounded-(--r) border border-(--line) bg-(--panel) p-6">
+        <div className="rounded-[22px] border-0 bg-white p-6">
           <div className="mb-5">
             <Link
               href={qikoSiteUrl}

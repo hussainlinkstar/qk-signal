@@ -142,7 +142,7 @@ export default function PasskeySetupPrompt() {
             Set up passkey
           </Button>
           <button
-            className="inline-flex min-h-11 w-full items-center justify-center rounded-full border border-(--line) bg-(--panel) px-[15px] text-[13.5px] font-semibold text-(--t-2) transition-colors duration-150 hover:border-(--line-btn-hover) hover:bg-(--paper) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--brand) disabled:cursor-not-allowed disabled:opacity-45"
+            className="inline-flex min-h-11 w-full items-center justify-center rounded-full border-0 bg-white px-[15px] text-[13.5px] font-semibold text-(--t-2) transition-colors duration-150 hover:bg-[#E8ECF3] hover:bg-(--paper) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--brand) disabled:cursor-not-allowed disabled:opacity-45"
             disabled={registering}
             type="button"
             onClick={handleDismiss}

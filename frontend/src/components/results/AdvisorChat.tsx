@@ -137,7 +137,7 @@ const AdvisorChatBody = ({ auditId, disabled = false }: AdvisorChatBodyProps) =>
       </div>
 
       <div
-        className="max-h-80 space-y-3 overflow-y-auto rounded border border-(--line) bg-(--line-2) p-4 shadow-inner"
+        className="max-h-80 space-y-3 overflow-y-auto rounded border-0 bg-(--line-2) p-4 shadow-inner"
         data-testid="advisor-chat-transcript"
       >
         {turns.length === 0 ? (
@@ -155,7 +155,7 @@ const AdvisorChatBody = ({ auditId, disabled = false }: AdvisorChatBodyProps) =>
                   "max-w-[85%] space-y-2 rounded px-3 py-2 text-xs leading-relaxed",
                   turn.role === "user"
                     ? "border border-primary/20 bg-primary/[0.08] text-(--t-1)"
-                    : "border border-(--line) bg-(--line-2) text-(--t-2)"
+                    : "border-0 bg-(--line-2) text-(--t-2)"
                 )}
                 data-testid={`advisor-chat-message-${turn.role}`}
               >
@@ -180,7 +180,7 @@ const AdvisorChatBody = ({ auditId, disabled = false }: AdvisorChatBodyProps) =>
         )}
         {sending && (
           <div className="flex justify-start" aria-live="polite">
-            <span className="inline-flex items-center gap-2 rounded border border-(--line) bg-(--line-2) px-3 py-2 text-xs text-(--t-2)">
+            <span className="inline-flex items-center gap-2 rounded border-0 bg-(--line-2) px-3 py-2 text-xs text-(--t-2)">
               <Loader2 className="h-3 w-3 animate-spin" />
               Thinking…
             </span>
@@ -197,7 +197,7 @@ const AdvisorChatBody = ({ auditId, disabled = false }: AdvisorChatBodyProps) =>
           aria-label="Ask the advisor a question about this audit"
           placeholder="Ask a question about this audit…"
           data-testid="advisor-chat-input"
-          className="flex-1 rounded border border-(--line) bg-(--line-2) px-3 py-2 text-xs text-(--t-1) placeholder:text-(--t-3) focus:border-primary/40 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50"
+          className="flex-1 rounded border-0 bg-(--line-2) px-3 py-2 text-xs text-(--t-1) placeholder:text-(--t-3) focus:border-primary/40 focus:outline-hidden disabled:cursor-not-allowed disabled:opacity-50"
         />
         <button
           type="submit"

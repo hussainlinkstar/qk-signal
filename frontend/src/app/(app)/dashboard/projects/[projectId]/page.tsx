@@ -230,7 +230,7 @@ export default function ProjectOverviewPage() {
         </SignalAlert>
         <button
           type="button"
-          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-(--line-btn-hover) mt-3 leading-[normal] max-md:min-h-11"
+          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] mt-3 leading-[normal] max-md:min-h-11"
           onClick={() => void refetch()}
         >
           {t("common.tryAgain")}
@@ -262,8 +262,8 @@ export default function ProjectOverviewPage() {
           </div>
         </div>
         <div className="flex-1" />
-        {/* .period-seg: ink segmented control driving the GA4 window */}
-        <div className="inline-flex gap-0.5 rounded-[10px] bg-(--ink) p-[3px]" role="group">
+        {/* Soft segmented control driving the GA4 window */}
+        <div className="inline-flex gap-0.5 rounded-[12px] bg-[#EEF1F6] p-[3px]" role="group">
           {SITE_TRAFFIC_WINDOWS.map((w) => (
             <button
               key={w}
@@ -271,10 +271,10 @@ export default function ProjectOverviewPage() {
               onClick={() => siteTraffic.setWindow(w)}
               aria-pressed={siteTraffic.window === w}
               className={cx(
-                "cursor-pointer rounded-[7px]! border-none px-[11px] py-1.5 font-mono text-[12px] font-medium leading-[normal]",
+                "cursor-pointer rounded-[9px]! border-none px-[11px] py-1.5 font-mono text-[12px] font-semibold leading-[normal] transition-colors",
                 siteTraffic.window === w
-                  ? "bg-white text-(--ink)"
-                  : "bg-transparent text-white/50 hover:text-white/80"
+                  ? "bg-[#E8F1FF] text-[#1D4ED8]"
+                  : "bg-transparent text-(--t-3) hover:text-(--t-1)"
               )}
             >
               {w}
@@ -290,7 +290,7 @@ export default function ProjectOverviewPage() {
         <div className="relative flex items-center max-md:flex-col max-md:items-start max-md:gap-1">
           <Link
             href={auditHref}
-            className="inline-flex h-[38px] cursor-pointer items-center gap-1.5 rounded-full border-none bg-(image:--grad) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white leading-[normal] hover:brightness-[1.06] max-md:min-h-11"
+            className="inline-flex h-[38px] cursor-pointer items-center gap-1.5 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white leading-[normal] hover:bg-black max-md:min-h-11"
           >
             <svg
               width="14"
@@ -393,7 +393,7 @@ export default function ProjectOverviewPage() {
             )}
             aria-hidden={!canAction || undefined}
           >
-            <div className="rounded-(--r) border border-(--line) bg-(--panel)">
+            <div className="rounded-[22px] border-0 bg-white">
               {!canAction ? (
                 // Blur is presentation, not authorization: gated fix titles
                 // must not sit in the DOM, so the blurred layer renders the
@@ -451,7 +451,7 @@ export default function ProjectOverviewPage() {
                     </div>
                     {/* .fix-right: advisor action plan entry, links to the real
                         fixes surface */}
-                    <div className="relative ml-6 flex flex-col justify-center rounded-[12px] bg-(--panel-soft) px-[18px] py-3.5 max-lg:mt-3">
+                    <div className="relative ml-6 flex flex-col justify-center rounded-[14px] bg-[#F6F8FB] px-[18px] py-3.5 max-lg:mt-3">
                       <span className="absolute left-[18px] top-4 text-(--purple-deep)">
                         <Lock size={18} strokeWidth={2} aria-hidden="true" />
                       </span>

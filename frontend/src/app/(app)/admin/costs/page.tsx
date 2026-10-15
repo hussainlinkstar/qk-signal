@@ -111,7 +111,7 @@ function formatDebateProfileLabel(value: DebateProfileFilter): string {
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const MONO_META = MICRO_LABEL.replace("uppercase ", "");
-const WSEC = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const WSEC = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const SEC_TITLE =
   "m-0 mb-4 flex items-center gap-2 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em] text-(--t-1)";
 
@@ -317,7 +317,7 @@ export default function AdminCostsDashboard() {
         <div
           role="group"
           aria-label="Cost window"
-          className="hidden items-center gap-0.5 rounded-(--r-md) border border-(--line) bg-(--paper) p-0.5 sm:flex"
+          className="hidden items-center gap-0.5 rounded-(--r-md) border-0 bg-[#EEF1F6] p-0.5 sm:flex"
         >
           {[7, 30, 90].map((days) => (
             <button
@@ -364,7 +364,7 @@ export default function AdminCostsDashboard() {
       <div
         role="group"
         aria-label="Cost window"
-        className="flex items-center gap-0.5 self-start rounded-(--r-md) border border-(--line) bg-(--paper) p-0.5 sm:hidden"
+        className="flex items-center gap-0.5 self-start rounded-(--r-md) border-0 bg-[#EEF1F6] p-0.5 sm:hidden"
       >
         {[7, 30, 90].map((days) => (
           <button
@@ -570,7 +570,7 @@ export default function AdminCostsDashboard() {
       </div>
 
       {/* Top users */}
-      <section className="overflow-hidden rounded-(--r) border border-(--line) bg-(--panel)">
+      <section className="overflow-hidden rounded-[22px] border-0 bg-white">
         <div className="border-b border-(--line) px-[22px] py-[14px]">
           <h2 className="m-0 flex items-center gap-2 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em] text-(--t-1)">
             <Users size={14} className="text-(--purple)" /> Top users by AI cost ({displayCurrency})

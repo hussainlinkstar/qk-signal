@@ -76,7 +76,7 @@ const defaultFilters: InvoiceFilters = {
 const MICRO_LABEL =
   "mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const WINPUT =
-  "field-focus-ring h-11 w-full rounded-(--r-md) border border-(--line) bg-(--paper) px-[13px] text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6] disabled:bg-(--line-2) disabled:text-(--t-3)";
+  "field-focus-ring h-11 w-full rounded-(--r-md) border-0 bg-[#EEF1F6] px-[13px] text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6] disabled:bg-(--line-2) disabled:text-(--t-3)";
 const CHIP =
   "inline-flex items-center gap-1.5 rounded-md border px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em]";
 const CHIP_NEUTRAL = `${CHIP} border-(--line) bg-(--line-2) text-(--t-2)`;
@@ -285,7 +285,7 @@ export default function AdminPaymentsPage() {
               href={invoice.hosted_invoice_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-8 w-8 items-center justify-center rounded-(--r-sm) border border-(--line) bg-(--paper) text-(--t-2) transition-colors hover:border-(--purple) hover:text-(--purple)"
+              className="flex h-8 w-8 items-center justify-center rounded-(--r-sm) border-0 bg-[#EEF1F6] text-(--t-2) transition-colors hover:border-(--purple) hover:text-(--purple)"
               title="View Invoice"
             >
               <ExternalLink size={14} />
@@ -296,7 +296,7 @@ export default function AdminPaymentsPage() {
               href={invoice.invoice_pdf}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-8 w-8 items-center justify-center rounded-(--r-sm) border border-(--line) bg-(--paper) text-(--t-2) transition-colors hover:border-(--purple) hover:text-(--purple)"
+              className="flex h-8 w-8 items-center justify-center rounded-(--r-sm) border-0 bg-[#EEF1F6] text-(--t-2) transition-colors hover:border-(--purple) hover:text-(--purple)"
               title="Download PDF"
             >
               <Download size={14} />
@@ -321,7 +321,7 @@ export default function AdminPaymentsPage() {
         </Alert>
       ) : null}
 
-      <section className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+      <section className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
         <div className="flex flex-wrap items-end gap-4">
           <div className="min-w-[320px] flex-1">
             <label className={MICRO_LABEL}>User search</label>

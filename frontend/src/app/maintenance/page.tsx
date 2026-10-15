@@ -53,7 +53,7 @@ export default function MaintenancePage() {
     <SignalStatusShell crumb={t("maintenance.crumb")}>
       {/* `.card.sblock` + inline styles from Signal Maintenance.html:
           max-width 560, margin 60 auto, sblock padding 20px 22px. */}
-      <div className="mx-auto my-[60px] w-fit max-w-[560px] rounded-[16px] border border-(--line) bg-(--panel) px-[22px] py-5 text-center">
+      <div className="mx-auto my-[60px] w-fit max-w-[560px] rounded-[22px] border-0 bg-white px-[22px] py-5 text-center">
         {/* Approved glyph is the amber warning triangle at the decorative
             stroke colour #D9930B on rgba(217,147,11,.12); like the gauge
             strokes it is decorative, so it keeps the approved value rather
@@ -115,7 +115,7 @@ export default function MaintenancePage() {
             13.5px/600, hover darkens the border only. */}
         <Link
           href="/dashboard"
-          className="mt-2 inline-flex h-[38px] items-center justify-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] text-[13.5px] font-semibold leading-[1.2] text-(--t-1) transition-colors hover:border-[#D7DAE0] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple)"
+          className="mt-2 inline-flex h-[38px] items-center justify-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] text-[13.5px] font-semibold leading-[1.2] text-(--t-1) transition-colors hover:bg-[#E8ECF3] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple)"
         >
           {t("maintenance.back")}
         </Link>

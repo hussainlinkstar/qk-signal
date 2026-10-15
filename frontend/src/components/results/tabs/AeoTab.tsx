@@ -612,7 +612,7 @@ export default function AeoTab({
                     .map(([key, value]) => (
                       <div
                         key={key}
-                        className="rounded border border-(--line) bg-(--panel) p-4 transition-colors hover:bg-(--line-2)"
+                        className="rounded border-0 bg-white p-4 transition-colors hover:bg-(--line-2)"
                       >
                         <div className="mb-2 font-mono text-[10.5px] uppercase tracking-[0.08em] text-(--t-3) text-(--t-3)">
                           {t(`signalAuditReport.signalLabels.${key}`)}
@@ -655,9 +655,9 @@ export default function AeoTab({
                 {aeoRecommendations.map((rec, i) => (
                   <li
                     key={i}
-                    className="group/rec flex items-start gap-4 rounded-xl border border-(--line) p-3 transition-all hover:bg-(--line-2)"
+                    className="group/rec flex items-start gap-4 rounded-xl border-0 p-3 transition-all hover:bg-(--line-2)"
                   >
-                    <div className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-lg border border-[color-mix(in_srgb,var(--purple)_20%,transparent)] bg-[color-mix(in_srgb,var(--purple)_10%,transparent)] text-(--purple) transition-colors group-hover/rec:bg-[color-mix(in_srgb,var(--purple)_20%,transparent)] group-hover/rec:text-(--purple)">
+                    <div className="mt-1 flex h-5 w-5 shrink-0 items-center justify-center rounded-lg border-0 bg-[color-mix(in_srgb,var(--purple)_10%,transparent)] text-(--purple) transition-colors group-hover/rec:bg-[color-mix(in_srgb,var(--purple)_20%,transparent)] group-hover/rec:text-(--purple)">
                       <Zap className="h-2.5 w-2.5" />
                     </div>
                     <span className="text-[11px] font-bold uppercase tracking-wide text-(--t-2) transition-colors group-hover/rec:text-(--t-1)">
@@ -710,7 +710,7 @@ export default function AeoTab({
                   {readabilityFindings.map((finding, index) => (
                     <li
                       key={index}
-                      className="flex items-start gap-3 rounded-xl border border-(--line) p-3 text-[11px] font-bold uppercase tracking-wide text-(--t-2)"
+                      className="flex items-start gap-3 rounded-xl border-0 p-3 text-[11px] font-bold uppercase tracking-wide text-(--t-2)"
                     >
                       <BookOpen className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary" />
                       {finding}
@@ -727,7 +727,7 @@ export default function AeoTab({
                 </h4>
                 <ul className="space-y-4">
                   {rewriteSuggestions.map((item, index) => (
-                    <li key={index} className="space-y-2 rounded-xl border border-(--line) p-4">
+                    <li key={index} className="space-y-2 rounded-xl border-0 p-4">
                       <p className="border-l-2 border-(--purple) pl-3 text-[11px] italic text-(--t-2)">
                         &ldquo;{item.paragraph}&rdquo;
                       </p>
@@ -790,7 +790,7 @@ export default function AeoTab({
         ) : null}
 
         <div className="grid gap-4 lg:grid-cols-2">
-          <div className="space-y-4 rounded border border-(--line) p-5">
+          <div className="space-y-4 rounded border-0 p-5">
             <p className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-(--t-3) text-(--t-3)">
               Suggested Queries
             </p>
@@ -823,7 +823,7 @@ export default function AeoTab({
                   return (
                     <div
                       key={`${query}-${index}`}
-                      className="rounded-xl border border-(--line) bg-black/30 p-3"
+                      className="rounded-xl border-0 bg-black/30 p-3"
                     >
                       <div className="mb-2 flex flex-wrap items-center gap-2">
                         <Badge color={ideaLabelTone(idea.label)}>{idea.label}</Badge>
@@ -897,7 +897,7 @@ export default function AeoTab({
                       return (
                         <div
                           key={item.id}
-                          className="space-y-3 rounded-xl border border-(--line) bg-black/30 p-3"
+                          className="space-y-3 rounded-xl border-0 bg-black/30 p-3"
                         >
                           <div className="flex items-start justify-between gap-3">
                             <div className="space-y-2">
@@ -978,7 +978,7 @@ export default function AeoTab({
                       {manualTrackedQueries.map((item) => (
                         <div
                           key={item.query}
-                          className="space-y-2 rounded-xl border border-(--line) bg-black/30 p-3"
+                          className="space-y-2 rounded-xl border-0 bg-black/30 p-3"
                         >
                           <div className="flex items-start justify-between gap-3">
                             <div className="space-y-2">
@@ -1019,7 +1019,7 @@ export default function AeoTab({
                 {trackedQueries.map((item) => (
                   <div
                     key={item.query}
-                    className="space-y-2 rounded-xl border border-(--line) bg-black/30 p-3"
+                    className="space-y-2 rounded-xl border-0 bg-black/30 p-3"
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="space-y-2">

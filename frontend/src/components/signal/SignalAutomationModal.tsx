@@ -21,7 +21,7 @@ export type SignalAutomationModalProps = {
 };
 
 const inputClass =
-  "h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-3 text-[13.5px] text-(--t-1) outline-hidden focus:border-[#C7CDD6]";
+  "h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-3 text-[13.5px] text-(--t-1) outline-hidden focus:bg-white";
 const selectClass = `${inputClass} appearance-none`;
 const labelClass =
   "mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
@@ -180,7 +180,7 @@ export default function SignalAutomationModal({
     >
       <div
         data-signal-theme
-        className="w-[620px] max-w-full rounded-[20px] border border-(--line) bg-(--panel) p-[28px_30px_26px] shadow-[0_40px_90px_-30px_rgba(12,15,22,0.5)]"
+        className="w-[620px] max-w-full rounded-[20px] border-0 bg-white p-[28px_30px_26px] shadow-[0_40px_90px_-30px_rgba(12,15,22,0.5)]"
       >
         <p className="font-(family-name:--mono) text-[11px] uppercase tracking-[0.14em] text-(--t-3)">
           Automations
@@ -443,7 +443,7 @@ export default function SignalAutomationModal({
             type="button"
             onClick={handleClose}
             disabled={submitting}
-            className="h-[38px] rounded-[10px] border border-(--line) bg-(--panel) px-[15px] text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] disabled:opacity-50"
+            className="h-[38px] rounded-full border-0 bg-[#EEF1F6] px-[15px] text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:opacity-50"
           >
             Cancel
           </button>

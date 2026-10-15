@@ -53,7 +53,7 @@ const formatCurrency = (value: number) =>
 
 function Stat({ label, value, accent }: { label: string; value: string; accent?: string }) {
   return (
-    <div className="rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4">
+    <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
       <div
         className={`font-(family-name:--disp) text-[28px] font-extrabold tracking-[-0.02em] ${accent ?? "text-(--t-1)"}`}
       >

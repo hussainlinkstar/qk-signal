@@ -67,7 +67,7 @@ const ExecutionPanelBody = () => (
       {EXECUTION_ITEMS.map(({ id, title, detail, icon: Icon }) => (
         <li
           key={id}
-          className="relative flex gap-4 rounded border border-(--line) bg-(--line-2) p-4 shadow-inner transition-colors hover:bg-(--line-2)"
+          className="relative flex gap-4 rounded border-0 bg-(--line-2) p-4 shadow-inner transition-colors hover:bg-(--line-2)"
         >
           <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/[0.08] text-primary">
             <Icon className="h-3.5 w-3.5" />

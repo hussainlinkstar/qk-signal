@@ -100,7 +100,7 @@ export default function PortalShell({ branding, projects, children }: PortalShel
                 <img
                   src={branding.custom_logo_url}
                   alt={brandName}
-                  className="h-12 w-12 rounded-lg border border-(--border) bg-(--surface) object-contain p-2 shadow-xs"
+                  className="h-12 w-12 rounded-lg border-0 bg-(--surface) object-contain p-2 shadow-xs"
                 />
               ) : (
                 <div className="flex h-12 w-12 items-center justify-center rounded-lg text-sm font-black uppercase text-white shadow-brand bg-(--portal-primary)">
@@ -183,7 +183,7 @@ export default function PortalShell({ branding, projects, children }: PortalShel
             <button
               type="button"
               onClick={() => void handleLogout()}
-              className="mt-4 inline-flex items-center gap-2 rounded-lg border border-(--border) bg-(--surface) px-4 py-2 text-sm font-semibold text-(--foreground) transition hover:bg-(--surface-subtle)"
+              className="mt-4 inline-flex items-center gap-2 rounded-lg border-0 bg-(--surface) px-4 py-2 text-sm font-semibold text-(--foreground) transition hover:bg-(--surface-subtle)"
             >
               <LogOut className="h-4 w-4" />
               <span>Sign Out</span>
@@ -208,7 +208,7 @@ export default function PortalShell({ branding, projects, children }: PortalShel
                   href={projects[0].domain_url}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-lg border border-(--border) bg-(--surface) px-4 py-2 text-sm font-semibold text-(--foreground) transition hover:bg-(--surface-subtle)"
+                  className="inline-flex items-center gap-2 rounded-lg border-0 bg-(--surface) px-4 py-2 text-sm font-semibold text-(--foreground) transition hover:bg-(--surface-subtle)"
                 >
                   <span>Visit site</span>
                   <ExternalLink className="h-4 w-4" />

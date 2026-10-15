@@ -303,7 +303,7 @@ export default function PlanComparisonMatrix({ plans, currentPlanId }: PlanCompa
   };
 
   return (
-    <div className="overflow-hidden rounded-md border border-(--line) bg-(--line-2)">
+    <div className="overflow-hidden rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2)">
       <section aria-labelledby="plan-comparison-heading">
         <div className="border-b border-(--line) px-6 py-6 md:px-8">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -319,7 +319,7 @@ export default function PlanComparisonMatrix({ plans, currentPlanId }: PlanCompa
                 from the live billing API.
               </p>
             </div>
-            <div className="rounded-md border border-(--line) bg-(--line-2) px-4 py-3 text-xs text-(--t-3)">
+            <div className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) px-4 py-3 text-xs text-(--t-3)">
               Only differentiating capabilities are shown below.
             </div>
           </div>
@@ -329,7 +329,7 @@ export default function PlanComparisonMatrix({ plans, currentPlanId }: PlanCompa
               {sharedFoundation.map((key) => (
                 <span
                   key={key}
-                  className="rounded-full bg-(--line-2) px-3 py-1 text-xs text-(--t-2) border border-(--line)"
+                  className="rounded-full bg-(--line-2) px-3 py-1 text-xs text-(--t-2) border-0"
                 >
                   {CAPABILITY_LABELS[key]}
                 </span>

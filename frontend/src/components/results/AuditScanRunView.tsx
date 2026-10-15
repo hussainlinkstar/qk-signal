@@ -58,9 +58,9 @@ type AuditScanRunViewProps = {
 };
 
 const BTN =
-  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]";
+  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]";
 const BTN_PRIMARY =
-  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black";
+  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black";
 const BTN_GHOST =
   "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-transparent bg-transparent px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-2) hover:bg-(--line-2) hover:text-(--t-1)";
 

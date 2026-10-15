@@ -105,9 +105,9 @@ const GROUNDING_PROFILE_OPTIONS = [
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const MONO_META = MICRO_LABEL.replace("uppercase ", "");
-const WSEC = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const WSEC = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const WINPUT =
-  "field-focus-ring h-9 w-full rounded-(--r-md) border border-(--line) bg-(--paper) px-[10px] text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
+  "field-focus-ring h-9 w-full rounded-(--r-md) border-0 bg-[#EEF1F6] px-[10px] text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
 const CHIP =
   "inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em]";
 const PAGER_BTN =
@@ -239,7 +239,7 @@ export default function AdminAuditApplicationPage() {
       header: "Audit",
       renderCell: (audit) => (
         <div className="flex items-center gap-3">
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-(--r-sm) border border-(--line) bg-(--paper) text-(--t-3)">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-(--r-sm) border-0 bg-[#EEF1F6] text-(--t-3)">
             <Globe className="h-4 w-4" />
           </div>
           <div className="min-w-0">

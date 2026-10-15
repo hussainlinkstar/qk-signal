@@ -7,7 +7,7 @@
  * block, not another card.
  *
  * Every tab used to open with its own
- * `rounded-(--r) border border-(--line) bg-(--panel)`, which put a card
+ * `rounded-[22px] border-0 bg-white`, which put a card
  * inside a card inside a section. Fifty of those wrappers across eight
  * components, and the page was reported for exactly that.
  *

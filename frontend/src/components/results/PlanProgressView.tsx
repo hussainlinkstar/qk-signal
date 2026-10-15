@@ -84,7 +84,7 @@ function PlanProgressPreview() {
         ].map((item) => (
           <div
             key={item.label}
-            className="rounded border border-(--border) bg-(--surface-elevated) p-4 text-center shadow-(--shadow-inset)"
+            className="rounded border-0 bg-(--surface-elevated) p-4 text-center shadow-(--shadow-inset)"
           >
             <p className="text-2xl font-semibold text-(--foreground)">{item.value}</p>
             <p className="text-[10px] uppercase tracking-[0.18em] text-(--text-muted)">
@@ -216,7 +216,7 @@ export default function PlanProgressView({ projectId }: PlanProgressViewProps) {
     );
   }
 
-  const shellCls = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+  const shellCls = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 
   if (authLoading || loading) {
     return (
@@ -259,7 +259,7 @@ export default function PlanProgressView({ projectId }: PlanProgressViewProps) {
       ) : null}
 
       {!hasTrend ? (
-        <div className="mt-4 rounded-[10px] border border-dashed border-(--line) px-4 py-[26px] text-center text-[13px] text-(--t-3)">
+        <div className="mt-4 rounded-[14px] border border-dashed border-[#D1D5DB] bg-[#F8FAFC] px-4 py-[26px] text-center text-[13px] text-(--t-3)">
           Not enough history yet.
         </div>
       ) : (
@@ -288,7 +288,7 @@ export default function PlanProgressView({ projectId }: PlanProgressViewProps) {
             >
               <div className="text-[13.5px] font-semibold">Since your last audit</div>
               <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                <div className="rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4 text-center">
+                <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4 text-center">
                   <p className="m-0 font-(family-name:--disp) text-[20px] font-extrabold tracking-[-0.02em] text-(--t-1)">
                     {delta.actions_added.length}
                   </p>
@@ -296,7 +296,7 @@ export default function PlanProgressView({ projectId }: PlanProgressViewProps) {
                     New actions
                   </p>
                 </div>
-                <div className="rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4 text-center">
+                <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4 text-center">
                   <p className="m-0 font-(family-name:--disp) text-[20px] font-extrabold tracking-[-0.02em] text-(--good)">
                     {delta.actions_resolved.length}
                   </p>
@@ -304,7 +304,7 @@ export default function PlanProgressView({ projectId }: PlanProgressViewProps) {
                     Resolved
                   </p>
                 </div>
-                <div className="rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4 text-center">
+                <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4 text-center">
                   <p className="m-0 font-(family-name:--disp) text-[20px] font-extrabold tracking-[-0.02em] text-(--t-1)">
                     {delta.actions_carried.length}
                   </p>

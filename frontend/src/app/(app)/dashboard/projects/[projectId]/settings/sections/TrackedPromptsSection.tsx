@@ -34,13 +34,13 @@ export default function TrackedPromptsSection({
   const { t } = useTranslation();
 
   const body = (
-    <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-(--line) bg-(--paper) px-[18px] py-4">
+    <div className="flex flex-wrap items-center justify-between gap-4 rounded-xl border-0 bg-[#EEF1F6] px-[18px] py-4">
       <p className="m-0 max-w-[62ch] text-[12.5px] leading-[1.5] text-(--t-3)">
         {t("signalProjectSettings.prompts.liveNote")}
       </p>
       <Link
         href={`/dashboard/projects/${projectId}/ai-answers?tab=prompts`}
-        className="inline-flex h-8 flex-none items-center rounded-[10px] border border-(--line) bg-(--panel) px-[15px] text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] max-md:min-h-11"
+        className="inline-flex h-8 flex-none items-center rounded-full border-0 bg-[#EEF1F6] px-[15px] text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] max-md:min-h-11"
       >
         {t("signalProjectSettings.prompts.viewAction")}
       </Link>

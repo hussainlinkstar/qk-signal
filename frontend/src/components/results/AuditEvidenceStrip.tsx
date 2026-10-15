@@ -59,7 +59,7 @@ export default function AuditEvidenceStrip({
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
         <div className="space-y-2">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-(--line) bg-(--line-2) text-(--purple)">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl border-0 bg-(--line-2) text-(--purple)">
               {diagnostics.status === "measured" ? (
                 <CheckCircle2 className="h-4 w-4" />
               ) : diagnostics.status === "partial" ? (
@@ -85,7 +85,7 @@ export default function AuditEvidenceStrip({
 
       <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
         {diagnostics.fields.map((field) => (
-          <div key={field.key} className="rounded border border-(--line) bg-(--line-2) p-4">
+          <div key={field.key} className="rounded border-0 bg-(--line-2) p-4">
             <div className="flex items-start justify-between gap-3">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-[0.18em] text-(--t-3)">

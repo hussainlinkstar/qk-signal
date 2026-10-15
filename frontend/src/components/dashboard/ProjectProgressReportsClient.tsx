@@ -181,7 +181,7 @@ export default function ProjectProgressReportsClient() {
 
   return (
     <div className="space-y-6">
-      <section className="rounded-(--r) border border-(--line) bg-(--panel) px-6 py-[22px]">
+      <section className="rounded-[22px] border-0 bg-white px-6 py-[22px]">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div className="min-w-0">
             <p className="m-0 font-(family-name:--mono) text-[11px] uppercase tracking-[0.14em] text-(--purple)">
@@ -199,7 +199,7 @@ export default function ProjectProgressReportsClient() {
           <div className="flex flex-none flex-wrap items-center gap-3 max-md:w-full">
             <button
               type="button"
-              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] max-md:min-h-11"
+              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] max-md:min-h-11"
               onClick={() => handleGenerate(false)}
               disabled={busyAction !== null}
             >
@@ -212,7 +212,7 @@ export default function ProjectProgressReportsClient() {
             </button>
             <button
               type="button"
-              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black max-md:min-h-11"
+              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black max-md:min-h-11"
               onClick={() => handleGenerate(true)}
               disabled={busyAction !== null}
             >
@@ -230,7 +230,7 @@ export default function ProjectProgressReportsClient() {
       </section>
 
       {reports.length === 0 ? (
-        <section className="rounded-(--r) border border-(--line) bg-(--panel) px-6 py-[22px] text-center">
+        <section className="rounded-[22px] border-0 bg-white px-6 py-[22px] text-center">
           <CalendarRange className="mx-auto h-10 w-10 text-(--t-3)" />
           <h4 className="m-0 mt-3 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
             No monthly reports yet
@@ -243,7 +243,7 @@ export default function ProjectProgressReportsClient() {
         </section>
       ) : (
         <div className="grid gap-6 xl:grid-cols-[320px_minmax(0,1fr)]">
-          <section className="rounded-(--r) border border-(--line) bg-(--panel) px-6 py-[22px]">
+          <section className="rounded-[22px] border-0 bg-white px-6 py-[22px]">
             <div className="space-y-3">
               {reports.map((report) => (
                 <button
@@ -285,7 +285,7 @@ export default function ProjectProgressReportsClient() {
             </div>
           </section>
 
-          <section className="rounded-(--r) border border-(--line) bg-(--panel) px-6 py-[22px]">
+          <section className="rounded-[22px] border-0 bg-white px-6 py-[22px]">
             <div className="flex flex-wrap items-start justify-between gap-4">
               <div className="min-w-0">
                 <p className="m-0 font-(family-name:--mono) text-[11px] uppercase tracking-[0.14em] text-(--t-3)">
@@ -351,7 +351,7 @@ export default function ProjectProgressReportsClient() {
               ].map((metric) => (
                 <div
                   key={metric.label}
-                  className="rounded-(--r-md) border border-(--line) bg-(--paper) p-5"
+                  className="rounded-(--r-md) border-0 bg-[#EEF1F6] p-5"
                 >
                   <p className="m-0 font-(family-name:--mono) text-[11px] uppercase tracking-[0.14em] text-(--t-3)">
                     {metric.label}
@@ -381,7 +381,7 @@ export default function ProjectProgressReportsClient() {
             </div>
 
             <div className="mt-6 grid gap-6 xl:grid-cols-2">
-              <div className="rounded-(--r-md) border border-(--line) bg-(--paper) p-5">
+              <div className="rounded-(--r-md) border-0 bg-[#EEF1F6] p-5">
                 <p className="m-0 font-(family-name:--mono) text-[11px] uppercase tracking-[0.14em] text-(--good)">
                   Top improvements
                 </p>
@@ -395,7 +395,7 @@ export default function ProjectProgressReportsClient() {
                 </ul>
               </div>
 
-              <div className="rounded-(--r-md) border border-(--line) bg-(--paper) p-5">
+              <div className="rounded-(--r-md) border-0 bg-[#EEF1F6] p-5">
                 <p className="m-0 font-(family-name:--mono) text-[11px] uppercase tracking-[0.14em] text-(--warn)">
                   Remaining issues
                 </p>
@@ -415,7 +415,7 @@ export default function ProjectProgressReportsClient() {
         </div>
       )}
 
-      <section className="rounded-(--r) border border-(--line) bg-(--panel) px-6 py-[22px]">
+      <section className="rounded-[22px] border-0 bg-white px-6 py-[22px]">
         <div className="flex flex-wrap items-start justify-between gap-4 border-b border-(--line) pb-5">
           <div className="min-w-0">
             <p className="m-0 font-(family-name:--mono) text-[11px] uppercase tracking-[0.14em] text-(--purple)">

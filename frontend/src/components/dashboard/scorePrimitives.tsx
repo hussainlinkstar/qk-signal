@@ -32,7 +32,7 @@ export function ScoreMetricTile({
   detail?: string;
 }) {
   return (
-    <div className="rounded border border-(--border) bg-(--surface-subtle) px-4 py-3 shadow-(--shadow-inset)">
+    <div className="rounded-[14px] border-0 bg-[#EEF1F6] px-4 py-3 shadow-(--shadow-inset)">
       <p className="text-[10px] font-medium uppercase tracking-[0.18em] text-(--text-muted)">
         {label}
       </p>
@@ -123,7 +123,7 @@ export function MiniSparkline({
     return (
       <div
         className={cx(
-          "flex h-20 items-center justify-center rounded border border-(--border) bg-(--surface-subtle) text-xs text-(--text-muted)",
+          "flex h-20 items-center justify-center rounded-[14px] border-0 bg-[#EEF1F6] text-xs text-(--text-muted)",
           className
         )}
       >
@@ -146,7 +146,7 @@ export function MiniSparkline({
   return (
     <div
       className={cx(
-        "rounded border border-(--border) bg-(--surface-subtle) p-3 shadow-(--shadow-inset)",
+        "rounded-[14px] border-0 bg-[#EEF1F6] p-3 shadow-(--shadow-inset)",
         className
       )}
     >

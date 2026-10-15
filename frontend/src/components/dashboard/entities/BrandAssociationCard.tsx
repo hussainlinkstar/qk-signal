@@ -18,7 +18,7 @@ export default function BrandAssociationCard({ associations, onSelectSourceUrl }
           {associations.slice(0, 6).map((item) => (
             <li
               key={item.brand}
-              className="rounded-xl border border-(--line) bg-(--line-2) p-4 shadow-inner transition-colors hover:bg-(--line-2) text-sm text-(--t-1)"
+              className="rounded-xl border-0 bg-(--line-2) p-4 shadow-inner transition-colors hover:bg-(--line-2) text-sm text-(--t-1)"
             >
               <div className="flex items-center justify-between mb-2">
                 <span className="font-bold text-(--t-1) text-base">{item.brand}</span>

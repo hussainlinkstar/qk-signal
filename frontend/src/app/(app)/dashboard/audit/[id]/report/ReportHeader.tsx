@@ -48,7 +48,7 @@ export default function ReportHeader({
           type="button"
           onClick={onBack}
           aria-label={t("signalAuditReport.header.back")}
-          className="flex h-9 w-9 items-center justify-center rounded border border-(--border) bg-(--surface-subtle) text-(--text-muted) transition-colors hover:text-(--foreground)"
+          className="flex h-9 w-9 items-center justify-center rounded-[14px] border-0 bg-[#EEF1F6] text-(--text-muted) transition-colors hover:text-(--foreground)"
         >
           <ArrowLeft className="h-4 w-4" />
         </button>
@@ -64,7 +64,7 @@ export default function ReportHeader({
         </div>
       </div>
 
-      <div className="rounded-(--r) border border-(--line) bg-(--panel)">
+      <div className="rounded-[22px] border-0 bg-white">
         <div className="flex flex-col gap-4 px-5 py-4 md:px-6 xl:flex-row xl:items-center xl:justify-between">
           <div className="flex min-w-0 flex-1 items-center gap-4">
             <div className="flex shrink-0 flex-col items-center gap-1">
@@ -102,7 +102,7 @@ export default function ReportHeader({
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={t("signalAuditReport.header.openSite")}
-                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded border border-(--border) bg-(--background) text-(--text-muted) transition-colors hover:border-primary/30 hover:text-primary"
+                  className="flex h-6 w-6 shrink-0 items-center justify-center rounded border-0 bg-(--background) text-(--text-muted) transition-colors hover:border-primary/30 hover:text-primary"
                 >
                   <Globe className="h-3.5 w-3.5" />
                 </a>

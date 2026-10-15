@@ -35,7 +35,7 @@ export function AdminAlertBell() {
   return (
     <Link
       href="/admin/alerts"
-      className="relative inline-flex h-9 w-9 items-center justify-center rounded-(--r-md) border border-(--line) bg-(--panel) text-(--t-2) transition-colors hover:bg-(--paper) hover:text-(--t-1)"
+      className="relative inline-flex h-9 w-9 items-center justify-center rounded-(--r-md) border-0 bg-white text-(--t-2) transition-colors hover:bg-(--paper) hover:text-(--t-1)"
       title="System Alerts"
     >
       <Bell size={16} />

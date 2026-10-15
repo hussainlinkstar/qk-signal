@@ -126,7 +126,7 @@ export default function ClaimFeedbackButtons({
               setShowTextInput(true);
             }}
             aria-label="Add context to disagreement"
-            className="flex items-center gap-1 rounded-lg border border-(--line) px-2 py-1.5 text-[10px] text-(--t-3) hover:text-(--t-2) transition-colors"
+            className="flex items-center gap-1 rounded-[14px] border-0 bg-[#EEF1F6] px-2 py-1.5 text-[10px] text-(--t-3) hover:text-(--t-2) transition-colors"
           >
             <MessageSquare className="w-3 h-3" />
           </button>
@@ -140,7 +140,7 @@ export default function ClaimFeedbackButtons({
             value={feedbackText}
             onChange={(e) => setFeedbackText(e.target.value)}
             placeholder="Why do you disagree? (optional)"
-            className="flex-1 rounded-lg border border-(--line) bg-black/30 px-3 py-1.5 text-xs text-(--t-1) placeholder:text-(--t-3) focus:outline-hidden focus:border-rose-500/40"
+            className="flex-1 rounded-[14px] border-0 bg-[#EEF1F6] bg-black/30 px-3 py-1.5 text-xs text-(--t-1) placeholder:text-(--t-3) focus:outline-hidden focus:border-rose-500/40"
             onKeyDown={(e) => {
               if (e.key === "Enter") handleSubmitWithText();
               if (e.key === "Escape") {
@@ -154,7 +154,7 @@ export default function ClaimFeedbackButtons({
           <button
             type="button"
             onClick={handleSubmitWithText}
-            className="rounded-lg border border-rose-500/20 bg-rose-500/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-rose-400 hover:bg-rose-500/20 transition-colors"
+            className="rounded-lg border-0 bg-rose-500/10 px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest text-rose-400 hover:bg-rose-500/20 transition-colors"
           >
             Submit
           </button>

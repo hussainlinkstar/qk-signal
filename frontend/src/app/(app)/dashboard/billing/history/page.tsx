@@ -124,7 +124,7 @@ export default function BillingHistoryPage() {
             href={invoice.hosted_invoice_url}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-(--line) bg-(--line-2) text-(--t-2) transition-all hover:border-[color-mix(in_srgb,var(--blue)_20%,transparent)] hover:text-(--blue)"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) text-(--t-2) transition-all hover:border-[color-mix(in_srgb,var(--blue)_20%,transparent)] hover:text-(--blue)"
           >
             <ExternalLink className="h-3.5 w-3.5" />
           </a>
@@ -133,7 +133,7 @@ export default function BillingHistoryPage() {
             href={invoice.invoice_pdf}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex h-8 w-8 items-center justify-center rounded-md border border-(--line) bg-(--line-2) text-(--t-2) transition-all hover:border-[color-mix(in_srgb,var(--blue)_20%,transparent)] hover:text-(--blue)"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) text-(--t-2) transition-all hover:border-[color-mix(in_srgb,var(--blue)_20%,transparent)] hover:text-(--blue)"
           >
             <Download className="h-3.5 w-3.5" />
           </a>

@@ -116,7 +116,7 @@ export function ProjectBudgetGuardrailCard({
       </div>
 
       {isLoading ? (
-        <div className="mt-6 flex min-h-[160px] flex-col items-center justify-center gap-3 rounded-(--r-sm) border border-(--line) bg-(--line-2)">
+        <div className="mt-6 flex min-h-[160px] flex-col items-center justify-center gap-3 rounded-(--r-sm) border-0 bg-(--line-2)">
           <Loader2 className="h-6 w-6 animate-spin text-(--t-3)" />
           <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
             Loading budget guardrail
@@ -125,7 +125,7 @@ export function ProjectBudgetGuardrailCard({
       ) : (
         <div className="mt-6 space-y-5">
           <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-            <div className="rounded-(--r-sm) border border-(--line) bg-(--line-2) px-4 py-3.5">
+            <div className="rounded-(--r-sm) border-0 bg-(--line-2) px-4 py-3.5">
               <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
                 Current Cycle
               </p>
@@ -133,13 +133,13 @@ export function ProjectBudgetGuardrailCard({
                 {formatRange(budget?.current_period_start, budget?.current_period_end)}
               </p>
             </div>
-            <div className="rounded-(--r-sm) border border-(--line) bg-(--line-2) px-4 py-3.5">
+            <div className="rounded-(--r-sm) border-0 bg-(--line-2) px-4 py-3.5">
               <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
                 Monthly Cap
               </p>
               <p className="mt-2 text-[15px] font-bold tabular-nums text-(--t-1)">{limitLabel}</p>
             </div>
-            <div className="rounded-(--r-sm) border border-(--line) bg-(--line-2) px-4 py-3.5">
+            <div className="rounded-(--r-sm) border-0 bg-(--line-2) px-4 py-3.5">
               <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
                 Used
               </p>
@@ -147,7 +147,7 @@ export function ProjectBudgetGuardrailCard({
                 {(budget?.consumed_scans ?? 0).toLocaleString()} scans
               </p>
             </div>
-            <div className="rounded-(--r-sm) border border-(--line) bg-(--line-2) px-4 py-3.5">
+            <div className="rounded-(--r-sm) border-0 bg-(--line-2) px-4 py-3.5">
               <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
                 Remaining
               </p>
@@ -157,7 +157,7 @@ export function ProjectBudgetGuardrailCard({
             </div>
           </div>
 
-          <div className="rounded-(--r-sm) border border-(--line) bg-(--line-2) p-4">
+          <div className="rounded-(--r-sm) border-0 bg-(--line-2) p-4">
             <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
               <div className="space-y-1">
                 <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
@@ -273,7 +273,7 @@ export function ProjectBudgetGuardrailCard({
                 {history.map((period) => (
                   <div
                     key={`${period.period_start}-${period.period_end}`}
-                    className="rounded-(--r-sm) border border-(--line) bg-(--line-2) px-4 py-3.5"
+                    className="rounded-(--r-sm) border-0 bg-(--line-2) px-4 py-3.5"
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div>

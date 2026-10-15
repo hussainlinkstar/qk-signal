@@ -17,7 +17,7 @@ export default function BillingIntervalToggle({
   return (
     <div className="flex min-w-0 flex-col items-center">
       {/* Segmented pill container */}
-      <div className="relative flex max-w-full rounded-full border border-(--line) bg-(--line-2) p-1 backdrop-blur-xs">
+      <div className="relative flex max-w-full rounded-full border-0 bg-(--line-2) p-1 backdrop-blur-xs">
         {/* Sliding indicator */}
         <div
           aria-hidden="true"

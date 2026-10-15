@@ -11,7 +11,7 @@ export default function BillingCancelPage() {
         The checkout flow was canceled. Your current subscription remains unchanged.
       </DashboardPageIntro>
 
-      <div className="rounded border border-(--line) bg-(--line-2)  shadow-inner p-6">
+      <div className="rounded border-0 bg-(--line-2)  shadow-inner p-6">
         <h2 className="text-xl font-bold text-(--t-1)">Need to try again?</h2>
         <p className="text-sm text-(--t-2) mt-2">
           You can return to billing to review plans, upgrade, or manage invoices anytime.

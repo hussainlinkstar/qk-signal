@@ -82,7 +82,7 @@ export default function SignalTabs<T extends string>({
     <div
       role="tablist"
       className={cn(
-        "mt-6 mb-[22px] flex w-full max-w-full gap-0.5 overflow-x-auto border-b border-(--line)",
+        "mt-5 mb-5 flex w-full max-w-full gap-1.5 overflow-x-auto rounded-[16px] bg-[#EEF1F6] p-1.5",
         className
       )}
     >
@@ -105,17 +105,22 @@ export default function SignalTabs<T extends string>({
             onClick={() => selectTab(tab.id)}
             onKeyDown={(event) => handleKeyDown(event, index)}
             className={cn(
-              "-mb-px inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-none border-x-0 border-t-0 border-b-2 bg-transparent px-4 py-3 font-(family-name:--body-font) text-[14px] font-semibold leading-[normal] transition-colors duration-150",
-              "focus-visible:outline-hidden focus-visible:ring-[3px] focus-visible:ring-inset focus-visible:ring-(--ring)",
+              "inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-full px-4 py-2.5 font-(family-name:--body-font) text-[13.5px] font-semibold leading-[normal] transition-colors duration-150",
+              "focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#3B82F6]",
               active
-                ? "border-b-(--ink) text-(--t-1)"
-                : "border-b-transparent text-(--t-2) hover:text-(--t-1)"
+                ? "bg-[#E8F1FF] text-[#1D4ED8]"
+                : "bg-transparent text-[#6B7280] hover:bg-white/70 hover:text-[#111827]"
             )}
           >
             {tab.label}
             {soon && <SoonBadge />}
             {tab.count !== undefined && (
-              <span className="rounded-[6px] bg-(--line-2) px-1.5 py-px font-(family-name:--mono) text-[11px] font-normal tabular-nums text-(--t-3)">
+              <span
+                className={cn(
+                  "rounded-full px-1.5 py-px font-(family-name:--mono) text-[11px] font-normal tabular-nums",
+                  active ? "bg-white/80 text-[#1D4ED8]" : "bg-white text-[#9CA3AF]"
+                )}
+              >
                 {tab.count}
               </span>
             )}

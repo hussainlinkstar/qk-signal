@@ -981,7 +981,7 @@ export default function ProjectSettingsPage() {
           <div className="flex justify-end gap-2.5">
             <button
               type="button"
-              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-(--line-btn-hover)"
+              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
               onClick={closeSmartProfileModal}
             >
               {t("signalProjectSettings.projectDetails.close")}
@@ -989,7 +989,7 @@ export default function ProjectSettingsPage() {
             {smartProfileModal.showAuditCta && (
               <button
                 type="button"
-                className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+                className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
                 onClick={goToAuditWorkspace}
               >
                 {t("signalProjectSettings.projectDetails.runSmartAudit")}

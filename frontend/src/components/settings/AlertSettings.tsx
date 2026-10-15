@@ -143,7 +143,7 @@ export default function AlertSettings({ projectId }: AlertSettingsProps) {
         {!isCreating && (
           <button
             onClick={() => setIsCreating(true)}
-            className="flex h-[38px] items-center gap-1.5 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] text-[13.5px] font-semibold text-white transition-colors hover:bg-black max-md:min-h-11"
+            className="flex h-[38px] items-center gap-1.5 rounded-full border-0 bg-[#111827] px-[15px] text-[13.5px] font-semibold text-white transition-colors hover:bg-black max-md:min-h-11"
           >
             <Plus size={15} />
             Add Rule
@@ -158,7 +158,7 @@ export default function AlertSettings({ projectId }: AlertSettingsProps) {
       )}
 
       {isCreating && (
-        <div className="rounded-xl border border-(--line) bg-(--line-2) p-6 animate-in fade-in slide-in-from-top-4 duration-300">
+        <div className="rounded-xl border-0 bg-(--line-2) p-6 animate-in fade-in slide-in-from-top-4 duration-300">
           <p className="mb-4 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
             Create New Alert Rule
           </p>
@@ -168,7 +168,7 @@ export default function AlertSettings({ projectId }: AlertSettingsProps) {
               <select
                 value={newRule.metric}
                 onChange={(e) => setNewRule({ ...newRule, metric: e.target.value })}
-                className="w-full rounded-lg border border-(--line) bg-(--paper) p-2.5 text-sm text-(--t-1) focus:border-(--blue) focus:outline-hidden"
+                className="w-full rounded-lg border-0 bg-[#EEF1F6] p-2.5 text-sm text-(--t-1) focus:border-(--blue) focus:outline-hidden"
               >
                 {METRIC_OPTIONS.map((o) => (
                   <option key={o.value} value={o.value}>
@@ -183,7 +183,7 @@ export default function AlertSettings({ projectId }: AlertSettingsProps) {
               <select
                 value={newRule.condition}
                 onChange={(e) => setNewRule({ ...newRule, condition: e.target.value })}
-                className="w-full rounded-lg border border-(--line) bg-(--paper) p-2.5 text-sm text-(--t-1) focus:border-(--blue) focus:outline-hidden"
+                className="w-full rounded-lg border-0 bg-[#EEF1F6] p-2.5 text-sm text-(--t-1) focus:border-(--blue) focus:outline-hidden"
               >
                 {CONDITION_OPTIONS.map((o) => (
                   <option key={o.value} value={o.value}>
@@ -201,7 +201,7 @@ export default function AlertSettings({ projectId }: AlertSettingsProps) {
                 onChange={(e) =>
                   setNewRule({ ...newRule, threshold: parseFloat(e.target.value) || 0 })
                 }
-                className="w-full rounded-lg border border-(--line) bg-(--paper) p-2.5 text-sm text-(--t-1) focus:border-(--blue) focus:outline-hidden"
+                className="w-full rounded-lg border-0 bg-[#EEF1F6] p-2.5 text-sm text-(--t-1) focus:border-(--blue) focus:outline-hidden"
                 placeholder="e.g. 50"
               />
             </div>
@@ -212,7 +212,7 @@ export default function AlertSettings({ projectId }: AlertSettingsProps) {
                 type="email"
                 value={newRule.email_to}
                 onChange={(e) => setNewRule({ ...newRule, email_to: e.target.value })}
-                className="w-full rounded-lg border border-(--line) bg-(--paper) p-2.5 text-sm text-(--t-1) focus:border-(--blue) focus:outline-hidden"
+                className="w-full rounded-lg border-0 bg-[#EEF1F6] p-2.5 text-sm text-(--t-1) focus:border-(--blue) focus:outline-hidden"
                 placeholder="alert@example.com"
               />
             </div>
@@ -228,7 +228,7 @@ export default function AlertSettings({ projectId }: AlertSettingsProps) {
             <button
               onClick={handleCreate}
               disabled={saving}
-              className="flex items-center gap-1.5 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-2 text-[13.5px] font-semibold text-white hover:bg-black disabled:opacity-50"
+              className="flex items-center gap-1.5 rounded-full border-0 bg-[#111827] px-[15px] py-2 text-[13.5px] font-semibold text-white hover:bg-black disabled:opacity-50"
             >
               {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle2 size={16} />}
               Save Rule

@@ -108,7 +108,7 @@ export default function InviteToMultipleWorkspacesModal({
       {/* Header */}
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-(--line) bg-(--line-2)">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] border-0 bg-[#EEF1F6]">
             <Users className="h-5 w-5 text-(--muted-foreground)" />
           </div>
           <div>
@@ -139,10 +139,10 @@ export default function InviteToMultipleWorkspacesModal({
               <div
                 key={r.workspaceId}
                 className={cx(
-                  "flex items-center justify-between rounded-xl border px-4 py-3 text-sm",
+                  "flex items-center justify-between rounded-[14px] border-0 px-4 py-3 text-sm",
                   r.ok
-                    ? "border-emerald-500/20 bg-emerald-500/5 text-emerald-300"
-                    : "border-rose-500/20 bg-rose-500/5 text-rose-300"
+                    ? "bg-emerald-500/10 text-emerald-700"
+                    : "bg-rose-500/10 text-rose-700"
                 )}
               >
                 <span className="font-medium">{r.workspaceName}</span>
@@ -201,21 +201,21 @@ export default function InviteToMultipleWorkspacesModal({
                   <label
                     key={ws.id}
                     className={cx(
-                      "flex cursor-pointer items-center justify-between rounded-xl border px-4 py-3 transition-colors",
+                      "flex cursor-pointer items-center justify-between rounded-[14px] border-0 px-4 py-3 transition-colors",
                       checked
-                        ? "border-primary/40 bg-primary/[0.06]"
-                        : "border-(--line) bg-(--line-2) hover:border-(--line) hover:bg-(--line-2)"
+                        ? "bg-[#E8F1FF]"
+                        : "bg-[#EEF1F6] hover:bg-[#E8EBF2]"
                     )}
                   >
                     <div className="flex items-center gap-3">
                       <div
                         className={cx(
-                          "flex h-4 w-4 shrink-0 items-center justify-center rounded border transition-colors",
-                          checked ? "border-primary bg-primary" : "border-(--line) bg-transparent"
+                          "flex h-4 w-4 shrink-0 items-center justify-center rounded-[4px] border-0 transition-colors",
+                          checked ? "bg-[#1D4ED8]" : "bg-white"
                         )}
                       >
                         {checked ? (
-                          <Check className="h-2.5 w-2.5 text-(--t-1)" strokeWidth={3} />
+                          <Check className="h-2.5 w-2.5 text-white" strokeWidth={3} />
                         ) : null}
                       </div>
                       <input
@@ -226,7 +226,7 @@ export default function InviteToMultipleWorkspacesModal({
                       />
                       <span className="text-sm font-medium text-(--t-1)">{ws.name}</span>
                       {isActive ? (
-                        <span className="rounded-full border border-primary/40 bg-primary/10 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-primary">
+                        <span className="rounded-full border-0 bg-[#E8F1FF] px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-[#1D4ED8]">
                           Current
                         </span>
                       ) : null}

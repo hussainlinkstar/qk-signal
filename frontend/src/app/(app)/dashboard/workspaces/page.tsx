@@ -162,7 +162,7 @@ export default function WorkspacesPage() {
                     className="h-10 w-10 shrink-0 rounded-lg object-contain"
                   />
                 ) : (
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-(--border) bg-(--surface-subtle)">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] border-0 bg-[#EEF1F6]">
                     <Building2 className="h-5 w-5 text-(--text-soft)" />
                   </div>
                 )}

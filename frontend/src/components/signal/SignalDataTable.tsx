@@ -160,14 +160,14 @@ export default function SignalDataTable<T>({
   return (
     <div
       className={cx(
-        "flex flex-col overflow-hidden rounded-(--r-md) border border-(--line) bg-(--panel)",
+        "flex flex-col overflow-hidden rounded-(--r-md) border-0 bg-white",
         className
       )}
     >
       {showTools ? (
         <div className="flex items-center gap-2.5 border-b border-(--line) px-3.5 py-2.5">
           {searchText ? (
-            <div className="input-shell flex h-8 max-w-[250px] flex-1 items-center gap-[7px] rounded-(--r-sm) border border-(--line) bg-(--paper) px-2.5 focus-within:border-[#c9cef7] focus-within:bg-(--panel) focus-within:shadow-[0_0_0_3px_var(--ring)]">
+            <div className="input-shell flex h-8 max-w-[250px] flex-1 items-center gap-[7px] rounded-(--r-sm) border-0 bg-[#EEF1F6] px-2.5 focus-within:border-[#c9cef7] focus-within:bg-(--panel) focus-within:shadow-[0_0_0_3px_var(--ring)]">
               <Search size={14} className="shrink-0 text-(--t-3)" />
               <input
                 type="text"

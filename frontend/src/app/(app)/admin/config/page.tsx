@@ -29,12 +29,12 @@ type ConfigSetting = {
   runtime_value?: any;
 };
 
-const CARD = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
-const STAT = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const CARD = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
+const STAT = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const WINPUT_SM =
-  "field-focus-ring h-8 rounded-(--r-md) border border-(--line) bg-(--paper) px-[10px] text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
+  "field-focus-ring h-8 rounded-(--r-md) border-0 bg-[#EEF1F6] px-[10px] text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
 const TH =
   "border-b border-(--line) px-4 py-[11px] text-left font-(family-name:--mono) text-[10px] font-normal uppercase tracking-[0.06em] text-(--t-3)";
 const TD = "border-b border-(--line-2) px-4 py-[11px] align-middle text-[13px] text-(--t-1)";
@@ -341,7 +341,7 @@ export default function AdminConfigPage() {
           </div>
           <button
             onClick={() => setShowSecrets(!showSecrets)}
-            className="flex h-8 w-8 items-center justify-center rounded-(--r-md) border border-(--line) bg-(--panel) text-(--t-2) transition-colors hover:text-(--t-1)"
+            className="flex h-8 w-8 items-center justify-center rounded-(--r-md) border-0 bg-white text-(--t-2) transition-colors hover:text-(--t-1)"
             title={showSecrets ? "Hide secrets" : "Show secrets"}
           >
             {showSecrets ? <EyeOff size={14} /> : <Eye size={14} />}

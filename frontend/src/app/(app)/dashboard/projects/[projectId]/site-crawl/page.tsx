@@ -310,7 +310,7 @@ export default function ProjectSiteCrawlPage() {
                   </p>
                 ) : null}
               </div>
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary/30 bg-primary/10 text-primary">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl border-0 bg-primary/10 text-primary">
                 {mode === "smart" ? (
                   <Sparkles className="h-5 w-5" />
                 ) : (
@@ -331,7 +331,7 @@ export default function ProjectSiteCrawlPage() {
               value={sitemapUrl}
               onChange={(event) => setSitemapUrl(event.target.value)}
               placeholder="https://example.com/sitemap.xml"
-              className="w-full rounded-xl border border-(--line) bg-(--panel) px-4 py-2.5 text-sm text-(--t-1) outline-hidden transition focus:border-primary/60"
+              className="w-full rounded-xl border-0 bg-white px-4 py-2.5 text-sm text-(--t-1) outline-hidden transition focus:border-primary/60"
             />
             <div className="flex flex-wrap items-center gap-3">
               <Button
@@ -364,7 +364,7 @@ export default function ProjectSiteCrawlPage() {
 
             {/* Bulk estimate */}
             {estimate ? (
-              <div className="rounded-xl border border-(--line) bg-[color-mix(in_srgb,var(--panel)_70%,transparent)] p-3 text-sm text-(--t-1)">
+              <div className="rounded-xl border-0 bg-[color-mix(in_srgb,var(--panel)_70%,transparent)] p-3 text-sm text-(--t-1)">
                 Estimated crawl size: <strong>{estimate.url_count}</strong> pages
               </div>
             ) : null}
@@ -432,7 +432,7 @@ export default function ProjectSiteCrawlPage() {
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
-                  <div className="rounded-xl border border-(--line) bg-[color-mix(in_srgb,var(--panel)_80%,transparent)] p-4">
+                  <div className="rounded-xl border-0 bg-[color-mix(in_srgb,var(--panel)_80%,transparent)] p-4">
                     <p className="text-xs font-bold uppercase tracking-wider text-(--t-2)">
                       Score Distribution
                     </p>
@@ -443,7 +443,7 @@ export default function ProjectSiteCrawlPage() {
                       <li>&lt; 40: {crawlReport.report.score_distribution?.below_40 ?? 0}</li>
                     </ul>
                   </div>
-                  <div className="rounded-xl border border-(--line) bg-[color-mix(in_srgb,var(--panel)_80%,transparent)] p-4">
+                  <div className="rounded-xl border-0 bg-[color-mix(in_srgb,var(--panel)_80%,transparent)] p-4">
                     <p className="text-xs font-bold uppercase tracking-wider text-(--t-2)">
                       Top Issue Categories
                     </p>
@@ -463,7 +463,7 @@ export default function ProjectSiteCrawlPage() {
                   </div>
                 </div>
 
-                <div className="rounded-xl border border-(--line) bg-[color-mix(in_srgb,var(--panel)_80%,transparent)] p-4">
+                <div className="rounded-xl border-0 bg-[color-mix(in_srgb,var(--panel)_80%,transparent)] p-4">
                   <p className="text-xs font-bold uppercase tracking-wider text-(--t-2)">
                     Worst-performing Pages
                   </p>
@@ -547,7 +547,7 @@ function ModeTab({
     <button
       type="button"
       onClick={onClick}
-      className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition ${active ? "border border-primary/40 bg-primary/10 text-primary" : "border border-(--line) bg-[color-mix(in_srgb,var(--panel)_60%,transparent)] text-(--t-2) hover:border-(--line) hover:text-(--t-1)"}`}
+      className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition ${active ? "border-0 bg-[#E8F1FF] text-[#1D4ED8]" : "border-0 bg-[color-mix(in_srgb,var(--panel)_60%,transparent)] text-(--t-2) hover:border-(--line) hover:text-(--t-1)"}`}
     >
       {icon}
       {label}
@@ -560,7 +560,7 @@ function SmartEstimatePanel({ estimate }: { estimate: SmartCrawlEstimate }) {
   const skippedPlan = estimate.plan.filter((p) => p.skipped);
 
   return (
-    <div className="space-y-3 rounded-xl border border-(--line) bg-[color-mix(in_srgb,var(--panel)_70%,transparent)] p-4">
+    <div className="space-y-3 rounded-xl border-0 bg-[color-mix(in_srgb,var(--panel)_70%,transparent)] p-4">
       <div className="flex flex-wrap items-center gap-4 text-sm text-(--t-1)">
         <span>
           Site pages: <strong>{estimate.total_site_urls}</strong>
@@ -582,7 +582,7 @@ function SmartEstimatePanel({ estimate }: { estimate: SmartCrawlEstimate }) {
             {activePlan.map((item) => (
               <div
                 key={item.page_type}
-                className="flex items-center justify-between gap-2 rounded border border-(--line) bg-[color-mix(in_srgb,var(--panel)_40%,transparent)] px-3 py-1.5 text-sm"
+                className="flex items-center justify-between gap-2 rounded border-0 bg-[color-mix(in_srgb,var(--panel)_40%,transparent)] px-3 py-1.5 text-sm"
               >
                 <span className="font-medium text-(--t-1)">{item.label}</span>
                 <span className="text-(--t-2)">
@@ -617,7 +617,7 @@ function SmartEstimatePanel({ estimate }: { estimate: SmartCrawlEstimate }) {
 
 function MetricCard({ label, value }: { label: string; value: number | null | undefined }) {
   return (
-    <div className="rounded-xl border border-(--line) bg-[color-mix(in_srgb,var(--panel)_80%,transparent)] p-4">
+    <div className="rounded-xl border-0 bg-[color-mix(in_srgb,var(--panel)_80%,transparent)] p-4">
       <p className="text-xs font-bold uppercase tracking-wider text-(--t-2)">{label}</p>
       <p className="mt-2 text-2xl font-black text-(--t-1)">
         {typeof value === "number" ? Math.round(value) : "--"}

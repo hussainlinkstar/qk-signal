@@ -41,7 +41,7 @@ const FIELD_LABEL_CLASS =
 // globals.css, which suppress the @tailwindcss/forms blue ring on the field
 // inside and the forms chevron on a select that draws its own `.mchev`.
 const MINP_CLASS =
-  "input-shell group/minp flex h-11 items-center gap-[9px] rounded-[10px] border border-(--line) bg-(--paper) px-3 transition-colors focus-within:border-[#c9cef7] focus-within:bg-(--panel) focus-within:shadow-[0_0_0_3px_var(--ring)]";
+  "input-shell group/minp flex h-11 items-center gap-[9px] rounded-[14px] border-0 bg-[#EEF1F6] px-3 transition-colors focus-within:border-[#c9cef7] focus-within:bg-(--panel) focus-within:shadow-[0_0_0_3px_var(--ring)]";
 // signal.css `.minp:focus-within > svg`: the shell's icons, the `.mchev`
 // indicator included, take the brand colour with the shell.
 const MINP_ICON_CLASS =
@@ -53,7 +53,7 @@ const MINP_SELECT_CLASS = `${MINP_CONTROL_CLASS} cursor-pointer appearance-none`
 // `.wselect`: standalone bordered select; `wselect-chevron` supplies the
 // chevron and `field-focus-ring` the approved keyboard-only ring.
 const WSELECT_CLASS =
-  "wselect-chevron field-focus-ring h-11 w-full cursor-pointer appearance-none rounded-[10px] border border-(--line) bg-(--paper) py-0 pl-[13px] pr-[34px] font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none focus:border-[#c7cdd6] disabled:opacity-60";
+  "wselect-chevron field-focus-ring h-11 w-full cursor-pointer appearance-none rounded-[14px] border-0 bg-[#EEF1F6] py-0 pl-[13px] pr-[34px] font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none focus:border-[#c7cdd6] disabled:opacity-60";
 
 const ActivityIcon = (
   <svg

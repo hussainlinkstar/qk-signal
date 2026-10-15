@@ -173,7 +173,7 @@ const PlanCard = ({
     <GlassCard
       className={cx(
         "group relative flex min-w-0 flex-col gap-5 p-5 transition-all duration-200 sm:gap-6 sm:p-6",
-        "border border-(--border) bg-(--surface-subtle)",
+        "border-0 bg-(--surface-subtle)",
         isCurrent
           ? "border-primary/30 ring-1 ring-primary/10"
           : "hover:border-(--border-hover) hover:bg-(--surface-elevated)"
@@ -543,7 +543,7 @@ export default function BillingPage() {
         {activeSection === "overview" && (
           <SignalTabPanel id="overview" activeId={activeSection}>
             {/* Active Subscription Card */}
-            <GlassCard className="relative overflow-hidden rounded-(--r) border border-(--line) bg-(--panel) p-5 sm:p-6">
+            <GlassCard className="relative overflow-hidden rounded-[22px] border-0 bg-white p-5 sm:p-6">
               <div className="absolute right-8 top-8 opacity-5">
                 <Zap className="h-24 w-24" />
               </div>
@@ -602,8 +602,8 @@ export default function BillingPage() {
                       className={cx(
                         "rounded-[12px] px-4 py-3.5",
                         currentPlanSupportsHighConfidence
-                          ? "bg-[color-mix(in_srgb,var(--primary)_5%,transparent)] border border-[color-mix(in_srgb,var(--primary)_20%,transparent)]"
-                          : "bg-(--surface-subtle) border border-(--border)"
+                          ? "bg-[color-mix(in_srgb,var(--primary)_5%,transparent)] border-0"
+                          : "bg-(--surface-subtle) border-0"
                       )}
                     >
                       <div className="flex items-start gap-3">
@@ -644,7 +644,7 @@ export default function BillingPage() {
                       <ArrowUpRight className="h-3.5 w-3.5" />
                     </Button>
                   ) : (
-                    <div className="rounded-lg border border-(--border) bg-(--surface-subtle) px-4 py-2 text-xs text-(--muted-foreground) text-center">
+                    <div className="rounded-[14px] border-0 bg-[#EEF1F6] px-4 py-2 text-xs text-(--muted-foreground) text-center">
                       {settings.error
                         ? "Billing portal unavailable"
                         : "Choose a paid plan to unlock billing portal"}

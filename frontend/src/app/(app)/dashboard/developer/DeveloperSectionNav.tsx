@@ -50,7 +50,7 @@ export default function DeveloperSectionNav() {
               className={cx(
                 tabClass,
                 active
-                  ? "border border-primary/20 bg-primary/10 text-primary"
+                  ? "border-0 bg-[#E8F1FF] text-[#1D4ED8]"
                   : "text-(--muted-foreground) hover:bg-(--surface-subtle) hover:text-(--foreground)"
               )}
               aria-current={active ? "page" : undefined}

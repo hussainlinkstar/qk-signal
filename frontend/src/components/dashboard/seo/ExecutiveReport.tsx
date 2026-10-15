@@ -130,7 +130,7 @@ export default function ExecutiveReport({ latest, history, generatedAt }: Execut
         <button
           type="button"
           onClick={handlePrintPdf}
-          className="inline-flex items-center gap-2 rounded-xl border border-(--line) bg-(--line-2) px-3 py-2 text-sm font-medium text-(--t-1) transition-colors hover:bg-(--line-2)"
+          className="inline-flex items-center gap-2 rounded-xl border-0 bg-(--line-2) px-3 py-2 text-sm font-medium text-(--t-1) transition-colors hover:bg-(--line-2)"
         >
           <Printer className="h-4 w-4" aria-hidden="true" />
           Print / Save as PDF
@@ -150,11 +150,11 @@ export default function ExecutiveReport({ latest, history, generatedAt }: Execut
           <section className="space-y-4 break-inside-avoid">
             <h2 className="text-xl font-bold text-thoth-logic">Executive Header</h2>
             <div className="grid gap-4 md:grid-cols-3">
-              <div className="rounded border border-(--line) bg-(--line-2) p-5 shadow-inner">
+              <div className="rounded border-0 bg-(--line-2) p-5 shadow-inner">
                 <p className="text-xs font-bold tracking-widest uppercase text-(--t-2)">Title</p>
                 <p className="mt-2 text-lg font-bold text-(--t-1)">Executive Report</p>
               </div>
-              <div className="rounded border border-(--line) bg-(--line-2) p-5 shadow-inner">
+              <div className="rounded border-0 bg-(--line-2) p-5 shadow-inner">
                 <p className="text-xs font-bold tracking-widest uppercase text-(--t-2)">
                   Generation date
                 </p>
@@ -162,7 +162,7 @@ export default function ExecutiveReport({ latest, history, generatedAt }: Execut
                   {formatDateTime(generatedAt ?? latest.createdAt)}
                 </p>
               </div>
-              <div className="rounded border border-(--line) bg-(--line-2) p-5 shadow-inner">
+              <div className="rounded border-0 bg-(--line-2) p-5 shadow-inner">
                 <p className="text-xs font-bold tracking-widest uppercase text-(--t-2)">
                   Domeniu/site analizat
                 </p>
@@ -195,7 +195,7 @@ export default function ExecutiveReport({ latest, history, generatedAt }: Execut
                 return (
                   <div
                     key={key}
-                    className="break-inside-avoid rounded border border-(--line) bg-(--line-2) p-4 shadow-inner"
+                    className="break-inside-avoid rounded border-0 bg-(--line-2) p-4 shadow-inner"
                   >
                     <dt className="text-sm text-(--t-2)">{label}</dt>
                     <dd className="mt-1 text-xl font-semibold text-(--t-1)">{current}</dd>
@@ -241,7 +241,7 @@ export default function ExecutiveReport({ latest, history, generatedAt }: Execut
                 {issueSummary.topCategories.map((category) => (
                   <li
                     key={category.key}
-                    className="break-inside-avoid flex items-center justify-between rounded-xl border border-(--line) bg-(--line-2) px-4 py-3"
+                    className="break-inside-avoid flex items-center justify-between rounded-xl border-0 bg-(--line-2) px-4 py-3"
                   >
                     <span>{category.label}</span>
                     <span className="font-semibold text-(--t-1)">{category.count}</span>
@@ -260,7 +260,7 @@ export default function ExecutiveReport({ latest, history, generatedAt }: Execut
                 {topPriorityActions.map((action) => (
                   <li
                     key={action.id}
-                    className="break-inside-avoid rounded-xl border border-(--line) bg-(--line-2) px-4 py-3"
+                    className="break-inside-avoid rounded-xl border-0 bg-(--line-2) px-4 py-3"
                   >
                     <p className="font-semibold text-(--t-1)">{action.title}</p>
                     <p className="text-xs text-(--t-2)">
@@ -278,7 +278,7 @@ export default function ExecutiveReport({ latest, history, generatedAt }: Execut
 
           <section className="space-y-4 break-inside-avoid page-break-before">
             <h2 className="text-xl font-bold text-thoth-logic">AI Strategic Insights</h2>
-            <div className="space-y-3 rounded-xl border border-emerald-400/30 bg-emerald-500/10 p-4 text-sm text-emerald-50 break-inside-avoid">
+            <div className="space-y-3 rounded-xl border-0 bg-emerald-500/10 p-4 text-sm text-emerald-50 break-inside-avoid">
               <h3 className="font-semibold text-emerald-100">Executive summary</h3>
               <p>{latest.aiInsights.executive_summary || "-"}</p>
             </div>
@@ -290,13 +290,13 @@ export default function ExecutiveReport({ latest, history, generatedAt }: Execut
                   latest.aiInsights.critical_alerts.map((alert, index) => (
                     <li
                       key={`critical-alert-${index + 1}`}
-                      className="break-inside-avoid rounded-xl border border-(--line) bg-(--line-2) px-4 py-3"
+                      className="break-inside-avoid rounded-xl border-0 bg-(--line-2) px-4 py-3"
                     >
                       {alert}
                     </li>
                   ))
                 ) : (
-                  <li className="rounded-md border border-(--line) px-3 py-2 text-(--t-2)">-</li>
+                  <li className="rounded-[12px] border-0 bg-[#EEF1F6] px-3 py-2 text-(--t-2)">-</li>
                 )}
               </ul>
             </div>
@@ -308,7 +308,7 @@ export default function ExecutiveReport({ latest, history, generatedAt }: Execut
                   latest.aiInsights.priority_roadmap.map((item, index) => (
                     <li
                       key={`roadmap-${index + 1}`}
-                      className="break-inside-avoid rounded-xl border border-(--line) bg-(--line-2) px-4 py-3"
+                      className="break-inside-avoid rounded-xl border-0 bg-(--line-2) px-4 py-3"
                     >
                       <p className="font-semibold text-(--t-1)">{item.task}</p>
                       <p className="text-xs text-(--t-2)">
@@ -319,7 +319,7 @@ export default function ExecutiveReport({ latest, history, generatedAt }: Execut
                     </li>
                   ))
                 ) : (
-                  <li className="rounded-md border border-(--line) px-3 py-2 text-(--t-2)">-</li>
+                  <li className="rounded-[12px] border-0 bg-[#EEF1F6] px-3 py-2 text-(--t-2)">-</li>
                 )}
               </ul>
             </div>
@@ -331,18 +331,18 @@ export default function ExecutiveReport({ latest, history, generatedAt }: Execut
                   latest.aiInsights.content_gap_theory.map((item, index) => (
                     <li
                       key={`content-gap-${index + 1}`}
-                      className="break-inside-avoid rounded-xl border border-(--line) bg-(--line-2) px-4 py-3"
+                      className="break-inside-avoid rounded-xl border-0 bg-(--line-2) px-4 py-3"
                     >
                       {item}
                     </li>
                   ))
                 ) : (
-                  <li className="rounded-md border border-(--line) px-3 py-2 text-(--t-2)">-</li>
+                  <li className="rounded-[12px] border-0 bg-[#EEF1F6] px-3 py-2 text-(--t-2)">-</li>
                 )}
               </ul>
             </div>
 
-            <div className="rounded border border-(--line) bg-(--line-2) p-5 shadow-inner">
+            <div className="rounded border-0 bg-(--line-2) p-5 shadow-inner">
               <h3 className="mb-1 text-sm font-semibold text-(--t-1)">
                 Technical debt explanation
               </h3>

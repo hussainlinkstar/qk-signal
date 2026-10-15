@@ -118,7 +118,7 @@ function AuditScoreBadge({
         : "text-(--t-2) bg-(--line-2) border-(--line)";
 
   return (
-    <div className="flex flex-col gap-2 rounded border border-(--line) bg-(--line-2) p-4">
+    <div className="flex flex-col gap-2 rounded border-0 bg-(--line-2) p-4">
       <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-(--t-3)">
         {icon}
         {label}

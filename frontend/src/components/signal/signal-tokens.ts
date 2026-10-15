@@ -31,7 +31,7 @@ export const SIGNAL_SCORE_TEXT_CLASS: Record<SignalScoreLevel, string> = {
   bad: "text-(--bad)",
 };
 
-export const SIGNAL_CARD_CLASS = "rounded-[16px] border border-(--line) bg-(--panel)";
+export const SIGNAL_CARD_CLASS = "rounded-[22px] border-0 bg-white";
 
 export const SIGNAL_DELTA_CLASS: Record<"up" | "dn" | "flat", string> = {
   up: "text-(--good)",

@@ -125,11 +125,11 @@ export default function KeywordManager({ projectId, className = "" }: Props) {
         {error && <ProjectMonitoringWidgetInlineError message={error} />}
 
         {/* Creation happens on the approved Keywords tab, not twice. */}
-        <div className="mb-6 flex flex-col gap-3 rounded-xl border border-(--line) bg-(--line-2) p-4 md:flex-row md:items-center md:justify-between">
+        <div className="mb-6 flex flex-col gap-3 rounded-xl border-0 bg-(--line-2) p-4 md:flex-row md:items-center md:justify-between">
           <p className="text-xs text-(--t-2)">{t("keywordManager.addMoved")}</p>
           <Link
             href={`/dashboard/projects/${projectId}/google?tab=keywords`}
-            className="inline-flex h-9 flex-none items-center rounded-xl border border-(--line) bg-(--line-2) px-4 text-xs font-semibold text-(--t-1) hover:border-violet-500/40"
+            className="inline-flex h-9 flex-none items-center rounded-xl border-0 bg-(--line-2) px-4 text-xs font-semibold text-(--t-1) hover:border-violet-500/40"
           >
             {t("keywordManager.addAction")}
           </Link>
@@ -151,7 +151,7 @@ export default function KeywordManager({ projectId, className = "" }: Props) {
             {keywords.map((kw) => (
               <div
                 key={kw.id}
-                className="flex items-center justify-between p-3 rounded-xl border border-(--line) bg-(--line-2) hover:bg-(--line-2) transition-all group"
+                className="flex items-center justify-between p-3 rounded-xl border-0 bg-(--line-2) hover:bg-(--line-2) transition-all group"
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-violet-500/10 border border-violet-500/20">

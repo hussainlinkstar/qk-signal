@@ -92,7 +92,7 @@ const SearchTypeCard = ({ searchType }: { searchType: SearchType }) => {
   const ratio = searchType.answerRatio;
 
   return (
-    <div className="flex h-full flex-col gap-3 rounded border border-(--line) bg-(--line-2) p-4 shadow-inner">
+    <div className="flex h-full flex-col gap-3 rounded border-0 bg-(--line-2) p-4 shadow-inner">
       <div className="flex items-start justify-between gap-2">
         <span className="text-[10px] font-black uppercase tracking-[0.2em] text-(--t-2)">
           {searchType.label}

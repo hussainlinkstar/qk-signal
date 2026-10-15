@@ -120,7 +120,7 @@ export default function SchemaHealthCard({
         </div>
       </div>
 
-      <div className="rounded-xl border border-cyan-500/20 bg-cyan-900/10 p-4 shadow-inner">
+      <div className="rounded-xl border-0 bg-cyan-900/10 p-4 shadow-inner">
         <p className="text-[10px] font-bold tracking-widest uppercase text-(--purple)">
           Schema coverage
         </p>
@@ -128,13 +128,13 @@ export default function SchemaHealthCard({
       </div>
 
       <div className="grid grid-cols-2 gap-3 text-sm">
-        <div className="rounded-xl border border-(--line) bg-(--line-2) p-4 shadow-inner">
+        <div className="rounded-xl border-0 bg-(--line-2) p-4 shadow-inner">
           <p className="text-[10px] font-bold tracking-widest uppercase text-(--t-3)">
             Healthy Audits
           </p>
           <p className="mt-2 text-lg font-bold text-(--t-1)">{healthyAudits}</p>
         </div>
-        <div className="rounded-xl border border-(--line) bg-(--line-2) p-4 shadow-inner">
+        <div className="rounded-xl border-0 bg-(--line-2) p-4 shadow-inner">
           <p className="text-[10px] font-bold tracking-widest uppercase text-(--t-3)">
             Schema Issues
           </p>
@@ -163,7 +163,7 @@ export default function SchemaHealthCard({
         )}
       </div>
 
-      <div className="space-y-4 rounded-xl border border-amber-500/20 bg-amber-500/10 p-5 shadow-inner">
+      <div className="space-y-4 rounded-xl border-0 bg-amber-500/10 p-5 shadow-inner">
         <div>
           <p className="text-[10px] font-bold tracking-widest uppercase text-amber-500">
             High-impact AI answers blockers
@@ -183,7 +183,7 @@ export default function SchemaHealthCard({
             {actionableBlockers.map((blocker) => (
               <li
                 key={`${blocker.type}-${blocker.recommendation}`}
-                className="rounded-xl border border-(--line) bg-(--line-2) p-4 shadow-inner"
+                className="rounded-xl border-0 bg-(--line-2) p-4 shadow-inner"
               >
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <p className="font-semibold text-(--t-1)">{blocker.type}</p>

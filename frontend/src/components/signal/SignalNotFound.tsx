@@ -28,7 +28,7 @@ export default function SignalNotFound() {
         /* `.card.sblock` + inline styles from Signal 404.html: max-width 600
            (shrink-to-fit inside the flex wrap), margin 40 auto, padding
            20px 22px, centred. */
-        <div className="mx-auto my-10 w-fit max-w-[600px] rounded-[16px] border border-(--line) bg-(--panel) px-[22px] py-5 text-center">
+        <div className="mx-auto my-10 w-fit max-w-[600px] rounded-[22px] border-0 bg-white px-[22px] py-5 text-center">
           <div className="bg-(image:--grad) bg-clip-text font-(family-name:--disp) text-[54px] font-black leading-[1.35] tracking-[-0.02em] text-transparent">
             404
           </div>
@@ -45,7 +45,7 @@ export default function SignalNotFound() {
           <button
             type="button"
             onClick={openPalette}
-            className="mx-auto mb-[18px] inline-flex h-[38px] items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] text-[13.5px] font-semibold leading-[1.2] text-white transition-colors hover:bg-black focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple)"
+            className="mx-auto mb-[18px] inline-flex h-[38px] items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] text-[13.5px] font-semibold leading-[1.2] text-white transition-colors hover:bg-black focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple)"
           >
             <svg
               viewBox="0 0 24 24"
@@ -60,7 +60,7 @@ export default function SignalNotFound() {
               <path d="M21 21l-4.3-4.3" />
             </svg>
             {t("notFound.page.search")}
-            <kbd className="ms-2 flex-none rounded-[5px] border border-(--line) bg-(--panel) px-1.5 py-px font-(family-name:--mono) text-[10px] text-(--t-3)">
+            <kbd className="ms-2 flex-none rounded-[5px] border-0 bg-white px-1.5 py-px font-(family-name:--mono) text-[10px] text-(--t-3)">
               ⌘K
             </kbd>
           </button>
@@ -74,7 +74,7 @@ export default function SignalNotFound() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="inline-flex h-[30px] items-center rounded-[8px] border border-(--line) bg-(--panel) px-[11px] text-xs font-semibold text-(--t-1) transition-colors hover:border-[#D7DAE0] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple)"
+                className="inline-flex h-[30px] items-center rounded-[8px] border-0 bg-white px-[11px] text-xs font-semibold text-(--t-1) transition-colors hover:bg-[#E8ECF3] focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple)"
               >
                 {t(link.nameKey)}
               </Link>

@@ -92,7 +92,7 @@ export default function EmbedKeyManager({
       </form>
 
       {latestRawKey ? (
-        <div className="rounded-xl border border-amber-400/30 bg-amber-500/10 p-3 text-xs text-amber-200">
+        <div className="rounded-xl border-0 bg-amber-500/10 p-3 text-xs text-amber-200">
           <p className="font-bold uppercase tracking-wider">Copy this key now</p>
           <p className="mt-2 break-all font-mono">{latestRawKey}</p>
         </div>
@@ -105,7 +105,7 @@ export default function EmbedKeyManager({
           items.map((item) => (
             <div
               key={item.id}
-              className="flex flex-col gap-2 rounded-xl border border-(--border) bg-(--surface-subtle) p-3 md:flex-row md:items-center md:justify-between"
+              className="flex flex-col gap-2 rounded-xl border-0 bg-(--surface-subtle) p-3 md:flex-row md:items-center md:justify-between"
             >
               <div className="space-y-1">
                 <p className="text-sm font-semibold text-(--t-1)">{item.label}</p>

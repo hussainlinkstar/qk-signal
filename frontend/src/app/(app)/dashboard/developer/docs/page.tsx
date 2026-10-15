@@ -245,7 +245,7 @@ export default function DeveloperDocsPage() {
                   className={cx(
                     tabClass,
                     activeSample === tab.key
-                      ? "border border-primary/20 bg-primary/10 text-primary"
+                      ? "border-0 bg-[#E8F1FF] text-[#1D4ED8]"
                       : "text-(--muted-foreground) hover:bg-(--surface-subtle) hover:text-(--foreground)"
                   )}
                 >

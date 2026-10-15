@@ -193,7 +193,7 @@ export default function ScanAllowanceCard({ data, isLoading, className }: Props)
 
       {/* Overage warning */}
       {will_exhaust_before_renewal && projected_overage > 0 && (
-        <div className="flex items-start gap-3 rounded-lg border border-amber-500/20 bg-amber-500/5 p-4">
+        <div className="flex items-start gap-3 rounded-lg border-0 bg-amber-500/5 p-4">
           <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-amber-400" />
           <div>
             <p className="text-sm font-medium text-amber-400">

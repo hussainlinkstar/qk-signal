@@ -67,11 +67,11 @@ type PromptSetupProps = {
 const DOMAIN_STRIP = /^https?:\/\/(www\.)?/;
 
 const BTN =
-  "inline-flex h-[32px] cursor-pointer items-center gap-1.5 rounded-[10px] border border-(--line) bg-(--panel) px-[13px] font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex h-[32px] cursor-pointer items-center gap-1.5 rounded-full border-0 bg-[#EEF1F6] px-[13px] font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-50";
 const BTN_GHOST =
   "inline-flex h-[28px] cursor-pointer items-center rounded-[8px] px-[9px] font-(family-name:--body-font) text-[11px] font-semibold text-(--t-2) hover:text-(--t-1) disabled:cursor-not-allowed disabled:opacity-50";
 const BTN_PRIMARY =
-  "inline-flex h-[34px] cursor-pointer items-center gap-1.5 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[12px] font-semibold text-white hover:bg-black disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex h-[34px] cursor-pointer items-center gap-1.5 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[12px] font-semibold text-white hover:bg-black disabled:cursor-not-allowed disabled:opacity-50";
 const CAPTION = "m-0 text-[12px] leading-[1.7] text-(--t-2)";
 
 export default function PromptSetup({ mode, state, project, getAuthHeaders }: PromptSetupProps) {
@@ -458,7 +458,7 @@ export default function PromptSetup({ mode, state, project, getAuthHeaders }: Pr
             )}
           </p>
         </div>
-        <span className="flex-none rounded-[6px] border border-[#E8DCFA] bg-[#F0EAFC] px-2 py-[5px] text-[10px] font-semibold whitespace-nowrap text-[#7040B5]">
+        <span className="flex-none rounded-full border-0 bg-[#F5F3FF] px-2.5 py-[5px] text-[10px] font-semibold whitespace-nowrap text-[#7C3AED]">
           {t(allGenerated ? "promptSetup.badgeStarter" : "promptSetup.badgeProject")}
         </span>
       </div>
@@ -503,7 +503,7 @@ export default function PromptSetup({ mode, state, project, getAuthHeaders }: Pr
         <SignalInlineNote tone="info">{t("promptSetup.noticeGap")}</SignalInlineNote>
       ) : null}
 
-      <div className="mx-0 mt-3.5 mb-4 overflow-hidden rounded-[12px] border border-(--line)">
+      <div className="mx-0 mt-3.5 mb-4 overflow-hidden rounded-[12px] border-0">
         {SEARCH_TYPES.map((typeId) => renderGroup(typeId))}
         {pendingPrompts.length > 0 ? renderGroup("pending") : null}
       </div>
@@ -566,7 +566,7 @@ export default function PromptSetup({ mode, state, project, getAuthHeaders }: Pr
 
       {editing ? (
         <form
-          className="mt-4 rounded-[12px] border border-(--line) bg-(--paper) p-[18px]"
+          className="mt-4 rounded-[12px] border-0 bg-[#EEF1F6] p-[18px]"
           noValidate
           onSubmit={(event) => {
             event.preventDefault();
@@ -589,7 +589,7 @@ export default function PromptSetup({ mode, state, project, getAuthHeaders }: Pr
               value={editText}
               onChange={(event) => setEditText(event.target.value)}
               aria-describedby="prompt-setup-auto-type prompt-setup-error"
-              className="min-h-[88px] w-full resize-y rounded-[10px] border border-(--line) bg-(--panel) px-3 py-2.5 text-[12.5px] leading-[1.6] text-(--t-1)"
+              className="min-h-[88px] w-full resize-y rounded-full border-0 bg-[#EEF1F6] px-3 py-2.5 text-[12.5px] leading-[1.6] text-(--t-1)"
             />
           </label>
           {/* SIGV2-1197: no type select and no live prediction. The type is

@@ -307,7 +307,7 @@ export default function PlanChangeModal({
 
             {/* Proration / billing info */}
             {isImmediateChange && (
-              <div className="rounded-lg border border-(--border) bg-(--surface-subtle) p-4 space-y-2">
+              <div className="rounded-[14px] border-0 bg-[#EEF1F6] p-4 space-y-2">
                 {preview.proration_amount_usd !== null && (
                   <div className="flex items-center justify-between">
                     <span className="text-xs text-(--muted-foreground)">Prorated charge today</span>

@@ -29,7 +29,7 @@ export default function SignalLockCard({
   return (
     <div
       className={cx(
-        "w-full max-w-[380px] rounded-2xl border border-(--line) bg-(--panel) px-6 py-[22px] text-center shadow-[0_24px_60px_-24px_rgba(12,15,22,0.4)]",
+        "w-full max-w-[380px] rounded-[22px] border-0 bg-white px-6 py-[22px] text-center shadow-[0_20px_40px_-24px_rgba(15,23,42,0.28)]",
         className
       )}
     >

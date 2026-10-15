@@ -118,7 +118,7 @@ const RecommendationsList = ({
         return (
           <div
             key={index}
-            className="group relative overflow-hidden rounded border border-(--line) bg-[color-mix(in_srgb,var(--panel)_20%,transparent)] p-10 md:p-12 transition-all duration-700 hover:bg-[color-mix(in_srgb,var(--panel)_40%,transparent)] hover:border-(--line) shadow-2xl"
+            className="group relative overflow-hidden rounded border-0 bg-[color-mix(in_srgb,var(--panel)_20%,transparent)] p-10 md:p-12 transition-all duration-700 hover:bg-[color-mix(in_srgb,var(--panel)_40%,transparent)] hover:border-(--line) shadow-2xl"
           >
             {/* Ambient status glow */}
             <div
@@ -136,7 +136,7 @@ const RecommendationsList = ({
               {/* Header Row: Badges and Alignment */}
               <div className="flex flex-wrap items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-(--line-2) border border-(--line) shadow-inner text-xs font-black text-(--t-3) group-hover:text-(--t-1) transition-colors">
+                  <div className="flex items-center justify-center w-8 h-8 rounded-xl bg-(--line-2) border-0 shadow-inner text-xs font-black text-(--t-3) group-hover:text-(--t-1) transition-colors">
                     {String(index + 1).padStart(2, "0")}
                   </div>
                   <div
@@ -195,7 +195,7 @@ const RecommendationsList = ({
                       <div
                         key={engine}
                         className={cx(
-                          "p-1.5 rounded-lg border border-(--line) bg-(--line-2) text-(--t-3)",
+                          "p-1.5 rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) text-(--t-3)",
                           engine === "SEO" && "text-blue-400/60",
                           engine === "GEO" && "text-emerald-400/60",
                           engine === "AEO" && "text-fuchsia-400/60"
@@ -248,7 +248,7 @@ const RecommendationsList = ({
                     <div className="flex items-center gap-4">
                       {trackedExport ? (
                         <>
-                          <span className="rounded-xl border border-emerald-400/20 bg-emerald-500/10 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-emerald-200">
+                          <span className="rounded-xl border-0 bg-emerald-500/10 px-4 py-2 text-[10px] font-bold uppercase tracking-widest text-emerald-200">
                             Sent to Jira
                           </span>
                           <a

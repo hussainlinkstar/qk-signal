@@ -41,7 +41,7 @@ export default function TargetFixes({ fixes }: { fixes: ConsolidatedFix[] }) {
         </h2>
         <div className="h-px flex-1 bg-(--line)" aria-hidden />
       </div>
-      <div className="rounded-(--r) border border-(--line) bg-(--panel)">
+      <div className="rounded-[22px] border-0 bg-white">
         {topFixes.map((fix, index) => (
           <FixRow key={`${fix.title}-${index}`} fix={fix} />
         ))}

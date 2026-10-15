@@ -117,7 +117,7 @@ export default function BrandMark({
       <span
         aria-label={BRAND_MARK_LABELS[brand]}
         className={cx(
-          "inline-flex h-10 w-10 items-center justify-center rounded border border-(--border) bg-(--surface-subtle) shadow-(--shadow-inset)",
+          "inline-flex h-10 w-10 items-center justify-center rounded-[14px] border-0 bg-[#EEF1F6] shadow-(--shadow-inset)",
           className
         )}
         role="img"

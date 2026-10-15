@@ -73,7 +73,7 @@ export default function LearningsView({ projectId }: LearningsViewProps) {
     void loadDecisions();
   }, [loadDecisions]);
 
-  const shellCls = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+  const shellCls = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 
   if (authLoading || loading) {
     return (
@@ -115,7 +115,7 @@ export default function LearningsView({ projectId }: LearningsViewProps) {
 
       <div className="mt-4 space-y-3">
         {decisions.length === 0 ? (
-          <div className="rounded-[10px] border border-dashed border-(--line) px-4 py-[26px] text-center text-[13px] text-(--t-3)">
+          <div className="rounded-[14px] border border-dashed border-[#D1D5DB] bg-[#F8FAFC] px-4 py-[26px] text-center text-[13px] text-(--t-3)">
             No learnings yet.
           </div>
         ) : (
@@ -123,7 +123,7 @@ export default function LearningsView({ projectId }: LearningsViewProps) {
             <div
               key={decision.id}
               data-testid="learnings-row"
-              className="rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4"
+              className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4"
             >
               <div className="flex flex-wrap items-center gap-2">
                 <span

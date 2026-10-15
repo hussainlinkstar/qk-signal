@@ -14,7 +14,7 @@ export default function SemanticOpportunitiesTable({ rows, onSelectSourceUrl }: 
       {rows.length === 0 ? (
         <p className="mt-3 text-sm text-(--t-2)">No semantic opportunities identified.</p>
       ) : (
-        <div className="mt-4 overflow-x-auto rounded-xl border border-(--line) shadow-inner">
+        <div className="mt-4 overflow-x-auto rounded-xl border-0 shadow-inner">
           <table className="min-w-full text-left text-sm text-(--t-1)">
             <thead className="bg-(--line-2) text-[10px] font-bold tracking-widest uppercase text-(--t-2)">
               <tr>

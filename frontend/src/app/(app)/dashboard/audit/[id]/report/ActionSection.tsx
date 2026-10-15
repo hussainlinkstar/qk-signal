@@ -13,7 +13,7 @@ export default function ActionSection({ children }: { children: React.ReactNode 
       eyebrow={t("signalAuditReport.action.eyebrow")}
       title={t("signalAuditReport.action.title")}
     >
-      <div className="rounded-(--r) border border-(--line) bg-(--panel)">{children}</div>
+      <div className="rounded-[22px] border-0 bg-white">{children}</div>
     </ReportSection>
   );
 }

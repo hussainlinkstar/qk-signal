@@ -202,7 +202,7 @@ function SignalDomPill({
       <span className="pointer-events-none absolute start-2.5 top-[-10px] z-20 rounded-[5px] bg-(--ink) px-2 py-[3px] font-(family-name:--mono) text-[9.5px] leading-none tracking-[0.05em] text-white opacity-0 invisible transition-[opacity,transform,visibility] duration-180 translate-y-[3px] group-hover/dom:visible group-hover/dom:translate-y-0 group-hover/dom:opacity-100 group-focus-within/dom:visible group-focus-within/dom:translate-y-0 group-focus-within/dom:opacity-100">
         {t("signalShell.monitoring")}
       </span>
-      <div className="relative flex h-[38px] items-center overflow-visible rounded-[10px] border border-(--line) bg-(--panel) text-[13.5px] font-semibold text-(--t-1)">
+      <div className="relative flex h-[38px] items-center overflow-visible rounded-full border-0 bg-[#EEF1F6] text-[13.5px] font-semibold text-(--t-1)">
         <span className="flex min-w-0 items-center gap-[9px] px-3">
           <Globe2 aria-hidden="true" className="h-4 w-4 flex-none text-(--t-2)" strokeWidth={1.8} />
           <span className="truncate">{domain}</span>
@@ -223,7 +223,7 @@ function SignalDomPill({
         {open ? (
           <div
             role="menu"
-            className="absolute inset-s-0 top-[calc(100%+6px)] z-50 min-w-full overflow-hidden rounded-[10px] border border-(--line) bg-(--panel) py-1 shadow-[0_18px_44px_-18px_rgba(12,15,22,0.34)]"
+            className="absolute inset-s-0 top-[calc(100%+6px)] z-50 min-w-full overflow-hidden rounded-full border-0 bg-[#EEF1F6] py-1 shadow-[0_18px_44px_-18px_rgba(12,15,22,0.34)]"
           >
             {projects === null ? (
               <div className="px-3 py-2 text-[12.5px] text-(--t-3)">{t("signalShell.loading")}</div>

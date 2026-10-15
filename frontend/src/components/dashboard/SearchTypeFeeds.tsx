@@ -26,8 +26,8 @@ const TYPE_STYLE: Record<string, { icon: React.ReactNode; bg: string; fg: string
         <circle cx="7.5" cy="7.5" r="1.5" />
       </svg>
     ),
-    bg: "rgba(18,161,80,.1)",
-    fg: "var(--good)",
+    bg: "#ECFDF5",
+    fg: "#059669",
   },
   category: {
     icon: (
@@ -46,8 +46,8 @@ const TYPE_STYLE: Record<string, { icon: React.ReactNode; bg: string; fg: string
         <rect x="14" y="14" width="7" height="7" rx="1.5" />
       </svg>
     ),
-    bg: "rgba(217,147,11,.12)",
-    fg: "var(--warn)",
+    bg: "#FFFBEB",
+    fg: "#D97706",
   },
   problem: {
     icon: (
@@ -65,8 +65,8 @@ const TYPE_STYLE: Record<string, { icon: React.ReactNode; bg: string; fg: string
         <circle cx="12" cy="17" r=".5" />
       </svg>
     ),
-    bg: "rgba(229,72,77,.1)",
-    fg: "var(--bad)",
+    bg: "#FFF1F2",
+    fg: "#E11D48",
   },
   feature: {
     icon: (
@@ -83,8 +83,8 @@ const TYPE_STYLE: Record<string, { icon: React.ReactNode; bg: string; fg: string
         <path d="M3.3 7L12 12l8.7-5M12 22V12" />
       </svg>
     ),
-    bg: "rgba(147,51,234,.1)",
-    fg: "var(--purple)",
+    bg: "#F5F3FF",
+    fg: "#7C3AED",
   },
   comparison: {
     icon: (
@@ -100,8 +100,8 @@ const TYPE_STYLE: Record<string, { icon: React.ReactNode; bg: string; fg: string
         <path d="M7 16l-4 4 4 4M3 20h13M17 8l4-4-4-4M21 4H8" />
       </svg>
     ),
-    bg: "rgba(37,99,235,.1)",
-    fg: "var(--blue)",
+    bg: "#EFF6FF",
+    fg: "#2563EB",
   },
 };
 
@@ -117,8 +117,8 @@ const FEED_ORDER = Object.keys(FEED_LABEL_KEY);
 
 const FALLBACK_STYLE = {
   icon: <Tag size={16} strokeWidth={2} aria-hidden="true" />,
-  bg: "rgba(100,116,139,.1)",
-  fg: "var(--t-2)",
+  bg: "#F3F4F6",
+  fg: "#6B7280",
 };
 
 /**
@@ -164,114 +164,112 @@ export default function SearchTypeFeeds({ searchTypes }: { searchTypes: SearchTy
         <span className="h-4 w-px flex-none bg-(--line-2)" aria-hidden="true" />
         <span className="text-[12.5px] text-(--t-3)">{t("signalOverview.feedsSub")}</span>
       </div>
-      <div className="overflow-hidden rounded-(--r) border border-(--line) bg-(--panel)">
-        <div ref={barsRef} className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-5">
-          {orderedTypes.map((st) => {
-            const style = TYPE_STYLE[st.id] ?? FALLBACK_STYLE;
-            const labelKey = FEED_LABEL_KEY[st.id];
-            const label = labelKey ? t(labelKey) : st.label;
-            const measured = isMeasuredSearchType(st);
-            // SIGV2-1182: a queued measurement is a third state. "No prompt
-            // data yet" on a card whose run is already on the queue is the
-            // complaint, so the chip says which of the two it is.
-            const pending = !measured && isPendingSearchType(st);
-            const trend = typeof st.trend === "number" && st.trend !== 0 ? st.trend : null;
-            const ratio = st.answerRatio;
-            return (
-              <div
-                key={st.id}
-                className="flex min-w-0 flex-col border-b border-(--line-2) px-5 py-[18px] last:border-b-0 sm:border-e sm:even:border-e-0 xl:border-b-0 xl:even:border-e xl:last:border-e-0"
-                data-search-type={st.id}
-                data-measurement-state={measured ? "measured" : pending ? "pending" : "unmeasured"}
-              >
-                <div className="flex items-center gap-2">
-                  <span
-                    className="flex h-[30px] w-[30px] flex-none items-center justify-center rounded-full"
-                    style={{ background: style.bg, color: style.fg }}
-                  >
-                    {style.icon}
-                  </span>
-                  <span className="whitespace-pre-line font-(family-name:--disp) text-[13.5px] font-bold leading-[1.2]">
-                    {label.replace(" ", "\n")}
-                  </span>
-                </div>
+      <div ref={barsRef} className="grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-5">
+        {orderedTypes.map((st) => {
+          const style = TYPE_STYLE[st.id] ?? FALLBACK_STYLE;
+          const labelKey = FEED_LABEL_KEY[st.id];
+          const label = labelKey ? t(labelKey) : st.label;
+          const measured = isMeasuredSearchType(st);
+          // SIGV2-1182: a queued measurement is a third state. "No prompt
+          // data yet" on a card whose run is already on the queue is the
+          // complaint, so the chip says which of the two it is.
+          const pending = !measured && isPendingSearchType(st);
+          const trend = typeof st.trend === "number" && st.trend !== 0 ? st.trend : null;
+          const ratio = st.answerRatio;
+          return (
+            <div
+              key={st.id}
+              className="flex min-w-0 flex-col rounded-[22px] border-0 bg-white px-4 py-4"
+              data-search-type={st.id}
+              data-measurement-state={measured ? "measured" : pending ? "pending" : "unmeasured"}
+            >
+              <div className="flex items-center gap-2.5">
                 <span
-                  className={cx(
-                    "mt-2 inline-flex items-center self-start gap-1 rounded-[5px] px-[7px] py-0.5 font-mono text-[9.5px] tracking-[0.04em]",
-                    measured
-                      ? "bg-(--good-s) text-(--good)"
-                      : pending
-                        ? "bg-(--warn-s) text-(--warn)"
-                        : "bg-(--line-2) text-(--t-2)"
-                  )}
+                  className="flex h-9 w-9 flex-none items-center justify-center rounded-[12px]"
+                  style={{ background: style.bg, color: style.fg }}
                 >
-                  <span className="h-[5px] w-[5px] rounded-full bg-current" aria-hidden="true" />
-                  {measured
-                    ? t("signalOverview.measured")
-                    : pending
-                      ? t("signalOverview.feedMeasuringChip")
-                      : t("signalOverview.feedNotMeasuredChip")}
+                  {style.icon}
                 </span>
-                <div className="mb-0.5 mt-3 font-(family-name:--disp) text-[34px] font-black leading-none tracking-[-0.03em]">
-                  {/* SIGV2-1097: a bare dash reads as a broken figure, so the
-                      slot names the state instead. */}
-                  {measured ? (
-                    Math.round(st.score as number)
-                  ) : (
-                    <span className="font-(family-name:--body-font) text-[13px] font-semibold tracking-normal text-(--t-3)">
-                      {t("signalOverview.notMeasured")}
-                    </span>
-                  )}
-                  {measured && (
-                    <sub className="align-baseline text-[14px] font-semibold tracking-normal text-(--t-3)">
-                      /100
-                    </sub>
-                  )}
-                  {trend !== null ? (
-                    <span
-                      className={cx(
-                        "ms-1.5 text-[12px] font-semibold",
-                        trend > 0 ? "text-(--good)" : "text-(--bad)"
-                      )}
-                    >
-                      {Math.abs(Math.round(trend))}
-                      {trend > 0 ? "↗" : "↘"}
-                    </span>
-                  ) : null}
-                </div>
-                {st.insight ? (
-                  <p className="m-0 flex-1 text-[12px] leading-[1.45] text-(--t-2)">{st.insight}</p>
-                ) : null}
-                <div className="mb-2 mt-2.5 h-1 overflow-hidden rounded-full bg-(--line)">
-                  <i
-                    data-signal-bar
-                    className="block h-full rounded-full"
-                    style={{
-                      width: measured ? `${Math.round(st.score as number)}%` : 0,
-                      background: style.fg,
-                    }}
-                  />
-                </div>
-                {/* One line, fixed box. The approved `.ft-ratio` is a single
-                    mono line, and this slot now carries two very different
-                    strings per locale: pinning the height keeps the card, and
-                    so the page, the same height whichever it renders, instead
-                    of letting an Arabic font-fallback metric decide it. */}
-                <div
-                  data-answer-ratio={ratio ? "measured" : "unmeasured"}
-                  className="h-[14px] overflow-hidden whitespace-nowrap font-mono text-[10.5px] leading-[14px] text-(--t-3)"
-                >
-                  {ratio
-                    ? t("signalOverview.answerRatioMeasured", {
-                        present: ratio.present,
-                        measured: ratio.measured,
-                      })
-                    : t("signalOverview.answerRatioUnavailable")}
-                </div>
+                <span className="min-w-0 whitespace-pre-line font-(family-name:--disp) text-[13px] font-bold leading-[1.25] text-[#111827]">
+                  {label.replace(" ", "\n")}
+                </span>
               </div>
-            );
-          })}
-        </div>
+              <span
+                className={cx(
+                  "mt-3 inline-flex items-center self-start gap-1 rounded-full px-2.5 py-0.5 text-[10px] font-semibold",
+                  measured
+                    ? "bg-[#ECFDF5] text-[#059669]"
+                    : pending
+                      ? "bg-[#FFFBEB] text-[#D97706]"
+                      : "bg-[#EEF1F6] text-(--t-2)"
+                )}
+              >
+                <span className="h-[5px] w-[5px] rounded-full bg-current" aria-hidden="true" />
+                {measured
+                  ? t("signalOverview.measured")
+                  : pending
+                    ? t("signalOverview.feedMeasuringChip")
+                    : t("signalOverview.feedNotMeasuredChip")}
+              </span>
+              <div className="mb-0.5 mt-3 font-(family-name:--disp) text-[32px] font-extrabold leading-none tracking-[-0.03em] text-[#111827]">
+                {/* SIGV2-1097: a bare dash reads as a broken figure, so the
+                    slot names the state instead. */}
+                {measured ? (
+                  Math.round(st.score as number)
+                ) : (
+                  <span className="font-(family-name:--body-font) text-[13px] font-semibold tracking-normal text-(--t-3)">
+                    {t("signalOverview.notMeasured")}
+                  </span>
+                )}
+                {measured && (
+                  <sub className="align-baseline text-[13px] font-semibold tracking-normal text-(--t-3)">
+                    /100
+                  </sub>
+                )}
+                {trend !== null ? (
+                  <span
+                    className={cx(
+                      "ms-1.5 text-[12px] font-semibold",
+                      trend > 0 ? "text-[#059669]" : "text-[#E11D48]"
+                    )}
+                  >
+                    {Math.abs(Math.round(trend))}
+                    {trend > 0 ? "↗" : "↘"}
+                  </span>
+                ) : null}
+              </div>
+              {st.insight ? (
+                <p className="m-0 mt-2 flex-1 text-[12px] leading-[1.45] text-(--t-2)">{st.insight}</p>
+              ) : null}
+              <div className="mb-2 mt-auto pt-3 h-1.5 overflow-hidden rounded-full bg-[#EEF1F6]">
+                <i
+                  data-signal-bar
+                  className="block h-full rounded-full"
+                  style={{
+                    width: measured ? `${Math.round(st.score as number)}%` : 0,
+                    background: style.fg,
+                  }}
+                />
+              </div>
+              {/* One line, fixed box. The approved `.ft-ratio` is a single
+                  mono line, and this slot now carries two very different
+                  strings per locale: pinning the height keeps the card, and
+                  so the page, the same height whichever it renders, instead
+                  of letting an Arabic font-fallback metric decide it. */}
+              <div
+                data-answer-ratio={ratio ? "measured" : "unmeasured"}
+                className="h-[14px] overflow-hidden whitespace-nowrap text-[11px] font-medium leading-[14px] text-(--t-3)"
+              >
+                {ratio
+                  ? t("signalOverview.answerRatioMeasured", {
+                      present: ratio.present,
+                      measured: ratio.measured,
+                    })
+                  : t("signalOverview.answerRatioUnavailable")}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

@@ -154,10 +154,10 @@ const DAY_OPTIONS = [1, 7, 30] as const;
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const MONO_META = MICRO_LABEL.replace("uppercase ", "");
-const WSEC = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const WSEC = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const SEC_TITLE =
   "m-0 mb-4 flex items-center gap-2 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em] text-(--t-1)";
-const INSET = "rounded-(--r-md) border border-(--line) bg-(--paper) p-4";
+const INSET = "rounded-(--r-md) border-0 bg-[#EEF1F6] p-4";
 const CHIPPED =
   "inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em]";
 const SEG_BUTTON =
@@ -333,7 +333,7 @@ export default function AdminObservabilityPage() {
         <div
           role="group"
           aria-label="Metrics window"
-          className="hidden items-center gap-0.5 rounded-(--r-md) border border-(--line) bg-(--paper) p-0.5 sm:flex"
+          className="hidden items-center gap-0.5 rounded-(--r-md) border-0 bg-[#EEF1F6] p-0.5 sm:flex"
         >
           {DAY_OPTIONS.map((d) => (
             <button
@@ -432,7 +432,7 @@ export default function AdminObservabilityPage() {
       <div
         role="group"
         aria-label="Metrics window"
-        className="flex items-center gap-0.5 self-start rounded-(--r-md) border border-(--line) bg-(--paper) p-0.5 sm:hidden"
+        className="flex items-center gap-0.5 self-start rounded-(--r-md) border-0 bg-[#EEF1F6] p-0.5 sm:hidden"
       >
         {DAY_OPTIONS.map((d) => (
           <button
@@ -556,7 +556,7 @@ export default function AdminObservabilityPage() {
                     {dualTrackSnapshot.metrics.top_reason_codes.map((entry) => (
                       <div
                         key={`${entry.track}:${entry.reason_code}`}
-                        className="rounded-(--r-sm) border border-(--line) bg-(--panel) px-3 py-2"
+                        className="rounded-(--r-sm) border-0 bg-white px-3 py-2"
                       >
                         <p className="text-xs font-semibold text-(--t-1)">{entry.reason_code}</p>
                         <p className={`mt-1 ${MONO_META} text-[10px]`}>
@@ -580,7 +580,7 @@ export default function AdminObservabilityPage() {
                       ([reason, count]) => (
                         <div
                           key={reason}
-                          className="flex items-center justify-between rounded-(--r-sm) border border-(--line) bg-(--panel) px-3 py-2"
+                          className="flex items-center justify-between rounded-(--r-sm) border-0 bg-white px-3 py-2"
                         >
                           <span className="text-xs font-semibold text-(--t-1)">{reason}</span>
                           <span className={`${CHIPPED} text-(--bad) bg-(--bad-s)`}>
@@ -605,7 +605,7 @@ export default function AdminObservabilityPage() {
         <>
           <div className="flex flex-wrap items-center gap-2">
             <span className={MICRO_LABEL}>Prompt tier filter</span>
-            <div className="flex items-center gap-0.5 rounded-(--r-md) border border-(--line) bg-(--paper) p-0.5">
+            <div className="flex items-center gap-0.5 rounded-(--r-md) border-0 bg-[#EEF1F6] p-0.5">
               {PROMPT_TIER_FILTERS.map((option) => (
                 <button
                   key={option.value}
@@ -663,7 +663,7 @@ export default function AdminObservabilityPage() {
                     {Object.entries(promptQualityGate.thresholds).map(([key, value]) => (
                       <div
                         key={key}
-                        className="flex items-center justify-between rounded-(--r-sm) border border-(--line) bg-(--panel) px-3 py-2"
+                        className="flex items-center justify-between rounded-(--r-sm) border-0 bg-white px-3 py-2"
                       >
                         <span className="text-xs font-semibold text-(--t-1)">{key}</span>
                         <span className={`${CHIPPED} text-(--purple) bg-(--purple-s)`}>
@@ -681,7 +681,7 @@ export default function AdminObservabilityPage() {
                       {promptQualityGate.top_violations.map((entry) => (
                         <div
                           key={entry.code}
-                          className="flex items-center justify-between rounded-(--r-sm) border border-(--line) bg-(--panel) px-3 py-2"
+                          className="flex items-center justify-between rounded-(--r-sm) border-0 bg-white px-3 py-2"
                         >
                           <span className="text-xs font-semibold text-(--t-1)">{entry.code}</span>
                           <span className={`${CHIPPED} text-(--warn) bg-(--warn-s)`}>
@@ -736,7 +736,7 @@ export default function AdminObservabilityPage() {
                   {promptQualityGate.recent_failures.map((entry) => (
                     <div
                       key={`${entry.audit_id}-${entry.created_at}`}
-                      className="rounded-(--r-sm) border border-(--line) bg-(--paper) px-3 py-3"
+                      className="rounded-(--r-sm) border-0 bg-[#EEF1F6] px-3 py-3"
                     >
                       <p className="text-xs font-semibold text-(--t-1)">
                         Audit #{entry.audit_id} · {entry.requested_tier} · {entry.pipeline_type}
@@ -819,7 +819,7 @@ export default function AdminObservabilityPage() {
                 {calibrationReadyFailures.map((entry) => (
                   <div
                     key={entry.audit_id}
-                    className="rounded-(--r-sm) border border-(--line) bg-(--paper) px-3 py-3"
+                    className="rounded-(--r-sm) border-0 bg-[#EEF1F6] px-3 py-3"
                   >
                     <p className="text-xs font-semibold text-(--t-1)">
                       Audit #{entry.audit_id} · {entry.requested_tier} · {entry.pipeline_type}
@@ -947,7 +947,7 @@ export default function AdminObservabilityPage() {
       )}
 
       {/* Slow endpoints */}
-      <section className="overflow-hidden rounded-(--r) border border-(--line) bg-(--panel)">
+      <section className="overflow-hidden rounded-[22px] border-0 bg-white">
         <div className="border-b border-(--line) px-[22px] py-[14px]">
           <h2 className="m-0 flex items-center gap-2 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em] text-(--t-1)">
             <AlertCircle size={14} className="text-(--warn)" /> Slow endpoints detection (&gt;500ms)

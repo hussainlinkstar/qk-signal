@@ -238,7 +238,7 @@ export function ProjectCompetitorManager({
     }
   };
 
-  const shellCls = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+  const shellCls = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 
   if (authLoading || loading) {
     return (
@@ -301,7 +301,7 @@ export function ProjectCompetitorManager({
               </span>
               <Link
                 href={`/dashboard/projects/${projectId}/competitors`}
-                className="inline-flex h-8 items-center gap-1.5 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] max-md:min-h-11"
+                className="inline-flex h-8 items-center gap-1.5 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] max-md:min-h-11"
               >
                 Open dashboard
                 <ArrowRight className="h-4 w-4" />
@@ -355,7 +355,7 @@ export function ProjectCompetitorManager({
               </span>
               {/* Approved `.seg` group: Off / Weekly / Monthly. */}
               <div
-                className="inline-flex gap-[2px] rounded-[9px] border border-(--line) bg-(--paper) p-[3px] ltr:[direction:ltr]"
+                className="inline-flex gap-[2px] rounded-[9px] border-0 bg-[#EEF1F6] p-[3px] ltr:[direction:ltr]"
                 role="group"
                 aria-labelledby="competitive-digest-frequency-label"
               >
@@ -389,7 +389,7 @@ export function ProjectCompetitorManager({
               </span>
               <button
                 type="button"
-                className="inline-flex h-[38px] cursor-pointer items-center rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black disabled:cursor-not-allowed disabled:opacity-50 max-md:min-h-11"
+                className="inline-flex h-[38px] cursor-pointer items-center rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black disabled:cursor-not-allowed disabled:opacity-50 max-md:min-h-11"
                 onClick={() => void handleSaveAutomation()}
                 disabled={savingAutomation}
               >
@@ -416,7 +416,7 @@ export function ProjectCompetitorManager({
                 </label>
                 <input
                   id="competitor-target-url"
-                  className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+                  className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
                   type="text"
                   placeholder="competitor.com"
                   value={targetUrl}
@@ -433,7 +433,7 @@ export function ProjectCompetitorManager({
                 </label>
                 <input
                   id="competitor-display-name"
-                  className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+                  className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
                   type="text"
                   placeholder="Main rival"
                   value={displayName}
@@ -443,7 +443,7 @@ export function ProjectCompetitorManager({
               </div>
               <button
                 type="button"
-                className="inline-flex h-[38px] flex-none cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black disabled:cursor-not-allowed disabled:opacity-50 max-md:min-h-11"
+                className="inline-flex h-[38px] flex-none cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black disabled:cursor-not-allowed disabled:opacity-50 max-md:min-h-11"
                 disabled={competitors.length >= COMPETITOR_LIMIT || savingCompetitor}
                 onClick={() => void handleAddCompetitor()}
               >
@@ -464,7 +464,7 @@ export function ProjectCompetitorManager({
             ) : null}
 
             {competitors.length === 0 ? (
-              <div className="mt-3 rounded-[10px] border border-dashed border-(--line) px-4 py-[26px] text-center text-[13px] text-(--t-3)">
+              <div className="mt-3 rounded-[14px] border border-dashed border-[#D1D5DB] bg-[#F8FAFC] px-4 py-[26px] text-center text-[13px] text-(--t-3)">
                 No competitor targets yet.
               </div>
             ) : (
@@ -474,7 +474,7 @@ export function ProjectCompetitorManager({
                   return (
                     <div
                       key={competitor.id}
-                      className="rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4"
+                      className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4"
                     >
                       <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
                         <div className="min-w-0 space-y-2">
@@ -521,7 +521,7 @@ export function ProjectCompetitorManager({
                         <button
                           type="button"
                           aria-label={`Remove ${competitor.display_name}`}
-                          className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-[10px] border border-[color-mix(in_srgb,var(--bad)_40%,transparent)] bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--bad) disabled:cursor-not-allowed disabled:opacity-50 max-md:min-h-11"
+                          className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-full border-0 bg-[#FEECEC] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--bad) disabled:cursor-not-allowed disabled:opacity-50 max-md:min-h-11"
                           disabled={removingCompetitorId === competitor.id}
                           onClick={() => void handleRemoveCompetitor(competitor.id)}
                         >

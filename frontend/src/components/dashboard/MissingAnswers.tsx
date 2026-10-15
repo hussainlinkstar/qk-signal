@@ -17,7 +17,7 @@ export default function MissingAnswers({ items }: Props) {
       {items.map((item) => (
         <li
           key={item.query}
-          className="rounded-lg border border-[color-mix(in_srgb,var(--line)_70%,transparent)] p-3"
+          className="rounded-[14px] border-0 bg-[#EEF1F6] p-3"
         >
           <p className="font-medium text-(--t-1)">{item.query}</p>
           <p className="mt-1 text-xs text-(--t-2)">Competitor citations:</p>

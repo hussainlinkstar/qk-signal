@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useId } from "react";
+import React from "react";
 import Link from "next/link";
 import { Info } from "lucide-react";
 import { useTranslation } from "react-i18next";
@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/Tooltip";
 import { useSignalScoreEntrance } from "@/hooks/useSignalChartMotion";
 import ProjectScoreSparkline from "@/components/dashboard/ProjectScoreSparkline";
+import SignalScoreRing from "@/components/signal/SignalScoreRing";
 import {
   AIO_TREND_COLOR,
   SEO_TREND_COLOR,
@@ -22,8 +23,6 @@ import {
 } from "@/lib/projectScoreTrend";
 import { deriveWiredMetrics } from "@/lib/visibilityMetrics";
 import type { VisibilitySummaryResponse } from "@/types/monitoring";
-
-const RING_C = 2 * Math.PI * 50;
 
 function Ring({
   score,
@@ -40,85 +39,42 @@ function Ring({
 }) {
   const { t } = useTranslation();
   const { ref, progress } = useSignalScoreEntrance(score);
-  const pct = (score ?? 0) * progress;
-  const gradientId = `score-${variant}-${useId().replace(/:/g, "")}`;
+  const animated = score === null ? null : score * progress;
   const delta = trend ? scoreDeltaMeta(trend.delta) : null;
   const rounded = trend ? Math.round(trend.delta) : 0;
   return (
     <div
       ref={ref}
       data-score-gauge
-      className={cx(
-        "relative w-[150px] flex-none text-center max-md:min-h-[132px] max-md:self-center",
-        // Approved `.gwrap` carries this lift only when the trend sits under
-        // the gauge; without one there is nothing below to pull up.
-        trend && "-mt-2.5"
-      )}
+      className="relative w-[150px] flex-none text-center max-md:self-center"
     >
       <span className="pointer-events-none invisible absolute -start-3.5 top-1/2 z-[3] translate-y-[calc(-50%+5px)] whitespace-nowrap rounded-[9px] bg-(--score-target-bg) px-2.5 py-1.5 font-mono text-[10px] leading-[1.15] text-(--panel) opacity-0 transition-[opacity,transform,visibility] duration-180 group-hover/panel:visible group-hover/panel:-translate-y-1/2 group-hover/panel:opacity-100 group-focus-within/panel:visible group-focus-within/panel:-translate-y-1/2 group-focus-within/panel:opacity-100 after:absolute after:-end-1 after:top-1/2 after:h-[9px] after:w-[9px] after:-translate-y-1/2 after:rotate-45 after:rounded-[1px] after:bg-(--score-target-bg) motion-reduce:transition-none">
         {target === null
           ? t("signalOverview.noTargetSet")
           : t("signalOverview.targetSet", { score: target })}
       </span>
-      <svg
-        className="inline-block h-[132px] w-[132px] -rotate-90 align-baseline"
-        viewBox="0 0 120 120"
-        aria-hidden="true"
-      >
-        <defs>
-          <linearGradient id={gradientId} x1="0" y1="0" x2="1" y2="1">
-            {variant === "aio" ? (
-              <>
-                <stop offset="0" stopColor="var(--blue)" />
-                <stop offset="1" stopColor="var(--purple)" />
-              </>
-            ) : (
-              <>
-                <stop offset="0" stopColor="var(--amber)" />
-                <stop offset="1" stopColor="var(--amber-hi)" />
-              </>
-            )}
-          </linearGradient>
-        </defs>
-        <circle cx="60" cy="60" r="50" fill="none" stroke="var(--line)" strokeWidth="11" />
-        <circle
-          cx="60"
-          cy="60"
-          r="50"
-          fill="none"
-          stroke={`url(#${gradientId})`}
-          strokeWidth="11"
-          strokeLinecap="round"
-          strokeDasharray={RING_C}
-          strokeDashoffset={RING_C * (1 - pct / 100)}
-        />
-      </svg>
-      <div className="relative z-[2] -mt-[90px]">
-        <b
-          className={cx(
-            "block font-(family-name:--disp) font-black leading-none tracking-[-0.03em]",
-            score === null ? "text-[14px] tracking-normal" : "text-[34px]"
-          )}
-        >
-          {score === null ? t("signalOverview.notChecked") : Math.round(score * progress)}
-        </b>
-        {score !== null ? (
-          <small className="font-mono text-[11px] tracking-normal text-(--t-3)">/100</small>
-        ) : null}
-      </div>
-      {/* Approved `.gtrend` + `.gspark`: the progressive change under the
-          gauge, the same movement the workspace overview card reports for this
-          project. Rendered only when the project has a real progression to
-          show, so one scored audit says nothing rather than drawing a flat
-          line or a 0 (SIGV2-1181). */}
+      <SignalScoreRing
+        score={animated}
+        size={132}
+        color={variant === "aio" ? "#A855F7" : "#3B82F6"}
+        trackColor={variant === "aio" ? "#EDE9FE" : "#DBEAFE"}
+        emptyLabel={
+          <span className="font-(family-name:--body-font) text-[11px] font-semibold tracking-normal text-(--t-3)">
+            {t("signalOverview.notChecked")}
+          </span>
+        }
+        className="mx-auto"
+      />
+      {/* Progressive change under the gauge — packed tight so the left column
+          does not leave a blank band under the ring (SIGV2-1181). */}
       {trend && delta ? (
-        <>
+        <div className="mx-auto mt-3 w-[120px] rounded-[12px] bg-[#F8FAFC] px-2 py-2">
           <div
             data-score-trend={variant}
-            className="mx-auto mb-1.5 mt-5 flex w-[120px] items-baseline justify-end"
+            className="mb-1 flex items-baseline justify-end"
           >
             <span
-              className={cx("font-mono text-[11.5px] font-semibold", delta.cls)}
+              className={cx("text-[11.5px] font-semibold", delta.cls)}
               aria-label={t("signalOverview.scoreTrendLabel", {
                 name,
                 change: rounded > 0 ? `+${rounded}` : `${rounded}`,
@@ -130,11 +86,11 @@ function Ring({
           <ProjectScoreSparkline
             points={trend.points}
             color={variant === "aio" ? AIO_TREND_COLOR : SEO_TREND_COLOR}
-            width={120}
-            height={30}
-            className="mx-auto block h-[30px] w-[120px]"
+            width={104}
+            height={28}
+            className="mx-auto block h-[28px] w-full"
           />
-        </>
+        </div>
       ) : null}
     </div>
   );
@@ -265,23 +221,23 @@ function Panel({
   const gap = score === null || target === null ? null : Math.round(target) - Math.round(score);
   return (
     <div
-      className="group/panel relative flex h-full flex-col rounded-(--r) border border-(--line) bg-(--panel) px-6 pt-[18px] pb-[22px] transition-[border-color,box-shadow,transform] duration-200 ease-[ease] hover:border-(--line-btn-hover) hover:shadow-[0_6px_24px_var(--ink-s7)] motion-reduce:transition-none"
+      className="group/panel relative flex h-full min-w-0 flex-col rounded-[22px] border-0 bg-white px-5 pt-5 pb-5 sm:px-6"
       data-panel={variant}
     >
       <div
         data-panel-heading
-        className="flex flex-wrap items-center gap-2.5 border-b border-(--line-2) pb-3.5"
+        className="flex flex-wrap items-center gap-2.5 border-b border-[#F3F4F6] pb-3.5"
       >
         <span
           className={cx(
-            "flex h-[26px] w-[26px] flex-none items-center justify-center",
-            variant === "aio" ? "text-(--purple)" : "text-(--warn)"
+            "flex h-9 w-9 flex-none items-center justify-center rounded-[12px]",
+            variant === "aio" ? "bg-[#F5F3FF] text-[#7C3AED]" : "bg-[#FFFBEB] text-[#D97706]"
           )}
         >
           {variant === "aio" ? (
             <svg
-              width="19"
-              height="19"
+              width="18"
+              height="18"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -293,8 +249,8 @@ function Panel({
             </svg>
           ) : (
             <svg
-              width="19"
-              height="19"
+              width="18"
+              height="18"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -305,22 +261,29 @@ function Panel({
             </svg>
           )}
         </span>
-        <span className="font-(family-name:--disp) text-[17px] font-extrabold tracking-[-0.01em]">
-          {name}
-        </span>
-        <span className="h-4 w-px bg-(--line-2)" aria-hidden="true" />
-        <span className="text-[12.5px] text-(--t-3)">{desc}</span>
-        <span className="ms-auto rounded-[6px] bg-(--purple-a10) px-2 py-[3px] font-mono text-[9.5px] uppercase tracking-[0.06em] text-(--purple-deep)">
-          {tag}
-        </span>
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-center gap-2">
+            <span className="font-(family-name:--disp) text-[17px] font-extrabold tracking-[-0.02em] text-[#111827]">
+              {name}
+            </span>
+            <span
+              className={cx(
+                "rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.04em]",
+                variant === "aio"
+                  ? "bg-[#F5F3FF] text-[#7C3AED]"
+                  : "bg-[#EFF6FF] text-[#2563EB]"
+              )}
+            >
+              {tag}
+            </span>
+          </div>
+          <span className="mt-0.5 block text-[12.5px] text-(--t-3)">{desc}</span>
+        </div>
       </div>
-      {/* `flex-1` so the body owns the card's remaining height on both cards:
-          `items-center` then puts each ring on the centre of the full card
-          body rather than of its own text block, so the pair reads as a pair
-          whatever either card's copy does (SIGV2-1125). */}
+      {/* Equal-height bodies: ring + copy share one row so AIO/SEO stay 50/50. */}
       <div
         data-panel-body
-        className="flex flex-1 items-center gap-[30px] pt-[18px] max-md:flex-col"
+        className="flex flex-1 items-start gap-5 pt-4 max-md:flex-col max-md:items-center sm:gap-6"
       >
         <Ring score={score} variant={variant} name={name} target={target} trend={trend} />
         <div className="flex min-w-0 flex-1 flex-col self-stretch max-md:w-full">
@@ -330,7 +293,7 @@ function Panel({
               it, so a third "Score target" row was both a row the design does
               not have and 26px of extra card height that pushed every section
               below this one out of alignment (SIGV2-1125). */}
-          <div className="mb-3 flex flex-col gap-[7px]">
+          <div className="mb-3 flex flex-col gap-2 rounded-[14px] bg-[#F8FAFC] px-3.5 py-3">
             <StatRow
               statKey="gapToTarget"
               label={t("signalOverview.gapToTarget")}
@@ -353,8 +316,8 @@ function Panel({
               />
             ) : null}
           </div>
-          <div className="mt-1.5">
-            <div className="font-(family-name:--disp) text-[13px] font-bold">
+          <div className="mt-1">
+            <div className="font-(family-name:--disp) text-[13px] font-bold text-[#111827]">
               {t("signalOverview.roomTitle")}
             </div>
             <p className="mt-0.5 text-[12px] leading-[1.45] text-(--t-2)">{roomDesc}</p>
@@ -366,7 +329,7 @@ function Panel({
           <div data-panel-action className="mt-auto pt-3.5">
             <Link
               href={href}
-              className="inline-flex w-fit items-center gap-[9px] rounded-[999px] bg-(--btn-pill) px-5 py-2.5 text-[13px] font-semibold leading-[normal] text-white hover:brightness-[1.07] max-md:min-h-11"
+              className="inline-flex w-fit items-center gap-[9px] rounded-full border-0 bg-[#111827] px-5 py-2.5 text-[13px] font-semibold leading-[normal] text-white hover:bg-black max-md:min-h-11"
             >
               {suggestionsLabel}
               <svg
@@ -436,7 +399,7 @@ export default function VisibilityPanels({
         <span className="h-4 w-px flex-none bg-(--line-2)" aria-hidden="true" />
         <span className="text-[12.5px] text-(--t-3)">{t("signalOverview.visibilitySub")}</span>
       </div>
-      <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-stretch">
         <Panel
           variant="aio"
           name="AIO"

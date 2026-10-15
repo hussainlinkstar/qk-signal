@@ -164,7 +164,7 @@ function CustomTooltip({
   const total = payload.reduce((sum, entry) => sum + (entry.value || 0), 0);
 
   return (
-    <div className="rounded-2xl border border-(--border) bg-(--chart-tooltip-bg) px-4 py-3">
+    <div className="rounded-2xl border-0 bg-(--chart-tooltip-bg) px-4 py-3">
       <p className={`${CHART_TOOLTIP_LABEL_CLASS} mb-2`}>{label}</p>
       {payload.map((entry) => (
         <div key={entry.name} className="flex items-center justify-between gap-4 text-xs mb-1">
@@ -331,7 +331,7 @@ export default function LLMTrafficChart({
         icon={Bot}
         title={title ?? "Traffic from AI Models"}
         description={description ?? "Sessions referred by generative AI engines"}
-        className={`rounded-2xl border border-(--border) p-6 ${className}`}
+        className={`rounded-2xl border-0 p-6 ${className}`}
       >
         <ChartSkeleton />
       </ProjectMonitoringWidgetCard>
@@ -344,7 +344,7 @@ export default function LLMTrafficChart({
         icon={Bot}
         title={title ?? "Traffic from AI Models"}
         description={description ?? "Sessions referred by generative AI engines"}
-        className={`rounded-2xl border border-(--border) p-6 ${className}`}
+        className={`rounded-2xl border-0 p-6 ${className}`}
       >
         <ProjectMonitoringWidgetInlineError message={error} />
       </ProjectMonitoringWidgetCard>
@@ -358,7 +358,7 @@ export default function LLMTrafficChart({
       icon={Bot}
       title={title ?? "Traffic from AI Models"}
       description={description ?? "Sessions referred by generative AI engines"}
-      className={`rounded-2xl border border-(--border) p-6 ${className}`}
+      className={`rounded-2xl border-0 p-6 ${className}`}
       headerAside={
         <div className="flex items-center gap-2">
           <button
@@ -375,7 +375,7 @@ export default function LLMTrafficChart({
             <Layers size={12} />
             Group
           </button>
-          <div className="flex items-center gap-2 rounded-xl border border-(--border) bg-(--surface) px-3 py-1.5">
+          <div className="flex items-center gap-2 rounded-[22px] border-0 bg-white px-3 py-1.5">
             <TrendingUp size={14} className="text-primary" />
             <span className="text-sm font-bold text-(--foreground) tabular-nums">
               {totalSessions.toLocaleString()}

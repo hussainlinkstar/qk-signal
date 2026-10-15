@@ -51,7 +51,7 @@ export function SoonBadge({ className }: { className?: string }) {
   return (
     <em
       className={cx(
-        "rounded-[5px] border border-(--line) px-[5px] py-px font-(family-name:--mono) text-[9px] not-italic uppercase tracking-[0.08em] text-(--t-3)",
+        "rounded-[5px] border-0 px-[5px] py-px font-(family-name:--mono) text-[9px] not-italic uppercase tracking-[0.08em] text-(--t-3)",
         className
       )}
     >

@@ -38,7 +38,7 @@ export default function EntityAuthorityBreakdown({ breakdown }: EntityAuthorityB
                   {item.weight} weight · {value.toFixed(1)}
                 </span>
               </div>
-              <div className="h-3 overflow-hidden rounded-full border border-(--line) bg-[color-mix(in_srgb,var(--panel)_80%,transparent)]">
+              <div className="h-3 overflow-hidden rounded-full border-0 bg-[color-mix(in_srgb,var(--panel)_80%,transparent)]">
                 <div
                   className={`h-full w-(--bw) ${item.colorClass}`}
                   style={{ "--bw": `${value}%` } as React.CSSProperties}

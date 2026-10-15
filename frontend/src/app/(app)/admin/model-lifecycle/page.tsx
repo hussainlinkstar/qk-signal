@@ -89,8 +89,8 @@ type TabKey = "alerts" | "snapshots" | "sources";
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const MONO_META = MICRO_LABEL.replace("uppercase ", "");
-const WSEC = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
-const TABLE_SECTION = "overflow-hidden rounded-(--r) border border-(--line) bg-(--panel)";
+const WSEC = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
+const TABLE_SECTION = "overflow-hidden rounded-[22px] border-0 bg-white";
 const TH = `p-3 text-left ${MICRO_LABEL}`;
 const TD = "p-3 text-xs text-(--t-2)";
 const CHIP =
@@ -191,7 +191,7 @@ function FilterSelect({
       value={value}
       onChange={(e) => onChange(e.target.value)}
       className={cx(
-        "rounded-(--r-sm) border border-(--line) bg-(--panel) px-3 py-1.5 text-xs",
+        "rounded-(--r-sm) border-0 bg-white px-3 py-1.5 text-xs",
         "text-(--t-1) outline-hidden transition-colors",
         "focus:border-(--purple) focus:ring-1 focus:ring-(--purple)",
         value ? "border-(--purple) text-(--purple)" : "text-(--t-3)"

@@ -44,19 +44,19 @@ export function WorkspaceCostBreakdownSection({
         </div>
 
         <div className="grid gap-3 sm:grid-cols-3">
-          <div className="rounded-(--r-sm) border border-(--line) bg-(--line-2) px-4 py-3">
+          <div className="rounded-(--r-sm) border-0 bg-(--line-2) px-4 py-3">
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
               Projects
             </p>
             <p className="mt-2 text-xl font-bold tabular-nums text-(--t-1)">{rows.length}</p>
           </div>
-          <div className="rounded-(--r-sm) border border-(--line) bg-(--line-2) px-4 py-3">
+          <div className="rounded-(--r-sm) border-0 bg-(--line-2) px-4 py-3">
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
               Caps Active
             </p>
             <p className="mt-2 text-xl font-bold tabular-nums text-(--t-1)">{budgetsConfigured}</p>
           </div>
-          <div className="rounded-(--r-sm) border border-(--line) bg-(--line-2) px-4 py-3">
+          <div className="rounded-(--r-sm) border-0 bg-(--line-2) px-4 py-3">
             <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
               Attention
             </p>
@@ -68,7 +68,7 @@ export function WorkspaceCostBreakdownSection({
       </div>
 
       {isLoading ? (
-        <div className="mt-6 flex min-h-[180px] flex-col items-center justify-center gap-3 rounded-(--r-sm) border border-(--line) bg-(--line-2)">
+        <div className="mt-6 flex min-h-[180px] flex-col items-center justify-center gap-3 rounded-(--r-sm) border-0 bg-(--line-2)">
           <Loader2 className="h-6 w-6 animate-spin text-(--t-3)" />
           <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
             Loading cost breakdown
@@ -98,13 +98,13 @@ export function WorkspaceCostBreakdownSection({
       ) : (
         <div className="mt-6 space-y-4">
           {budgetsConfigured === 0 ? (
-            <div className="rounded-(--r-sm) border border-(--line) bg-(--line-2) p-4 text-[12.5px] text-(--t-2)">
+            <div className="rounded-(--r-sm) border-0 bg-(--line-2) p-4 text-[12.5px] text-(--t-2)">
               No project caps are configured yet. You can still review spend by project and enable
               hard guardrails from each project&apos;s settings page.
             </div>
           ) : null}
 
-          <div className="overflow-x-auto rounded-(--r-sm) border border-(--line)">
+          <div className="overflow-x-auto rounded-(--r-sm) border-0">
             <table className="w-full min-w-[560px] border-collapse text-left">
               <thead>
                 <tr className="border-b border-(--line) bg-(--line-2)">
@@ -133,7 +133,7 @@ export function WorkspaceCostBreakdownSection({
                     </td>
                     <td className="px-4 py-3.5 text-[13px] tabular-nums text-(--t-1)">
                       {row.monthly_limit_scans === null ? (
-                        <span className="inline-flex rounded-full border border-(--line) bg-(--line-2) px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-2)">
+                        <span className="inline-flex rounded-full border-0 bg-(--line-2) px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-2)">
                           Unlimited
                         </span>
                       ) : (

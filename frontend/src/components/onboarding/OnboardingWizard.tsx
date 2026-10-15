@@ -389,7 +389,7 @@ export default function OnboardingWizard({
       ) : null}
 
       {step === 1 ? (
-        <section className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-5">
+        <section className="rounded-[22px] border-0 bg-white px-[22px] py-5">
           <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[14.5px] leading-[19px] font-bold">
             {t("onboarding.step1Title")}
           </h3>
@@ -418,7 +418,7 @@ export default function OnboardingWizard({
       ) : null}
 
       {step === 2 ? (
-        <section className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-5">
+        <section className="rounded-[22px] border-0 bg-white px-[22px] py-5">
           <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[14.5px] leading-[19px] font-bold">
             {t("onboarding.step2Title")}
           </h3>
@@ -446,7 +446,7 @@ export default function OnboardingWizard({
       ) : null}
 
       {step === 3 ? (
-        <section className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-5">
+        <section className="rounded-[22px] border-0 bg-white px-[22px] py-5">
           <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[14.5px] leading-[19px] font-bold">
             {t("onboarding.step3Title")}
           </h3>
@@ -476,7 +476,7 @@ export default function OnboardingWizard({
               {competitors.map((domain) => (
                 <span
                   key={domain}
-                  className="inline-flex h-8 items-center gap-2 rounded-full border border-(--line) pl-[10px] pr-[6px] text-[13px] font-semibold"
+                  className="inline-flex h-8 items-center gap-2 rounded-full border-0 pl-[10px] pr-[6px] text-[13px] font-semibold"
                 >
                   {domain}
                   <button
@@ -504,7 +504,7 @@ export default function OnboardingWizard({
                   <input
                     type="text"
                     autoFocus
-                    className="field-focus-ring h-8 min-w-0 flex-1 rounded-full border border-(--line) bg-(--paper) px-[10px] text-[13px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]"
+                    className="field-focus-ring h-8 min-w-0 flex-1 rounded-full border-0 bg-[#EEF1F6] px-[10px] text-[13px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]"
                     placeholder={t("onboarding.competitorPlaceholder")}
                     value={competitorDraft}
                     disabled={isSubmitting}
@@ -538,14 +538,14 @@ export default function OnboardingWizard({
       ) : null}
 
       {step === 4 ? (
-        <section className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-5">
+        <section className="rounded-[22px] border-0 bg-white px-[22px] py-5">
           <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[14.5px] leading-[19px] font-bold">
             {t("onboarding.step4Title")}
           </h3>
           <div className="mb-4 text-[12.5px] leading-[16px] text-(--t-3)">
             {t("onboarding.step4Sub")}
           </div>
-          <div className="mb-3 flex items-start gap-2 rounded-[10px] border border-(--line) bg-(--blue-s) px-3 py-2.5 text-[12.5px] leading-[1.5] text-(--t-2)">
+          <div className="mb-3 flex items-start gap-2 rounded-[14px] border-0 bg-[#F7F8FA] bg-(--blue-s) px-3 py-2.5 text-[12.5px] leading-[1.5] text-(--t-2)">
             <svg
               viewBox="0 0 24 24"
               fill="none"
@@ -582,7 +582,7 @@ export default function OnboardingWizard({
           ) : ga4Configured === null && onLoadGa4Status ? null : (
             <button
               type="button"
-              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) transition-colors hover:border-(--line-btn-hover) disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) transition-colors hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-60"
               disabled={ga4Connected || !onConnectGa4}
               onClick={startGa4Connect}
             >
@@ -606,7 +606,7 @@ export default function OnboardingWizard({
       ) : null}
 
       {step === 5 ? (
-        <section className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-5">
+        <section className="rounded-[22px] border-0 bg-white px-[22px] py-5">
           <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[14.5px] leading-[19px] font-bold">
             {t("onboarding.step5Title")}
           </h3>
@@ -617,7 +617,7 @@ export default function OnboardingWizard({
           <div className="mt-2 flex items-center gap-[10px]">
             <button
               type="button"
-              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white transition-colors hover:bg-black disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white transition-colors hover:bg-black disabled:cursor-not-allowed disabled:opacity-60"
               disabled={!scanProjectId}
               onClick={() => {
                 if (scanProjectId) {
@@ -644,7 +644,7 @@ export default function OnboardingWizard({
       <div className="mt-[18px] flex justify-between gap-[10px]">
         <button
           type="button"
-          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) transition-colors hover:border-(--line-btn-hover) disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) transition-colors hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-60"
           disabled={step === 1 || isSubmitting}
           onClick={() => {
             setFormError(null);
@@ -663,7 +663,7 @@ export default function OnboardingWizard({
             <div className="flex gap-[10px]">
               <button
                 type="button"
-                className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) transition-colors hover:border-(--line-btn-hover) disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) transition-colors hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-60"
                 disabled={isSubmitting}
                 onClick={() => {
                   void handleNext();
@@ -673,7 +673,7 @@ export default function OnboardingWizard({
               </button>
               <button
                 type="button"
-                className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white transition-colors hover:bg-black disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white transition-colors hover:bg-black disabled:cursor-not-allowed disabled:opacity-60"
                 disabled={isSubmitting}
                 onClick={() => {
                   void handleSaveCompetitors();
@@ -685,7 +685,7 @@ export default function OnboardingWizard({
           ) : (
             <button
               type="button"
-              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white transition-colors hover:bg-black disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white transition-colors hover:bg-black disabled:cursor-not-allowed disabled:opacity-60"
               disabled={isSubmitting}
               onClick={() => {
                 void handleNext();

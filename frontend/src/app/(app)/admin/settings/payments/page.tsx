@@ -263,7 +263,7 @@ const catalogKindLabel = (kind: BillingCatalogItem["kind"]) => {
 
 /* ── Stat Card ───────────────────────────────────────────────────── */
 
-const CARD = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const CARD = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const CARD_TITLE =
   "m-0 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em] text-(--t-1)";
 const CAPTION = "text-[12.5px] leading-[1.5] text-(--t-2)";
@@ -288,7 +288,7 @@ function StatCard({
   subtext?: string;
 }) {
   return (
-    <div className="flex items-center gap-4 rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4">
+    <div className="flex items-center gap-4 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
       <div
         className={cx(
           "flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-(--line-2)",
@@ -311,7 +311,7 @@ function StatCard({
 /* ── Inline table input class ────────────────────────────────────── */
 
 const INLINE_INPUT = cx(
-  "h-9 w-full rounded-(--r-md) border border-(--line) bg-(--paper) px-3 font-(family-name:--mono) text-[12.5px]",
+  "h-9 w-full rounded-(--r-md) border-0 bg-[#EEF1F6] px-3 font-(family-name:--mono) text-[12.5px]",
   "text-(--t-1) placeholder:text-(--t-3)",
   "field-focus-ring outline-none focus:border-[#c7cdd6]",
   "disabled:cursor-not-allowed disabled:bg-(--line-2) disabled:text-(--t-3) transition-colors"
@@ -740,25 +740,25 @@ function RuntimeTab({
       <section className={CARD}>
         <h2 className={cx(CARD_TITLE, "mb-[14px]")}>Billing telemetry</h2>
         <div className="grid gap-3.5 md:grid-cols-2 xl:grid-cols-4">
-          <div className="rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4">
+          <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
             <div className="font-(family-name:--disp) text-[28px] font-extrabold tracking-[-0.02em]">
               {formatCurrency(overview?.monthly_recurring_revenue_estimate ?? 0)}
             </div>
             <div className={cx(MICRO_LABEL, "mt-0.5")}>MRR estimate</div>
           </div>
-          <div className="rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4">
+          <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
             <div className="font-(family-name:--disp) text-[28px] font-extrabold tracking-[-0.02em] text-(--warn)">
               {overview?.open_invoices ?? 0}
             </div>
             <div className={cx(MICRO_LABEL, "mt-0.5")}>Open invoices</div>
           </div>
-          <div className="rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4">
+          <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
             <div className="text-sm font-semibold text-(--t-1)">
               {overview?.latest_invoice_at ? formatDateTime(overview.latest_invoice_at) : "N/A"}
             </div>
             <div className={cx(MICRO_LABEL, "mt-0.5")}>Last invoice</div>
           </div>
-          <div className="rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4">
+          <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
             <div className="font-(family-name:--disp) text-[28px] font-extrabold tracking-[-0.02em]">
               {config?.has_runtime_override ? "Enabled" : "Disabled"}
             </div>
@@ -898,7 +898,7 @@ function PricingTab({
   return (
     <div className="space-y-[22px]">
       {/* Plan Price IDs */}
-      <section className="overflow-hidden rounded-(--r) border border-(--line) bg-(--panel)">
+      <section className="overflow-hidden rounded-[22px] border-0 bg-white">
         <div className="border-b border-(--line) px-[22px] py-[18px]">
           <h2 className={CARD_TITLE}>Plan price IDs</h2>
           <p className={cx(CAPTION, "mt-1")}>
@@ -958,7 +958,7 @@ function PricingTab({
       </section>
 
       {/* Commitment Price IDs */}
-      <section className="overflow-hidden rounded-(--r) border border-(--line) bg-(--panel)">
+      <section className="overflow-hidden rounded-[22px] border-0 bg-white">
         <div className="border-b border-(--line) px-[22px] py-[18px]">
           <h2 className={CARD_TITLE}>Commitment Price IDs</h2>
           <p className={cx(CAPTION, "mt-1")}>
@@ -1182,7 +1182,7 @@ function CatalogTab({
 
       {/* Sync Results */}
       {catalogResults.length > 0 && (
-        <section className="overflow-hidden rounded-(--r) border border-(--line) bg-(--panel)">
+        <section className="overflow-hidden rounded-[22px] border-0 bg-white">
           <div className="border-b border-(--line) px-[22px] py-[18px]">
             <h3 className={CARD_TITLE}>Sync results</h3>
           </div>
@@ -1223,7 +1223,7 @@ function CatalogTab({
 
       {/* Validation Results */}
       {validationResults.length > 0 && (
-        <section className="overflow-hidden rounded-(--r) border border-(--line) bg-(--panel)">
+        <section className="overflow-hidden rounded-[22px] border-0 bg-white">
           <div className="border-b border-(--line) px-[22px] py-[18px]">
             <h3 className={CARD_TITLE}>Validation results</h3>
           </div>

@@ -191,7 +191,7 @@ export function ScanHistoryCard({ projectId, projectName, className }: ScanHisto
       open={open}
       onToggle={(event) => setOpen(event.currentTarget.open)}
       className={cx(
-        "scroll-mt-[88px] overflow-hidden rounded-(--r) border border-(--line) bg-(--panel)",
+        "scroll-mt-[88px] overflow-hidden rounded-[22px] border-0 bg-white",
         className
       )}
     >
@@ -331,7 +331,7 @@ export function ScanHistoryCard({ projectId, projectName, className }: ScanHisto
                           <>
                             <Link
                               href={retryHref}
-                              className="inline-flex h-7 items-center rounded-full border border-(--line) px-3 text-[12px] font-semibold text-(--t-1) hover:bg-(--surface-subtle)"
+                              className="inline-flex h-7 items-center rounded-full border-0 px-3 text-[12px] font-semibold text-(--t-1) hover:bg-(--surface-subtle)"
                             >
                               {t("signalScanHistory.retryScan")}
                             </Link>
@@ -346,7 +346,7 @@ export function ScanHistoryCard({ projectId, projectName, className }: ScanHisto
                               disabled={busy}
                               onClick={() => void handleDownload(audit)}
                               className={cx(
-                                "inline-flex h-7 items-center gap-1.5 rounded-full border border-(--line) px-3 text-[12px] font-semibold text-(--t-1) hover:bg-(--surface-subtle)",
+                                "inline-flex h-7 items-center gap-1.5 rounded-full border-0 px-3 text-[12px] font-semibold text-(--t-1) hover:bg-(--surface-subtle)",
                                 busy && "cursor-wait opacity-80"
                               )}
                             >

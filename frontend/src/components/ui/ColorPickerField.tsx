@@ -85,7 +85,7 @@ export default function ColorPickerField({
   return (
     <div
       className={cx(
-        "relative overflow-hidden rounded-2xl border border-(--border) bg-(--surface) p-5 shadow-xs",
+        "relative overflow-hidden rounded-2xl border-0 bg-(--surface) p-5 shadow-xs",
         "bg-[radial-gradient(circle_at_top_right,var(--g20)_0%,transparent_36%),radial-gradient(circle_at_bottom_left,var(--g12)_0%,transparent_28%),linear-gradient(180deg,var(--surface)_0%,var(--surface-elevated)_100%)]",
         className
       )}
@@ -120,7 +120,7 @@ export default function ColorPickerField({
           ) : null}
         </div>
 
-        <div className="rounded-2xl border border-(--border) bg-(--surface-subtle) p-3">
+        <div className="rounded-2xl border-0 bg-(--surface-subtle) p-3">
           <div className="flex items-center gap-3">
             <div
               className="relative h-14 w-14 shrink-0 overflow-hidden rounded-2xl border border-white/20 bg-[linear-gradient(145deg,var(--gA)_0%,var(--gB)_100%)] shadow-[0_16px_32px_-24px_var(--gS)]"

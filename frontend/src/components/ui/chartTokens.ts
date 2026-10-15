@@ -9,9 +9,9 @@ export const CHART_COLORS = [
   "var(--chart-6)",
 ] as const;
 
-export const CHART_PANEL_CLASS = "rounded-2xl border border-(--border) bg-(--surface-subtle)";
+export const CHART_PANEL_CLASS = "rounded-2xl border-0 bg-(--surface-subtle)";
 export const CHART_EMPTY_STATE_CLASS =
-  "flex items-center justify-center rounded-2xl border border-(--border) bg-(--surface-subtle) text-sm text-(--text-muted)";
+  "flex items-center justify-center rounded-2xl border-0 bg-(--surface-subtle) text-sm text-(--text-muted)";
 export const CHART_TOOLTIP_LABEL_CLASS = "text-xs font-semibold text-(--text-muted)";
 export const CHART_TOOLTIP_VALUE_CLASS = "font-semibold text-(--foreground)";
 export const CHART_LEGEND_TEXT_CLASS = "text-xs font-medium text-(--text-soft)";

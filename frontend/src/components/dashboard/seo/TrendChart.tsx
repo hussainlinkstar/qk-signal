@@ -35,7 +35,7 @@ export default function TrendChart({
               How your SEO score changed over completed assessments.
             </p>
           </div>
-          <div className="rounded-xl border border-amber-500/20 bg-amber-500/10 p-4 text-sm font-medium text-amber-200 shadow-inner">
+          <div className="rounded-xl border-0 bg-amber-500/10 p-4 text-sm font-medium text-amber-200 shadow-inner">
             Insufficient history: you need at least 2 completed assessments for trend analysis.
           </div>
         </Card>

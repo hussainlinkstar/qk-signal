@@ -158,7 +158,7 @@ export function BrandSurfacePreview({
       </div>
 
       <div
-        className="overflow-hidden rounded border border-(--border) bg-(--panel)"
+        className="overflow-hidden rounded border-0 bg-(--panel)"
         style={
           {
             "--preview-primary": primaryColor,
@@ -171,7 +171,7 @@ export function BrandSurfacePreview({
           <div className="flex items-center justify-between gap-4">
             <div className="flex min-w-0 items-center gap-3">
               {logoUrl ? (
-                <div className="flex h-11 items-center rounded border border-(--line) bg-white px-3">
+                <div className="flex h-11 items-center rounded border-0 bg-white px-3">
                   {/* Local preview images use blob/data URLs and do not benefit from next/image here. */}
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -205,7 +205,7 @@ export function BrandSurfacePreview({
         </div>
 
         <div className="space-y-4 px-5 py-5">
-          <div className="rounded border border-(--line) bg-(--line-2) p-4">
+          <div className="rounded border-0 bg-(--line-2) p-4">
             <p className={TYPO.microLabel}>{surfaceLabel}</p>
             <p className="mt-2 text-base font-semibold text-(--foreground)">{resolvedTitle}</p>
             <p className="mt-2 text-sm leading-6 text-(--muted-foreground)">
@@ -214,13 +214,13 @@ export function BrandSurfacePreview({
           </div>
 
           <div className="grid gap-3 sm:grid-cols-2">
-            <div className="rounded border border-(--line) bg-(--line-2) p-4">
+            <div className="rounded border-0 bg-(--line-2) p-4">
               <p className={TYPO.microLabel}>Primary accent</p>
-              <div className="mt-3 h-14 rounded border border-(--line) bg-(--preview-primary)" />
+              <div className="mt-3 h-14 rounded border-0 bg-(--preview-primary)" />
             </div>
-            <div className="rounded border border-(--line) bg-(--line-2) p-4">
+            <div className="rounded border-0 bg-(--line-2) p-4">
               <p className={TYPO.microLabel}>Secondary accent</p>
-              <div className="mt-3 h-14 rounded border border-(--line) bg-(--preview-secondary)" />
+              <div className="mt-3 h-14 rounded border-0 bg-(--preview-secondary)" />
             </div>
           </div>
 
@@ -229,7 +229,7 @@ export function BrandSurfacePreview({
           companyName ||
           companyAddress ||
           companyTrademarkText ? (
-            <div className="rounded border border-(--line) bg-(--line-2) p-4">
+            <div className="rounded border-0 bg-(--line-2) p-4">
               <p className={TYPO.microLabel}>Delivery footer</p>
 
               {socialIcons.length ? (

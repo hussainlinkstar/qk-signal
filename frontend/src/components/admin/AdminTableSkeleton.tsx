@@ -18,7 +18,7 @@ export function AdminTableSkeleton({
 }: AdminTableSkeletonProps) {
   return (
     <div
-      className={`overflow-hidden rounded-(--r-md) border border-(--line) bg-(--panel) ${className}`}
+      className={`overflow-hidden rounded-(--r-md) border-0 bg-white ${className}`}
     >
       {/* Header row */}
       <div className="flex items-center gap-3.5 border-b border-(--line) px-3.5 py-3">

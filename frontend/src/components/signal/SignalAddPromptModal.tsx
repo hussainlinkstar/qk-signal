@@ -30,7 +30,7 @@ const QUERY_TYPES: Array<{ value: "aeo" | "geo"; labelKey: string }> = [
 const fieldLabelCls =
   "mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const inputCls =
-  "h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-3 text-[13.5px] text-(--t-1) outline-hidden focus:border-[#C7CDD6]";
+  "h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-3 text-[13.5px] text-(--t-1) outline-hidden focus:bg-white";
 
 /**
  * Add prompt, on the surface the approved design puts it: the Prompts tab of
@@ -173,7 +173,7 @@ export default function SignalAddPromptModal({
     >
       <div
         data-signal-theme
-        className="w-[560px] max-w-full rounded-[20px] border border-(--line) bg-(--panel) p-[28px_30px_26px] shadow-[0_40px_90px_-30px_rgba(12,15,22,0.5)]"
+        className="w-[560px] max-w-full rounded-[20px] border-0 bg-white p-[28px_30px_26px] shadow-[0_40px_90px_-30px_rgba(12,15,22,0.5)]"
       >
         <p className="font-(family-name:--mono) text-[11px] uppercase tracking-[0.14em] text-(--t-3)">
           {t("signalAddPrompt.eyebrow")}
@@ -203,7 +203,7 @@ export default function SignalAddPromptModal({
         {refusal ? (
           <div
             role="alert"
-            className="mb-[18px] rounded-[12px] border border-(--line) bg-(--paper) px-4 py-3 text-[12.5px] leading-[1.55] text-(--t-2)"
+            className="mb-[18px] rounded-[12px] border-0 bg-[#EEF1F6] px-4 py-3 text-[12.5px] leading-[1.55] text-(--t-2)"
           >
             <p className="m-0 font-semibold text-(--t-1)">{refusal}</p>
             <p className="m-0 mt-1.5">
@@ -214,14 +214,14 @@ export default function SignalAddPromptModal({
             <div className="mt-3 flex flex-wrap gap-2">
               <Link
                 href={`/dashboard/projects/${projectId}/ai-answers?tab=prompts`}
-                className="inline-flex h-8 items-center rounded-[10px] border border-(--line) bg-(--panel) px-[13px] text-[12.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                className="inline-flex h-8 items-center rounded-full border-0 bg-[#EEF1F6] px-[13px] text-[12.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
               >
                 {t("signalAddPrompt.managePrompts")}
               </Link>
               {upgradePlanLabel ? (
                 <Link
                   href={upgradeHref}
-                  className="inline-flex h-8 items-center rounded-[10px] border border-(--ink) bg-(--ink) px-[13px] text-[12.5px] font-semibold text-white hover:bg-black"
+                  className="inline-flex h-8 items-center rounded-full border-0 bg-[#111827] px-[13px] text-[12.5px] font-semibold text-white hover:bg-black"
                 >
                   {t("signalAddPrompt.viewPlans")}
                 </Link>
@@ -317,7 +317,7 @@ export default function SignalAddPromptModal({
             type="button"
             onClick={handleClose}
             disabled={submitting}
-            className="h-[38px] rounded-[10px] border border-(--line) bg-(--panel) px-[15px] text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] disabled:opacity-50"
+            className="h-[38px] rounded-full border-0 bg-[#EEF1F6] px-[15px] text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:opacity-50"
           >
             {t("signalAddPrompt.cancel")}
           </button>

@@ -72,7 +72,7 @@ function StatCard({
   accent: string;
 }) {
   return (
-    <div className="rounded-xl border border-(--line) bg-(--line-2) p-4 flex items-center gap-3 min-w-0">
+    <div className="rounded-xl border-0 bg-(--line-2) p-4 flex items-center gap-3 min-w-0">
       <div
         className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border bg-(--abg) border-(--abr)"
         style={{ "--abg": `${accent}20`, "--abr": `${accent}40` } as React.CSSProperties}
@@ -109,7 +109,7 @@ function DeltaBadge({ gained, lost }: { gained: number; lost: number }) {
     );
   }
   return (
-    <span className="inline-flex items-center gap-1 rounded-full bg-(--line-2) border border-(--line) px-2.5 py-1 text-xs font-semibold text-(--t-2)">
+    <span className="inline-flex items-center gap-1 rounded-full bg-(--line-2) border-0 px-2.5 py-1 text-xs font-semibold text-(--t-2)">
       <Minus size={12} />
       No change
     </span>

@@ -17,7 +17,7 @@ import { getScoreColor } from "@/lib/scoreColors";
 import type { AuditComparisonResponse, ScoreDelta } from "@/hooks/useAuditComparison";
 
 // signal-MVP `.card.sblock`: panel fill, 1px --line, radius --r, padding 20/22.
-const CARD_CLASS = "rounded-(--r) border border-(--line) bg-(--panel) px-[18px] py-3";
+const CARD_CLASS = "rounded-[22px] border-0 bg-white px-[18px] py-3";
 // signal-MVP `.sblock h3` and `.sblock .sd`.
 const CARD_TITLE_CLASS = "m-0 mb-[3px] font-(family-name:--disp) text-[14.5px] font-bold";
 const CARD_SUB_CLASS = "mb-4 text-[12.5px] text-(--t-3)";
@@ -247,7 +247,7 @@ export default function ScanResults({
       </div>
 
       {children ? (
-        <div className="rounded-(--r) border border-(--line) bg-(--panel)">{children}</div>
+        <div className="rounded-[22px] border-0 bg-white">{children}</div>
       ) : null}
     </ReportSection>
   );

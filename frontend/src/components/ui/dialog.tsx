@@ -29,7 +29,7 @@ const DialogContent = React.forwardRef<
   <DialogPrimitive.Content
     ref={ref}
     className={cn(
-      "relative border border-(--border) bg-(--surface) shadow-lg outline-hidden",
+      "relative border-0 bg-(--surface) shadow-lg outline-hidden",
       className
     )}
     {...props}

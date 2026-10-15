@@ -76,7 +76,7 @@ export default function AuditDepthSection({
       <div
         role="group"
         aria-label={t("signalStartCheck.depth.heading")}
-        className="mb-3 inline-flex gap-[2px] rounded-[9px] border border-(--line) bg-(--paper) p-[3px]"
+        className="mb-3 inline-flex gap-[2px] rounded-[9px] border-0 bg-[#EEF1F6] p-[3px]"
       >
         {TIERS.map((tier) => {
           const active = form.tier === tier.value;

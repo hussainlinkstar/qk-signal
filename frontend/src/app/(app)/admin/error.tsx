@@ -18,7 +18,7 @@ export default function AdminErrorBoundary({
 
   return (
     <div className="flex min-h-[50vh] flex-col items-center justify-center p-8 text-center">
-      <div className="max-w-md rounded-(--r) border border-(--line) bg-(--panel) p-8">
+      <div className="max-w-md rounded-[22px] border-0 bg-white p-8">
         <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-(--r-md) bg-(--bad-s)">
           <AlertTriangle className="text-(--bad)" size={24} />
         </div>
@@ -32,7 +32,7 @@ export default function AdminErrorBoundary({
         </p>
 
         {error?.message && (
-          <p className="mb-6 break-all rounded-(--r-md) border border-(--line) bg-(--paper) px-3 py-2 font-(family-name:--mono) text-[11px] text-(--bad)">
+          <p className="mb-6 break-all rounded-(--r-md) border-0 bg-[#EEF1F6] px-3 py-2 font-(family-name:--mono) text-[11px] text-(--bad)">
             {error.message}
           </p>
         )}

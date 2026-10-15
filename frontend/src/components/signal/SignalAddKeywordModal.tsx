@@ -18,7 +18,7 @@ export type SignalAddKeywordModalProps = {
 const fieldLabelCls =
   "mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const inputCls =
-  "h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-3 text-[13.5px] text-(--t-1) outline-hidden focus:border-[#C7CDD6]";
+  "h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-3 text-[13.5px] text-(--t-1) outline-hidden focus:bg-white";
 
 /**
  * Add keyword, on the surface the approved design puts it: the Keywords tab of
@@ -92,7 +92,7 @@ export default function SignalAddKeywordModal({
     >
       <div
         data-signal-theme
-        className="w-[560px] max-w-full rounded-[20px] border border-(--line) bg-(--panel) p-[28px_30px_26px] shadow-[0_40px_90px_-30px_rgba(12,15,22,0.5)]"
+        className="w-[560px] max-w-full rounded-[20px] border-0 bg-white p-[28px_30px_26px] shadow-[0_40px_90px_-30px_rgba(12,15,22,0.5)]"
       >
         <p className="font-(family-name:--mono) text-[11px] uppercase tracking-[0.14em] text-(--t-3)">
           {t("signalAddKeyword.eyebrow")}
@@ -126,13 +126,13 @@ export default function SignalAddKeywordModal({
         {error ? (
           <div
             role="alert"
-            className="mt-3 rounded-[12px] border border-(--line) bg-(--paper) px-4 py-3 text-[12.5px] leading-[1.55] text-(--t-2)"
+            className="mt-3 rounded-[12px] border-0 bg-[#EEF1F6] px-4 py-3 text-[12.5px] leading-[1.55] text-(--t-2)"
           >
             <p className="m-0 font-semibold text-(--t-1)">{error.message}</p>
             {error.fromApi ? (
               <Link
                 href={`/dashboard/projects/${projectId}/monitoring#tracked-keywords`}
-                className="mt-3 inline-flex h-8 items-center rounded-[10px] border border-(--line) bg-(--panel) px-[13px] text-[12.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                className="mt-3 inline-flex h-8 items-center rounded-full border-0 bg-[#EEF1F6] px-[13px] text-[12.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
               >
                 {t("signalAddKeyword.manageKeywords")}
               </Link>
@@ -145,7 +145,7 @@ export default function SignalAddKeywordModal({
             type="button"
             onClick={handleClose}
             disabled={submitting}
-            className="h-[38px] rounded-[10px] border border-(--line) bg-(--panel) px-[15px] text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] disabled:opacity-50"
+            className="h-[38px] rounded-full border-0 bg-[#EEF1F6] px-[15px] text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:opacity-50"
           >
             {t("signalAddKeyword.cancel")}
           </button>

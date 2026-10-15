@@ -70,7 +70,7 @@ export default function CompetitorRosterChips({
       {competitors.map((competitor) => (
         <span
           key={competitor.id}
-          className="inline-flex h-8 items-center gap-2 rounded-[999px] border border-(--line) pr-1.5 pl-2.5 text-[13px] font-semibold text-(--t-1)"
+          className="inline-flex h-8 items-center gap-2 rounded-[999px] border-0 pr-1.5 pl-2.5 text-[13px] font-semibold text-(--t-1)"
         >
           {competitor.display_name}
           <button

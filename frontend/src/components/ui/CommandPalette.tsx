@@ -130,7 +130,7 @@ export default function CommandPalette({
               <span className="text-(--muted-foreground)">{action.icon}</span>
               <span className="flex-1">{action.label}</span>
               {action.shortcut && (
-                <kbd className="rounded border border-(--border) bg-(--background) px-1.5 py-0.5 font-mono text-[10px] text-(--muted-foreground)">
+                <kbd className="rounded border-0 bg-(--background) px-1.5 py-0.5 font-mono text-[10px] text-(--muted-foreground)">
                   {action.shortcut}
                 </kbd>
               )}
@@ -140,7 +140,7 @@ export default function CommandPalette({
 
         <div className="flex items-center justify-between border-t border-(--border) px-4 py-2 text-[10px] text-(--muted-foreground)">
           <span>↑↓ navigate · ↵ select · esc close</span>
-          <kbd className="rounded border border-(--border) bg-(--background) px-1.5 py-0.5 font-mono">
+          <kbd className="rounded border-0 bg-(--background) px-1.5 py-0.5 font-mono">
             ⌘K
           </kbd>
         </div>

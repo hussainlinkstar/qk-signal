@@ -15,8 +15,7 @@ export type SignalHeroProps = {
 };
 
 /**
- * Matches signal-MVP's `.hero`: gauge (`.gwrap`) + meta (`.hmeta`: eyebrow/h1/p)
- * + optional path-to-target card (`.gap`). (signal.css lines 49-64)
+ * Flat hero block used across project/module screens.
  */
 export default function SignalHero({
   score,
@@ -27,51 +26,44 @@ export default function SignalHero({
   target,
 }: SignalHeroProps) {
   return (
-    <div className="relative flex flex-col min-w-0 gap-5 overflow-hidden rounded-[16px] border border-(--line) bg-(--panel) p-5 md:flex-row md:items-center md:gap-[26px] md:p-[24px_28px]">
-      <span
-        className={cx(
-          "absolute inset-y-0 start-0 w-1",
-          accent === "gradient" ? "bg-(image:--grad)" : "bg-(--blue)"
-        )}
-        aria-hidden="true"
-      />
+    <div className="relative flex flex-col min-w-0 gap-5 overflow-hidden rounded-[22px] border-0 bg-white p-5 md:flex-row md:items-center md:gap-[26px] md:p-6">
       <div className="self-center flex-none md:self-auto">
         <SignalGauge score={score} size={132} />
       </div>
       <div className="min-w-0 flex-1">
         <div
           className={cx(
-            "font-(family-name:--mono) text-[11px] uppercase tracking-[0.14em]",
-            accent === "gradient" ? "text-(--purple)" : "text-(--blue)"
+            "text-[11px] font-semibold uppercase tracking-[0.12em]",
+            accent === "gradient" ? "text-[#7C3AED]" : "text-[#2563EB]"
           )}
         >
           {eyebrow}
         </div>
-        <h1 className="my-[8px] mb-1.5 font-(family-name:--disp) text-[28px] font-black tracking-[-0.02em] text-(--t-1)">
+        <h1 className="my-2 mb-1.5 font-(family-name:--disp) text-[28px] font-bold tracking-[-0.03em] text-[#111827]">
           {title}
         </h1>
-        <p className="text-[13.5px] leading-[1.55] text-(--t-2)">{description}</p>
+        <p className="text-[14px] leading-[1.55] text-[#6B7280]">{description}</p>
       </div>
       {target && (
-        <div className="w-full flex-none rounded-xl border border-(--line) bg-(--paper) p-[16px_18px] md:w-[250px]">
-          <div className="font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)">
+        <div className="w-full flex-none rounded-[16px] border-0 bg-[#F7F8FA] p-4 md:w-[250px]">
+          <div className="text-[10.5px] font-semibold uppercase tracking-[0.08em] text-[#9CA3AF]">
             Path to target
           </div>
           <div className="my-2 mb-1 flex items-baseline gap-2">
-            <span className="font-(family-name:--disp) text-[30px] font-black tracking-[-0.02em] text-(--t-1)">
+            <span className="font-(family-name:--disp) text-[30px] font-bold tracking-[-0.02em] text-[#111827]">
               {target.now}
             </span>
-            <span className="text-(--t-3)">→</span>
+            <span className="text-[#9CA3AF]">→</span>
             <span
               className={cx(
-                "font-(family-name:--disp) text-[22px] font-extrabold",
-                accent === "gradient" ? "text-(--purple)" : "text-(--blue)"
+                "font-(family-name:--disp) text-[22px] font-bold",
+                accent === "gradient" ? "text-[#7C3AED]" : "text-[#2563EB]"
               )}
             >
               {target.target}
             </span>
           </div>
-          <div className="text-[12.5px] text-(--t-2)">{target.note}</div>
+          <div className="text-[12.5px] text-[#6B7280]">{target.note}</div>
         </div>
       )}
     </div>

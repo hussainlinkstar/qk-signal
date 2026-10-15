@@ -184,7 +184,7 @@ export function SerpFeatureSummary({
   if (!entries.length) return null;
 
   return (
-    <div className="rounded-xl border border-(--line) bg-(--line-2) p-4">
+    <div className="rounded-xl border-0 bg-(--line-2) p-4">
       <p className="text-[10px] font-bold uppercase tracking-widest text-(--t-3) mb-3">
         SERP Features Distribution
       </p>

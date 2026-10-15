@@ -11,17 +11,15 @@ import {
   type WiredMetricKey,
 } from "@/lib/visibilityMetrics";
 import { cx } from "@/components/ui/utils";
+import SignalScoreRing from "@/components/signal/SignalScoreRing";
 import type { VisibilitySummaryResponse } from "@/types/monitoring";
 
-const RING_C = 2 * Math.PI * 26;
-
 const STATUS_TOKEN: Record<string, string> = {
-  excellent: "bg-(--good-s) text-(--good)",
-  warning: "bg-(--warn-s) text-(--warn)",
-  critical: "bg-(--bad-s) text-(--bad)",
+  excellent: "bg-[#ECFDF5] text-[#059669]",
+  warning: "bg-[#FFFBEB] text-[#D97706]",
+  critical: "bg-[#FFF1F2] text-[#E11D48]",
 };
 
-// signal-MVP `.metric` icons/accents per approved row.
 type MetricDef = {
   key: string;
   icon: React.ReactNode;
@@ -33,26 +31,26 @@ const VISIBILITY_METRICS: MetricDef[] = [
   {
     key: "answerPresence",
     icon: <MessageCircle size={16} strokeWidth={2} aria-hidden="true" />,
-    iconBg: "rgba(18,161,80,.1)",
-    iconFg: "var(--good)",
+    iconBg: "#ECFDF5",
+    iconFg: "#059669",
   },
   {
     key: "sourceCitations",
     icon: <FileText size={16} strokeWidth={2} aria-hidden="true" />,
-    iconBg: "rgba(18,161,80,.1)",
-    iconFg: "var(--good)",
+    iconBg: "#EFF6FF",
+    iconFg: "#2563EB",
   },
   {
     key: "engineCoverage",
     icon: <Search size={16} strokeWidth={2} aria-hidden="true" />,
-    iconBg: "rgba(18,161,80,.1)",
-    iconFg: "var(--good)",
+    iconBg: "#F5F3FF",
+    iconFg: "#7C3AED",
   },
   {
     key: "brandMentions",
     icon: <CircleDot size={16} strokeWidth={2} aria-hidden="true" />,
-    iconBg: "rgba(18,161,80,.1)",
-    iconFg: "var(--good)",
+    iconBg: "#FFFBEB",
+    iconFg: "#D97706",
   },
 ];
 
@@ -70,41 +68,38 @@ function MeasuredMetric({
   const color = getScoreColor(metric.pct);
   return (
     <div
-      className="flex items-center gap-3.5 border-t border-t-(--line-2) px-5 py-[15px] first-of-type:border-t-0"
+      className="flex items-center gap-3 rounded-[14px] px-3 py-3 transition-colors hover:bg-[#F8FAFC]"
       data-metric-key={def.key}
     >
       <span
-        className="flex h-9 w-9 flex-none items-center justify-center rounded-full"
+        className="flex h-9 w-9 flex-none items-center justify-center rounded-[12px]"
         style={{ background: def.iconBg, color: def.iconFg }}
       >
         {def.icon}
       </span>
       <div className="min-w-0 flex-1">
-        <div className="text-[13.5px] font-semibold">{title}</div>
+        <div className="text-[13.5px] font-semibold text-[#111827]">{title}</div>
         <div className="text-[11.5px] text-(--t-3)">{sub}</div>
-      </div>
-      {/* Approved `.mval` + `.m-status`: the measured value, its bar, and the
-          score-band status. The mock's `.m-compare` peer line has no source and
-          is not rendered. */}
-      <div className="flex flex-col items-end gap-1.5">
-        <span className="font-(family-name:--disp) text-[15px] font-black leading-none">
-          {metric.value}
-        </span>
-        <span className="h-1.5 w-[86px] overflow-hidden rounded-full bg-(--line)">
+        <span className="mt-2 block h-1.5 w-full max-w-[140px] overflow-hidden rounded-full bg-[#EEF1F6]">
           <span
             className="block h-full rounded-full"
             style={{ width: `${metric.pct}%`, background: color.hex }}
           />
         </span>
       </div>
-      <span
-        className={cx(
-          "inline-flex items-center gap-1 whitespace-nowrap rounded-[5px] px-2 py-0.5 font-mono text-[10px] tracking-[0.04em]",
-          STATUS_TOKEN[color.level]
-        )}
-      >
-        {color.label}
-      </span>
+      <div className="flex flex-col items-end gap-1.5">
+        <span className="font-(family-name:--disp) text-[15px] font-extrabold leading-none text-[#111827]">
+          {metric.value}
+        </span>
+        <span
+          className={cx(
+            "inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-0.5 text-[10px] font-semibold",
+            STATUS_TOKEN[color.level]
+          )}
+        >
+          {color.label}
+        </span>
+      </div>
     </div>
   );
 }
@@ -122,24 +117,24 @@ function UnmeasuredMetric({
 }) {
   return (
     <div
-      className="flex items-center gap-3.5 border-t border-t-(--line-2) px-5 py-[15px] first-of-type:border-t-0"
+      className="flex items-center gap-3 rounded-[14px] px-3 py-3 transition-colors hover:bg-[#F8FAFC]"
       data-metric-key={def.key}
     >
       <span
-        className="flex h-9 w-9 flex-none items-center justify-center rounded-full"
+        className="flex h-9 w-9 flex-none items-center justify-center rounded-[12px]"
         style={{ background: def.iconBg, color: def.iconFg }}
       >
         {def.icon}
       </span>
       <div className="min-w-0 flex-1">
-        <div className="text-[13.5px] font-semibold">{title}</div>
+        <div className="text-[13.5px] font-semibold text-[#111827]">{title}</div>
         <div className="text-[11.5px] text-(--t-3)">{sub}</div>
       </div>
-      {/* The mock shows a value, bar, status and peer comparison here. None of
-          them has a resolvable source on this surface, so the row names why. */}
       <div className="flex flex-col items-end gap-1 text-end">
-        <span className="font-(family-name:--disp) text-[15px] font-black text-(--t-3)">-</span>
-        <span className="max-w-[190px] text-[10.5px] leading-[1.35] text-(--t-3)">{reason}</span>
+        <span className="rounded-full bg-[#EEF1F6] px-2.5 py-0.5 text-[11px] font-semibold text-(--t-3)">
+          —
+        </span>
+        <span className="max-w-[160px] text-[10.5px] leading-[1.35] text-(--t-3)">{reason}</span>
       </div>
     </div>
   );
@@ -161,19 +156,19 @@ function TintColumn({
   const { t } = useTranslation();
   const color = score !== null ? getScoreColor(score) : null;
   return (
-    <div className="flex flex-col rounded-[14px] bg-[#F6F8FB] p-5 text-start">
-      <div className="mb-1 flex items-center gap-[7px] font-(family-name:--disp) text-[13.5px] font-bold">
+    <div className="flex flex-col rounded-[16px] bg-[#F8FAFC] p-4 text-start">
+      <div className="mb-1 flex items-center gap-2 font-(family-name:--disp) text-[13.5px] font-bold text-[#111827]">
         {icon}
         {title}
       </div>
       <div className="text-[11.5px] text-(--t-3)">{sub}</div>
       {score !== null && color ? (
         <>
-          <div className="mt-2.5 font-(family-name:--disp) text-[30px] font-black leading-none">
+          <div className="mt-3 font-(family-name:--disp) text-[28px] font-extrabold leading-none text-[#111827]">
             {Math.round(score)}
-            <sub className="font-mono text-[11px] font-normal text-(--t-3)">/100</sub>
+            <sub className="text-[11px] font-semibold text-(--t-3)">/100</sub>
           </div>
-          <div className="mt-2.5 h-1 overflow-hidden rounded-full bg-(--line)">
+          <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-[#EEF1F6]">
             <div
               className="h-full rounded-full"
               style={{ width: `${score}%`, background: color.hex }}
@@ -182,12 +177,12 @@ function TintColumn({
         </>
       ) : (
         <>
-          <div className="mt-2.5 font-(family-name:--disp) text-[30px] font-black leading-none text-(--t-3)">
-            -
+          <div className="mt-3 font-(family-name:--disp) text-[28px] font-extrabold leading-none text-(--t-3)">
+            —
           </div>
-          <div className="mt-2.5 h-1 overflow-hidden rounded-full bg-(--line)" />
+          <div className="mt-2.5 h-1.5 overflow-hidden rounded-full bg-[#EEF1F6]" />
           <div className="mt-2 text-[11px] leading-[1.4] text-(--t-3)">
-            {t("signalOverview.notMeasured")} - {reason}
+            {t("signalOverview.notMeasured")} — {reason}
           </div>
         </>
       )}
@@ -215,7 +210,6 @@ export default function AiVisibilityReputation({
 }) {
   const { t } = useTranslation();
   const scoreColor = aioScore !== null ? getScoreColor(aioScore) : null;
-  const pct = aioScore ?? 0;
   const wired = summary ? deriveWiredMetrics(summary) : null;
   const visibilityLocked = summary?.entitlements.is_locked === true;
 
@@ -229,77 +223,41 @@ export default function AiVisibilityReputation({
         <span className="text-[12.5px] text-(--t-3)">{t("signalOverview.vrSub")}</span>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 xl:grid-cols-2">
-        <div className="rounded-(--r) border border-(--line) bg-(--panel)">
-          <div className="flex flex-col gap-4 px-[18px] py-4">
-            <div className="flex flex-col rounded-[14px] p-2">
-              <div className="flex items-start justify-between gap-4">
-                <div className="font-(family-name:--disp) text-[14px] font-bold">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:items-stretch">
+        <div className="rounded-[22px] border-0 bg-white px-5 py-5">
+          <div className="flex flex-col gap-4">
+            <div className="rounded-[16px] bg-[#F8FAFC] p-4">
+              <div className="flex items-start justify-between gap-3">
+                <div className="font-(family-name:--disp) text-[14px] font-bold text-[#111827]">
                   {t("signalOverview.vrOverall")}
                 </div>
-                <div>
-                  {aioScore !== null && scoreColor ? (
-                    <div className="font-(family-name:--disp) text-[14px] font-extrabold">
-                      {scoreColor.label}
-                    </div>
-                  ) : null}
-                  <div className="mt-0.5 text-[11.5px] leading-[1.4] text-(--t-2)">
-                    {t("signalOverview.vrOverallDesc")}
-                  </div>
-                </div>
+                {aioScore !== null && scoreColor ? (
+                  <span className="rounded-full bg-white px-2.5 py-0.5 text-[11px] font-semibold text-[#111827]">
+                    {scoreColor.label}
+                  </span>
+                ) : null}
               </div>
-              <div className="mt-2.5 flex items-center gap-[18px]">
-                <div className="relative h-16 w-16 flex-none">
-                  <svg className="h-16 w-16 -rotate-90" viewBox="0 0 64 64" aria-hidden="true">
-                    <defs>
-                      <linearGradient id="gVR" x1="0" y1="0" x2="1" y2="1">
-                        <stop offset="0" stopColor="var(--blue)" />
-                        <stop offset="1" stopColor="var(--purple)" />
-                      </linearGradient>
-                    </defs>
-                    <circle
-                      cx="32"
-                      cy="32"
-                      r="26"
-                      fill="none"
-                      stroke="var(--line)"
-                      strokeWidth="6"
-                    />
-                    <circle
-                      cx="32"
-                      cy="32"
-                      r="26"
-                      fill="none"
-                      stroke="url(#gVR)"
-                      strokeWidth="6"
-                      strokeLinecap="round"
-                      strokeDasharray={RING_C}
-                      strokeDashoffset={RING_C * (1 - pct / 100)}
-                    />
-                  </svg>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center font-(family-name:--disp) text-[17px] font-black leading-none">
-                    {aioScore !== null ? (
-                      aioScore
-                    ) : (
-                      /* SIGV2-1097: name the unmeasured state, never a bare dash. */
-                      <span className="px-1 text-center font-(family-name:--body-font) text-[9px] font-semibold leading-[1.25] text-(--t-3)">
-                        {t("signalOverview.notChecked")}
-                      </span>
-                    )}
-                    {aioScore !== null ? (
-                      <small className="font-mono text-[9px] font-normal text-(--t-3)">/100</small>
-                    ) : null}
-                  </div>
-                </div>
+              <div className="mt-1 text-[11.5px] leading-[1.4] text-(--t-2)">
+                {t("signalOverview.vrOverallDesc")}
+              </div>
+              <div className="mt-3.5 flex items-center gap-4">
+                <SignalScoreRing
+                  score={aioScore}
+                  size={72}
+                  color="#3B82F6"
+                  emptyLabel={
+                    <span className="px-1 text-center font-(family-name:--body-font) text-[9px] font-semibold leading-[1.25] text-(--t-3)">
+                      {t("signalOverview.notChecked")}
+                    </span>
+                  }
+                />
                 {opportunity ? (
-                  <div className="flex flex-1 items-start gap-2 rounded-[10px] bg-[#F6F8FB] px-3 py-2.5 text-[11.5px] leading-[1.45] text-(--t-2)">
-                    <Sparkles
-                      size={15}
-                      className="mt-0.5 flex-none text-(--purple)"
-                      aria-hidden="true"
-                    />
+                  <div className="flex flex-1 items-start gap-2 rounded-[12px] bg-white px-3 py-2.5 text-[11.5px] leading-[1.45] text-(--t-2)">
+                    <span className="flex h-7 w-7 flex-none items-center justify-center rounded-[9px] bg-[#F5F3FF] text-[#7C3AED]">
+                      <Sparkles size={14} aria-hidden="true" />
+                    </span>
                     <div>
-                      <b className="mb-0.5 block font-bold text-(--t-1)">
+                      <b className="mb-0.5 block font-bold text-[#111827]">
                         {t("signalOverview.vrOpportunity")}
                       </b>
                       {opportunity}
@@ -310,7 +268,7 @@ export default function AiVisibilityReputation({
             </div>
             <TintColumn
               icon={
-                <span className="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-[rgba(16,185,129,.14)] text-[#0E9F6E]">
+                <span className="flex h-7 w-7 flex-none items-center justify-center rounded-[9px] bg-[#ECFDF5] text-[#059669]">
                   <Search size={13} strokeWidth={2} aria-hidden="true" />
                 </span>
               }
@@ -326,14 +284,14 @@ export default function AiVisibilityReputation({
           </div>
         </div>
 
-        <div className="rounded-(--r) border border-(--line) bg-(--panel)">
-          <div className="flex items-baseline gap-2 px-5 pt-4 font-(family-name:--disp) text-[13px] font-bold tracking-[0.06em]">
+        <div className="flex h-full flex-col rounded-[22px] border-0 bg-white px-4 py-5 sm:px-5">
+          <div className="flex items-baseline gap-2 px-1 font-(family-name:--disp) text-[14px] font-bold text-[#111827]">
             {t("signalOverview.vrVisibility")}
-            <span className="font-(family-name:--body-font) text-[11.5px] font-normal tracking-normal text-(--t-3)">
+            <span className="font-(family-name:--body-font) text-[11.5px] font-normal text-(--t-3)">
               {t("signalOverview.vrFind")}
             </span>
           </div>
-          <div className="mt-3">
+          <div className="mt-3 flex flex-1 flex-col gap-0.5">
             {VISIBILITY_METRICS.map((def) => {
               const metric = wired?.[def.key as WiredMetricKey] ?? null;
               if (metric) {

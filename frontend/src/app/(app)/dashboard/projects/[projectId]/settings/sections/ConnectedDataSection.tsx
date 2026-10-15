@@ -252,7 +252,7 @@ export default function ConnectedDataSection({
         const boundButOff = Boolean(assignment?.source_id && !assignment?.is_active);
 
         const rowActionClass =
-          "inline-flex h-8 flex-none cursor-pointer items-center rounded-[10px] border border-(--line) bg-(--panel) px-[15px] text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] max-md:min-h-11";
+          "inline-flex h-8 flex-none cursor-pointer items-center rounded-full border-0 bg-[#EEF1F6] px-[15px] text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] max-md:min-h-11";
 
         return (
           <div key={sourceType} className="border-t border-t-(--line-2) first:border-t-0">
@@ -358,7 +358,7 @@ export default function ConnectedDataSection({
                     </label>
                     <select
                       id={`${sourceType}-mode`}
-                      className="wselect-chevron field-focus-ring h-11 w-full cursor-pointer appearance-none rounded-[10px] border border-(--line) bg-(--paper) pl-[13px] pr-[34px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none focus:border-[#C7CDD6]"
+                      className="wselect-chevron field-focus-ring h-11 w-full cursor-pointer appearance-none rounded-[14px] border-0 bg-[#EEF1F6] pl-[13px] pr-[34px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none focus:bg-white"
                       value={draft.bindingMode}
                       disabled={interactionDisabled}
                       onChange={(event) =>
@@ -386,7 +386,7 @@ export default function ConnectedDataSection({
                     </label>
                     <select
                       id={`${sourceType}-account`}
-                      className="wselect-chevron field-focus-ring h-11 w-full cursor-pointer appearance-none rounded-[10px] border border-(--line) bg-(--paper) pl-[13px] pr-[34px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none focus:border-[#C7CDD6]"
+                      className="wselect-chevron field-focus-ring h-11 w-full cursor-pointer appearance-none rounded-[14px] border-0 bg-[#EEF1F6] pl-[13px] pr-[34px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none focus:bg-white"
                       value={draft.sourceId}
                       disabled={pickerDisabled}
                       onChange={(event) => onAccountSelect(sourceType, event.target.value)}
@@ -409,7 +409,7 @@ export default function ConnectedDataSection({
                     </label>
                     <input
                       id={`${sourceType}-manual`}
-                      className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6]"
+                      className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white"
                       type="text"
                       placeholder={t(
                         `signalProjectSettings.connectedData.manualPlaceholder.${sourceType}`
@@ -460,7 +460,7 @@ export default function ConnectedDataSection({
                   </label>
                   <button
                     type="button"
-                    className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                    className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                     aria-label={t("signalProjectSettings.connectedData.refreshFor", {
                       source: sourceName,
                     })}
@@ -473,7 +473,7 @@ export default function ConnectedDataSection({
                   </button>
                   <button
                     type="button"
-                    className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+                    className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
                     aria-label={t("signalProjectSettings.connectedData.saveFor", {
                       source: sourceName,
                     })}
@@ -486,7 +486,7 @@ export default function ConnectedDataSection({
                   </button>
                   <button
                     type="button"
-                    className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-[10px] border border-[color-mix(in_srgb,var(--bad)_40%,transparent)] bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--bad)"
+                    className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-full border-0 bg-[#FEECEC] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--bad)"
                     aria-label={t("signalProjectSettings.connectedData.removeFor", {
                       source: sourceName,
                     })}
@@ -538,7 +538,7 @@ export default function ConnectedDataSection({
 
         {magicLinkStatus && (
           <div className="mt-4 flex flex-col gap-3.5 md:flex-row">
-            <div className="w-full min-w-0 flex-1 rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4 md:min-w-[auto]">
+            <div className="w-full min-w-0 flex-1 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4 md:min-w-[auto]">
               <div className="mb-1.5 text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
                 {t("signalProjectSettings.handshake.openLinks")}
               </div>
@@ -546,7 +546,7 @@ export default function ConnectedDataSection({
                 {magicLinkStatus.open_magic_link_count}
               </div>
             </div>
-            <div className="w-full min-w-0 flex-1 rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4 md:min-w-[auto]">
+            <div className="w-full min-w-0 flex-1 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4 md:min-w-[auto]">
               <div className="mb-1.5 text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
                 {t("signalProjectSettings.handshake.expires")}
               </div>
@@ -562,7 +562,7 @@ export default function ConnectedDataSection({
         <div className="mt-4 flex justify-end">
           <button
             type="button"
-            className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black max-md:min-h-11"
+            className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black max-md:min-h-11"
             onClick={onGenerateMagicLink}
             disabled={generatingMagicLink}
           >
@@ -580,7 +580,7 @@ export default function ConnectedDataSection({
 
         {magicLinkUrl && (
           <p
-            className="mt-3.5 break-all rounded-[10px] border border-(--line) bg-(--paper) px-3.5 py-3 text-[12px] text-(--purple)"
+            className="mt-3.5 break-all rounded-[14px] border-0 bg-[#EEF1F6] px-3.5 py-3 text-[12px] text-(--purple)"
             aria-label={t("signalProjectSettings.handshake.linkLabel")}
           >
             {magicLinkUrl}

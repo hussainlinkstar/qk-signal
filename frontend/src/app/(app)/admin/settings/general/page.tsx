@@ -11,7 +11,7 @@ import Button from "@/components/ui/Button";
 import SelectField from "@/components/ui/SelectField";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 
-const INSET = "rounded-(--r-md) border border-(--line) bg-(--paper) px-[18px] py-4";
+const INSET = "rounded-(--r-md) border-0 bg-[#EEF1F6] px-[18px] py-4";
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 
@@ -137,7 +137,7 @@ export default function AdminGeneralSettingsPage() {
         </Alert>
       ) : null}
 
-      <section className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+      <section className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
         <div className={INSET}>
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-xl">

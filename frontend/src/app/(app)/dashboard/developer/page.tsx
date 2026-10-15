@@ -164,7 +164,7 @@ export default function DeveloperHubPage() {
 
         {tab === "hub" && (
           <SignalTabPanel id="hub" activeId={tab}>
-            <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+            <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
               <div className="mb-4 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <h3 className="m-0 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
@@ -177,21 +177,21 @@ export default function DeveloperHubPage() {
                 {apiEnabled ? (
                   <Link
                     href="/dashboard/settings"
-                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
                   >
                     Manage API Keys
                   </Link>
                 ) : (
                   <Link
                     href="/dashboard/billing"
-                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
                   >
                     Upgrade for API Access
                   </Link>
                 )}
               </div>
               <div className="flex gap-3.5 max-md:flex-col">
-                <div className="flex-1 rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4">
+                <div className="flex-1 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
                   <div className="mb-1.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
                     API access
                   </div>
@@ -205,7 +205,7 @@ export default function DeveloperHubPage() {
                   </div>
                   <div className="mt-[3px] text-[11.5px] text-(--t-3)">{planName}</div>
                 </div>
-                <div className="flex-1 rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4">
+                <div className="flex-1 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
                   <div className="mb-1.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
                     Active keys
                   </div>
@@ -216,7 +216,7 @@ export default function DeveloperHubPage() {
                     Workspace-managed credentials
                   </div>
                 </div>
-                <div className="flex-1 rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4">
+                <div className="flex-1 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
                   <div className="mb-1.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
                     Throughput
                   </div>
@@ -258,7 +258,7 @@ export default function DeveloperHubPage() {
 
         {tab === "quickstart" && (
           <SignalTabPanel id="quickstart" activeId={tab}>
-            <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+            <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
               <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
                 Quick Start
               </h3>
@@ -279,20 +279,20 @@ export default function DeveloperHubPage() {
                   </div>
                   <Link
                     href={item.href}
-                    className="inline-flex h-[38px] cursor-pointer flex-none items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] max-md:w-full max-md:justify-center"
+                    className="inline-flex h-[38px] cursor-pointer flex-none items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] max-md:w-full max-md:justify-center"
                   >
                     {item.action}
                   </Link>
                 </div>
               ))}
             </div>
-            <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+            <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
               <div className="mb-3 flex items-center justify-between">
                 <h3 className="m-0 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
                   Starter Request
                 </h3>
                 <button
-                  className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                  className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                   onClick={() => void handleCopy("curl", codeSamples.curl)}
                 >
                   {copied === "curl" ? "Copied" : "Copy"}
@@ -314,7 +314,7 @@ export default function DeveloperHubPage() {
 
         {tab === "reference" && (
           <SignalTabPanel id="reference" activeId={tab}>
-            <div className="rounded-(--r) border border-(--line) bg-(--panel)">
+            <div className="rounded-[22px] border-0 bg-white">
               <div className="flex items-center justify-between px-6 pt-[22px] pb-0">
                 <div>
                   <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
@@ -326,7 +326,7 @@ export default function DeveloperHubPage() {
                 </div>
                 <Link
                   href="/dashboard/developer/docs"
-                  className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                  className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                 >
                   Full Docs
                 </Link>
@@ -379,7 +379,7 @@ export default function DeveloperHubPage() {
               </div>
             </div>
             <RawJsonReportCard />
-            <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+            <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
               <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
                 Webhook Delivery
               </h3>
@@ -426,7 +426,7 @@ export default function DeveloperHubPage() {
 
         {tab === "mcp" && (
           <SignalTabPanel id="mcp" activeId={tab}>
-            <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+            <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
               <div className="mb-4 flex flex-col items-stretch gap-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <h3 className="m-0 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
@@ -439,21 +439,21 @@ export default function DeveloperHubPage() {
                 {mcpEnabled ? (
                   <Link
                     href="/dashboard/settings"
-                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
                   >
                     Manage API Keys
                   </Link>
                 ) : (
                   <Link
                     href="/dashboard/billing"
-                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
                   >
                     Upgrade for MCP Access
                   </Link>
                 )}
               </div>
               <div className="flex gap-3.5 max-md:flex-col">
-                <div className="flex-1 rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4">
+                <div className="flex-1 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
                   <div className="mb-1.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
                     MCP access
                   </div>
@@ -469,7 +469,7 @@ export default function DeveloperHubPage() {
                     Available on Specialist and Executive
                   </div>
                 </div>
-                <div className="flex-1 rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4">
+                <div className="flex-1 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
                   <div className="mb-1.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
                     Endpoint
                   </div>
@@ -480,7 +480,7 @@ export default function DeveloperHubPage() {
                     Stateless, POST-only, JSON responses
                   </div>
                 </div>
-                <div className="flex-1 rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4">
+                <div className="flex-1 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
                   <div className="mb-1.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
                     Tools
                   </div>
@@ -498,7 +498,7 @@ export default function DeveloperHubPage() {
               <PlanLockNotice {...mcpLockContent} badgeLabel="MCP Server" />
             ) : null}
 
-            <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+            <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
               <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
                 Connect a Client
               </h3>
@@ -510,7 +510,7 @@ export default function DeveloperHubPage() {
                   Streamable HTTP clients
                 </span>
                 <button
-                  className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                  className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                   onClick={() => void handleCopy("mcp-http", mcpSamples.httpConfig)}
                 >
                   {copied === "mcp-http" ? "Copied" : "Copy"}
@@ -531,7 +531,7 @@ export default function DeveloperHubPage() {
                   Stdio clients (bridge)
                 </span>
                 <button
-                  className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                  className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                   onClick={() => void handleCopy("mcp-stdio", mcpClaudeDesktopConfig)}
                 >
                   {copied === "mcp-stdio" ? "Copied" : "Copy"}
@@ -564,7 +564,7 @@ export default function DeveloperHubPage() {
                   Verify with curl
                 </span>
                 <button
-                  className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                  className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                   onClick={() => void handleCopy("mcp-init", mcpSamples.initialize)}
                 >
                   {copied === "mcp-init" ? "Copied" : "Copy"}
@@ -582,7 +582,7 @@ export default function DeveloperHubPage() {
               </pre>
             </div>
 
-            <div className="rounded-(--r) border border-(--line) bg-(--panel)">
+            <div className="rounded-[22px] border-0 bg-white">
               <div className="px-6 pt-[22px] pb-0">
                 <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
                   Tool Catalogue

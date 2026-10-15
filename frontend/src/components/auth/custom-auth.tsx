@@ -144,7 +144,7 @@ export function UserButton(_props: any) {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 p-1 rounded-xl border border-(--border) bg-(--surface-subtle) hover:bg-(--muted) transition-all group"
+        className="flex items-center gap-2 p-1 rounded-xl border-0 bg-(--surface-subtle) hover:bg-(--muted) transition-all group"
       >
         <span className="transition-transform group-hover:scale-105">
           <UserAvatar
@@ -165,7 +165,7 @@ export function UserButton(_props: any) {
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-56 rounded-xl border border-(--border) bg-(--background)  shadow-2xl p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="absolute right-0 mt-2 w-56 rounded-xl border-0 bg-(--background)  shadow-2xl p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
           <div className="px-3 py-2 border-b border-(--border) mb-2">
             <p className="text-xs font-bold text-(--text-muted) uppercase tracking-widest leading-none mb-1">
               Signed in as

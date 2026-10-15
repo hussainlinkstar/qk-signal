@@ -63,7 +63,7 @@ export default function ReportDisclosure({
   return (
     <section
       id={anchorId}
-      className="scroll-mt-6 overflow-hidden rounded-(--r) border border-(--line) bg-(--panel)"
+      className="scroll-mt-6 overflow-hidden rounded-[22px] border-0 bg-white"
     >
       <button
         type="button"

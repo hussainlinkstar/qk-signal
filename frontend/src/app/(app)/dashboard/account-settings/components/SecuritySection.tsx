@@ -70,7 +70,7 @@ const PasskeyRow: React.FC<{
           <div className="flex min-w-0 flex-wrap items-center gap-2">
             <input
               aria-label="Passkey name"
-              className="field-focus-ring h-[34px] w-[200px] max-w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-[34px] w-[200px] max-w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               value={draft}
               onChange={(e) => setDraft(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && save()}
@@ -78,7 +78,7 @@ const PasskeyRow: React.FC<{
             />
             <button
               type="button"
-              className="inline-flex h-[34px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+              className="inline-flex h-[34px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
               onClick={save}
               disabled={busy}
             >
@@ -86,7 +86,7 @@ const PasskeyRow: React.FC<{
             </button>
             <button
               type="button"
-              className="inline-flex h-[34px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+              className="inline-flex h-[34px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
               onClick={() => {
                 setDraft(pk.name);
                 setEditing(false);
@@ -109,14 +109,14 @@ const PasskeyRow: React.FC<{
         <div className="flex flex-wrap items-center gap-2 sm:flex-none">
           <button
             type="button"
-            className="inline-flex h-[34px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+            className="inline-flex h-[34px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
             onClick={() => setEditing(true)}
           >
             Rename
           </button>
           <button
             type="button"
-            className="inline-flex h-[34px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] border-[rgba(229,72,77,0.4)] text-(--bad)"
+            className="inline-flex h-[34px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] border-[rgba(229,72,77,0.4)] text-(--bad)"
             onClick={remove}
             disabled={busy}
           >
@@ -304,7 +304,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
   return (
     <div className="flex flex-col gap-4">
       {/* ── Change Password ── */}
-      <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+      <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
         <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
           Change Password
         </h3>
@@ -321,7 +321,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
             </label>
             <input
               id="current-password"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="password"
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
@@ -337,7 +337,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
             </label>
             <input
               id="new-password"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
@@ -353,7 +353,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
             </label>
             <input
               id="confirm-password"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -370,7 +370,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
           )}
           <button
             type="button"
-            className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+            className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
             onClick={handleChangePassword}
             disabled={!isSignedIn || isBootLoading || isSavingPassword}
           >
@@ -380,7 +380,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
       </div>
 
       {/* ── Advanced Security ── */}
-      <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+      <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
         <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
           Advanced Security
         </h3>
@@ -417,7 +417,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
             {!mfaEnabled && !mfaSetup && (
               <button
                 type="button"
-                className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                 onClick={handleGenerateMfaSetup}
                 disabled={!isSignedIn || isPreparingMfa}
               >
@@ -430,7 +430,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
         {/* MFA setup / disable expanded content */}
         {!mfaEnabled && mfaSetup && (
           <div className="grid min-w-0 grid-cols-1 gap-5 py-1 pb-2 md:grid-cols-[220px_minmax(0,1fr)]">
-            <div className="flex items-center justify-center rounded-[12px] border border-(--line) bg-(--paper) p-3">
+            <div className="flex items-center justify-center rounded-[12px] border-0 bg-[#EEF1F6] p-3">
               <Image
                 src={mfaSetup.qr_code_url}
                 alt="MFA QR code"
@@ -453,7 +453,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
                 </label>
                 <input
                   id="mfa-manual-setup-key"
-                  className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+                  className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
                   value={mfaSetup.secret}
                   readOnly
                 />
@@ -467,7 +467,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
                 </label>
                 <input
                   id="mfa-authenticator-code"
-                  className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+                  className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
                   value={mfaCode}
                   onChange={(e) => setMfaCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
                   placeholder="123456"
@@ -478,7 +478,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
               <div className="flex flex-wrap gap-3">
                 <button
                   type="button"
-                  className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+                  className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
                   onClick={handleEnableMfa}
                   disabled={isSubmittingMfa}
                 >
@@ -486,7 +486,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
                 </button>
                 <button
                   type="button"
-                  className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                  className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                   onClick={handleGenerateMfaSetup}
                   disabled={isPreparingMfa || isSubmittingMfa}
                 >
@@ -508,7 +508,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
               </label>
               <input
                 id="mfa-disable-code"
-                className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+                className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
                 value={mfaCode}
                 onChange={(e) => setMfaCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
                 placeholder="123456"
@@ -518,7 +518,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
             </div>
             <button
               type="button"
-              className="inline-flex h-[38px] flex-none cursor-pointer items-center gap-2 rounded-[10px] border border-[rgba(229,72,77,0.4)] bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--bad) hover:border-[#D7DAE0]"
+              className="inline-flex h-[38px] flex-none cursor-pointer items-center gap-2 rounded-full border-0 bg-[#FEECEC] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--bad) hover:bg-[#E8ECF3]"
               onClick={handleDisableMfa}
               disabled={isSubmittingMfa}
             >
@@ -553,7 +553,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
             {!showAddForm && (
               <button
                 type="button"
-                className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                 onClick={() => setShowAddForm(true)}
                 disabled={!isSignedIn}
               >
@@ -593,7 +593,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
               </label>
               <input
                 id="new-passkey-name"
-                className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+                className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
                 value={passkeyName}
                 onChange={(e) => setPasskeyName(e.target.value)}
                 placeholder="e.g. MacBook TouchID"
@@ -601,7 +601,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
             </div>
             <button
               type="button"
-              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
               onClick={handleAddPasskey}
               disabled={isAddingPasskey}
             >
@@ -609,7 +609,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
             </button>
             <button
               type="button"
-              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
               onClick={() => {
                 setShowAddForm(false);
                 setPasskeyName("");
@@ -657,7 +657,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
                 {!microsoftIdentity.linked && !showLinkForm && (
                   <button
                     type="button"
-                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                     onClick={() => setShowLinkForm(true)}
                     disabled={!isSignedIn}
                   >
@@ -678,7 +678,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
                   </label>
                   <input
                     id="microsoft-link-password"
-                    className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+                    className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
                     type="password"
                     value={linkPassword}
                     onChange={(e) => setLinkPassword(e.target.value)}
@@ -700,7 +700,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
                 <div className="flex flex-wrap gap-3">
                   <button
                     type="button"
-                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
                     onClick={handleStartMicrosoftLink}
                     disabled={isLinking || !linkPassword || !linkConfirmed}
                   >
@@ -708,7 +708,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
                   </button>
                   <button
                     type="button"
-                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0]"
+                    className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
                     onClick={() => {
                       setShowLinkForm(false);
                       setLinkPassword("");

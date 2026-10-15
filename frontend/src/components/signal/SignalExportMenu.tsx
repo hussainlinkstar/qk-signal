@@ -344,7 +344,7 @@ export default function SignalExportMenu({
           setOpen((prev) => !prev);
         }}
         onKeyDown={onButtonKeyDown}
-        className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-(--line-btn-hover) disabled:cursor-not-allowed disabled:opacity-50"
+        className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-50"
       >
         <svg
           viewBox="0 0 24 24"
@@ -366,7 +366,7 @@ export default function SignalExportMenu({
           role="menu"
           aria-label={t("signalExport.menuHeading")}
           onKeyDown={onMenuKeyDown}
-          className="absolute top-[calc(100%+8px)] z-60 w-[296px] rounded-(--r-md) border border-(--line) bg-(--panel) p-2 shadow-[0_16px_40px_-16px_rgba(12,15,22,0.28)] end-0"
+          className="absolute top-[calc(100%+8px)] z-60 w-[296px] rounded-(--r-md) border-0 bg-white p-2 shadow-[0_16px_40px_-16px_rgba(12,15,22,0.28)] end-0"
         >
           <div className="px-2.5 pt-1.5 pb-2 font-(family-name:--disp) text-[13px] font-bold text-(--t-1)">
             {t("signalExport.menuHeading")}
@@ -431,7 +431,7 @@ export default function SignalExportMenu({
       {job ? (
         <div
           role="status"
-          className="absolute top-[calc(100%+8px)] z-60 w-[296px] rounded-(--r-md) border border-(--line) bg-(--panel) p-3.5 shadow-[0_16px_40px_-16px_rgba(12,15,22,0.28)] end-0"
+          className="absolute top-[calc(100%+8px)] z-60 w-[296px] rounded-(--r-md) border-0 bg-white p-3.5 shadow-[0_16px_40px_-16px_rgba(12,15,22,0.28)] end-0"
         >
           <div className="mb-2 flex items-center justify-between gap-2.5">
             <span className="font-(family-name:--disp) text-[13.5px] font-bold text-(--t-1)">
@@ -498,13 +498,13 @@ export default function SignalExportMenu({
               <button
                 type="button"
                 onClick={() => void downloadReady()}
-                className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-3 font-(family-name:--body-font) text-[12.5px] font-semibold text-white hover:bg-black"
+                className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-3 font-(family-name:--body-font) text-[12.5px] font-semibold text-white hover:bg-black"
               >
                 {t("signalExport.download")}
               </button>
               <Link
                 href="/dashboard/reports"
-                className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-3 font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:border-(--line-btn-hover)"
+                className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-3 font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
               >
                 {t("signalExport.library")}
               </Link>
@@ -516,7 +516,7 @@ export default function SignalExportMenu({
               <button
                 type="button"
                 onClick={() => void runJob(job.variant)}
-                className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-3 font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:border-(--line-btn-hover)"
+                className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-3 font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
               >
                 {t("signalExport.tryAgain")}
               </button>

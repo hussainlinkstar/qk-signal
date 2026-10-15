@@ -78,7 +78,7 @@ export default function PortalAuditHistory({
     return (
       <div
         role="status"
-        className="rounded-xl border border-(--border) bg-(--surface) p-8 text-center text-sm text-(--muted-foreground)"
+        className="rounded-[22px] border-0 bg-white p-8 text-center text-sm text-(--muted-foreground)"
       >
         <LoaderCircle className="mx-auto mb-3 h-8 w-8 animate-spin opacity-60" />
         <p>Loading audit history...</p>
@@ -96,7 +96,7 @@ export default function PortalAuditHistory({
             <button
               type="button"
               onClick={onRetry}
-              className="inline-flex items-center gap-2 rounded-(--r-md) border border-(--line) px-3 py-2"
+              className="inline-flex items-center gap-2 rounded-[12px] border-0 bg-[#EEF1F6] px-3 py-2"
             >
               <RefreshCw className="h-3.5 w-3.5" />
               Retry
@@ -111,7 +111,7 @@ export default function PortalAuditHistory({
 
   if (items.length === 0) {
     return (
-      <div className="rounded-xl border border-(--border) bg-(--surface) p-8 text-center text-sm text-(--muted-foreground)">
+      <div className="rounded-[22px] border-0 bg-white p-8 text-center text-sm text-(--muted-foreground)">
         <Clock className="mx-auto mb-3 h-8 w-8 opacity-40" />
         <p>No audit history yet.</p>
       </div>
@@ -119,7 +119,7 @@ export default function PortalAuditHistory({
   }
 
   return (
-    <div className="overflow-hidden rounded-xl border border-(--border) bg-(--surface)">
+    <div className="overflow-hidden rounded-[22px] border-0 bg-white">
       {/* Header */}
       <div className="grid grid-cols-[1fr_60px_60px_60px_100px] gap-2 border-b border-(--border) px-4 py-2.5 text-[11px] font-bold uppercase tracking-wider text-(--muted-foreground)">
         <span>Date</span>

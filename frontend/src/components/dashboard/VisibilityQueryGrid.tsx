@@ -57,7 +57,7 @@ export default function VisibilityQueryGrid({
           <div className="h-7 w-64 rounded bg-(--line-2)" />
           <div className="space-y-3">
             {Array.from({ length: 4 }).map((_, index) => (
-              <div key={index} className="h-14 rounded border border-(--line) bg-(--line-2)" />
+              <div key={index} className="h-14 rounded border-0 bg-(--line-2)" />
             ))}
           </div>
         </div>
@@ -144,7 +144,7 @@ export default function VisibilityQueryGrid({
               <tr key={query.id} className={TABLE.bodyRow}>
                 <td className={`${TABLE.bodyCell} min-w-[280px]`}>
                   <div className="flex items-start gap-3">
-                    <div className="mt-1 flex h-8 w-8 items-center justify-center rounded-xl border border-(--line) bg-(--line-2) text-(--t-2)">
+                    <div className="mt-1 flex h-8 w-8 items-center justify-center rounded-xl border-0 bg-(--line-2) text-(--t-2)">
                       <Search className="h-4 w-4" />
                     </div>
                     <div className="space-y-2">
@@ -180,7 +180,7 @@ export default function VisibilityQueryGrid({
         {queries.map((query) => (
           <div
             key={query.id}
-            className={`${CARD_SUBSECTION_CLASS} border border-(--line) bg-[color-mix(in_srgb,var(--panel)_50%,transparent)]`}
+            className={`${CARD_SUBSECTION_CLASS} border-0 bg-[color-mix(in_srgb,var(--panel)_50%,transparent)]`}
           >
             <div className="flex items-start justify-between gap-3">
               <div className="space-y-2">
@@ -196,7 +196,7 @@ export default function VisibilityQueryGrid({
               {providers.map((provider) => (
                 <div
                   key={`${query.id}-${provider}-mobile`}
-                  className="rounded border border-(--line) bg-(--line-2) p-3"
+                  className="rounded border-0 bg-(--line-2) p-3"
                 >
                   <p className={CARD_LABEL_CLASS}>{VISIBILITY_PROVIDER_LABELS[provider]}</p>
                   <div className="mt-2">

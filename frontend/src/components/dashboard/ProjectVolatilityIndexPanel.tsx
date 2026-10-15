@@ -243,11 +243,11 @@ export default function ProjectVolatilityIndexPanel({
             Signal Components ({formatDate(summary.latest_snapshot_date)})
           </p>
           <div className="space-y-2 text-xs text-(--t-2)">
-            <div className="flex items-center justify-between rounded-lg border border-(--line) bg-(--line-2) px-3 py-2">
+            <div className="flex items-center justify-between rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) px-3 py-2">
               <span>Changed queries</span>
               <span>{formatPercent(summary.changed_ratio, 2)}</span>
             </div>
-            <div className="flex items-center justify-between rounded-lg border border-(--line) bg-(--line-2) px-3 py-2">
+            <div className="flex items-center justify-between rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) px-3 py-2">
               <span>Avg text similarity</span>
               <span>
                 {summary.avg_text_similarity === null
@@ -255,7 +255,7 @@ export default function ProjectVolatilityIndexPanel({
                   : summary.avg_text_similarity.toFixed(3)}
               </span>
             </div>
-            <div className="flex items-center justify-between rounded-lg border border-(--line) bg-(--line-2) px-3 py-2">
+            <div className="flex items-center justify-between rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) px-3 py-2">
               <span>Avg citation jaccard</span>
               <span>
                 {summary.avg_citation_jaccard === null
@@ -263,11 +263,11 @@ export default function ProjectVolatilityIndexPanel({
                   : summary.avg_citation_jaccard.toFixed(3)}
               </span>
             </div>
-            <div className="flex items-center justify-between rounded-lg border border-(--line) bg-(--line-2) px-3 py-2">
+            <div className="flex items-center justify-between rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) px-3 py-2">
               <span>Citation churn</span>
               <span>{formatPercent(summary.citation_churn_rate, 2)}</span>
             </div>
-            <div className="flex items-center justify-between rounded-lg border border-(--line) bg-(--line-2) px-3 py-2">
+            <div className="flex items-center justify-between rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) px-3 py-2">
               <span>Format change rate</span>
               <span>{formatPercent(summary.format_change_rate, 2)}</span>
             </div>
@@ -285,7 +285,7 @@ export default function ProjectVolatilityIndexPanel({
               {summary.industries.slice(0, 8).map((item) => (
                 <div
                   key={item.industry}
-                  className="flex items-center justify-between rounded-lg border border-(--line) bg-(--line-2) px-3 py-2 text-xs text-(--t-2)"
+                  className="flex items-center justify-between rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) px-3 py-2 text-xs text-(--t-2)"
                 >
                   <span className="font-semibold capitalize text-(--t-1)">{item.industry}</span>
                   <span>
@@ -313,7 +313,7 @@ export default function ProjectVolatilityIndexPanel({
               {trends.points.slice(-10).map((point) => (
                 <div
                   key={point.date}
-                  className="flex items-center justify-between rounded-lg border border-(--line) bg-(--line-2) px-3 py-2 text-xs text-(--t-2)"
+                  className="flex items-center justify-between rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) px-3 py-2 text-xs text-(--t-2)"
                 >
                   <span>{formatDate(point.date)}</span>
                   <span>
@@ -344,7 +344,7 @@ export default function ProjectVolatilityIndexPanel({
                   {summary.top_winners.slice(0, 5).map((item) => (
                     <div
                       key={`winner-${item.domain}`}
-                      className="flex items-center justify-between rounded-lg border border-(--line) bg-(--line-2) px-3 py-2 text-xs text-(--t-2)"
+                      className="flex items-center justify-between rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) px-3 py-2 text-xs text-(--t-2)"
                     >
                       <span>{item.domain}</span>
                       <span>+{item.delta}</span>
@@ -364,7 +364,7 @@ export default function ProjectVolatilityIndexPanel({
                   {summary.top_losers.slice(0, 5).map((item) => (
                     <div
                       key={`loser-${item.domain}`}
-                      className="flex items-center justify-between rounded-lg border border-(--line) bg-(--line-2) px-3 py-2 text-xs text-(--t-2)"
+                      className="flex items-center justify-between rounded-[14px] border-0 bg-[#EEF1F6] bg-(--line-2) px-3 py-2 text-xs text-(--t-2)"
                     >
                       <span>{item.domain}</span>
                       <span>-{item.delta}</span>

@@ -406,7 +406,7 @@ export const ScheduleAutomation = ({
 
       <div className="space-y-6 p-6">
         {showUnavailableState ? (
-          <div className="rounded-md border border-(--border) bg-(--surface-subtle) p-5 text-sm text-(--text-soft)">
+          <div className="rounded-md border-0 bg-(--surface-subtle) p-5 text-sm text-(--text-soft)">
             {unavailableDetailedCopy}
           </div>
         ) : (
@@ -441,7 +441,7 @@ export const ScheduleAutomation = ({
               </div>
             </div>
 
-            <div className="rounded-md border border-(--border) bg-(--surface-subtle) px-4 py-3 text-sm text-(--text-soft)">
+            <div className="rounded-md border-0 bg-(--surface-subtle) px-4 py-3 text-sm text-(--text-soft)">
               {isLoadingSchedule ? (
                 <div className="flex items-center gap-2 text-(--text-muted)">
                   <Loader2 className="h-4 w-4 animate-spin" />

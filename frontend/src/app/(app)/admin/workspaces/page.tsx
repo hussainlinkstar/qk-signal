@@ -190,7 +190,7 @@ export default function AdminWorkspacesPage() {
       renderCell: (ws) => (
         <Link
           href={`/admin/workspaces/${ws.id}`}
-          className="inline-flex h-8 w-8 items-center justify-center rounded-(--r-sm) border border-(--line) bg-(--panel) text-(--t-2) transition-colors hover:border-(--purple) hover:text-(--purple)"
+          className="inline-flex h-8 w-8 items-center justify-center rounded-(--r-sm) border-0 bg-white text-(--t-2) transition-colors hover:border-(--purple) hover:text-(--purple)"
           title="View workspace"
         >
           <ChevronRight size={14} />
@@ -231,7 +231,7 @@ export default function AdminWorkspacesPage() {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search by name or owner email..."
                 aria-label="Search workspaces"
-                className="field-focus-ring h-8 w-full rounded-(--r-sm) border border-(--line) bg-(--paper) pl-8 pr-2.5 text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c9cef7]"
+                className="field-focus-ring h-8 w-full rounded-(--r-sm) border-0 bg-[#EEF1F6] pl-8 pr-2.5 text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c9cef7]"
               />
             </div>
             <NativeSelect

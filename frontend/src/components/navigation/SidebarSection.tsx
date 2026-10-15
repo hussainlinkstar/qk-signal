@@ -21,7 +21,7 @@ import { cx } from "@/components/ui/utils";
  */
 function NavBadge({ label }: { label: string }) {
   return (
-    <em className="ms-auto rounded-[5px] border border-(--line) px-[5px] py-px font-(family-name:--mono) text-[9px] not-italic tracking-[0.08em] text-(--t-3)">
+    <em className="ms-auto rounded-[5px] border-0 px-[5px] py-px font-(family-name:--mono) text-[9px] not-italic tracking-[0.08em] text-(--t-3)">
       {label}
     </em>
   );

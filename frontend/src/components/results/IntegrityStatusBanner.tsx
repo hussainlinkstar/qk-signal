@@ -120,7 +120,7 @@ export default function IntegrityStatusBanner({
   return (
     <div
       className={cx(
-        "rounded-(--r-md) border border-(--line) bg-(--panel)",
+        "rounded-(--r-md) border-0 bg-white",
         variant === "compact" ? "p-4" : "p-6",
         className
       )}
@@ -147,7 +147,7 @@ export default function IntegrityStatusBanner({
             variant === "compact" ? "md:grid-cols-3" : "md:grid-cols-2 xl:grid-cols-4"
           )}
         >
-          <div className="rounded-xl border border-(--line) bg-(--line-2) p-3">
+          <div className="rounded-xl border-0 bg-(--line-2) p-3">
             <p className="text-[10px] font-bold uppercase tracking-widest text-(--t-2)">
               Grounding Profile
             </p>
@@ -159,7 +159,7 @@ export default function IntegrityStatusBanner({
             </p>
           </div>
 
-          <div className="rounded-xl border border-(--line) bg-(--line-2) p-3">
+          <div className="rounded-xl border-0 bg-(--line-2) p-3">
             <p className="text-[10px] font-bold uppercase tracking-widest text-(--t-2)">Track A</p>
             <p className="mt-2 text-sm font-semibold text-(--t-1)">
               {snapshot.trackASupported}/{snapshot.trackATotal} supported
@@ -169,7 +169,7 @@ export default function IntegrityStatusBanner({
             </p>
           </div>
 
-          <div className="rounded-xl border border-(--line) bg-(--line-2) p-3">
+          <div className="rounded-xl border-0 bg-(--line-2) p-3">
             <p className="text-[10px] font-bold uppercase tracking-widest text-(--t-2)">Track B</p>
             <p className="mt-2 text-sm font-semibold text-(--t-1)">
               {snapshot.trackBTotal > 0
@@ -183,7 +183,7 @@ export default function IntegrityStatusBanner({
             </p>
           </div>
 
-          <div className="rounded-xl border border-(--line) bg-(--line-2) p-3">
+          <div className="rounded-xl border-0 bg-(--line-2) p-3">
             <p className="text-[10px] font-bold uppercase tracking-widest text-(--t-2)">
               Review State
             </p>
@@ -212,7 +212,7 @@ export default function IntegrityStatusBanner({
               {blockedBuckets.map((bucket) => (
                 <div
                   key={bucket.key}
-                  className="rounded-xl border border-(--line) bg-black/30 p-4 text-xs text-(--t-1)"
+                  className="rounded-xl border-0 bg-black/30 p-4 text-xs text-(--t-1)"
                 >
                   <p className="text-[10px] font-bold uppercase tracking-widest text-(--t-3)">
                     {bucket.trackLabel}
@@ -239,7 +239,7 @@ export default function IntegrityStatusBanner({
             {claimPreview.map((claimText, index) => (
               <div
                 key={`${claimText}-${index}`}
-                className="rounded-xl border border-amber-500/10 bg-(--line-2) p-4 text-xs text-amber-100/80 shadow-inner transition-colors hover:bg-black/60"
+                className="rounded-xl border-0 bg-(--line-2) p-4 text-xs text-amber-100/80 shadow-inner transition-colors hover:bg-black/60"
               >
                 <span className="mr-2 text-amber-500/50">FLAGGED:</span>
                 &quot;{claimText}&quot;

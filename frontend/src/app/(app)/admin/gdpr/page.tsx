@@ -67,14 +67,14 @@ type DataMapResponse = {
   anonymized_users: number;
 };
 
-const CARD = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const CARD = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const CARD_TITLE =
   "m-0 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em] text-(--t-1)";
-const STAT = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const STAT = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const WINPUT =
-  "field-focus-ring h-11 w-full rounded-(--r-md) border border-(--line) bg-(--paper) px-[13px] text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
+  "field-focus-ring h-11 w-full rounded-(--r-md) border-0 bg-[#EEF1F6] px-[13px] text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
 const TH =
   "border-b border-(--line) px-4 py-[11px] text-left font-(family-name:--mono) text-[10px] font-normal uppercase tracking-[0.06em] text-(--t-3)";
 const TD = "border-b border-(--line-2) px-4 py-[11px] align-middle text-[13px] text-(--t-1)";
@@ -376,7 +376,7 @@ export default function AdminGdprPage() {
                     setUsersPage(1);
                   }}
                   aria-label="Search by email or company name"
-                  className="field-focus-ring h-8 w-full rounded-(--r-sm) border border-(--line) bg-(--paper) pl-8 pr-7 text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c9cef7]"
+                  className="field-focus-ring h-8 w-full rounded-(--r-sm) border-0 bg-[#EEF1F6] pl-8 pr-7 text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c9cef7]"
                 />
                 {searchQuery && (
                   <button
@@ -456,7 +456,7 @@ export default function AdminGdprPage() {
                         {entry.pii_fields.map((f) => (
                           <span
                             key={f}
-                            className="rounded border border-(--line) bg-(--bad-s) px-1.5 py-0.5 font-(family-name:--mono) text-[10px] text-(--bad)"
+                            className="rounded-[8px] border-0 bg-(--bad-s) px-1.5 py-0.5 font-(family-name:--mono) text-[10px] text-(--bad)"
                           >
                             {f}
                           </span>
@@ -511,7 +511,7 @@ export default function AdminGdprPage() {
               ].map((s) => (
                 <div
                   key={s.label}
-                  className="rounded-(--r-md) border border-(--line) bg-(--paper) p-3 text-center"
+                  className="rounded-(--r-md) border-0 bg-[#EEF1F6] p-3 text-center"
                 >
                   <p className={MICRO_LABEL}>{s.label}</p>
                   <p className="mt-1 text-sm font-semibold text-(--t-1)">{s.value}</p>
@@ -537,7 +537,7 @@ export default function AdminGdprPage() {
               </h4>
 
               {/* Export */}
-              <div className="rounded-(--r-md) border border-(--line) bg-(--paper) px-[18px] py-4">
+              <div className="rounded-(--r-md) border-0 bg-[#EEF1F6] px-[18px] py-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="text-[13.5px] font-semibold text-(--t-1)">
@@ -577,7 +577,7 @@ export default function AdminGdprPage() {
 
               {/* Anonymize */}
               {!selectedUser.anonymized_at && (
-                <div className="rounded-(--r-md) border border-(--line) bg-(--paper) px-[18px] py-4">
+                <div className="rounded-(--r-md) border-0 bg-[#EEF1F6] px-[18px] py-4">
                   <div>
                     <p className="flex items-center gap-2 text-[13.5px] font-semibold text-(--t-1)">
                       <ShieldOff size={14} className="text-(--bad)" />

@@ -141,7 +141,7 @@ export default function ProjectEntitiesClient({ projectId }: { projectId: string
       <div className="grid gap-8 lg:grid-cols-2">
         <GlassCard className="p-8 border-primary/20 bg-primary/[0.01]">
           <div className="flex items-center gap-3 mb-8">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 text-primary">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg border-0 bg-primary/10 text-primary">
               <Share2 size={16} />
             </div>
             <h3 className="text-xs font-black uppercase tracking-widest text-primary ">
@@ -155,7 +155,7 @@ export default function ProjectEntitiesClient({ projectId }: { projectId: string
               entities.map((entity) => (
                 <span
                   key={entity}
-                  className="rounded-xl border border-(--line) bg-(--line-2) px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-(--t-2)  hover:border-primary/30 hover:bg-primary/5 transition-all"
+                  className="rounded-xl border-0 bg-(--line-2) px-3 py-1.5 text-[10px] font-black uppercase tracking-widest text-(--t-2)  hover:border-primary/30 hover:bg-primary/5 transition-all"
                 >
                   {entity}
                 </span>
@@ -166,7 +166,7 @@ export default function ProjectEntitiesClient({ projectId }: { projectId: string
 
         <GlassCard className="p-8 border-primary/20 bg-primary/[0.01]">
           <div className="flex items-center gap-3 mb-8">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[color-mix(in_srgb,var(--purple)_30%,transparent)] bg-[color-mix(in_srgb,var(--purple)_10%,transparent)] text-(--purple)">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg border-0 bg-[color-mix(in_srgb,var(--purple)_10%,transparent)] text-(--purple)">
               <Radar size={16} />
             </div>
             <h3 className="text-xs font-black uppercase tracking-widest text-(--purple) ">
@@ -180,7 +180,7 @@ export default function ProjectEntitiesClient({ projectId }: { projectId: string
               competitorDomains.map((domain) => (
                 <div
                   key={domain}
-                  className="rounded border border-(--line) bg-(--line-2) px-5 py-3 text-sm font-black text-(--t-1)  uppercase tracking-tighter hover:bg-(--line-2) transition-all"
+                  className="rounded border-0 bg-(--line-2) px-5 py-3 text-sm font-black text-(--t-1)  uppercase tracking-tighter hover:bg-(--line-2) transition-all"
                 >
                   {domain}
                 </div>
@@ -192,7 +192,7 @@ export default function ProjectEntitiesClient({ projectId }: { projectId: string
 
       <GlassCard className="p-8 border-primary/20 bg-primary/[0.01]">
         <div className="flex items-center gap-3 mb-8">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-primary/30 bg-primary/10 text-primary">
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg border-0 bg-primary/10 text-primary">
             <Zap size={16} />
           </div>
           <h3 className="text-xs font-black uppercase tracking-widest text-primary ">
@@ -206,7 +206,7 @@ export default function ProjectEntitiesClient({ projectId }: { projectId: string
             semanticSuggestions.map((suggestion, index) => (
               <div
                 key={`${suggestion.title}-${index}`}
-                className="rounded border border-(--line) bg-(--line-2) p-4 hover:bg-(--line-2) transition-all"
+                className="rounded border-0 bg-(--line-2) p-4 hover:bg-(--line-2) transition-all"
               >
                 <p className="text-[10px] font-black text-primary uppercase tracking-[0.2em] mb-1  opacity-60">
                   Recommendation

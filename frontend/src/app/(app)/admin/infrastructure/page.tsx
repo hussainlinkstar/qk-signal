@@ -89,10 +89,10 @@ type InfraMetrics = {
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const MONO_META = MICRO_LABEL.replace("uppercase ", "");
-const WSEC = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const WSEC = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const SEC_TITLE =
   "m-0 mb-4 flex items-center gap-2 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em] text-(--t-1)";
-const INSET = "rounded-(--r-md) border border-(--line) bg-(--paper) p-3";
+const INSET = "rounded-(--r-md) border-0 bg-[#EEF1F6] p-3";
 const CHIP =
   "inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em]";
 
@@ -138,22 +138,22 @@ function GaugeRing({
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <div className="relative h-24 w-24">
+      <div className="relative h-24 w-24" data-score-ring>
         <svg className="h-24 w-24 -rotate-90" viewBox="0 0 80 80">
           <circle
             cx="40"
             cy="40"
             r="36"
             fill="none"
-            strokeWidth="6"
-            className="stroke-(--line-2)"
+            strokeWidth="7"
+            stroke="#EEF1F6"
           />
           <circle
             cx="40"
             cy="40"
             r="36"
             fill="none"
-            strokeWidth="6"
+            strokeWidth="7"
             strokeDasharray={circumference}
             strokeDashoffset={offset}
             strokeLinecap="round"
@@ -161,11 +161,13 @@ function GaugeRing({
             style={{ stroke: "currentColor" }}
           />
         </svg>
-        <div className="absolute inset-0 flex flex-col items-center justify-center">
-          <span className="font-(family-name:--disp) text-lg font-bold text-(--t-1)">
-            {value != null ? Math.round(value) : "-"}
+        <div className="absolute inset-[18%] flex flex-col items-center justify-center rounded-full bg-[#F8FAFC]">
+          <span className="font-(family-name:--disp) text-lg font-extrabold text-[#111827]">
+            {value != null ? Math.round(value) : "—"}
           </span>
-          <span className={`${MICRO_LABEL} text-[9px]`}>{unit}</span>
+          <span className="mt-0.5 rounded-full bg-white px-1.5 py-px text-[9px] font-semibold text-(--t-3)">
+            {unit}
+          </span>
         </div>
       </div>
       <span className={MICRO_LABEL}>{label}</span>
@@ -302,7 +304,7 @@ export default function AdminInfrastructurePage() {
           <div
             role="group"
             aria-label="Auto-refresh interval"
-            className="hidden items-center gap-0.5 rounded-(--r-md) border border-(--line) bg-(--paper) p-0.5 sm:flex"
+            className="hidden items-center gap-0.5 rounded-(--r-md) border-0 bg-[#EEF1F6] p-0.5 sm:flex"
           >
             {REFRESH_OPTIONS.map((opt) => (
               <button
@@ -324,7 +326,7 @@ export default function AdminInfrastructurePage() {
             onClick={loadMetrics}
             aria-label="Refresh now"
             title="Refresh now"
-            className="inline-flex h-8 w-8 items-center justify-center rounded-(--r-sm) border border-(--line) bg-(--panel) text-(--t-2) transition-colors hover:text-(--t-1) focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple)"
+            className="inline-flex h-8 w-8 items-center justify-center rounded-(--r-sm) border-0 bg-white text-(--t-2) transition-colors hover:text-(--t-1) focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple)"
           >
             <RefreshCw size={14} />
           </button>
@@ -380,7 +382,7 @@ export default function AdminInfrastructurePage() {
           <div
             role="group"
             aria-label="Auto-refresh interval"
-            className="flex items-center gap-0.5 rounded-(--r-md) border border-(--line) bg-(--paper) p-0.5 sm:hidden"
+            className="flex items-center gap-0.5 rounded-(--r-md) border-0 bg-[#EEF1F6] p-0.5 sm:hidden"
           >
             {REFRESH_OPTIONS.map((opt) => (
               <button
@@ -597,7 +599,7 @@ export default function AdminInfrastructurePage() {
 
       {/* Workers + top tables */}
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <section className="overflow-hidden rounded-(--r) border border-(--line) bg-(--panel)">
+        <section className="overflow-hidden rounded-[22px] border-0 bg-white">
           <div className="border-b border-(--line) px-[22px] py-[14px]">
             <h2 className="m-0 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em] text-(--t-1)">
               Worker health
@@ -648,7 +650,7 @@ export default function AdminInfrastructurePage() {
           </table>
         </section>
 
-        <section className="overflow-hidden rounded-(--r) border border-(--line) bg-(--panel)">
+        <section className="overflow-hidden rounded-[22px] border-0 bg-white">
           <div className="border-b border-(--line) px-[22px] py-[14px]">
             <h2 className="m-0 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em] text-(--t-1)">
               Top tables by size

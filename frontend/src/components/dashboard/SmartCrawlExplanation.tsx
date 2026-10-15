@@ -201,7 +201,7 @@ export default function SmartCrawlExplanation({
             {smartCrawl.extrapolated_issues.map((issue) => (
               <div
                 key={issue.page_type}
-                className="flex items-start gap-3 rounded border border-(--line) bg-[color-mix(in_srgb,var(--panel)_40%,transparent)] px-3 py-2.5"
+                className="flex items-start gap-3 rounded border-0 bg-[color-mix(in_srgb,var(--panel)_40%,transparent)] px-3 py-2.5"
               >
                 <div className="mt-0.5 shrink-0">
                   <Badge color={confidenceBadgeColor(issue.confidence)} size="sm">
@@ -242,7 +242,7 @@ export default function SmartCrawlExplanation({
 
 function SummaryStat({ label, value, detail }: { label: string; value: string; detail: string }) {
   return (
-    <div className="rounded border border-(--line) bg-[color-mix(in_srgb,var(--panel)_40%,transparent)] px-3 py-2.5">
+    <div className="rounded border-0 bg-[color-mix(in_srgb,var(--panel)_40%,transparent)] px-3 py-2.5">
       <p className="text-[10px] font-bold uppercase tracking-wider text-(--t-3)">{label}</p>
       <p className="mt-1 text-lg font-bold text-(--t-1)">{value}</p>
       <p className="text-xs text-(--t-2)">{detail}</p>

@@ -21,7 +21,7 @@ describe("SignalHero mobile layout", () => {
     const root = copy?.parentElement;
     expect(root).not.toBeNull();
     expect(root).toHaveClass("min-w-0", "flex-col", "gap-5", "p-5");
-    expect(root).toHaveClass("md:flex-row", "md:items-center", "md:gap-[26px]", "md:p-[24px_28px]");
+    expect(root).toHaveClass("md:flex-row", "md:items-center", "md:gap-[26px]", "md:p-6");
 
     const sections = Array.from(root!.children).filter(
       (element): element is HTMLElement =>

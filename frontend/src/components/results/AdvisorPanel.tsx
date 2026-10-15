@@ -121,7 +121,7 @@ const AdvisorFixRow = ({
 }: AdvisorFixRowProps) => {
   const { rank, title, description, impactLevel, effortLevel } = fix;
   return (
-    <li className="relative flex gap-4 rounded border border-(--line) bg-(--line-2) p-4 shadow-inner transition-colors hover:bg-(--line-2)">
+    <li className="relative flex gap-4 rounded border-0 bg-(--line-2) p-4 shadow-inner transition-colors hover:bg-(--line-2)">
       <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-primary/20 bg-primary/[0.08] text-xs font-black text-primary">
         {rank}
       </div>
@@ -151,7 +151,7 @@ const AdvisorFixRow = ({
           {fixSourceLabelKeys(fix.sources).map((key) => (
             <span
               key={key}
-              className="inline-flex items-center gap-1 rounded-full border border-(--line) bg-(--paper) px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-(--t-3)"
+              className="inline-flex items-center gap-1 rounded-full border-0 bg-[#EEF1F6] px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-(--t-3)"
             >
               {SOURCE_TEXT[key] ?? key}
             </span>
@@ -185,7 +185,7 @@ const AdvisorFixRow = ({
               disabled={submitting}
               onClick={() => onDecision(fix, "dismissed")}
               aria-label={`Dismiss recommendation: ${title}`}
-              className="inline-flex items-center gap-1 rounded-full border border-(--line) bg-(--line-2) px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-(--t-2) transition-colors hover:border-rose-500/30 hover:bg-rose-500/10 hover:text-rose-300 disabled:cursor-not-allowed disabled:opacity-50"
+              className="inline-flex items-center gap-1 rounded-full border-0 bg-(--line-2) px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-(--t-2) transition-colors hover:border-rose-500/30 hover:bg-rose-500/10 hover:text-rose-300 disabled:cursor-not-allowed disabled:opacity-50"
             >
               {submitting ? (
                 <Loader2 className="h-3 w-3 animate-spin" />

@@ -100,7 +100,7 @@ const DebateProcessCard = ({ debate }: { debate: DebateMetadata }) => {
       : null;
 
   return (
-    <section className="mb-8 rounded-xl border border-(--line) bg-(--line-2)">
+    <section className="mb-8 rounded-xl border-0 bg-(--line-2)">
       <button
         type="button"
         onClick={() => setExpanded((v) => !v)}
@@ -115,12 +115,12 @@ const DebateProcessCard = ({ debate }: { debate: DebateMetadata }) => {
             </span>
           ) : null}
           {agentCountLabel ? (
-            <span className="rounded-full border border-(--line) bg-(--line-2) px-2 py-0.5 text-xs font-medium text-(--t-2)">
+            <span className="rounded-full border-0 bg-(--line-2) px-2 py-0.5 text-xs font-medium text-(--t-2)">
               {agentCountLabel}
             </span>
           ) : null}
           {layerCountLabel ? (
-            <span className="rounded-full border border-(--line) bg-(--line-2) px-2 py-0.5 text-xs font-medium text-(--t-2)">
+            <span className="rounded-full border-0 bg-(--line-2) px-2 py-0.5 text-xs font-medium text-(--t-2)">
               {layerCountLabel}
             </span>
           ) : null}
@@ -157,7 +157,7 @@ const DebateProcessCard = ({ debate }: { debate: DebateMetadata }) => {
           </div>
 
           {debate.synthesis_reasoning && (
-            <div className="rounded-md border border-(--line) bg-(--line-2) p-4">
+            <div className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) p-4">
               <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-(--t-2)">
                 Consensus Reasoning
               </p>
@@ -166,7 +166,7 @@ const DebateProcessCard = ({ debate }: { debate: DebateMetadata }) => {
           )}
 
           {judgeSummary ? (
-            <div className="rounded-md border border-(--line) bg-(--line-2) p-4">
+            <div className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) p-4">
               <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-(--t-2)">
                 Judge Summary
               </p>
@@ -180,7 +180,7 @@ const DebateProcessCard = ({ debate }: { debate: DebateMetadata }) => {
           ) : null}
 
           {perAgentCosts.length ? (
-            <div className="rounded-md border border-(--line) bg-(--line-2) p-4">
+            <div className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) p-4">
               <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-(--t-2)">
                 Agent Performance Breakdown
               </p>
@@ -191,7 +191,7 @@ const DebateProcessCard = ({ debate }: { debate: DebateMetadata }) => {
                   return (
                     <div
                       key={`${entry.role}-${entry.provider}-${index}`}
-                      className="flex flex-col gap-1 rounded-md border border-(--line) bg-(--line-2) px-3 py-2 sm:flex-row sm:items-center sm:justify-between"
+                      className="flex flex-col gap-1 rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) px-3 py-2 sm:flex-row sm:items-center sm:justify-between"
                     >
                       <div className="space-y-1">
                         <p className="text-sm font-medium text-(--t-1)">{label}</p>

@@ -86,7 +86,7 @@ export default function PillarCard({
                 {pillar.label}
               </span>
             </div>
-            <span className="inline-flex w-fit items-center rounded-full border border-(--line) bg-(--line-2) px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-widest text-(--t-2)">
+            <span className="inline-flex w-fit items-center rounded-full border-0 bg-(--line-2) px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-widest text-(--t-2)">
               {pillar.scopeLabel}
             </span>
           </div>
@@ -95,7 +95,7 @@ export default function PillarCard({
             {hasScore ? (
               <ScoreGauge score={score} label={pillar.label} size={72} />
             ) : (
-              <div className="flex flex-col items-center justify-center w-[72px] h-[72px] rounded-full border border-(--line) bg-(--line-2)">
+              <div className="flex flex-col items-center justify-center w-[72px] h-[72px] rounded-full border-0 bg-(--line-2)">
                 <span className="text-lg font-black text-(--t-3)">N/A</span>
               </div>
             )}

@@ -22,7 +22,7 @@ export default function ProjectMonitoringClient({ projectId }: { projectId: stri
       description="Track AI-engine traffic, snippet ownership, visibility volatility, crawler behavior, and off-page mentions from the same project workspace."
       className="pb-20"
     >
-      <div className="inline-flex w-fit items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-primary">
+      <div className="inline-flex w-fit items-center gap-2 rounded-full border-0 bg-[#E8F1FF] px-2.5 py-1 text-[10px] font-black uppercase tracking-widest text-primary">
         <Sparkles className="h-3 w-3" />
         AIO Live Tracking
       </div>

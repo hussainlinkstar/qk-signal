@@ -802,7 +802,7 @@ export default function RecommendationsHubClient({
                         {fixSourceLabelKeys(rec.sources).map((key) => (
                           <div
                             key={key}
-                            className="flex items-center gap-2 rounded border border-(--line) bg-(--paper) px-3 py-1.5 text-xs font-medium text-(--t-3)"
+                            className="flex items-center gap-2 rounded border-0 bg-[#EEF1F6] px-3 py-1.5 text-xs font-medium text-(--t-3)"
                           >
                             {t(key)}
                           </div>
@@ -850,13 +850,13 @@ export default function RecommendationsHubClient({
                         {(rec.section || rec.page || rec.impactValue !== undefined) && (
                           <div className="flex flex-wrap items-center gap-2.5 pt-1">
                             {rec.section && (
-                              <span className="inline-flex max-w-full items-center gap-1.5 wrap-break-word rounded border border-(--line) bg-(--paper) px-2.5 py-1 text-xs font-mono text-(--t-2)">
+                              <span className="inline-flex max-w-full items-center gap-1.5 wrap-break-word rounded border-0 bg-[#EEF1F6] px-2.5 py-1 text-xs font-mono text-(--t-2)">
                                 {rec.section}
                               </span>
                             )}
                             {rec.page && (
                               <span
-                                className="inline-flex max-w-full items-center gap-1.5 break-all rounded border border-(--line) bg-(--paper) px-2.5 py-1 text-xs font-mono text-(--t-3)"
+                                className="inline-flex max-w-full items-center gap-1.5 break-all rounded border-0 bg-[#EEF1F6] px-2.5 py-1 text-xs font-mono text-(--t-3)"
                                 title={rec.page}
                               >
                                 {(() => {
@@ -888,7 +888,7 @@ export default function RecommendationsHubClient({
                       <div className="relative z-10 mt-auto border-t border-(--line) pt-5">
                         <div className="flex flex-wrap items-center gap-x-4 gap-y-3">
                           <div className="flex shrink-0 items-center gap-3">
-                            <div className="flex h-6 w-6 items-center justify-center rounded border border-(--line) bg-(--paper) text-xs font-medium text-(--t-3)">
+                            <div className="flex h-6 w-6 items-center justify-center rounded border-0 bg-[#EEF1F6] text-xs font-medium text-(--t-3)">
                               {globalIndex + 1}
                             </div>
                             <span className="whitespace-nowrap font-mono text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)">
@@ -898,7 +898,7 @@ export default function RecommendationsHubClient({
                           <div className="ml-auto flex flex-wrap items-center justify-end gap-3">
                             {canEditTasks ? (
                               recTask ? (
-                                <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded border border-(--line) bg-(--paper) px-3 py-1.5 text-xs font-medium text-(--t-2) transition hover:border-(--t-3) hover:text-(--t-1) focus-within:outline-hidden focus-within:ring-2 focus-within:ring-(--blue)">
+                                <label className="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded border-0 bg-[#EEF1F6] px-3 py-1.5 text-xs font-medium text-(--t-2) transition hover:border-(--t-3) hover:text-(--t-1) focus-within:outline-hidden focus-within:ring-2 focus-within:ring-(--blue)">
                                   <input
                                     type="checkbox"
                                     className="h-4 w-4 accent-(--blue)"
@@ -938,7 +938,7 @@ export default function RecommendationsHubClient({
                                       : annotationTarget.sectionPath
                                   )
                                 }
-                                className="inline-flex min-h-11 items-center gap-2 rounded border border-(--line) bg-(--paper) px-3 py-1.5 text-xs font-medium text-(--t-2) transition hover:border-[color-mix(in_srgb,var(--purple)_40%,transparent)] hover:text-(--t-1) focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--blue)"
+                                className="inline-flex min-h-11 items-center gap-2 rounded border-0 bg-[#EEF1F6] px-3 py-1.5 text-xs font-medium text-(--t-2) transition hover:border-[color-mix(in_srgb,var(--purple)_40%,transparent)] hover:text-(--t-1) focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--blue)"
                               >
                                 <MessageSquareMore className="h-3.5 w-3.5" />
                                 {annotationCount > 0
@@ -1008,7 +1008,7 @@ export default function RecommendationsHubClient({
 
           <nav
             aria-label={t("signalFixes.pagination.aria")}
-            className="flex flex-wrap items-center justify-between gap-3 rounded border border-(--line) bg-(--panel) px-4 py-3"
+            className="flex flex-wrap items-center justify-between gap-3 rounded border-0 bg-white px-4 py-3"
           >
             <p className="text-xs font-medium text-(--t-2)" aria-live="polite">
               {t("signalFixes.pagination.status", {
@@ -1023,7 +1023,7 @@ export default function RecommendationsHubClient({
                 type="button"
                 onClick={() => setCurrentPage(Math.max(0, displayPage - 1))}
                 disabled={displayPage === 0}
-                className="inline-flex min-h-11 items-center rounded border border-(--line) bg-(--panel) px-4 text-xs font-semibold text-(--t-1) transition-colors hover:border-(--t-3) disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--blue)"
+                className="inline-flex min-h-11 items-center rounded border-0 bg-white px-4 text-xs font-semibold text-(--t-1) transition-colors hover:border-(--t-3) disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--blue)"
               >
                 {t("signalFixes.pagination.prev")}
               </button>
@@ -1031,7 +1031,7 @@ export default function RecommendationsHubClient({
                 type="button"
                 onClick={() => setCurrentPage(Math.min(pageCount - 1, displayPage + 1))}
                 disabled={displayPage >= pageCount - 1}
-                className="inline-flex min-h-11 items-center rounded border border-(--line) bg-(--panel) px-4 text-xs font-semibold text-(--t-1) transition-colors hover:border-(--t-3) disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--blue)"
+                className="inline-flex min-h-11 items-center rounded border-0 bg-white px-4 text-xs font-semibold text-(--t-1) transition-colors hover:border-(--t-3) disabled:cursor-not-allowed disabled:opacity-50 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--blue)"
               >
                 {t("signalFixes.pagination.next")}
               </button>
@@ -1071,7 +1071,7 @@ export default function RecommendationsHubClient({
               return (
                 <li
                   key={entry.key}
-                  className="rounded border border-(--line) bg-(--panel) px-4 py-3"
+                  className="rounded border-0 bg-white px-4 py-3"
                 >
                   <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
                     <CheckCircle2 className="h-4 w-4 shrink-0 text-(--good)" aria-hidden="true" />
@@ -1083,7 +1083,7 @@ export default function RecommendationsHubClient({
                         type="button"
                         disabled={pendingKeys.has(entry.key)}
                         onClick={() => void handleUntick(entry.task)}
-                        className="inline-flex min-h-11 items-center rounded border border-(--line) bg-(--paper) px-4 text-xs font-medium text-(--t-2) transition-colors hover:border-(--t-3) hover:text-(--t-1) focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--blue) disabled:opacity-50"
+                        className="inline-flex min-h-11 items-center rounded border-0 bg-[#EEF1F6] px-4 text-xs font-medium text-(--t-2) transition-colors hover:border-(--t-3) hover:text-(--t-1) focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--blue) disabled:opacity-50"
                       >
                         {t("signalFixes.done.undo")}
                       </button>

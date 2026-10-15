@@ -94,7 +94,7 @@ export default function LanguageSwitcher({
       role="group"
       aria-label={t("common.language")}
       className={cx(
-        "inline-flex items-center gap-1 rounded-full border border-(--border)  p-1",
+        "inline-flex items-center gap-1 rounded-full border-0  p-1",
         className
       )}
     >

@@ -73,7 +73,7 @@ const PreferenceRow = ({
   badge,
   onToggle,
 }: PreferenceRowProps) => (
-  <article className="flex items-center justify-between gap-3.5 rounded-[10px] border border-(--line) px-3.5 py-3">
+  <article className="flex items-center justify-between gap-3.5 rounded-[14px] border-0 bg-[#F7F8FA] px-3.5 py-3">
     <div>
       <p className="text-[13.5px] font-semibold text-(--t-1)">{title}</p>
       <p className="mt-[3px] text-[12px] leading-[1.45] text-(--t-3)">{description}</p>
@@ -149,7 +149,7 @@ export default function CookieConsentManager() {
           aria-label={t("cookieConsent.banner.ariaLabel")}
           className="fixed inset-x-4 bottom-4 z-popover md:start-4 md:end-auto md:max-w-[560px]"
         >
-          <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px] shadow-[0_8px_28px_var(--ink-s7)]">
+          <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px] shadow-[0_8px_28px_var(--ink-s7)]">
             <p
               data-consent-label
               className="inline-flex items-center gap-1.5 text-[11.5px] font-medium text-(--t-3)"

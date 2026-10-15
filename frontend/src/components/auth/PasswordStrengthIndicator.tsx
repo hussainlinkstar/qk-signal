@@ -52,7 +52,7 @@ export default function PasswordStrengthIndicator({
 
   return (
     <div
-      className={cx("rounded-(--r-md) border border-(--line) bg-(--paper) p-[15px]", className)}
+      className={cx("rounded-(--r-md) border-0 bg-[#EEF1F6] p-[15px]", className)}
       aria-live="polite"
     >
       <div className="flex items-center justify-between gap-3 text-xs">

@@ -114,7 +114,7 @@ const formatPlanLabel = (plan: string | null | undefined): string => {
 const FIELD_LABEL =
   "mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const WINPUT =
-  "field-focus-ring h-11 w-full rounded-(--r-md) border border-(--line) bg-(--paper) px-[13px] text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
+  "field-focus-ring h-11 w-full rounded-(--r-md) border-0 bg-[#EEF1F6] px-[13px] text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
 const WTEXTAREA = `${WINPUT} h-auto min-h-[76px] resize-y py-[11px]`;
 const CHIP =
   "inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em]";
@@ -122,7 +122,7 @@ const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const MONO_META = MICRO_LABEL.replace("uppercase ", "");
 const ACTION_ICON =
-  "flex h-8 w-8 items-center justify-center rounded-(--r-sm) border border-(--line) bg-(--panel) text-(--t-2) transition-colors hover:border-(--purple) hover:text-(--purple) disabled:opacity-40";
+  "flex h-8 w-8 items-center justify-center rounded-(--r-sm) border-0 bg-white text-(--t-2) transition-colors hover:border-(--purple) hover:text-(--purple) disabled:opacity-40";
 
 const AdminModal = ({ title, description, open, onClose, children, footer }: AdminModalProps) => {
   const titleId = React.useId();
@@ -147,7 +147,7 @@ const AdminModal = ({ title, description, open, onClose, children, footer }: Adm
         <button
           onClick={onClose}
           aria-label="Close"
-          className="flex h-8 w-8 items-center justify-center rounded-(--r-sm) border border-(--line) bg-(--panel) text-(--t-2) transition-colors hover:text-(--t-1)"
+          className="flex h-8 w-8 items-center justify-center rounded-(--r-sm) border-0 bg-white text-(--t-2) transition-colors hover:text-(--t-1)"
         >
           <X size={16} />
         </button>
@@ -602,7 +602,7 @@ export default function AdminUsersPage() {
             onClick={() => openModal("delete", u)}
             disabled={controlsDisabled}
             title="Delete User"
-            className="flex h-8 w-8 items-center justify-center rounded-(--r-sm) border border-(--line) bg-(--panel) text-(--bad) transition-colors hover:bg-(--bad-s) disabled:opacity-40"
+            className="flex h-8 w-8 items-center justify-center rounded-(--r-sm) border-0 bg-white text-(--bad) transition-colors hover:bg-(--bad-s) disabled:opacity-40"
           >
             <Trash2 size={14} />
           </button>
@@ -663,7 +663,7 @@ export default function AdminUsersPage() {
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder="Search email, external ID, or role..."
                 aria-label="Search users"
-                className="field-focus-ring h-8 w-full rounded-(--r-sm) border border-(--line) bg-(--paper) pl-8 pr-2.5 text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c9cef7]"
+                className="field-focus-ring h-8 w-full rounded-(--r-sm) border-0 bg-[#EEF1F6] pl-8 pr-2.5 text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c9cef7]"
               />
             </div>
             <NativeSelect
@@ -734,7 +734,7 @@ export default function AdminUsersPage() {
             {detailsRows.map((row) => (
               <div
                 key={row.label}
-                className="rounded-(--r-md) border border-(--line) bg-(--paper) p-3"
+                className="rounded-(--r-md) border-0 bg-[#EEF1F6] p-3"
               >
                 <p className={`${MICRO_LABEL} mb-1`}>{row.label}</p>
                 <p className="text-xs font-semibold wrap-break-word text-(--t-1)">
@@ -807,7 +807,7 @@ export default function AdminUsersPage() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between gap-4 rounded-(--r-md) border border-(--line) bg-(--paper) px-[18px] py-4">
+          <div className="flex items-center justify-between gap-4 rounded-(--r-md) border-0 bg-[#EEF1F6] px-[18px] py-4">
             <div className="flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-(--r-md) bg-(--purple-s) text-(--purple)">
                 <RefreshCcw size={16} />
@@ -853,7 +853,7 @@ export default function AdminUsersPage() {
         }
       >
         <div className="space-y-5">
-          <div className="flex items-center justify-between rounded-(--r-md) border border-(--line) bg-(--paper) px-[18px] py-4">
+          <div className="flex items-center justify-between rounded-(--r-md) border-0 bg-[#EEF1F6] px-[18px] py-4">
             <div>
               <p className={MICRO_LABEL}>Current balance</p>
               <p className="mt-1 font-(family-name:--disp) text-[24px] font-bold tracking-[-0.02em] text-(--t-1)">
@@ -981,7 +981,7 @@ export default function AdminUsersPage() {
             </div>
           </div>
 
-          <div className="rounded-(--r-md) border border-(--line) bg-(--paper) px-[18px] py-3">
+          <div className="rounded-(--r-md) border-0 bg-[#EEF1F6] px-[18px] py-3">
             <p className="text-xs text-(--t-3)">
               A new account is created with a random password. We will email a link to set their own
               password.

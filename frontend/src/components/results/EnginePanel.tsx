@@ -59,7 +59,7 @@ export default function EnginePanel({ className }: EnginePanelProps) {
         {ENGINES.map((engine) => (
           <li
             key={engine.id}
-            className="relative flex items-center gap-4 rounded border border-(--line) bg-(--line-2) p-4 shadow-inner transition-colors hover:bg-(--line-2)"
+            className="relative flex items-center gap-4 rounded border-0 bg-(--line-2) p-4 shadow-inner transition-colors hover:bg-(--line-2)"
             data-testid={`engine-${engine.id}`}
           >
             <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-emerald-400/30  text-emerald-300">

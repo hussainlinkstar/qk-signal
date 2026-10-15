@@ -9,7 +9,7 @@ type DataRightsSectionProps = {
   settings: ReturnType<typeof useAccountSettings>;
 };
 
-const CARD = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const CARD = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const CARD_TITLE =
   "m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]";
 const CARD_DESC = "m-0 mb-[18px] text-[12.5px] leading-[1.5] text-(--t-3)";
@@ -21,9 +21,9 @@ const ROW =
 const ROW_TITLE = "text-[13.5px] font-semibold";
 const ROW_DESC = "mt-0.5 max-w-[560px] text-[12px] leading-[1.45] text-(--t-3)";
 const BTN_GHOST =
-  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] disabled:cursor-not-allowed disabled:opacity-55";
+  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-55";
 const BTN_DESTRUCTIVE =
-  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-[rgba(229,72,77,0.4)] bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--bad) hover:border-[#D7DAE0] disabled:cursor-not-allowed disabled:opacity-55";
+  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#FEECEC] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--bad) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-55";
 
 /**
  * The approved `.confirm` chip.
@@ -64,7 +64,7 @@ const BulletList: React.FC<{ heading: string; tone: "good" | "warn"; items: stri
   tone,
   items,
 }) => (
-  <div className="rounded-[12px] border border-(--line) bg-(--paper) px-4 py-3.5">
+  <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-4 py-3.5">
     <div
       className={`mb-2 font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.09em] ${
         tone === "good" ? "text-(--good)" : "text-(--warn)"

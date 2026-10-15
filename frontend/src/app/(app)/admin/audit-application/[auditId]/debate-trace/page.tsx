@@ -109,18 +109,18 @@ type DebateTraceJourneyResponse = {
 const MICRO_LABEL =
   "font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const MONO_META = MICRO_LABEL.replace("uppercase ", "");
-const WSEC = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const WSEC = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const SEC_TITLE =
   "m-0 mb-4 flex items-center gap-2 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em] text-(--t-1)";
-const INSET = "rounded-(--r-md) border border-(--line) bg-(--paper) p-4";
+const INSET = "rounded-(--r-md) border-0 bg-[#EEF1F6] p-4";
 const CHIP =
   "inline-flex items-center gap-1.5 rounded-md px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em]";
 const BACKLINK =
   "flex w-fit items-center gap-2 font-(family-name:--mono) text-[11.5px] tracking-[0.06em] text-(--t-3) transition-colors hover:text-(--t-1)";
 const WINPUT =
-  "field-focus-ring h-9 w-full rounded-(--r-md) border border-(--line) bg-(--paper) px-[10px] text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
+  "field-focus-ring h-9 w-full rounded-(--r-md) border-0 bg-[#EEF1F6] px-[10px] text-[12.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#c7cdd6]";
 const PRE_BLOCK =
-  "max-h-[280px] overflow-auto rounded-(--r-md) border border-(--line) bg-(--paper) p-3 font-(family-name:--mono) text-[11px] leading-relaxed text-(--t-2)";
+  "max-h-[280px] overflow-auto rounded-(--r-md) border-0 bg-[#EEF1F6] p-3 font-(family-name:--mono) text-[11px] leading-relaxed text-(--t-2)";
 
 const formatRole = (value: string) => value.replace(/_/g, " ");
 const formatStatus = (value: string) => value.replace(/_/g, " ");
@@ -356,7 +356,7 @@ export default function AdminDebateTracePage() {
                         key={`${layer.layer}-${trace.agent_role}`}
                         type="button"
                         onClick={() => void loadAgentOutput(trace.agent_role)}
-                        className="rounded-(--r-md) border border-(--line) bg-(--paper) p-4 text-left transition-colors hover:border-[#c7cdd6] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple)"
+                        className="rounded-(--r-md) border-0 bg-[#EEF1F6] p-4 text-left transition-colors hover:border-[#c7cdd6] focus:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple)"
                         aria-label={`Open ${trace.agent_role} trace`}
                       >
                         <div className="flex items-start justify-between gap-3">
@@ -385,15 +385,15 @@ export default function AdminDebateTracePage() {
                         </p>
 
                         <div className="mt-4 grid grid-cols-3 gap-2">
-                          <div className="rounded-(--r-sm) border border-(--line) bg-(--panel) px-2 py-2 font-(family-name:--mono) text-[10.5px] text-(--t-3)">
+                          <div className="rounded-(--r-sm) border-0 bg-white px-2 py-2 font-(family-name:--mono) text-[10.5px] text-(--t-3)">
                             <Clock3 className="mb-1 h-3 w-3 text-(--t-2)" />
                             {formatMs(trace.latency_ms)}
                           </div>
-                          <div className="rounded-(--r-sm) border border-(--line) bg-(--panel) px-2 py-2 font-(family-name:--mono) text-[10.5px] text-(--t-3)">
+                          <div className="rounded-(--r-sm) border-0 bg-white px-2 py-2 font-(family-name:--mono) text-[10.5px] text-(--t-3)">
                             <Coins className="mb-1 h-3 w-3 text-(--t-2)" />
                             {formatMoney(trace.cost_usd)}
                           </div>
-                          <div className="rounded-(--r-sm) border border-(--line) bg-(--panel) px-2 py-2 font-(family-name:--mono) text-[10.5px] text-(--t-3)">
+                          <div className="rounded-(--r-sm) border-0 bg-white px-2 py-2 font-(family-name:--mono) text-[10.5px] text-(--t-3)">
                             <GitBranch className="mb-1 h-3 w-3 text-(--t-2)" />
                             {trace.claim_count} claims
                           </div>

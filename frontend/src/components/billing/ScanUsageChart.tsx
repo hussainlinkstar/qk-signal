@@ -98,7 +98,7 @@ export default function ScanUsageChart({
             Daily consumption with 7-day rolling average
           </p>
         </div>
-        <div className="flex gap-1 rounded-full border border-(--border) bg-(--surface-subtle) p-0.5">
+        <div className="flex gap-1 rounded-full border-0 bg-(--surface-subtle) p-0.5">
           {RANGES.map((r) => (
             <button
               key={r.days}

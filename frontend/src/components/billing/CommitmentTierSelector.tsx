@@ -185,7 +185,7 @@ export default function CommitmentTierSelector({ getAuthHeaders }: CommitmentTie
 
   if (isLoading) {
     return (
-      <div className="rounded-md border border-(--line) bg-(--line-2) p-8 text-(--t-2)">
+      <div className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) p-8 text-(--t-2)">
         <div className="flex items-center gap-3">
           <Loader2 className="h-5 w-5 animate-spin text-(--t-2)" />
           <span className="text-sm">{t("signalCommitments.loading")}</span>
@@ -199,7 +199,7 @@ export default function CommitmentTierSelector({ getAuthHeaders }: CommitmentTie
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
           <div className="mb-2 flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-md border border-(--line) bg-(--line-2) text-(--t-2)">
+            <div className="flex h-10 w-10 items-center justify-center rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) text-(--t-2)">
               <TrendingUp className="h-5 w-5" />
             </div>
             <h2 className="text-xl font-semibold text-(--t-1)">{t("signalCommitments.title")}</h2>
@@ -207,7 +207,7 @@ export default function CommitmentTierSelector({ getAuthHeaders }: CommitmentTie
           <p className="max-w-2xl text-sm text-(--t-2)">{t("signalCommitments.intro")}</p>
         </div>
         {data?.current_plan ? (
-          <div className="rounded-md border border-(--line) bg-(--line-2) px-4 py-3 text-xs text-(--t-3)">
+          <div className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) px-4 py-3 text-xs text-(--t-3)">
             {t("signalCommitments.currentPlan")}{" "}
             <span className="text-(--t-2)">{formatPlanLabel(data.current_plan)}</span>
           </div>
@@ -226,7 +226,7 @@ export default function CommitmentTierSelector({ getAuthHeaders }: CommitmentTie
       ) : null}
 
       {!data?.eligible ? (
-        <div className="rounded-md border border-(--line) bg-(--line-2) p-5">
+        <div className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) p-5">
           <div className="flex items-start gap-3">
             <ShieldCheck className="mt-0.5 h-5 w-5 text-(--t-2)" />
             <div>
@@ -247,7 +247,7 @@ export default function CommitmentTierSelector({ getAuthHeaders }: CommitmentTie
       ) : null}
 
       {activeCommitment ? (
-        <div className="rounded-md border border-(--line) bg-(--line-2) p-5">
+        <div className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) p-5">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
             <div>
               <p className="text-xs font-medium uppercase tracking-wide text-(--t-3)">
@@ -276,7 +276,7 @@ export default function CommitmentTierSelector({ getAuthHeaders }: CommitmentTie
               ) : null}
             </div>
             <div className="grid gap-2 text-sm text-(--t-2)">
-              <div className="rounded-md border border-(--line) bg-(--line-2) px-4 py-3">
+              <div className="rounded-[12px] border-0 bg-[#EEF1F6] bg-(--line-2) px-4 py-3">
                 <div className="text-xs uppercase tracking-wide text-(--t-3)">
                   {t("signalCommitments.monthlyFee")}
                 </div>

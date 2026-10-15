@@ -45,10 +45,10 @@ function GuardrailsPreview() {
       {SAMPLE_PREVIEW_FACTS.map((fact, index) => (
         <div
           key={index}
-          className="rounded border border-(--border) bg-(--surface-elevated) p-4 shadow-(--shadow-inset)"
+          className="rounded border-0 bg-(--surface-elevated) p-4 shadow-(--shadow-inset)"
         >
           <div className="flex items-center gap-2">
-            <span className="rounded-full border border-(--border) bg-(--surface-subtle) px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-(--text-muted)">
+            <span className="rounded-full border-0 bg-(--surface-subtle) px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-(--text-muted)">
               {KIND_LABEL[fact.kind]}
             </span>
             {fact.is_forbidden ? (
@@ -198,7 +198,7 @@ export default function GuardrailsSection({ projectId }: GuardrailsSectionProps)
     );
   }
 
-  const shellCls = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+  const shellCls = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 
   if (authLoading || loading) {
     return (
@@ -243,7 +243,7 @@ export default function GuardrailsSection({ projectId }: GuardrailsSectionProps)
             </span>
             {/* Approved `.seg` group: Fact / Claim. */}
             <div
-              className="inline-flex gap-[2px] rounded-[9px] border border-(--line) bg-(--paper) p-[3px] ltr:[direction:ltr]"
+              className="inline-flex gap-[2px] rounded-[9px] border-0 bg-[#EEF1F6] p-[3px] ltr:[direction:ltr]"
               role="group"
               aria-labelledby="brand-fact-kind-label"
             >
@@ -273,7 +273,7 @@ export default function GuardrailsSection({ projectId }: GuardrailsSectionProps)
             </label>
             <input
               id="brand-fact-statement"
-              className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="text"
               placeholder="e.g. Founded in 2019 in London"
               value={statement}
@@ -283,7 +283,7 @@ export default function GuardrailsSection({ projectId }: GuardrailsSectionProps)
           </div>
           <button
             type="button"
-            className="inline-flex h-[38px] flex-none cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black disabled:cursor-not-allowed disabled:opacity-50 max-md:min-h-11"
+            className="inline-flex h-[38px] flex-none cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black disabled:cursor-not-allowed disabled:opacity-50 max-md:min-h-11"
             disabled={!statement.trim() || saving}
             onClick={() => void handleAddFact()}
           >
@@ -341,7 +341,7 @@ export default function GuardrailsSection({ projectId }: GuardrailsSectionProps)
 
       <div className="mt-4 space-y-3">
         {facts.length === 0 ? (
-          <div className="rounded-[10px] border border-dashed border-(--line) px-4 py-[26px] text-center text-[13px] text-(--t-3)">
+          <div className="rounded-[14px] border border-dashed border-[#D1D5DB] bg-[#F8FAFC] px-4 py-[26px] text-center text-[13px] text-(--t-3)">
             No guardrails yet.
           </div>
         ) : (
@@ -349,12 +349,12 @@ export default function GuardrailsSection({ projectId }: GuardrailsSectionProps)
             <div
               key={fact.id}
               data-testid="guardrail-row"
-              className="rounded-[12px] border border-(--line) bg-(--paper) px-[18px] py-4"
+              className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4"
             >
               <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                 <div className="min-w-0 space-y-2">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="rounded-full border border-(--line) bg-(--panel) px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-(--t-3)">
+                    <span className="rounded-full border-0 bg-white px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.18em] text-(--t-3)">
                       {KIND_LABEL[fact.kind]}
                     </span>
                     {fact.is_forbidden ? (
@@ -372,7 +372,7 @@ export default function GuardrailsSection({ projectId }: GuardrailsSectionProps)
                 </div>
                 <button
                   type="button"
-                  className="inline-flex h-8 flex-none cursor-pointer items-center gap-2 self-start rounded-[10px] border border-[color-mix(in_srgb,var(--bad)_40%,transparent)] bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--bad) disabled:cursor-not-allowed disabled:opacity-50 max-md:min-h-11"
+                  className="inline-flex h-8 flex-none cursor-pointer items-center gap-2 self-start rounded-full border-0 bg-[#FEECEC] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--bad) disabled:cursor-not-allowed disabled:opacity-50 max-md:min-h-11"
                   disabled={removingId === fact.id}
                   onClick={() => void handleRemoveFact(fact.id)}
                   aria-label={`Remove guardrail: ${fact.statement}`}

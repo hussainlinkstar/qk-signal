@@ -100,7 +100,7 @@ export default function JiraExportModal({
     <Modal
       open={open}
       onClose={handleClose}
-      panelClassName="w-full max-w-lg border border-(--border) bg-(--card) p-0"
+      panelClassName="w-full max-w-lg border-0 bg-(--card) p-0"
     >
       <div className="relative overflow-hidden p-8">
         <div className="relative z-10">
@@ -120,7 +120,7 @@ export default function JiraExportModal({
 
           {!result ? (
             <div className="space-y-6">
-              <div className="space-y-2 rounded border border-(--border) bg-(--background) p-4">
+              <div className="space-y-2 rounded border-0 bg-(--background) p-4">
                 <p className="text-[10px] font-medium uppercase tracking-wider text-(--t-3)">
                   Task Definition
                 </p>
@@ -149,7 +149,7 @@ export default function JiraExportModal({
                   </SelectField>
 
                   {error && (
-                    <div className="flex items-start gap-2 p-3 rounded-lg border border-rose-500/20 bg-rose-500/10 text-rose-400 text-xs font-bold">
+                    <div className="flex items-start gap-2 p-3 rounded-lg border-0 bg-rose-500/10 text-rose-400 text-xs font-bold">
                       <AlertCircle className="h-4 w-4 shrink-0" />
                       {error}
                     </div>
@@ -220,7 +220,7 @@ export default function JiraExportModal({
                   </div>
 
                   {error && (
-                    <div className="flex items-start gap-2 p-3 rounded-lg border border-rose-500/20 bg-rose-500/10 text-rose-400 text-xs font-bold text-left">
+                    <div className="flex items-start gap-2 p-3 rounded-lg border-0 bg-rose-500/10 text-rose-400 text-xs font-bold text-left">
                       <AlertCircle className="h-4 w-4 shrink-0" />
                       {error}
                     </div>
@@ -245,7 +245,7 @@ export default function JiraExportModal({
                 </div>
               </div>
 
-              <div className="group flex items-center justify-between rounded border border-(--border) bg-(--background) p-5">
+              <div className="group flex items-center justify-between rounded border-0 bg-(--background) p-5">
                 <div>
                   <p className="mb-1 text-[10px] font-medium uppercase tracking-wider leading-none text-(--t-3)">
                     Jira Resource Identifier

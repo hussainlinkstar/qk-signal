@@ -27,11 +27,11 @@ export default function EntityGapTable({ gaps }: EntityGapTableProps) {
       </div>
 
       {gaps.length === 0 ? (
-        <div className="rounded-xl border border-emerald-400/20 bg-emerald-500/10 p-4 text-sm text-emerald-200">
+        <div className="rounded-xl border-0 bg-emerald-500/10 p-4 text-sm text-emerald-200">
           Great coverage. No missing target entities were detected.
         </div>
       ) : (
-        <div className="overflow-hidden rounded-xl border border-(--line)">
+        <div className="overflow-hidden rounded-xl border-0">
           <table className="min-w-full text-sm">
             <thead className={TABLE.head}>
               <tr className={TABLE.headerRow}>

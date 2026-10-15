@@ -52,7 +52,7 @@ const BrandingSection: React.FC<BrandingSectionProps> = ({ settings }) => {
   return (
     <div className="flex flex-col gap-4">
       {/* ── Report Branding ── */}
-      <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+      <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
         <div className="mb-1 flex items-center justify-between gap-4">
           <h3 className="m-0 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
             Report Branding
@@ -145,7 +145,7 @@ const BrandingSection: React.FC<BrandingSectionProps> = ({ settings }) => {
             <div className="mt-2.5">
               <button
                 type="button"
-                className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-[rgba(229,72,77,0.4)] bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--bad) hover:border-[#D7DAE0]"
+                className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#FEECEC] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--bad) hover:bg-[#E8ECF3]"
                 onClick={handleRemoveBrandingLogo}
                 disabled={!hasWhiteLabel || isUploadingBrandingLogo}
               >
@@ -162,11 +162,11 @@ const BrandingSection: React.FC<BrandingSectionProps> = ({ settings }) => {
             </span>
             <div className="flex items-center gap-2.5">
               <span
-                className="h-[34px] w-[34px] flex-none rounded-[9px] border border-(--line) bg-(--sw)"
+                className="h-[34px] w-[34px] flex-none rounded-[9px] border-0 bg-(--sw)"
                 style={{ "--sw": effectivePrimary } as React.CSSProperties}
               />
               <input
-                className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+                className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
                 type="text"
                 value={primaryColor}
                 onChange={(e) => setPrimaryColor(e.target.value)}
@@ -180,11 +180,11 @@ const BrandingSection: React.FC<BrandingSectionProps> = ({ settings }) => {
             </span>
             <div className="flex items-center gap-2.5">
               <span
-                className="h-[34px] w-[34px] flex-none rounded-[9px] border border-(--line) bg-(--sw)"
+                className="h-[34px] w-[34px] flex-none rounded-[9px] border-0 bg-(--sw)"
                 style={{ "--sw": effectiveSecondary } as React.CSSProperties}
               />
               <input
-                className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+                className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
                 type="text"
                 value={secondaryColor}
                 onChange={(e) => setSecondaryColor(e.target.value)}
@@ -203,7 +203,7 @@ const BrandingSection: React.FC<BrandingSectionProps> = ({ settings }) => {
           )}
           <button
             type="button"
-            className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
+            className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
             onClick={handleSaveBranding}
             disabled={!isSignedIn || isBootLoading || isUploadingBrandingLogo || isSavingBranding}
           >
@@ -213,7 +213,7 @@ const BrandingSection: React.FC<BrandingSectionProps> = ({ settings }) => {
       </div>
 
       {/* ── Guidance ── */}
-      <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+      <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
         <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
           Keep report branding predictable
         </h3>

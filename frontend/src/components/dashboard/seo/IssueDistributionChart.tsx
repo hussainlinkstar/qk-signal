@@ -52,7 +52,7 @@ function ChartTooltip({ active, payload }: Partial<TooltipContentProps<number, s
   }
 
   return (
-    <div className="rounded-2xl border border-(--border) bg-(--chart-tooltip-bg) px-4 py-3">
+    <div className="rounded-2xl border-0 bg-(--chart-tooltip-bg) px-4 py-3">
       <p className={CHART_TOOLTIP_VALUE_CLASS}>{point.name}</p>
       <p
         className={`${CHART_TOOLTIP_LABEL_CLASS} mt-1 text-(--c)`}
@@ -109,7 +109,7 @@ export default function IssueDistributionChart({
             <div className="h-64 w-full animate-pulse rounded-2xl bg-(--surface-subtle)" />
           </div>
         ) : error ? (
-          <div className="space-y-3 rounded-lg border border-danger/20 bg-danger/10 p-4 text-sm text-danger">
+          <div className="space-y-3 rounded-lg border-0 bg-danger/10 p-4 text-sm text-danger">
             <p>{error}</p>
             {onRetry ? (
               <button
@@ -123,7 +123,7 @@ export default function IssueDistributionChart({
             ) : null}
           </div>
         ) : isEmpty || data.length === 0 ? (
-          <div className="rounded-xl border border-warning/20 bg-warning/10 p-4 text-sm font-medium text-warning shadow-inner">
+          <div className="rounded-xl border-0 bg-warning/10 p-4 text-sm font-medium text-warning shadow-inner">
             No issue categories with positive values are available for this audit.
           </div>
         ) : (
@@ -155,7 +155,7 @@ export default function IssueDistributionChart({
                 return (
                   <li
                     key={`legend-${entry.name}`}
-                    className="flex items-center justify-between gap-3 rounded-xl border border-(--border) bg-(--surface-subtle) px-4 py-3 transition-colors hover:bg-(--surface)"
+                    className="flex items-center justify-between gap-3 rounded-xl border-0 bg-(--surface-subtle) px-4 py-3 transition-colors hover:bg-(--surface)"
                   >
                     <div className="flex min-w-0 items-center gap-3">
                       <span

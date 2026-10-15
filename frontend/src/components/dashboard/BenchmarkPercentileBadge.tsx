@@ -114,7 +114,7 @@ export default function BenchmarkPercentileBadge({
           <p className="text-xs text-(--t-2)">{benchmark.cohort_label ?? "Cohort benchmark"}</p>
         </div>
         <div className="grid grid-cols-2 gap-3">
-          <div className="rounded-xl border border-(--line) bg-(--line-2) px-3 py-2">
+          <div className="rounded-xl border-0 bg-(--line-2) px-3 py-2">
             <p className="text-[10px] font-black uppercase tracking-widest text-(--t-2)">
               Citation Stability
             </p>
@@ -122,7 +122,7 @@ export default function BenchmarkPercentileBadge({
               {formatScore(citationStability?.value)}
             </p>
           </div>
-          <div className="rounded-xl border border-(--line) bg-(--line-2) px-3 py-2">
+          <div className="rounded-xl border-0 bg-(--line-2) px-3 py-2">
             <p className="text-[10px] font-black uppercase tracking-widest text-(--t-2)">
               Remediation Impact
             </p>

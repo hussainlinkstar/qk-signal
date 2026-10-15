@@ -184,7 +184,7 @@ function CallbackFrame({
 
       <section
         className={cx(
-          "relative z-10 w-full max-w-184 overflow-hidden border border-(--border)  px-6 py-7 shadow-[0_32px_120px_rgba(0,0,0,0.58)] sm:px-8 sm:py-9",
+          "relative z-10 w-full max-w-184 overflow-hidden border-0  px-6 py-7 shadow-[0_32px_120px_rgba(0,0,0,0.58)] sm:px-8 sm:py-9",
           RADIUS_PANEL_CLASS
         )}
       >

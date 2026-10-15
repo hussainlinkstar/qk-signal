@@ -40,14 +40,13 @@ describe("SignalTabs accessibility", () => {
     vi.restoreAllMocks();
   });
 
-  it("uses the MVP underline tab row rather than filled pills", () => {
+  it("uses a soft pill tab row with a light-blue active state", () => {
     render(<TabsHarness />);
-    expect(screen.getByRole("tablist")).toHaveClass("border-b", "border-(--line)");
+    expect(screen.getByRole("tablist")).toHaveClass("rounded-[16px]", "bg-[#EEF1F6]");
     expect(screen.getByRole("tab", { name: "Overview" })).toHaveClass(
-      "rounded-none",
-      "border-b-2",
-      "bg-transparent",
-      "border-b-(--ink)"
+      "rounded-full",
+      "bg-[#E8F1FF]",
+      "text-[#1D4ED8]"
     );
   });
 

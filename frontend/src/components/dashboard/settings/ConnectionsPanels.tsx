@@ -160,20 +160,20 @@ const EMPTY_CMS_FORMS: Record<CmsType, CmsFormState> = {
 };
 
 // signal-MVP vocabulary (signal.css .wsec/.card/.field/.btn)
-const cardCls = "rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]";
+const cardCls = "rounded-[22px] border-0 bg-white px-[22px] py-[18px]";
 const cardHeadCls =
   "m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]";
 const cardDescCls = "m-0 mb-[18px] text-[12.5px] leading-[1.5] text-(--t-3)";
 const fieldLabelCls =
   "mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const inputCls =
-  "field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)";
+  "field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)";
 const selectCls =
-  "field-focus-ring h-11 w-full appearance-none rounded-[10px] border border-(--line) bg-(--paper) py-0 pl-[13px] pr-[34px] font-(family-name:--body-font) cursor-pointer text-[13.5px] text-(--t-1) outline-none wselect-chevron";
+  "field-focus-ring h-11 w-full appearance-none rounded-[14px] border-0 bg-[#EEF1F6] py-0 pl-[13px] pr-[34px] font-(family-name:--body-font) cursor-pointer text-[13.5px] text-(--t-1) outline-none wselect-chevron";
 const btnCls =
-  "inline-flex h-[38px] cursor-pointer items-center justify-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] disabled:cursor-not-allowed disabled:opacity-45";
+  "inline-flex h-[38px] cursor-pointer items-center justify-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-45";
 const btnPrimaryCls =
-  "inline-flex h-[38px] cursor-pointer items-center justify-center gap-2 rounded-[10px] border border-(--primary) bg-(--primary) px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-(--primary-hover) disabled:cursor-not-allowed disabled:opacity-45";
+  "inline-flex h-[38px] cursor-pointer items-center justify-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-(--primary-hover) disabled:cursor-not-allowed disabled:opacity-45";
 // signal-MVP `.conn` row anatomy: flat hairline-separated rows inside a .wsec
 // card - no nested tiles. `.ci` 32px icon tile, `.cn` flex text, `.t` 13.5/600,
 // `.s` mono 11.5 meta, `.badge-ok` pill for the connected state, compact 32px
@@ -188,7 +188,7 @@ const connSubCls = "font-(family-name:--mono) text-[11.5px] text-(--t-3)";
 // short technical metadata (masked token, refresh flag, status ids).
 const connDescCls = "text-[12.5px] leading-[1.5] text-(--t-3)";
 const btnSmCls =
-  "inline-flex h-8 cursor-pointer items-center justify-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-3 py-0 font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:border-[#D7DAE0] disabled:cursor-not-allowed disabled:opacity-45 max-md:min-h-11";
+  "inline-flex h-8 cursor-pointer items-center justify-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-3 py-0 font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-45 max-md:min-h-11";
 const tagCls =
   "inline-flex items-center rounded-[6px] bg-[rgba(147,51,234,0.10)] px-2 py-[3px] font-(family-name:--mono) text-[9.5px] uppercase tracking-[0.06em] text-[#7C3AED]";
 
@@ -312,7 +312,7 @@ const ConfigurationModal = ({
       open={isOpen}
       onClose={onClose}
       ariaLabelledby={titleId}
-      panelClassName="max-h-[calc(100vh-2rem)] w-full max-w-md overflow-y-auto border border-(--line) bg-(--panel) p-5 sm:p-6"
+      panelClassName="max-h-[calc(100vh-2rem)] w-full max-w-md overflow-y-auto border-0 bg-white p-5 sm:p-6"
     >
       <div className="mb-4 flex items-center justify-between gap-4">
         <h3
@@ -324,7 +324,7 @@ const ConfigurationModal = ({
         <button
           type="button"
           onClick={onClose}
-          className="inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-[10px] border border-(--line) bg-transparent text-[13px] font-semibold text-(--t-3) hover:text-(--t-1)"
+          className="inline-flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-[14px] border-0 bg-[#F7F8FA] bg-transparent text-[13px] font-semibold text-(--t-3) hover:text-(--t-1)"
           aria-label={`Close ${title}`}
         >
           Close

@@ -61,7 +61,7 @@ export function CreateWorkspaceModal({ open, onClose, getAuthHeaders }: CreateWo
     <Modal open={open} onClose={onClose} panelClassName="w-full max-w-md">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-(--line) bg-(--line-2)">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] border-0 bg-[#EEF1F6]">
             <Building2 className="h-5 w-5 text-(--muted-foreground)" />
           </div>
           <div>
@@ -131,7 +131,7 @@ export function UpgradeToMultiWorkspaceModal({ open, onClose }: UpgradeWorkspace
     <Modal open={open} onClose={onClose} panelClassName="w-full max-w-md">
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-amber-500/30 bg-amber-500/10">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border-0 bg-amber-500/10">
             <Zap className="h-5 w-5 text-amber-400" />
           </div>
           <div>
@@ -155,7 +155,7 @@ export function UpgradeToMultiWorkspaceModal({ open, onClose }: UpgradeWorkspace
           separate projects, team members, and billing.
         </p>
 
-        <div className="rounded-xl border border-(--line) bg-(--line-2) p-4 space-y-2">
+        <div className="rounded-[14px] border-0 bg-[#EEF1F6] p-4 space-y-2">
           {[
             "Unlimited workspaces under one account",
             "Isolated projects, audits & members per workspace",

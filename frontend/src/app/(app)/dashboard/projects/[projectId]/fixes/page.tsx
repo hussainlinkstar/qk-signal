@@ -101,18 +101,18 @@ const chipCatCls = `${chipBase} bg-(--purple-a10) text-(--purple)`;
 const chipProgCls = `${chipBase} bg-(--warn-s) text-(--warn)`;
 const chipDoneCls = `${chipBase} bg-(--good-s) text-(--good)`;
 const chipDismissedCls = `${chipBase} bg-(--line-2) text-(--t-3)`;
-const chipSourceCls = `${chipBase} border border-(--line) bg-(--paper) text-(--t-3)`;
+const chipSourceCls = `${chipBase} border-0 bg-[#EEF1F6] text-(--t-3)`;
 const chipUnratedCls = `${chipBase} border border-dashed border-(--line) text-(--t-3) normal-case`;
 
 const segBtnCls =
   "cursor-pointer rounded-[6px] border-none px-3 py-1.5 font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-2)";
 const segBtnOnCls = "bg-(--ink) text-white";
 const btnSmCls =
-  "inline-flex h-[30px] cursor-pointer items-center gap-1.5 rounded-(--r-sm) border border-(--line) bg-(--panel) px-[11px] font-(family-name:--body-font) text-[12px] font-semibold text-(--t-1) hover:border-(--line-btn-hover) disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex h-[30px] cursor-pointer items-center gap-1.5 rounded-(--r-sm) border-0 bg-white px-[11px] font-(family-name:--body-font) text-[12px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-50";
 const btnSmGhostCls =
   "inline-flex h-[30px] cursor-pointer items-center gap-1.5 rounded-(--r-sm) border border-transparent bg-transparent px-[11px] font-(family-name:--body-font) text-[12px] font-semibold text-(--t-2) hover:bg-(--line-2) hover:text-(--t-1) disabled:cursor-not-allowed disabled:opacity-50";
 const btnPrimaryCls =
-  "inline-flex h-[38px] cursor-pointer items-center justify-center gap-2 rounded-[10px] border border-(--ink) bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black";
+  "inline-flex h-[38px] cursor-pointer items-center justify-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black";
 
 // SIGV2-1193: a row is one entry of the single consolidated fix list, so this
 // page and the Improve tabs can no longer disagree about how many fixes exist.
@@ -176,7 +176,7 @@ function FixHistorySection({
   children: React.ReactNode;
 }) {
   return (
-    <div className="rounded-(--r-md) border border-(--line) bg-(--panel)">
+    <div className="rounded-(--r-md) border-0 bg-white">
       <h2 className="m-0">
         <button
           type="button"
@@ -608,12 +608,12 @@ export default function ProjectFixesPage() {
         key={fix.id}
         data-testid={`fix-${fix.id}`}
         className={cx(
-          "flex items-start gap-4 rounded-(--r-md) border border-(--line) bg-(--panel) px-[18px] py-4",
+          "flex items-start gap-4 rounded-(--r-md) border-0 bg-white px-[18px] py-4",
           "mt-2.5 first:mt-0",
           mode !== "active" && "opacity-[.62]"
         )}
       >
-        <span className="flex h-[26px] w-[26px] flex-none items-center justify-center rounded-[8px] border border-(--line) bg-(--paper) font-mono text-[11px] text-(--t-2)">
+        <span className="flex h-[26px] w-[26px] flex-none items-center justify-center rounded-[8px] border-0 bg-[#EEF1F6] font-mono text-[11px] text-(--t-2)">
           {fix.rank}
         </span>
         <div className="min-w-0 flex-1">
@@ -765,7 +765,7 @@ export default function ProjectFixesPage() {
 
   if (error) {
     return (
-      <div className="mt-3.5 flex flex-col items-center gap-3 rounded-2xl border border-(--line) bg-(--panel) px-6 py-[22px] text-center text-[13px] text-(--t-2)">
+      <div className="mt-3.5 flex flex-col items-center gap-3 rounded-[22px] border-0 bg-white px-6 py-[22px] text-center text-[13px] text-(--t-2)">
         <span>{t("signalFixes.plan.loadFailed")}</span>
       </div>
     );
@@ -799,7 +799,7 @@ export default function ProjectFixesPage() {
       {/* signal-MVP `.alert.info` */}
       {!alertDismissed && (
         <div
-          className="relative flex gap-[11px] rounded-(--r-md) border border-[color-mix(in_srgb,var(--blue)_30%,transparent)] bg-[color-mix(in_srgb,var(--blue)_5%,transparent)] px-[15px] py-[13px] text-[13px] leading-[1.5] text-(--t-2)"
+          className="relative flex gap-[11px] rounded-(--r-md) border-0 bg-[color-mix(in_srgb,var(--blue)_5%,transparent)] px-[15px] py-[13px] text-[13px] leading-[1.5] text-(--t-2)"
           role="note"
         >
           <svg
@@ -844,7 +844,7 @@ export default function ProjectFixesPage() {
            billing link both come from that same payload, so this card and the
            dashboard's preview lock always name one plan. */
         <div className="flex justify-center">
-          <div className="w-full max-w-[420px] rounded-2xl border border-(--purple) bg-(--panel) px-[30px] py-7 text-center shadow-[0_24px_60px_-12px_var(--ink-sh),0_0_0_1px_var(--purple-a12)]">
+          <div className="w-full max-w-[420px] rounded-[22px] border-0 bg-white px-[30px] py-7 text-center shadow-[0_24px_60px_-12px_rgba(12,15,22,0.12)]">
             <div className="text-[10.5px] uppercase tracking-[0.14em] text-(--purple)">
               {advisorPlan.requiredPlan ?? t("signalFixes.plan.gateEyebrow")}
             </div>
@@ -866,9 +866,9 @@ export default function ProjectFixesPage() {
       ) : (
         <>
           {/* signal-MVP filter card: two `.seg` groups */}
-          <div className="flex flex-wrap items-center gap-3.5 rounded-(--r) border border-(--line) bg-(--panel) px-[18px] py-3.5">
+          <div className="flex flex-wrap items-center gap-3.5 rounded-[22px] border-0 bg-white px-[18px] py-3.5">
             <span className="m-0 text-[12px] text-(--t-3)">{t("signalFixes.plan.filterCat")}</span>
-            <div className="inline-flex gap-[2px] rounded-[9px] border border-(--line) bg-(--paper) p-[3px] ltr:[direction:ltr]">
+            <div className="inline-flex gap-[2px] rounded-[9px] border-0 bg-[#EEF1F6] p-[3px] ltr:[direction:ltr]">
               {CAT_FILTERS.map((cat) => (
                 <button
                   key={cat}
@@ -884,7 +884,7 @@ export default function ProjectFixesPage() {
             <span className="m-0 text-[12px] text-(--t-3) ltr:ml-2 rtl:mr-2">
               {t("signalFixes.plan.filterStatus")}
             </span>
-            <div className="inline-flex gap-[2px] rounded-[9px] border border-(--line) bg-(--paper) p-[3px] ltr:[direction:ltr]">
+            <div className="inline-flex gap-[2px] rounded-[9px] border-0 bg-[#EEF1F6] p-[3px] ltr:[direction:ltr]">
               {STATUS_FILTERS.map((st) => (
                 <button
                   key={st}
@@ -928,7 +928,7 @@ export default function ProjectFixesPage() {
           {/* signal-MVP `#fx-list` */}
           <div>
             {visibleRows.length === 0 ? (
-              <div className="mt-1 flex flex-col items-center gap-2 rounded-(--r-md) border border-(--line) bg-(--panel) px-6 py-[30px] text-center text-[13px] text-(--t-2)">
+              <div className="mt-1 flex flex-col items-center gap-2 rounded-(--r-md) border-0 bg-white px-6 py-[30px] text-center text-[13px] text-(--t-2)">
                 <span>
                   {activeRows.length > 0
                     ? t("signalFixes.plan.emptyFiltered")
@@ -964,9 +964,9 @@ export default function ProjectFixesPage() {
                 <div
                   key={`done-${task.id}`}
                   data-testid={`fix-done-${task.id}`}
-                  className="mt-2.5 flex items-start gap-4 rounded-(--r-md) border border-(--line) bg-(--panel) px-[18px] py-4 opacity-[.62] first:mt-0"
+                  className="mt-2.5 flex items-start gap-4 rounded-(--r-md) border-0 bg-white px-[18px] py-4 opacity-[.62] first:mt-0"
                 >
-                  <span className="flex h-[26px] w-[26px] flex-none items-center justify-center rounded-[8px] border border-(--line) bg-(--paper) font-mono text-[11px] text-(--t-2)">
+                  <span className="flex h-[26px] w-[26px] flex-none items-center justify-center rounded-[8px] border-0 bg-[#EEF1F6] font-mono text-[11px] text-(--t-2)">
                     <svg
                       viewBox="0 0 24 24"
                       fill="none"
@@ -1023,7 +1023,7 @@ export default function ProjectFixesPage() {
           ) : null}
 
           {/* signal-MVP `.card.sblock` About dismissing */}
-          <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-5">
+          <div className="rounded-[22px] border-0 bg-white px-[22px] py-5">
             <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[14.5px] font-bold">
               {t("signalFixes.plan.dismissTitle")}
             </h3>

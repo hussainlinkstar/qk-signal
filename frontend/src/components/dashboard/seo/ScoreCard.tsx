@@ -93,7 +93,7 @@ export default function ScoreCard({
               panelClassName="bottom-auto left-auto right-0 top-full mt-2 w-64 translate-x-0 text-left"
               triggerAriaLabel={`How ${label} is evaluated`}
             >
-              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-(--border) bg-(--surface-subtle) text-(--text-soft) transition hover:border-(--border-hover) hover:text-(--foreground)">
+              <span className="inline-flex h-7 w-7 items-center justify-center rounded-full border-0 bg-(--surface-subtle) text-(--text-soft) transition hover:border-(--border-hover) hover:text-(--foreground)">
                 <Info className="h-3.5 w-3.5" />
               </span>
             </Tooltip>

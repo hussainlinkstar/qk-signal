@@ -48,7 +48,7 @@ export default function DeleteProjectSection({
           </label>
           <input
             id={confirmId}
-            className="field-focus-ring h-11 w-full rounded-[10px] border border-(--line) bg-(--paper) px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:border-[#C7CDD6] disabled:bg-(--line-2) disabled:text-(--t-3)"
+            className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
             type="text"
             placeholder={t("signalProjectSettings.deleteProject.confirmPlaceholder")}
             value={confirmName}
@@ -58,7 +58,7 @@ export default function DeleteProjectSection({
         </div>
         <button
           type="button"
-          className="inline-flex h-[38px] flex-none cursor-pointer items-center gap-2 rounded-[10px] border border-[color-mix(in_srgb,var(--bad)_40%,transparent)] bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--bad) max-md:min-h-11"
+          className="inline-flex h-[38px] flex-none cursor-pointer items-center gap-2 rounded-full border-0 bg-[#FEECEC] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--bad) max-md:min-h-11"
           onClick={onDelete}
           disabled={blocked}
         >

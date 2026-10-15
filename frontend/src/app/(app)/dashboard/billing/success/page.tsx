@@ -142,7 +142,7 @@ export default function BillingSuccessPage() {
         </SignalAlert>
       </div>
 
-      <div className="rounded border border-(--line) bg-(--line-2)  shadow-inner p-6">
+      <div className="rounded border-0 bg-(--line-2)  shadow-inner p-6">
         <h2 className="text-xl font-bold text-(--t-1)">What happens next?</h2>
         <p className="text-sm text-(--t-2) mt-2">
           We are syncing your new plan across the dashboard. You can review invoices or manage

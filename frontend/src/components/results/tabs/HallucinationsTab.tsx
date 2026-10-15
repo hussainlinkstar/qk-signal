@@ -258,7 +258,7 @@ function ClaimCard({ claim }: { claim: HallucinationClaim }) {
                 return (
                   <div
                     key={idx}
-                    className="rounded bg-(--line-2) border border-(--line) p-3 space-y-1"
+                    className="rounded bg-(--line-2) border-0 p-3 space-y-1"
                   >
                     <div className="flex items-center gap-2">
                       <span className="font-mono text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)">

@@ -46,9 +46,9 @@ const PAGE_SIZE = 5;
 const LIBRARY_PAGE_LIMIT = 100;
 
 const btnCls =
-  "inline-flex h-[38px] cursor-pointer items-center justify-center gap-2 rounded-(--r-md) border border-(--line) bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13px] font-semibold text-(--t-1) transition-colors duration-150 hover:border-(--line-btn-hover) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--brand) disabled:cursor-not-allowed disabled:opacity-45";
+  "inline-flex h-[38px] cursor-pointer items-center justify-center gap-2 rounded-(--r-md) border-0 bg-white px-[15px] font-(family-name:--body-font) text-[13px] font-semibold text-(--t-1) transition-colors duration-150 hover:bg-[#E8ECF3] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--brand) disabled:cursor-not-allowed disabled:opacity-45";
 const btnSmCls =
-  "inline-flex h-[30px] cursor-pointer items-center gap-1.5 rounded-(--r-sm) border border-(--line) bg-(--panel) px-[11px] font-(family-name:--body-font) text-[12px] font-semibold text-(--t-1) hover:border-(--line-btn-hover) disabled:cursor-not-allowed disabled:opacity-45";
+  "inline-flex h-[30px] cursor-pointer items-center gap-1.5 rounded-(--r-sm) border-0 bg-white px-[11px] font-(family-name:--body-font) text-[12px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-45";
 const btnSmGhostCls =
   "inline-flex h-[30px] cursor-pointer items-center gap-1.5 rounded-(--r-sm) border border-transparent bg-transparent px-[11px] font-(family-name:--body-font) text-[12px] font-semibold text-(--t-2) hover:bg-(--line-2) hover:text-(--t-1) disabled:cursor-not-allowed disabled:opacity-45";
 const btnDangerCls =
@@ -150,7 +150,7 @@ export default function ReportLibraryClient() {
             <div
               role="menu"
               aria-label={t("signalReportLibrary.generate")}
-              className="absolute top-[calc(100%+6px)] z-dropdown min-w-[206px] overflow-hidden rounded-(--r-md) border border-(--line) bg-(--panel) py-1 shadow-[0_18px_40px_-16px_var(--ink-sh)] ltr:right-0 rtl:left-0"
+              className="absolute top-[calc(100%+6px)] z-dropdown min-w-[206px] overflow-hidden rounded-(--r-md) border-0 bg-white py-1 shadow-[0_18px_40px_-16px_var(--ink-sh)] ltr:right-0 rtl:left-0"
             >
               {REPORT_KINDS.map((kind) => (
                 <Link
@@ -459,7 +459,7 @@ export default function ReportLibraryClient() {
         </SignalAlert>
       ) : null}
 
-      <div className="rounded-(--r-lg) border border-(--line) bg-(--panel) px-[18px] py-4">
+      <div className="rounded-(--r-lg) border-0 bg-white px-[18px] py-4">
         <div className="mb-2.5 flex flex-wrap items-center gap-2">
           <button
             type="button"
@@ -520,7 +520,7 @@ export default function ReportLibraryClient() {
         open={confirmOpen}
         onClose={() => (deleting ? undefined : setConfirmOpen(false))}
         ariaLabelledby="report-library-delete-title"
-        panelClassName="max-w-[420px] border border-(--line) bg-(--panel) p-[22px]"
+        panelClassName="max-w-[420px] border-0 bg-white p-[22px]"
       >
         <div className="flex flex-col gap-3">
           <h2

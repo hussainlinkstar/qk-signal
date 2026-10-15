@@ -28,7 +28,7 @@ export default function AuditModelSelectionSection() {
       heading={t("signalStartCheck.models.heading")}
       description={t("signalStartCheck.models.description")}
     >
-      <div className="flex flex-wrap items-center justify-between gap-2.5 rounded-[10px] border border-[#CEE9D7] bg-(--good-s) px-3.5 py-3 text-[12px] text-[#18683B]">
+      <div className="flex flex-wrap items-center justify-between gap-2.5 rounded-[14px] border-0 bg-(--good-s) px-3.5 py-3 text-[12px] text-[#18683B]">
         <strong className="font-semibold">{t("signalStartCheck.models.managed")}</strong>
         <span>{t("signalStartCheck.models.managedScope")}</span>
       </div>

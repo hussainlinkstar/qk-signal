@@ -87,7 +87,7 @@ const TechnicalMetrics = ({ metrics }: { metrics: PerformanceMetrics | null | un
   };
 
   return (
-    <div className="p-6 bg-(--panel) rounded-lg border border-(--line)">
+    <div className="p-6 bg-(--panel) rounded-[14px] border-0 bg-[#EEF1F6]">
       <div className="flex items-center text-yellow-400 mb-4">
         <Zap className="w-6 h-6 mr-2" />
         <h3 className="text-xl font-semibold">PageSpeed Insights</h3>

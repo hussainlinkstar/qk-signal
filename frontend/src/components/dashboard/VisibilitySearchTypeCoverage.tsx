@@ -80,7 +80,7 @@ export default function VisibilitySearchTypeCoverage({
 
       {loading ? (
         <div
-          className={`${CARD_SUBSECTION_CLASS} border border-(--border) bg-(--card) text-sm text-(--muted-foreground)`}
+          className={`${CARD_SUBSECTION_CLASS} border-0 bg-(--card) text-sm text-(--muted-foreground)`}
           role="status"
         >
           Loading search-type coverage...
@@ -123,7 +123,7 @@ export default function VisibilitySearchTypeCoverage({
             {coverage.map((entry) => (
               <li
                 key={entry.id}
-                className={`${CARD_SUBSECTION_CLASS} border border-(--border) bg-(--card)`}
+                className={`${CARD_SUBSECTION_CLASS} border-0 bg-(--card)`}
                 data-testid={`coverage-${entry.id}`}
               >
                 <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">

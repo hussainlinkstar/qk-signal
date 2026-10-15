@@ -56,12 +56,12 @@ const NotFoundContent = ({
         <div
           className={cx(
             RADIUS_PANEL_CLASS,
-            "border border-(--border) bg-(--surface) px-10 py-12 text-center shadow-surface-elevated"
+            "border-0 bg-(--surface) px-10 py-12 text-center shadow-surface-elevated"
           )}
         >
           <div className="flex flex-col items-center gap-8">
             {/* Icon */}
-            <div className="flex items-center justify-center w-14 h-14 rounded-full border border-(--border) bg-(--surface-subtle)">
+            <div className="flex items-center justify-center w-14 h-14 rounded-full border-0 bg-(--surface-subtle)">
               <Icon className="w-7 h-7 text-primary" />
             </div>
 

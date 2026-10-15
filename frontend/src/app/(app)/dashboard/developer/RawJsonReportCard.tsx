@@ -125,7 +125,7 @@ export default function RawJsonReportCard() {
   }, [authHeaders, selectedOption, t]);
 
   return (
-    <div className="rounded-(--r) border border-(--line) bg-(--panel) px-[22px] py-[18px]">
+    <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
       <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
         {t("developerHub.rawJson.title")}
       </h3>
@@ -141,7 +141,7 @@ export default function RawJsonReportCard() {
             value={selectedId}
             onChange={(event) => setSelectedId(event.target.value)}
             disabled={!options || options.length === 0}
-            className="h-[38px] rounded-[10px] border border-(--line) bg-(--paper) px-3 text-[13px] text-(--t-1) disabled:opacity-50"
+            className="h-[38px] rounded-[14px] border-0 bg-[#EEF1F6] px-3 text-[13px] text-(--t-1) disabled:opacity-50"
           >
             {options === null ? (
               <option value="">{t("developerHub.rawJson.loading")}</option>
@@ -160,7 +160,7 @@ export default function RawJsonReportCard() {
           type="button"
           onClick={() => void download()}
           disabled={!selectedOption || busy}
-          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-(--line) bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:border-(--line-btn-hover) disabled:cursor-not-allowed disabled:opacity-50"
+          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-50"
         >
           {busy ? t("developerHub.rawJson.preparing") : t("developerHub.rawJson.download")}
         </button>
