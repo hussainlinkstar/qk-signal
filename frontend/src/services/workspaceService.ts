@@ -1083,6 +1083,20 @@ export async function createWorkspaceProject(
   });
 }
 
+/** Prefer `id`; fall back to legacy `project_id` on older create payloads. */
+export function resolveCreatedProjectId(
+  created: { id?: unknown } | null | undefined
+): number | null {
+  if (typeof created?.id === "number" && Number.isFinite(created.id)) {
+    return created.id;
+  }
+  const legacyId = (created as unknown as { project_id?: unknown } | null | undefined)?.project_id;
+  if (typeof legacyId === "number" && Number.isFinite(legacyId)) {
+    return legacyId;
+  }
+  return null;
+}
+
 export async function fetchProjectById(
   projectId: string | number,
   headers: HeadersInit = {}

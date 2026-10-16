@@ -42,6 +42,7 @@ import {
   createWorkspaceProject,
   fetchCurrentWorkspace,
   fetchWorkspaceTrendOverview,
+  resolveCreatedProjectId,
   type ProjectCreatePayload,
   type WorkspaceTrendOverviewProject,
 } from "@/services/workspaceService";
@@ -270,12 +271,7 @@ function useOverviewDashboard() {
 
       // API / stub return `id`; some older shapes used `project_id`. Never
       // navigate to /dashboard/projects/undefined.
-      const createdId =
-        typeof created?.id === "number" && Number.isFinite(created.id)
-          ? created.id
-          : typeof (created as { project_id?: unknown })?.project_id === "number"
-            ? (created as { project_id: number }).project_id
-            : null;
+      const createdId = resolveCreatedProjectId(created);
 
       setProjectNameState("");
       setProjectDomain("");
@@ -832,12 +828,7 @@ export default function OverviewPage() {
           onDismiss={dismissOnboarding}
           onProjectCreated={async (payload) => {
             const created = await settings.createProject(payload);
-            const createdId =
-              typeof created?.id === "number" && Number.isFinite(created.id)
-                ? created.id
-                : typeof (created as { project_id?: unknown })?.project_id === "number"
-                  ? (created as { project_id: number }).project_id
-                  : null;
+            const createdId = resolveCreatedProjectId(created);
             if (createdId == null) {
               throw new Error("Project was created but no id was returned.");
             }

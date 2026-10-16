@@ -1475,7 +1475,7 @@ export function useAuditRunner({
       let targetProjectId = projectId;
 
       if (!targetProjectId) {
-        const { fetchWorkspaceProjects, createWorkspaceProject } =
+        const { fetchWorkspaceProjects, createWorkspaceProject, resolveCreatedProjectId } =
           await import("@/services/workspaceService");
 
         try {
@@ -1508,12 +1508,7 @@ export function useAuditRunner({
               },
               authHeaders
             );
-            const newId =
-              typeof newProject?.id === "number" && Number.isFinite(newProject.id)
-                ? newProject.id
-                : typeof (newProject as { project_id?: unknown })?.project_id === "number"
-                  ? (newProject as { project_id: number }).project_id
-                  : null;
+            const newId = resolveCreatedProjectId(newProject);
             if (newId == null) {
               throw new Error(t(PROJECT_SETUP_FAILURE_I18N_KEYS.generic));
             }
