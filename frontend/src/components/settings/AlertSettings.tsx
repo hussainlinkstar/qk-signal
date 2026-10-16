@@ -143,7 +143,7 @@ export default function AlertSettings({ projectId }: AlertSettingsProps) {
         {!isCreating && (
           <button
             onClick={() => setIsCreating(true)}
-            className="flex h-[38px] items-center gap-1.5 rounded-full border-0 bg-[#111827] px-[15px] text-[13.5px] font-semibold text-white transition-colors hover:bg-black max-md:min-h-11"
+            className="flex h-[38px] items-center gap-1.5 rounded-full border-0 bg-(--ink) px-[15px] text-[13.5px] font-semibold text-white transition-colors hover:bg-black max-md:min-h-11"
           >
             <Plus size={15} />
             Add Rule
@@ -228,7 +228,7 @@ export default function AlertSettings({ projectId }: AlertSettingsProps) {
             <button
               onClick={handleCreate}
               disabled={saving}
-              className="flex items-center gap-1.5 rounded-full border-0 bg-[#111827] px-[15px] py-2 text-[13.5px] font-semibold text-white hover:bg-black disabled:opacity-50"
+              className="flex items-center gap-1.5 rounded-full border-0 bg-(--ink) px-[15px] py-2 text-[13.5px] font-semibold text-white hover:bg-black disabled:opacity-50"
             >
               {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle2 size={16} />}
               Save Rule
@@ -327,7 +327,7 @@ export default function AlertSettings({ projectId }: AlertSettingsProps) {
           </button>
           <button
             onClick={() => void confirmDelete()}
-            className="rounded-[10px] bg-(--bad) px-[15px] py-2 text-[13.5px] font-semibold text-white hover:opacity-90"
+            className="rounded-full bg-(--bad) px-[15px] py-2 text-[13.5px] font-semibold text-white hover:opacity-90"
           >
             Confirm Delete
           </button>

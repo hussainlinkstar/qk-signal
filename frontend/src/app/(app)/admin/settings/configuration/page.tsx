@@ -16,6 +16,7 @@ import { useAuth } from "@/components/auth/custom-auth";
 import { useAdminAccess } from "@/components/admin/AdminGuardProvider";
 import DashboardPageIntro from "@/components/dashboard/DashboardPageIntro";
 import { useWorkspacePageHeader } from "@/components/dashboard/workspacePageHeader";
+import SignalMetricStrip from "@/components/signal/SignalMetricStrip";
 import { ClientSafeDate } from "@/lib/dateFormat";
 import Button from "@/components/ui/Button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
@@ -103,34 +104,6 @@ type AdminSettingsPatchRequest = {
     rotation_days: number | null;
   }>;
 };
-
-function StatCard({
-  value,
-  suffix,
-  label,
-  tone,
-}: {
-  value: React.ReactNode;
-  suffix?: React.ReactNode;
-  label: string;
-  tone?: string;
-}) {
-  return (
-    <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
-      <div
-        className={`font-(family-name:--disp) text-[28px] font-extrabold tracking-[-0.02em] ${tone ?? "text-(--t-1)"}`}
-      >
-        {value}
-        {suffix ? (
-          <span className="ml-1 text-[13px] font-semibold text-(--t-3)">{suffix}</span>
-        ) : null}
-      </div>
-      <div className="mt-0.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
-        {label}
-      </div>
-    </div>
-  );
-}
 
 export default function ConfigurationPage() {
   const { getToken, isSignedIn } = useAuth();
@@ -332,33 +305,49 @@ export default function ConfigurationPage() {
       )}
 
       {/* KPI summary */}
-      <div className="grid gap-3.5 sm:grid-cols-2 xl:grid-cols-5">
-        <StatCard
-          value={summary?.connected_integrations ?? 0}
-          suffix={`/ ${summary?.total_integrations ?? 0}`}
-          label="Integrations Healthy"
-        />
-        <StatCard
-          value={(summary?.degraded_integrations ?? 0) + (summary?.missing_integrations ?? 0)}
-          label="Degraded / Missing"
-          tone="text-(--warn)"
-        />
-        <StatCard
-          value={summary?.configured_api_keys ?? 0}
-          suffix={`/ ${summary?.total_api_keys ?? 0}`}
-          label="Credentials Ready"
-        />
-        <StatCard
-          value={summary?.missing_required_api_keys ?? 0}
-          label="Required Missing"
-          tone="text-(--bad)"
-        />
-        <StatCard
-          value={summary?.open_security_issues ?? 0}
-          label="Security Issues"
-          tone="text-(--bad)"
-        />
-      </div>
+      <SignalMetricStrip
+        className="mb-4"
+        items={[
+          {
+            label: "Integrations healthy",
+            value: (
+              <>
+                {summary?.connected_integrations ?? 0}
+                <span className="ms-1 text-[13px] font-semibold text-(--t-3)">
+                  / {summary?.total_integrations ?? 0}
+                </span>
+              </>
+            ),
+          },
+          {
+            label: "Degraded / missing",
+            value:
+              (summary?.degraded_integrations ?? 0) + (summary?.missing_integrations ?? 0),
+            tone: "warn",
+          },
+          {
+            label: "Credentials ready",
+            value: (
+              <>
+                {summary?.configured_api_keys ?? 0}
+                <span className="ms-1 text-[13px] font-semibold text-(--t-3)">
+                  / {summary?.total_api_keys ?? 0}
+                </span>
+              </>
+            ),
+          },
+          {
+            label: "Required missing",
+            value: summary?.missing_required_api_keys ?? 0,
+            tone: "bad",
+          },
+          {
+            label: "Security issues",
+            value: summary?.open_security_issues ?? 0,
+            tone: "bad",
+          },
+        ]}
+      />
 
       {/* Recommendations */}
       <section className={CARD}>

@@ -107,10 +107,13 @@ const chipUnratedCls = `${chipBase} border border-dashed border-(--line) text-(-
 const segBtnCls =
   "cursor-pointer rounded-[6px] border-none px-3 py-1.5 font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-2)";
 const segBtnOnCls = "bg-(--ink) text-white";
+// Row actions match the Category/Status selected pill: solid ink primary,
+// muted track secondary — so Mark done / Mark not started / Dismiss read as
+// buttons, not plain text links on the white card.
 const btnSmCls =
-  "inline-flex h-[30px] cursor-pointer items-center gap-1.5 rounded-(--r-sm) border-0 bg-white px-[11px] font-(family-name:--body-font) text-[12px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex h-[32px] min-w-[7.5rem] cursor-pointer items-center justify-center rounded-full border-0 bg-(--ink) px-3 font-(family-name:--body-font) text-[12.5px] font-semibold text-white transition-colors duration-150 hover:bg-black disabled:cursor-not-allowed disabled:opacity-50";
 const btnSmGhostCls =
-  "inline-flex h-[30px] cursor-pointer items-center gap-1.5 rounded-(--r-sm) border border-transparent bg-transparent px-[11px] font-(family-name:--body-font) text-[12px] font-semibold text-(--t-2) hover:bg-(--line-2) hover:text-(--t-1) disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex h-[32px] min-w-[7.5rem] cursor-pointer items-center justify-center rounded-full border-0 bg-[#EEF1F6] px-3 font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) transition-colors duration-150 hover:bg-[#E2E6EE] disabled:cursor-not-allowed disabled:opacity-50";
 const btnPrimaryCls =
   "inline-flex h-[38px] cursor-pointer items-center justify-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black";
 
@@ -701,7 +704,7 @@ export default function ProjectFixesPage() {
           </div>
         </div>
         {mode === "active" ? (
-          <div className="flex flex-none flex-col gap-1.5">
+          <div className="flex flex-none flex-col items-stretch gap-2">
             <button
               type="button"
               className={btnSmCls}
@@ -723,7 +726,7 @@ export default function ProjectFixesPage() {
           </div>
         ) : null}
         {mode === "completed" && row.task ? (
-          <div className="flex flex-none flex-col gap-1.5">
+          <div className="flex flex-none flex-col items-stretch gap-2">
             <button
               type="button"
               className={btnSmCls}
@@ -736,7 +739,7 @@ export default function ProjectFixesPage() {
           </div>
         ) : null}
         {mode === "dismissed" ? (
-          <div className="flex flex-none flex-col gap-1.5">
+          <div className="flex flex-none flex-col items-stretch gap-2">
             <button
               type="button"
               className={btnSmCls}

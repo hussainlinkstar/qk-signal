@@ -1,6 +1,6 @@
 import type { AnchorHTMLAttributes } from "react";
 import React from "react";
-import { fireEvent, render, screen, within } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 import AuditDepthSection from "@/components/results/AuditDepthSection";
@@ -84,33 +84,26 @@ describe("AuditDepthSection", () => {
     ).toBeInTheDocument();
   });
 
-  it("carries the comparison table with a row per tier", () => {
+  it("carries selectable cards with what you get per tier", () => {
     render(<AuditDepthSection {...buildProps()} />);
 
-    const table = screen.getByRole("table");
-    expect(within(table).getByText("Tier")).toBeInTheDocument();
-    expect(within(table).getByText("What you get")).toBeInTheDocument();
-    expect(within(table).getByText("Typical time")).toBeInTheDocument();
-    expect(within(table).getByText("Top pages only, core engines")).toBeInTheDocument();
+    expect(screen.getByText("Top pages only, core engines")).toBeInTheDocument();
     expect(
-      within(table).getByText("Key pages, all measured engines, competitor comparison")
+      screen.getByText("Key pages, all measured engines, competitor comparison")
     ).toBeInTheDocument();
     expect(
-      within(table).getByText("Whole site, all engines, per-prompt detail and agent review")
+      screen.getByText("Whole site, all engines, per-prompt detail and agent review")
     ).toBeInTheDocument();
   });
 
-  // SIGV2-1177: the Time column states the measured p25..p75 range the page
-  // read once, so the table cannot disagree with the Launch sentence. A tier
-  // absent from the published map states nothing: no invented figure and no
-  // borrowed one.
-  it("takes the Typical time column from the measured tier durations", () => {
+  // SIGV2-1177: each card states the measured p25..p75 range the page read
+  // once, so the cards cannot disagree with the Launch sentence.
+  it("takes typical time from the measured tier durations", () => {
     render(<AuditDepthSection {...buildProps()} />);
 
-    const table = screen.getByRole("table");
-    expect(within(table).getByText("4-9 min")).toBeInTheDocument();
-    expect(within(table).getByText("12-21 min")).toBeInTheDocument();
-    expect(within(table).getByText("33-52 min")).toBeInTheDocument();
+    expect(screen.getByText("4-9 min")).toBeInTheDocument();
+    expect(screen.getByText("12-21 min")).toBeInTheDocument();
+    expect(screen.getByText("33-52 min")).toBeInTheDocument();
   });
 
   it("states no duration for a tier with no published measurement", () => {
@@ -124,19 +117,15 @@ describe("AuditDepthSection", () => {
       />
     );
 
-    const table = screen.getByRole("table");
-    const cells = within(table).getAllByRole("cell");
-    const timeCells = cells.filter((_, index) => index % 3 === 2);
-    expect(timeCells[0].textContent).toBe("");
-    expect(timeCells[1].textContent).toBe("12-21 min");
-    expect(timeCells[2].textContent).toBe("");
+    expect(screen.getByText("12-21 min")).toBeInTheDocument();
+    expect(screen.queryByText("4-9 min")).not.toBeInTheDocument();
+    expect(screen.queryByText("33-52 min")).not.toBeInTheDocument();
   });
 
   it("states nothing while the read has not landed", () => {
     render(<AuditDepthSection {...buildProps({ tierDurations: null })} />);
 
-    const table = screen.getByRole("table");
-    expect(within(table).queryByText(/min/)).not.toBeInTheDocument();
+    expect(screen.queryByText(/min/)).not.toBeInTheDocument();
   });
 
   it("records the chosen depth", () => {

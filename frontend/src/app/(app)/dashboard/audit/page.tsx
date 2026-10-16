@@ -4,8 +4,6 @@ import { asset } from "@/lib/basePath";
 import React, { useCallback, useMemo, useRef, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import { RefreshCw } from "lucide-react";
-
 import { useWorkspacePageHeader } from "@/components/dashboard/workspacePageHeader";
 import AuditConfigurationForm from "@/components/results/AuditConfigurationForm";
 import SignalCrumb from "@/components/signal/SignalCrumb";
@@ -446,23 +444,12 @@ export default function AuditDashboardPage() {
 
   return (
     <div className="dashboard-page-shell space-y-6 md:space-y-8">
-      {/* `.pagehead`: the circular 46px icon tile, the 24px display title and
-          the `.psub` sentence underneath. */}
-      <header className="flex items-center gap-[14px]">
-        <span
-          aria-hidden="true"
-          className="flex h-[46px] w-[46px] flex-none items-center justify-center rounded-[13px] bg-[rgba(147,51,234,0.1)] text-(--purple)"
-        >
-          <RefreshCw className="h-[23px] w-[23px]" strokeWidth={1.9} />
-        </span>
-        <div className="min-w-0">
-          <h1 className="m-0 font-(family-name:--disp) text-[24px] font-extrabold tracking-[-0.02em]">
-            {heading}
-          </h1>
-          <p className="m-0 mt-[3px] max-w-[640px] text-[13px] leading-[1.5] text-(--t-2)">
-            {intro}
-          </p>
-        </div>
+      {/* Page title only — nav already carries the scan icon (UI/UX Fixes). */}
+      <header className="min-w-0">
+        <h1 className="m-0 font-(family-name:--disp) text-[24px] font-extrabold leading-[1.25] tracking-[-0.02em]">
+          {heading}
+        </h1>
+        <p className="m-0 mt-2 max-w-[640px] text-[13px] leading-[1.5] text-(--t-2)">{intro}</p>
       </header>
 
       <AuditConfigurationForm

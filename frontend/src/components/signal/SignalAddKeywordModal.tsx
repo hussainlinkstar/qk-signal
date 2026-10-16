@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { Plus } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import Modal from "@/components/ui/Modal";
@@ -153,8 +154,9 @@ export default function SignalAddKeywordModal({
             type="button"
             onClick={() => void handleSubmit()}
             disabled={submitting}
-            className="h-[38px] rounded-[10px] bg-(--ink) px-[15px] text-[13.5px] font-semibold text-white hover:bg-black disabled:cursor-not-allowed disabled:opacity-50"
+            className="inline-flex h-[38px] items-center justify-center gap-2 rounded-full bg-(--ink) px-[15px] text-[13.5px] font-semibold text-white hover:bg-black disabled:cursor-not-allowed disabled:opacity-50"
           >
+            {!submitting ? <Plus className="h-4 w-4" strokeWidth={2.25} aria-hidden="true" /> : null}
             {submitting ? t("signalAddKeyword.submitting") : t("signalAddKeyword.submit")}
           </button>
         </div>

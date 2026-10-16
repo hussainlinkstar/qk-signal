@@ -9,6 +9,7 @@ import PlanLockNotice from "@/components/dashboard/PlanLockNotice";
 import DashboardPageIntro from "@/components/dashboard/DashboardPageIntro";
 import WorkspacePageFrame from "@/components/dashboard/WorkspacePageFrame";
 import SignalTabs, { SignalTabPanel } from "@/components/signal/SignalTabs";
+import SignalMetricStrip from "@/components/signal/SignalMetricStrip";
 import { useAuth } from "@/components/auth/custom-auth";
 import { cx } from "@/components/ui/utils";
 import { getPlanLockContent } from "@/lib/planLocks";
@@ -190,42 +191,28 @@ export default function DeveloperHubPage() {
                   </Link>
                 )}
               </div>
-              <div className="flex gap-3.5 max-md:flex-col">
-                <div className="flex-1 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
-                  <div className="mb-1.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
-                    API access
-                  </div>
-                  <div
-                    className={cx(
-                      "font-(family-name:--disp) text-[24px] font-extrabold tracking-[-0.02em]",
-                      apiEnabled && "text-(--good)"
-                    )}
-                  >
-                    {accessLabel}
-                  </div>
-                  <div className="mt-[3px] text-[11.5px] text-(--t-3)">{planName}</div>
-                </div>
-                <div className="flex-1 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
-                  <div className="mb-1.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
-                    Active keys
-                  </div>
-                  <div className="font-(family-name:--disp) text-[24px] font-extrabold tracking-[-0.02em]">
-                    {loading ? "-" : activeKeyCount}
-                  </div>
-                  <div className="mt-[3px] text-[11.5px] text-(--t-3)">
-                    Workspace-managed credentials
-                  </div>
-                </div>
-                <div className="flex-1 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
-                  <div className="mb-1.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
-                    Throughput
-                  </div>
-                  <div className="font-(family-name:--disp) text-[24px] font-extrabold tracking-[-0.02em]">
-                    {throughput.summary}
-                  </div>
-                  <div className="mt-[3px] text-[11.5px] text-(--t-3)">{throughput.detail}</div>
-                </div>
-              </div>
+              <SignalMetricStrip
+                items={[
+                  {
+                    label: "API access",
+                    value: accessLabel,
+                    hint: planName,
+                    tone: apiEnabled ? "good" : "default",
+                    valueSize: "text",
+                  },
+                  {
+                    label: "Active keys",
+                    value: loading ? "-" : activeKeyCount,
+                    hint: "Workspace-managed credentials",
+                  },
+                  {
+                    label: "Throughput",
+                    value: throughput.summary,
+                    hint: throughput.detail,
+                    valueSize: "text",
+                  },
+                ]}
+              />
             </div>
 
             {payload && !apiEnabled ? (
@@ -452,46 +439,32 @@ export default function DeveloperHubPage() {
                   </Link>
                 )}
               </div>
-              <div className="flex gap-3.5 max-md:flex-col">
-                <div className="flex-1 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
-                  <div className="mb-1.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
-                    MCP access
-                  </div>
-                  <div
-                    className={cx(
-                      "font-(family-name:--disp) text-[24px] font-extrabold tracking-[-0.02em]",
-                      mcpEnabled && "text-(--good)"
-                    )}
-                  >
-                    {loading ? "Checking" : mcpEnabled ? "Enabled" : "Locked"}
-                  </div>
-                  <div className="mt-[3px] text-[11.5px] text-(--t-3)">
-                    Available on Specialist and Executive
-                  </div>
-                </div>
-                <div className="flex-1 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
-                  <div className="mb-1.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
-                    Endpoint
-                  </div>
-                  <div className="overflow-x-auto font-(family-name:--mono) text-[12px] font-semibold leading-[1.7]">
-                    POST {mcpEndpointUrl}
-                  </div>
-                  <div className="mt-[3px] text-[11.5px] text-(--t-3)">
-                    Stateless, POST-only, JSON responses
-                  </div>
-                </div>
-                <div className="flex-1 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
-                  <div className="mb-1.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
-                    Tools
-                  </div>
-                  <div className="font-(family-name:--disp) text-[24px] font-extrabold tracking-[-0.02em]">
-                    {mcpToolRows.length}
-                  </div>
-                  <div className="mt-[3px] text-[11.5px] text-(--t-3)">
-                    {mcpToolRows.length - 1} read, 1 spends a scan
-                  </div>
-                </div>
-              </div>
+              <SignalMetricStrip
+                items={[
+                  {
+                    label: "MCP access",
+                    value: loading ? "Checking" : mcpEnabled ? "Enabled" : "Locked",
+                    hint: "Available on Specialist and Executive",
+                    tone: mcpEnabled ? "good" : "default",
+                    valueSize: "text",
+                  },
+                  {
+                    label: "Endpoint",
+                    value: (
+                      <span className="font-(family-name:--mono) text-[12px] font-semibold leading-[1.5]">
+                        POST {mcpEndpointUrl}
+                      </span>
+                    ),
+                    hint: "Stateless, POST-only, JSON responses",
+                    valueSize: "text",
+                  },
+                  {
+                    label: "Tools",
+                    value: mcpToolRows.length,
+                    hint: `${mcpToolRows.length - 1} read, 1 spends a scan`,
+                  },
+                ]}
+              />
             </div>
 
             {payload && !mcpEnabled ? (

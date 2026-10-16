@@ -1454,7 +1454,7 @@
     "step3Title": "Competitors to track",
     "step3Sub": "Up to 5. Optional - skip and add them later from Settings.",
     "step3Note": "Skipping means competitor comparison is empty until you add one.",
-    "addCompetitor": "+ Add competitor",
+    "addCompetitor": "Add competitor",
     "competitorPlaceholder": "competitor-domain.com",
     "competitorInvalid": "Enter a domain, like competitor-domain.com. A brand name is not enough - we need the site address.",
     "competitorDuplicate": "{{domain}} is already in the list.",

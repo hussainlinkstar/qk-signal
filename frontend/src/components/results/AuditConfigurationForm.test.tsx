@@ -31,11 +31,11 @@ vi.mock("@/components/results/AuditAllowanceSection", () => ({
 vi.mock("@/components/results/AuditDepthSection", () => ({
   default: () => <section id="audit-step-depth" />,
 }));
-vi.mock("@/components/results/AuditModelSelectionSection", () => ({
-  default: () => <section id="audit-step-models" />,
-}));
 vi.mock("@/components/results/AuditLaunchSection", () => ({
   default: () => <section id="audit-step-launch" />,
+}));
+vi.mock("@/components/results/AuditStickyStartBar", () => ({
+  default: () => null,
 }));
 
 const auditForm = {
@@ -98,9 +98,8 @@ describe("AuditConfigurationForm section order", () => {
       "audit-step-context",
       "audit-step-prompts",
       "audit-step-entities",
-      "audit-step-allowance",
       "audit-step-depth",
-      "audit-step-models",
+      "audit-step-allowance",
       "audit-step-launch",
     ]);
   });

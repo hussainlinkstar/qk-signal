@@ -12,7 +12,7 @@ import {
   Zap,
   Check,
   Shield,
-  Sparkles,
+  Layers,
   Package,
   TrendingUp,
 } from "lucide-react";
@@ -73,7 +73,7 @@ const buildPlanCapabilityBadges = (plan: BillingPlan): PlanCapabilityBadge[] => 
     badges.push({ label: TIER_DISPLAY.deep_judgment, icon: <Shield className="h-3 w-3" /> });
   }
   if (plan.capabilities.has_parallel_audit_execution) {
-    badges.push({ label: "Parallel", icon: <Sparkles className="h-3 w-3" /> });
+    badges.push({ label: "Parallel", icon: <Layers className="h-3 w-3" /> });
   }
   if (plan.capabilities.has_sla_guarantee) {
     badges.push({ label: "99.9% SLA" });
@@ -172,11 +172,11 @@ const PlanCard = ({
   return (
     <GlassCard
       className={cx(
-        "group relative flex min-w-0 flex-col gap-5 p-5 transition-all duration-200 sm:gap-6 sm:p-6",
-        "border-0 bg-(--surface-subtle)",
+        "group relative flex h-full min-w-0 flex-col gap-5 p-5 transition-all duration-200 sm:gap-6 sm:p-6",
+        "border-0 bg-white",
         isCurrent
-          ? "border-primary/30 ring-1 ring-primary/10"
-          : "hover:border-(--border-hover) hover:bg-(--surface-elevated)"
+          ? "ring-1 ring-(--ink)/15"
+          : "hover:bg-[#FBFBFC]"
       )}
     >
       {/* Plan Header */}
@@ -273,18 +273,18 @@ const PlanCard = ({
         </div>
       </div>
 
-      {/* Features List */}
-      <div className="flex-1 space-y-2">
-        {plan.features.slice(0, 4).map((feature, index) => (
+      {/* Features List — flex-1 fills leftover height so CTAs align across cards */}
+      <div className="flex min-h-[7.5rem] flex-1 flex-col gap-2">
+        {plan.features.slice(0, 5).map((feature, index) => (
           <div key={index} className="flex items-start gap-2">
-            <Check className="mt-0.5 h-3.5 w-3.5 text-(--primary) shrink-0" />
+            <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-(--good)" />
             <span className="text-xs text-(--muted-foreground)">{feature}</span>
           </div>
         ))}
       </div>
 
-      {/* Action Button */}
-      <div className="pt-4 border-t border-(--border)">
+      {/* Action Button — solid ink pills, not plain text */}
+      <div className="mt-auto border-t border-[#EEF1F6] pt-4">
         {/* SIGV2-1211: a contact-only plan never offers checkout. The backend
             refuses it too (`_raise_for_non_self_service_plan` 409s on a
             `contact` CTA), so this is the same decision stated once on each
@@ -295,7 +295,7 @@ const PlanCard = ({
         {contactOnly ? (
           <a
             href={contactHref}
-            className={buttonClasses({ variant: "ghost", size: "sm" }) + " w-full"}
+            className={cx(buttonClasses({ variant: "inverse", size: "md" }), "w-full")}
           >
             Contact us
           </a>
@@ -303,8 +303,8 @@ const PlanCard = ({
           <Button
             onClick={onPlanChange}
             loading={isLoading}
-            variant="ghost"
-            size="sm"
+            variant={isCurrentIntervalChange ? "inverse" : "ghost"}
+            size="md"
             className="w-full"
             disabled={
               !isCurrentIntervalChange ||
@@ -319,8 +319,8 @@ const PlanCard = ({
           <Button
             onClick={onPlanChange}
             loading={isLoading}
-            variant="ghost"
-            size="sm"
+            variant="inverse"
+            size="md"
             className="w-full"
             disabled={isLoading || planActionsDisabled || !isSelectedIntervalAvailable}
           >
@@ -330,8 +330,8 @@ const PlanCard = ({
           <Button
             onClick={onCheckout}
             loading={isLoading}
-            variant="ghost"
-            size="sm"
+            variant="inverse"
+            size="md"
             className="w-full"
             disabled={
               isLoading ||
@@ -490,7 +490,7 @@ export default function BillingPage() {
     <WorkspacePageFrame backHref="/dashboard" backLabel="Back to Workspace Overview">
       <div className="min-w-0 space-y-6">
         {/* Page Header */}
-        <DashboardPageIntro icon={CreditCard} title="Billing" color="var(--primary)">
+        <DashboardPageIntro title="Billing">
           Manage your subscription, invoices, and upgrade options
         </DashboardPageIntro>
 
@@ -542,124 +542,206 @@ export default function BillingPage() {
         {/* Overview Section */}
         {activeSection === "overview" && (
           <SignalTabPanel id="overview" activeId={activeSection}>
-            {/* Active Subscription Card */}
-            <GlassCard className="relative overflow-hidden rounded-[22px] border-0 bg-white p-5 sm:p-6">
-              <div className="absolute right-8 top-8 opacity-5">
-                <Zap className="h-24 w-24" />
-              </div>
+            <div className="space-y-4">
+              {/* Active Subscription Card */}
+              <GlassCard className="relative overflow-hidden rounded-[22px] border-0 bg-white p-5 sm:p-6">
+                <div className="absolute right-8 top-8 opacity-5">
+                  <Zap className="h-24 w-24" />
+                </div>
 
-              <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
-                <div className="flex items-start gap-4">
-                  <div className="rounded-lg bg-primary/10 p-3">
-                    <Zap className="h-6 w-6 text-primary" />
-                  </div>
-                  <div className="space-y-4">
-                    <div>
-                      <p className="text-xs text-(--muted-foreground)">Active Subscription</p>
-                      <h2 className="mt-1 text-[22px] font-extrabold text-(--foreground)">
-                        {currentPlanLabel}
-                      </h2>
-                      {/* "pending" is an internal artefact: the subscription
-                          row exists because a checkout started, not because
-                          one completed. Showing it under a plan named "Free"
-                          reads as a broken state ("Free · Status: pending"),
-                          so only real subscription lifecycle states render. */}
-                      {settings.billingOverview?.status &&
-                        settings.billingOverview.status !== "pending" && (
-                          <div className="mt-2 flex items-center gap-2 text-xs">
-                            <span className="h-1.5 w-1.5 rounded-full bg-(--primary)" />
-                            <span className="text-(--primary)">
-                              Status: {settings.billingOverview.status.replace(/_/g, " ")}
-                            </span>
-                          </div>
-                        )}
+                <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-lg bg-primary/10 p-3">
+                      <Zap className="h-6 w-6 text-primary" />
                     </div>
-
-                    <p className="max-w-xl text-sm text-(--muted-foreground)">
-                      {currentPlan?.highlight ??
-                        "Start on a paid plan to unlock the Stripe billing portal and premium automation add-ons."}
-                    </p>
-
-                    {currentPlan && (
-                      <div className="flex flex-wrap gap-2">
-                        <span className="rounded-full bg-(--surface-elevated) px-3 py-1 text-xs">
-                          {formatPlanLimit(currentPlan.capabilities.max_audits, "audits")}
-                        </span>
-                        <span className="rounded-full bg-(--surface-elevated) px-3 py-1 text-xs">
-                          {formatPlanLimit(currentPlan.capabilities.max_sites, "sites")}
-                        </span>
-                        {/* Two chips, not three: the approved mockup (Signal
-                            Billing.html line 110) draws a third chip repeating
-                            the audit allowance. That is a defect in the mockup
-                            carried into the build; the audit and site limits
-                            are each stated once. Do not restore the third chip
-                            from the design without correcting the mockup first. */}
-                      </div>
-                    )}
-
-                    {/* High Confidence Mode Info */}
-                    <div
-                      className={cx(
-                        "rounded-[12px] px-4 py-3.5",
-                        currentPlanSupportsHighConfidence
-                          ? "bg-[color-mix(in_srgb,var(--primary)_5%,transparent)] border-0"
-                          : "bg-(--surface-subtle) border-0"
-                      )}
-                    >
-                      <div className="flex items-start gap-3">
-                        <Shield
-                          className={cx(
-                            "h-5 w-5 mt-0.5",
-                            currentPlanSupportsHighConfidence
-                              ? "text-(--primary)"
-                              : "text-(--muted-foreground)"
+                    <div className="space-y-4">
+                      <div>
+                        <p className="text-xs text-(--muted-foreground)">Active Subscription</p>
+                        <h2 className="mt-1 text-[22px] font-extrabold text-(--foreground)">
+                          {currentPlanLabel}
+                        </h2>
+                        {/* "pending" is an internal artefact: the subscription
+                            row exists because a checkout started, not because
+                            one completed. Showing it under a plan named "Free"
+                            reads as a broken state ("Free · Status: pending"),
+                            so only real subscription lifecycle states render. */}
+                        <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs">
+                          {settings.billingOverview?.status &&
+                            settings.billingOverview.status !== "pending" && (
+                              <span className="inline-flex items-center gap-2 text-(--primary)">
+                                <span className="h-1.5 w-1.5 rounded-full bg-(--primary)" />
+                                Status: {settings.billingOverview.status.replace(/_/g, " ")}
+                              </span>
+                            )}
+                          {activeBillingInterval && (
+                            <span className="text-(--muted-foreground)">
+                              {formatBillingInterval(activeBillingInterval)}
+                            </span>
                           )}
-                        />
-                        <div>
-                          <p className="text-sm font-medium text-(--foreground)">
-                            High Confidence Mode
-                          </p>
-                          <p className="mt-1 text-xs text-(--muted-foreground)">
-                            {currentPlanSupportsHighConfidence
-                              ? `Your ${currentPlanDisplayName} plan includes the stricter multi-agent High Confidence audit path.`
-                              : `Upgrade to ${highConfidenceUnlockLabel} to unlock the stricter High Confidence audit path.`}
-                          </p>
+                          {usage.data?.renewal_date && (
+                            <span className="text-(--muted-foreground)">
+                              Renews {formatDate(usage.data.renewal_date)}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+
+                      <p className="max-w-xl text-sm text-(--muted-foreground)">
+                        {currentPlan?.highlight ??
+                          "Start on a paid plan to unlock the Stripe billing portal and premium automation add-ons."}
+                      </p>
+
+                      {currentPlan && (
+                        <div className="flex flex-wrap gap-2">
+                          <span className="rounded-full bg-(--surface-elevated) px-3 py-1 text-xs">
+                            {formatPlanLimit(currentPlan.capabilities.max_audits, "audits")}
+                          </span>
+                          <span className="rounded-full bg-(--surface-elevated) px-3 py-1 text-xs">
+                            {formatPlanLimit(currentPlan.capabilities.max_sites, "sites")}
+                          </span>
+                          {/* Two chips, not three: the approved mockup (Signal
+                              Billing.html line 110) draws a third chip repeating
+                              the audit allowance. That is a defect in the mockup
+                              carried into the build; the audit and site limits
+                              are each stated once. Do not restore the third chip
+                              from the design without correcting the mockup first. */}
+                        </div>
+                      )}
+
+                      {/* High Confidence Mode Info */}
+                      <div
+                        className={cx(
+                          "rounded-[12px] px-4 py-3.5",
+                          currentPlanSupportsHighConfidence
+                            ? "bg-[color-mix(in_srgb,var(--primary)_5%,transparent)] border-0"
+                            : "bg-(--surface-subtle) border-0"
+                        )}
+                      >
+                        <div className="flex items-start gap-3">
+                          <Shield
+                            className={cx(
+                              "h-5 w-5 mt-0.5",
+                              currentPlanSupportsHighConfidence
+                                ? "text-(--primary)"
+                                : "text-(--muted-foreground)"
+                            )}
+                          />
+                          <div>
+                            <p className="text-sm font-medium text-(--foreground)">
+                              High Confidence Mode
+                            </p>
+                            <p className="mt-1 text-xs text-(--muted-foreground)">
+                              {currentPlanSupportsHighConfidence
+                                ? `Your ${currentPlanDisplayName} plan includes the stricter multi-agent High Confidence audit path.`
+                                : `Upgrade to ${highConfidenceUnlockLabel} to unlock the stricter High Confidence audit path.`}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col gap-2">
+                    {isPortalAvailable ? (
+                      <Button
+                        onClick={settings.handlePortal}
+                        loading={settings.actionLoading === "portal"}
+                        disabled={pendingPlanChange !== null}
+                        variant="inverse"
+                        size="sm"
+                      >
+                        Manage Billing
+                        <ArrowUpRight className="h-3.5 w-3.5" />
+                      </Button>
+                    ) : (
+                      <div className="rounded-[14px] border-0 bg-[#EEF1F6] px-4 py-2 text-xs text-(--muted-foreground) text-center">
+                        {settings.error
+                          ? "Billing portal unavailable"
+                          : "Choose a paid plan to unlock billing portal"}
+                      </div>
+                    )}
+                    <Link
+                      href="/dashboard/billing/history"
+                      className={buttonClasses({ variant: "ghost", size: "sm" })}
+                    >
+                      <History className="h-3.5 w-3.5" />
+                      Billing History
+                    </Link>
+                  </div>
+                </div>
+              </GlassCard>
+
+              {/* Cycle snapshot so Overview is not only plan marketing + enterprise CTA */}
+              <GlassCard className="rounded-[22px] border-0 bg-white p-5 sm:p-6">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <p className="text-xs text-(--muted-foreground)">This billing cycle</p>
+                    <h3 className="mt-1 text-lg font-semibold text-(--foreground)">Scan usage</h3>
+                    <p className="mt-1 max-w-lg text-sm text-(--muted-foreground)">
+                      How much of your {currentPlanLabel} allowance you have used this period.
+                    </p>
+                  </div>
+                  <Button
+                    type="button"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setActiveSection("usage")}
+                  >
+                    View usage details
+                    <TrendingUp className="h-3.5 w-3.5" />
+                  </Button>
                 </div>
 
-                {/* Action Buttons */}
-                <div className="flex flex-col gap-2">
-                  {isPortalAvailable ? (
-                    <Button
-                      onClick={settings.handlePortal}
-                      loading={settings.actionLoading === "portal"}
-                      disabled={pendingPlanChange !== null}
-                      variant="inverse"
-                      size="sm"
-                    >
-                      Manage Billing
-                      <ArrowUpRight className="h-3.5 w-3.5" />
-                    </Button>
-                  ) : (
-                    <div className="rounded-[14px] border-0 bg-[#EEF1F6] px-4 py-2 text-xs text-(--muted-foreground) text-center">
-                      {settings.error
-                        ? "Billing portal unavailable"
-                        : "Choose a paid plan to unlock billing portal"}
+                {usage.isLoading || !usage.data ? (
+                  <div className="mt-5 flex h-16 items-center justify-center text-xs text-(--muted-foreground)">
+                    {usage.error ?? "Loading scan usage..."}
+                  </div>
+                ) : (
+                  <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-4">
+                    <div className="space-y-1">
+                      <p className="text-[10px] font-medium uppercase tracking-wider text-(--muted-foreground)">
+                        Used
+                      </p>
+                      <p className="text-xl font-semibold text-(--foreground)">
+                        {formatCompactNumber(usage.data.scans_used)}
+                      </p>
                     </div>
-                  )}
-                  <Link
-                    href="/dashboard/billing/history"
-                    className={buttonClasses({ variant: "ghost", size: "sm" })}
-                  >
-                    <History className="h-3.5 w-3.5" />
-                    Billing History
-                  </Link>
-                </div>
-              </div>
-            </GlassCard>
+                    <div className="space-y-1">
+                      <p className="text-[10px] font-medium uppercase tracking-wider text-(--muted-foreground)">
+                        Remaining
+                      </p>
+                      <p className="text-xl font-semibold text-(--foreground)">
+                        {usage.data.scans_remaining === null
+                          ? "Unlimited"
+                          : formatCompactNumber(usage.data.scans_remaining)}
+                      </p>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-[10px] font-medium uppercase tracking-wider text-(--muted-foreground)">
+                        Allowance
+                      </p>
+                      <p className="text-xl font-semibold text-(--foreground)">
+                        {usage.data.scan_allowance === null
+                          ? "Unlimited"
+                          : formatCompactNumber(usage.data.scan_allowance)}
+                      </p>
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-[10px] font-medium uppercase tracking-wider text-(--muted-foreground)">
+                        7-day burn
+                      </p>
+                      <p className="text-xl font-semibold text-(--foreground)">
+                        {usage.data.burn_rate_7d.toFixed(1)}
+                        <span className="ml-1 text-xs font-normal text-(--muted-foreground)">
+                          /day
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+                )}
+              </GlassCard>
+            </div>
           </SignalTabPanel>
         )}
 
@@ -721,7 +803,7 @@ export default function BillingPage() {
               </div>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            <div className="grid items-stretch gap-4 md:grid-cols-2 xl:grid-cols-4">
               {visiblePlans.map((plan) => {
                 const isCurrent = settings.billingOverview?.current_plan === plan.id;
                 const canCheckout = plan.checkout_available && Boolean(plan.price_id);
@@ -731,11 +813,11 @@ export default function BillingPage() {
                   <div
                     key={plan.id}
                     id={`plan-${plan.id}`}
-                    className={
-                      isHighlighted
-                        ? "rounded-[18px] ring-2 ring-(--purple) ring-offset-2 ring-offset-(--paper) transition-shadow"
-                        : undefined
-                    }
+                    className={cx(
+                      "h-full min-w-0",
+                      isHighlighted &&
+                        "rounded-[18px] ring-2 ring-(--purple) ring-offset-2 ring-offset-(--paper) transition-shadow"
+                    )}
                   >
                     <PlanCard
                       plan={plan}
@@ -768,12 +850,6 @@ export default function BillingPage() {
         {/* Comparison Section */}
         {activeSection === "comparison" && (
           <SignalTabPanel id="comparison" activeId={activeSection}>
-            <div>
-              <h2 className="text-lg font-semibold text-(--foreground)">Plan Comparison</h2>
-              <p className="mt-1 text-sm text-(--muted-foreground)">
-                Detailed feature comparison across all available plans
-              </p>
-            </div>
             <PlanComparisonMatrix
               plans={visiblePlans}
               currentPlanId={settings.billingOverview?.current_plan ?? null}
@@ -787,12 +863,9 @@ export default function BillingPage() {
           render outside every panel, which repeated the same sales card on Usage
           and Comparison as well. Commitments returns with SIGV2-1166. */}
         {(activeSection === "overview" || activeSection === "plans") && (
-          <>
-            <hr className="border-(--border)" />
-            <div className="pt-6">
-              <BillingSalesContactCard />
-            </div>
-          </>
+          <div className="w-full pt-2">
+            <BillingSalesContactCard />
+          </div>
         )}
 
         <PlanChangeModal

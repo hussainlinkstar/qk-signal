@@ -7,12 +7,10 @@ import {
   Globe,
   LayoutDashboard,
   LogOut,
-  Network,
   Settings,
   ShieldAlert,
   SlidersHorizontal,
   Sparkles,
-  SquareCheck,
   TrendingUp,
   Unplug,
   User,
@@ -64,18 +62,14 @@ export type NavSection = {
  * (3908d523, 287ecfd8) that removed badged SOON entries, Workspace Settings
  * and Developer Hub:
  *
- * - Project scope: Intelligence (Dashboard, AIO score, SEO score, Competitors,
- *   Entities SOON), Automation (Tasks SOON), Account (Settings, Sign out).
+ * - Project scope: Intelligence (Dashboard, AIO score, SEO score, Competitors),
+ *   Account (Settings, Sign out).
  * - Workspace scope: Workspace (Overview, Workspace Settings, My Profile,
  *   Billing, Developer Hub), Account (Sign out).
  *
- * SOON entries are deliberately visible but non-navigating: the approved
- * design shows them with a "Soon" badge, and the rendered item must announce
- * itself as unavailable to assistive technology. `Fixes` is intentionally NOT
- * a sidebar entry in the approved design; it is reached from the dashboard
- * actions and the AIO drilldown. The mockup's `Components` entry is an
- * internal catalogue and never appears in the customer IA. Restoring an entry
- * is an IA change only: it never relaxes a plan, role or tenant check.
+ * UI/UX Fixes: hide SOON items (Entities, Tasks) until they are live.
+ * `Fixes` is reached from the dashboard actions and the AIO drilldown, not
+ * the sidebar. The mockup's `Components` entry never appears in customer IA.
  */
 export const workspaceNavSections: NavSection[] = [
   {
@@ -141,28 +135,6 @@ export function getProjectNavSections(basePath: string): NavSection[] {
           nameKey: "nav.competitors",
           href: `${basePath}/competitors`,
           icon: TrendingUp,
-        },
-        {
-          name: "Entities",
-          nameKey: "nav.entities",
-          icon: Network,
-          disabled: true,
-          badge: "SOON",
-          badgeKey: "nav.soon",
-        },
-      ],
-    },
-    {
-      label: "Automation",
-      labelKey: "nav.sectionAutomation",
-      items: [
-        {
-          name: "Tasks",
-          nameKey: "nav.tasks",
-          icon: SquareCheck,
-          disabled: true,
-          badge: "SOON",
-          badgeKey: "nav.soon",
         },
       ],
     },

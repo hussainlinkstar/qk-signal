@@ -113,7 +113,7 @@ export default function AuditLaunchSection({
       <div className="flex flex-wrap items-center gap-2.5">
         <Link
           href="/dashboard"
-          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
+          className="inline-flex h-[38px] cursor-pointer items-center justify-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
         >
           {t("signalStartCheck.launch.cancel")}
         </Link>
@@ -121,10 +121,10 @@ export default function AuditLaunchSection({
           type="submit"
           disabled={isStartDisabled}
           className={cx(
-            "inline-flex h-[38px] cursor-pointer items-center justify-center gap-2 rounded-[10px] border px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold",
+            "inline-flex h-[38px] cursor-pointer items-center justify-center gap-2 rounded-full border-0 px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold",
             !isStartDisabled
-              ? "border-(--ink) bg-(--ink) text-white hover:bg-black"
-              : "border-(--line) bg-(--panel) text-(--t-1)"
+              ? "bg-(--ink) text-white hover:bg-black"
+              : "cursor-not-allowed bg-[#EEF1F6] text-(--t-3)"
           )}
         >
           {(auditRunner.isLoading || auditForm.isPreflightChecking || auditRunner.isPolling) && (

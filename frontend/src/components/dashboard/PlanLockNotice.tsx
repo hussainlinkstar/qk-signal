@@ -39,7 +39,7 @@ export default function PlanLockNotice({
       <p className="mb-4 text-[13px] leading-[1.5] text-(--t-2)">{description}</p>
       <Link
         href={href}
-        className="inline-flex h-[38px] w-full items-center justify-center gap-2 rounded-[10px] bg-(--ink) px-[15px] text-[13.5px] font-semibold text-white transition-colors hover:bg-black focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple) focus-visible:ring-offset-2 max-md:min-h-11"
+        className="inline-flex h-[38px] w-full items-center justify-center gap-2 rounded-full bg-(--ink) px-[15px] text-[13.5px] font-semibold text-white transition-colors hover:bg-black focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple) focus-visible:ring-offset-2 max-md:min-h-11"
       >
         {ctaLabel}
         <ArrowRight className="h-4 w-4 rtl:rotate-180" aria-hidden="true" />

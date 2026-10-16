@@ -23,7 +23,7 @@ export default function BillingIntervalToggle({
           aria-hidden="true"
           className={cx(
             "absolute top-1 bottom-1 rounded-full transition-all duration-300 ease-in-out",
-            "bg-linear-to-r from-indigo-500 to-indigo-600 shadow-[0_1px_8px_rgba(99,102,241,0.35)]",
+            "bg-(--purple)",
             isAnnual ? "left-[calc(50%+2px)] right-1" : "left-1 right-[calc(50%+2px)]"
           )}
         />
@@ -34,7 +34,7 @@ export default function BillingIntervalToggle({
           onClick={() => onChange("month")}
           className={cx(
             "relative z-10 rounded-full px-3 py-1.5 text-[13px] font-semibold tracking-wide transition-colors duration-200 sm:px-6",
-            !isAnnual ? "text-(--t-1)" : "text-slate-600 hover:text-slate-900"
+            !isAnnual ? "text-white" : "text-slate-600 hover:text-slate-900"
           )}
         >
           Monthly
@@ -45,7 +45,7 @@ export default function BillingIntervalToggle({
           onClick={() => onChange("year")}
           className={cx(
             "relative z-10 rounded-full px-3 py-1.5 text-[13px] font-semibold tracking-wide transition-colors duration-200 sm:px-6",
-            isAnnual ? "text-(--t-1)" : "text-slate-600 hover:text-slate-900"
+            isAnnual ? "text-white" : "text-slate-600 hover:text-slate-900"
           )}
         >
           Annual

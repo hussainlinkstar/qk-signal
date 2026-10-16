@@ -132,8 +132,8 @@ function NavItemRow({ item, tileIndex }: { item: SignalNavItem; tileIndex: numbe
 }
 
 /**
- * CashPilot-inspired shell: one flat app frame on a soft stage.
- * Sidebar/header are plain regions — not separate floating cards.
+ * CashPilot-inspired shell: one flat app frame on a soft gray stage.
+ * Sidebar/header are plain regions — not glass, not separate floating cards.
  */
 export default function SignalAppShell({
   brandHref,

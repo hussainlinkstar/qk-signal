@@ -1509,7 +1509,7 @@
     "step3Title": "المنافسون للتتبع",
     "step3Sub": "حتى 5. اختياري - تخطَّ وأضفهم لاحقاً من الإعدادات.",
     "step3Note": "التخطي يعني أن مقارنة المنافسين فارغة حتى تضيف واحداً.",
-    "addCompetitor": "+ إضافة منافس",
+    "addCompetitor": "إضافة منافس",
     "competitorPlaceholder": "competitor-domain.com",
     "competitorInvalid": "أدخل نطاقاً، مثل competitor-domain.com. اسم العلامة وحده لا يكفي - نحتاج إلى عنوان الموقع.",
     "competitorDuplicate": "{{domain}} موجودة في القائمة بالفعل.",

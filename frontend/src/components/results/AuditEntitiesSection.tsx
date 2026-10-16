@@ -3,9 +3,10 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { AnimatePresence, motion } from "motion/react";
-import { Plus, Sparkles, X } from "lucide-react";
+import { Plus, X } from "lucide-react";
 
 import AuditSection from "@/components/results/AuditSection";
+import SignalMetricStrip from "@/components/signal/SignalMetricStrip";
 
 type AuditEntitiesSectionProps = {
   auditForm: any;
@@ -21,30 +22,47 @@ export default function AuditEntitiesSection({
   const { t } = useTranslation();
   const { form } = auditForm;
 
-  // `.fstat` order is the approved one: names, strong matches, average match,
-  // type known. Every value comes from the resolved entity set, and a missing
-  // average reads as no value rather than 0%.
-  const stats = [
-    { label: t("signalStartCheck.entities.namesAdded"), value: String(entitySummary.total) },
-    {
-      label: t("signalStartCheck.entities.strongMatches"),
-      value: String(entitySummary.highConfidence),
-    },
-    {
-      label: t("signalStartCheck.entities.averageMatch"),
-      value:
-        typeof entitySummary.avgConfidence === "number"
-          ? `${entitySummary.avgConfidence}%`
-          : t("signalStartCheck.entities.noValue"),
-    },
-    { label: t("signalStartCheck.entities.typeKnown"), value: String(entitySummary.categorized) },
-  ];
+  // UI/UX Fixes: hide zero-value match stats — only show when there is signal.
+  const hasEntitySignal =
+    entitySummary.total > 0 ||
+    entitySummary.highConfidence > 0 ||
+    entitySummary.categorized > 0 ||
+    typeof entitySummary.avgConfidence === "number";
+
+  const stats = hasEntitySignal
+    ? [
+        { label: t("signalStartCheck.entities.namesAdded"), value: String(entitySummary.total) },
+        {
+          label: t("signalStartCheck.entities.strongMatches"),
+          value: String(entitySummary.highConfidence),
+        },
+        {
+          label: t("signalStartCheck.entities.averageMatch"),
+          value:
+            typeof entitySummary.avgConfidence === "number"
+              ? `${entitySummary.avgConfidence}%`
+              : t("signalStartCheck.entities.noValue"),
+        },
+        {
+          label: t("signalStartCheck.entities.typeKnown"),
+          value: String(entitySummary.categorized),
+        },
+      ]
+    : [];
+
+  const entitySummaryLine =
+    form.entities.length > 0
+      ? form.entities.slice(0, 3).join(", ") + (form.entities.length > 3 ? "…" : "")
+      : t("signalStartCheck.entities.description");
 
   return (
     <AuditSection
       id="audit-step-entities"
       heading={t("signalStartCheck.entities.heading")}
       description={t("signalStartCheck.entities.description")}
+      collapsible
+      defaultOpen={false}
+      summary={entitySummaryLine}
     >
       <div className="mb-3">
         <label
@@ -98,8 +116,7 @@ export default function AuditEntitiesSection({
             ))}
           </AnimatePresence>
           {auditForm.entitySuggestions.length > 0 && (
-            <span className="inline-flex items-center gap-1 text-xs text-(--t-3)">
-              <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
+            <span className="text-xs text-(--t-3)">
               {t("signalStartCheck.entities.suggestionsLabel")}
             </span>
           )}
@@ -108,7 +125,7 @@ export default function AuditEntitiesSection({
               key={`${suggestion.name}-${suggestion.type}`}
               type="button"
               onClick={() => auditForm.handleAddSuggestion(suggestion)}
-              className="inline-flex cursor-pointer items-center rounded-md bg-(--line-2) px-2 py-[3px] font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.04em] text-(--t-2) hover:text-(--t-1)"
+              className="inline-flex cursor-pointer items-center rounded-md bg-(--line-2) px-2 py-[3px] text-[11px] font-medium text-(--t-2) hover:text-(--t-1)"
             >
               {suggestion.name}
             </button>
@@ -116,21 +133,14 @@ export default function AuditEntitiesSection({
         </div>
       )}
 
-      <div className="flex flex-col gap-[14px] max-md:*:w-full max-md:*:min-w-0 md:flex-row">
-        {stats.map((stat) => (
-          <div
-            key={stat.label}
-            className="flex-1 rounded-xl border-0 bg-[#EEF1F6] px-[18px] py-4"
-          >
-            <div className="mb-1.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
-              {stat.label}
-            </div>
-            <div className="font-(family-name:--disp) text-2xl font-extrabold tracking-[-0.02em]">
-              {stat.value}
-            </div>
-          </div>
-        ))}
-      </div>
+      {stats.length > 0 ? (
+        <SignalMetricStrip
+          items={stats.map((stat) => ({
+            label: stat.label,
+            value: stat.value,
+          }))}
+        />
+      ) : null}
     </AuditSection>
   );
 }

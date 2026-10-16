@@ -63,7 +63,7 @@ describe("TrackedCompetitorsSection plan gate", () => {
     authState.user = { subscription_plan: "plan_specialist" };
     render(<TrackedCompetitorsSection projectId="42" />);
 
-    expect(await screen.findByRole("button", { name: "+ Add competitor" })).toBeInTheDocument();
+    expect(await screen.findByRole("button", { name: "Add competitor" })).toBeInTheDocument();
     expect(
       screen.queryByText(/Competitive Intelligence requires Specialist/i)
     ).not.toBeInTheDocument();

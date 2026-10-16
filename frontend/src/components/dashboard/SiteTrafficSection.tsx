@@ -116,7 +116,7 @@ function DeltaPill({ change, plain }: { change: SiteTrafficChange; plain?: boole
         )}
         title={t("siteTraffic.vsPrevious")}
       >
-        {text} {up ? "↗" : "↘"}
+        {text} {up ? "▲" : "▼"}
       </span>
     );
   }
@@ -128,7 +128,7 @@ function DeltaPill({ change, plain }: { change: SiteTrafficChange; plain?: boole
       )}
       title={t("siteTraffic.vsPrevious")}
     >
-      {text} {up ? "↗" : "↘"}
+      {text} {up ? "▲" : "▼"}
     </span>
   );
 }

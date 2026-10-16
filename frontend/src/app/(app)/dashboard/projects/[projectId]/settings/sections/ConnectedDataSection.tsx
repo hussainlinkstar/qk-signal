@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useTranslation } from "react-i18next";
 
 import SignalInlineNote from "@/components/signal/SignalInlineNote";
+import SignalMetricStrip from "@/components/signal/SignalMetricStrip";
 import { formatDateTime } from "@/lib/dateFormat";
 import type {
   ProjectDataSourceAssignment,
@@ -537,26 +538,22 @@ export default function ConnectedDataSection({
         </div>
 
         {magicLinkStatus && (
-          <div className="mt-4 flex flex-col gap-3.5 md:flex-row">
-            <div className="w-full min-w-0 flex-1 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4 md:min-w-[auto]">
-              <div className="mb-1.5 text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
-                {t("signalProjectSettings.handshake.openLinks")}
-              </div>
-              <div className="font-(family-name:--disp) text-[20px] font-extrabold tracking-[-0.02em]">
-                {magicLinkStatus.open_magic_link_count}
-              </div>
-            </div>
-            <div className="w-full min-w-0 flex-1 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4 md:min-w-[auto]">
-              <div className="mb-1.5 text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
-                {t("signalProjectSettings.handshake.expires")}
-              </div>
-              <div className="font-(family-name:--disp) text-[15px] font-extrabold tracking-[-0.02em]">
-                {magicLinkStatus.latest_link_expires_at
+          <SignalMetricStrip
+            className="mt-4"
+            items={[
+              {
+                label: t("signalProjectSettings.handshake.openLinks"),
+                value: magicLinkStatus.open_magic_link_count,
+              },
+              {
+                label: t("signalProjectSettings.handshake.expires"),
+                value: magicLinkStatus.latest_link_expires_at
                   ? formatDateTime(magicLinkStatus.latest_link_expires_at)
-                  : t("signalProjectSettings.handshake.noExpiry")}
-              </div>
-            </div>
-          </div>
+                  : t("signalProjectSettings.handshake.noExpiry"),
+                valueSize: "text",
+              },
+            ]}
+          />
         )}
 
         <div className="mt-4 flex justify-end">

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Plus } from "lucide-react";
 import Modal from "@/components/ui/Modal";
 import {
   createProjectCompetitor,
@@ -132,8 +133,9 @@ export default function SignalAddCompetitorModal({
             type="button"
             onClick={handleSubmit}
             disabled={submitting}
-            className="h-[38px] rounded-[10px] bg-(--ink) px-[15px] text-[13.5px] font-semibold text-white hover:bg-black disabled:opacity-50"
+            className="inline-flex h-[38px] items-center justify-center gap-2 rounded-full bg-(--ink) px-[15px] text-[13.5px] font-semibold text-white hover:bg-black disabled:opacity-50"
           >
+            {!submitting ? <Plus className="h-4 w-4" strokeWidth={2.25} aria-hidden="true" /> : null}
             {submitting ? "Adding..." : "Add competitor"}
           </button>
         </div>

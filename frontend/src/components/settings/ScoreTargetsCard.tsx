@@ -204,7 +204,7 @@ export default function ScoreTargetsCard({ projectId }: { projectId: string | nu
               type="button"
               onClick={() => void save()}
               disabled={!dirty || saving}
-              className="inline-flex h-[38px] items-center justify-center rounded-[10px] bg-(--ink) px-4 text-[13.5px] font-semibold text-white transition-colors hover:bg-black disabled:cursor-not-allowed disabled:opacity-40 max-md:min-h-11"
+              className="inline-flex h-[38px] items-center justify-center rounded-full bg-(--ink) px-4 text-[13.5px] font-semibold text-white transition-colors hover:bg-black disabled:cursor-not-allowed disabled:opacity-40 max-md:min-h-11"
             >
               {saving
                 ? t("signalProjectSettings.scoreTargets.saving")

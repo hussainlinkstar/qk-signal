@@ -62,7 +62,7 @@ const BTN =
 const BTN_PRIMARY =
   "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black";
 const BTN_GHOST =
-  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] border border-transparent bg-transparent px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-2) hover:bg-(--line-2) hover:text-(--t-1)";
+  "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border border-transparent bg-transparent px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-2) hover:bg-(--line-2) hover:text-(--t-1)";
 
 const scoreOrNull = (value: number | null | undefined): number | null =>
   typeof value === "number" && Number.isFinite(value) ? Math.round(value) : null;

@@ -26,6 +26,8 @@
   "depletion_date": null,
   "will_exhaust_before_renewal": false,
   "projected_overage": 0,
+  "projection_reason": null,
+  "observed_days": 29,
   "warning": {
     "show_warning": false,
     "remaining": 175,

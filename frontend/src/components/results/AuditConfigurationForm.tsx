@@ -2,15 +2,16 @@
 
 import React, { forwardRef, useImperativeHandle, useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
+import { useTranslation } from "react-i18next";
 
 import AuditAllowanceSection from "@/components/results/AuditAllowanceSection";
 import AuditContextSection from "@/components/results/AuditContextSection";
 import AuditDepthSection from "@/components/results/AuditDepthSection";
 import AuditEntitiesSection from "@/components/results/AuditEntitiesSection";
 import AuditLaunchSection from "@/components/results/AuditLaunchSection";
-import AuditModelSelectionSection from "@/components/results/AuditModelSelectionSection";
 import AuditPromptsSection from "@/components/results/AuditPromptsSection";
 import AuditScanRunView, { type CompletedScanScores } from "@/components/results/AuditScanRunView";
+import AuditStickyStartBar from "@/components/results/AuditStickyStartBar";
 import AuditTargetSection from "@/components/results/AuditTargetSection";
 import type { ScanPromptsState } from "@/hooks/useScanPrompts";
 import type { TierDurationsMap } from "@/hooks/useTierDurations";
@@ -101,8 +102,17 @@ const AuditConfigurationForm = forwardRef(function AuditConfigurationForm(
   }: AuditConfigurationFormProps,
   ref
 ) {
+  const { t } = useTranslation();
   const shouldReduceMotion = useReducedMotion();
   const [showScanLine, setShowScanLine] = useState(false);
+
+  const stickyStartLabel = auditForm.isPreflightChecking
+    ? t("signalStartCheck.launch.checkingAddress")
+    : auditRunner.isLoading
+      ? t("signalStartCheck.launch.starting")
+      : auditRunner.isPolling
+        ? t("signalStartCheck.launch.running")
+        : t("signalStartCheck.launch.start");
 
   const { form } = auditForm;
   const highConfidenceEligibleLabel = useMemo(() => {
@@ -155,12 +165,12 @@ const AuditConfigurationForm = forwardRef(function AuditConfigurationForm(
   }
 
   return (
-    <form onSubmit={auditRunner.handleSubmit} className="relative">
+    <form onSubmit={auditRunner.handleSubmit} className="relative pb-24">
       <AnimatePresence>
         {showScanLine && (
           <motion.div
             key="ai-scan"
-            className="pointer-events-none absolute inset-x-0 h-1 bg-linear-to-r from-transparent via-(--purple) to-transparent blur-xs z-50"
+            className="pointer-events-none absolute inset-x-0 z-50 h-1 bg-(--ink)/20 blur-xs"
             initial={{ top: "-10%" }}
             animate={{ top: "110%" }}
             exit={{ opacity: 0 }}
@@ -192,12 +202,6 @@ const AuditConfigurationForm = forwardRef(function AuditConfigurationForm(
         </div>
 
         <div className="space-y-4">
-          <AuditAllowanceSection
-            planLabel={highConfidenceAccess.currentPlanLabel}
-            used={auditRunner.scansUsed}
-            remaining={auditRunner.scansRemaining}
-            resetAt={auditRunner.scansResetAt}
-          />
           <AuditDepthSection
             auditForm={auditForm}
             auditRunner={auditRunner}
@@ -205,7 +209,15 @@ const AuditConfigurationForm = forwardRef(function AuditConfigurationForm(
             highConfidenceEligibleLabel={highConfidenceEligibleLabel}
             tierDurations={tierDurations}
           />
-          <AuditModelSelectionSection />
+          {/* Allowance stays visible in the column for detail; sticky bar
+              carries the live remaining count + Start (UI/UX Fixes). Models
+              card removed — nothing to choose. */}
+          <AuditAllowanceSection
+            planLabel={highConfidenceAccess.currentPlanLabel}
+            used={auditRunner.scansUsed}
+            remaining={auditRunner.scansRemaining}
+            resetAt={auditRunner.scansResetAt}
+          />
           <AuditLaunchSection
             auditForm={auditForm}
             auditRunner={auditRunner}
@@ -214,6 +226,16 @@ const AuditConfigurationForm = forwardRef(function AuditConfigurationForm(
           />
         </div>
       </div>
+
+      <AuditStickyStartBar
+        planLabel={highConfidenceAccess.currentPlanLabel}
+        remaining={auditRunner.scansRemaining}
+        isStartDisabled={isStartDisabled}
+        startLabel={stickyStartLabel}
+        isBusy={Boolean(
+          auditRunner.isLoading || auditForm.isPreflightChecking || auditRunner.isPolling
+        )}
+      />
     </form>
   );
 });

@@ -23,8 +23,9 @@ export default async function RegisterPage() {
 
   return (
     <AuthShell
-      chipLabel="Get Started"
+      chipLabel="Get started"
       title="Create your account"
+      subtitle="One workspace for SEO, AEO, and GEO — start with a free scan."
       footerText="Already have an account?"
       footerCtaLabel="Sign in"
       footerCtaHref="/login"

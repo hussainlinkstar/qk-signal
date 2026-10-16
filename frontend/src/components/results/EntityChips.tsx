@@ -2,7 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Building2, CircleHelp, Landmark, MapPin, Package, Tag, User } from "lucide-react";
+import { Building2, CircleHelp, Landmark, MapPin, Package, Plus, Tag, User } from "lucide-react";
 
 export type EntityChipItem = {
   name: string;
@@ -182,9 +182,10 @@ const EntityChips = ({ entities, suggestions = [], onEdit, onRemove, onAdd }: En
                 key={`${entity.name}-${entity.type}`}
                 type="button"
                 onClick={() => onAdd?.(entity)}
-                className="rounded-full border-0 bg-[color-mix(in_srgb,var(--panel)_50%,transparent)] px-3 py-1 text-xs text-(--t-2) hover:border-primary hover:text-(--t-1)"
+                className="inline-flex items-center gap-1 rounded-full border-0 bg-[color-mix(in_srgb,var(--panel)_50%,transparent)] px-3 py-1 text-xs text-(--t-2) hover:border-primary hover:text-(--t-1)"
               >
-                + Add {entity.name}
+                <Plus className="h-3 w-3" strokeWidth={2.25} aria-hidden="true" />
+                Add {entity.name}
               </button>
             ))}
           </div>

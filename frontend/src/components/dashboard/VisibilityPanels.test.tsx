@@ -285,11 +285,11 @@ describe("Gauge trend and sparkline (SIGV2-1181)", () => {
     });
 
     expect(trendBlock("aio")).not.toBeNull();
-    expect(trendBlock("aio")!.textContent).toBe("↗ +3");
+    expect(trendBlock("aio")!.textContent).toBe("▲ +3");
     expect(trendBlock("aio")!.querySelector("span")!.className).toContain("text-(--good)");
     expect(sparkFor("aio")).toHaveAttribute("data-spark", "47,49,52,50,55,57,59,62");
 
-    expect(trendBlock("seo")!.textContent).toBe("↗ +2");
+    expect(trendBlock("seo")!.textContent).toBe("▲ +2");
     expect(sparkFor("seo")).toHaveAttribute("data-spark", "66,68,69,70,72,73,74,76");
   });
 
@@ -316,7 +316,7 @@ describe("Gauge trend and sparkline (SIGV2-1181)", () => {
   it("renders a fall as a fall, with the negative sign and colour", () => {
     renderPanels(baseSummary, { seoTrend: { delta: -4, points: [76, 74, 70, 68] } });
 
-    expect(trendBlock("seo")!.textContent).toBe("↘ -4");
+    expect(trendBlock("seo")!.textContent).toBe("▼ 4");
     expect(trendBlock("seo")!.querySelector("span")!.className).toContain("text-(--bad)");
     expect(trendBlock("seo")!.querySelector("span")!.className).not.toContain("text-(--good)");
     expect(sparkFor("seo")).toHaveAttribute("data-spark", "76,74,70,68");

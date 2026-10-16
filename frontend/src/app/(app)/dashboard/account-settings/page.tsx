@@ -2,7 +2,7 @@
 
 import SignalAlert from "@/components/signal/SignalAlert";
 import React, { useEffect, useState } from "react";
-import { Loader2, UserCog } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import DashboardPageIntro from "@/components/dashboard/DashboardPageIntro";
 import WorkspacePageFrame from "@/components/dashboard/WorkspacePageFrame";
 import SignalTabs, { SignalTabPanel } from "@/components/signal/SignalTabs";
@@ -72,16 +72,21 @@ export default function AccountSettingsPage() {
 
   return (
     <WorkspacePageFrame backHref="/dashboard" backLabel="Back to Workspace Overview">
-      <div>
-        <DashboardPageIntro icon={UserCog} title="My Profile" color="var(--primary)">
+      <div className="flex flex-col gap-6">
+        <DashboardPageIntro title="My Profile">
           Manage your profile, security, notifications, and data privacy.
         </DashboardPageIntro>
 
         {/* ── Tab Navigation ── */}
-        <SignalTabs<AccountTab> tabs={TABS} activeId={activeTab} onChange={setActiveTab} />
+        <SignalTabs<AccountTab>
+          tabs={TABS}
+          activeId={activeTab}
+          onChange={setActiveTab}
+          className="gap-2"
+        />
 
         {/* ── Content ── */}
-        <SignalTabPanel id={activeTab} activeId={activeTab}>
+        <SignalTabPanel id={activeTab} activeId={activeTab} className="gap-5">
           {renderContent()}
         </SignalTabPanel>
 

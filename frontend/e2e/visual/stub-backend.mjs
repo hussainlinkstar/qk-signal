@@ -1707,7 +1707,92 @@ export function stubRequestListener(req, res) {
     }     else if (p === "/api/v1/auth/passkeys/list") ok([{ id: "pk-1", name: "Laptop" }]);
     else if (p === "/api/v1/workspaces") ok(stubWorkspaces());
     else if (p === "/api/v1/workspaces/current") ok(workspaces.find((w) => w.id === id));
-    else if (p === "/api/v1/workspaces/current/projects") ok(projectsByWorkspace[id] ?? []);
+    else if (p === "/api/v1/workspaces/current/projects") {
+      // POST creates a project; GET lists. Returning the list for POST made
+      // the UI navigate to /dashboard/projects/undefined (no `.id` on an array).
+      if (req.method === "POST") {
+        let raw = "";
+        req.on("data", (c) => (raw += c));
+        req.on("end", () => {
+          const payload = JSON.parse(raw || "{}");
+          const list = projectsByWorkspace[id] ?? (projectsByWorkspace[id] = []);
+          const nextId =
+            Math.max(
+              0,
+              ...Object.keys(projectDetails).map(Number),
+              ...list.map((row) => Number(row.id) || 0)
+            ) + 1;
+          const created = {
+            id: nextId,
+            workspace_id: id,
+            name: String(payload.name || "New project").trim() || "New project",
+            domain_url: payload.domain_url ?? null,
+            target_country: payload.target_country ?? null,
+            language: payload.language || "en",
+            icp_roles: [],
+            pain_points: null,
+            usp: null,
+            competitors: [],
+            priority_pulse_tags: [],
+            sme_profiles: [],
+            auto_competitor_audits_enabled: false,
+            competitive_digest_frequency: "weekly",
+            tags: [],
+            status: "active",
+            cloned_from_id: null,
+            archived_at: null,
+            created_at: NOW,
+            audit_count: 0,
+            last_audit_at: null,
+            latest_seo_score: null,
+            latest_geo_score: null,
+            latest_aeo_score: null,
+            feature_access: {
+              monitoring: { allowed: true, detail: null, status_code: null, required_plan: null },
+              automations: { allowed: false, detail: null, status_code: 402, required_plan: "plan_growth" },
+              advisor_recommendations: {
+                allowed: true,
+                detail: null,
+                status_code: null,
+                required_plan: null,
+              },
+              entity_authority: { allowed: true, detail: null, status_code: null, required_plan: null },
+              benchmark_intelligence: {
+                allowed: true,
+                detail: null,
+                status_code: null,
+                required_plan: null,
+              },
+              scheduled_audits: { allowed: true, detail: null, status_code: null, required_plan: null },
+              jira_export: { allowed: false, detail: null, status_code: 402, required_plan: "plan_growth" },
+            },
+          };
+          list.push(created);
+          projectDetails[nextId] = { ...created, competitors: [] };
+          const trends = trendsByWorkspace[id] ?? (trendsByWorkspace[id] = {
+            workspace_id: id,
+            period: "90d",
+            projects: [],
+          });
+          if (!trends.projects.some((row) => row.project_id === nextId)) {
+            trends.projects.push({
+              project_id: nextId,
+              name: created.name,
+              domain_url: created.domain_url,
+              last_audit_at: null,
+              latest_scores: { seo: 0, geo: 0, aeo: 0, overall: 0 },
+              delta: { seo: 0, aeo: 0, geo: 0, overall: 0 },
+              trend_direction: { seo: "stable", aeo: "stable", geo: "stable", overall: "stable" },
+              sparkline: [],
+            });
+          }
+          res.writeHead(201, { "content-type": "application/json" });
+          res.end(JSON.stringify(created));
+        });
+        return;
+      }
+      ok(projectsByWorkspace[id] ?? []);
+    }
     // Team badge counts in the settings tab strip come from this list; the
     // design draws one owner row (Team 1, Client Access 0).
     else if (p === "/api/v1/workspaces/current/members")
@@ -2326,6 +2411,9 @@ export function stubRequestListener(req, res) {
             : billingInvoices.invoices,
       });
     } else if (p === "/api/v1/billing/usage-analytics") ok(usageAnalytics);
+    // Mock preview has no Stripe: portal/checkout land on in-app billing routes.
+    else if (p === "/api/v1/billing/portal-session") ok({ url: "/dashboard/billing/history" });
+    else if (p === "/api/v1/billing/checkout-session") ok({ url: "/dashboard/billing/success" });
     // SIGV2-1039: the real WorkspaceWhiteLabelSettingsResponse shape. The old
     // `{ enabled: false }` matched no schema in the backend and would have
     // rendered the White-Label tab as an empty form. The tab is not the

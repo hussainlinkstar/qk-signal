@@ -47,8 +47,8 @@ const trend = (
 
 describe("scoreDeltaMeta", () => {
   it("signs and colours a rise, a fall and a measured standstill", () => {
-    expect(scoreDeltaMeta(3)).toEqual({ cls: "text-(--good)", text: "↗ +3" });
-    expect(scoreDeltaMeta(-4.2)).toEqual({ cls: "text-(--bad)", text: "↘ -4" });
+    expect(scoreDeltaMeta(3)).toEqual({ cls: "text-(--good)", text: "▲ +3" });
+    expect(scoreDeltaMeta(-4.2)).toEqual({ cls: "text-(--bad)", text: "▼ 4" });
     expect(scoreDeltaMeta(0)).toEqual({ cls: "text-(--t-3)", text: "→ 0" });
   });
 

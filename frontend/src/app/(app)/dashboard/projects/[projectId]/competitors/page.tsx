@@ -425,8 +425,14 @@ export default function ProjectCompetitorsPage() {
           }
           onClick={() => setAddOpen(true)}
         >
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-            <path d="M12 5v14M5 12h14" />
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            className="h-4 w-4"
+            aria-hidden="true"
+          >
+            <path d="M12 5v14M5 12h14" strokeWidth="2" strokeLinecap="round" />
           </svg>
           {t("signalCompetitors.add.button")}
         </button>
@@ -924,11 +930,11 @@ export default function ProjectCompetitorsPage() {
                               <span className="text-[12px] font-medium text-(--t-3)">-</span>
                             ) : change30 > 0 ? (
                               <span className="font-mono text-[12px] font-medium text-(--good)">
-                                ↗ +{Math.round(change30)}
+                                ▲ +{Math.round(change30)}
                               </span>
                             ) : change30 < 0 ? (
                               <span className="font-mono text-[12px] font-medium text-(--bad)">
-                                ↘ {Math.round(change30)}
+                                ▼ {Math.abs(Math.round(change30))}
                               </span>
                             ) : (
                               <span className="font-mono text-[12px] font-medium text-(--t-3)">
@@ -1045,9 +1051,19 @@ export default function ProjectCompetitorsPage() {
             <span>{t("signalCompetitors.empty.noCompetitors")}</span>
             {!locked ? (
               <button
+                type="button"
                 className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white hover:bg-black"
                 onClick={() => setAddOpen(true)}
               >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  className="h-4 w-4"
+                  aria-hidden="true"
+                >
+                  <path d="M12 5v14M5 12h14" strokeWidth="2" strokeLinecap="round" />
+                </svg>
                 {t("signalCompetitors.add.button")}
               </button>
             ) : null}
