@@ -451,7 +451,7 @@ export default function SignalAutomationModal({
             type="button"
             onClick={handleSubmit}
             disabled={submitting}
-            className="h-[38px] rounded-[10px] bg-(--ink) px-[15px] text-[13.5px] font-semibold text-white hover:bg-black disabled:opacity-50"
+            className="h-[38px] rounded-full bg-(--ink) px-[15px] text-[13.5px] font-semibold text-white hover:bg-black disabled:opacity-50"
           >
             {submitting ? "Saving..." : editing ? "Save changes" : "Create automation"}
           </button>

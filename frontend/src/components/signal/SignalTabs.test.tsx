@@ -40,13 +40,13 @@ describe("SignalTabs accessibility", () => {
     vi.restoreAllMocks();
   });
 
-  it("uses a soft pill tab row with a light-blue active state", () => {
+  it("uses a soft pill tab row with a white active pill on the lilac well", () => {
     render(<TabsHarness />);
-    expect(screen.getByRole("tablist")).toHaveClass("rounded-[16px]", "bg-[#EEF1F6]");
+    expect(screen.getByRole("tablist")).toHaveClass("rounded-[16px]", "bg-(--well,#EEF1F6)");
     expect(screen.getByRole("tab", { name: "Overview" })).toHaveClass(
       "rounded-full",
-      "bg-[#E8F1FF]",
-      "text-[#1D4ED8]"
+      "bg-white",
+      "text-(--purple-deep,var(--purple))"
     );
   });
 

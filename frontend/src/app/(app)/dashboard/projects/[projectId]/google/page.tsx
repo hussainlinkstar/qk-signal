@@ -809,6 +809,17 @@ export default function ProjectSeoDetailPage() {
                 className={btnPrimaryCls}
                 onClick={() => setAddKeywordOpen(true)}
               >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  className="h-4 w-4"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 5v14M5 12h14" />
+                </svg>
                 {t("signalSeoDetail.keywordsEmptyCta")}
               </button>
             </div>

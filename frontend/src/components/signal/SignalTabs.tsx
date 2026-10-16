@@ -84,7 +84,7 @@ export default function SignalTabs<T extends string>({
       className={cn(
         // Vertical spacing comes from the parent flex gap — extra mt/mb here
         // stacked with page gaps and left a blank band under the score hero.
-        "flex w-full max-w-full gap-1.5 overflow-x-auto rounded-[16px] bg-[#EEF1F6] p-1.5",
+        "flex w-full max-w-full gap-1.5 overflow-x-auto rounded-[16px] bg-(--well,#EEF1F6) p-1.5",
         className
       )}
     >
@@ -108,10 +108,10 @@ export default function SignalTabs<T extends string>({
             onKeyDown={(event) => handleKeyDown(event, index)}
             className={cn(
               "inline-flex shrink-0 cursor-pointer items-center gap-2 rounded-full px-4 py-2.5 font-(family-name:--body-font) text-[13.5px] font-semibold leading-[normal] transition-colors duration-150",
-              "focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-[#3B82F6]",
+              "focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple)",
               active
-                ? "bg-[#E8F1FF] text-[#1D4ED8]"
-                : "bg-transparent text-[#6B7280] hover:bg-white/70 hover:text-[#111827]"
+                ? "bg-white text-(--purple-deep,var(--purple)) shadow-sm"
+                : "bg-transparent text-(--t-3) hover:bg-white/70 hover:text-(--t-1)"
             )}
           >
             {tab.label}
@@ -120,7 +120,9 @@ export default function SignalTabs<T extends string>({
               <span
                 className={cn(
                   "rounded-full px-1.5 py-px font-(family-name:--mono) text-[11px] font-normal tabular-nums",
-                  active ? "bg-white/80 text-[#1D4ED8]" : "bg-white text-[#9CA3AF]"
+                  active
+                    ? "bg-(--purple-s) text-(--purple-deep,var(--purple))"
+                    : "bg-white text-(--t-3)"
                 )}
               >
                 {tab.count}

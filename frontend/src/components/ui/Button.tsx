@@ -1,8 +1,7 @@
 import React from "react";
 import { Loader2 } from "lucide-react";
 import { cva } from "class-variance-authority";
-import { cn, cx } from "./utils";
-import { RADIUS_CONTROL_CLASS } from "./radiusTokens";
+import { cn } from "./utils";
 
 export type OfficialButtonVariant = "primary" | "inverse" | "ghost" | "danger" | "accent";
 export type ButtonVariant = OfficialButtonVariant | "outline" | "auth" | "cta";
@@ -31,20 +30,15 @@ const legacyVariantMap: Record<ButtonVariant, OfficialButtonVariant> = {
  * dark marketing/auth pages and the light signal dashboard, where
  * `[data-signal-theme]` re-points these same tokens.
  *
- * The previous values were dark-theme literals, which made `ghost` (and
- * `outline`, which aliases to it) a 3% white fill inside a 5% white border, i.e.
- * an invisible button on the light dashboard, and `inverse` turned white on
- * hover while its label stayed `--background`, so the label vanished.
+ * Action buttons use `rounded-full` app-wide so Cancel / Start / Add CTAs do
+ * not mix pill and square corners on the same screen.
  *
  * `bg-(--surface-subtle)` for ghost and `bg-primary` for primary are the
  * contract asserted by ui/__tests__/foundation-primitives.test.tsx, which the
  * implementation had drifted away from.
  */
 const buttonVariants = cva(
-  cx(
-    "signal-button inline-flex min-w-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap border font-(family-name:--body-font) font-semibold leading-[normal] transition-colors duration-150 focus-visible:outline-hidden focus-visible:ring-[3px] focus-visible:ring-(--ring) disabled:cursor-not-allowed disabled:opacity-45 motion-reduce:transition-none",
-    RADIUS_CONTROL_CLASS
-  ),
+  "signal-button inline-flex min-w-0 cursor-pointer items-center justify-center gap-2 whitespace-nowrap rounded-full border font-(family-name:--body-font) font-semibold leading-[normal] transition-colors duration-150 focus-visible:outline-hidden focus-visible:ring-[3px] focus-visible:ring-(--ring) disabled:cursor-not-allowed disabled:opacity-45 motion-reduce:transition-none",
   {
     variants: {
       variant: {
@@ -57,7 +51,7 @@ const buttonVariants = cva(
         accent: "border-transparent bg-(--accent) text-(--accent-foreground) hover:opacity-90",
       },
       size: {
-        sm: "h-[30px] rounded-(--r-sm) px-[11px] text-[12px] max-md:min-h-11",
+        sm: "h-[30px] px-[11px] text-[12px] max-md:min-h-11",
         md: "h-[38px] px-[15px] text-[13.5px] max-md:min-h-11",
         lg: "h-11 px-5 text-[14.5px]",
       },
@@ -81,7 +75,7 @@ export const buttonClasses = ({
 }: ButtonStyleOptions = {}) =>
   variant === "auth"
     ? cn(
-        "inline-flex min-h-11 min-w-0 cursor-pointer items-center justify-center gap-1.5 rounded-full border border-transparent bg-[color:var(--auth-primary,var(--blue))] bg-(image:--auth-gradient) px-[15px] py-2.5 font-(family-name:--body-font) text-[13.5px] font-semibold leading-[1.5] tracking-normal text-(--panel) transition-[filter,box-shadow] duration-150 hover:brightness-[1.06] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--brand) disabled:cursor-not-allowed disabled:opacity-45",
+        "inline-flex min-h-11 min-w-0 cursor-pointer items-center justify-center gap-1.5 rounded-full border border-transparent bg-[color:var(--auth-primary,var(--purple))] px-[15px] py-2.5 font-(family-name:--body-font) text-[13.5px] font-semibold leading-[1.5] tracking-normal text-white shadow-[0_10px_24px_-12px_color-mix(in_srgb,var(--auth-primary,var(--purple))_55%,transparent)] transition-[filter,box-shadow,transform] duration-150 hover:brightness-[1.05] hover:shadow-[0_14px_28px_-12px_color-mix(in_srgb,var(--auth-primary,var(--purple))_65%,transparent)] active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--brand) disabled:cursor-not-allowed disabled:opacity-45 disabled:shadow-none",
         className
       )
     : cn(

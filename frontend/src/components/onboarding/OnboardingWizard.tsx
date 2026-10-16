@@ -2,6 +2,7 @@
 
 import SignalAlert from "@/components/signal/SignalAlert";
 import React, { useEffect, useRef, useState } from "react";
+import { Plus } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import ProjectFormFields from "@/components/onboarding/ProjectSetupFields";
@@ -495,9 +496,10 @@ export default function OnboardingWizard({
                 competitorDraft === null ? (
                   <button
                     type="button"
-                    className="inline-flex h-8 cursor-pointer items-center gap-2 rounded-full border border-dashed border-(--line) px-[10px] text-[13px] font-semibold text-(--t-2)"
+                    className="inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-full border border-dashed border-(--line) px-[10px] text-[13px] font-semibold text-(--t-2)"
                     onClick={() => setCompetitorDraft("")}
                   >
+                    <Plus className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden="true" />
                     {t("onboarding.addCompetitor")}
                   </button>
                 ) : (
@@ -630,7 +632,7 @@ export default function OnboardingWizard({
             </button>
             <button
               type="button"
-              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-[10px] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-2) transition-colors hover:text-(--t-1)"
+              className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-2) transition-colors hover:text-(--t-1)"
               onClick={() => {
                 void dismissWizard();
               }}

@@ -5,6 +5,7 @@ import { ArrowDown, ArrowUp, Loader2, Minus } from "lucide-react";
 
 import { useAuth } from "@/components/auth/custom-auth";
 import GatedSection from "@/components/results/GatedSection";
+import SignalMetricStrip from "@/components/signal/SignalMetricStrip";
 import { CARD_SUBSECTION_SURFACE_CLASS } from "@/components/ui/cardStyleTokens";
 import { cx } from "@/components/ui/utils";
 import { formatDateTime } from "@/lib/dateFormat";
@@ -287,32 +288,24 @@ export default function PlanProgressView({ projectId }: PlanProgressViewProps) {
               data-testid="plan-progress-delta"
             >
               <div className="text-[13.5px] font-semibold">Since your last audit</div>
-              <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-3">
-                <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4 text-center">
-                  <p className="m-0 font-(family-name:--disp) text-[20px] font-extrabold tracking-[-0.02em] text-(--t-1)">
-                    {delta.actions_added.length}
-                  </p>
-                  <p className="m-0 mt-1 font-mono text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
-                    New actions
-                  </p>
-                </div>
-                <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4 text-center">
-                  <p className="m-0 font-(family-name:--disp) text-[20px] font-extrabold tracking-[-0.02em] text-(--good)">
-                    {delta.actions_resolved.length}
-                  </p>
-                  <p className="m-0 mt-1 font-mono text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
-                    Resolved
-                  </p>
-                </div>
-                <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4 text-center">
-                  <p className="m-0 font-(family-name:--disp) text-[20px] font-extrabold tracking-[-0.02em] text-(--t-1)">
-                    {delta.actions_carried.length}
-                  </p>
-                  <p className="m-0 mt-1 font-mono text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
-                    Carried forward
-                  </p>
-                </div>
-              </div>
+              <SignalMetricStrip
+                className="mt-3"
+                items={[
+                  {
+                    label: "New actions",
+                    value: delta.actions_added.length,
+                  },
+                  {
+                    label: "Resolved",
+                    value: delta.actions_resolved.length,
+                    tone: "good",
+                  },
+                  {
+                    label: "Carried forward",
+                    value: delta.actions_carried.length,
+                  },
+                ]}
+              />
               <div className="mt-3 flex flex-wrap gap-2">
                 <DeltaChip delta={delta.impact_delta.high_impact} noun="high-impact" />
                 <DeltaChip delta={delta.impact_delta.total_actions} noun="total" />

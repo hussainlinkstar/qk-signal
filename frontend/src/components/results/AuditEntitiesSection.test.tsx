@@ -1,5 +1,5 @@
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
 import AuditEntitiesSection from "@/components/results/AuditEntitiesSection";
@@ -37,10 +37,11 @@ describe("AuditEntitiesSection", () => {
     expect(
       screen.getByText("Alternative names the brand is known by, so mentions are matched to you.")
     ).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: /Entity configuration/i }));
     expect(screen.getByLabelText("Alternative names")).toBeInTheDocument();
   });
 
-  it("always shows the match summary in the approved order", () => {
+  it("shows match summary in the approved order when there is signal", () => {
     render(
       <AuditEntitiesSection
         {...buildProps({
@@ -49,11 +50,18 @@ describe("AuditEntitiesSection", () => {
       />
     );
 
+    fireEvent.click(screen.getByRole("button", { name: /Entity configuration/i }));
     const labels = screen
       .getAllByText(/Names added|Strong matches|Average match|Type known/)
       .map((node) => node.textContent);
     expect(labels).toEqual(["Names added", "Strong matches", "Average match", "Type known"]);
     expect(screen.getByText("91%")).toBeInTheDocument();
+  });
+
+  it("hides zero-value match stats until there is signal", () => {
+    render(<AuditEntitiesSection {...buildProps()} />);
+    fireEvent.click(screen.getByRole("button", { name: /Entity configuration/i }));
+    expect(screen.queryByText("Names added")).not.toBeInTheDocument();
   });
 
   it("reports no value rather than 0% when no confidence was measured", () => {
@@ -65,6 +73,7 @@ describe("AuditEntitiesSection", () => {
       />
     );
 
+    fireEvent.click(screen.getByRole("button", { name: /Entity configuration/i }));
     expect(screen.getByText("N/A")).toBeInTheDocument();
   });
 });

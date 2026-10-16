@@ -717,8 +717,8 @@ describe("ProjectCompetitorsPage (real competitor CRUD, MVP visual style)", () =
     await screen.findAllByText("Coastline Resorts");
 
     expect(screen.getByText("30-day")).toBeInTheDocument();
-    expect(screen.getByText("↗ +3")).toBeInTheDocument(); // project 63->66
-    expect(screen.getByText("↗ +2")).toBeInTheDocument(); // Coastline 76->78
+    expect(screen.getByText("▲ +3")).toBeInTheDocument(); // project 63->66
+    expect(screen.getByText("▲ +2")).toBeInTheDocument(); // Coastline 76->78
   });
 
   it("labels the last column Gap vs you without arrows when no history exists", async () => {
@@ -738,8 +738,8 @@ describe("ProjectCompetitorsPage (real competitor CRUD, MVP visual style)", () =
 
     expect(screen.getByText("Gap vs you")).toBeInTheDocument();
     expect(screen.getByText("-12")).toBeInTheDocument();
-    expect(screen.queryByText("↗")).not.toBeInTheDocument();
-    expect(screen.queryByText("↘")).not.toBeInTheDocument();
+    expect(screen.queryByText("▲")).not.toBeInTheDocument();
+    expect(screen.queryByText("▼")).not.toBeInTheDocument();
   });
 
   // SIGV2-1174: the head-to-head block is retired, not repopulated. Measuring

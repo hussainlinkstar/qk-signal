@@ -601,7 +601,7 @@ describe("DashboardOverviewPage", () => {
     // The served plan is the entitlement, even though the local table would
     // have granted it for the plan on the user record.
     expect(await screen.findByText("Competitor tracking is on Specialist")).toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: "+ Add competitor" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Add competitor" })).not.toBeInTheDocument();
     expect(createProjectCompetitor).not.toHaveBeenCalled();
   });
 

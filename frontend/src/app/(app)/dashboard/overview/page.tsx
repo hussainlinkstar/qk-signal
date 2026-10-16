@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslation } from "react-i18next";
-import { Building2, ChevronRight, ExternalLink, Globe, Loader2, Settings } from "lucide-react";
+import { Building2, ChevronRight, ExternalLink, Globe, Loader2, Plus, Settings } from "lucide-react";
 import { SkelCard, SkelPagehead } from "@/components/signal/SignalSkeleton";
 
 import { useAuth } from "@/components/auth/custom-auth";
@@ -104,16 +104,6 @@ const getProjectMinScore = (project: UserProjectSummary) => {
 };
 
 const formatAuditCount = (count: number) => `${count} ${count === 1 ? "audit" : "audits"}`;
-
-// Approved `.pc-fav` tiles carry distinct accent colours per card
-// (#0C0F16 / #0E7C6B / #B45309 in the mockup); cycle them by position so
-// every project gets a stable, deterministic tint.
-const PROJECT_ICON_TILES = [
-  { bg: "#E8F1FF", fg: "#3B82F6" },
-  { bg: "#FFE8F1", fg: "#EC4899" },
-  { bg: "#E7F9EF", fg: "#22C55E" },
-  { bg: "#FFF3E0", fg: "#F59E0B" },
-] as const;
 
 const OVERVIEW_CARD_RADIUS_CLASS = "rounded-(--r-lg)";
 const PROJECT_CARD_HOVER_CLASS =
@@ -278,11 +268,22 @@ function useOverviewDashboard() {
         language: projectLanguage.trim() || "en",
       });
 
+      // API / stub return `id`; some older shapes used `project_id`. Never
+      // navigate to /dashboard/projects/undefined.
+      const createdId =
+        typeof created?.id === "number" && Number.isFinite(created.id)
+          ? created.id
+          : typeof (created as { project_id?: unknown })?.project_id === "number"
+            ? (created as { project_id: number }).project_id
+            : null;
+
       setProjectNameState("");
       setProjectDomain("");
       setProjectCountry(GLOBAL_TARGET_MARKET);
       setCreationMessage("Project created successfully.");
-      router.push(`/dashboard/projects/${created.id}`);
+      if (createdId != null) {
+        router.push(`/dashboard/projects/${createdId}`);
+      }
       return true;
     } catch (err) {
       // The entered values stay in state so a retry does not lose them.
@@ -474,7 +475,7 @@ function ProjectCreateModal({
             and the single approved 3px --ring on keyboard focus. */}
         <button
           type="button"
-          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) transition-colors hover:bg-[#E8ECF3] focus-visible:outline-hidden focus-visible:ring-[3px] focus-visible:ring-(--ring)"
+          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-(--panel) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) transition-colors hover:bg-(--well,#E8ECF3) focus-visible:outline-hidden focus-visible:ring-[3px] focus-visible:ring-(--ring)"
           onClick={onClose}
           disabled={settings.isCreating}
         >
@@ -482,7 +483,7 @@ function ProjectCreateModal({
         </button>
         <button
           type="button"
-          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white transition-colors hover:bg-black focus-visible:outline-hidden focus-visible:ring-[3px] focus-visible:ring-(--ring)"
+          className="inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-white transition-colors hover:bg-black focus-visible:outline-hidden focus-visible:ring-[3px] focus-visible:ring-(--ring)"
           onClick={async () => {
             const created = await settings.handleCreateProject();
             if (created) onClose();
@@ -495,7 +496,10 @@ function ProjectCreateModal({
               {t("projectForm.submitting")}
             </span>
           ) : (
-            t("projectForm.submit")
+            <>
+              <Plus className="h-4 w-4" strokeWidth={2.25} aria-hidden="true" />
+              {t("projectForm.submit")}
+            </>
           )}
         </button>
       </div>
@@ -828,7 +832,16 @@ export default function OverviewPage() {
           onDismiss={dismissOnboarding}
           onProjectCreated={async (payload) => {
             const created = await settings.createProject(payload);
-            return { id: created.id };
+            const createdId =
+              typeof created?.id === "number" && Number.isFinite(created.id)
+                ? created.id
+                : typeof (created as { project_id?: unknown })?.project_id === "number"
+                  ? (created as { project_id: number }).project_id
+                  : null;
+            if (createdId == null) {
+              throw new Error("Project was created but no id was returned.");
+            }
+            return { id: createdId };
           }}
           onSaveCompetitor={settings.addCompetitor}
           onLoadGa4Status={settings.googleConnectionStatus}
@@ -898,12 +911,8 @@ export default function OverviewPage() {
             >
               {/* shared AIO ring gradient, same position-independent pattern as
                   the mockup's page-level defs */}
-              {settings.projects.map((project, projectIndex) => {
+              {settings.projects.map((project) => {
                 const domainLabel = deriveDomainLabel(project.domain, project.display_name);
-                const fav = (project.display_name || domainLabel || "P")
-                  .trim()
-                  .charAt(0)
-                  .toUpperCase();
                 const aioRaw = average([project.latest_aeo_score, project.latest_geo_score]);
                 const aio =
                   typeof aioRaw === "number" && Number.isFinite(aioRaw) ? Math.round(aioRaw) : null;
@@ -933,28 +942,24 @@ export default function OverviewPage() {
                   <Link
                     key={project.project_id}
                     href={`/dashboard/projects/${project.project_id}`}
-                    className="flex h-full flex-col gap-4 rounded-[22px] border-0 bg-white p-5 text-left transition-transform duration-200 hover:-translate-y-0.5"
+                    className="flex h-full flex-col gap-4 rounded-[22px] border-0 bg-white p-5 text-left shadow-[0_4px_20px_rgba(12,15,22,0.06)] transition-transform duration-200 hover:-translate-y-0.5"
                   >
                     <div className="flex items-start gap-3">
                       <div
-                        className="flex h-10 w-10 flex-none items-center justify-center rounded-[12px] font-(family-name:--disp) text-[15px] font-bold"
-                        style={{
-                          backgroundColor:
-                            PROJECT_ICON_TILES[projectIndex % PROJECT_ICON_TILES.length].bg,
-                          color: PROJECT_ICON_TILES[projectIndex % PROJECT_ICON_TILES.length].fg,
-                        }}
+                        className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-[#EEF2F7] text-[#64748B]"
+                        aria-hidden="true"
                       >
-                        {fav}
+                        <Globe className="h-5 w-5" strokeWidth={1.75} />
                       </div>
                       <div className="min-w-0 flex-1">
                         <b className="block truncate font-(family-name:--disp) text-[14.5px] leading-[19px] font-bold tracking-[-0.01em]">
                           {project.display_name}
                         </b>
-                        <small className="mt-px block truncate font-(family-name:--font-roboto-mono) text-[11.5px] leading-[15px] text-(--t-3)">
+                        <small className="mt-px block truncate text-[11.5px] leading-[15px] text-(--t-3)">
                           {domainLabel}
                         </small>
                         {hasScores ? (
-                          <span className="mt-1.5 inline-flex items-center gap-1.5 rounded-[999px] bg-(--good-s) px-[9px] py-1 font-(family-name:--font-roboto-mono) text-[10px] leading-[13px] tracking-[0.05em] text-(--good)">
+                          <span className="mt-1.5 inline-flex items-center gap-1.5 rounded-[999px] bg-(--good-s) px-[9px] py-1 text-[10px] leading-[13px] text-(--good)">
                             <span className="signal-pulse-dot h-[5px] w-[5px] rounded-[50%] bg-(--good)" />
                             {t("wsOverview.monitoring")}
                           </span>

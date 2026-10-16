@@ -69,7 +69,7 @@ const DOMAIN_STRIP = /^https?:\/\/(www\.)?/;
 const BTN =
   "inline-flex h-[32px] cursor-pointer items-center gap-1.5 rounded-full border-0 bg-[#EEF1F6] px-[13px] font-(family-name:--body-font) text-[12.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-50";
 const BTN_GHOST =
-  "inline-flex h-[28px] cursor-pointer items-center rounded-[8px] px-[9px] font-(family-name:--body-font) text-[11px] font-semibold text-(--t-2) hover:text-(--t-1) disabled:cursor-not-allowed disabled:opacity-50";
+  "inline-flex h-[28px] cursor-pointer items-center rounded-full px-[9px] font-(family-name:--body-font) text-[11px] font-semibold text-(--t-2) hover:text-(--t-1) disabled:cursor-not-allowed disabled:opacity-50";
 const BTN_PRIMARY =
   "inline-flex h-[34px] cursor-pointer items-center gap-1.5 rounded-full border-0 bg-[#111827] px-[15px] font-(family-name:--body-font) text-[12px] font-semibold text-white hover:bg-black disabled:cursor-not-allowed disabled:opacity-50";
 const CAPTION = "m-0 text-[12px] leading-[1.7] text-(--t-2)";

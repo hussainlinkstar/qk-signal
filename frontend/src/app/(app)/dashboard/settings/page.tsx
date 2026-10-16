@@ -3,7 +3,6 @@
 import Link from "next/link";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
-  Briefcase,
   FolderOpen,
   Loader2,
   Palette,
@@ -509,7 +508,7 @@ function WorkspaceSettingsPage() {
   return (
     <WorkspacePageFrame backHref="/dashboard" backLabel="Back to Workspace Overview">
       <div className="flex flex-col gap-[22px]">
-        <DashboardPageIntro icon={Briefcase} title="Workspace Settings" color="var(--primary)">
+        <DashboardPageIntro title="Workspace Settings">
           Manage workspace identity, team access, client portal, and white-label configuration.
         </DashboardPageIntro>
 

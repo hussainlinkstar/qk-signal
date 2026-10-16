@@ -57,59 +57,55 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
 
   const invoicesRefreshing = isBootLoading || isLoadingInvoices;
 
+  const fieldLabelCls =
+    "mb-2 block text-[11px] font-semibold uppercase tracking-[0.06em] text-(--t-3)";
+  const fieldInputCls =
+    "field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] leading-none text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)";
+  const cardCls = "rounded-[22px] border-0 bg-white px-6 py-6";
+  const cardTitleCls =
+    "m-0 mb-1 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]";
+  const cardSubCls = "m-0 mb-6 text-[12.5px] leading-[1.5] text-(--t-3)";
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-5">
       {/* ── Identity ── */}
-      <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
-        <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
-          Identity
-        </h3>
-        <p className="m-0 mb-[18px] text-[12.5px] leading-[1.5] text-(--t-3)">
-          Your account credentials and display name.
-        </p>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          <div className="mb-4 last:mb-0">
-            <label
-              className="mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)"
-              htmlFor="profile-display-name"
-            >
+      <div className={cardCls}>
+        <h3 className={cardTitleCls}>Identity</h3>
+        <p className={cardSubCls}>Your account credentials and display name.</p>
+        <div className="grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-3">
+          <div>
+            <label className={fieldLabelCls} htmlFor="profile-display-name">
               Display name
             </label>
             <input
               id="profile-display-name"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className={fieldInputCls}
               type="text"
               value={profileName}
               onChange={(e) => setProfileName(e.target.value)}
               placeholder="Your name or company"
             />
           </div>
-          <div className="mb-4 last:mb-0">
-            <label
-              className="mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)"
-              htmlFor="profile-email"
-            >
+          <div>
+            <label className={fieldLabelCls} htmlFor="profile-email">
               Email
             </label>
             <input
               id="profile-email"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className={fieldInputCls}
               type="text"
               value={profileEmail}
               readOnly
               disabled
             />
           </div>
-          <div className="mb-4 last:mb-0">
-            <label
-              className="mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)"
-              htmlFor="profile-role"
-            >
+          <div>
+            <label className={fieldLabelCls} htmlFor="profile-role">
               Role
             </label>
             <input
               id="profile-role"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className={fieldInputCls}
               type="text"
               value={profileRole}
               readOnly
@@ -120,40 +116,30 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
       </div>
 
       {/* ── Company ── */}
-      <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
-        <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
-          Company
-        </h3>
-        <p className="m-0 mb-[18px] text-[12.5px] leading-[1.5] text-(--t-3)">
-          Legal entity details for invoicing and compliance.
-        </p>
-        <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div className="mb-4 last:mb-0">
-            <label
-              className="mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)"
-              htmlFor="company-legal-name"
-            >
+      <div className={cardCls}>
+        <h3 className={cardTitleCls}>Company</h3>
+        <p className={cardSubCls}>Legal entity details for invoicing and compliance.</p>
+        <div className="mb-5 grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-2">
+          <div>
+            <label className={fieldLabelCls} htmlFor="company-legal-name">
               Legal company name
             </label>
             <input
               id="company-legal-name"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className={fieldInputCls}
               type="text"
               value={companyLegalName}
               onChange={(e) => setCompanyLegalName(e.target.value)}
               placeholder="Acme Holdings SRL"
             />
           </div>
-          <div className="mb-4 last:mb-0">
-            <label
-              className="mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)"
-              htmlFor="company-registration-number"
-            >
+          <div>
+            <label className={fieldLabelCls} htmlFor="company-registration-number">
               Registration number
             </label>
             <input
               id="company-registration-number"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className={fieldInputCls}
               type="text"
               value={companyRegistrationNumber}
               onChange={(e) => setCompanyRegistrationNumber(e.target.value)}
@@ -161,33 +147,27 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             />
           </div>
         </div>
-        <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div className="mb-4 last:mb-0">
-            <label
-              className="mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)"
-              htmlFor="company-vat-number"
-            >
+        <div className="mb-2 grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-2">
+          <div>
+            <label className={fieldLabelCls} htmlFor="company-vat-number">
               VAT / tax number
             </label>
             <input
               id="company-vat-number"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className={fieldInputCls}
               type="text"
               value={companyVatNumber}
               onChange={(e) => setCompanyVatNumber(e.target.value)}
               placeholder="RO12345678"
             />
           </div>
-          <div className="mb-4 last:mb-0">
-            <label
-              className="mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)"
-              htmlFor="stripe-customer-id"
-            >
+          <div>
+            <label className={fieldLabelCls} htmlFor="stripe-customer-id">
               Stripe customer ID
             </label>
             <input
               id="stripe-customer-id"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className={fieldInputCls}
               type="text"
               value={stripeCustomerId ?? "Not linked yet"}
               readOnly
@@ -227,56 +207,43 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
       </div>
 
       {/* ── Billing Details ── */}
-      <div className="rounded-[22px] border-0 bg-white px-[22px] py-[18px]">
-        <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
-          Billing Details
-        </h3>
-        <p className="m-0 mb-[18px] text-[12.5px] leading-[1.5] text-(--t-3)">
-          Contact information and mailing address for invoices.
-        </p>
-        <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-3">
-          <div className="mb-4 last:mb-0">
-            <label
-              className="mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)"
-              htmlFor="billing-email"
-            >
+      <div className={cardCls}>
+        <h3 className={cardTitleCls}>Billing Details</h3>
+        <p className={cardSubCls}>Contact information and mailing address for invoices.</p>
+        <div className="mb-5 grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-3">
+          <div>
+            <label className={fieldLabelCls} htmlFor="billing-email">
               Billing email
             </label>
             <input
               id="billing-email"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className={fieldInputCls}
               type="text"
               value={billingEmail}
               onChange={(e) => setBillingEmail(e.target.value)}
               placeholder="billing@company.com"
             />
           </div>
-          <div className="mb-4 last:mb-0">
-            <label
-              className="mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)"
-              htmlFor="billing-phone"
-            >
+          <div>
+            <label className={fieldLabelCls} htmlFor="billing-phone">
               Phone
             </label>
             <input
               id="billing-phone"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className={fieldInputCls}
               type="text"
               value={billingPhone}
               onChange={(e) => setBillingPhone(e.target.value)}
               placeholder="+40 712 345 678"
             />
           </div>
-          <div className="mb-4 last:mb-0">
-            <label
-              className="mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)"
-              htmlFor="billing-website"
-            >
+          <div>
+            <label className={fieldLabelCls} htmlFor="billing-website">
               Website
             </label>
             <input
               id="billing-website"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className={fieldInputCls}
               type="text"
               value={billingWebsiteUrl}
               onChange={(e) => setBillingWebsiteUrl(e.target.value)}
@@ -284,49 +251,40 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             />
           </div>
         </div>
-        <div className="mb-4 last:mb-0">
-          <label
-            className="mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)"
-            htmlFor="billing-address-line-1"
-          >
+        <div className="mb-5">
+          <label className={fieldLabelCls} htmlFor="billing-address-line-1">
             Address line 1
           </label>
           <input
             id="billing-address-line-1"
-            className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+            className={fieldInputCls}
             type="text"
             value={billingAddressLine1}
             onChange={(e) => setBillingAddressLine1(e.target.value)}
             placeholder="Street, number, suite"
           />
         </div>
-        <div className="mb-4 grid grid-cols-1 gap-4 md:grid-cols-2">
-          <div className="mb-4 last:mb-0">
-            <label
-              className="mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)"
-              htmlFor="billing-address-line-2"
-            >
+        <div className="mb-5 grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-2">
+          <div>
+            <label className={fieldLabelCls} htmlFor="billing-address-line-2">
               Address line 2
             </label>
             <input
               id="billing-address-line-2"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className={fieldInputCls}
               type="text"
               value={billingAddressLine2}
               onChange={(e) => setBillingAddressLine2(e.target.value)}
               placeholder="Building, floor, department"
             />
           </div>
-          <div className="mb-4 last:mb-0">
-            <label
-              className="mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)"
-              htmlFor="billing-city"
-            >
+          <div>
+            <label className={fieldLabelCls} htmlFor="billing-city">
               City
             </label>
             <input
               id="billing-city"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className={fieldInputCls}
               type="text"
               value={billingCity}
               onChange={(e) => setBillingCity(e.target.value)}
@@ -334,49 +292,40 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
             />
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-          <div className="mb-4 last:mb-0">
-            <label
-              className="mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)"
-              htmlFor="billing-state"
-            >
+        <div className="grid grid-cols-1 gap-x-6 gap-y-5 md:grid-cols-3">
+          <div>
+            <label className={fieldLabelCls} htmlFor="billing-state">
               State / county
             </label>
             <input
               id="billing-state"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className={fieldInputCls}
               type="text"
               value={billingState}
               onChange={(e) => setBillingState(e.target.value)}
               placeholder="Iasi"
             />
           </div>
-          <div className="mb-4 last:mb-0">
-            <label
-              className="mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)"
-              htmlFor="billing-postal-code"
-            >
+          <div>
+            <label className={fieldLabelCls} htmlFor="billing-postal-code">
               Postal code
             </label>
             <input
               id="billing-postal-code"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className={fieldInputCls}
               type="text"
               value={billingPostalCode}
               onChange={(e) => setBillingPostalCode(e.target.value)}
               placeholder="700001"
             />
           </div>
-          <div className="mb-4 last:mb-0">
-            <label
-              className="mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)"
-              htmlFor="billing-country"
-            >
+          <div>
+            <label className={fieldLabelCls} htmlFor="billing-country">
               Country (ISO2)
             </label>
             <input
               id="billing-country"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className={fieldInputCls}
               type="text"
               value={billingCountry}
               onChange={(e) => setBillingCountry(e.target.value.toUpperCase())}
@@ -389,11 +338,9 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
 
       {/* ── Recent Invoices ── */}
       <div className="rounded-[22px] border-0 bg-white">
-        <div className="flex flex-col items-stretch justify-between gap-4 px-6 pt-[22px] pb-0 sm:flex-row sm:items-center">
+        <div className="flex flex-col items-stretch justify-between gap-4 px-6 pt-6 pb-4 sm:flex-row sm:items-center">
           <div>
-            <h3 className="m-0 mb-[3px] font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]">
-              Recent Invoices
-            </h3>
+            <h3 className={cardTitleCls}>Recent Invoices</h3>
             <p className="m-0 text-[12.5px] leading-[1.5] text-(--t-3)">
               Latest invoices synced from your Stripe billing profile.
             </p>

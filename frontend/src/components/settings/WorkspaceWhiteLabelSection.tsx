@@ -2,7 +2,7 @@
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Loader2, Trash2 } from "lucide-react";
+import { Loader2, Plus, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 import PlanLockNotice from "@/components/dashboard/PlanLockNotice";
@@ -783,6 +783,9 @@ export default function WorkspaceWhiteLabelSection({
             disabled={disabled || !domainInput.trim() || isAddingDomain}
             onClick={() => void handleAddDomain()}
           >
+            {!isAddingDomain ? (
+              <Plus className="h-4 w-4" strokeWidth={2.25} aria-hidden="true" />
+            ) : null}
             {isAddingDomain
               ? t("wsSettings.whiteLabel.customDomain.adding")
               : t("wsSettings.whiteLabel.customDomain.addAction")}

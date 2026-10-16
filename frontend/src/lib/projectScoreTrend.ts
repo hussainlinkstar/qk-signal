@@ -49,8 +49,9 @@ const average = (values: Array<number | null | undefined>): number | null => {
 export const scoreDeltaMeta = (value: number | null | undefined): ScoreDeltaMeta | null => {
   if (typeof value !== "number" || !Number.isFinite(value)) return null;
   const rounded = Math.round(value);
-  if (rounded > 0) return { cls: "text-(--good)", text: `↗ +${rounded}` };
-  if (rounded < 0) return { cls: "text-(--bad)", text: `↘ ${rounded}` };
+  // UI/UX Fixes: coloured change chips — green ▲ / red ▼ (not a grey arrow).
+  if (rounded > 0) return { cls: "text-(--good)", text: `▲ +${rounded}` };
+  if (rounded < 0) return { cls: "text-(--bad)", text: `▼ ${Math.abs(rounded)}` };
   return { cls: "text-(--t-3)", text: "→ 0" };
 };
 

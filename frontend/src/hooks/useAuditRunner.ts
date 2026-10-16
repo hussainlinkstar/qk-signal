@@ -1508,7 +1508,16 @@ export function useAuditRunner({
               },
               authHeaders
             );
-            targetProjectId = newProject.id;
+            const newId =
+              typeof newProject?.id === "number" && Number.isFinite(newProject.id)
+                ? newProject.id
+                : typeof (newProject as { project_id?: unknown })?.project_id === "number"
+                  ? (newProject as { project_id: number }).project_id
+                  : null;
+            if (newId == null) {
+              throw new Error(t(PROJECT_SETUP_FAILURE_I18N_KEYS.generic));
+            }
+            targetProjectId = newId;
           }
         } catch (projectSetupError) {
           throw new Error(t(resolveProjectSetupFailureKey(projectSetupError)));

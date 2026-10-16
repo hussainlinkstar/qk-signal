@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useCallback, useEffect, useState } from "react";
+import { Plus } from "lucide-react";
 
 import { useAuth } from "@/components/auth/custom-auth";
 import { resolvePlanCapabilities } from "@/lib/planCapabilities";
@@ -86,10 +87,11 @@ export default function CompetitorRosterChips({
       ))}
       <button
         type="button"
-        className="inline-flex h-8 cursor-pointer items-center rounded-[999px] border border-dashed border-(--line) px-2.5 text-[13px] font-semibold text-(--t-2) hover:text-(--t-1) max-md:min-h-11"
+        className="inline-flex h-8 cursor-pointer items-center gap-1 rounded-[999px] border border-dashed border-(--line) px-2.5 text-[13px] font-semibold text-(--t-2) hover:text-(--t-1) max-md:min-h-11"
         onClick={onAddCompetitor}
       >
-        + Add competitor
+        <Plus className="h-3.5 w-3.5" strokeWidth={2.25} aria-hidden="true" />
+        Add competitor
       </button>
     </div>
   );

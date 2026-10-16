@@ -683,9 +683,9 @@ describe("Site traffic section (GA4, SIGV2-1035)", () => {
     // Only sessions, users and key events carry contract change values:
     // three delta pills, Engagement renders the same card without one.
     for (const i of [0, 1, 3]) {
-      expect(cards[i].textContent).toMatch(/↗|↘/);
+      expect(cards[i].textContent).toMatch(/▲|▼/);
     }
-    expect(cards[2].textContent).not.toMatch(/↗|↘/);
+    expect(cards[2].textContent).not.toMatch(/▲|▼/);
   });
 
   it("labels relative deltas as % and share changes as percentage points", () => {
@@ -1223,11 +1223,11 @@ describe("Gauge trend and sparkline (SIGV2-1181)", () => {
     });
 
     // AIO is the 50/50 AEO+GEO roll-up of each bucket: 47 then 60.
-    expect(trendBlock("aio")!.textContent).toBe("↗ +13");
+    expect(trendBlock("aio")!.textContent).toBe("▲ +13");
     expect(document.querySelector('[data-score-trend="aio"]')!.parentElement!).toContainHTML(
       'data-spark="47,60"'
     );
-    expect(trendBlock("seo")!.textContent).toBe("↗ +8");
+    expect(trendBlock("seo")!.textContent).toBe("▲ +8");
     expect(document.querySelector('[data-score-trend="seo"]')!.parentElement!).toContainHTML(
       'data-spark="66,74"'
     );
@@ -1276,9 +1276,9 @@ describe("Gauge trend and sparkline (SIGV2-1181)", () => {
       render(<ProjectOverviewPage />);
     });
 
-    expect(trendBlock("seo")!.textContent).toBe("↘ -4");
+    expect(trendBlock("seo")!.textContent).toBe("▼ 4");
     expect(trendBlock("seo")!.querySelector("span")!.className).toContain("text-(--bad)");
-    expect(trendBlock("aio")!.textContent).toBe("↘ -7");
+    expect(trendBlock("aio")!.textContent).toBe("▼ 7");
     expect(trendBlock("aio")!.querySelector("span")!.className).toContain("text-(--bad)");
   });
 });

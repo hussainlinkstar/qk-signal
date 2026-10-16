@@ -42,7 +42,7 @@ export default function SignalLockCard({
       <p className="mb-4 text-[13px] leading-[1.5] text-(--t-2)">{body}</p>
       <Link
         href={ctaHref}
-        className="inline-flex h-[38px] w-full items-center justify-center rounded-[10px] bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold leading-none text-white transition-colors hover:bg-black focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple) focus-visible:ring-offset-2 max-md:min-h-11"
+        className="inline-flex h-[38px] w-full items-center justify-center rounded-full bg-(--ink) px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold leading-none text-white transition-colors hover:bg-black focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple) focus-visible:ring-offset-2 max-md:min-h-11"
       >
         {ctaLabel}
       </Link>

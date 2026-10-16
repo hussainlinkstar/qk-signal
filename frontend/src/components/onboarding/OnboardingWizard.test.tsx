@@ -35,7 +35,7 @@ const advanceToStep3 = async () => {
 };
 
 const addCompetitor = (domain: string) => {
-  fireEvent.click(screen.getByRole("button", { name: "+ Add competitor" }));
+  fireEvent.click(screen.getByRole("button", { name: "Add competitor" }));
   const input = screen.getByPlaceholderText("competitor-domain.com");
   fireEvent.change(input, { target: { value: domain } });
   fireEvent.keyDown(input, { key: "Enter" });
@@ -203,7 +203,7 @@ describe("OnboardingWizard", () => {
   it("keeps a rejected competitor draft and says why", async () => {
     renderWizard({ initialStep: 3 });
 
-    fireEvent.click(screen.getByRole("button", { name: "+ Add competitor" }));
+    fireEvent.click(screen.getByRole("button", { name: "Add competitor" }));
     const input = screen.getByPlaceholderText("competitor-domain.com");
     fireEvent.change(input, { target: { value: "Nike" } });
     fireEvent.keyDown(input, { key: "Enter" });
@@ -219,12 +219,12 @@ describe("OnboardingWizard", () => {
   it("flags a duplicate competitor instead of dropping it", async () => {
     renderWizard({ initialStep: 3 });
 
-    fireEvent.click(screen.getByRole("button", { name: "+ Add competitor" }));
+    fireEvent.click(screen.getByRole("button", { name: "Add competitor" }));
     const first = screen.getByPlaceholderText("competitor-domain.com");
     fireEvent.change(first, { target: { value: "rival-one.com" } });
     fireEvent.keyDown(first, { key: "Enter" });
 
-    fireEvent.click(screen.getByRole("button", { name: "+ Add competitor" }));
+    fireEvent.click(screen.getByRole("button", { name: "Add competitor" }));
     const second = screen.getByPlaceholderText("competitor-domain.com");
     fireEvent.change(second, { target: { value: "https://www.rival-one.com/" } });
     fireEvent.keyDown(second, { key: "Enter" });
@@ -239,19 +239,19 @@ describe("OnboardingWizard", () => {
     renderWizard({ initialStep: 3 });
 
     for (const domain of ["a.com", "b.com", "c.com", "d.com", "e.com"]) {
-      fireEvent.click(screen.getByRole("button", { name: "+ Add competitor" }));
+      fireEvent.click(screen.getByRole("button", { name: "Add competitor" }));
       const input = screen.getByPlaceholderText("competitor-domain.com");
       fireEvent.change(input, { target: { value: domain } });
       fireEvent.keyDown(input, { key: "Enter" });
     }
     // The add affordance is gone at the limit rather than failing silently.
-    expect(screen.queryByRole("button", { name: "+ Add competitor" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Add competitor" })).not.toBeInTheDocument();
   });
 
   it("clears the inline reason once the draft becomes valid", async () => {
     renderWizard({ initialStep: 3 });
 
-    fireEvent.click(screen.getByRole("button", { name: "+ Add competitor" }));
+    fireEvent.click(screen.getByRole("button", { name: "Add competitor" }));
     const input = screen.getByPlaceholderText("competitor-domain.com");
     fireEvent.change(input, { target: { value: "Nike" } });
     fireEvent.keyDown(input, { key: "Enter" });
@@ -323,7 +323,7 @@ describe("OnboardingWizard", () => {
     expect(screen.getByText("Competitor tracking is on Specialist")).toBeInTheDocument();
     expect(screen.getByText(/does not include Competitive Intelligence/)).toBeInTheDocument();
     // Nothing to fill in, so nothing can fail: no chips, no add affordance.
-    expect(screen.queryByRole("button", { name: "+ Add competitor" })).not.toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Add competitor" })).not.toBeInTheDocument();
     expect(onSaveCompetitor).not.toHaveBeenCalled();
   });
 

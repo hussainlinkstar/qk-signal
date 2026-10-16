@@ -8,6 +8,7 @@ import { useAdminAccess } from "@/components/admin/AdminGuardProvider";
 import DashboardPageIntro from "@/components/dashboard/DashboardPageIntro";
 import { useWorkspacePageHeader } from "@/components/dashboard/workspacePageHeader";
 import SignalDataTable, { type SignalDataTableColumn } from "@/components/signal/SignalDataTable";
+import SignalMetricStrip from "@/components/signal/SignalMetricStrip";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { formatDateTime } from "@/lib/dateFormat";
 
@@ -50,21 +51,6 @@ const formatCurrency = (value: number) =>
     currency: "USD",
     maximumFractionDigits: 2,
   }).format(value);
-
-function Stat({ label, value, accent }: { label: string; value: string; accent?: string }) {
-  return (
-    <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
-      <div
-        className={`font-(family-name:--disp) text-[28px] font-extrabold tracking-[-0.02em] ${accent ?? "text-(--t-1)"}`}
-      >
-        {value}
-      </div>
-      <div className="mt-0.5 font-(family-name:--mono) text-[10px] uppercase tracking-[0.08em] text-(--t-3)">
-        {label}
-      </div>
-    </div>
-  );
-}
 
 export default function AdminCommitmentsPage() {
   const { getToken, isSignedIn } = useAuth();
@@ -246,18 +232,28 @@ export default function AdminCommitmentsPage() {
         </Alert>
       ) : null}
 
-      <section className="grid gap-3.5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-        <Stat label="Active" value={String(overview?.active_commitments ?? 0)} />
-        <Stat label="Total" value={String(overview?.total_commitments ?? 0)} />
-        <Stat label="Commitment MRR" value={formatCurrency(overview?.commitment_mrr_usd ?? 0)} />
-        <Stat label="Avg usage" value={`${overview?.average_usage_pct ?? 0}%`} />
-        <Stat
-          label="Overage credits"
-          value={String(overview?.total_overage_credits ?? 0)}
-          accent="text-(--warn)"
-        />
-        <Stat label="Pending cancellations" value={String(overview?.pending_cancellations ?? 0)} />
-      </section>
+      <SignalMetricStrip
+        className="mb-4"
+        items={[
+          { label: "Active", value: overview?.active_commitments ?? 0 },
+          { label: "Total", value: overview?.total_commitments ?? 0 },
+          {
+            label: "Commitment MRR",
+            value: formatCurrency(overview?.commitment_mrr_usd ?? 0),
+            valueSize: "text",
+          },
+          { label: "Avg usage", value: `${overview?.average_usage_pct ?? 0}%` },
+          {
+            label: "Overage credits",
+            value: overview?.total_overage_credits ?? 0,
+            tone: "warn",
+          },
+          {
+            label: "Pending cancellations",
+            value: overview?.pending_cancellations ?? 0,
+          },
+        ]}
+      />
 
       <SignalDataTable
         columns={columns}

@@ -234,7 +234,7 @@ export default function SearchTypeFeeds({ searchTypes }: { searchTypes: SearchTy
                     )}
                   >
                     {Math.abs(Math.round(trend))}
-                    {trend > 0 ? "↗" : "↘"}
+                    {trend > 0 ? "▲" : "▼"}
                   </span>
                 ) : null}
               </div>

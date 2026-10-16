@@ -23,9 +23,9 @@ export default async function LoginPage() {
 
   return (
     <AuthShell
-      chipLabel="Secure Access"
+      chipLabel="Secure access"
       title="Welcome back"
-      subtitle="Sign in to your Signal workspace."
+      subtitle="Sign in to pick up where your last scan left off."
       footerText="New to Signal?"
       footerCtaLabel="Create an account"
       footerCtaHref="/register"

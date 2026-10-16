@@ -2,7 +2,7 @@
 
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Loader2, Sparkles } from "lucide-react";
+import { Loader2, Pencil } from "lucide-react";
 
 import AuditSection from "@/components/results/AuditSection";
 import CategoryCombobox from "@/components/results/CategoryCombobox";
@@ -46,7 +46,7 @@ export default function AuditContextSection({ auditForm, auditRunner }: AuditCon
           className="inline-flex h-6 cursor-pointer items-center gap-1 rounded-full border-0 bg-[#EEF1F6] px-2 font-(family-name:--body-font) text-xs font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
           title={t("signalStartCheck.context.editTitle")}
         >
-          <Sparkles className="h-3 w-3" />
+          <Pencil className="h-3 w-3" />
           {t("signalStartCheck.context.edit")}
         </button>
       );
@@ -59,11 +59,24 @@ export default function AuditContextSection({ auditForm, auditRunner }: AuditCon
     auditRunner.isPolling ||
     (!!auditForm.preScanResult && !auditForm.manualOverrides[field]);
 
+  const summaryParts = [
+    form.category?.trim(),
+    form.language?.trim(),
+    form.market?.trim() || form.targetMarket?.trim(),
+  ].filter(Boolean);
+
   return (
     <AuditSection
       id="audit-step-context"
       heading={t("signalStartCheck.context.heading")}
       description={t("signalStartCheck.context.description")}
+      collapsible
+      defaultOpen={false}
+      summary={
+        summaryParts.length
+          ? summaryParts.join(" · ")
+          : t("signalStartCheck.context.description")
+      }
     >
       <div className="mb-3">
         <div className="flex items-center justify-between gap-2">

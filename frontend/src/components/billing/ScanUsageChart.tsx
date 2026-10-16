@@ -106,7 +106,7 @@ export default function ScanUsageChart({
               className={cx(
                 "rounded-full px-3 py-1 text-xs font-medium transition-colors",
                 range === r.days
-                  ? "bg-(--primary) text-(--t-1)"
+                  ? "bg-(--ink) text-white"
                   : "text-(--muted-foreground) hover:text-(--foreground)"
               )}
             >

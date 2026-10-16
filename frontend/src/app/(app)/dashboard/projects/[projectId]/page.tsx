@@ -254,7 +254,7 @@ export default function ProjectOverviewPage() {
               <b
                 className={cx("font-semibold", trafficTrend > 0 ? "text-(--good)" : "text-(--bad)")}
               >
-                {trafficTrend > 0 ? "↗" : "↘"}{" "}
+                {trafficTrend > 0 ? "▲" : "▼"}{" "}
                 {t(trafficTrend > 0 ? "signalOverview.trackingUp" : "signalOverview.trackingDown")}
               </b>
             ) : null}{" "}

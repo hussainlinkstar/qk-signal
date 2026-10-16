@@ -19,6 +19,7 @@ import { useAdminAccess } from "@/components/admin/AdminGuardProvider";
 import DashboardPageIntro from "@/components/dashboard/DashboardPageIntro";
 import { useWorkspacePageHeader } from "@/components/dashboard/workspacePageHeader";
 import SignalTabs from "@/components/signal/SignalTabs";
+import SignalMetricStrip from "@/components/signal/SignalMetricStrip";
 import Button from "@/components/ui/Button";
 import TextField from "@/components/ui/TextField";
 import SelectField from "@/components/ui/SelectField";
@@ -278,31 +279,39 @@ function StatCard({
   label,
   value,
   icon,
-  color = "text-(--t-1)",
+  tone = "default",
   subtext,
 }: {
   label: string;
   value: React.ReactNode;
   icon: React.ReactNode;
-  color?: string;
+  tone?: "default" | "good" | "warn" | "bad";
   subtext?: string;
 }) {
+  const toneCls =
+    tone === "good"
+      ? "text-(--good)"
+      : tone === "warn"
+        ? "text-(--warn)"
+        : tone === "bad"
+          ? "text-(--bad)"
+          : "text-(--t-1)";
   return (
-    <div className="flex items-center gap-4 rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
-      <div
-        className={cx(
-          "flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-(--line-2)",
-          color
-        )}
-      >
+    <div className="flex items-center gap-3.5 rounded-[14px] border border-(--line) border-t-2 border-t-(--purple) bg-white px-4 py-3.5">
+      <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#F5F3FF] text-(--purple) [&_svg]:h-4 [&_svg]:w-4">
         {icon}
       </div>
       <div className="min-w-0">
-        <div className="truncate font-(family-name:--disp) text-[28px] font-extrabold tracking-[-0.02em] text-(--t-1)">
+        <div
+          className={cx(
+            "truncate font-(family-name:--disp) text-[22px] font-bold tracking-[-0.02em] tabular-nums leading-none",
+            toneCls
+          )}
+        >
           {value}
         </div>
-        <div className={cx(MICRO_LABEL, "mt-0.5")}>{label}</div>
-        {subtext && <p className={cx(CAPTION, "mt-0.5 truncate")}>{subtext}</p>}
+        <div className="mt-1 text-[12.5px] font-medium text-(--t-2)">{label}</div>
+        {subtext ? <p className={cx(CAPTION, "mt-0.5 truncate")}>{subtext}</p> : null}
       </div>
     </div>
   );
@@ -608,7 +617,6 @@ export default function AdminPaymentSettingsPage() {
             </span>
           }
           icon={<CreditCard size={18} />}
-          color="text-(--purple)"
           subtext={`Source: ${config?.stripe_mode_source ?? "unknown"}`}
         />
         <StatCard
@@ -617,28 +625,26 @@ export default function AdminPaymentSettingsPage() {
           icon={
             overview?.stripe_connected ? <CheckCircle size={18} /> : <AlertTriangle size={18} />
           }
-          color={overview?.stripe_connected ? "text-(--good)" : "text-(--warn)"}
+          tone={overview?.stripe_connected ? "good" : "warn"}
           subtext={overview?.stripe_error ?? "No runtime errors"}
         />
         <StatCard
           label="Subscriptions"
           value={`${overview?.active_subscriptions ?? 0} / ${overview?.total_subscriptions ?? 0}`}
           icon={<Receipt size={18} />}
-          color="text-(--purple)"
           subtext="active / total"
         />
         <StatCard
           label="Invoices"
           value={`${overview?.paid_invoices ?? 0} / ${overview?.total_invoices ?? 0}`}
           icon={<ShieldCheck size={18} />}
-          color="text-(--good)"
+          tone="good"
           subtext="paid / total"
         />
         <StatCard
           label="MRR Estimate"
           value={formatCurrency(overview?.monthly_recurring_revenue_estimate ?? 0)}
           icon={<TrendingUp size={18} />}
-          color="text-(--purple)"
         />
       </div>
 
@@ -739,32 +745,32 @@ function RuntimeTab({
 
       <section className={CARD}>
         <h2 className={cx(CARD_TITLE, "mb-[14px]")}>Billing telemetry</h2>
-        <div className="grid gap-3.5 md:grid-cols-2 xl:grid-cols-4">
-          <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
-            <div className="font-(family-name:--disp) text-[28px] font-extrabold tracking-[-0.02em]">
-              {formatCurrency(overview?.monthly_recurring_revenue_estimate ?? 0)}
-            </div>
-            <div className={cx(MICRO_LABEL, "mt-0.5")}>MRR estimate</div>
-          </div>
-          <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
-            <div className="font-(family-name:--disp) text-[28px] font-extrabold tracking-[-0.02em] text-(--warn)">
-              {overview?.open_invoices ?? 0}
-            </div>
-            <div className={cx(MICRO_LABEL, "mt-0.5")}>Open invoices</div>
-          </div>
-          <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
-            <div className="text-sm font-semibold text-(--t-1)">
-              {overview?.latest_invoice_at ? formatDateTime(overview.latest_invoice_at) : "N/A"}
-            </div>
-            <div className={cx(MICRO_LABEL, "mt-0.5")}>Last invoice</div>
-          </div>
-          <div className="rounded-[12px] border-0 bg-[#EEF1F6] px-[18px] py-4">
-            <div className="font-(family-name:--disp) text-[28px] font-extrabold tracking-[-0.02em]">
-              {config?.has_runtime_override ? "Enabled" : "Disabled"}
-            </div>
-            <div className={cx(MICRO_LABEL, "mt-0.5")}>Runtime override</div>
-          </div>
-        </div>
+        <SignalMetricStrip
+          items={[
+            {
+              label: "MRR estimate",
+              value: formatCurrency(overview?.monthly_recurring_revenue_estimate ?? 0),
+              valueSize: "text",
+            },
+            {
+              label: "Open invoices",
+              value: overview?.open_invoices ?? 0,
+              tone: "warn",
+            },
+            {
+              label: "Last invoice",
+              value: overview?.latest_invoice_at
+                ? formatDateTime(overview.latest_invoice_at)
+                : "N/A",
+              valueSize: "text",
+            },
+            {
+              label: "Runtime override",
+              value: config?.has_runtime_override ? "Enabled" : "Disabled",
+              valueSize: "text",
+            },
+          ]}
+        />
       </section>
     </div>
   );

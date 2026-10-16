@@ -58,7 +58,7 @@ export default function AuditAllowanceSection({
                 limit: limit.toLocaleString(),
               })}
             </span>
-            <b className="font-(family-name:--disp) text-(--purple)">
+            <b className="font-(family-name:--disp) text-(--ink)">
               {t("signalStartCheck.allowance.remaining", {
                 remaining: (remaining as number).toLocaleString(),
               })}
@@ -68,7 +68,7 @@ export default function AuditAllowanceSection({
               already used, not a progress indicator for this run. */}
           <div className="relative h-1.5 rounded-full bg-(--line)">
             <div
-              className="absolute inset-y-0 start-0 rounded-full bg-linear-to-r from-(--blue) to-(--purple)"
+              className="absolute inset-y-0 start-0 rounded-full bg-(--ink)"
               style={{ width: `${usedPct}%` }}
             />
           </div>
