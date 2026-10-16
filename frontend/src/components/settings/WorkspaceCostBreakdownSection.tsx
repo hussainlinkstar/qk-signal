@@ -2,8 +2,8 @@
 
 import SignalAlert from "@/components/signal/SignalAlert";
 import React from "react";
-import { Loader2 } from "lucide-react";
 
+import { Skel, SkelCard } from "@/components/signal/SignalSkeleton";
 import SignalMetricStrip from "@/components/signal/SignalMetricStrip";
 import { GlassCard } from "@/components/ui/GlassComponents";
 import Button from "@/components/ui/Button";
@@ -60,9 +60,10 @@ export function WorkspaceCostBreakdownSection({
       </div>
 
       {isLoading ? (
-        <div className="mt-6 flex min-h-[180px] flex-col items-center justify-center gap-3 rounded-[14px] border border-(--line) bg-white">
-          <Loader2 className="h-6 w-6 animate-spin text-(--purple)" />
-          <p className="text-[12.5px] font-medium text-(--t-2)">Loading cost breakdown</p>
+        <div role="status" className="mt-6 flex flex-col gap-3">
+          <SkelCard className="h-[180px]" />
+          <Skel className="h-10 w-full rounded-[14px]" />
+          <span className="sr-only">Loading</span>
         </div>
       ) : error ? (
         <SignalAlert

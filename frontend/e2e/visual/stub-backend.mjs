@@ -1,7 +1,7 @@
 // SIGV2-1034 parity stub backend. Serves just enough of /api/v1 for the
 // authed overview + onboarding wizard to render deterministically.
 // Profiles keyed by the real X-Workspace-Id header (defaults to workspace 1):
-//   workspace 1 "jake Workspace" -> 3 scored projects (matches the approved
+//   workspace 1 "Jake Workspace" -> 3 scored projects (matches the approved
 //     workspace-overview capture exactly)
 //   workspace 2 "Beta Workspace" -> 0 projects (first-run state; the wizard
 //     auto-opens for a non-trial user)
@@ -47,8 +47,9 @@ const user = {
 const workspaces = [
   {
     id: 1,
-    name: "jake Workspace",
-    role: "OWNER",
+    name: "Jake Workspace",
+    // Match production: owners are ADMIN with is_owner (never role "OWNER").
+    role: "ADMIN",
     is_owner: true,
     project_count: 3,
     member_count: 1,
@@ -56,12 +57,48 @@ const workspaces = [
   {
     id: 2,
     name: "Beta Workspace",
-    role: "OWNER",
+    role: "ADMIN",
     is_owner: true,
     project_count: 0,
     member_count: 1,
   },
 ];
+
+/** Mutable white-label + custom-domain state for mock preview (SIGV2-1039). */
+let nextCustomDomainId = 1;
+const whiteLabelSettings = {
+  workspace_id: 1,
+  workspace_name: "Jake Workspace",
+  company_name: "Jake Workspace",
+  custom_logo_url: null,
+  primary_color: "#6366F1",
+  secondary_color: "#22D3EE",
+  custom_favicon_url: null,
+  custom_page_title: "Signal by Jake",
+  custom_meta_description: null,
+  hide_powered_by: false,
+  email_sender_name: null,
+  email_reply_to: null,
+  social_facebook_url: null,
+  social_x_url: null,
+  social_instagram_url: null,
+  social_linkedin_url: null,
+  social_youtube_url: null,
+  social_tiktok_url: null,
+  company_address: null,
+  company_legal_name: null,
+  company_trademark_text: null,
+  footer_about_url: null,
+  footer_blog_url: null,
+  footer_support_url: null,
+  footer_legal_url: null,
+  footer_preferences_url: null,
+  footer_privacy_url: null,
+  dns_target: "custom.qiko.ai",
+  domains: [],
+};
+
+const snapshotWhiteLabel = () => JSON.parse(JSON.stringify(whiteLabelSettings));
 
 const spark = (values) =>
   values.map((overall, i) => ({ date: `2026-09-${String(22 + i).padStart(2, "0")}`, overall }));
@@ -561,25 +598,40 @@ const stubQuery = (id, pid, text, searchType) => ({
   updated_at: NOW,
 });
 
-const stubQueriesFor = (pid) =>
-  pid === 9
-    ? [
-        stubQuery(71, pid, "What is Northwind Hotels known for?", "brand"),
-        stubQuery(
-          72,
-          pid,
-          "Which boutique hotels are worth considering near the harbour?",
-          "category"
-        ),
-        stubQuery(
-          73,
-          pid,
-          "Where can I stay for a quiet night before an early meeting?",
-          "problem"
-        ),
-        stubQuery(74, pid, "Which waterfront hotels have soundproof rooms?", "feature"),
-      ]
-    : [];
+const stubQueriesFor = (pid) => {
+  if (pid === 9) {
+    return [
+      stubQuery(71, pid, "What is Northwind Hotels known for?", "brand"),
+      stubQuery(
+        72,
+        pid,
+        "Which boutique hotels are worth considering near the harbour?",
+        "category"
+      ),
+      stubQuery(
+        73,
+        pid,
+        "Where can I stay for a quiet night before an early meeting?",
+        "problem"
+      ),
+      stubQuery(74, pid, "Which waterfront hotels have soundproof rooms?", "feature"),
+    ];
+  }
+  if (pid === 10) {
+    return [
+      stubQuery(81, pid, "What is Coastline Resorts known for?", "brand"),
+      stubQuery(
+        82,
+        pid,
+        "Which coastal resorts are worth considering for a weekend?",
+        "category"
+      ),
+      stubQuery(83, pid, "Where can I stay with ocean views near the marina?", "problem"),
+      stubQuery(84, pid, "Which resorts have family suites and late checkout?", "feature"),
+    ];
+  }
+  return [];
+};
 
 const SEARCH_TYPE_FIXTURE = [
   { id: "brand", label: "Brand", suggested: "What is Northwind Hotels known for?" },
@@ -875,6 +927,60 @@ const latestAuditByProject = {
     },
   },
 };
+
+/** Clone Northwind's rich audit into Coastline (project 10) for AIO/SEO mock tabs. */
+const remapHostInTree = (value, fromHost, toHost) => {
+  if (typeof value === "string") return value.split(fromHost).join(toHost);
+  if (Array.isArray(value)) return value.map((item) => remapHostInTree(item, fromHost, toHost));
+  if (value && typeof value === "object") {
+    const next = {};
+    for (const [key, child] of Object.entries(value)) {
+      next[key] = remapHostInTree(child, fromHost, toHost);
+    }
+    return next;
+  }
+  return value;
+};
+
+{
+  const northwind = latestAuditByProject[9];
+  const coastlineReport = remapHostInTree(
+    JSON.parse(JSON.stringify(northwind.full_report)),
+    "northwind-hotels.com",
+    "coastline-resorts.com"
+  );
+  coastlineReport.target.name = "Coastline Resorts";
+  coastlineReport.site = {
+    ...(coastlineReport.site || {}),
+    url: "https://coastline-resorts.com",
+    market: "hospitality",
+    language: "en",
+  };
+  coastlineReport.scores = { seo: 81, aeo: 76, geo: 76, overall: 79 };
+  if (coastlineReport.seo) {
+    coastlineReport.seo = {
+      ...coastlineReport.seo,
+      onpage: 80,
+      performance: 78,
+      indexing: 84,
+      core_web_vitals: 86,
+      technical_seo: 82,
+      onpage_content: 79,
+      eeat_trust: 74,
+      security_accessibility: 70,
+    };
+  }
+  latestAuditByProject[10] = {
+    id: 1001,
+    url: "https://coastline-resorts.com",
+    status: "completed",
+    completed_at: "2026-09-29T07:00:00.000Z",
+    seo_score: 81,
+    aeo_score: 76,
+    geo_score: 76,
+    full_report: coastlineReport,
+  };
+}
 
 // Mock-preview convenience: /dashboard/audit/2 serves the rich Northwind
 // full_report. Visual baselines still rely on history ids 900/902/903 and on
@@ -1211,6 +1317,30 @@ const visibilitySummaryByProject = {
   },
 };
 
+{
+  const northwindSummary = visibilitySummaryByProject[9];
+  const coastlineSummary = remapHostInTree(
+    JSON.parse(JSON.stringify(northwindSummary)),
+    "Northwind Hotels",
+    "Coastline Resorts"
+  );
+  coastlineSummary.project_id = 10;
+  coastlineSummary.visibility_score = 68;
+  coastlineSummary.trend_delta = 3;
+  coastlineSummary.queries = (coastlineSummary.queries || []).map((row, index) => ({
+    ...row,
+    id: 601 + index,
+    project_id: 10,
+    query_text: [
+      "best coastal resorts near the marina",
+      "tell me about Coastline Resorts",
+      "quiet ocean-view hotel for remote work",
+      "Coastline Resorts vs boutique harbour hotels",
+    ][index] || row.query_text,
+  }));
+  visibilitySummaryByProject[10] = coastlineSummary;
+}
+
 // SIGV2-1036 fixtures: SERP keyword tracking and the Search Console pages
 // contract for the SEO detail tabs (keyword + position from the latest dated
 // snapshot; pages with GA4 sessions, one sessions-less row and one incomplete
@@ -1295,6 +1425,28 @@ const serpTrackingByProject = {
   },
 };
 
+{
+  const northwindSerp = serpTrackingByProject[9];
+  const coastlineSerp = remapHostInTree(
+    JSON.parse(JSON.stringify(northwindSerp)),
+    "northwind-hotels.com",
+    "coastline-resorts.com"
+  );
+  coastlineSerp.project_id = 10;
+  coastlineSerp.latest_snapshots = (coastlineSerp.latest_snapshots || []).map((snap, index) => ({
+    ...snap,
+    keyword_id: 701 + index,
+    keyword: [
+      "coastal resort marina",
+      "ocean view late checkout",
+      "best resorts near the harbour",
+      "coastline resorts booking",
+      "family seaside resort",
+    ][index] || snap.keyword,
+  }));
+  serpTrackingByProject[10] = coastlineSerp;
+}
+
 const targetKeywordsByProject = {
   9: [
     {
@@ -1350,6 +1502,53 @@ const targetKeywordsByProject = {
       location_code: null,
       is_active: true,
       created_at: "2026-09-05T09:00:00.000Z",
+    },
+  ],
+  10: [
+    {
+      id: 701,
+      keyword: "coastal resort marina",
+      search_engine: "google",
+      language_code: "en",
+      location_code: null,
+      is_active: true,
+      created_at: "2026-09-01T09:00:00.000Z",
+    },
+    {
+      id: 702,
+      keyword: "ocean view late checkout",
+      search_engine: "google",
+      language_code: "en",
+      location_code: null,
+      is_active: true,
+      created_at: "2026-09-01T09:00:00.000Z",
+    },
+    {
+      id: 703,
+      keyword: "best resorts near the harbour",
+      search_engine: "google",
+      language_code: "en",
+      location_code: null,
+      is_active: true,
+      created_at: "2026-09-02T09:00:00.000Z",
+    },
+    {
+      id: 704,
+      keyword: "coastline resorts booking",
+      search_engine: "google",
+      language_code: "en",
+      location_code: null,
+      is_active: true,
+      created_at: "2026-09-03T09:00:00.000Z",
+    },
+    {
+      id: 705,
+      keyword: "family seaside resort",
+      search_engine: "google",
+      language_code: "en",
+      location_code: null,
+      is_active: true,
+      created_at: "2026-09-04T09:00:00.000Z",
     },
   ],
 };
@@ -1491,6 +1690,18 @@ const gscPagesByProject = {
     fetched_at: "2026-09-29T12:00:00.000Z",
   },
 };
+
+{
+  const northwindGsc = gscPagesByProject[9];
+  const coastlineGsc = remapHostInTree(
+    JSON.parse(JSON.stringify(northwindGsc)),
+    "northwind-hotels.com",
+    "coastline-resorts.com"
+  );
+  coastlineGsc.property = "https://coastline-resorts.com/";
+  coastlineGsc.totals = { clicks: 640, impressions: 15200, ctr: 0.0421, position: 6.4 };
+  gscPagesByProject[10] = coastlineGsc;
+}
 
 // SIGV2-1130: the report library collection. Obviously synthetic fixture rows,
 // shaped exactly like the real response, including names in the product's own
@@ -2407,43 +2618,103 @@ export function stubRequestListener(req, res) {
     // Mock preview has no Stripe: portal/checkout land on in-app billing routes.
     else if (p === "/api/v1/billing/portal-session") ok({ url: "/dashboard/billing/history" });
     else if (p === "/api/v1/billing/checkout-session") ok({ url: "/dashboard/billing/success" });
-    // SIGV2-1039: the real WorkspaceWhiteLabelSettingsResponse shape. The old
-    // `{ enabled: false }` matched no schema in the backend and would have
-    // rendered the White-Label tab as an empty form. The tab is not the
-    // default one, so this is not reached by the design comparison, but a stub
-    // that answers in a shape the product never serves is a trap.
-    else if (p === "/api/v1/workspaces/current/white-label")
-      ok({
-        workspace_id: 1,
-        workspace_name: "jake Workspace",
-        company_name: "jake Workspace",
-        custom_logo_url: null,
-        primary_color: "#6366F1",
-        secondary_color: "#22D3EE",
-        custom_favicon_url: null,
-        custom_page_title: "Signal by jake",
-        custom_meta_description: null,
-        hide_powered_by: false,
-        email_sender_name: null,
-        email_reply_to: null,
-        social_facebook_url: null,
-        social_x_url: null,
-        social_instagram_url: null,
-        social_linkedin_url: null,
-        social_youtube_url: null,
-        social_tiktok_url: null,
-        company_address: null,
-        company_legal_name: null,
-        company_trademark_text: null,
-        footer_about_url: null,
-        footer_blog_url: null,
-        footer_support_url: null,
-        footer_legal_url: null,
-        footer_preferences_url: null,
-        footer_privacy_url: null,
-        dns_target: "custom.qiko.ai",
-        domains: [],
-      });
+    // SIGV2-1039: mutable WorkspaceWhiteLabelSettingsResponse + custom domains.
+    else if (p === "/api/v1/workspaces/current/white-label") {
+      if (req.method === "PUT" || req.method === "PATCH") {
+        let raw = "";
+        req.on("data", (c) => (raw += c));
+        req.on("end", () => {
+          const patch = JSON.parse(raw || "{}");
+          for (const [key, value] of Object.entries(patch)) {
+            if (key === "domains" || key === "workspace_id" || key === "dns_target") continue;
+            if (Object.prototype.hasOwnProperty.call(whiteLabelSettings, key)) {
+              whiteLabelSettings[key] = value;
+            }
+          }
+          res.writeHead(200, { "content-type": "application/json" });
+          res.end(JSON.stringify(snapshotWhiteLabel()));
+        });
+        return;
+      }
+      ok(snapshotWhiteLabel());
+    } else if (p === "/api/v1/workspaces/current/white-label/domains") {
+      if (req.method === "POST") {
+        let raw = "";
+        req.on("data", (c) => (raw += c));
+        req.on("end", () => {
+          const payload = JSON.parse(raw || "{}");
+          const domain = String(payload.domain || "")
+            .trim()
+            .toLowerCase();
+          if (!domain) {
+            res.writeHead(400, { "content-type": "application/json" });
+            res.end(JSON.stringify({ detail: "Domain is required." }));
+            return;
+          }
+          if (whiteLabelSettings.domains.some((row) => row.domain === domain)) {
+            res.writeHead(409, { "content-type": "application/json" });
+            res.end(JSON.stringify({ detail: "Domain already added." }));
+            return;
+          }
+          const dnsTarget = whiteLabelSettings.dns_target || "custom.qiko.ai";
+          whiteLabelSettings.domains.push({
+            id: nextCustomDomainId++,
+            domain,
+            dns_target: dnsTarget,
+            verified: false,
+            ssl_status: "pending_verification",
+            verification_error: null,
+            verification_checked_at: null,
+            activated_at: null,
+            created_at: NOW,
+            preview_url: `https://${domain}`,
+          });
+          res.writeHead(200, { "content-type": "application/json" });
+          res.end(JSON.stringify(snapshotWhiteLabel()));
+        });
+        return;
+      }
+      status = 405;
+      body = { detail: "Method not allowed" };
+    } else if (/^\/api\/v1\/workspaces\/current\/white-label\/domains\/\d+\/verify$/.test(p)) {
+      if (req.method === "POST") {
+        const domainId = Number(p.match(/domains\/(\d+)\/verify/)?.[1]);
+        const row = whiteLabelSettings.domains.find((d) => d.id === domainId);
+        if (!row) {
+          status = 404;
+          body = { detail: "Domain not found" };
+        } else {
+          row.verified = true;
+          row.ssl_status = "active";
+          row.verification_error = null;
+          row.verification_checked_at = NOW;
+          row.activated_at = NOW;
+          ok(snapshotWhiteLabel());
+        }
+      } else {
+        status = 405;
+        body = { detail: "Method not allowed" };
+      }
+    } else if (/^\/api\/v1\/workspaces\/current\/white-label\/domains\/\d+$/.test(p)) {
+      if (req.method === "DELETE") {
+        const domainId = Number(p.match(/domains\/(\d+)$/)?.[1]);
+        const before = whiteLabelSettings.domains.length;
+        whiteLabelSettings.domains = whiteLabelSettings.domains.filter((d) => d.id !== domainId);
+        if (whiteLabelSettings.domains.length === before) {
+          status = 404;
+          body = { detail: "Domain not found" };
+        } else {
+          status = 204;
+          body = null;
+          res.writeHead(204);
+          res.end();
+          return;
+        }
+      } else {
+        status = 405;
+        body = { detail: "Method not allowed" };
+      }
+    }
 
     if (status === 404) console.log(`stub miss: ${req.method} ${p}`);
     res.writeHead(status, { "content-type": "application/json" });

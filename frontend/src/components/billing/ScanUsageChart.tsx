@@ -18,9 +18,9 @@ import {
   CHART_GRID_STROKE,
   CHART_TOOLTIP_STYLE,
 } from "@/components/ui/chartTokens";
+import { Skel, SkelChart } from "@/components/signal/SignalSkeleton";
 import { GlassCard } from "@/components/ui/GlassComponents";
 import { cx } from "@/components/ui/utils";
-import { Spinner } from "@/components/ui/Loading";
 import type { ScanUsagePoint } from "@/types/billing";
 
 type Props = {
@@ -72,8 +72,10 @@ export default function ScanUsageChart({
   if (isLoading) {
     return (
       <GlassCard className={cx("p-6", className)}>
-        <div className="flex h-[300px] items-center justify-center">
-          <Spinner size="md" label="Loading usage data..." />
+        <div role="status" className="flex flex-col gap-4">
+          <Skel className="h-4 w-44 rounded-(--r-sm)" />
+          <SkelChart className="h-[260px] w-full" />
+          <span className="sr-only">Loading</span>
         </div>
       </GlassCard>
     );

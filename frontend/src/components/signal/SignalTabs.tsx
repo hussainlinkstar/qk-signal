@@ -84,7 +84,9 @@ export default function SignalTabs<T extends string>({
       className={cn(
         // Vertical spacing comes from the parent flex gap — extra mt/mb here
         // stacked with page gaps and left a blank band under the score hero.
-        "flex w-full max-w-full gap-1.5 overflow-x-auto rounded-[16px] bg-(--well,#EEF1F6) p-1.5",
+        // Phone widths: keep pills on one row and let the well scroll sideways
+        // (White-Label etc. must not clip mid-label). Desktop is unchanged.
+        "flex w-full min-w-0 max-w-full gap-1.5 overflow-x-auto overscroll-x-contain rounded-[16px] bg-(--well,#EEF1F6) p-1.5 touch-pan-x [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
         className
       )}
     >

@@ -8,7 +8,6 @@ import {
   BarChart3,
   CreditCard,
   History,
-  Loader2,
   Zap,
   Check,
   Shield,
@@ -25,6 +24,8 @@ import PlanComparisonMatrix from "@/components/billing/PlanComparisonMatrix";
 import PlanRecommendationBanner from "@/components/billing/PlanRecommendationBanner";
 import DashboardPageIntro from "@/components/dashboard/DashboardPageIntro";
 import WorkspacePageFrame from "@/components/dashboard/WorkspacePageFrame";
+import DashboardPageSkeleton from "@/components/signal/DashboardPageSkeleton";
+import { Skel } from "@/components/signal/SignalSkeleton";
 import SignalAlert from "@/components/signal/SignalAlert";
 import SignalTabs, { SignalTabPanel } from "@/components/signal/SignalTabs";
 import Button, { buttonClasses } from "@/components/ui/Button";
@@ -479,10 +480,9 @@ export default function BillingPage() {
 
   if (settings.isLoading) {
     return (
-      <div role="status" className="flex min-h-[60vh] flex-col items-center justify-center gap-4">
-        <Loader2 className="h-10 w-10 animate-spin text-(--muted-foreground)" aria-hidden="true" />
-        <p className="text-xs text-(--muted-foreground)">Loading billing overview...</p>
-      </div>
+      <WorkspacePageFrame backHref="/dashboard" backLabel="Back to Workspace Overview">
+        <DashboardPageSkeleton cards={3} showTabs />
+      </WorkspacePageFrame>
     );
   }
 
@@ -694,9 +694,21 @@ export default function BillingPage() {
                 </div>
 
                 {usage.isLoading || !usage.data ? (
-                  <div className="mt-5 flex h-16 items-center justify-center text-xs text-(--muted-foreground)">
-                    {usage.error ?? "Loading scan usage..."}
-                  </div>
+                  usage.error ? (
+                    <div className="mt-5 flex h-16 items-center justify-center text-xs text-(--muted-foreground)">
+                      {usage.error}
+                    </div>
+                  ) : (
+                    <div role="status" className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-4">
+                      {Array.from({ length: 4 }).map((_, index) => (
+                        <div key={index} className="space-y-2">
+                          <Skel className="h-3 w-14 rounded-(--r-sm)" />
+                          <Skel className="h-7 w-16 rounded-(--r-sm)" />
+                        </div>
+                      ))}
+                      <span className="sr-only">Loading</span>
+                    </div>
+                  )
                 ) : (
                   <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-4">
                     <div className="space-y-1">

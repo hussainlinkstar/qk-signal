@@ -2,9 +2,9 @@
 
 import React from "react";
 import { TrendingDown, TrendingUp, Flame, Calendar, AlertTriangle, Coins } from "lucide-react";
+import { Skel, SkelCard } from "@/components/signal/SignalSkeleton";
 import { GlassCard } from "@/components/ui/GlassComponents";
 import { cx } from "@/components/ui/utils";
-import { Spinner } from "@/components/ui/Loading";
 import type { UsageAnalyticsResponse } from "@/types/billing";
 
 type Props = {
@@ -42,8 +42,18 @@ export default function ScanAllowanceCard({ data, isLoading, className }: Props)
   if (isLoading || !data) {
     return (
       <GlassCard className={cx("p-6", className)}>
-        <div className="flex h-32 items-center justify-center">
-          <Spinner size="md" label="Computing forecast..." />
+        <div role="status" className="flex flex-col gap-4">
+          <Skel className="h-4 w-40 rounded-(--r-sm)" />
+          <div className="grid grid-cols-2 gap-4 sm:grid-cols-3">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <div key={index} className="space-y-2">
+                <Skel className="h-3 w-16 rounded-(--r-sm)" />
+                <Skel className="h-7 w-20 rounded-(--r-sm)" />
+              </div>
+            ))}
+          </div>
+          <SkelCard className="h-16" />
+          <span className="sr-only">Loading</span>
         </div>
       </GlassCard>
     );

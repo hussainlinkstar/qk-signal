@@ -3,9 +3,10 @@
 import SignalAlert from "@/components/signal/SignalAlert";
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { History, ChevronLeft, CreditCard, Download, ExternalLink, Loader2 } from "lucide-react";
+import { History, ChevronLeft, CreditCard, Download, ExternalLink } from "lucide-react";
 import { useAuth } from "@/components/auth/custom-auth";
 import DashboardPageIntro from "@/components/dashboard/DashboardPageIntro";
+import { DashboardTableSkeleton } from "@/components/signal/DashboardPageSkeleton";
 import Button from "@/components/ui/Button";
 import { GlassCard } from "@/components/ui/GlassComponents";
 import SignalTable, { type SignalTableColumn } from "@/components/signal/SignalTable";
@@ -171,7 +172,6 @@ export default function BillingHistoryPage() {
             <CreditCard className="h-4 w-4 text-(--t-2)" />
             Invoice History
           </h3>
-          {isLoading && <Loader2 className="h-4 w-4 text-(--t-2) animate-spin" />}
         </div>
 
         {error && (
@@ -181,16 +181,18 @@ export default function BillingHistoryPage() {
         )}
 
         <div className="overflow-x-auto px-2 py-2">
-          <SignalTable
-            columns={columns}
-            rows={rows}
-            rowKey={(invoice) =>
-              invoice.hosted_invoice_url ?? invoice.invoice_pdf ?? invoice.date ?? invoice.status
-            }
-            emptyLabel={
-              isLoading ? "Loading invoices…" : "No invoices yet. Future invoices will appear here."
-            }
-          />
+          {isLoading ? (
+            <DashboardTableSkeleton rows={5} />
+          ) : (
+            <SignalTable
+              columns={columns}
+              rows={rows}
+              rowKey={(invoice) =>
+                invoice.hosted_invoice_url ?? invoice.invoice_pdf ?? invoice.date ?? invoice.status
+              }
+              emptyLabel="No invoices yet. Future invoices will appear here."
+            />
+          )}
         </div>
       </GlassCard>
     </div>

@@ -372,17 +372,19 @@ describe("DashboardLayoutClient", () => {
     );
 
     await screen.findByText("Workspace content");
-    // Flat unified app frame on soft gray stage.
+    // Full-bleed flat shell — no outer stage padding or floating radius.
     expect(screen.getByTestId("signal-app-shell").firstElementChild).toHaveClass(
-      "mx-auto",
+      "flex",
+      "min-h-dvh",
+      "w-full"
+    );
+    expect(screen.getByTestId("signal-app-shell").firstElementChild).not.toHaveClass(
       "my-3",
-      "w-[calc(100%-1.5rem)]",
-      "max-w-[1600px]",
       "rounded-[28px]"
     );
     expect(screen.getByTestId("workspace-dashboard-gutter")).toHaveClass(
       "min-h-screen",
-      "bg-[#F3F4F6]"
+      "bg-[#F7F8FA]"
     );
   });
 

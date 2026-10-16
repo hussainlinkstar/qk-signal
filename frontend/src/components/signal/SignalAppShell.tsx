@@ -132,8 +132,8 @@ function NavItemRow({ item, tileIndex }: { item: SignalNavItem; tileIndex: numbe
 }
 
 /**
- * CashPilot-inspired shell: one flat app frame on a soft gray stage.
- * Sidebar/header are plain regions — not glass, not separate floating cards.
+ * Flat full-bleed shell — no outer stage padding, radius, or floating card frame.
+ * Sidebar and main are plain regions edge-to-edge.
  */
 export default function SignalAppShell({
   brandHref,
@@ -152,12 +152,12 @@ export default function SignalAppShell({
       data-testid="signal-app-shell"
       data-signal-theme
       className={cx(
-        "min-h-dvh w-full bg-[#F3F4F6] text-(--t-1) font-(family-name:--body-font) leading-[normal]",
+        "min-h-dvh w-full bg-[#F7F8FA] text-(--t-1) font-(family-name:--body-font) leading-[normal]",
         shellClassName
       )}
     >
-      <div className="mx-auto my-3 flex min-h-[calc(100dvh-1.5rem)] w-[calc(100%-1.5rem)] max-w-[1600px] overflow-hidden rounded-[28px] bg-[#F7F8FA] shadow-[0_20px_50px_-28px_rgba(15,23,42,0.28)] lg:my-4 lg:min-h-[calc(100dvh-2rem)] lg:w-[calc(100%-2rem)]">
-        <aside className="sticky top-0 hidden h-[calc(100dvh-2rem)] w-[248px] flex-none flex-col bg-transparent px-4 py-5 lg:flex">
+      <div className="flex min-h-dvh w-full">
+        <aside className="sticky top-0 hidden h-dvh w-[248px] flex-none flex-col bg-[#F7F8FA] px-4 py-5 lg:flex">
           <Link
             href={brandHref}
             aria-label={brandName}

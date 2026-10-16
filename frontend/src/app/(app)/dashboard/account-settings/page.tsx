@@ -2,9 +2,9 @@
 
 import SignalAlert from "@/components/signal/SignalAlert";
 import React, { useEffect, useState } from "react";
-import { Loader2 } from "lucide-react";
 import DashboardPageIntro from "@/components/dashboard/DashboardPageIntro";
 import WorkspacePageFrame from "@/components/dashboard/WorkspacePageFrame";
+import DashboardPageSkeleton from "@/components/signal/DashboardPageSkeleton";
 import SignalTabs, { SignalTabPanel } from "@/components/signal/SignalTabs";
 import { useAccountSettings } from "./useAccountSettings";
 import ProfileSection from "./components/ProfileSection";
@@ -44,13 +44,12 @@ export default function AccountSettingsPage() {
     }
   }, []);
 
-  /* Loading gate */
+  /* Loading gate — same skeleton language as workspace Settings. */
   if (settings.isBootLoading) {
     return (
-      <div role="status" className="flex flex-col items-center justify-center min-h-[60vh] gap-3">
-        <Loader2 className="h-8 w-8 text-primary animate-spin" aria-hidden="true" />
-        <p className="text-sm text-(--t-3)">Loading settings…</p>
-      </div>
+      <WorkspacePageFrame backHref="/dashboard" backLabel="Back to Workspace Overview">
+        <DashboardPageSkeleton cards={3} showTabs />
+      </WorkspacePageFrame>
     );
   }
 

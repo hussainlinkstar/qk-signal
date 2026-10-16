@@ -29,9 +29,9 @@ const CARD_DESC = "m-0 mb-[18px] text-[12.5px] leading-[1.5] text-(--t-3)";
 const FIELD_LABEL =
   "mb-2 block font-(family-name:--mono) text-[10.5px] uppercase tracking-[0.08em] text-(--t-3)";
 const INPUT =
-  "field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)";
+  "field-focus-ring h-11 w-full rounded-[14px] border border-(--line) bg-white px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) disabled:border-transparent disabled:bg-(--line-2) disabled:text-(--t-3)";
 const TEXTAREA =
-  "field-focus-ring min-h-[76px] w-full resize-y rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-2.5 font-(family-name:--body-font) text-[13.5px] leading-[1.5] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)";
+  "field-focus-ring min-h-[76px] w-full resize-y rounded-[14px] border border-(--line) bg-white px-[13px] py-2.5 font-(family-name:--body-font) text-[13.5px] leading-[1.5] text-(--t-1) outline-none placeholder:text-(--t-3) disabled:border-transparent disabled:bg-(--line-2) disabled:text-(--t-3)";
 const BTN =
   "inline-flex h-[38px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-55";
 const BTN_PRIMARY =
@@ -265,6 +265,7 @@ export default function WorkspaceWhiteLabelSection({
   const handleAddDomain = async () => {
     const domain = domainInput.trim();
     if (!domain) {
+      toast.error(t("wsSettings.whiteLabel.customDomain.subdomainPlaceholder"));
       return;
     }
 
@@ -780,7 +781,7 @@ export default function WorkspaceWhiteLabelSection({
           <button
             type="button"
             className={BTN_PRIMARY}
-            disabled={disabled || !domainInput.trim() || isAddingDomain}
+            disabled={disabled || isAddingDomain}
             onClick={() => void handleAddDomain()}
           >
             {!isAddingDomain ? (

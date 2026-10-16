@@ -4,6 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import { useAccountSettings } from "../useAccountSettings";
 import { useAuth } from "@/contexts/AuthContext";
+import { DashboardTableSkeleton } from "@/components/signal/DashboardPageSkeleton";
 import { cx } from "@/components/ui/utils";
 import {
   registerPasskey,
@@ -116,7 +117,7 @@ const PasskeyRow: React.FC<{
           </button>
           <button
             type="button"
-            className="inline-flex h-[34px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#EEF1F6] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] border-[rgba(229,72,77,0.4)] text-(--bad)"
+            className="inline-flex h-[34px] cursor-pointer items-center gap-2 rounded-full border-0 bg-[#FEECEC] px-[15px] py-0 font-(family-name:--body-font) text-[13.5px] font-semibold text-(--bad) hover:bg-[#FCDADA] disabled:cursor-not-allowed disabled:opacity-55"
             onClick={remove}
             disabled={busy}
           >
@@ -565,7 +566,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
 
         {/* Passkey list */}
         {isLoadingPasskeys ? (
-          <p className="mt-1 mb-0 text-[12.5px] leading-[1.5] text-(--t-3)">Loading passkeys…</p>
+          <DashboardTableSkeleton rows={3} />
         ) : (
           passkeys.length > 0 && (
             <div>

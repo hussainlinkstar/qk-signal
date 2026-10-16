@@ -8,6 +8,7 @@ import { BookOpen, Check, Copy, KeyRound, Loader2, Lock, RefreshCw, Trash2 } fro
 
 import LockedFeatureButton from "@/components/dashboard/LockedFeatureButton";
 import PlanLockNotice from "@/components/dashboard/PlanLockNotice";
+import { Skel, SkelCard } from "@/components/signal/SignalSkeleton";
 import Button from "@/components/ui/Button";
 import CyberField from "@/components/ui/CyberField";
 import { GlassCard } from "@/components/ui/GlassComponents";
@@ -172,8 +173,10 @@ export function ApiKeysSection({ getAuthHeaders }: ApiKeysSectionProps) {
 
       <div className="space-y-6 p-8">
         {loading ? (
-          <div className="rounded border-0 bg-(--line-2) p-6 text-sm text-(--t-2)">
-            Loading API keys...
+          <div role="status" className="flex flex-col gap-3">
+            <SkelCard className="h-[140px]" />
+            <Skel className="h-10 w-full max-w-md rounded-[14px]" />
+            <span className="sr-only">Loading</span>
           </div>
         ) : null}
 

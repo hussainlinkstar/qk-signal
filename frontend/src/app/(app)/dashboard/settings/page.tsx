@@ -44,7 +44,7 @@ import {
 } from "@/services/workspaceService";
 import { CreateWorkspaceModal } from "@/components/app/CreateWorkspaceModal";
 import InviteToMultipleWorkspacesModal from "@/components/app/InviteToMultipleWorkspacesModal";
-import { Skel, SkelCard, SkelPagehead } from "@/components/signal/SignalSkeleton";
+import DashboardPageSkeleton from "@/components/signal/DashboardPageSkeleton";
 import { getActiveWorkspaceId, setActiveWorkspaceId } from "@/components/app/WorkspaceSwitcher";
 
 const INTERNAL_ROLE_OPTIONS: InternalWorkspaceRole[] = ["ADMIN", "MANAGER", "EDITOR", "VIEWER"];
@@ -274,8 +274,14 @@ function WorkspaceSettingsPage() {
     }
   }, [activeSection, visibleSections]);
 
+  // Backend serialises workspace owners as ADMIN + is_owner. Mock stubs have
+  // historically used role "OWNER"; treat is_owner as manage access either way.
   const canManage =
-    workspace?.role === "ADMIN" || workspace?.role === "MANAGER" || workspace?.role === "EDITOR";
+    Boolean(workspace?.is_owner) ||
+    workspace?.role === "ADMIN" ||
+    workspace?.role === "MANAGER" ||
+    workspace?.role === "EDITOR" ||
+    workspace?.role === "OWNER";
 
   const handleDeleteWorkspace = useCallback(
     async (wsId: number) => {
@@ -471,15 +477,7 @@ function WorkspaceSettingsPage() {
   };
 
   if (isLoading) {
-    return (
-      <div role="status" className="flex flex-col gap-[18px]">
-        <SkelPagehead />
-        <Skel className="h-[34px] w-[280px] rounded-[9px]" />
-        <SkelCard className="h-[220px]" />
-        <SkelCard className="h-[160px]" />
-        <span className="sr-only">Loading</span>
-      </div>
-    );
+    return <DashboardPageSkeleton cards={2} />;
   }
 
   // SIGV2-1311: the settings could not be read, so the page says that rather
@@ -507,7 +505,7 @@ function WorkspaceSettingsPage() {
 
   return (
     <WorkspacePageFrame backHref="/dashboard" backLabel="Back to Workspace Overview">
-      <div className="flex flex-col gap-[22px]">
+      <div className="flex min-w-0 flex-col gap-[22px]">
         <DashboardPageIntro title="Workspace Settings">
           Manage workspace identity, team access, client portal, and white-label configuration.
         </DashboardPageIntro>
@@ -1072,7 +1070,11 @@ function WorkspaceSettingsPage() {
           {activeSection === "workspace-white-label" && (
             <WorkspaceWhiteLabelSection
               entitled={canWhiteLabel}
-              canManage={workspace?.role === "ADMIN"}
+              canManage={
+                Boolean(workspace?.is_owner) ||
+                workspace?.role === "ADMIN" ||
+                workspace?.role === "OWNER"
+              }
               getAuthHeaders={getAuthHeaders}
             />
           )}

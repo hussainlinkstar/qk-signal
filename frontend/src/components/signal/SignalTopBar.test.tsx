@@ -42,7 +42,10 @@ describe("SignalTopBar", () => {
   it("renders the approved inline .tsearch field with its ⌘K hint", () => {
     setup();
     expect(screen.getByRole("combobox")).toBeInTheDocument();
-    expect(screen.getByText("⌘K")).toBeInTheDocument();
+    const shortcut = screen.getByText("⌘K");
+    expect(shortcut).toBeInTheDocument();
+    // Phone / touch widths hide the shortcut chip; desktop keeps it.
+    expect(shortcut.className).toContain("max-md:hidden");
     // The panel stays closed until focus, like wireSearch.
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
@@ -72,12 +75,13 @@ describe("SignalTopBar", () => {
     // The centre track must be a definite size. With `auto` it sizes to its
     // content, and the field collapsed to its intrinsic 148px because the
     // percentage width had no definite size to resolve against.
-    expect(header.className).toContain("md:grid-cols-[1fr_minmax(0,430px)_1fr]");
+    expect(header.className).toContain("md:grid-cols-[1fr_minmax(0,460px)_1fr]");
     // Below md the bar stays a flex row: a 430px centre track starves the side
     // columns at phone widths and squeezes out the lockup and language toggle.
     expect(header.className).toContain("flex");
     const column = screen.getByRole("combobox").closest('[role="search"]')!.parentElement!;
-    expect(column.className).toContain("flex-1");
+    // Below md the search collapses to an icon; from md up it owns the centre track.
+    expect(column.className).toContain("md:flex-1");
     expect(column.className).toContain("md:w-full");
     // Same three columns in both scopes, so the centre cannot shift per page.
     expect(header.children).toHaveLength(3);

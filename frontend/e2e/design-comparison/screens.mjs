@@ -84,7 +84,7 @@ const DRILLDOWN_TAB_EXCLUSIONS = [
   {
     name: "workspace-switcher-fixture",
     reason:
-      "Sidebar switcher label is stub fixture data ('jake Workspace' vs the design's 'Northwind Group'); recorded on SIGV2-1067 as correct-as-is.",
+      "Sidebar switcher label is stub fixture data ('Jake Workspace' vs the design's 'Northwind Group'); recorded on SIGV2-1067 as correct-as-is.",
     designSelector: ".ssw-btn",
     buildSelector: "aside button[aria-haspopup='menu']",
   },
@@ -110,7 +110,7 @@ export const SCREENS = [
       {
         name: "workspace-switcher-fixture",
         reason:
-          "Sidebar switcher label is stub fixture data ('jake Workspace' vs the design's 'Northwind Group'); recorded on SIGV2-1067 as correct-as-is.",
+          "Sidebar switcher label is stub fixture data ('Jake Workspace' vs the design's 'Northwind Group'); recorded on SIGV2-1067 as correct-as-is.",
         designSelector: ".ssw-btn",
         buildSelector: "aside button[aria-haspopup='menu']",
       },
@@ -226,7 +226,7 @@ export const SCREENS = [
       {
         name: "workspace-switcher-fixture",
         reason:
-          "Sidebar switcher label is stub fixture data ('jake Workspace' vs the design's 'Northwind Group'); recorded on SIGV2-1067 as correct-as-is.",
+          "Sidebar switcher label is stub fixture data ('Jake Workspace' vs the design's 'Northwind Group'); recorded on SIGV2-1067 as correct-as-is.",
         designSelector: ".ssw-btn",
         buildSelector: "aside button[aria-haspopup='menu']",
       },
@@ -464,7 +464,7 @@ export const SCREENS = [
       {
         name: "workspace-switcher-fixture",
         reason:
-          "Sidebar switcher label is stub fixture data ('jake Workspace' vs the design's 'Northwind Group'); recorded on SIGV2-1067 as correct-as-is.",
+          "Sidebar switcher label is stub fixture data ('Jake Workspace' vs the design's 'Northwind Group'); recorded on SIGV2-1067 as correct-as-is.",
         designSelector: ".ssw-btn",
         buildSelector: "aside button[aria-haspopup='menu']",
       },
@@ -489,7 +489,7 @@ export const SCREENS = [
       {
         name: "workspace-switcher-fixture",
         reason:
-          "Sidebar switcher label is stub fixture data ('jake Workspace' vs the design's 'Northwind Group'); recorded on SIGV2-1067 as correct-as-is.",
+          "Sidebar switcher label is stub fixture data ('Jake Workspace' vs the design's 'Northwind Group'); recorded on SIGV2-1067 as correct-as-is.",
         designSelector: ".ssw-btn",
         buildSelector: "aside button[aria-haspopup='menu']",
       },
@@ -516,7 +516,7 @@ export const SCREENS = [
       {
         name: "workspace-switcher-fixture",
         reason:
-          "Sidebar switcher label is stub fixture data ('jake Workspace' vs the design's 'Northwind Group'); recorded on SIGV2-1067 as correct-as-is.",
+          "Sidebar switcher label is stub fixture data ('Jake Workspace' vs the design's 'Northwind Group'); recorded on SIGV2-1067 as correct-as-is.",
         designSelector: ".ssw-btn",
         buildSelector: "aside button[aria-haspopup='menu']",
       },
@@ -547,7 +547,7 @@ export const SCREENS = [
       {
         name: "workspace-switcher-fixture",
         reason:
-          "Sidebar switcher label is stub fixture data ('jake Workspace' vs the design's 'Northwind Group'); recorded on SIGV2-1067 as correct-as-is.",
+          "Sidebar switcher label is stub fixture data ('Jake Workspace' vs the design's 'Northwind Group'); recorded on SIGV2-1067 as correct-as-is.",
         designSelector: ".ssw-btn",
         buildSelector: "aside button[aria-haspopup='menu']",
       },

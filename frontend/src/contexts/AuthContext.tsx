@@ -97,7 +97,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = useCallback(async (credentials: LoginCredentials) => {
     const payload = await authService.login(credentials);
-    // Mock preview: always land on jake Workspace (3 scored projects), not empty Beta.
+    // Mock preview: always land on Jake Workspace (3 scored projects), not empty Beta.
     if (
       process.env.NEXT_PUBLIC_MOCK_PREVIEW === "1" ||
       process.env.NEXT_PUBLIC_MOCK_PREVIEW === "true"

@@ -841,7 +841,8 @@ describe("BillingPage", () => {
     });
 
     render(<BillingPage />);
-    expect(screen.getByText("Loading billing overview...")).toBeInTheDocument();
+    expect(screen.getAllByRole("status").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("Loading").length).toBeGreaterThan(0);
 
     await waitFor(() => expect(resolveOverview).toBeTypeOf("function"));
     await act(async () => {

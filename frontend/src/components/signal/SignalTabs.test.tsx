@@ -69,6 +69,8 @@ describe("SignalTabs accessibility", () => {
 
     const tablist = screen.getByRole("tablist");
     expect(tablist).toHaveClass("overflow-x-auto");
+    expect(tablist.className).toContain("overscroll-x-contain");
+    expect(tablist.className).toContain("touch-pan-x");
     screen.getAllByRole("tab").forEach((tab) => expect(tab).toHaveClass("shrink-0"));
   });
 

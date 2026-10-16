@@ -158,7 +158,7 @@ export default function AuditContextSection({ auditForm, auditRunner }: AuditCon
         type="button"
         onClick={() => auditForm.runUrlAutoDetection(true)}
         disabled={auditForm.isPreScanning || auditRunner.isLoading || auditRunner.isPolling}
-        className="mt-4 inline-flex cursor-pointer items-center gap-1.5 border-none bg-transparent p-0 text-xs font-semibold text-(--t-2) underline hover:text-(--t-1) disabled:cursor-not-allowed"
+        className="mt-4 inline-flex h-8 cursor-pointer items-center gap-1.5 rounded-full border-0 bg-[#EEF1F6] px-3 text-xs font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-50"
       >
         {auditForm.isPreScanning ? (
           <>

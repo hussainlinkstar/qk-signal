@@ -5,6 +5,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { Plus, Trash2, Bell, CheckCircle2, Loader2, ArrowRight } from "lucide-react";
 import { toast } from "sonner";
 import { useAuth } from "@/components/auth/custom-auth";
+import { Skel, SkelCard } from "@/components/signal/SignalSkeleton";
 import Modal from "@/components/ui/Modal";
 import {
   AlertRuleResponse,
@@ -123,8 +124,10 @@ export default function AlertSettings({ projectId }: AlertSettingsProps) {
 
   if (loading) {
     return (
-      <div className="flex justify-center p-12">
-        <Loader2 className="h-6 w-6 animate-spin text-(--t-2)" />
+      <div role="status" className="flex flex-col gap-3 p-2">
+        <Skel className="h-4 w-32 rounded-(--r-sm)" />
+        <SkelCard className="h-[160px]" />
+        <span className="sr-only">Loading</span>
       </div>
     );
   }
@@ -221,13 +224,13 @@ export default function AlertSettings({ projectId }: AlertSettingsProps) {
           <div className="mt-6 flex justify-end gap-3">
             <button
               onClick={() => setIsCreating(false)}
-              className="rounded-lg px-4 py-2 text-sm font-medium text-(--t-2) hover:text-(--t-1)"
-            >
-              Cancel
-            </button>
-            <button
-              onClick={handleCreate}
-              disabled={saving}
+            className="inline-flex h-[38px] cursor-pointer items-center rounded-full border-0 bg-[#EEF1F6] px-[15px] text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleCreate}
+            disabled={saving}
               className="flex items-center gap-1.5 rounded-full border-0 bg-(--ink) px-[15px] py-2 text-[13.5px] font-semibold text-white hover:bg-black disabled:opacity-50"
             >
               {saving ? <Loader2 className="h-4 w-4 animate-spin" /> : <CheckCircle2 size={16} />}
@@ -321,7 +324,7 @@ export default function AlertSettings({ projectId }: AlertSettingsProps) {
         <div className="mt-6 flex justify-end gap-3">
           <button
             onClick={() => setPendingDeleteRuleId(null)}
-            className="rounded-lg px-4 py-2 text-sm font-medium text-(--t-2) hover:text-(--t-1)"
+            className="inline-flex h-[38px] cursor-pointer items-center rounded-full border-0 bg-[#EEF1F6] px-[15px] text-[13.5px] font-semibold text-(--t-1) hover:bg-[#E8ECF3]"
           >
             Cancel
           </button>

@@ -79,9 +79,12 @@ function SignalSearchBox({ sections }: { sections: SignalNavSection[] }) {
       filter={(value, search) => (value.toLowerCase().includes(search.toLowerCase()) ? 1 : 0)}
       className="contents"
     >
-      <div ref={rootRef} className="relative mx-auto w-full max-w-[460px]">
+      <div
+        ref={rootRef}
+        className="relative ms-auto w-full max-w-[460px] max-md:ms-0 max-md:w-auto md:mx-auto"
+      >
         <div
-          className={`flex h-12 w-full items-center gap-3 rounded-[16px] bg-[#EEF1F6] px-2.5 text-sm text-[#9CA3AF] transition-all ${
+          className={`group/search flex h-12 w-full items-center gap-3 rounded-[16px] bg-[#EEF1F6] px-2.5 text-sm text-[#9CA3AF] transition-all max-md:h-11 max-md:w-11 max-md:justify-center max-md:gap-0 max-md:px-0 max-md:focus-within:absolute max-md:focus-within:end-0 max-md:focus-within:top-1/2 max-md:focus-within:z-50 max-md:focus-within:h-12 max-md:focus-within:w-[min(100vw-5.5rem,320px)] max-md:focus-within:-translate-y-1/2 max-md:focus-within:justify-start max-md:focus-within:gap-3 max-md:focus-within:px-2.5 max-md:focus-within:shadow-[0_12px_32px_-16px_rgba(15,23,42,0.35)] ${
             open ? "bg-white ring-2 ring-[#BFDBFE]" : "hover:bg-[#E8ECF3]"
           }`}
         >
@@ -96,10 +99,10 @@ function SignalSearchBox({ sections }: { sections: SignalNavSection[] }) {
             onKeyDown={(event) => {
               if (event.key === "Escape" || event.key === "Tab") setOpen(false);
             }}
-            className="min-w-0 flex-1 border-none bg-transparent p-0 text-[14px] text-[#111827] outline-none placeholder:text-[#9CA3AF] focus:shadow-none focus:ring-0 focus-visible:shadow-none focus-visible:ring-0"
+            className="min-w-0 flex-1 border-none bg-transparent p-0 text-[14px] text-[#111827] outline-none placeholder:text-[#9CA3AF] focus:shadow-none focus:ring-0 focus-visible:shadow-none focus-visible:ring-0 max-md:w-0 max-md:flex-none max-md:opacity-0 max-md:group-focus-within/search:w-auto max-md:group-focus-within/search:flex-1 max-md:group-focus-within/search:opacity-100"
           />
           <kbd
-            className={`me-1 flex h-7 flex-none items-center rounded-[8px] bg-white px-2 font-(family-name:--mono) text-[11px] font-medium text-[#6B7280] ${
+            className={`me-1 flex h-7 flex-none items-center rounded-[8px] bg-white px-2 font-(family-name:--mono) text-[11px] font-medium text-[#6B7280] max-md:hidden ${
               open ? "hidden" : ""
             }`}
           >
@@ -346,7 +349,7 @@ export default function SignalTopBar({
        because the project pill, the crumb and the workspace title are all
        different widths. The grid delivers what the design intends, on every
        page, and the left column truncates instead of pushing the field. */
-    <header className="sticky top-0 z-topbar flex min-h-[68px] items-center gap-3.5 bg-transparent px-4 py-2 md:grid md:grid-cols-[1fr_minmax(0,460px)_1fr] md:px-6">
+    <header className="sticky top-0 z-topbar flex min-h-[68px] items-center gap-3.5 bg-[rgba(247,248,250,0.68)] px-4 py-2 backdrop-blur-[10px] md:grid md:grid-cols-[1fr_minmax(0,460px)_1fr] md:px-6">
       <div className="flex min-w-0 items-center gap-3">
         {menu}
         {/* The sidebar carries `.brand` at lg+; below that the top bar is the
@@ -354,7 +357,7 @@ export default function SignalTopBar({
         <Link
           href="/dashboard"
           aria-label="Qiko Signal"
-          className="flex flex-none items-center rounded-sm focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple) focus-visible:ring-offset-2 lg:hidden"
+          className="flex flex-none items-center rounded-sm focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-(--purple) focus-visible:ring-offset-2 lg:hidden max-md:[&_span:last-child]:hidden"
         >
           <SignalBrandLockup />
         </Link>
@@ -367,20 +370,22 @@ export default function SignalTopBar({
           /* Status pages: `.crumb` 13.5px t-3 with the leaf in --disp 700 t-1.
              Workspace scope: `.dom` 16px disp 700 t-1 + `.meta` mono 12 t-3,
              both empty by design on sub-pages that register no header. */
-          <div className="flex min-w-0 items-center gap-3.5 text-[13.5px] text-(--t-3)">
+          <div className="flex min-w-0 flex-1 items-center gap-3.5 text-[13.5px] text-(--t-3) md:flex-none">
             {siteLabel || !workspaceDom ? (
               <b
                 className={
                   workspaceDom
-                    ? "truncate font-(family-name:--disp) text-base font-bold tracking-[-0.01em] text-(--t-1)"
-                    : "truncate font-(family-name:--disp) font-bold text-(--t-1)"
+                    ? "min-w-0 truncate font-(family-name:--disp) text-base font-bold tracking-[-0.01em] text-(--t-1)"
+                    : "min-w-0 truncate font-(family-name:--disp) font-bold text-(--t-1)"
                 }
               >
                 {siteLabel || t("signalShell.account")}
               </b>
             ) : null}
             {siteMeta ? (
-              <span className="min-w-0 truncate font-(family-name:--mono) text-xs">{siteMeta}</span>
+              <span className="min-w-0 truncate font-(family-name:--mono) text-xs max-md:hidden">
+                {siteMeta}
+              </span>
             ) : null}
           </div>
         ) : domPill ? (
@@ -415,18 +420,21 @@ export default function SignalTopBar({
           against. Below md the bar stays a flex row and the field takes the
           space left by the brand, since a 430px track there starves the side
           columns and the lockup and language toggle get squeezed out. */}
-      <div className="min-w-0 flex-1 md:w-full md:flex-none">
+      <div className="relative min-w-0 flex-none max-md:order-last md:order-none md:w-full md:flex-1">
         {!hideSearch ? (
-          <div role="search" className="w-full">
+          <div role="search" className="w-full max-md:w-auto">
             <SignalSearchBox sections={searchSections ?? []} />
           </div>
         ) : null}
       </div>
-      <div className="flex min-w-0 items-center justify-end gap-2.5">
+      <div className="flex min-w-0 flex-none items-center justify-end gap-2.5">
         {actions}
         {/* signal-MVP mounts `.lang-toggle` at the end of `.top`; still
-            flag-gated so English-only builds render nothing. */}
-        <LanguageSwitcher variant="compact" />
+            flag-gated so English-only builds render nothing. Hidden on phone
+            widths — language lives under My Profile on small screens (PDF). */}
+        <div className="max-md:hidden">
+          <LanguageSwitcher variant="compact" />
+        </div>
       </div>
     </header>
   );

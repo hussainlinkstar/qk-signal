@@ -7,7 +7,7 @@ import { expect, gotoAndSettle, visualTest } from "./visual-fixtures";
 // These baselines are recorded against the e2e stub backend
 // (e2e/visual/stub-backend.mjs), started by run-in-docker.sh on :8000. They
 // capture layout and chrome deterministically, NOT production data: the stub
-// serves two fixed workspaces - "jake Workspace" with three scored projects
+// serves two fixed workspaces - "Jake Workspace" with three scored projects
 // and "Beta Workspace" with zero, which drives the wizard auto-open.
 // ---------------------------------------------------------------------------
 

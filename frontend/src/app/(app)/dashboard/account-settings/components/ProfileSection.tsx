@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useAccountSettings } from "../useAccountSettings";
+import { DashboardTableSkeleton } from "@/components/signal/DashboardPageSkeleton";
 import { cx } from "@/components/ui/utils";
 import { formatInvoiceAmount, formatInvoiceDate } from "../utils";
 
@@ -364,15 +365,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
           tabIndex={0}
         >
           {isLoadingInvoices ? (
-            <table className="w-full border-collapse">
-              <tbody>
-                <tr>
-                  <td className="px-4 py-[13px] text-center align-middle text-[13px] text-(--t-3)">
-                    Loading invoices…
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <DashboardTableSkeleton rows={4} />
           ) : recentInvoices.length ? (
             <table className="w-full border-collapse">
               <thead>

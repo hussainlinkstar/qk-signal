@@ -50,7 +50,7 @@ const btnCls =
 const btnSmCls =
   "inline-flex h-[30px] cursor-pointer items-center gap-1.5 rounded-(--r-sm) border-0 bg-white px-[11px] font-(family-name:--body-font) text-[12px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-45";
 const btnSmGhostCls =
-  "inline-flex h-[30px] cursor-pointer items-center gap-1.5 rounded-(--r-sm) border border-transparent bg-transparent px-[11px] font-(family-name:--body-font) text-[12px] font-semibold text-(--t-2) hover:bg-(--line-2) hover:text-(--t-1) disabled:cursor-not-allowed disabled:opacity-45";
+  "inline-flex h-[30px] cursor-pointer items-center gap-1.5 rounded-full border-0 bg-[#EEF1F6] px-[11px] font-(family-name:--body-font) text-[12px] font-semibold text-(--t-1) hover:bg-[#E8ECF3] disabled:cursor-not-allowed disabled:opacity-45";
 const btnDangerCls =
   "inline-flex h-[38px] cursor-pointer items-center justify-center gap-2 rounded-(--r-md) border border-(--bad) bg-(--bad) px-[15px] font-(family-name:--body-font) text-[13px] font-semibold text-white transition-colors duration-150 disabled:cursor-not-allowed disabled:opacity-45";
 

@@ -300,7 +300,7 @@ export default function DashboardLayoutClient({ children }: { children: React.Re
   return (
     <div
       data-testid="workspace-dashboard-gutter"
-      className="min-h-screen bg-[#F3F4F6]"
+      className="min-h-screen bg-[#F7F8FA]"
       style={dashboardBrandingStyle}
       data-workspace-dashboard-shell="true"
     >
