@@ -2448,11 +2448,10 @@ body {
   }
 }
 
-/* Light auth split — soft neutrals, no dark blue/indigo stage or card rail. */
+/* Light auth split — same canvas as the page; only the form card is white. */
 [data-signal-auth] .signal-auth-brand {
   color: var(--t-1);
-  border-inline-end: 1px solid var(--line);
-  background: var(--paper, #f7f8fa);
+  background: transparent;
 }
 
 [data-signal-auth] .signal-auth-chip {
