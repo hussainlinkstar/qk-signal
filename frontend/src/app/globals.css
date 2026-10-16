@@ -1763,78 +1763,6 @@ body {
   .field-focus-ring:focus-visible {
     box-shadow: 0 0 0 3px var(--ring);
   }
-
-  /* Flat form controls across every dashboard section (no missed old fields). */
-  [data-signal-theme] :is(input, select, textarea).field-focus-ring {
-    border: 0;
-    border-radius: 14px;
-    background: #eef1f6;
-    color: #111827;
-  }
-
-  [data-signal-theme] :is(input, select, textarea).field-focus-ring:hover {
-    background: #e8ecf3;
-  }
-
-  [data-signal-theme] :is(input, select, textarea).field-focus-ring:focus,
-  [data-signal-theme] :is(input, select, textarea).field-focus-ring:focus-visible {
-    border: 0;
-    background: #ffffff;
-    box-shadow: 0 0 0 3px rgba(191, 219, 254, 0.95);
-  }
-
-  [data-signal-theme] :is(input, select, textarea).field-focus-ring:disabled {
-    background: var(--well, #ebe6f6);
-    color: #9ca3af;
-  }
-
-  /* Flat secondary action buttons used across settings/forms. */
-  [data-signal-theme] button.rounded-full.border-0.bg-\[\#EEF1F6\] {
-    color: #111827;
-    background-color: var(--well, #ebe6f6);
-  }
-
-  [data-signal-theme] .signal-button-ghost {
-    border-color: transparent;
-    background: var(--well, #ebe6f6);
-    border-radius: 999px;
-  }
-
-  [data-signal-theme] .signal-button-ghost:hover {
-    background: color-mix(in srgb, var(--purple) 10%, var(--well, #ebe6f6));
-  }
-
-  [data-signal-theme] .signal-button-primary {
-    border-radius: 999px;
-  }
-
-  /* Any remaining full-box --line / --border borders flatten inside the signal app. */
-  [data-signal-theme] .border.border-\[color\:var\(--line\)\],
-  [data-signal-theme] .border.border-\[color\:var\(--border\)\],
-  [data-signal-theme] [class~="border-(--line)"]:not([class*="border-t"]):not([class*="border-b"]):not([class*="border-e"]):not([class*="border-s"]):not([class*="border-x"]):not([class*="border-y"]),
-  [data-signal-theme] [class~="border-(--border)"]:not([class*="border-t"]):not([class*="border-b"]):not([class*="border-e"]):not([class*="border-s"]):not([class*="border-x"]):not([class*="border-y"]) {
-    border-color: transparent;
-  }
-
-  /* Catch-all: classic bordered panels/cards with only a generic border class. */
-  [data-signal-theme] .rounded-xl.border:not([class*="border-t"]):not([class*="border-b"]):not([class*="dashed"]):not([class*="border-primary"]):not([class*="border-emerald"]):not([class*="border-rose"]):not([class*="border-amber"]):not([class*="border-brand"]) {
-    border-color: transparent;
-  }
-
-  /* Catch-all: classic bordered inputs/selects/textareas in the app become flat. */
-  [data-signal-theme] :is(input, select, textarea):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]) {
-    border-color: transparent;
-  }
-
-  [data-signal-theme] :is(input, select, textarea):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not(:disabled) {
-    background-color: #eef1f6;
-  }
-
-  [data-signal-theme] :is(input, select, textarea):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):focus,
-  [data-signal-theme] :is(input, select, textarea):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):focus-visible {
-    background-color: #ffffff;
-    border-color: transparent;
-  }
 }
 
 @layer utilities {
@@ -2474,4 +2402,70 @@ body {
 [data-signal-auth] .signal-auth-card {
   background: var(--panel);
   box-shadow: 0 12px 32px -20px rgba(15, 23, 42, 0.12);
+}
+
+/* Editable Signal fields: white + hairline. Grey fill only when disabled.
+   Unlayered so this beats leftover Tailwind `bg-[#EEF1F6]` utilities.
+   Skip transparent children inside `.input-shell`. */
+[data-signal-theme] :is(input, select, textarea).field-focus-ring {
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #ffffff;
+  color: var(--t-1, #111827);
+}
+
+[data-signal-theme] :is(input, select, textarea).field-focus-ring:hover {
+  border-color: color-mix(in srgb, var(--purple) 28%, var(--line));
+  background: #ffffff;
+}
+
+[data-signal-theme] :is(input, select, textarea).field-focus-ring:focus,
+[data-signal-theme] :is(input, select, textarea).field-focus-ring:focus-visible {
+  border-color: var(--purple);
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(147, 51, 234, 0.12);
+}
+
+[data-signal-theme] :is(input, select, textarea).field-focus-ring:disabled {
+  border-color: transparent;
+  background: var(--line-2, #eef0f3);
+  color: var(--t-3, #9ca3af);
+}
+
+[data-signal-theme]
+  :is(input, select, textarea):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not(:disabled):not([class*="bg-transparent"]) {
+  border: 1px solid var(--line) !important;
+  background-color: #ffffff !important;
+  color: var(--t-1, #0c0f16);
+}
+
+[data-signal-theme]
+  :is(input, select, textarea):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not(:disabled):not([class*="bg-transparent"]):hover {
+  border-color: color-mix(in srgb, var(--purple) 28%, var(--line)) !important;
+}
+
+[data-signal-theme]
+  :is(input, select, textarea):not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):disabled {
+  border-color: transparent !important;
+  background-color: var(--line-2, #eef0f3) !important;
+  color: var(--t-3, #9ca3af) !important;
+}
+
+[data-signal-theme] button.rounded-full.border-0.bg-\[\#EEF1F6\] {
+  color: #111827;
+  background-color: var(--well, #eef1f6);
+}
+
+[data-signal-theme] .signal-button-ghost {
+  border-color: transparent;
+  background: var(--well, #eef1f6);
+  border-radius: 999px;
+}
+
+[data-signal-theme] .signal-button-ghost:hover {
+  background: color-mix(in srgb, var(--purple) 10%, var(--well, #eef1f6));
+}
+
+[data-signal-theme] .signal-button-primary {
+  border-radius: 999px;
 }

@@ -71,33 +71,46 @@ export default function BillingSalesContactCard() {
     [companyName, monthlyAudits, requirements]
   );
 
+  const benefitTones = [
+    { tile: "bg-(--purple-s) text-(--purple)", card: "border-[color-mix(in_srgb,var(--purple)_18%,var(--line))]" },
+    { tile: "bg-(--mint-s) text-(--good)", card: "border-[color-mix(in_srgb,var(--mint)_22%,var(--line))]" },
+    { tile: "bg-(--coral-s) text-(--warn)", card: "border-[color-mix(in_srgb,var(--coral)_20%,var(--line))]" },
+    { tile: "bg-(--blue-s) text-(--blue)", card: "border-[color-mix(in_srgb,var(--blue)_20%,var(--line))]" },
+  ] as const;
+
   return (
     <>
-      <section className="w-full overflow-hidden rounded-[22px] border-0 bg-white shadow-[0_4px_24px_rgba(12,15,22,0.05)]">
+      <section className="w-full overflow-hidden rounded-[22px] border border-(--line) border-t-2 border-t-(--purple) bg-white shadow-[0_8px_28px_-18px_rgba(88,28,135,0.18)]">
         <div className="grid w-full lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.05fr)]">
           {/* CTA panel */}
-          <div className="relative flex flex-col justify-between gap-8 bg-(--ink) px-6 py-8 text-white sm:px-9 sm:py-9">
-            <div className="max-w-md">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/80">
-                <span className="h-1.5 w-1.5 rounded-full bg-(--good)" aria-hidden="true" />
+          <div className="relative flex flex-col justify-between gap-8 overflow-hidden bg-[linear-gradient(155deg,var(--purple)_0%,#6d28d9_48%,#4c1d95_100%)] px-6 py-8 text-white sm:px-9 sm:py-9">
+            <div
+              className="pointer-events-none absolute -end-10 -top-16 h-44 w-44 rounded-full bg-white/10 blur-2xl"
+              aria-hidden="true"
+            />
+            <div className="relative z-10 max-w-md">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-white">
+                <span className="h-1.5 w-1.5 rounded-full bg-(--amber-hi,var(--amber))" aria-hidden="true" />
                 Enterprise Billing
               </div>
               <h2 className="mt-4 font-(family-name:--disp) text-[28px] font-extrabold leading-[1.15] tracking-[-0.02em] text-white sm:text-[30px]">
                 Need a custom plan?
               </h2>
-              <p className="mt-3 text-[14.5px] leading-[1.55] text-white/75">
+              <p className="mt-3 text-[14.5px] leading-[1.55] text-white/90">
                 Share your expected volume and billing requirements. We will prepare a commercial
                 path for procurement-heavy or high-usage teams.
               </p>
-              <p className="mt-4 text-[12.5px] text-white/55">Typical reply within 1–2 business days</p>
+              <p className="mt-4 text-[12.5px] font-medium text-white/80">
+                Typical reply within 1–2 business days
+              </p>
             </div>
 
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="relative z-10 flex flex-wrap items-center gap-3">
               <Button
                 onClick={() => setIsOpen(true)}
-                variant="ghost"
+                variant="primary"
                 size="md"
-                className="border-0 bg-white text-(--ink) hover:border-0 hover:bg-[#F3F4F6] hover:text-(--ink)"
+                className="!border-0 !bg-white !text-(--purple-deep,var(--purple)) hover:!bg-(--purple-s) hover:!text-(--purple-deep,var(--purple))"
               >
                 <MessagesSquare className="h-4 w-4" />
                 Contact Sales
@@ -105,8 +118,7 @@ export default function BillingSalesContactCard() {
               <a
                 href={`mailto:${BILLING_EMAIL}`}
                 className={cx(
-                  buttonClasses({ variant: "ghost", size: "md" }),
-                  "border border-white/25 bg-transparent text-white hover:border-white/40 hover:bg-white/10 hover:text-white"
+                  "inline-flex h-[38px] min-w-0 cursor-pointer items-center justify-center gap-2 rounded-full border-2 border-white bg-white px-[15px] font-(family-name:--body-font) text-[13.5px] font-semibold text-(--purple-deep,var(--purple)) transition-colors duration-150 hover:bg-(--purple-s) focus-visible:outline-hidden focus-visible:ring-[3px] focus-visible:ring-white/50"
                 )}
               >
                 <Mail className="h-4 w-4" />
@@ -116,24 +128,33 @@ export default function BillingSalesContactCard() {
           </div>
 
           {/* Benefits */}
-          <div className="bg-[#F7F8FA] px-6 py-8 sm:px-8 sm:py-9">
+          <div className="bg-[linear-gradient(180deg,color-mix(in_srgb,var(--purple)_5%,white)_0%,color-mix(in_srgb,var(--mint)_4%,white)_100%)] px-6 py-8 sm:px-8 sm:py-9">
             <div className="mb-5 flex items-end justify-between gap-3">
               <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-(--t-3)">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-(--purple)">
                   What you get
                 </p>
                 <p className="mt-1 text-[13px] text-(--t-2)">Built for agencies and larger teams</p>
               </div>
             </div>
             <ul className="grid gap-3 sm:grid-cols-2">
-              {SALES_SUPPORT_ITEMS.map((item) => {
+              {SALES_SUPPORT_ITEMS.map((item, index) => {
                 const Icon = item.icon;
+                const tone = benefitTones[index % benefitTones.length];
                 return (
                   <li
                     key={item.title}
-                    className="flex h-full flex-col gap-3 rounded-[16px] border-0 bg-white p-4 transition-transform duration-150 hover:-translate-y-0.5"
+                    className={cx(
+                      "flex h-full flex-col gap-3 rounded-[16px] border bg-white p-4 transition-transform duration-150 hover:-translate-y-0.5",
+                      tone.card
+                    )}
                   >
-                    <span className="flex h-9 w-9 items-center justify-center rounded-[10px] bg-[#EEF1F6] text-(--ink)">
+                    <span
+                      className={cx(
+                        "flex h-9 w-9 items-center justify-center rounded-[10px]",
+                        tone.tile
+                      )}
+                    >
                       <Icon className="h-4 w-4" strokeWidth={1.9} aria-hidden="true" />
                     </span>
                     <div>

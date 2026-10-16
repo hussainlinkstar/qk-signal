@@ -36,11 +36,11 @@ export const fieldControlClasses = ({
         multiline ? "min-h-[124px] py-[11px]" : "h-11 py-0"
       )
     : cx(
-        "w-full border-0 bg-[#EEF1F6] font-(family-name:--body-font) font-normal leading-[normal] text-[#111827] placeholder:text-[#9CA3AF] shadow-none transition-[background-color,box-shadow] duration-150 focus:outline-hidden focus:bg-white focus:ring-[3px] focus:ring-[#BFDBFE] disabled:cursor-not-allowed disabled:bg-[#F3F4F6] disabled:text-[#9CA3AF] disabled:opacity-80 read-only:text-[#6B7280]",
+        "w-full border border-(--line) bg-white font-(family-name:--body-font) font-normal leading-[normal] text-(--t-1) placeholder:text-(--t-3) shadow-none transition-[border-color,box-shadow] duration-150 focus:outline-hidden focus:border-(--purple) focus:ring-[3px] focus:ring-[rgba(147,51,234,0.12)] disabled:cursor-not-allowed disabled:border-transparent disabled:bg-(--line-2) disabled:text-(--t-3) disabled:opacity-80 read-only:text-(--t-2)",
         "rounded-[14px]",
         error
-          ? "bg-[color-mix(in_srgb,var(--danger)_8%,white)] focus:ring-[color-mix(in_srgb,var(--danger)_35%,transparent)]"
-          : "hover:bg-[#E8ECF3]",
+          ? "border-(--bad) bg-[color-mix(in_srgb,var(--danger)_6%,white)] focus:border-(--bad) focus:ring-[color-mix(in_srgb,var(--danger)_28%,transparent)]"
+          : "hover:border-[color-mix(in_srgb,var(--purple)_28%,var(--line))]",
         "px-3.5 text-base sm:text-[13.5px]",
         multiline ? "min-h-[76px] py-[11px]" : "h-11 py-0"
       );

@@ -166,7 +166,7 @@ const BrandingSection: React.FC<BrandingSectionProps> = ({ settings }) => {
                 style={{ "--sw": effectivePrimary } as React.CSSProperties}
               />
               <input
-                className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+                className="field-focus-ring h-11 w-full rounded-[14px] border border-(--line) bg-white px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) disabled:border-transparent disabled:bg-(--line-2) disabled:text-(--t-3)"
                 type="text"
                 value={primaryColor}
                 onChange={(e) => setPrimaryColor(e.target.value)}
@@ -184,7 +184,7 @@ const BrandingSection: React.FC<BrandingSectionProps> = ({ settings }) => {
                 style={{ "--sw": effectiveSecondary } as React.CSSProperties}
               />
               <input
-                className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+                className="field-focus-ring h-11 w-full rounded-[14px] border border-(--line) bg-white px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) disabled:border-transparent disabled:bg-(--line-2) disabled:text-(--t-3)"
                 type="text"
                 value={secondaryColor}
                 onChange={(e) => setSecondaryColor(e.target.value)}

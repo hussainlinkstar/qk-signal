@@ -303,12 +303,12 @@ export default function PlanComparisonMatrix({ plans, currentPlanId }: PlanCompa
   };
 
   return (
-    <div className="overflow-hidden rounded-[22px] border-0 bg-white shadow-[0_4px_24px_rgba(12,15,22,0.05)]">
+    <div className="overflow-hidden rounded-[22px] border border-(--line) border-t-2 border-t-(--purple) bg-white shadow-[0_8px_28px_-18px_rgba(88,28,135,0.18)]">
       <section aria-labelledby="plan-comparison-heading">
-        <div className="border-b border-[#EEF1F6] px-6 py-7 md:px-8">
+        <div className="border-b border-(--line) bg-[linear-gradient(180deg,color-mix(in_srgb,var(--purple)_6%,white)_0%,white_72%)] px-6 py-7 md:px-8">
           <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
             <div className="max-w-2xl">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-(--t-3)">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-(--purple)">
                 Compare every capability
               </p>
               <h3
@@ -322,7 +322,7 @@ export default function PlanComparisonMatrix({ plans, currentPlanId }: PlanCompa
                 know exactly what you gain on the next plan.
               </p>
             </div>
-            <div className="rounded-[14px] border border-[#E5E7EB] bg-[#FBFBFC] px-4 py-3 text-[12.5px] leading-[1.45] text-(--t-2) md:max-w-[220px]">
+            <div className="rounded-[14px] border border-(--line) bg-(--purple-s) px-4 py-3 text-[12.5px] leading-[1.45] text-(--t-2) md:max-w-[220px]">
               Only differentiating capabilities are shown below. Shared features sit in the chips.
             </div>
           </div>
@@ -333,15 +333,26 @@ export default function PlanComparisonMatrix({ plans, currentPlanId }: PlanCompa
                 Included on every plan
               </p>
               <div className="flex flex-wrap gap-2">
-                {sharedFoundation.map((key) => (
-                  <span
-                    key={key}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-[#E8ECF3] bg-white px-3 py-1.5 text-[12px] font-medium text-(--t-1)"
-                  >
-                    <Check className="h-3 w-3 text-(--good)" strokeWidth={2.5} aria-hidden="true" />
-                    {CAPABILITY_LABELS[key]}
-                  </span>
-                ))}
+                {sharedFoundation.map((key, index) => {
+                  const chipTone =
+                    index % 3 === 0
+                      ? "border-[color-mix(in_srgb,var(--purple)_22%,var(--line))] bg-(--purple-s) text-(--purple-deep,var(--purple))"
+                      : index % 3 === 1
+                        ? "border-[color-mix(in_srgb,var(--mint)_28%,var(--line))] bg-(--mint-s) text-(--good)"
+                        : "border-[color-mix(in_srgb,var(--coral)_24%,var(--line))] bg-(--coral-s) text-(--warn)";
+                  return (
+                    <span
+                      key={key}
+                      className={cx(
+                        "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-[12px] font-medium",
+                        chipTone
+                      )}
+                    >
+                      <Check className="h-3 w-3" strokeWidth={2.5} aria-hidden="true" />
+                      {CAPABILITY_LABELS[key]}
+                    </span>
+                  );
+                })}
               </div>
             </div>
           ) : null}
@@ -353,8 +364,8 @@ export default function PlanComparisonMatrix({ plans, currentPlanId }: PlanCompa
             className="w-full min-w-[760px] border-collapse text-sm"
           >
             <thead>
-              <tr className="border-b border-[#EEF1F6] bg-[#FBFBFC] text-left">
-                <th className="px-5 py-4 text-[11px] font-semibold uppercase tracking-[0.06em] text-(--t-3)">
+              <tr className="border-b-2 border-(--line) bg-(--purple-s) text-left">
+                <th className="border-e border-(--line) px-5 py-4 text-[11px] font-semibold uppercase tracking-[0.06em] text-(--t-2)">
                   Capability
                 </th>
                 {plans.map((plan) => {
@@ -363,8 +374,8 @@ export default function PlanComparisonMatrix({ plans, currentPlanId }: PlanCompa
                     <th
                       key={plan.id}
                       className={cx(
-                        "px-4 py-4 align-top",
-                        isCurrent && "border-b-2 border-b-(--ink) bg-[#F3F4F6]"
+                        "border-e border-(--line) px-4 py-4 align-top last:border-e-0",
+                        isCurrent && "border-b-2 border-b-(--purple) bg-[color-mix(in_srgb,var(--purple)_12%,white)]"
                       )}
                     >
                       <div className="flex flex-col items-center gap-1.5 text-center">
@@ -373,12 +384,12 @@ export default function PlanComparisonMatrix({ plans, currentPlanId }: PlanCompa
                             {plan.name}
                           </span>
                           {isCurrent ? (
-                            <span className="rounded-full bg-(--ink) px-2 py-0.5 text-[10px] font-semibold text-white">
+                            <span className="rounded-full bg-(--purple) px-2 py-0.5 text-[10px] font-semibold text-white">
                               Current
                             </span>
                           ) : null}
                         </div>
-                        <span className="text-[12px] text-(--t-3)">
+                        <span className="text-[12px] font-medium tabular-nums text-(--purple-deep,var(--purple))">
                           {plan.capabilities.monthly_price_usd === null
                             ? "Custom"
                             : `${formatUsd(plan.capabilities.monthly_price_usd)}/mo`}
@@ -390,12 +401,15 @@ export default function PlanComparisonMatrix({ plans, currentPlanId }: PlanCompa
               </tr>
             </thead>
             <tbody>
-              {comparisonKeys.map((key) => (
+              {comparisonKeys.map((key, rowIndex) => (
                 <tr
                   key={key}
-                  className="border-b border-[#F1F3F7] last:border-b-0 transition-colors hover:bg-[#FBFBFC]"
+                  className={cx(
+                    "border-b border-(--line) last:border-b-0 transition-colors hover:bg-[color-mix(in_srgb,var(--purple)_4%,white)]",
+                    rowIndex % 2 === 1 && "bg-[color-mix(in_srgb,var(--purple)_3%,white)]"
+                  )}
                 >
-                  <th className="px-5 py-3.5 text-left text-[13px] font-medium text-(--t-1)">
+                  <th className="border-e border-(--line) px-5 py-3.5 text-left text-[13px] font-medium text-(--t-1)">
                     {CAPABILITY_LABELS[key]}
                   </th>
                   {plans.map((plan) => {
@@ -411,22 +425,22 @@ export default function PlanComparisonMatrix({ plans, currentPlanId }: PlanCompa
                       <td
                         key={`${plan.id}-${key}`}
                         className={cx(
-                          "px-4 py-3.5 text-center text-[13px]",
-                          isCurrent && "bg-[#F7F8FA]"
+                          "border-e border-(--line) px-4 py-3.5 text-center text-[13px] last:border-e-0",
+                          isCurrent && "bg-[color-mix(in_srgb,var(--purple)_8%,white)]"
                         )}
                       >
                         {typeof value === "number" ? (
-                          <span className="font-(family-name:--disp) font-extrabold text-(--t-1)">
+                          <span className="font-(family-name:--disp) font-extrabold tabular-nums text-(--t-1)">
                             {formatMetricValue(key, value)}
                           </span>
                         ) : value ? (
-                          <span className="inline-flex items-center justify-center text-(--good)">
-                            <Check aria-hidden="true" className="h-4 w-4" strokeWidth={2.5} />
+                          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-(--mint-s) text-(--good)">
+                            <Check aria-hidden="true" className="h-3.5 w-3.5" strokeWidth={2.5} />
                             <span className="sr-only">Included</span>
                           </span>
                         ) : (
-                          <span className="inline-flex items-center justify-center text-[#D1D5DB]">
-                            <Minus aria-hidden="true" className="h-4 w-4" />
+                          <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-(--line-2) text-(--t-3)">
+                            <Minus aria-hidden="true" className="h-3.5 w-3.5" />
                             <span className="sr-only">Not included</span>
                           </span>
                         )}

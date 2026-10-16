@@ -60,7 +60,7 @@ const ProfileSection: React.FC<ProfileSectionProps> = ({ settings }) => {
   const fieldLabelCls =
     "mb-2 block text-[11px] font-semibold uppercase tracking-[0.06em] text-(--t-3)";
   const fieldInputCls =
-    "field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] leading-none text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)";
+    "field-focus-ring h-11 w-full rounded-[14px] border border-(--line) bg-white px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] leading-none text-(--t-1) outline-none placeholder:text-(--t-3) disabled:border-transparent disabled:bg-(--line-2) disabled:text-(--t-3)";
   const cardCls = "rounded-[22px] border-0 bg-white px-6 py-6";
   const cardTitleCls =
     "m-0 mb-1 font-(family-name:--disp) text-[15px] font-bold tracking-[-0.01em]";

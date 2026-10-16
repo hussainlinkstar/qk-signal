@@ -27,7 +27,10 @@ import { describe, expect, it } from "vitest";
 // cheap guard that stops either defect being reintroduced by an edit.
 // ---------------------------------------------------------------------------
 
-const globalsCss = readFileSync(`${process.cwd()}/src/app/globals.css`, "utf8");
+const globalsCss = readFileSync(`${process.cwd()}/src/app/globals.css`, "utf8").replace(
+  /\r\n/g,
+  "\n"
+);
 
 const INTERACTIVES = ':is(a, button, input, select, textarea, [role="button"]):focus-visible';
 

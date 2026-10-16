@@ -321,7 +321,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
             </label>
             <input
               id="current-password"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border border-(--line) bg-white px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) disabled:border-transparent disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="password"
               value={currentPassword}
               onChange={(e) => setCurrentPassword(e.target.value)}
@@ -337,7 +337,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
             </label>
             <input
               id="new-password"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border border-(--line) bg-white px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) disabled:border-transparent disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="password"
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
@@ -353,7 +353,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
             </label>
             <input
               id="confirm-password"
-              className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+              className="field-focus-ring h-11 w-full rounded-[14px] border border-(--line) bg-white px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) disabled:border-transparent disabled:bg-(--line-2) disabled:text-(--t-3)"
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -453,7 +453,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
                 </label>
                 <input
                   id="mfa-manual-setup-key"
-                  className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+                  className="field-focus-ring h-11 w-full rounded-[14px] border border-(--line) bg-white px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) disabled:border-transparent disabled:bg-(--line-2) disabled:text-(--t-3)"
                   value={mfaSetup.secret}
                   readOnly
                 />
@@ -467,7 +467,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
                 </label>
                 <input
                   id="mfa-authenticator-code"
-                  className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+                  className="field-focus-ring h-11 w-full rounded-[14px] border border-(--line) bg-white px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) disabled:border-transparent disabled:bg-(--line-2) disabled:text-(--t-3)"
                   value={mfaCode}
                   onChange={(e) => setMfaCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
                   placeholder="123456"
@@ -508,7 +508,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
               </label>
               <input
                 id="mfa-disable-code"
-                className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+                className="field-focus-ring h-11 w-full rounded-[14px] border border-(--line) bg-white px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) disabled:border-transparent disabled:bg-(--line-2) disabled:text-(--t-3)"
                 value={mfaCode}
                 onChange={(e) => setMfaCode(e.target.value.replace(/\D/g, "").slice(0, 6))}
                 placeholder="123456"
@@ -593,7 +593,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
               </label>
               <input
                 id="new-passkey-name"
-                className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+                className="field-focus-ring h-11 w-full rounded-[14px] border border-(--line) bg-white px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) disabled:border-transparent disabled:bg-(--line-2) disabled:text-(--t-3)"
                 value={passkeyName}
                 onChange={(e) => setPasskeyName(e.target.value)}
                 placeholder="e.g. MacBook TouchID"
@@ -678,7 +678,7 @@ const SecuritySection: React.FC<SecuritySectionProps> = ({ settings }) => {
                   </label>
                   <input
                     id="microsoft-link-password"
-                    className="field-focus-ring h-11 w-full rounded-[14px] border-0 bg-[#EEF1F6] px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) focus:bg-white disabled:bg-(--line-2) disabled:text-(--t-3)"
+                    className="field-focus-ring h-11 w-full rounded-[14px] border border-(--line) bg-white px-[13px] py-0 font-(family-name:--body-font) text-[13.5px] text-(--t-1) outline-none placeholder:text-(--t-3) disabled:border-transparent disabled:bg-(--line-2) disabled:text-(--t-3)"
                     type="password"
                     value={linkPassword}
                     onChange={(e) => setLinkPassword(e.target.value)}

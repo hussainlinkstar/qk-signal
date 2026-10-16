@@ -19,7 +19,10 @@ vi.mock("react-i18next", () => ({
 // `.wselect` (standalone control) and the single `--ring` focus token.
 // ---------------------------------------------------------------------------
 
-const globalsCss = readFileSync(`${process.cwd()}/src/app/globals.css`, "utf8");
+const globalsCss = readFileSync(`${process.cwd()}/src/app/globals.css`, "utf8").replace(
+  /\r\n/g,
+  "\n"
+);
 
 const values = { name: "", domain: "", market: "GLOBAL", language: "en" };
 
@@ -45,22 +48,21 @@ describe("ProjectFormFields - approved modal anatomy", () => {
 
     const name = screen.getByPlaceholderText("Acme Corp");
     const shell = shellOf(name);
-    // signal.css `.minp`: 44px row, radius 10, --line border on --paper.
-    expect(shell).toHaveClass("h-11", "rounded-[10px]", "border-(--line)", "bg-(--paper)");
+    // Boxed shell: white field, hairline border (editable — not grey/disabled).
+    expect(shell).toHaveClass("h-11", "rounded-[14px]", "border-(--line)", "bg-white");
     // The bare control draws nothing: no border, no ring, no background.
     expect(name).toHaveClass("border-none", "bg-transparent", "outline-none");
   });
 
-  it("puts the focus treatment on the shell, in the approved --ring, never on the field", () => {
+  it("puts the focus treatment on the shell, in the brand ring, never on the field", () => {
     renderFields();
 
     const shell = shellOf(screen.getByPlaceholderText("Acme Corp"));
-    // signal.css `.minp:focus-within`: --panel ground, #C9CEF7 border, 3px --ring.
     expect(shell).toHaveClass(
       "input-shell",
-      "focus-within:border-[#c9cef7]",
-      "focus-within:bg-(--panel)",
-      "focus-within:shadow-[0_0_0_3px_var(--ring)]"
+      "focus-within:border-(--purple)",
+      "focus-within:bg-white",
+      "focus-within:shadow-[0_0_0_3px_rgba(147,51,234,0.12)]"
     );
     // `focus-within` is the only focus hook, so the shell lights for a
     // keyboard tab exactly as it does for a click - focus is never silent.
@@ -106,7 +108,7 @@ describe("ProjectFormFields - approved modal anatomy", () => {
 
     const shell = shellOf(screen.getByPlaceholderText("yourdomain.com"));
     expect(shell).toHaveClass("border-(--bad)");
-    expect(shell).toHaveClass("focus-within:shadow-[0_0_0_3px_var(--ring)]");
+    expect(shell).toHaveClass("focus-within:shadow-[0_0_0_3px_rgba(147,51,234,0.12)]");
   });
 
   it("reports changes for each field", () => {
@@ -130,8 +132,8 @@ describe("ProjectFormFields - wizard variant", () => {
       "wselect-chevron",
       "field-focus-ring",
       "appearance-none",
-      // signal.css `.wselect:focus`: border darkens to #C7CDD6, nothing else.
-      "focus:border-[#c7cdd6]"
+      "border-(--line)",
+      "bg-white"
     );
     // One chevron only: `wselect-chevron` supplies it, so no inline svg.
     expect(market.querySelectorAll("svg")).toHaveLength(0);

@@ -4,6 +4,7 @@ import SignalAlert from "@/components/signal/SignalAlert";
 import React from "react";
 import { Loader2 } from "lucide-react";
 
+import SignalMetricStrip from "@/components/signal/SignalMetricStrip";
 import { GlassCard } from "@/components/ui/GlassComponents";
 import Button from "@/components/ui/Button";
 import type { WorkspaceCostBreakdown, WorkspaceProjectSummary } from "@/services/workspaceService";
@@ -31,6 +32,7 @@ export function WorkspaceCostBreakdownSection({
   const budgetsConfigured = rows.filter((row) => row.budget_configured).length;
   const exhaustedCount = rows.filter((row) => row.status === "exhausted").length;
   const warningCount = rows.filter((row) => row.status === "warning").length;
+  const attention = warningCount + exhaustedCount;
 
   return (
     <GlassCard className="rounded-(--r) border-(--line) bg-(--panel) px-[22px] py-[18px]">
@@ -43,36 +45,24 @@ export function WorkspaceCostBreakdownSection({
           </p>
         </div>
 
-        <div className="grid gap-3 sm:grid-cols-3">
-          <div className="rounded-(--r-sm) border-0 bg-(--line-2) px-4 py-3">
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
-              Projects
-            </p>
-            <p className="mt-2 text-xl font-bold tabular-nums text-(--t-1)">{rows.length}</p>
-          </div>
-          <div className="rounded-(--r-sm) border-0 bg-(--line-2) px-4 py-3">
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
-              Caps Active
-            </p>
-            <p className="mt-2 text-xl font-bold tabular-nums text-(--t-1)">{budgetsConfigured}</p>
-          </div>
-          <div className="rounded-(--r-sm) border-0 bg-(--line-2) px-4 py-3">
-            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
-              Attention
-            </p>
-            <p className="mt-2 text-xl font-bold tabular-nums text-(--t-1)">
-              {warningCount + exhaustedCount}
-            </p>
-          </div>
-        </div>
+        <SignalMetricStrip
+          className="w-full lg:max-w-[420px]"
+          items={[
+            { label: "Projects", value: rows.length },
+            { label: "Caps Active", value: budgetsConfigured },
+            {
+              label: "Attention",
+              value: attention,
+              tone: attention > 0 ? "warn" : "default",
+            },
+          ]}
+        />
       </div>
 
       {isLoading ? (
-        <div className="mt-6 flex min-h-[180px] flex-col items-center justify-center gap-3 rounded-(--r-sm) border-0 bg-(--line-2)">
-          <Loader2 className="h-6 w-6 animate-spin text-(--t-3)" />
-          <p className="font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
-            Loading cost breakdown
-          </p>
+        <div className="mt-6 flex min-h-[180px] flex-col items-center justify-center gap-3 rounded-[14px] border border-(--line) bg-white">
+          <Loader2 className="h-6 w-6 animate-spin text-(--purple)" />
+          <p className="text-[12.5px] font-medium text-(--t-2)">Loading cost breakdown</p>
         </div>
       ) : error ? (
         <SignalAlert
@@ -88,59 +78,51 @@ export function WorkspaceCostBreakdownSection({
           {error}
         </SignalAlert>
       ) : projects.length === 0 ? (
-        <div className="mt-6 rounded-(--r-sm) border border-dashed border-(--line) bg-(--line-2) p-5 text-[12.5px] text-(--t-2)">
+        <div className="mt-6 rounded-[14px] border border-dashed border-(--line) bg-white p-5 text-[12.5px] text-(--t-2)">
           Create at least one workspace project before you can track project-level budget usage.
         </div>
       ) : rows.length === 0 ? (
-        <div className="mt-6 rounded-(--r-sm) border border-dashed border-(--line) bg-(--line-2) p-5 text-[12.5px] text-(--t-2)">
+        <div className="mt-6 rounded-[14px] border border-dashed border-(--line) bg-white p-5 text-[12.5px] text-(--t-2)">
           No cost breakdown data is available yet.
         </div>
       ) : (
         <div className="mt-6 space-y-4">
           {budgetsConfigured === 0 ? (
-            <div className="rounded-(--r-sm) border-0 bg-(--line-2) p-4 text-[12.5px] text-(--t-2)">
+            <div className="rounded-[14px] border border-(--line) bg-(--purple-s) px-4 py-3.5 text-[12.5px] leading-6 text-(--t-2)">
               No project caps are configured yet. You can still review spend by project and enable
               hard guardrails from each project&apos;s settings page.
             </div>
           ) : null}
 
-          <div className="overflow-x-auto rounded-(--r-sm) border-0">
+          <div className="overflow-x-auto rounded-[14px] border border-(--line) bg-white">
             <table className="w-full min-w-[560px] border-collapse text-left">
               <thead>
-                <tr className="border-b border-(--line) bg-(--line-2)">
-                  <th className="px-4 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
-                    Project
-                  </th>
-                  <th className="px-4 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
-                    Cap
-                  </th>
-                  <th className="px-4 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
-                    Spent
-                  </th>
-                  <th className="px-4 py-3 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-3)">
-                    Remaining
-                  </th>
+                <tr className="border-b border-(--line)">
+                  <th className="px-4 py-3 text-[12px] font-semibold text-(--t-2)">Project</th>
+                  <th className="px-4 py-3 text-[12px] font-semibold text-(--t-2)">Cap</th>
+                  <th className="px-4 py-3 text-[12px] font-semibold text-(--t-2)">Spent</th>
+                  <th className="px-4 py-3 text-[12px] font-semibold text-(--t-2)">Remaining</th>
                 </tr>
               </thead>
               <tbody>
                 {rows.map((row) => (
-                  <tr key={row.project_id} className="border-b border-(--line) last:border-0">
+                  <tr key={row.project_id} className="border-b border-(--line-2) last:border-0">
                     <td className="px-4 py-3.5">
                       <p className="text-[13.5px] font-semibold text-(--t-1)">{row.project_name}</p>
-                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.14em] text-(--t-3)">
+                      <p className="mt-0.5 text-[12px] text-(--t-3)">
                         {stripDomainProtocol(row.domain_url)}
                       </p>
                     </td>
                     <td className="px-4 py-3.5 text-[13px] tabular-nums text-(--t-1)">
                       {row.monthly_limit_scans === null ? (
-                        <span className="inline-flex rounded-full border-0 bg-(--line-2) px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-[0.14em] text-(--t-2)">
+                        <span className="inline-flex rounded-full bg-(--purple-s) px-2.5 py-0.5 text-[11px] font-semibold text-(--purple-deep,var(--purple))">
                           Unlimited
                         </span>
                       ) : (
                         row.monthly_limit_scans.toLocaleString()
                       )}
                     </td>
-                    <td className="px-4 py-3.5 text-[13px] tabular-nums text-(--t-1)">
+                    <td className="px-4 py-3.5 font-(family-name:--mono) text-[13px] tabular-nums text-(--t-1)">
                       {row.consumed_scans.toLocaleString()}
                     </td>
                     <td className="px-4 py-3.5 text-[13px] tabular-nums text-(--t-1)">
