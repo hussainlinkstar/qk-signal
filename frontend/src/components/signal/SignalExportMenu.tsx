@@ -366,7 +366,7 @@ export default function SignalExportMenu({
           role="menu"
           aria-label={t("signalExport.menuHeading")}
           onKeyDown={onMenuKeyDown}
-          className="absolute top-[calc(100%+8px)] z-60 w-[296px] rounded-(--r-md) border-0 bg-white p-2 shadow-[0_16px_40px_-16px_rgba(12,15,22,0.28)] end-0"
+          className="absolute top-[calc(100%+8px)] z-60 w-[296px] rounded-(--r-md) border border-(--line) bg-white p-2 shadow-[0_16px_40px_-16px_rgba(88,28,135,0.22)] end-0"
         >
           <div className="px-2.5 pt-1.5 pb-2 font-(family-name:--disp) text-[13px] font-bold text-(--t-1)">
             {t("signalExport.menuHeading")}

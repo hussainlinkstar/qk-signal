@@ -2,13 +2,14 @@
 
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ChevronDown, Globe2, Search } from "lucide-react";
 import { Command as CommandPrimitive } from "cmdk";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import SignalBrandLockup from "@/components/signal/SignalBrandLockup";
 import type { SignalNavSection } from "@/components/signal/SignalAppShell";
+import { cx } from "@/components/ui/utils";
 
 export type DomPillProject = { id: number; name: string; domain_url: string | null };
 
@@ -163,6 +164,7 @@ function SignalDomPill({
   fetchProjects: () => Promise<DomPillProject[]>;
 }) {
   const { t } = useTranslation();
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const [projects, setProjects] = useState<DomPillProject[] | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
@@ -199,12 +201,14 @@ function SignalDomPill({
        the pill's fixed 248px can't shrink, so project switching on <sm
        lives in the drawer instead of overflowing the header. */
     <div ref={rootRef} className="group/dom relative flex-none max-sm:hidden">
-      <span className="pointer-events-none absolute start-2.5 top-[-10px] z-20 rounded-[5px] bg-(--ink) px-2 py-[3px] font-(family-name:--mono) text-[9.5px] leading-none tracking-[0.05em] text-white opacity-0 invisible transition-[opacity,transform,visibility] duration-180 translate-y-[3px] group-hover/dom:visible group-hover/dom:translate-y-0 group-hover/dom:opacity-100 group-focus-within/dom:visible group-focus-within/dom:translate-y-0 group-focus-within/dom:opacity-100">
+      <span className="pointer-events-none absolute start-2.5 top-[-10px] z-20 rounded-[5px] bg-(--purple) px-2 py-[3px] font-(family-name:--mono) text-[9.5px] leading-none tracking-[0.05em] text-white opacity-0 invisible transition-[opacity,transform,visibility] duration-180 translate-y-[3px] group-hover/dom:visible group-hover/dom:translate-y-0 group-hover/dom:opacity-100 group-focus-within/dom:visible group-focus-within/dom:translate-y-0 group-focus-within/dom:opacity-100">
         {t("signalShell.monitoring")}
       </span>
-      <div className="relative flex h-[38px] items-center overflow-visible rounded-full border-0 bg-[#EEF1F6] text-[13.5px] font-semibold text-(--t-1)">
+      <div className="relative flex h-[38px] items-center overflow-visible rounded-full border border-(--line) bg-white text-[13.5px] font-semibold text-(--t-1) shadow-[0_1px_0_rgba(15,23,42,0.04)]">
         <span className="flex min-w-0 items-center gap-[9px] px-3">
-          <Globe2 aria-hidden="true" className="h-4 w-4 flex-none text-(--t-2)" strokeWidth={1.8} />
+          <span className="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-(--purple-s) text-(--purple)">
+            <Globe2 aria-hidden="true" className="h-3.5 w-3.5" strokeWidth={1.9} />
+          </span>
           <span className="truncate">{domain}</span>
           <span
             className={`h-[7px] w-[7px] flex-none rounded-full ${live ? "signal-pulse-dot bg-(--good)" : "bg-(--warn)"}`}
@@ -216,38 +220,54 @@ function SignalDomPill({
           aria-label={t("signalShell.switchProject")}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="flex cursor-pointer items-center self-stretch border-e-0 border-s border-(--line-2) bg-transparent px-2.5 text-(--t-3) hover:text-(--t-1)"
+          className="flex cursor-pointer items-center self-stretch border-e-0 border-s border-(--line) bg-transparent px-2.5 text-(--purple) hover:bg-(--purple-s)"
         >
-          <ChevronDown aria-hidden="true" className="h-3.5 w-3.5" strokeWidth={2} />
+          <ChevronDown
+            aria-hidden="true"
+            className={cx("h-3.5 w-3.5 transition-transform duration-150", open && "rotate-180")}
+            strokeWidth={2}
+          />
         </button>
         {open ? (
           <div
             role="menu"
-            className="absolute inset-s-0 top-[calc(100%+6px)] z-50 min-w-full overflow-hidden rounded-full border-0 bg-[#EEF1F6] py-1 shadow-[0_18px_44px_-18px_rgba(12,15,22,0.34)]"
+            className="absolute inset-s-0 top-[calc(100%+8px)] z-50 min-w-[min(100%,280px)] overflow-hidden rounded-[16px] border border-(--line) bg-white py-1.5 shadow-[0_16px_40px_-16px_rgba(88,28,135,0.28)]"
           >
             {projects === null ? (
-              <div className="px-3 py-2 text-[12.5px] text-(--t-3)">{t("signalShell.loading")}</div>
+              <div className="px-3.5 py-2.5 text-[12.5px] text-(--t-2)">{t("signalShell.loading")}</div>
             ) : projects.length === 0 ? (
-              <div className="px-3 py-2 text-[12.5px] text-(--t-3)">
+              <div className="px-3.5 py-2.5 text-[12.5px] text-(--t-2)">
                 {t("signalShell.noProjects")}
               </div>
             ) : (
-              projects.map((project) => (
-                <Link
-                  key={project.id}
-                  role="menuitem"
-                  href={`/dashboard/projects/${project.id}`}
-                  onClick={() => setOpen(false)}
-                  className="flex items-center gap-2 px-3 py-2 text-[12.5px] font-semibold text-(--t-1) no-underline hover:bg-(--line-2)"
-                >
-                  <span className="min-w-0 flex-1 truncate">{project.name}</span>
-                  {project.domain_url ? (
-                    <span className="max-w-[140px] truncate text-[11px] font-normal text-(--t-3)">
-                      {project.domain_url.replace(/^https?:\/\/(www\.)?/i, "").replace(/\/$/, "")}
-                    </span>
-                  ) : null}
-                </Link>
-              ))
+              projects.map((project) => {
+                const href = `/dashboard/projects/${project.id}`;
+                const selected = pathname === href || pathname.startsWith(`${href}/`);
+                const host = project.domain_url
+                  ? project.domain_url.replace(/^https?:\/\/(www\.)?/i, "").replace(/\/$/, "")
+                  : null;
+                return (
+                  <Link
+                    key={project.id}
+                    role="menuitem"
+                    href={href}
+                    onClick={() => setOpen(false)}
+                    className={cx(
+                      "mx-1.5 flex items-center gap-2 rounded-[12px] px-3 py-2.5 text-[13px] font-semibold no-underline transition-colors",
+                      selected
+                        ? "bg-(--purple-s) text-(--purple-deep,var(--purple))"
+                        : "text-(--t-1) hover:bg-(--purple-s)/70"
+                    )}
+                  >
+                    <span className="min-w-0 flex-1 truncate">{project.name}</span>
+                    {host ? (
+                      <span className="max-w-[140px] truncate text-[12px] font-medium text-(--t-2)">
+                        {host}
+                      </span>
+                    ) : null}
+                  </Link>
+                );
+              })
             )}
           </div>
         ) : null}

@@ -58,12 +58,12 @@ type Props = {
   note?: React.ReactNode;
 };
 
-/* Flat welcome trigger — menu opens downward, no card chrome. */
+/* Flat welcome trigger — menu opens downward with a clear bordered panel. */
 const MENU =
-  "absolute inset-x-0 top-[calc(100%+8px)] z-30 rounded-2xl border-0 bg-white p-2 shadow-[0_16px_40px_-18px_rgba(15,23,42,0.28)]";
+  "absolute inset-x-0 top-[calc(100%+8px)] z-30 rounded-2xl border border-(--line) bg-white p-2 shadow-[0_16px_40px_-16px_rgba(88,28,135,0.22)]";
 const ITEM =
-  "flex w-full items-center gap-[9px] rounded-xl px-3 py-2.5 text-start text-[13px] font-medium text-[#111827] transition-colors hover:bg-[#F3F4F6]";
-const DIVIDER = "mx-1 my-1.5 h-px bg-[#E5E7EB]";
+  "flex w-full items-center gap-[9px] rounded-xl px-3 py-2.5 text-start text-[13px] font-medium text-(--t-1) transition-colors hover:bg-(--purple-s)";
+const DIVIDER = "mx-1 my-1.5 h-px bg-(--line)";
 const SIGNOUT =
   "flex w-full items-center gap-[9px] rounded-xl px-3 py-2.5 text-start text-[13px] font-medium text-(--bad) transition-colors hover:bg-(--bad-s)";
 
@@ -256,12 +256,25 @@ export default function SidebarWorkspaceMenu({
                     role="menuitemradio"
                     aria-checked={selected}
                     onClick={() => onSelectProject(project)}
-                    className={cx(ITEM, selected && "font-semibold text-(--purple)")}
+                    className={cx(
+                      ITEM,
+                      selected && "bg-(--purple-s) font-semibold text-(--purple-deep,var(--purple))"
+                    )}
                   >
-                    <span dir="ltr" className="min-w-0 truncate text-start">
-                      {stripScheme(project.domain_url) ?? project.name}
+                    <span className="min-w-0 flex-1 truncate text-start">
+                      <span className="block truncate">{project.name}</span>
+                      {project.domain_url ? (
+                        <span
+                          dir="ltr"
+                          className="mt-0.5 block truncate text-[12px] font-medium text-(--t-2)"
+                        >
+                          {stripScheme(project.domain_url)}
+                        </span>
+                      ) : null}
                     </span>
-                    {selected ? <Check size={14} className="ms-auto flex-none" /> : null}
+                    {selected ? (
+                      <Check size={14} className="ms-auto flex-none text-(--purple)" />
+                    ) : null}
                   </button>
                 );
               })}
@@ -277,10 +290,15 @@ export default function SidebarWorkspaceMenu({
                     role="menuitemradio"
                     aria-checked={selected}
                     onClick={() => onSelectWorkspace(workspace)}
-                    className={cx(ITEM, selected && "font-semibold text-(--purple)")}
+                    className={cx(
+                      ITEM,
+                      selected && "bg-(--purple-s) font-semibold text-(--purple-deep,var(--purple))"
+                    )}
                   >
                     <span className="min-w-0 truncate text-start">{workspace.name}</span>
-                    {selected ? <Check size={14} className="ms-auto flex-none" /> : null}
+                    {selected ? (
+                      <Check size={14} className="ms-auto flex-none text-(--purple)" />
+                    ) : null}
                   </button>
                 );
               })}
@@ -292,7 +310,7 @@ export default function SidebarWorkspaceMenu({
             <span className="block truncate font-(family-name:--disp) text-[13px] font-bold text-(--t-1)">
               {displayName}
             </span>
-            <span dir="ltr" className="block truncate text-start text-[11.5px] text-(--t-3)">
+            <span dir="ltr" className="block truncate text-start text-[12px] font-medium text-(--t-2)">
               {email}
             </span>
           </div>
@@ -324,27 +342,27 @@ export default function SidebarWorkspaceMenu({
         className="flex w-full cursor-pointer items-start gap-0 border-0 bg-transparent p-0 text-start transition-opacity hover:opacity-80"
       >
         <span className="min-w-0 flex-1">
-          <span className="block text-[12px] font-medium text-[#9CA3AF]">Welcome,</span>
+          <span className="block text-[12px] font-medium text-(--t-2)">Welcome,</span>
           <span className="mt-0.5 flex items-center gap-1.5">
             <span
               dir="ltr"
-              className="truncate font-(family-name:--disp) text-[18px] font-bold leading-tight tracking-[-0.02em] text-[#111827]"
+              className="truncate font-(family-name:--disp) text-[18px] font-bold leading-tight tracking-[-0.02em] text-(--t-1)"
             >
               {displayName || toggleLabel}
             </span>
             <ChevronDown
               size={16}
               className={cx(
-                "shrink-0 text-[#9CA3AF] transition-transform duration-200",
+                "shrink-0 text-(--purple) transition-transform duration-200",
                 open && "rotate-180"
               )}
             />
           </span>
-          <span className="mt-1 block truncate text-[12px] text-[#9CA3AF]">{toggleLabel}</span>
+          <span className="mt-1 block truncate text-[12px] font-medium text-(--t-2)">{toggleLabel}</span>
         </span>
         <span
           aria-hidden="true"
-          className="ms-2 flex h-9 w-9 flex-none items-center justify-center rounded-[10px] bg-[#E8F1FF] text-[12px] font-bold text-[#3B82F6]"
+          className="ms-2 flex h-9 w-9 flex-none items-center justify-center rounded-[10px] bg-(--purple-s) text-[12px] font-bold text-(--purple)"
         >
           {avatarInitials}
         </span>
