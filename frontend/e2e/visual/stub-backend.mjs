@@ -52,7 +52,7 @@ const workspaces = [
     role: "ADMIN",
     is_owner: true,
     project_count: 3,
-    member_count: 1,
+    member_count: 3,
   },
   {
     id: 2,
@@ -99,6 +99,33 @@ const whiteLabelSettings = {
 };
 
 const snapshotWhiteLabel = () => JSON.parse(JSON.stringify(whiteLabelSettings));
+
+/** Mutable developer API keys for settings → Developer (mock preview). */
+let nextApiKeyId = 3;
+const apiKeys = [
+  {
+    id: 1,
+    name: "Looker Studio export",
+    key_prefix: "stx_live_",
+    key_last_four: "9f2a",
+    scopes: ["projects:read", "audits:read"],
+    is_active: true,
+    created_at: "2026-09-12T09:00:00.000Z",
+    last_used_at: "2026-09-28T14:22:00.000Z",
+    revoked_at: null,
+  },
+  {
+    id: 2,
+    name: "Zapier bridge",
+    key_prefix: "stx_live_",
+    key_last_four: "c41e",
+    scopes: ["projects:read", "tasks:write"],
+    is_active: true,
+    created_at: "2026-09-20T11:30:00.000Z",
+    last_used_at: null,
+    revoked_at: null,
+  },
+];
 
 const spark = (values) =>
   values.map((overall, i) => ({ date: `2026-09-${String(22 + i).padStart(2, "0")}`, overall }));
@@ -630,6 +657,14 @@ const stubQueriesFor = (pid) => {
       stubQuery(84, pid, "Which resorts have family suites and late checkout?", "feature"),
     ];
   }
+  if (pid === 11) {
+    return [
+      stubQuery(91, pid, "What is Harbour View Hotel known for?", "brand"),
+      stubQuery(92, pid, "Which harbour hotels suit a short city break?", "category"),
+      stubQuery(93, pid, "Where can I stay with harbour views for a conference?", "problem"),
+      stubQuery(94, pid, "Which hotels have rooftop dining near the waterfront?", "feature"),
+    ];
+  }
   return [];
 };
 
@@ -980,6 +1015,43 @@ const remapHostInTree = (value, fromHost, toHost) => {
     geo_score: 76,
     full_report: coastlineReport,
   };
+
+  const harbourReport = remapHostInTree(
+    JSON.parse(JSON.stringify(northwind.full_report)),
+    "northwind-hotels.com",
+    "harbourview.co"
+  );
+  harbourReport.target.name = "Harbour View Hotel";
+  harbourReport.site = {
+    ...(harbourReport.site || {}),
+    url: "https://harbourview.co",
+    market: "hospitality",
+    language: "en",
+  };
+  harbourReport.scores = { seo: 74, aeo: 62, geo: 62, overall: 68 };
+  if (harbourReport.seo) {
+    harbourReport.seo = {
+      ...harbourReport.seo,
+      onpage: 76,
+      performance: 72,
+      indexing: 80,
+      core_web_vitals: 78,
+      technical_seo: 75,
+      onpage_content: 74,
+      eeat_trust: 68,
+      security_accessibility: 64,
+    };
+  }
+  latestAuditByProject[11] = {
+    id: 1101,
+    url: "https://harbourview.co",
+    status: "completed",
+    completed_at: "2026-09-28T12:00:00.000Z",
+    seo_score: 74,
+    aeo_score: 62,
+    geo_score: 62,
+    full_report: harbourReport,
+  };
 }
 
 // Mock-preview convenience: /dashboard/audit/2 serves the rich Northwind
@@ -1133,6 +1205,41 @@ const taskBoardByProject = {
         category: "Content",
         resolved_at: "2026-09-22T10:00:00.000Z",
         resolution_source: "manual",
+      }),
+    ],
+  },
+  10: {
+    ...emptyTaskBoard(10),
+    latest_audit_id: 1001,
+    summary: { total: 2, done: 0 },
+    tasks: [
+      stubTask(10, {
+        id: 101,
+        title: "Publish structured room and availability data",
+        status: "todo",
+        category: "Content",
+        source_audit_id: 1001,
+      }),
+      stubTask(10, {
+        id: 102,
+        title: "Rewrite the offers page around tracked prompts",
+        status: "in_progress",
+        category: "Content",
+        source_audit_id: 1001,
+      }),
+    ],
+  },
+  11: {
+    ...emptyTaskBoard(11),
+    latest_audit_id: 1101,
+    summary: { total: 1, done: 0 },
+    tasks: [
+      stubTask(11, {
+        id: 111,
+        title: "Fix crawl and indexation coverage",
+        status: "todo",
+        category: "Technical",
+        source_audit_id: 1101,
       }),
     ],
   },
@@ -1339,6 +1446,27 @@ const visibilitySummaryByProject = {
     ][index] || row.query_text,
   }));
   visibilitySummaryByProject[10] = coastlineSummary;
+
+  const harbourSummary = remapHostInTree(
+    JSON.parse(JSON.stringify(northwindSummary)),
+    "Northwind Hotels",
+    "Harbour View Hotel"
+  );
+  harbourSummary.project_id = 11;
+  harbourSummary.visibility_score = 58;
+  harbourSummary.trend_delta = 2;
+  harbourSummary.queries = (harbourSummary.queries || []).map((row, index) => ({
+    ...row,
+    id: 701 + index,
+    project_id: 11,
+    query_text: [
+      "best harbour hotels for a weekend",
+      "tell me about Harbour View Hotel",
+      "quiet hotel near the conference centre",
+      "Harbour View Hotel vs boutique waterfront stays",
+    ][index] || row.query_text,
+  }));
+  visibilitySummaryByProject[11] = harbourSummary;
 }
 
 // SIGV2-1036 fixtures: SERP keyword tracking and the Search Console pages
@@ -1445,6 +1573,25 @@ const serpTrackingByProject = {
     ][index] || snap.keyword,
   }));
   serpTrackingByProject[10] = coastlineSerp;
+
+  const harbourSerp = remapHostInTree(
+    JSON.parse(JSON.stringify(northwindSerp)),
+    "northwind-hotels.com",
+    "harbourview.co"
+  );
+  harbourSerp.project_id = 11;
+  harbourSerp.latest_snapshots = (harbourSerp.latest_snapshots || []).map((snap, index) => ({
+    ...snap,
+    keyword_id: 801 + index,
+    keyword: [
+      "harbour view hotel",
+      "waterfront hotel late checkout",
+      "best hotels near the harbour",
+      "harbourview booking",
+      "city break harbour hotel",
+    ][index] || snap.keyword,
+  }));
+  serpTrackingByProject[11] = harbourSerp;
 }
 
 const targetKeywordsByProject = {
@@ -1544,6 +1691,53 @@ const targetKeywordsByProject = {
     {
       id: 705,
       keyword: "family seaside resort",
+      search_engine: "google",
+      language_code: "en",
+      location_code: null,
+      is_active: true,
+      created_at: "2026-09-04T09:00:00.000Z",
+    },
+  ],
+  11: [
+    {
+      id: 801,
+      keyword: "harbour view hotel",
+      search_engine: "google",
+      language_code: "en",
+      location_code: null,
+      is_active: true,
+      created_at: "2026-09-01T09:00:00.000Z",
+    },
+    {
+      id: 802,
+      keyword: "waterfront hotel late checkout",
+      search_engine: "google",
+      language_code: "en",
+      location_code: null,
+      is_active: true,
+      created_at: "2026-09-01T09:00:00.000Z",
+    },
+    {
+      id: 803,
+      keyword: "best hotels near the harbour",
+      search_engine: "google",
+      language_code: "en",
+      location_code: null,
+      is_active: true,
+      created_at: "2026-09-02T09:00:00.000Z",
+    },
+    {
+      id: 804,
+      keyword: "harbourview booking",
+      search_engine: "google",
+      language_code: "en",
+      location_code: null,
+      is_active: true,
+      created_at: "2026-09-03T09:00:00.000Z",
+    },
+    {
+      id: 805,
+      keyword: "city break harbour hotel",
       search_engine: "google",
       language_code: "en",
       location_code: null,
@@ -1701,7 +1895,81 @@ const gscPagesByProject = {
   coastlineGsc.property = "https://coastline-resorts.com/";
   coastlineGsc.totals = { clicks: 640, impressions: 15200, ctr: 0.0421, position: 6.4 };
   gscPagesByProject[10] = coastlineGsc;
+
+  const harbourGsc = remapHostInTree(
+    JSON.parse(JSON.stringify(northwindGsc)),
+    "northwind-hotels.com",
+    "harbourview.co"
+  );
+  harbourGsc.property = "https://harbourview.co/";
+  harbourGsc.totals = { clicks: 410, impressions: 9800, ctr: 0.0418, position: 7.8 };
+  gscPagesByProject[11] = harbourGsc;
 }
+
+const alertRulesByProject = {
+  9: [
+    {
+      id: 1,
+      project_id: 9,
+      metric: "seo_score",
+      condition: "lt",
+      threshold: 70,
+      email_to: "demo@demo.com",
+      is_active: true,
+      last_triggered_at: "2026-09-22T08:00:00.000Z",
+      created_at: "2026-09-10T09:00:00.000Z",
+      recent_logs: [
+        {
+          id: 11,
+          rule_id: 1,
+          triggered_at: "2026-09-22T08:00:00.000Z",
+          metric_value: 68,
+          message: "SEO score dropped below 70.",
+        },
+      ],
+    },
+    {
+      id: 2,
+      project_id: 9,
+      metric: "aeo_score",
+      condition: "lt",
+      threshold: 60,
+      email_to: "demo@demo.com",
+      is_active: true,
+      last_triggered_at: null,
+      created_at: "2026-09-15T09:00:00.000Z",
+      recent_logs: [],
+    },
+  ],
+  10: [
+    {
+      id: 3,
+      project_id: 10,
+      metric: "overall_score",
+      condition: "lt",
+      threshold: 75,
+      email_to: "demo@demo.com",
+      is_active: true,
+      last_triggered_at: null,
+      created_at: "2026-09-18T09:00:00.000Z",
+      recent_logs: [],
+    },
+  ],
+  11: [
+    {
+      id: 4,
+      project_id: 11,
+      metric: "seo_score",
+      condition: "lt",
+      threshold: 72,
+      email_to: "demo@demo.com",
+      is_active: false,
+      last_triggered_at: null,
+      created_at: "2026-09-19T09:00:00.000Z",
+      recent_logs: [],
+    },
+  ],
+};
 
 // SIGV2-1130: the report library collection. Obviously synthetic fixture rows,
 // shaped exactly like the real response, including names in the product's own
@@ -2008,6 +2276,20 @@ export function stubRequestListener(req, res) {
           is_owner: true,
           created_at: NOW,
         },
+        {
+          user_id: 2,
+          email: "editor@demo.com",
+          role: "EDITOR",
+          is_owner: false,
+          created_at: "2026-09-08T10:00:00.000Z",
+        },
+        {
+          user_id: 3,
+          email: "client@harbourview.co",
+          role: "CLIENT_READONLY",
+          is_owner: false,
+          created_at: "2026-09-14T10:00:00.000Z",
+        },
       ]);
     else if (p === "/api/v1/workspaces/current/oauth-connections") ok([]);
     else if (/^\/api\/v1\/workspaces\/\d+\/trends\/overview$/.test(p)) ok(trendsByWorkspace[id]);
@@ -2274,7 +2556,8 @@ export function stubRequestListener(req, res) {
         recent_periods: [],
       });
     } else if (/^\/api\/v1\/projects\/\d+\/alerts$/.test(p)) {
-      ok([]);
+      const pid = Number(p.match(/projects\/(\d+)/)?.[1]);
+      ok(alertRulesByProject[pid] ?? []);
     }
     // Per-project audit list (dashboard scan-history card and the projects
     // table read it). Same fixture the SIGV2-1187 branch serves.
@@ -2448,37 +2731,102 @@ export function stubRequestListener(req, res) {
         fetched_at: NOW,
       });
     }
-    // Developer tab: the API key list (empty) and the workspace cost
-    // breakdown, which is the same budget-guardrail shape per project.
-    else if (p === "/api/v1/settings/api-keys")
+    // Developer tab: API keys + workspace cost breakdown.
+    else if (p === "/api/v1/settings/api-keys") {
+      if (req.method === "POST") {
+        let raw = "";
+        req.on("data", (c) => (raw += c));
+        req.on("end", () => {
+          const payload = JSON.parse(raw || "{}");
+          const name = String(payload.name || "").trim() || "Untitled key";
+          const lastFour = String(Math.floor(1000 + Math.random() * 9000));
+          const item = {
+            id: nextApiKeyId++,
+            name,
+            key_prefix: "stx_live_",
+            key_last_four: lastFour,
+            scopes: Array.isArray(payload.scopes) ? payload.scopes : ["projects:read"],
+            is_active: true,
+            created_at: NOW,
+            last_used_at: null,
+            revoked_at: null,
+          };
+          apiKeys.unshift(item);
+          res.writeHead(201, { "content-type": "application/json" });
+          res.end(
+            JSON.stringify({
+              api_key: `stx_live_mock_${lastFour}_${item.id}`,
+              item,
+              developer_hub_url: "/dashboard/developer",
+            })
+          );
+        });
+        return;
+      }
       ok({
-        items: [],
+        items: apiKeys,
         plan_type: "plan_executive",
         api_access_enabled: true,
+        mcp_access_enabled: true,
         developer_hub_url: "/dashboard/developer",
       });
-    else if (/^\/api\/v1\/workspaces\/\d+\/cost-breakdown$/.test(p)) {
+    } else if (/^\/api\/v1\/settings\/api-keys\/\d+$/.test(p) && req.method === "DELETE") {
+      const keyId = Number(p.match(/api-keys\/(\d+)/)?.[1]);
+      const item = apiKeys.find((row) => row.id === keyId);
+      if (!item) {
+        status = 404;
+        body = { detail: "API key not found" };
+      } else {
+        item.is_active = false;
+        item.revoked_at = NOW;
+        ok({ revoked: true, item });
+      }
+    } else if (/^\/api\/v1\/workspaces\/\d+\/cost-breakdown$/.test(p)) {
+      const budgetByProject = {
+        9: { limit: 40, consumed: 18 },
+        10: { limit: 60, consumed: 34 },
+        11: { limit: 30, consumed: 12 },
+      };
       ok({
         workspace_id: id,
         generated_at: NOW,
-        projects: (projectsByWorkspace[id] ?? []).map((proj) => ({
-          project_id: proj.id,
-          workspace_id: id,
-          project_name: proj.name,
-          domain_url: proj.domain_url ?? null,
-          budget_configured: false,
-          monthly_limit_scans: null,
-          cycle_anchor_day: 1,
-          current_period_start: "2026-07-01",
-          current_period_end: "2026-08-01",
-          consumed_scans: proj.audit_count ?? 0,
-          remaining_scans: null,
-          percent_consumed: null,
-          status: "unlimited",
-          warning_threshold_reached: false,
-          limit_reached: false,
-          recent_periods: [],
-        })),
+        projects: (projectsByWorkspace[id] ?? []).map((proj) => {
+          const budget = budgetByProject[proj.id] ?? {
+            limit: 20,
+            consumed: proj.audit_count ?? 0,
+          };
+          const remaining = Math.max(0, budget.limit - budget.consumed);
+          const percent = Math.round((budget.consumed / budget.limit) * 100);
+          return {
+            project_id: proj.id,
+            workspace_id: id,
+            project_name: proj.name,
+            domain_url: proj.domain_url ?? null,
+            budget_configured: true,
+            monthly_limit_scans: budget.limit,
+            cycle_anchor_day: 1,
+            current_period_start: "2026-09-01",
+            current_period_end: "2026-10-01",
+            consumed_scans: budget.consumed,
+            remaining_scans: remaining,
+            percent_consumed: percent,
+            status: percent >= 100 ? "limit_reached" : percent >= 80 ? "warning" : "ok",
+            warning_threshold_reached: percent >= 80,
+            limit_reached: percent >= 100,
+            recent_periods: [
+              {
+                period_start: "2026-08-01",
+                period_end: "2026-09-01",
+                consumed_scans: Math.max(0, budget.consumed - 4),
+              },
+              {
+                period_start: "2026-09-01",
+                period_end: "2026-10-01",
+                consumed_scans: budget.consumed,
+              },
+            ],
+          };
+        }),
       });
     }
     // Account settings boot fan-out: profile, notification preferences, MFA
