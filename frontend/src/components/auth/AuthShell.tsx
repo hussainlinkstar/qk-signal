@@ -79,7 +79,7 @@ export default function AuthShell({
       <div className="mx-auto grid min-h-dvh w-full max-w-[1120px] lg:grid-cols-[1.05fr_0.95fr]">
         <aside className="signal-auth-brand relative hidden overflow-hidden px-10 py-12 lg:flex lg:flex-col lg:justify-between">
           <div className="relative z-10" aria-hidden="true">
-            <span className="font-(family-name:--disp) text-[22px] font-extrabold tracking-[-0.02em] text-(--panel)">
+            <span className="font-(family-name:--disp) text-[22px] font-extrabold tracking-[-0.02em] text-(--t-1)">
               {branding?.companyName || "Qiko Signal"}
             </span>
           </div>
@@ -89,7 +89,7 @@ export default function AuthShell({
               <Radio className="h-3.5 w-3.5" aria-hidden="true" />
               {chipLabel}
             </span>
-            <h2 className="m-0 font-(family-name:--disp) text-[2.15rem] font-extrabold leading-[1.15] tracking-[-0.03em] text-(--panel)">
+            <h2 className="m-0 font-(family-name:--disp) text-[2.15rem] font-extrabold leading-[1.15] tracking-[-0.03em] text-(--t-1)">
               See how you show up in search and AI answers.
             </h2>
             <p className="signal-auth-muted m-0 text-[15px] leading-[1.55]">
@@ -126,8 +126,6 @@ export default function AuthShell({
             </Link>
 
             <div className="signal-auth-card overflow-hidden rounded-[24px] border border-(--line) bg-(--panel) p-6 sm:p-8">
-              <div aria-hidden="true" className="signal-auth-rail mb-5 h-1 w-full rounded-full" />
-
               <div className="mb-5">
                 <Link
                   href={qikoSiteUrl}

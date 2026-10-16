@@ -2448,67 +2448,31 @@ body {
   }
 }
 
-/* Auth split-panel atmosphere — kept outside @utility blocks so Tailwind
-   does not stall while parsing layered utilities. Colours live here so
-   AuthShell.tsx stays free of per-file hex / rgb / text-white. */
+/* Light auth split — soft neutrals, no dark blue/indigo stage or card rail. */
 [data-signal-auth] .signal-auth-brand {
-  color: var(--panel);
-  background:
-    radial-gradient(
-      ellipse 90% 70% at 10% 20%,
-      color-mix(in srgb, var(--auth-primary, var(--purple)) 80%, #1e1b4b),
-      transparent 60%
-    ),
-    radial-gradient(
-      ellipse 70% 60% at 90% 10%,
-      color-mix(in srgb, var(--auth-secondary, var(--coral)) 65%, transparent),
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse 80% 50% at 70% 90%,
-      color-mix(in srgb, var(--mint) 50%, transparent),
-      transparent 50%
-    ),
-    linear-gradient(160deg, #1e1b4b 0%, #312e81 45%, #4c1d95 100%);
-}
-
-[data-signal-auth] .signal-auth-brand::before {
-  content: "";
-  position: absolute;
-  inset: auto -4rem auto auto;
-  top: -6rem;
-  width: 18rem;
-  height: 18rem;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--panel) 12%, transparent);
-  filter: blur(48px);
-  pointer-events: none;
+  color: var(--t-1);
+  border-inline-end: 1px solid var(--line);
+  background: var(--paper, #f7f8fa);
 }
 
 [data-signal-auth] .signal-auth-chip {
-  color: var(--panel);
-  background: color-mix(in srgb, var(--panel) 15%, transparent);
-  backdrop-filter: blur(8px);
+  color: var(--t-2);
+  background: var(--well, #eef1f6);
 }
 
 [data-signal-auth] .signal-auth-muted {
-  color: color-mix(in srgb, var(--panel) 82%, transparent);
+  color: var(--t-2);
 }
 
 [data-signal-auth] .signal-auth-footer-note {
-  color: color-mix(in srgb, var(--panel) 55%, transparent);
+  color: var(--t-3);
 }
 
 [data-signal-auth] .signal-auth-dot {
-  background: var(--amber-hi, var(--amber));
-}
-
-[data-signal-auth] .signal-auth-rail {
-  background: linear-gradient(90deg, var(--purple) 0%, var(--coral) 50%, var(--mint) 100%);
+  background: var(--t-3);
 }
 
 [data-signal-auth] .signal-auth-card {
-  background: color-mix(in srgb, var(--panel) 96%, transparent);
-  box-shadow: 0 24px 60px -28px color-mix(in srgb, var(--purple) 35%, transparent);
-  backdrop-filter: blur(8px);
+  background: var(--panel);
+  box-shadow: 0 12px 32px -20px rgba(15, 23, 42, 0.12);
 }
